@@ -1,0 +1,52 @@
+{
+  "raw_text": "тихий номер с видом на закат недалеко от моря",
+  "city_id": "sochi",
+  "dates": {"from": "2026-11-14", "to": "2026-11-17"},
+  "hard": [
+    {
+      "feature_id": "V05",
+      "op": "eq",
+      "value": true,
+      "binding": "same_placement",
+      "text_span": "с видом на закат"
+    }
+  ],
+  "soft": [
+    {
+      "feature_id": "W01",
+      "op": "lte",
+      "value": 800,
+      "field": "distance_m",
+      "binding": "hotel",
+      "weight": 0.5,
+      "text_span": "недалеко от моря"
+    },
+    {
+      "feature_id": "N02",
+      "op": "gte",
+      "value": 200,
+      "field": "distance_m",
+      "binding": "hotel",
+      "weight": 0.3,
+      "text_span": "тихий"
+    },
+    {
+      "feature_id": "N04",
+      "op": "lte",
+      "value": 2,
+      "field": "count",
+      "binding": "hotel",
+      "weight": 0.2,
+      "text_span": "тихий"
+    }
+  ],
+  "clarify": [
+    {
+      "question": "«Тихий» — важна тишина в самом номере или подальше от дорог и баров?",
+      "about": "тихий",
+      "options": ["в номере", "подальше от дорог и баров", "и то и другое"]
+    }
+  ],
+  "out_of_catalog": [],
+  "parsed_by": "stub"
+}

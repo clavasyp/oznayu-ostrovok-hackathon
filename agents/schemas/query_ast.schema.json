@@ -1,0 +1,630 @@
+{
+  "$defs": {
+    "Clarification": {
+      "additionalProperties": false,
+      "properties": {
+        "question": {
+          "title": "Question",
+          "type": "string"
+        },
+        "about": {
+          "description": "Какую неоднозначность снимает: «тихо» — в номере или у дорог",
+          "title": "About",
+          "type": "string"
+        },
+        "options": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Options",
+          "type": "array"
+        }
+      },
+      "required": [
+        "question",
+        "about"
+      ],
+      "title": "Clarification",
+      "type": "object"
+    },
+    "Condition": {
+      "additionalProperties": false,
+      "properties": {
+        "feature_id": {
+          "description": "ID характеристики каталога, например V05 или W01",
+          "title": "Feature Id",
+          "type": "string"
+        },
+        "op": {
+          "enum": [
+            "eq",
+            "ne",
+            "lt",
+            "lte",
+            "gt",
+            "gte",
+            "in",
+            "exists"
+          ],
+          "title": "Op",
+          "type": "string"
+        },
+        "value": {
+          "default": null,
+          "title": "Value"
+        },
+        "field": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Какое поле значения сравнивать: distance_m, count, mean…",
+          "title": "Field"
+        },
+        "params": {
+          "additionalProperties": true,
+          "description": "Параметры: месяц, цель маршрута, время приезда",
+          "title": "Params",
+          "type": "object"
+        },
+        "binding": {
+          "default": "same_placement",
+          "description": "Условия уровня номера проверяются на одном размещении (D17)",
+          "enum": [
+            "same_placement",
+            "hotel"
+          ],
+          "title": "Binding",
+          "type": "string"
+        },
+        "quantifier": {
+          "default": "all",
+          "enum": [
+            "all",
+            "any"
+          ],
+          "title": "Quantifier",
+          "type": "string"
+        },
+        "text_span": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Фрагмент запроса, откуда условие",
+          "title": "Text Span"
+        },
+        "atom_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "ID атома запроса (v11: AST без потерь)",
+          "title": "Atom Id"
+        },
+        "span": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Span"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "provenance": {
+          "default": "explicit",
+          "description": "Явно сказано или выведено (выведенное — только уточнение)",
+          "enum": [
+            "explicit",
+            "inferred"
+          ],
+          "title": "Provenance",
+          "type": "string"
+        },
+        "mapping": {
+          "default": "exact",
+          "description": "Насколько смысл атома совпадает с характеристикой",
+          "enum": [
+            "exact",
+            "partial",
+            "different_meaning"
+          ],
+          "title": "Mapping",
+          "type": "string"
+        }
+      },
+      "required": [
+        "feature_id",
+        "op"
+      ],
+      "title": "Condition",
+      "type": "object"
+    },
+    "Dates": {
+      "additionalProperties": false,
+      "properties": {
+        "from": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "From"
+        },
+        "to": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "To"
+        }
+      },
+      "title": "Dates",
+      "type": "object"
+    },
+    "Guests": {
+      "additionalProperties": false,
+      "properties": {
+        "adults": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Adults"
+        },
+        "children_ages": {
+          "items": {
+            "type": "integer"
+          },
+          "title": "Children Ages",
+          "type": "array"
+        },
+        "pets": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Pets",
+          "type": "array"
+        }
+      },
+      "title": "Guests",
+      "type": "object"
+    },
+    "LogicNode": {
+      "additionalProperties": false,
+      "description": "Узел логики запроса (v11).\n\nATOM ссылается на условие по atom_id; AND / OR / NOT — на детей.",
+      "properties": {
+        "node_id": {
+          "title": "Node Id",
+          "type": "string"
+        },
+        "op": {
+          "enum": [
+            "ATOM",
+            "AND",
+            "OR",
+            "NOT"
+          ],
+          "title": "Op",
+          "type": "string"
+        },
+        "atom_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Atom Id"
+        },
+        "children": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Children",
+          "type": "array"
+        }
+      },
+      "required": [
+        "node_id",
+        "op"
+      ],
+      "title": "LogicNode",
+      "type": "object"
+    },
+    "OutOfCatalog": {
+      "additionalProperties": false,
+      "description": "Часть запроса без характеристики в каталоге (D34): показываем «такое мы пока не знаем».",
+      "properties": {
+        "text_span": {
+          "title": "Text Span",
+          "type": "string"
+        },
+        "normalized": {
+          "title": "Normalized",
+          "type": "string"
+        },
+        "kind": {
+          "default": "missing_feature",
+          "enum": [
+            "missing_feature",
+            "subjective",
+            "unsupported_param"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "atom_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Atom Id"
+        },
+        "span": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Span"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "requiredness": {
+          "default": "unspecified",
+          "enum": [
+            "required",
+            "desired",
+            "unspecified"
+          ],
+          "title": "Requiredness",
+          "type": "string"
+        },
+        "mapping_status": {
+          "default": "unmatched",
+          "enum": [
+            "partial",
+            "different_meaning",
+            "unmatched"
+          ],
+          "title": "Mapping Status",
+          "type": "string"
+        },
+        "nearest_contracts": {
+          "description": "Ближайшие характеристики каталога, если есть",
+          "items": {
+            "type": "string"
+          },
+          "title": "Nearest Contracts",
+          "type": "array"
+        }
+      },
+      "required": [
+        "text_span",
+        "normalized"
+      ],
+      "title": "OutOfCatalog",
+      "type": "object"
+    },
+    "SoftCondition": {
+      "additionalProperties": false,
+      "properties": {
+        "feature_id": {
+          "description": "ID характеристики каталога, например V05 или W01",
+          "title": "Feature Id",
+          "type": "string"
+        },
+        "op": {
+          "enum": [
+            "eq",
+            "ne",
+            "lt",
+            "lte",
+            "gt",
+            "gte",
+            "in",
+            "exists"
+          ],
+          "title": "Op",
+          "type": "string"
+        },
+        "value": {
+          "default": null,
+          "title": "Value"
+        },
+        "field": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Какое поле значения сравнивать: distance_m, count, mean…",
+          "title": "Field"
+        },
+        "params": {
+          "additionalProperties": true,
+          "description": "Параметры: месяц, цель маршрута, время приезда",
+          "title": "Params",
+          "type": "object"
+        },
+        "binding": {
+          "default": "same_placement",
+          "description": "Условия уровня номера проверяются на одном размещении (D17)",
+          "enum": [
+            "same_placement",
+            "hotel"
+          ],
+          "title": "Binding",
+          "type": "string"
+        },
+        "quantifier": {
+          "default": "all",
+          "enum": [
+            "all",
+            "any"
+          ],
+          "title": "Quantifier",
+          "type": "string"
+        },
+        "text_span": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Фрагмент запроса, откуда условие",
+          "title": "Text Span"
+        },
+        "atom_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "ID атома запроса (v11: AST без потерь)",
+          "title": "Atom Id"
+        },
+        "span": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Span"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "provenance": {
+          "default": "explicit",
+          "description": "Явно сказано или выведено (выведенное — только уточнение)",
+          "enum": [
+            "explicit",
+            "inferred"
+          ],
+          "title": "Provenance",
+          "type": "string"
+        },
+        "mapping": {
+          "default": "exact",
+          "description": "Насколько смысл атома совпадает с характеристикой",
+          "enum": [
+            "exact",
+            "partial",
+            "different_meaning"
+          ],
+          "title": "Mapping",
+          "type": "string"
+        },
+        "weight": {
+          "exclusiveMinimum": 0,
+          "maximum": 1,
+          "title": "Weight",
+          "type": "number"
+        }
+      },
+      "required": [
+        "feature_id",
+        "op",
+        "weight"
+      ],
+      "title": "SoftCondition",
+      "type": "object"
+    },
+    "Span": {
+      "additionalProperties": false,
+      "description": "Фрагмент исходного текста: позиции в Unicode code points, полуинтервал [start, end) (v11).",
+      "properties": {
+        "start": {
+          "minimum": 0,
+          "title": "Start",
+          "type": "integer"
+        },
+        "end": {
+          "minimum": 0,
+          "title": "End",
+          "type": "integer"
+        },
+        "text": {
+          "title": "Text",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start",
+        "end",
+        "text"
+      ],
+      "title": "Span",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "raw_text": {
+      "title": "Raw Text",
+      "type": "string"
+    },
+    "city_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "City Id"
+    },
+    "dates": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Dates"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "guests": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Guests"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "hard": {
+      "items": {
+        "$ref": "#/$defs/Condition"
+      },
+      "title": "Hard",
+      "type": "array"
+    },
+    "soft": {
+      "items": {
+        "$ref": "#/$defs/SoftCondition"
+      },
+      "title": "Soft",
+      "type": "array"
+    },
+    "clarify": {
+      "items": {
+        "$ref": "#/$defs/Clarification"
+      },
+      "title": "Clarify",
+      "type": "array"
+    },
+    "out_of_catalog": {
+      "items": {
+        "$ref": "#/$defs/OutOfCatalog"
+      },
+      "title": "Out Of Catalog",
+      "type": "array"
+    },
+    "logic": {
+      "description": "Необязательно: граф AND / OR / NOT; пусто — все hard соединены через AND",
+      "items": {
+        "$ref": "#/$defs/LogicNode"
+      },
+      "title": "Logic",
+      "type": "array"
+    },
+    "hard_root": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Корень графа обязательных условий",
+      "title": "Hard Root"
+    },
+    "unparsed_spans": {
+      "description": "Неразобранные фрагменты — не теряются молча",
+      "items": {
+        "$ref": "#/$defs/Span"
+      },
+      "title": "Unparsed Spans",
+      "type": "array"
+    },
+    "parsed_by": {
+      "default": "llm",
+      "enum": [
+        "llm",
+        "rules",
+        "stub"
+      ],
+      "title": "Parsed By",
+      "type": "string"
+    }
+  },
+  "required": [
+    "raw_text"
+  ],
+  "title": "QueryAST",
+  "type": "object"
+}

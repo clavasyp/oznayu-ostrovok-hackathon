@@ -1,0 +1,50 @@
+[
+ {
+  "city_id": "sochi",
+  "name": "Большой Сочи",
+  "depth": "full",
+  "hotels_in_sample": 89
+ },
+ {
+  "city_id": "moscow",
+  "name": "Москва",
+  "depth": "full",
+  "hotels_in_sample": 50
+ },
+ {
+  "city_id": "spb",
+  "name": "Петербург",
+  "depth": "automatic",
+  "hotels_in_sample": 50
+ },
+ {
+  "city_id": "kazan",
+  "name": "Казань",
+  "depth": "automatic",
+  "hotels_in_sample": 50
+ },
+ {
+  "city_id": "kaliningrad",
+  "name": "Калининград",
+  "depth": "automatic",
+  "hotels_in_sample": 50
+ },
+ {
+  "city_id": "minsk",
+  "name": "Минск",
+  "depth": "automatic",
+  "hotels_in_sample": 50
+ },
+ {
+  "city_id": "istanbul",
+  "name": "Стамбул",
+  "depth": "automatic",
+  "hotels_in_sample": 50
+ },
+ {
+  "city_id": "dubai",
+  "name": "Дубай",
+  "depth": "automatic",
+  "hotels_in_sample": 50
+ }
+]
