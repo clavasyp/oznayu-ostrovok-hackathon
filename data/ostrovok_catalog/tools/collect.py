@@ -12,6 +12,9 @@
   collect.py <data_dir> sitemap            — список URL Москвы и Большого Сочи из sitemap
   collect.py <data_dir> pages [--limit N]  — страницы отелей по списку (с докачкой)
   collect.py <data_dir> status             — сколько собрано
+
+Завершение: manifests/DONE.json (все адреса из urls.csv пройдены) или PARTIAL.json (прогон закончился,
+но не всё пройдено). Отсутствие RUNNING.lock само по себе не значит, что сбор завершён.
 """
 import argparse, csv, datetime as dt, gzip, hashlib, json, re, sys, time
 from email.utils import parsedate_to_datetime
@@ -216,6 +219,12 @@ def cmd_pages(c: Client, root: Path, limit):
             rate = i / (time.monotonic() - t0)
             left = (len(todo) - i) / rate / 3600 if rate else 0
             print(f'{now()} {i}/{len(todo)} ~{rate:.2f} стр/с, осталось ~{left:.1f} ч', flush=True)
+    # Явный маркер завершения: RUNNING.lock снимается и при ошибке, поэтому по нему одному судить нельзя.
+    finished = {e for e in (json.loads(x)['url'] for x in pages_log.open())} if pages_log.exists() else set()
+    complete = all(u['url'] in finished for u in urls)
+    (root / 'manifests' / ('DONE.json' if complete else 'PARTIAL.json')).write_text(json.dumps(
+        {'finished_at': now(), 'urls': len(urls), 'pages_logged': len(finished), 'complete': complete,
+         'limit': limit or None}, ensure_ascii=False, indent=2))
 
 
 def cmd_status(root: Path):
