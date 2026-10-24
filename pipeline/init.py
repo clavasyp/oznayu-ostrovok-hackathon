@@ -12,12 +12,28 @@ from pathlib import Path
 
 from alembic import command
 from alembic.config import Config
-from sqlalchemy import create_engine
+from sqlalchemy import Engine, create_engine, text
+from sqlalchemy.exc import OperationalError
 
 from core.packs import discover
 from pipeline.load_packs import load_pack
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def wait_for_db(engine: Engine, timeout_s: float = 120) -> None:
+    """База могла ещё не принять соединения (первый запуск, медленный диск, эмуляция amd64)."""
+    deadline = time.monotonic() + timeout_s
+    while True:
+        try:
+            with engine.connect() as conn:
+                conn.execute(text("select 1"))
+            return
+        except OperationalError as exc:
+            if time.monotonic() > deadline:
+                raise
+            print(f"init: жду базу ({type(exc.orig).__name__})", flush=True)
+            time.sleep(2)
 
 
 def main() -> int:
@@ -28,14 +44,17 @@ def main() -> int:
     packs_dir = Path(os.environ.get("PACKS_DIR", ROOT / "packs"))
 
     started = time.monotonic()
+    engine = create_engine(url)
+    wait_for_db(engine)
     print("init: миграции", flush=True)
     cfg = Config(str(ROOT / "alembic.ini"))
     cfg.set_main_option("script_location", str(ROOT / "migrations"))
     command.upgrade(cfg, "head")
 
-    engine = create_engine(url)
     packs = discover(packs_dir)
     print(f"init: пакетов найдено {len(packs)} в {packs_dir}", flush=True)
+    if not packs:
+        print("init: пакетов пока нет: fixtures — заглушки v9, db — ждёт пакеты", flush=True)
     for pack_dir in packs:
         with engine.begin() as conn:
             print("init:", load_pack(conn, pack_dir), flush=True)
