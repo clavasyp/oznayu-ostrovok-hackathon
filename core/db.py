@@ -202,22 +202,58 @@ class CurationItem(Base):
     reviewer: Mapped[str | None] = mapped_column(Text)
     reviewed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
     review_minutes: Mapped[float | None] = mapped_column(Float)
+    estimated_review_minutes: Mapped[float | None] = mapped_column(Float)
     note: Mapped[str | None] = mapped_column(Text)
     fact_id: Mapped[str | None] = mapped_column(Text)
 
 
+class CurationClaim(Base):
+    """Дочернее утверждение кандидата (v11): кухня, часы, часы кухни, координаты, рейтинг —
+    у каждого своё доказательство. Человек принимает конкретные поля, не весь набор сразу."""
+
+    __tablename__ = "curation_claim"
+
+    id: Mapped[int] = mapped_column(BigInteger, primary_key=True, autoincrement=True)
+    parent_item_id: Mapped[int] = mapped_column(ForeignKey("curation_item.id"), index=True)
+    feature_id: Mapped[str] = mapped_column(Text)
+    params: Mapped[dict[str, Any]] = mapped_column(JSONB, default=dict)
+    original_proposal: Mapped[dict[str, Any]] = mapped_column(JSONB)
+    corrected_value: Mapped[Any] = mapped_column(JSONB)
+    evidence: Mapped[list[Any]] = mapped_column(JSONB, default=list)
+    state: Mapped[str] = mapped_column(
+        Text, default="proposed"
+    )  # proposed | accepted | corrected | rejected | unsure
+    reviewer: Mapped[str | None] = mapped_column(Text)
+    reviewed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    review_minutes: Mapped[float | None] = mapped_column(Float)
+    fact_id: Mapped[str | None] = mapped_column(Text)
+
+
 class UnmatchedAtom(Base):
-    """Часть запроса «вне каталога» (D34): копится с частотой, админ видит, что спрашивают."""
+    """Событие «часть запроса вне каталога» (D34, v11). Частота — число разных запросов в окне,
+    а не счётчик в строке: синтетика и отзывы не смешиваются с живым потоком (source_stratum)."""
 
     __tablename__ = "unmatched_atom"
 
     id: Mapped[int] = mapped_column(BigInteger, primary_key=True, autoincrement=True)
-    normalized: Mapped[str] = mapped_column(Text, unique=True)
-    example_text: Mapped[str] = mapped_column(Text)
+    event_id: Mapped[str] = mapped_column(Text, unique=True)
+    query_id: Mapped[str] = mapped_column(Text, index=True)  # псевдоним запроса или сессии
+    atom_id: Mapped[str] = mapped_column(Text)
+    source_stratum: Mapped[str] = mapped_column(Text, default="live")  # live | review | synthetic
     city_id: Mapped[str | None] = mapped_column(Text)
-    count: Mapped[int] = mapped_column(Integer, default=1)
-    first_seen: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
-    last_seen: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+    language: Mapped[str] = mapped_column(Text, default="ru")
+    span_text: Mapped[str] = mapped_column(Text)  # отредактированный фрагмент
+    span_start: Mapped[int] = mapped_column(Integer)
+    span_end: Mapped[int] = mapped_column(Integer)
+    normalized: Mapped[str] = mapped_column(Text, index=True)
+    requiredness: Mapped[str] = mapped_column(Text, default="unspecified")
+    mapping_status: Mapped[str] = mapped_column(Text, default="unmatched")
+    nearest_contracts: Mapped[list[str]] = mapped_column(JSONB, default=list)
+    state: Mapped[str] = mapped_column(
+        Text, default="new"
+    )  # new | triaged | data_task | draft_spec | activated | closed
+    linked_feature_id: Mapped[str | None] = mapped_column(Text)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
 
 
 class PackLoad(Base):

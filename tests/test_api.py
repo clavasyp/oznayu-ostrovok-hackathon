@@ -93,3 +93,20 @@ def test_hotelier_questions_and_labels(client):
     assert len(qs) == 26
     labels = client.get("/api/meta/labels").json()
     assert labels["booking_imitation_note"].startswith("Имитация оформления Островка")
+
+
+def test_required_out_of_catalog_is_never_fits(client):
+    body = ast(
+        {"feature_id": "N04", "op": "lte", "value": 100, "field": "count", "binding": "hotel"}
+    )
+    body["out_of_catalog"] = [
+        {
+            "text_span": "уютно",
+            "normalized": "cozy",
+            "kind": "subjective",
+            "requiredness": "required",
+        }
+    ]
+    r = result_for(client.post("/api/search", json={"ast": body}), RADISSON)
+    assert r["status"] == "needs_check"
+    assert any("вне каталога" in (h.get("reason") or "") for h in r["hard"])

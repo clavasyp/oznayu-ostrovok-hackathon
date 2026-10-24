@@ -103,6 +103,51 @@
           "default": null,
           "description": "Фрагмент запроса, откуда условие",
           "title": "Text Span"
+        },
+        "atom_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "ID атома запроса (v11: AST без потерь)",
+          "title": "Atom Id"
+        },
+        "span": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Span"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "provenance": {
+          "default": "explicit",
+          "description": "Явно сказано или выведено (выведенное — только уточнение)",
+          "enum": [
+            "explicit",
+            "inferred"
+          ],
+          "title": "Provenance",
+          "type": "string"
+        },
+        "mapping": {
+          "default": "exact",
+          "description": "Насколько смысл атома совпадает с характеристикой",
+          "enum": [
+            "exact",
+            "partial",
+            "different_meaning"
+          ],
+          "title": "Mapping",
+          "type": "string"
         }
       },
       "required": [
@@ -178,6 +223,51 @@
       "title": "Guests",
       "type": "object"
     },
+    "LogicNode": {
+      "additionalProperties": false,
+      "description": "Узел логики запроса (v11).\n\nATOM ссылается на условие по atom_id; AND / OR / NOT — на детей.",
+      "properties": {
+        "node_id": {
+          "title": "Node Id",
+          "type": "string"
+        },
+        "op": {
+          "enum": [
+            "ATOM",
+            "AND",
+            "OR",
+            "NOT"
+          ],
+          "title": "Op",
+          "type": "string"
+        },
+        "atom_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Atom Id"
+        },
+        "children": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Children",
+          "type": "array"
+        }
+      },
+      "required": [
+        "node_id",
+        "op"
+      ],
+      "title": "LogicNode",
+      "type": "object"
+    },
     "OutOfCatalog": {
       "additionalProperties": false,
       "description": "Часть запроса без характеристики в каталоге (D34): показываем «такое мы пока не знаем».",
@@ -199,6 +289,57 @@
           ],
           "title": "Kind",
           "type": "string"
+        },
+        "atom_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Atom Id"
+        },
+        "span": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Span"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "requiredness": {
+          "default": "unspecified",
+          "enum": [
+            "required",
+            "desired",
+            "unspecified"
+          ],
+          "title": "Requiredness",
+          "type": "string"
+        },
+        "mapping_status": {
+          "default": "unmatched",
+          "enum": [
+            "partial",
+            "different_meaning",
+            "unmatched"
+          ],
+          "title": "Mapping Status",
+          "type": "string"
+        },
+        "nearest_contracts": {
+          "description": "Ближайшие характеристики каталога, если есть",
+          "items": {
+            "type": "string"
+          },
+          "title": "Nearest Contracts",
+          "type": "array"
         }
       },
       "required": [
@@ -285,6 +426,51 @@
           "description": "Фрагмент запроса, откуда условие",
           "title": "Text Span"
         },
+        "atom_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "ID атома запроса (v11: AST без потерь)",
+          "title": "Atom Id"
+        },
+        "span": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Span"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "provenance": {
+          "default": "explicit",
+          "description": "Явно сказано или выведено (выведенное — только уточнение)",
+          "enum": [
+            "explicit",
+            "inferred"
+          ],
+          "title": "Provenance",
+          "type": "string"
+        },
+        "mapping": {
+          "default": "exact",
+          "description": "Насколько смысл атома совпадает с характеристикой",
+          "enum": [
+            "exact",
+            "partial",
+            "different_meaning"
+          ],
+          "title": "Mapping",
+          "type": "string"
+        },
         "weight": {
           "exclusiveMinimum": 0,
           "maximum": 1,
@@ -298,6 +484,33 @@
         "weight"
       ],
       "title": "SoftCondition",
+      "type": "object"
+    },
+    "Span": {
+      "additionalProperties": false,
+      "description": "Фрагмент исходного текста: позиции в Unicode code points, полуинтервал [start, end) (v11).",
+      "properties": {
+        "start": {
+          "minimum": 0,
+          "title": "Start",
+          "type": "integer"
+        },
+        "end": {
+          "minimum": 0,
+          "title": "End",
+          "type": "integer"
+        },
+        "text": {
+          "title": "Text",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start",
+        "end",
+        "text"
+      ],
+      "title": "Span",
       "type": "object"
     }
   },
@@ -367,6 +580,35 @@
         "$ref": "#/$defs/OutOfCatalog"
       },
       "title": "Out Of Catalog",
+      "type": "array"
+    },
+    "logic": {
+      "description": "Необязательно: граф AND / OR / NOT; пусто — все hard соединены через AND",
+      "items": {
+        "$ref": "#/$defs/LogicNode"
+      },
+      "title": "Logic",
+      "type": "array"
+    },
+    "hard_root": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Корень графа обязательных условий",
+      "title": "Hard Root"
+    },
+    "unparsed_spans": {
+      "description": "Неразобранные фрагменты — не теряются молча",
+      "items": {
+        "$ref": "#/$defs/Span"
+      },
+      "title": "Unparsed Spans",
       "type": "array"
     },
     "parsed_by": {

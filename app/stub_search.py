@@ -110,6 +110,18 @@ def search(store: StubStore, ast: QueryAST) -> list[dict[str, Any]]:
         if ast.city_id and hotel["city_id"] != ast.city_id:
             continue
         hard = [check(store, hotel_id, c, hard=True) for c in ast.hard]
+        # Обязательная часть запроса вне каталога (D34) не засчитывается как выполненная.
+        hard += [
+            {
+                "atom_id": o.atom_id,
+                "text_span": o.text_span,
+                "verdict": Verdict.unknown,
+                "reason": "вне каталога: такое мы пока не знаем",
+                "fact_ids": [],
+            }
+            for o in ast.out_of_catalog
+            if o.requiredness == "required"
+        ]
         soft = [check(store, hotel_id, c, hard=False) | {"weight": c.weight} for c in ast.soft]
         status = guest_status(h["verdict"] for h in hard)
         score_min = sum(s["weight"] for s in soft if s["verdict"] == Verdict.yes)

@@ -32,6 +32,31 @@ BOOKED_LABEL = "Забронировано"
 BOOKING_IMITATION_NOTE = "Имитация оформления Островка. Реальная бронь не создаётся"
 
 
+def not3(v: Verdict) -> Verdict:
+    """NOT unknown = unknown."""
+    return {Verdict.yes: Verdict.no, Verdict.no: Verdict.yes}.get(v, Verdict.unknown)
+
+
+def and3(verdicts: Iterable[Verdict]) -> Verdict:
+    """false AND unknown = false; true AND unknown = unknown."""
+    vs = list(verdicts)
+    if any(v == Verdict.no for v in vs):
+        return Verdict.no
+    if any(v == Verdict.unknown for v in vs):
+        return Verdict.unknown
+    return Verdict.yes
+
+
+def or3(verdicts: Iterable[Verdict]) -> Verdict:
+    """true OR unknown = true; false OR unknown = unknown. Пустое OR — unknown, не true."""
+    vs = list(verdicts)
+    if any(v == Verdict.yes for v in vs):
+        return Verdict.yes
+    if any(v == Verdict.unknown for v in vs) or not vs:
+        return Verdict.unknown
+    return Verdict.no
+
+
 def guest_status(hard_verdicts: Iterable[Verdict]) -> GuestStatus:
     verdicts = list(hard_verdicts)
     if any(v == Verdict.no for v in verdicts):

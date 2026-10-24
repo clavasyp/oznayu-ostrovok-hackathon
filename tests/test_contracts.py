@@ -7,7 +7,7 @@ import pytest
 from agents.query_ast import SCHEMA_PATH, QueryAST, json_schema
 from app.stub_store import StubStore
 from core.facts import Fact, Status, make_fact_id
-from core.verdict import GuestStatus, Verdict, guest_status
+from core.verdict import GuestStatus, Verdict, and3, guest_status, not3, or3
 
 
 def base_fact(**over):
@@ -92,3 +92,43 @@ def test_query_ast_rejects_unknown_fields():
         QueryAST.model_validate(
             {"raw_text": "x", "hard": [{"feature_id": "W01", "op": "lte", "x": 1}]}
         )
+
+
+def test_three_valued_logic_v11():
+    y, n, u = Verdict.yes, Verdict.no, Verdict.unknown
+    assert not3(u) == u and not3(y) == n
+    assert and3([y, u]) == u and and3([n, u]) == n and and3([y, y]) == y
+    assert or3([y, u]) == y and or3([n, u]) == u and or3([]) == u
+
+
+def test_lossless_ast_fields():
+    ast = QueryAST.model_validate(
+        {
+            "raw_text": "рядом итальянский ресторан и чтобы было уютно",
+            "hard": [
+                {
+                    "feature_id": "nearby_place",
+                    "op": "exists",
+                    "atom_id": "a1",
+                    "span": {"start": 0, "end": 26, "text": "рядом итальянский ресторан"},
+                    "mapping": "partial",
+                }
+            ],
+            "out_of_catalog": [
+                {
+                    "text_span": "уютно",
+                    "normalized": "cozy",
+                    "kind": "subjective",
+                    "atom_id": "a2",
+                    "requiredness": "required",
+                }
+            ],
+            "logic": [
+                {"node_id": "n1", "op": "AND", "children": ["n2", "n3"]},
+                {"node_id": "n2", "op": "ATOM", "atom_id": "a1"},
+                {"node_id": "n3", "op": "ATOM", "atom_id": "a2"},
+            ],
+            "hard_root": "n1",
+        }
+    )
+    assert ast.out_of_catalog[0].requiredness == "required"

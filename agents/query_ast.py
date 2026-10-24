@@ -17,6 +17,17 @@ from pydantic import BaseModel, ConfigDict, Field
 SCHEMA_PATH = Path(__file__).parent / "schemas" / "query_ast.schema.json"
 
 Op = Literal["eq", "ne", "lt", "lte", "gt", "gte", "in", "exists"]
+Mapping = Literal["exact", "partial", "different_meaning"]
+
+
+class Span(BaseModel):
+    """Фрагмент исходного текста: позиции в Unicode code points, полуинтервал [start, end) (v11)."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    start: int = Field(ge=0)
+    end: int = Field(ge=0)
+    text: str
 
 
 class Condition(BaseModel):
@@ -37,6 +48,14 @@ class Condition(BaseModel):
     )
     quantifier: Literal["all", "any"] = "all"
     text_span: str | None = Field(default=None, description="Фрагмент запроса, откуда условие")
+    atom_id: str | None = Field(default=None, description="ID атома запроса (v11: AST без потерь)")
+    span: Span | None = None
+    provenance: Literal["explicit", "inferred"] = Field(
+        default="explicit", description="Явно сказано или выведено (выведенное — только уточнение)"
+    )
+    mapping: Mapping = Field(
+        default="exact", description="Насколько смысл атома совпадает с характеристикой"
+    )
 
 
 class SoftCondition(Condition):
@@ -59,6 +78,27 @@ class OutOfCatalog(BaseModel):
     text_span: str
     normalized: str
     kind: Literal["missing_feature", "subjective", "unsupported_param"] = "missing_feature"
+    atom_id: str | None = None
+    span: Span | None = None
+    requiredness: Literal["required", "desired", "unspecified"] = "unspecified"
+    mapping_status: Literal["partial", "different_meaning", "unmatched"] = "unmatched"
+    nearest_contracts: list[str] = Field(
+        default_factory=list, description="Ближайшие характеристики каталога, если есть"
+    )
+
+
+class LogicNode(BaseModel):
+    """Узел логики запроса (v11).
+
+    ATOM ссылается на условие по atom_id; AND / OR / NOT — на детей.
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    node_id: str
+    op: Literal["ATOM", "AND", "OR", "NOT"]
+    atom_id: str | None = None
+    children: list[str] = Field(default_factory=list)
 
 
 class Guests(BaseModel):
@@ -87,6 +127,14 @@ class QueryAST(BaseModel):
     soft: list[SoftCondition] = Field(default_factory=list)
     clarify: list[Clarification] = Field(default_factory=list)
     out_of_catalog: list[OutOfCatalog] = Field(default_factory=list)
+    logic: list[LogicNode] = Field(
+        default_factory=list,
+        description="Необязательно: граф AND / OR / NOT; пусто — все hard соединены через AND",
+    )
+    hard_root: str | None = Field(default=None, description="Корень графа обязательных условий")
+    unparsed_spans: list[Span] = Field(
+        default_factory=list, description="Неразобранные фрагменты — не теряются молча"
+    )
     parsed_by: Literal["llm", "rules", "stub"] = "llm"
 
 
