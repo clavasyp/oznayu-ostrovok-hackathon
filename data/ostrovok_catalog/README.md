@@ -50,3 +50,10 @@ python3 -I tools/collect.py data/ostrovok_catalog/snapshot_<дата> sitemap
 python3 -I tools/collect.py data/ostrovok_catalog/snapshot_<дата> pages
 python3 -I tools/collect.py data/ostrovok_catalog/snapshot_<дата> status
 ```
+
+## Пауза и продолжение
+
+- **Остановка** — Ctrl+C или `pkill -INT -f tools/collect.py`: lock `manifests/RUNNING.lock` снимается сам. После `kill -9`, сбоя питания или выключения ПК посреди сбора lock остаётся. Если `pgrep -fl collect.py` ничего не находит, его можно удалить вручную.
+- **Продолжение** — та же команда `pages`: адреса, уже записанные в `manifests/pages.jsonl`, пропускаются. `sitemap` повторно не запускать — он перезапишет `urls.csv`.
+- **Фоном, чтобы Mac не уснул:** `nohup caffeinate -i python3 -I tools/collect.py <снимок> pages >> <снимок>/manifests/run_pages.log 2>&1 &`. Ход сбора — `tail -f <снимок>/manifests/run_pages.log`.
+- **Конец:** `manifests/DONE.json` — пройдено всё; `PARTIAL.json` — что-то осталось. Lock исчезает и при ошибке, поэтому сам по себе он не значит, что сбор завершён.

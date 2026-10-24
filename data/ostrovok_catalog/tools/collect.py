@@ -16,7 +16,7 @@
 Завершение: manifests/DONE.json (все адреса из urls.csv пройдены) или PARTIAL.json (прогон закончился,
 но не всё пройдено). Отсутствие RUNNING.lock само по себе не значит, что сбор завершён.
 """
-import argparse, csv, datetime as dt, gzip, hashlib, json, re, sys, time
+import argparse, csv, datetime as dt, gzip, hashlib, json, re, signal, sys, time
 from email.utils import parsedate_to_datetime
 from pathlib import Path
 import xml.etree.ElementTree as ET
@@ -256,6 +256,10 @@ if __name__ == '__main__':
     (root / 'manifests').mkdir(parents=True, exist_ok=True)
     if lock.exists():
         sys.exit(f'Уже идёт другой сбор (есть {lock}). Один поток — правило вежливости.')
+    # Выключение ПК, закрытие терминала или kill шлют SIGTERM / SIGHUP — выходим через finally,
+    # чтобы lock снялся и продолжение запускалось той же командой без ручной уборки.
+    for sig in (signal.SIGTERM, signal.SIGHUP):
+        signal.signal(sig, lambda signum, frame: sys.exit(128 + signum))
     lock.write_text(now())
     try:
         client = Client(root)
