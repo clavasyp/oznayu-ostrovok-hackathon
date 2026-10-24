@@ -1,0 +1,108 @@
+/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/facades.py:127: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+  records.append(r);geo.append(g);polys.append(transform(tr.transform,g));counts['buildings']+=1
+/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/facades.py:130: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+  sites.append(r);siteg.append(transform(tr.transform,g))
+/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/facades.py:319: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+  g=transform(scene['project'].transform,obj['geometry']);groups[fid].append((obj['record'],g))
+{
+  "city_id": "kazan",
+  "hotel_count": 50,
+  "matched_hotels": 12,
+  "matched_buildings": 13,
+  "fan_cells": 503,
+  "full_passport_fan_facts": 12575,
+  "fan_facts_gzip_bytes": 620678,
+  "dates": [
+    "2026-11-14",
+    "2026-11-15",
+    "2026-11-16",
+    "2027-07-15",
+    "2027-07-16",
+    "2027-07-17"
+  ],
+  "scene_source": "/Users/turgov/Хакатон/research_notes/Аудит данных 8 городов/raw/osm_kazan.jsonl",
+  "scene_source_sha256": "6c19221f846d499b3c4886b50b8f4433492227bb0be792c18cc4ebef1ca4ec44",
+  "scene_inventory": {
+    "buildings": 171507,
+    "levels": 45818,
+    "metric_height": 170
+  },
+  "canonical_feature_coverage": {
+    "V01": {
+      "unknown": 50
+    },
+    "V02": {
+      "unknown": 50
+    },
+    "V03": {
+      "unknown": 50
+    },
+    "V04": {
+      "unknown": 50
+    },
+    "V05": {
+      "unknown": 50
+    },
+    "V06": {
+      "unknown": 50
+    },
+    "S01": {
+      "unknown": 50
+    },
+    "S02": {
+      "unknown": 50
+    },
+    "S03": {
+      "unknown": 50
+    },
+    "H01": {
+      "unknown": 50
+    },
+    "H02": {
+      "unknown": 50
+    },
+    "H03": {
+      "unknown": 41,
+      "observed": 9
+    }
+  },
+  "standalone_building_fact_counts": {
+    "H03:observed": 10
+  },
+  "runtime_seconds": {
+    "load": 6.745081500004744,
+    "matching": 0.7307381669961615,
+    "facades_history_solar": 2.4910258750023786,
+    "total": 9.966845707996981
+  },
+  "output_bytes": {
+    "kazan_fan.jsonl": 4043925,
+    "kazan_geometry_quality.jsonl": 14638,
+    "kazan_ota_comparisons.jsonl": 699,
+    "kazan_building_facts.jsonl": 23126,
+    "kazan_diagnostics.jsonl": 156826,
+    "kazan_building_matches.jsonl": 33834,
+    "kazan_target_components.jsonl": 163568,
+    "kazan_facts.jsonl": 1275095
+  },
+  "software": {
+    "pvlib": "0.16.1",
+    "algorithm": "NREL SPA pvlib.solarposition.spa_python",
+    "solar_time_step_minutes": 5
+  },
+  "rights": {
+    "OSM": "ODbL1.0 accepted with attribution",
+    "GloBFP": "not used: conditional upstream commercial rights",
+    "GLO30": "not used as ground DTM; DSM semantic veto",
+    "OTA": "cached only no new requests"
+  },
+  "actual_existing_windows_verified": 0,
+  "no_network_requests": true,
+  "limitations": [
+    "No existing physical windows verified; all V/S canonical facts unknown, geometric bounds are distinct components",
+    "No current legal heritage registry join",
+    "Construction-completion event not proven by raw start_date",
+    "Fan does not map categories to sides/floors; ask hotelier",
+    "Building match research quality; all-building census absent; exact address may identify a residential building rather than every hotel unit"
+  ]
+}

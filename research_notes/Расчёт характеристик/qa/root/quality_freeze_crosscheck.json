@@ -1,0 +1,372 @@
+{
+  "frozen_inputs": 56,
+  "source_versions": 28,
+  "checks": [
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/sochi_facts.jsonl",
+      "passed": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/sochi_facts.jsonl",
+      "passed": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/environment/sochi_facts.jsonl",
+      "passed": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/moscow_facts.jsonl",
+      "passed": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/moscow_facts.jsonl",
+      "passed": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/environment/moscow_facts.jsonl",
+      "passed": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/spb_facts.jsonl",
+      "passed": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/spb_facts.jsonl",
+      "passed": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/environment/spb_facts.jsonl",
+      "passed": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/kazan_facts.jsonl",
+      "passed": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/kazan_facts.jsonl",
+      "passed": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/environment/kazan_facts.jsonl",
+      "passed": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/kaliningrad_facts.jsonl",
+      "passed": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/kaliningrad_facts.jsonl",
+      "passed": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/environment/kaliningrad_facts.jsonl",
+      "passed": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/minsk_facts.jsonl",
+      "passed": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/minsk_facts.jsonl",
+      "passed": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/environment/minsk_facts.jsonl",
+      "passed": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/istanbul_facts.jsonl",
+      "passed": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/istanbul_facts.jsonl",
+      "passed": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/environment/istanbul_facts.jsonl",
+      "passed": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/dubai_facts.jsonl",
+      "passed": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/dubai_facts.jsonl",
+      "passed": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/environment/dubai_facts.jsonl",
+      "passed": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/sochi_all_selected_routes.jsonl",
+      "passed": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/moscow_all_selected_routes.jsonl",
+      "passed": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/spb_all_selected_routes.jsonl",
+      "passed": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/kazan_all_selected_routes.jsonl",
+      "passed": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/kaliningrad_all_selected_routes.jsonl",
+      "passed": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/minsk_all_selected_routes.jsonl",
+      "passed": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/istanbul_all_selected_routes.jsonl",
+      "passed": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/dubai_all_selected_routes.jsonl",
+      "passed": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/sochi_run.json",
+      "passed": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/moscow_run.json",
+      "passed": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/spb_run.json",
+      "passed": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/kazan_run.json",
+      "passed": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/kaliningrad_run.json",
+      "passed": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/minsk_run.json",
+      "passed": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/istanbul_run.json",
+      "passed": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/dubai_run.json",
+      "passed": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/sochi_building_matches.jsonl",
+      "passed": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/moscow_building_matches.jsonl",
+      "passed": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/spb_building_matches.jsonl",
+      "passed": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/kazan_building_matches.jsonl",
+      "passed": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/kaliningrad_building_matches.jsonl",
+      "passed": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/minsk_building_matches.jsonl",
+      "passed": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/istanbul_building_matches.jsonl",
+      "passed": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/dubai_building_matches.jsonl",
+      "passed": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/sochi_fan_facts.jsonl.gz",
+      "passed": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/moscow_fan_facts.jsonl.gz",
+      "passed": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/spb_fan_facts.jsonl.gz",
+      "passed": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/kazan_fan_facts.jsonl.gz",
+      "passed": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/kaliningrad_fan_facts.jsonl.gz",
+      "passed": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/minsk_fan_facts.jsonl.gz",
+      "passed": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/istanbul_fan_facts.jsonl.gz",
+      "passed": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/dubai_fan_facts.jsonl.gz",
+      "passed": true
+    },
+    {
+      "component": "core",
+      "city_id": "moscow",
+      "passed": true
+    },
+    {
+      "component": "runner",
+      "city_id": "moscow",
+      "passed": true
+    },
+    {
+      "component": "memory",
+      "city_id": "moscow",
+      "passed": true
+    },
+    {
+      "component": "hours",
+      "city_id": "moscow",
+      "passed": true
+    },
+    {
+      "component": "core",
+      "city_id": "spb",
+      "passed": true
+    },
+    {
+      "component": "runner",
+      "city_id": "spb",
+      "passed": true
+    },
+    {
+      "component": "memory",
+      "city_id": "spb",
+      "passed": true
+    },
+    {
+      "component": "hours",
+      "city_id": "spb",
+      "passed": true
+    },
+    {
+      "component": "core",
+      "city_id": "kazan",
+      "passed": true
+    },
+    {
+      "component": "runner",
+      "city_id": "kazan",
+      "passed": true
+    },
+    {
+      "component": "memory",
+      "city_id": "kazan",
+      "passed": true
+    },
+    {
+      "component": "hours",
+      "city_id": "kazan",
+      "passed": true
+    },
+    {
+      "component": "core",
+      "city_id": "kaliningrad",
+      "passed": true
+    },
+    {
+      "component": "runner",
+      "city_id": "kaliningrad",
+      "passed": true
+    },
+    {
+      "component": "memory",
+      "city_id": "kaliningrad",
+      "passed": true
+    },
+    {
+      "component": "hours",
+      "city_id": "kaliningrad",
+      "passed": true
+    },
+    {
+      "component": "core",
+      "city_id": "minsk",
+      "passed": true
+    },
+    {
+      "component": "runner",
+      "city_id": "minsk",
+      "passed": true
+    },
+    {
+      "component": "memory",
+      "city_id": "minsk",
+      "passed": true
+    },
+    {
+      "component": "hours",
+      "city_id": "minsk",
+      "passed": true
+    },
+    {
+      "component": "core",
+      "city_id": "istanbul",
+      "passed": true
+    },
+    {
+      "component": "runner",
+      "city_id": "istanbul",
+      "passed": true
+    },
+    {
+      "component": "memory",
+      "city_id": "istanbul",
+      "passed": true
+    },
+    {
+      "component": "hours",
+      "city_id": "istanbul",
+      "passed": true
+    },
+    {
+      "component": "core",
+      "city_id": "dubai",
+      "passed": true
+    },
+    {
+      "component": "runner",
+      "city_id": "dubai",
+      "passed": true
+    },
+    {
+      "component": "memory",
+      "city_id": "dubai",
+      "passed": true
+    },
+    {
+      "component": "hours",
+      "city_id": "dubai",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "scope": "Root rechecked actual bytes against independent final quality fingerprints and archived code versions."
+}

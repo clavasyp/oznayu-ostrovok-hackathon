@@ -1,0 +1,30 @@
+{
+  "city_id": "kazan",
+  "recorded_at": "2026-10-24T13:39:10.535487+00:00",
+  "accepted_geo_sha256": "e575c51e28cbc3905eadb4e4d628005b9fad99031301a741d0477c80e73473ad",
+  "runner_sha256": "ab27e8737b73edd6bcafeeb4d48d523aaf861e3eccbb02ecbd95dd06a506695a",
+  "supplement": {
+    "city_id": "kazan",
+    "source_file": "/Users/turgov/Хакатон/research_notes/Аудит данных 8 городов/raw/russia_volga-fed-district.osm.pbf",
+    "source_date": "2026-10-22T20:21:33Z",
+    "snapshot_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/cohort/osm_kazan_pure_restriction_nodes.jsonl",
+    "bbox": [
+      48.785,
+      55.595,
+      49.415,
+      56.015
+    ],
+    "records": 5938,
+    "bytes": 1322784,
+    "sha256": "d31950985f8a7c5c72b1af16fb73035ade2106c5e6a5be69d626035de39e83f8",
+    "seconds": 3.5724553749896586,
+    "built_at": "2026-10-24T13:38:58.841916+00:00",
+    "license": "ODbL1.0",
+    "license_url": "https://www.openstreetmap.org/copyright",
+    "new_http_requests": 0,
+    "method": "Node-only PBF filter barrier/access/foot/locked; exclude all nodes selected by V4KEYS. No geometry/identity inference.",
+    "source_pbf_sha256": "dd1a606224251db6246e9c512620f6d060df039454260a28c903c977867c4740",
+    "source_pbf_sha256_verification": "Streamed actual cached PBF before this city run; no network."
+  },
+  "building_matches_sha256": "4c62bdcbb689d97cc898a7346a3b4d0f2354439a0d671e29c1bc63743640abf8"
+}

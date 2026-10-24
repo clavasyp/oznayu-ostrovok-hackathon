@@ -1,0 +1,79 @@
+{
+  "checks": [
+    {
+      "path": "research_notes/Каталог характеристик отелей и номеров/feature_catalog.json",
+      "expected_sha256": "1ccbb8da31da549bb42415a65d7e376878d0aad5f53277d6cae7e0ba05725d7c",
+      "actual_sha256": "1ccbb8da31da549bb42415a65d7e376878d0aad5f53277d6cae7e0ba05725d7c",
+      "unchanged": true
+    },
+    {
+      "path": "reports/Продукт и бизнес-логика.md",
+      "expected_sha256": "7ce1c5219636e34283b433390ae2861559993cc42092d0dbe2392412b6f98f3d",
+      "actual_sha256": "7ce1c5219636e34283b433390ae2861559993cc42092d0dbe2392412b6f98f3d",
+      "unchanged": true
+    },
+    {
+      "path": "reports/UX доверия и подача жюри.md",
+      "expected_sha256": "ed10d00edd10342ef73ff4d9be9618931c0c329c42be69d5d5e24a6de0254c74",
+      "actual_sha256": "ed10d00edd10342ef73ff4d9be9618931c0c329c42be69d5d5e24a6de0254c74",
+      "unchanged": true
+    },
+    {
+      "path": "reports/LLM-слой.md",
+      "expected_sha256": "f9eed5c3a3ce1f64fd6f73eca437574d794fcd38476bfb4f21744795e3342ba0",
+      "actual_sha256": "f9eed5c3a3ce1f64fd6f73eca437574d794fcd38476bfb4f21744795e3342ba0",
+      "unchanged": true
+    },
+    {
+      "path": "reports/Каталог характеристик отелей и номеров.md",
+      "expected_sha256": "6675006ad9e25a59e5c01d13a427bef59b7663a4d0e3d3e303a1a07fe4bdd18c",
+      "actual_sha256": "6675006ad9e25a59e5c01d13a427bef59b7663a4d0e3d3e303a1a07fe4bdd18c",
+      "unchanged": true
+    },
+    {
+      "path": "reports/Обогащение данных об отелях.md",
+      "expected_sha256": "3643266e1e8226ba6ac6e2f9bf25e0fcb8748e941d8235a90096a8ba669518b9",
+      "actual_sha256": "3643266e1e8226ba6ac6e2f9bf25e0fcb8748e941d8235a90096a8ba669518b9",
+      "unchanged": true
+    },
+    {
+      "path": "reports/Аудит данных 8 городов.md",
+      "expected_sha256": "293ef2e6c79e7ae1651e600cfb7a78336107ebc5fc0389c21b787d8d6b5345d7",
+      "actual_sha256": "293ef2e6c79e7ae1651e600cfb7a78336107ebc5fc0389c21b787d8d6b5345d7",
+      "unchanged": true
+    },
+    {
+      "path": "reports/Многогородская система поиска отелей.md",
+      "expected_sha256": "4ce347d4714994611a740b36a94e554993b738347372c1e97d58529c0b47262e",
+      "actual_sha256": "4ce347d4714994611a740b36a94e554993b738347372c1e97d58529c0b47262e",
+      "unchanged": true
+    },
+    {
+      "path": "reports/Алгоритмы и библиотеки калькуляторов.md",
+      "expected_sha256": "f4a25468f62f18d61b9908b3323be6adb17bef2471a1696db1e76e7bc6201bc2",
+      "actual_sha256": "f4a25468f62f18d61b9908b3323be6adb17bef2471a1696db1e76e7bc6201bc2",
+      "unchanged": true
+    },
+    {
+      "path": "reports/Исследование для хакатона Островка.md",
+      "expected_sha256": "f88998c392d43e55343566cf76643aed2904cdb4173d76fe2391bed8264f1e8a",
+      "actual_sha256": "f88998c392d43e55343566cf76643aed2904cdb4173d76fe2391bed8264f1e8a",
+      "unchanged": true
+    },
+    {
+      "path": "reports/Данные Островка и набор городов.md",
+      "expected_sha256": "d3c8002eb5695370d349ba930399bba72073475b403fffd933051bf351e8d7cd",
+      "actual_sha256": "d3c8002eb5695370d349ba930399bba72073475b403fffd933051bf351e8d7cd",
+      "unchanged": true
+    },
+    {
+      "path": "reports/Продукт хочу-бронь.md",
+      "expected_sha256": "16b5d935651c9408a062b49456f67d0f3f6f14f3ab7bdee5f277e37064ea377f",
+      "actual_sha256": "16b5d935651c9408a062b49456f67d0f3f6f14f3ab7bdee5f277e37064ea377f",
+      "unchanged": true
+    }
+  ],
+  "all_unchanged": true,
+  "count": 12,
+  "scope": "Prior reports and canonical catalogue; shared Claude documents may have independently changed and are not overwritten."
+}

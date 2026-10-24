@@ -1,0 +1,278 @@
+{
+  "version": "V9-N02N03-building-join-diff-repair-2",
+  "city_id": "moscow",
+  "prepared_at": "2026-10-24T14:05:37.559727+00:00",
+  "published": true,
+  "affected_hotel_ids": [
+    "6878127",
+    "9771294"
+  ],
+  "previous_building_match_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/facades/archive/address_repair_20261024T135705Z/results/facades/moscow_building_matches.jsonl",
+  "previous_building_match_sha256": "e8e2954cbe10abe8613eeaebdd625e9dd0e7397616da1cd3eb59cca0b380c821",
+  "affected_selection_rule": "All cohort hotels whose accepted building ID+geometry sets differ between previous and FINAL snapshots; not a hardcoded hotel list.",
+  "final_building_match_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/moscow_building_matches.jsonl",
+  "final_building_match_sha256": "152e39a9471cb7c95e0bf41b018a0ef6587388f625954428fdd25abcb775eff7",
+  "new_match_count_by_hotel": {
+    "9771294": 1,
+    "6878127": 1
+  },
+  "old_facts": 2550,
+  "new_facts": 2550,
+  "changes": [
+    {
+      "hotel_id": "6878127",
+      "feature_id": "N02",
+      "removed_subjects": [
+        {
+          "subject_id": "hotel:6878127",
+          "fact_id": "e1ba8cda2d868e4f4511ff45",
+          "value": null,
+          "status": "unknown"
+        }
+      ],
+      "new_subjects": [
+        {
+          "subject_id": "way/42423204",
+          "fact_id": "606bcb87e88d576113e67fdb",
+          "value": {
+            "distance_m": 261.08254278028835,
+            "target_id": "way/27849842",
+            "target_class": "primary",
+            "target_name": "Волгоградский проспект",
+            "building_id": "way/42423204"
+          },
+          "status": "computed",
+          "unknown_reason": null
+        }
+      ],
+      "retained_subject_ids": []
+    },
+    {
+      "hotel_id": "6878127",
+      "feature_id": "N03",
+      "removed_subjects": [
+        {
+          "subject_id": "hotel:6878127",
+          "fact_id": "306e7a3442e41a8521b3f7a8",
+          "value": null,
+          "status": "unknown"
+        }
+      ],
+      "new_subjects": [
+        {
+          "subject_id": "way/42423204",
+          "fact_id": "822c901b0c268655a886e0cf",
+          "value": {
+            "distance_m": 703.1029295964184,
+            "target_id": "way/83913838",
+            "target_class": "rail",
+            "target_name": null,
+            "building_id": "way/42423204"
+          },
+          "status": "computed",
+          "unknown_reason": null
+        }
+      ],
+      "retained_subject_ids": []
+    },
+    {
+      "hotel_id": "9771294",
+      "feature_id": "N02",
+      "removed_subjects": [
+        {
+          "subject_id": "hotel:9771294",
+          "fact_id": "acb3c76038fd75e8fc462100",
+          "value": null,
+          "status": "unknown"
+        }
+      ],
+      "new_subjects": [
+        {
+          "subject_id": "way/49205871",
+          "fact_id": "ad592960ef88cd39293b81a2",
+          "value": {
+            "distance_m": 299.0014542326785,
+            "target_id": "way/1339544106",
+            "target_class": "secondary",
+            "target_name": null,
+            "building_id": "way/49205871"
+          },
+          "status": "computed",
+          "unknown_reason": null
+        }
+      ],
+      "retained_subject_ids": []
+    },
+    {
+      "hotel_id": "9771294",
+      "feature_id": "N03",
+      "removed_subjects": [
+        {
+          "subject_id": "hotel:9771294",
+          "fact_id": "0ea8814e230bf64665cf7378",
+          "value": null,
+          "status": "unknown"
+        }
+      ],
+      "new_subjects": [
+        {
+          "subject_id": "way/49205871",
+          "fact_id": "d8b5714f52013e5ce15174a6",
+          "value": {
+            "distance_m": 192.09872004479018,
+            "target_id": "way/1105480751",
+            "target_class": "rail",
+            "target_name": null,
+            "building_id": "way/49205871"
+          },
+          "status": "computed",
+          "unknown_reason": null
+        }
+      ],
+      "retained_subject_ids": []
+    }
+  ],
+  "recomputed_surviving_subjects": [
+    {
+      "hotel_id": "6878127",
+      "feature_id": "N02",
+      "subject_id": "way/42423204",
+      "retained_existing_subject": false,
+      "same_value_as_existing_subject": false,
+      "geometry_changed_in_final_join": true,
+      "old_value": null,
+      "new_value": {
+        "distance_m": 261.08254278028835,
+        "target_id": "way/27849842",
+        "target_class": "primary",
+        "target_name": "Волгоградский проспект",
+        "building_id": "way/42423204"
+      }
+    },
+    {
+      "hotel_id": "6878127",
+      "feature_id": "N03",
+      "subject_id": "way/42423204",
+      "retained_existing_subject": false,
+      "same_value_as_existing_subject": false,
+      "geometry_changed_in_final_join": true,
+      "old_value": null,
+      "new_value": {
+        "distance_m": 703.1029295964184,
+        "target_id": "way/83913838",
+        "target_class": "rail",
+        "target_name": null,
+        "building_id": "way/42423204"
+      }
+    },
+    {
+      "hotel_id": "9771294",
+      "feature_id": "N02",
+      "subject_id": "way/49205871",
+      "retained_existing_subject": false,
+      "same_value_as_existing_subject": false,
+      "geometry_changed_in_final_join": true,
+      "old_value": null,
+      "new_value": {
+        "distance_m": 299.0014542326785,
+        "target_id": "way/1339544106",
+        "target_class": "secondary",
+        "target_name": null,
+        "building_id": "way/49205871"
+      }
+    },
+    {
+      "hotel_id": "9771294",
+      "feature_id": "N03",
+      "subject_id": "way/49205871",
+      "retained_existing_subject": false,
+      "same_value_as_existing_subject": false,
+      "geometry_changed_in_final_join": true,
+      "old_value": null,
+      "new_value": {
+        "distance_m": 192.09872004479018,
+        "target_id": "way/1105480751",
+        "target_class": "rail",
+        "target_name": null,
+        "building_id": "way/49205871"
+      }
+    }
+  ],
+  "input_records_streamed": 2268658,
+  "axis_geometry_counts": {
+    "N02": 33238,
+    "N03": 13220
+  },
+  "axis_load_seconds": 8.121494708990213,
+  "effective_axis_input_manifest": {
+    "city": "moscow",
+    "region": "russia/central-fed-district",
+    "source_pbf": "russia_central-fed-district.osm.pbf",
+    "source_date": "2026-10-22T20:21:33Z",
+    "finished_utc": "2026-10-23T16:58:42+00:00",
+    "rows": 2260662,
+    "geometry_failures_region": 0,
+    "seconds": 528.7860133330032,
+    "sha256": "4878320122302c922b508f67e09474a7b3df8e13b83911d53e0c6887df757882",
+    "edge_note": "Geometry candidate uses first vertex within 0.015-degree padded bbox; very large polygons crossing with all first vertices outside could be missed. Full bbox hotel filter subsequently uses representative centroid.",
+    "sha256_kind": "composite SHA256 of ordered road/rail input path+SHA manifests, not file hash",
+    "input_files": [
+      {
+        "snapshot_file": "/Users/turgov/Хакатон/research_notes/Аудит данных 8 городов/raw/osm_moscow.jsonl",
+        "sha256": "418563d59c2d336d77b3d91376ac34feafbdd66d2bf81b104999dbbf10d6bc51"
+      },
+      {
+        "snapshot_file": "/Users/turgov/Хакатон/research_notes/Аудит данных 8 городов/raw/osm_moscow_closed_roads.jsonl",
+        "sha256": "267ebbc60c327ac882b68637e4dc434dc461fddda1e79e9491d72479e41dddd9"
+      }
+    ],
+    "scope": "N02/N03 axis layers only. No pedestrian graph/node supplement is required for footprint-to-axis distance."
+  },
+  "full_geo_run_or_graph_executed": false,
+  "source_code_versions": {
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/repair_building_axis_features_v2.py": {
+      "sha256": "b4b54df6b58537c800f048ec77779f67f680a4a941feb6611fbfbee4ed9c2908",
+      "exact_archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/b4b54df6b58537c800f048ec77779f67f680a4a941feb6611fbfbee4ed9c2908.py"
+    },
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/geo.py": {
+      "sha256": "e575c51e28cbc3905eadb4e4d628005b9fad99031301a741d0477c80e73473ad",
+      "exact_archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/e575c51e28cbc3905eadb4e4d628005b9fad99031301a741d0477c80e73473ad.py"
+    },
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/common.py": {
+      "sha256": "76696ba92b64aab7ceef9bf255872bbc943311c0cde886098dffe8773d6637eb",
+      "exact_archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/76696ba92b64aab7ceef9bf255872bbc943311c0cde886098dffe8773d6637eb.py"
+    },
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/facades.py": {
+      "sha256": "14b8c3ea8f4791400fa7cf0ebe5788992f2d16b03f2029de4ac85bf80c3108a6",
+      "exact_archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/14b8c3ea8f4791400fa7cf0ebe5788992f2d16b03f2029de4ac85bf80c3108a6.py"
+    }
+  },
+  "draft_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/moscow_N02N03_join_diff_repair_draft.jsonl",
+  "old_geo_file_sha256": {
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/moscow_routes.jsonl": "ef695ef3222bd3f943091161ce82c90be97279593e632b9d40309f6089017179",
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/moscow_poi_audit.jsonl": "6591da9ab69266f8926d615832ca2cc99751be078129537b291ee5983fa93c91",
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/moscow_blocked_nodes.jsonl": "5febdc027f48e9f42ad1e085c86a311a830bb8d77db914ca93e9f9cfa23284cf",
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/moscow_all_selected_routes.jsonl": "62fb9d0812a43022466e4509c1f585644be458e7e1c802c388a70749dac4898a",
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/moscow_beach_targets.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/moscow_beach_classifications.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/moscow_facts.jsonl": "b465c1a1ca16da1c2403ae520b9934b6ffcfbc2557de54b4393d744844d3f705",
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/moscow_marine_targets_with_fallback.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/moscow_run.json": "1a0272db6583ea26caeaa3ff9536e269c4f258f4e49331ac05da19a67f587305"
+  },
+  "network_requests": 0,
+  "checkpoint": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/checkpoints/moscow_before_N02N03_join_diff_152e39a9471c",
+  "unrelated_passport_lines_byte_identical": true,
+  "all_other_geo_files_byte_identical": {
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/moscow_routes.jsonl": true,
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/moscow_poi_audit.jsonl": true,
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/moscow_blocked_nodes.jsonl": true,
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/moscow_all_selected_routes.jsonl": true,
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/moscow_beach_targets.jsonl": true,
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/moscow_beach_classifications.jsonl": true,
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/moscow_marine_targets_with_fallback.jsonl": true
+  },
+  "facts_sha256": "231cf82f83fa94cf8d2f90f2b8534ef8e360749241b4526fdba97e00b97d5775",
+  "repair_seconds": 9.502098249999108,
+  "run_sha256": "f4d8a7908fa633116c793ac509315392f24fe12f4b5f40237495d9b15369e103",
+  "passed": true
+}

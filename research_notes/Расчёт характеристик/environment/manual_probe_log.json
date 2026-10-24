@@ -1,0 +1,51 @@
+{
+  "date": "2026-10-24",
+  "exacttimestamps": "notretainedforeachmanualprobe; productionhttp_ledgerhasexacttimes",
+  "n_API_probe_requests": 7,
+  "probes": [
+    {
+      "kind": "climate_probe",
+      "status": 400,
+      "reason": "Singleelevation=nan for5coordinatesrejected; firstresponseoverwrittenbycorrectedprobe, originalbodyvisibleintoolaudi­t",
+      "response_bytes": 100
+    },
+    {
+      "kind": "climate_probe_corrected",
+      "status": 200,
+      "snapshot_file": "raw/climate_probe_sochi_199111.json",
+      "response_bytes": 6051
+    },
+    {
+      "kind": "marine_invalidselector",
+      "status": 400,
+      "snapshot_file": "raw/marine_history_probe_202207.json",
+      "response_bytes": 133
+    },
+    {
+      "kind": "marine202207_null",
+      "status": 200,
+      "snapshot_file": "raw/marine_history_probe_202207_correctmodel.json",
+      "response_bytes": 18138
+    },
+    {
+      "kind": "marine202307_valid",
+      "status": 200,
+      "snapshot_file": "raw/marine_history_probe_202307.json",
+      "response_bytes": 18140
+    },
+    {
+      "kind": "marine202407_valid",
+      "status": 200,
+      "snapshot_file": "raw/marine_history_probe_202407.json",
+      "response_bytes": 18140
+    },
+    {
+      "kind": "marine202507_valid",
+      "status": 200,
+      "snapshot_file": "raw/marine_history_probe_202507.json",
+      "response_bytes": 18140
+    }
+  ],
+  "not_in_production_http_ledger": true,
+  "new_ostrovok_requests": 0
+}

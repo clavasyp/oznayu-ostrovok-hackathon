@@ -1,0 +1,120 @@
+[
+  {
+    "source_id": "node/8158729773",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "node/13074287012",
+    "tags": {
+      "access": "yes",
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "node/13076472579",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/217645103",
+    "tags": {
+      "barrier": "fence",
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/347815135",
+    "tags": {
+      "barrier": "fence",
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/491909231",
+    "tags": {
+      "barrier": "fence",
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/501725617",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/592342077",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/838449993",
+    "tags": {
+      "barrier": "fence",
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/953476178",
+    "tags": {
+      "access": "yes",
+      "barrier": "fence",
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "relation/14210240",
+    "tags": {
+      "access": "private",
+      "leisure": "dog_park",
+      "name": "спортивно-дрессировочная площадка",
+      "official_name": "Спортивно-дрессировочная площадка Федерации спортивно-прикладного собаководства Республики Татарстан"
+    }
+  },
+  {
+    "source_id": "way/1174740259",
+    "tags": {
+      "barrier": "fence",
+      "leisure": "dog_park",
+      "operator:type": "government"
+    }
+  },
+  {
+    "source_id": "way/1211632684",
+    "tags": {
+      "barrier": "fence",
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/1248893848",
+    "tags": {
+      "barrier": "fence",
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/1313059979",
+    "tags": {
+      "barrier": "fence",
+      "leisure": "dog_park",
+      "wheelchair": "limited"
+    }
+  },
+  {
+    "source_id": "way/1491973762",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/1491973774",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  }
+]

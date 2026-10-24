@@ -1,0 +1,100 @@
+{
+  "reason": "Preserve actual v1 unsupported-AE outputs and provenance before authorized v2 calendar-safe adapter rerun.",
+  "files": [
+    {
+      "original": "research_notes/Расчёт характеристик/results/geo/dubai_beach_targets.jsonl",
+      "copy": "research_notes/Расчёт характеристик/qa/geo/dubai_before_AE_fix/results/geo/dubai_beach_targets.jsonl",
+      "sha256": "2a55f78a8845f8aa9b940ec96cb163c344b41cb1a49bacc164d1aab53714e3b7"
+    },
+    {
+      "original": "research_notes/Расчёт характеристик/results/geo/dubai_all_selected_routes.jsonl",
+      "copy": "research_notes/Расчёт характеристик/qa/geo/dubai_before_AE_fix/results/geo/dubai_all_selected_routes.jsonl",
+      "sha256": "6ebdc6d3853e0334ade6a5d30279254ffff27d012d9774a5eec40e717a43c32b"
+    },
+    {
+      "original": "research_notes/Расчёт характеристик/results/geo/dubai_poi_audit.jsonl",
+      "copy": "research_notes/Расчёт характеристик/qa/geo/dubai_before_AE_fix/results/geo/dubai_poi_audit.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original": "research_notes/Расчёт характеристик/results/geo/dubai_marine_targets_with_fallback.jsonl",
+      "copy": "research_notes/Расчёт характеристик/qa/geo/dubai_before_AE_fix/results/geo/dubai_marine_targets_with_fallback.jsonl",
+      "sha256": "9bdc0e9e6ae2b8772218a53abab19cbe2aa87438770bd1af6dba0acc2a82157e"
+    },
+    {
+      "original": "research_notes/Расчёт характеристик/results/geo/dubai_routes.jsonl",
+      "copy": "research_notes/Расчёт характеристик/qa/geo/dubai_before_AE_fix/results/geo/dubai_routes.jsonl",
+      "sha256": "2ed82ba843a42897f8da647c98b61bd5b6cde8399dede17be6f745d2d478a59b"
+    },
+    {
+      "original": "research_notes/Расчёт характеристик/results/geo/dubai_blocked_nodes.jsonl",
+      "copy": "research_notes/Расчёт характеристик/qa/geo/dubai_before_AE_fix/results/geo/dubai_blocked_nodes.jsonl",
+      "sha256": "ee10e3141eb549517bf2250cb547209e2fe118244891f4f284355b3f36ae9372"
+    },
+    {
+      "original": "research_notes/Расчёт характеристик/results/geo/dubai_run.json",
+      "copy": "research_notes/Расчёт характеристик/qa/geo/dubai_before_AE_fix/results/geo/dubai_run.json",
+      "sha256": "ed4a936f647e97fab07fb9cea61f9e2dbfb823dbe1af0969db8b36d6b6b5dd43"
+    },
+    {
+      "original": "research_notes/Расчёт характеристик/results/geo/dubai_beach_classifications.jsonl",
+      "copy": "research_notes/Расчёт характеристик/qa/geo/dubai_before_AE_fix/results/geo/dubai_beach_classifications.jsonl",
+      "sha256": "bdd1d157b602ad3384bd12ad7d5a5faf5aee89cedf61c493da16084fcca0b995"
+    },
+    {
+      "original": "research_notes/Расчёт характеристик/results/geo/dubai_facts.jsonl",
+      "copy": "research_notes/Расчёт характеристик/qa/geo/dubai_before_AE_fix/results/geo/dubai_facts.jsonl",
+      "sha256": "bd9ab67bfbfe7dca8e1239514d2fcb146cd32ea833bca3bd63a83aca500c817f"
+    },
+    {
+      "original": "research_notes/Расчёт характеристик/qa/geo/dubai_geo_qa.log",
+      "copy": "research_notes/Расчёт характеристик/qa/geo/dubai_before_AE_fix/qa/geo/dubai_geo_qa.log",
+      "sha256": "53609b907f0303dda8c08454cd0228e8932f74a0f76dd9ecad91913763569120"
+    },
+    {
+      "original": "research_notes/Расчёт характеристик/qa/geo/dubai_dogpark_fields.json",
+      "copy": "research_notes/Расчёт характеристик/qa/geo/dubai_before_AE_fix/qa/geo/dubai_dogpark_fields.json",
+      "sha256": "442c8857bbc9119e92723d1b7bc23822d0a2bb4147a7c9d7f9074f98b4391b62"
+    },
+    {
+      "original": "research_notes/Расчёт характеристик/qa/geo/dubai_marine_targets_with_fallback_manifest.json",
+      "copy": "research_notes/Расчёт характеристик/qa/geo/dubai_before_AE_fix/qa/geo/dubai_marine_targets_with_fallback_manifest.json",
+      "sha256": "e0386ae37697d26193b907e8ce562555784ea5c1c6c5192433ba96dd781605ee"
+    },
+    {
+      "original": "research_notes/Расчёт характеристик/qa/geo/dubai_facades_qa.log",
+      "copy": "research_notes/Расчёт характеристик/qa/geo/dubai_before_AE_fix/qa/geo/dubai_facades_qa.log",
+      "sha256": "b22fa20b40923412454a628e2a0805fd9493a40cb6b080fa3d141d25783c52c9"
+    },
+    {
+      "original": "research_notes/Расчёт характеристик/qa/geo/dubai_calculation_inputs.json",
+      "copy": "research_notes/Расчёт характеристик/qa/geo/dubai_before_AE_fix/qa/geo/dubai_calculation_inputs.json",
+      "sha256": "d163c5e8179a29a15938c41f81404c6f8ab56becb5b7a5bb9495c09420af4181"
+    },
+    {
+      "original": "research_notes/Расчёт характеристик/qa/geo/dubai_node_supplement.log",
+      "copy": "research_notes/Расчёт характеристик/qa/geo/dubai_before_AE_fix/qa/geo/dubai_node_supplement.log",
+      "sha256": "06402cc9af24cc5d0445c737483a2b5d98f698acc92ad32d5f9920d022d5c8e7"
+    },
+    {
+      "original": "research_notes/Расчёт характеристик/qa/geo/dubai_contract_checks.json",
+      "copy": "research_notes/Расчёт характеристик/qa/geo/dubai_before_AE_fix/qa/geo/dubai_contract_checks.json",
+      "sha256": "53609b907f0303dda8c08454cd0228e8932f74a0f76dd9ecad91913763569120"
+    },
+    {
+      "original": "research_notes/Расчёт характеристик/qa/geo/dubai_facades.log",
+      "copy": "research_notes/Расчёт характеристик/qa/geo/dubai_before_AE_fix/qa/geo/dubai_facades.log",
+      "sha256": "3af8e1033f212c4c6f546843c93c20a48f49ad68a7086cec489768604fdb5f10"
+    },
+    {
+      "original": "research_notes/Расчёт характеристик/qa/geo/dubai_marine_reference_targets.log",
+      "copy": "research_notes/Расчёт характеристик/qa/geo/dubai_before_AE_fix/qa/geo/dubai_marine_reference_targets.log",
+      "sha256": "433fbb887b8aabb80e2f8d3451b0657fa6dde40ec6dfdbba1fd13977d85520aa"
+    },
+    {
+      "original": "research_notes/Расчёт характеристик/qa/geo/dubai_geo.log",
+      "copy": "research_notes/Расчёт характеристик/qa/geo/dubai_before_AE_fix/qa/geo/dubai_geo.log",
+      "sha256": "1e117a05cd95115e0677e10bf78153279e7a7d85a9b0cb7627fc1e59c007c8ac"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+[
+  {
+    "feature_id": "L01",
+    "poi_id": "node/5736969027",
+    "decision": "exclude_until_hours_conflict_resolved",
+    "reason": "OSM 24/7 contradicts current primary operator schedule 08:00–21:00. Current evidence does not establish future opening at02:00.",
+    "osm_object_url": "https://www.openstreetmap.org/node/5736969027",
+    "osm_version": 15,
+    "osm_edited_at": "2025-01-31T11:02:32Z",
+    "source": {
+      "url": "https://stoletov.ru/pharmacies/doktor-stoletov-sochi-konstitutsii-sssr-24a-sochi-ulitsa-konstitutsii-sssr-24a-2017/",
+      "fetched_at": "2026-10-24T02:17:04.036266+00:00",
+      "status": 200,
+      "sha256": "736158460bb8f315ae9c72b681639954d8a33083ba7f2d5b00b3d6f69fc831bc",
+      "bytes": 150241,
+      "purpose": "Independent source schedule annotation only; no commercial text/photo reuse permission asserted",
+      "source_independence": "Primarypharmacyoperator vs OSMcontributor",
+      "annotation": "Codex"
+    },
+    "reference_scope": "Official schedule displayed for 24–30Oct2026, not proof for14Nov2026 or17Jul2027",
+    "identity_check": {
+      "brand": "ДокторСтолетов",
+      "official_full_address": "Сочи,улицаКонституцииСССР24А",
+      "osm_node_within_building": "way/51167675",
+      "osm_building_full_address": "Сочи,улицаКонституцииСССР24А",
+      "point_inside_building": true
+    },
+    "annotation": "Разметка Codex",
+    "human_verified": false,
+    "independent_reference": true,
+    "canonical_full_feature_gold": false,
+    "pre_audit_affected_fact_ids": [
+      "66b59fa33e23f773cb868bd0",
+      "7d5fbadaa452b4cf99cc8496"
+    ],
+    "source_text_quote": "Сегодня 8:00 - 21:00",
+    "observed_at": "2026-10-24T02:17:24.879301+00:00"
+  }
+]

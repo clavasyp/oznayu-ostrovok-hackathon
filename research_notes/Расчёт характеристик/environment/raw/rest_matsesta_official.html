@@ -1,0 +1,923 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="Рест-Мацеста" />
+<meta name="description" content="Рест-Мацеста - Современный комфортабельный комплекс, расположен в 20 км от аэропорта, в 10 км. от ж/д вокзала Сочи, скрыт от городского шума и утопает в пышной зелени уникального дендропарка." />
+<link href="/bitrix/js/ui/design-tokens/dist/ui.design-tokens.css?175102985926358" type="text/css"  rel="stylesheet" />
+<link href="/bitrix/js/ui/fonts/opensans/ui.font.opensans.css?16820327272555" type="text/css"  rel="stylesheet" />
+<link href="/bitrix/js/main/popup/dist/main.popup.bundle.css?175102993431694" type="text/css"  rel="stylesheet" />
+<link href="/bitrix/js/main/core/css/core_date.css?168203285810481" type="text/css"  rel="stylesheet" />
+<link href="/local/templates/roshavip/components/bitrix/menu/top/style.css?1429862880626" type="text/css"  data-template-style="true"  rel="stylesheet" />
+<link href="/local/templates/roshavip/components/bitrix/menu/bottom/style.css?1429864577583" type="text/css"  data-template-style="true"  rel="stylesheet" />
+<link href="/local/templates/roshavip/styles.css?1751375804165" type="text/css"  data-template-style="true"  rel="stylesheet" />
+<link href="/local/templates/roshavip/template_styles.css?175137580449966" type="text/css"  data-template-style="true"  rel="stylesheet" />
+<script>if(!window.BX)window.BX={};if(!window.BX.message)window.BX.message=function(mess){if(typeof mess==='object'){for(let i in mess) {BX.message[i]=mess[i];} return true;}};</script>
+<script>(window.BX||top.BX).message({"JS_CORE_LOADING":"Загрузка...","JS_CORE_NO_DATA":"- Нет данных -","JS_CORE_WINDOW_CLOSE":"Закрыть","JS_CORE_WINDOW_EXPAND":"Развернуть","JS_CORE_WINDOW_NARROW":"Свернуть в окно","JS_CORE_WINDOW_SAVE":"Сохранить","JS_CORE_WINDOW_CANCEL":"Отменить","JS_CORE_WINDOW_CONTINUE":"Продолжить","JS_CORE_H":"ч","JS_CORE_M":"м","JS_CORE_S":"с","JSADM_AI_HIDE_EXTRA":"Скрыть лишние","JSADM_AI_ALL_NOTIF":"Показать все","JSADM_AUTH_REQ":"Требуется авторизация!","JS_CORE_WINDOW_AUTH":"Войти","JS_CORE_IMAGE_FULL":"Полный размер"});</script>
+
+<script src="/bitrix/js/main/core/core.js?1751029949512406"></script>
+
+<script>BX.Runtime.registerExtension({"name":"main.core","namespace":"BX","loaded":true});</script>
+<script>BX.setJSList(["\/bitrix\/js\/main\/core\/core_ajax.js","\/bitrix\/js\/main\/core\/core_promise.js","\/bitrix\/js\/main\/polyfill\/promise\/js\/promise.js","\/bitrix\/js\/main\/loadext\/loadext.js","\/bitrix\/js\/main\/loadext\/extension.js","\/bitrix\/js\/main\/polyfill\/promise\/js\/promise.js","\/bitrix\/js\/main\/polyfill\/find\/js\/find.js","\/bitrix\/js\/main\/polyfill\/includes\/js\/includes.js","\/bitrix\/js\/main\/polyfill\/matches\/js\/matches.js","\/bitrix\/js\/ui\/polyfill\/closest\/js\/closest.js","\/bitrix\/js\/main\/polyfill\/fill\/main.polyfill.fill.js","\/bitrix\/js\/main\/polyfill\/find\/js\/find.js","\/bitrix\/js\/main\/polyfill\/matches\/js\/matches.js","\/bitrix\/js\/main\/polyfill\/core\/dist\/polyfill.bundle.js","\/bitrix\/js\/main\/core\/core.js","\/bitrix\/js\/main\/polyfill\/intersectionobserver\/js\/intersectionobserver.js","\/bitrix\/js\/main\/lazyload\/dist\/lazyload.bundle.js","\/bitrix\/js\/main\/polyfill\/core\/dist\/polyfill.bundle.js","\/bitrix\/js\/main\/parambag\/dist\/parambag.bundle.js"]);
+</script>
+<script>BX.Runtime.registerExtension({"name":"ui.dexie","namespace":"BX.DexieExport","loaded":true});</script>
+<script>BX.Runtime.registerExtension({"name":"ls","namespace":"window","loaded":true});</script>
+<script>BX.Runtime.registerExtension({"name":"fx","namespace":"window","loaded":true});</script>
+<script>BX.Runtime.registerExtension({"name":"fc","namespace":"window","loaded":true});</script>
+<script>BX.Runtime.registerExtension({"name":"ui.design-tokens","namespace":"window","loaded":true});</script>
+<script>BX.Runtime.registerExtension({"name":"ui.fonts.opensans","namespace":"window","loaded":true});</script>
+<script>BX.Runtime.registerExtension({"name":"main.popup","namespace":"BX.Main","loaded":true});</script>
+<script>BX.Runtime.registerExtension({"name":"popup","namespace":"window","loaded":true});</script>
+<script>(window.BX||top.BX).message({"AMPM_MODE":false});(window.BX||top.BX).message({"MONTH_1":"Январь","MONTH_2":"Февраль","MONTH_3":"Март","MONTH_4":"Апрель","MONTH_5":"Май","MONTH_6":"Июнь","MONTH_7":"Июль","MONTH_8":"Август","MONTH_9":"Сентябрь","MONTH_10":"Октябрь","MONTH_11":"Ноябрь","MONTH_12":"Декабрь","MONTH_1_S":"января","MONTH_2_S":"февраля","MONTH_3_S":"марта","MONTH_4_S":"апреля","MONTH_5_S":"мая","MONTH_6_S":"июня","MONTH_7_S":"июля","MONTH_8_S":"августа","MONTH_9_S":"сентября","MONTH_10_S":"октября","MONTH_11_S":"ноября","MONTH_12_S":"декабря","MON_1":"янв","MON_2":"фев","MON_3":"мар","MON_4":"апр","MON_5":"мая","MON_6":"июн","MON_7":"июл","MON_8":"авг","MON_9":"сен","MON_10":"окт","MON_11":"ноя","MON_12":"дек","DAY_OF_WEEK_0":"Воскресенье","DAY_OF_WEEK_1":"Понедельник","DAY_OF_WEEK_2":"Вторник","DAY_OF_WEEK_3":"Среда","DAY_OF_WEEK_4":"Четверг","DAY_OF_WEEK_5":"Пятница","DAY_OF_WEEK_6":"Суббота","DOW_0":"Вс","DOW_1":"Пн","DOW_2":"Вт","DOW_3":"Ср","DOW_4":"Чт","DOW_5":"Пт","DOW_6":"Сб","FD_SECOND_AGO_0":"#VALUE# секунд назад","FD_SECOND_AGO_1":"#VALUE# секунду назад","FD_SECOND_AGO_10_20":"#VALUE# секунд назад","FD_SECOND_AGO_MOD_1":"#VALUE# секунду назад","FD_SECOND_AGO_MOD_2_4":"#VALUE# секунды назад","FD_SECOND_AGO_MOD_OTHER":"#VALUE# секунд назад","FD_SECOND_DIFF_0":"#VALUE# секунд","FD_SECOND_DIFF_1":"#VALUE# секунда","FD_SECOND_DIFF_10_20":"#VALUE# секунд","FD_SECOND_DIFF_MOD_1":"#VALUE# секунда","FD_SECOND_DIFF_MOD_2_4":"#VALUE# секунды","FD_SECOND_DIFF_MOD_OTHER":"#VALUE# секунд","FD_SECOND_SHORT":"#VALUE#с","FD_MINUTE_AGO_0":"#VALUE# минут назад","FD_MINUTE_AGO_1":"#VALUE# минуту назад","FD_MINUTE_AGO_10_20":"#VALUE# минут назад","FD_MINUTE_AGO_MOD_1":"#VALUE# минуту назад","FD_MINUTE_AGO_MOD_2_4":"#VALUE# минуты назад","FD_MINUTE_AGO_MOD_OTHER":"#VALUE# минут назад","FD_MINUTE_DIFF_0":"#VALUE# минут","FD_MINUTE_DIFF_1":"#VALUE# минута","FD_MINUTE_DIFF_10_20":"#VALUE# минут","FD_MINUTE_DIFF_MOD_1":"#VALUE# минута","FD_MINUTE_DIFF_MOD_2_4":"#VALUE# минуты","FD_MINUTE_DIFF_MOD_OTHER":"#VALUE# минут","FD_MINUTE_0":"#VALUE# минут","FD_MINUTE_1":"#VALUE# минуту","FD_MINUTE_10_20":"#VALUE# минут","FD_MINUTE_MOD_1":"#VALUE# минуту","FD_MINUTE_MOD_2_4":"#VALUE# минуты","FD_MINUTE_MOD_OTHER":"#VALUE# минут","FD_MINUTE_SHORT":"#VALUE#мин","FD_HOUR_AGO_0":"#VALUE# часов назад","FD_HOUR_AGO_1":"#VALUE# час назад","FD_HOUR_AGO_10_20":"#VALUE# часов назад","FD_HOUR_AGO_MOD_1":"#VALUE# час назад","FD_HOUR_AGO_MOD_2_4":"#VALUE# часа назад","FD_HOUR_AGO_MOD_OTHER":"#VALUE# часов назад","FD_HOUR_DIFF_0":"#VALUE# часов","FD_HOUR_DIFF_1":"#VALUE# час","FD_HOUR_DIFF_10_20":"#VALUE# часов","FD_HOUR_DIFF_MOD_1":"#VALUE# час","FD_HOUR_DIFF_MOD_2_4":"#VALUE# часа","FD_HOUR_DIFF_MOD_OTHER":"#VALUE# часов","FD_HOUR_SHORT":"#VALUE#ч","FD_YESTERDAY":"вчера","FD_TODAY":"сегодня","FD_TOMORROW":"завтра","FD_DAY_AGO_0":"#VALUE# дней назад","FD_DAY_AGO_1":"#VALUE# день назад","FD_DAY_AGO_10_20":"#VALUE# дней назад","FD_DAY_AGO_MOD_1":"#VALUE# день назад","FD_DAY_AGO_MOD_2_4":"#VALUE# дня назад","FD_DAY_AGO_MOD_OTHER":"#VALUE# дней назад","FD_DAY_DIFF_0":"#VALUE# дней","FD_DAY_DIFF_1":"#VALUE# день","FD_DAY_DIFF_10_20":"#VALUE# дней","FD_DAY_DIFF_MOD_1":"#VALUE# день","FD_DAY_DIFF_MOD_2_4":"#VALUE# дня","FD_DAY_DIFF_MOD_OTHER":"#VALUE# дней","FD_DAY_AT_TIME":"#DAY# в #TIME#","FD_DAY_SHORT":"#VALUE#д","FD_MONTH_AGO_0":"#VALUE# месяцев назад","FD_MONTH_AGO_1":"#VALUE# месяц назад","FD_MONTH_AGO_10_20":"#VALUE# месяцев назад","FD_MONTH_AGO_MOD_1":"#VALUE# месяц назад","FD_MONTH_AGO_MOD_2_4":"#VALUE# месяца назад","FD_MONTH_AGO_MOD_OTHER":"#VALUE# месяцев назад","FD_MONTH_DIFF_0":"#VALUE# месяцев","FD_MONTH_DIFF_1":"#VALUE# месяц","FD_MONTH_DIFF_10_20":"#VALUE# месяцев","FD_MONTH_DIFF_MOD_1":"#VALUE# месяц","FD_MONTH_DIFF_MOD_2_4":"#VALUE# месяца","FD_MONTH_DIFF_MOD_OTHER":"#VALUE# месяцев","FD_MONTH_SHORT":"#VALUE#мес","FD_YEARS_AGO_0":"#VALUE# лет назад","FD_YEARS_AGO_1":"#VALUE# год назад","FD_YEARS_AGO_10_20":"#VALUE# лет назад","FD_YEARS_AGO_MOD_1":"#VALUE# год назад","FD_YEARS_AGO_MOD_2_4":"#VALUE# года назад","FD_YEARS_AGO_MOD_OTHER":"#VALUE# лет назад","FD_YEARS_DIFF_0":"#VALUE# лет","FD_YEARS_DIFF_1":"#VALUE# год","FD_YEARS_DIFF_10_20":"#VALUE# лет","FD_YEARS_DIFF_MOD_1":"#VALUE# год","FD_YEARS_DIFF_MOD_2_4":"#VALUE# года","FD_YEARS_DIFF_MOD_OTHER":"#VALUE# лет","FD_YEARS_SHORT_0":"#VALUE#л","FD_YEARS_SHORT_1":"#VALUE#г","FD_YEARS_SHORT_10_20":"#VALUE#л","FD_YEARS_SHORT_MOD_1":"#VALUE#г","FD_YEARS_SHORT_MOD_2_4":"#VALUE#г","FD_YEARS_SHORT_MOD_OTHER":"#VALUE#л","CAL_BUTTON":"Выбрать","CAL_TIME_SET":"Установить время","CAL_TIME":"Время","FD_LAST_SEEN_TOMORROW":"завтра в #TIME#","FD_LAST_SEEN_NOW":"только что","FD_LAST_SEEN_TODAY":"сегодня в #TIME#","FD_LAST_SEEN_YESTERDAY":"вчера в #TIME#","FD_LAST_SEEN_MORE_YEAR":"более года назад","FD_UNIT_ORDER":"Y m d H i s","FD_SEPARATOR":"\u0026#32;","FD_SEPARATOR_SHORT":"\u0026#32;"});</script>
+<script type="extension/settings" data-extension="main.date">{"formats":{"FORMAT_DATE":"DD.MM.YYYY","FORMAT_DATETIME":"DD.MM.YYYY HH:MI:SS","SHORT_DATE_FORMAT":"d.m.Y","MEDIUM_DATE_FORMAT":"j M Y","LONG_DATE_FORMAT":"j F Y","DAY_MONTH_FORMAT":"j F","DAY_SHORT_MONTH_FORMAT":"j M","SHORT_DAY_OF_WEEK_MONTH_FORMAT":"D, j F","SHORT_DAY_OF_WEEK_SHORT_MONTH_FORMAT":"D, j M","DAY_OF_WEEK_MONTH_FORMAT":"l, j F","FULL_DATE_FORMAT":"l, j F  Y","SHORT_TIME_FORMAT":"H:i","LONG_TIME_FORMAT":"H:i:s"}}</script>
+<script>BX.Runtime.registerExtension({"name":"main.date","namespace":"BX.Main","loaded":true});</script>
+<script>(window.BX||top.BX).message({"WEEK_START":1});</script>
+<script>BX.Runtime.registerExtension({"name":"date","namespace":"window","loaded":true});</script>
+<script>(window.BX||top.BX).message({"LANGUAGE_ID":"ru","FORMAT_DATE":"DD.MM.YYYY","FORMAT_DATETIME":"DD.MM.YYYY HH:MI:SS","COOKIE_PREFIX":"BITRIX_SM","SERVER_TZ_OFFSET":"10800","UTF_MODE":"Y","SITE_ID":"s1","SITE_DIR":"\/","USER_ID":"","SERVER_TIME":1792808354,"USER_TZ_OFFSET":0,"USER_TZ_AUTO":"Y","bitrix_sessid":"2df606b41530b7b566e94c52bd412df8"});</script>
+
+
+<script src="/bitrix/js/ui/dexie/dist/dexie.bundle.js?1751029947218847"></script>
+<script src="/bitrix/js/main/core/core_ls.js?17510299184201"></script>
+<script src="/bitrix/js/main/core/core_fx.js?168203035216888"></script>
+<script src="/bitrix/js/main/core/core_frame_cache.js?175102994516945"></script>
+<script src="/bitrix/js/main/popup/dist/main.popup.bundle.js?1751029945119074"></script>
+<script src="/bitrix/js/main/date/main.date.js?175102992862683"></script>
+<script src="/bitrix/js/main/core/core_date.js?168203232836080"></script>
+<link rel="stylesheet" href="/local/templates/roshavip/css/media.css" >
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="/local/templates/roshavip/css/flexslider.css" >
+<link rel="stylesheet" href="/local/templates/roshavip/css/jquery.arcticmodal-0.3.css" >
+<link rel="stylesheet" href="/local/templates/roshavip/css/chosen.css" >
+
+
+
+<script src="/local/templates/roshavip/js/jquery.min.js?142986130493636"></script>
+<script src="/local/templates/roshavip/js/jquery.flexslider-min.js?142986130421638"></script>
+<script src="/local/templates/roshavip/js/chosen.jquery.js?142986130440437"></script>
+<script src="/local/templates/roshavip/js/jquery.arcticmodal-0.3.min.js?14315887256083"></script>
+<script src="/local/templates/roshavip/js/jquery.general.js?1431074395720"></script>
+<script src="/local/templates/roshavip/js/jquery.maskedinput.js?143029601310245"></script>
+
+<title>Пансионат-отель «Рест-Мацеста», Сочи - официальный сайт </title>
+    <!--[if IE]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->    
+    <!--[if lte IE 7]>
+        <link rel="stylesheet" href="/local/templates/roshavip/css/main-ie7.css">
+    <![endif]-->
+    <!--[if lt IE 8]>
+        <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE8.js"></script>
+    <![endif]-->
+    <!--[if lte IE 8]>
+        <div style=' clear: both; text-align:center; position: relative;'>
+        <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+        <img src="/local/templates/roshavip/img/ie-ru.png" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
+        </a>
+        </div>
+    <![endif]-->
+<meta name="mailru-domain" content="ebVzPa4jhYoPV4uX" />
+
+    <!-- start TL head script -->
+    <script type='text/javascript'>
+        (function(w) {
+            var q = [
+                ["setContext", "TL-INT-rest-matsesta_2026-01-12", "ru"],
+                ["embed", "booking-form", {
+                    container: "tl-booking-form"
+                }],
+                ["embed", "search-form", {
+                    container: "tl-search-form"
+                }]
+            ];
+            var h = ["ru-ibe.tlintegration.ru", "ibe.tlintegration.ru", "ibe.tlintegration.com"];
+            var t = w.travelline = (w.travelline || {}),
+                ti = t.integration = (t.integration || {});
+            ti.__cq = ti.__cq? ti.__cq.concat(q) : q;
+            if (!ti.__loader) {
+                ti.__loader = true;
+                var d=w.document,c=d.getElementsByTagName("head")[0]||d.getElementsByTagName("body")[0];
+                function e(s,f) {return function() {w.TL||(c.removeChild(s),f())}}
+                (function l(h) {
+                    if (0===h.length) return; var s=d.createElement("script");
+                    s.type="text/javascript";s.async=!0;s.src="https://"+h[0]+"/integration/loader.js";
+                    s.onerror=s.onload=e(s,function(){l(h.slice(1,h.length))});c.appendChild(s)
+                })(h);
+            }
+        })(window);
+    </script>
+    <!-- end TL head script -->
+
+    <link rel="stylesheet" href="/local/templates/roshavip/css/travelline-style.css">
+</head>
+<body>
+	        <div id="main_wrapper">
+            <div class="line_left"></div>
+            <div class="line_right"></div> 
+            <!-- <div class="palms"></div>
+            <div class="palms palms_right"></div> -->
+            <div class="foliage"></div> 
+            <!---Header-->
+            <header>
+                <div class="mainWrap">
+                    <div class="header_content">
+                        <div class="pattern"></div>
+                        <div class="pattern pat_right"></div>
+                        <div class="lang translation-icons">
+                            <span><a href="#" data-placement="ru"><img src="/local/templates/roshavip/img/rus.png" width="25" height="25" alt=""/></a></span>
+                            <span><a href="#" data-placement="en"><img src="/local/templates/roshavip/img/en.png" width="25" height="25" alt=""/></a></span>
+                        </div>
+<h1 class="logo_rosh"><a href="/"><img src="/local/templates/roshavip/img/logo.png" alt=""/></a></h1>
+                        <div class="tel_block">
+							<p style="font-size: 14px;">Телефон для справок:</p>
+                            <p class="number">
+                            <a style="color: #2a5213;" href="tel:+79882356600">+7-988-235-66-00</a> 
+<br>
+ <nobr><a href="mailto:booking@rest-matsesta.ru" style="#2a5213; font-size: 16px;"><span style="color: #005824;">booking@rest-matsesta.ru</span></a></nobr>                            </p>
+														<!--<div class="instagram">
+								<a href="https://www.instagram.com/rest_matsesta/" target="_blank">
+									<img src="/insta.png" />
+								</a>
+							</div>-->
+                            
+                        </div>
+
+                        <div class="adress">
+                            
+<p>г. Сочи,</p>
+ 
+<p>Курортный пр-т, 120/2</p>
+ 
+<p class="number"><a href="tel:+78622619904">Тел: 8 (862) 2619-904</a></p>
+														<div class="booking">
+                                <script>
+                                (function() {
+                                    var randomId = Math.floor(Math.random() * 100000);
+                                    var targetElemId = 'bcom_rwidget_' + randomId;
+                                    document.write('<div id="' + targetElemId + '"></div>');
+                                    var script   = document.createElement('script');
+                                    script.type  = 'text/javascript';
+                                    script.async = true;
+                                    script.src   = 'http://www.booking.com/review_widget/ru/zelenaya-rosha-vip.ru.html?tmpl=review_widget/review_widget&wid=' + targetElemId + '&wtype=button_light_hor&hotel_id=290767&widget_language=ru';
+                                    var node     = document.getElementsByTagName('script')[0];
+                                    node.parentNode.insertBefore(script, node);
+                                }());
+                                </script>
+							</div>
+
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </header>
+            <!---/Header-->
+            
+<div class="icon_nav"><span>Меню</span><span class="pull-right">&#9776;</span></div>
+<nav>
+<ul>
+
+			<li><a href="/room/" >Номера</a></li>
+		
+			<li><a href="/price/" >Стоимость</a></li>
+		
+			<li><a href="/beach/" >Пляж</a></li>
+		
+			<li><a href="/restaurant/" >Ресторан</a></li>
+		
+			<li><a href="/booking" >Забронировать</a></li>
+		
+			<li><a href="/photo-gallery/" >Фото</a></li>
+		
+			<li><a href="/transfer/" >Трансфер</a></li>
+		
+			<li><a href="/partners/" >Партнерам</a></li>
+		
+			<li><a href="/contact/" >Контакты</a></li>
+		
+
+</ul>
+</nav>
+
+    <!-- start TL Search form script -->
+    <div class="mainWrap">
+        <div id="block-search">
+            <div id="tl-search-form" class="tl-container">
+                <noindex><a href="https://www.travelline.ru/products/tl-hotel/" rel="nofollow" target="_blank">TravelLine</a></noindex>
+            </div>
+        </div>
+    </div>
+    <!-- end TL Search form script -->
+
+
+                        <!--'start_frame_cache_pAaVZL'--><section class="slider">
+	<div class="mainWrap">
+        <div class="flexslider" id="slider">
+            <ul class="slides">
+               				
+                <li id="bx_2106363545_1363">
+                	<a href="#test">
+                        <img src="/upload/resize_cache/iblock/0d2/884_454_2/0d2562c02751c69764b100d42e8bb5d3.JPG" alt="При бронировании номера в майские праздники"/>
+                        <div class="slogan">
+                        	<div class="slogan_content">
+                            	                                <p class="size">Уважаемые гости, при просмотре сайтов "онлайн бронирования" вы не всегда можете получить объективную информацию о наличии свободных мест. Просим обращаться напрямую в наш отдел бронирования.</span></p>
+                            </div>    
+                        </div>
+                    </a>
+                </li>				   
+         				
+                <li id="bx_2106363545_1364">
+                	<a href="#test">
+                        <img src="/upload/resize_cache/iblock/71b/884_454_2/71b5ce9769a37c5115fe02a7ed565139.JPG" alt="При бронировании номера в майские праздники"/>
+                        <div class="slogan">
+                        	<div class="slogan_content">
+                            	                                <p class="size">Уважаемые гости, при просмотре сайтов "онлайн бронирования" вы не всегда можете получить объективную информацию о наличии свободных мест. Просим обращаться напрямую в наш отдел бронирования.</span></p>
+                            </div>    
+                        </div>
+                    </a>
+                </li>				   
+         				
+                <li id="bx_2106363545_1365">
+                	<a href="#test">
+                        <img src="/upload/resize_cache/iblock/834/884_454_2/834ee2f9ab8f1deeac100fb229ef3fa9.JPG" alt="При бронировании номера в майские праздники"/>
+                        <div class="slogan">
+                        	<div class="slogan_content">
+                            	                                <p class="size">Уважаемые гости, при просмотре сайтов "онлайн бронирования" вы не всегда можете получить объективную информацию о наличии свободных мест. Просим обращаться напрямую в наш отдел бронирования.</span></p>
+                            </div>    
+                        </div>
+                    </a>
+                </li>				   
+         				
+                <li id="bx_2106363545_1366">
+                	<a href="#test">
+                        <img src="/upload/resize_cache/iblock/38e/884_454_2/38ebd69d32bb4d0e661de7cfbfe8502f.JPG" alt="При бронировании номера в майские праздники"/>
+                        <div class="slogan">
+                        	<div class="slogan_content">
+                            	                                <p class="size">Уважаемые гости, при просмотре сайтов "онлайн бронирования" вы не всегда можете получить объективную информацию о наличии свободных мест. Просим обращаться напрямую в наш отдел бронирования.</span></p>
+                            </div>    
+                        </div>
+                    </a>
+                </li>				   
+         				
+                <li id="bx_2106363545_2">
+                	<a href="#test">
+                        <img src="/upload/iblock/8a9/8a9284017d4abe735f2c56fda9d92b7d.jpg" alt="При бронировании номера в майские праздники"/>
+                        <div class="slogan">
+                        	<div class="slogan_content">
+                            	                                <p class="size">Уважаемые гости, при просмотре сайтов "онлайн бронирования" вы не всегда можете получить объективную информацию о наличии свободных мест. Просим обращаться напрямую в наш отдел бронирования.</span></p>
+                            </div>    
+                        </div>
+                    </a>
+                </li>				   
+         				
+                <li id="bx_2106363545_67">
+                	<a href="#test">
+                        <img src="/upload/iblock/a4e/a4e25f367c4bf013bf979a9399af69d5.jpg" alt="При бронировании номера в майские праздники"/>
+                        <div class="slogan">
+                        	<div class="slogan_content">
+                            	                                <p class="size">Уважаемые гости, при просмотре сайтов "онлайн бронирования" вы не всегда можете получить объективную информацию о наличии свободных мест. Просим обращаться напрямую в наш отдел бронирования.</span></p>
+                            </div>    
+                        </div>
+                    </a>
+                </li>				   
+         				
+                <li id="bx_2106363545_68">
+                	<a href="#test">
+                        <img src="/upload/iblock/782/78258c142e0b3e179d9eb53921e0d5c6.jpg" alt="При бронировании номера в майские праздники"/>
+                        <div class="slogan">
+                        	<div class="slogan_content">
+                            	                                <p class="size">Уважаемые гости, при просмотре сайтов "онлайн бронирования" вы не всегда можете получить объективную информацию о наличии свободных мест. Просим обращаться напрямую в наш отдел бронирования.</span></p>
+                            </div>    
+                        </div>
+                    </a>
+                </li>				   
+         				
+                <li id="bx_2106363545_69">
+                	<a href="#test">
+                        <img src="/upload/iblock/164/164996db992c3861c19b1dc98a7756df.jpg" alt="При бронировании номера в майские праздники"/>
+                        <div class="slogan">
+                        	<div class="slogan_content">
+                            	                                <p class="size">Уважаемые гости, при просмотре сайтов "онлайн бронирования" вы не всегда можете получить объективную информацию о наличии свободных мест. Просим обращаться напрямую в наш отдел бронирования.</span></p>
+                            </div>    
+                        </div>
+                    </a>
+                </li>				   
+         				
+                <li id="bx_2106363545_1367">
+                	<a href="#test">
+                        <img src="/upload/resize_cache/iblock/8f6/884_454_2/8f67ab2c07dd9827547c205abb7699d8.JPG" alt="При бронировании номера в майские праздники"/>
+                        <div class="slogan">
+                        	<div class="slogan_content">
+                            	                                <p class="size">Уважаемые гости, при просмотре сайтов "онлайн бронирования" вы не всегда можете получить объективную информацию о наличии свободных мест. Просим обращаться напрямую в наш отдел бронирования.</span></p>
+                            </div>    
+                        </div>
+                    </a>
+                </li>				   
+         				
+                <li id="bx_2106363545_1368">
+                	<a href="#test">
+                        <img src="/upload/resize_cache/iblock/56f/884_454_2/56fc53094d33ab11cdb084878db1bfb5.JPG" alt="При бронировании номера в майские праздники"/>
+                        <div class="slogan">
+                        	<div class="slogan_content">
+                            	                                <p class="size">Уважаемые гости, при просмотре сайтов "онлайн бронирования" вы не всегда можете получить объективную информацию о наличии свободных мест. Просим обращаться напрямую в наш отдел бронирования.</span></p>
+                            </div>    
+                        </div>
+                    </a>
+                </li>				   
+         				
+                <li id="bx_2106363545_1369">
+                	<a href="#test">
+                        <img src="/upload/resize_cache/iblock/5a5/884_454_2/5a57d36c3b43c6af7b144d89d0222c49.JPG" alt="При бронировании номера в майские праздники"/>
+                        <div class="slogan">
+                        	<div class="slogan_content">
+                            	                                <p class="size">Уважаемые гости, при просмотре сайтов "онлайн бронирования" вы не всегда можете получить объективную информацию о наличии свободных мест. Просим обращаться напрямую в наш отдел бронирования.</span></p>
+                            </div>    
+                        </div>
+                    </a>
+                </li>				   
+         				
+                <li id="bx_2106363545_1370">
+                	<a href="#test">
+                        <img src="/upload/resize_cache/iblock/101/884_454_2/101c7c42043dcd9136789e124580d416.JPG" alt="При бронировании номера в майские праздники"/>
+                        <div class="slogan">
+                        	<div class="slogan_content">
+                            	                                <p class="size">Уважаемые гости, при просмотре сайтов "онлайн бронирования" вы не всегда можете получить объективную информацию о наличии свободных мест. Просим обращаться напрямую в наш отдел бронирования.</span></p>
+                            </div>    
+                        </div>
+                    </a>
+                </li>				   
+         				
+                <li id="bx_2106363545_1371">
+                	<a href="#test">
+                        <img src="/upload/resize_cache/iblock/1cd/884_454_2/1cdeec3c09a766a60fdcdf0dc5012487.JPG" alt="При бронировании номера в майские праздники"/>
+                        <div class="slogan">
+                        	<div class="slogan_content">
+                            	                                <p class="size">Уважаемые гости, при просмотре сайтов "онлайн бронирования" вы не всегда можете получить объективную информацию о наличии свободных мест. Просим обращаться напрямую в наш отдел бронирования.</span></p>
+                            </div>    
+                        </div>
+                    </a>
+                </li>				   
+         				
+                <li id="bx_2106363545_76">
+                	<a href="#test">
+                        <img src="/upload/iblock/b96/b96208881f80a221f78ff60057eb9b6e.jpg" alt="При бронировании номера в майские праздники"/>
+                        <div class="slogan">
+                        	<div class="slogan_content">
+                            	                                <p class="size">Уважаемые гости, при просмотре сайтов "онлайн бронирования" вы не всегда можете получить объективную информацию о наличии свободных мест. Просим обращаться напрямую в наш отдел бронирования.</span></p>
+                            </div>    
+                        </div>
+                    </a>
+                </li>				   
+         				
+                <li id="bx_2106363545_77">
+                	<a href="#test">
+                        <img src="/upload/iblock/a9f/a9f3127ce16d51d8e2a2299de642fb95.jpg" alt="При бронировании номера в майские праздники"/>
+                        <div class="slogan">
+                        	<div class="slogan_content">
+                            	                                <p class="size">Уважаемые гости, при просмотре сайтов "онлайн бронирования" вы не всегда можете получить объективную информацию о наличии свободных мест. Просим обращаться напрямую в наш отдел бронирования.</span></p>
+                            </div>    
+                        </div>
+                    </a>
+                </li>				   
+         
+            </ul>
+        </div>
+    </div>
+</section>		
+			
+	<!--'end_frame_cache_pAaVZL'-->						
+                        <section class="mainContent">
+                <div class="mainWrap">
+                    <div class="container">
+                        
+                       <div class="text_content">
+                                                   <h2 class="title  "><span>Рест-Мацеста</span></h2>
+                                                        <div class="content_text indent_top_big">
+                            <!--<img src="/upload/ng.jpg" width="100%" height="auto"><br>
+<img src="/upload/menu.jpg" width="100%" height="auto">-->
+
+<style>
+    .tripadvisor, .booking {display: none !important;}
+
+.VwZTwv {
+    background: none !important;
+    border: none !important;
+    border-radius: var(--bm-theme-container-borderRadius, 10px);
+    box-shadow: var(--bm-theme-container-boxShadow);
+    outline: var(--bm-theme-container-outline);
+    padding: var(--bm-theme-container-padding, 30px 26px);
+    width: var(--bm-theme-width, 280px);
+}
+
+.aRfQV7 {
+    background: #1f7201 !important;
+    border: 0;
+    border-radius: 50%;
+    color: #fafafa !important;
+    cursor: pointer;
+    display: flex;
+    font-size: 20px;
+    font-weight: 700;
+    height: 32px;
+    justify-content: center;
+    line-height: 30px;
+    margin: 0;
+    padding: 0;
+    transition: background-color .1s cubic-bezier(.5,1,.89,1) 0ms;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    width: 32px;
+}
+
+.react-ui-5uzak3 {
+    -webkit-font-smoothing: inherit;
+    appearance: none;
+    letter-spacing: normal;
+    text-transform: none;
+    text-shadow: none;
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    color: #fafafa !important;
+    box-shadow: #1f7201 0px 0px 0px 1px !important;
+    box-sizing: border-box;
+    outline: none;
+    border-width: initial;
+    border-style: none;
+    border-color:  #1f7201 !important;
+    border-image: initial;
+    margin: 0px;
+    overflow: visible;
+    background: none center center / contain no-repeat padding-box  #1f7201 !important;
+    font: inherit inherit inherit inherit inherit;
+    font-variant: normal;
+    transition: background-color 100ms cubic-bezier(0.5, 1, 0.89, 1);
+    background-position: center center;
+    border-radius: 8px;
+    padding: 8px 16px;
+}
+</style>
+
+<br>
+<p>Современный комфортабельный комплекс, расположен в 20 км от аэропорта, в 10 км. от ж/д вокзала Сочи, скрыт от городского шума и утопает в пышной зелени уникального дендропарка.</p>
+ 
+<p>Расположен на высоте 130 метров над уровнем моря, откуда открывается великолепный вид на морское побережье. В 100 метрах от пансионата находится знаменитая Дача Сталина.</p>
+ 
+<p>Расстояние корпусов от моря &ndash; 800 м. Доставка на пляж отдыхающих осуществляется ежедневно на микроавтобусе по территории санатория, время в пути 3-5 минут.</p>
+ 
+<p> 
+  <br />
+ </p>
+
+<div style="overflow-x:auto;">
+<table class="mesta"> 
+  <tbody> 
+    <tr><td colspan="1" style="border-image: initial;"><b>Ближайшие достопримечательности</b></td><td colspan="1" style="border-image: initial;"> 
+        <br />
+       </td><td colspan="1" style="border-image: initial;"><b>Самые популярные достопримечательности</b></td><td colspan="1" style="border-image: initial;"></td></tr>
+   
+    <tr><td style="border-image: initial;">Дача Сталина</td><td style="border-image: initial;"><nobr>0,2 км.</nobr></td><td style="border-image: initial;">Летний театр</td><td style="border-image: initial;">6,1 км.</td></tr>
+   
+    <tr><td style="border-image: initial;">Мацестинский источник</td><td style="border-image: initial;">0,8 км.</td><td style="border-image: initial;">Музей Истории Хостинского района</td><td style="border-image: initial;">6,4 км.</td></tr>
+   
+    <tr><td style="border-image: initial;">Железнодорожная станция Мацеста</td><td style="border-image: initial;">1,1 км.</td><td style="border-image: initial;">Зимний театр</td><td style="border-image: initial;">6,5 км.</td></tr>
+   
+    <tr><td style="border-image: initial;">Агурские водопады</td><td style="border-image: initial;">2,3 км.</td><td style="border-image: initial;">Зелёный театр</td><td style="border-image: initial;">8,5 км.</td></tr>
+   
+    <tr><td style="border-image: initial;">Гора Ахун</td><td style="border-image: initial;">3,3 км.</td><td style="border-image: initial;">Парк Ривьера</td><td style="border-image: initial;">8,6 км.</td></tr>
+   
+    <tr><td style="border-image: initial;">Арт-галерея</td><td style="border-image: initial;">3,6 км.</td><td style="border-image: initial;">Железнодорожный вокзал Адлера</td><td style="border-image: initial;">13,7 км.</td></tr>
+   
+    <tr><td style="border-image: initial;">Центральный стадион имени Славы Метревели</td><td style="border-image: initial;">4,5 км.</td><td style="border-image: initial;">Ореховский водопад</td><td style="border-image: initial;">18 км.</td></tr>
+   
+    <tr><td style="border-image: initial;">Дерево Дружбы</td><td style="border-image: initial;">4,8 км.</td><td style="border-image: initial;"></td><td style="border-image: initial;"></td></tr>
+   
+    <tr><td style="border-image: initial;">Сочинский цирк</td><td style="border-image: initial;">5,8 км.</td><td style="border-image: initial;"><b>Ближайшие аэропорты</b></td><td style="border-image: initial;"></td></tr>
+   
+    <tr><td style="border-image: initial;">Кавказский государственный природный биосферный заповедник</td><td style="border-image: initial;">5,8 км.</td><td style="border-image: initial;">Международный аэропорт Сочи (Адлер)</td><td style="border-image: initial;">15,6 км.</td></tr>
+   </tbody>
+ </table>
+</div>
+
+<p> 
+  <br />
+
+ </p>
+ 																</div>
+							<div class="foliage_form"></div>
+						</div>
+						<!--<div class="right_column pull-right">
+                        	<div class="form_search">
+                            	<div class="foliage_form"></div>
+                            	<div class="form_search_content">
+                                	<h3 class="title_form">Поиск номера</h3>
+                                    <div class="form_body">
+                                    	<label>Дата заезда:</label>
+                                        <div class="input_cell"><input type="text" name=""/></div>
+                                        <label>Дата отъезда:</label>
+                                        <div class="input_cell"><input type="text" name=""/></div>
+                                        <div class="select_cell">
+                                        	<label>Гостей:</label>
+                                            <select class="ap-chosen" tabindex="1" data-placeholder="1">
+                                            <option value=""></option>
+                                            <option value="1">2</option>
+                                            <option value="2">3</option>
+                                            </select>	
+                                        </div>
+                                        <div class="select_cell indent_select">
+                                        	<label>Номеров:</label>
+                                            <select class="ap-chosen" tabindex="1" data-placeholder="1">
+                                            <option value=""></option>
+                                            <option value="1">2</option>
+                                            <option value="2">3</option>
+                                            </select>	
+                                        </div>
+                                        <div class="clear"></div>
+                                        <div class="btn_form">
+                                        	<input type="submit" name="" value="Найти"/>
+                                        </div>
+                                    </div>	
+                                </div>
+                            </div>
+                        </div> -->
+                        <div class="clear"></div>
+						<!--'start_frame_cache_VcBl23'-->                    <div class="container">
+                    	<h2 class="title_small"><span>Номерной фонд</span></h2>
+                        <ul class="room_list">
+                   			
+
+                        	<li id="bx_2242106278_5">
+								<div class="room_img"><a href="/room/"><img src="/upload/resize_cache/iblock/779/160_120_2/7794fc0e40b20306019171457f95a76a.jpg" alt=""/></a></div>
+								<a href="/room/" class="room_link">Стандарт</a>
+                            </li>				   
+			   
+                     			
+
+                        	<li id="bx_2242106278_6">
+								<div class="room_img"><a href="/room/"><img src="/upload/resize_cache/iblock/989/160_120_2/989f0dd71306a7226a6f2509e9f87a21.jpg" alt=""/></a></div>
+								<a href="/room/" class="room_link">Студия</a>
+                            </li>				   
+			   
+                     			
+
+                        	<li id="bx_2242106278_7">
+								<div class="room_img"><a href="/room/"><img src="/upload/resize_cache/iblock/b06/160_120_2/b06e955022dc4b9bb0a7f2a4a8a71775.jpg" alt=""/></a></div>
+								<a href="/room/" class="room_link">Люкс 2-х комнатный</a>
+                            </li>				   
+			   
+                     			
+
+                        	<li id="bx_2242106278_8">
+								<div class="room_img"><a href="/room/"><img src="/upload/resize_cache/iblock/feb/160_120_2/feb47eafe63e49eae616d6cb22dd75d5.jpg" alt=""/></a></div>
+								<a href="/room/" class="room_link">Люкс 3-х комнатный</a>
+                            </li>				   
+			   
+                     			
+
+                        	<li id="bx_2242106278_9">
+								<div class="room_img"><a href="/room/"><img src="/upload/resize_cache/iblock/100/160_120_2/100ff9b6eee7830e8841e93eeabed571.jpg" alt=""/></a></div>
+								<a href="/room/" class="room_link">Люкс Премиум</a>
+                            </li>				   
+			   
+                     	
+                        </ul>
+                    </div>		
+			
+<!--'end_frame_cache_VcBl23'-->
+						
+<h2 class="title  indent_title"><span>Трансфер</span></h2>
+<p>Встретим вовремя и доставим Вас до пансионата Зеленая роща VIP. Служба заказа тарнсфера всегда к Вашим услугам!
+Если Вы уже приобрели билеты и определились с транспортом, можете сейчас заказать трансфер:</p>
+
+
+<form name="ajaxform" action="/local/components/webco/transfer_add/ajax.php" method="POST" enctype="multipart/form-data"><input type="hidden" name="bxajaxid" id="bxajaxid__8BACKi" value="" /><input type="hidden" name="AJAX_CALL" value="Y" /><script>
+function _processform_8BACKi(){
+	if (BX('bxajaxid__8BACKi'))
+	{
+		var obForm = BX('bxajaxid__8BACKi').form;
+		BX.bind(obForm, 'submit', function() {BX.ajax.submitComponentForm(this, 'result', true)});
+	}
+	BX.removeCustomEvent('onAjaxSuccess', _processform_8BACKi);
+}
+if (BX('bxajaxid__8BACKi'))
+	_processform_8BACKi();
+else
+	BX.addCustomEvent('onAjaxSuccess', _processform_8BACKi);
+</script>
+<input type="hidden" name="EMAIL_TO" value="booking@rest-matsesta.ru"> 
+<input type="hidden" name="EVENT_TYPE" value="WEBCO_TRANSFER"> 
+<input type="hidden" name="IBLOCK_ID" value="8">            
+						<div class="transfer_form">
+                        	<div class="transfer_column_left">
+                            	<div class="transf_cell">
+                                	<label class="name_transf">Ваше имя<span>*</span>:</label>
+                                    <input  autocomplete="off" required type="text" name="FIO" class="input_transf"/>
+                                </div>
+                                <div class="transf_cell">
+                                	<label class="name_transf">Номер рейса<span>*</span>:</label>
+                                    <input  autocomplete="off" required type="text" name="REIS" class="input_transf"/>
+                                </div>
+                                <div class="transf_cell">
+                                	<label class="name_transf">Дата прибытия:</label>
+									<div class="time_input">
+                                       <input type="text" name="DATE_2" id="DATE_2" size="" value="" class="input_transf date" /> 
+<img src="/bitrix/js/main/core/images/calendar-icon.gif" alt="Выбрать дату в календаре" class="calendar-icon" onclick="BX.calendar({node:this, field:'DATE_2', form: 'ajaxform', bTime: false, currentTime: '1792819154', bHideTime: true});" onmouseover="BX.addClass(this, 'calendar-icon-hover');" onmouseout="BX.removeClass(this, 'calendar-icon-hover');" border="0"/>
+                                       
+                                    </div>
+                                </div>
+                                <div class="transf_cell">
+                                	<label class="name_transf">Время прибытия:</label>
+                                    <input  autocomplete="off"  type="text" name="DATE_1" class="input_transf"/>
+                                </div>
+                                
+                                <div class="transf_cell">
+                                	<label class="name_transf">Контактный телефон<span>*</span>:</label>
+                                    <input  autocomplete="off" required type="text" name="TEL" class="phone input_transf"/>
+                                </div>
+                                <div class="transf_cell">
+                                	<label class="name_transf">E-mail:</label>
+                                    <input  autocomplete="off"  type="text" name="EMAIL" class="email input_transf"/>
+                                </div>
+                            </div>
+                            <div class="transfer_column_right">
+                            	<div class="transf_text_form">
+                                	<label>Дополнительно:</label>
+                                    <textarea  autocomplete="off" name="TEXT"></textarea>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+							<div id="result">
+                            <div class="btn_form pull-right"><input type="submit" name="" value="Заказать"/></div>
+							</div>
+                            <div class="clear"></div>
+                        </div>
+						
+                      
+
+
+
+						
+					</div>
+
+
+                </div>
+            </section>
+<div class="appendix"></div>
+    	</div>
+				<!---Footer-->
+		<footer>
+			<div class="footer_content">
+            	<div class="mainWrap">
+                	<div class="footer_detail">
+                    	<div class="footer_menu pull-left">
+                        	<h3 class="title_fot">Меню:</h3>
+							
+
+
+
+ <ul class="menu_list pull-left width_small">			<li><a href="">Номера</a></li>
+	
+ 			<li><a href="">Пляж</a></li>
+	
+ 			<li><a href="">SPA</a></li>
+	
+ 			<li><a href="">Фото</a></li>
+	
+ 			<li><a href="">Отзывы гостей</a></li>
+	
+ </ul><ul class="menu_list pull-left">			<li><a href="/booking/">Бронирование</a></li>
+	
+ 			<li><a href="">Спецпредложения</a></li>
+	
+ 			<li><a href="">Для партнеров</a></li>
+	
+ 			<li><a href="">Контакты</a></li>
+	
+
+</ul>
+
+                        </div>
+                        <div class="contacts pull-left">
+                        	<h3 class="title_fot">контакты:</h3>
+							<p>354024 г. Сочи, Курортный пр-т, 120/2</p>
+ 
+<p>Телефон: <a href="tel:+78622619904" >+7 (862) 2619-904</a></p>
+ 
+<p>Телефон для справок: <a href="tel:+79882356600" >+7-988-235-66-00</a></p>							<!-- Yandex.Metrika informer -->
+<a href="https://metrika.yandex.ru/stat/?id=39584985&from=informer" target="_blank" rel="nofollow"><img src="https://informer.yandex.ru/informer/39584985/3_1_FFFFFFFF_EFEFEFFF_0_pageviews" style="width:88px; height:31px; border:0;" alt="Яндекс.Метрика" title="Яндекс.Метрика: данные за сегодня (просмотры, визиты и уникальные посетители)" class="ym-advanced-informer" data-cid="39584985" data-lang="ru"></a>
+<!-- /Yandex.Metrika informer -->
+
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter39584985 = new Ya.Metrika({
+                    id:39584985,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+
+<!-- /Yandex.Metrika counter -->
+
+<!-- 101Hotel_partner_widget start -->
+            <a target="_blank" id="hotels101_partner_widget_955" style="text-decoration: none; display: block; width: 300px; height: 60px;" href="https://101hotels.com/main/cities/matcesta/pansionat_zelenaya_roshcha_vip.html">
+                
+            </a>
+            <script>
+                (function() {
+                    var script   = document.createElement('script'), generated_id = 955;
+                    script.type  = 'text/javascript';
+                    script.async = true;
+                    script.src   = 'https://101hotels.com/widget/generator/' + generated_id + '/5708/t-8/without-hover';
+                    var node = document.getElementsByTagName('head')[0];
+                    node.appendChild(script);
+                }());
+            </script>
+            <!-- 101Hotel_partner_widget finish -->                        </div>
+                        <div class="right_fot_block pull-right">
+                        	<h3 class="title_fot">Поиск по сайту:</h3>
+<div class="search">
+<form action="/search/index.php">
+			<div class="input_search"><input type="text" name="q"/></div>
+			<div class="search_btn"><input type="submit" name="s" value=""/></div>
+</form>
+</div>                            <div class="producer">
+                            	<p>2023 © VIP пансионат "Рест-Мацеста"</p>
+                                <p><a href="http://www.3nv.ru/" target="_blank">Создание сайта</a> - Новые технологии</p>
+                            </div>
+                        </div>
+                    	<div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+		</footer>
+										 						
+						          <div class="hidden">
+                                    <div class="box-modal" id="exampleModal99999">
+                                    	<div class="box-modal_close arcticmodal-close"></div>
+                                        <div class="box-modal_content">
+                                        	<div class="title_modal">
+												<h3>Бронирование</h3>
+                                                <h4>Выбрать</h4>
+                                            </div>
+                                            <div class="body_modal">
+                                            
+<form name="ajaxformexampleModal99999" action="/local/components/webco/bron_add/ajax.php" method="POST" enctype="multipart/form-data"><input type="hidden" name="bxajaxid" id="bxajaxid__Ar8Szp" value="" /><input type="hidden" name="AJAX_CALL" value="Y" /><script>
+function _processform_Ar8Szp(){
+	if (BX('bxajaxid__Ar8Szp'))
+	{
+		var obForm = BX('bxajaxid__Ar8Szp').form;
+		BX.bind(obForm, 'submit', function() {BX.ajax.submitComponentForm(this, 'resultexampleModal99999', true)});
+	}
+	BX.removeCustomEvent('onAjaxSuccess', _processform_Ar8Szp);
+}
+if (BX('bxajaxid__Ar8Szp'))
+	_processform_Ar8Szp();
+else
+	BX.addCustomEvent('onAjaxSuccess', _processform_Ar8Szp);
+</script>
+											<input type="hidden" name="EMAIL_TO" value="911@3nv.ru, booking@rest-matsesta.ru"> 
+											<input type="hidden" name="EVENT_TYPE" value="WBCO_BRON"> 
+											<input type="hidden" name="IBLOCK_ID" value="9">    
+											<input type="hidden" name="NAME_BRON" value="Выбрать">
+                                            	<div class="transfer_form">
+                                                <div class="transfer_column_left">
+                                                    <div class="transf_cell">
+                                                        <label class="name_transf">Номер:</label>
+														<select name="NAME_BRON" class="input_transf">
+														<option value="Выбрать">Выбрать</option>
+																												<option value="Стандарт">Стандарт</option>
+																												<option value="Студия">Студия</option>
+																												<option value="Люкс 2-х комнатный">Люкс 2-х комнатный</option>
+																												<option value="Люкс 3-х комнатный">Люкс 3-х комнатный</option>
+																												<option value="Люкс Премиум">Люкс Премиум</option>
+																												<option value="Стандарт без балкона">Стандарт без балкона</option>
+														 
+														
+														</select>
+                                                    </div>											
+
+                                                    <div class="transf_cell">
+                                                        <label class="name_transf">Ваше Ф.И.О.<span>*</span>:</label>
+                                                        <input autocomplete="off" required  type="text" name="FIO" class="input_transf"/>
+                                                    </div>
+                                                    <div class="transf_cell">
+                                                        <label class="name_transf">Номер телефона<span>*</span>:</label>
+                                                        <input autocomplete="off" required  type="text" name="TEL" class="input_transf phone"/>
+                                                    </div>
+                                                    <div class="transf_cell">
+                                                        <label class="name_transf">E-mail<span>*</span>:</label>
+                                                        <input autocomplete="off" required  type="email" name="EMAIL" class="input_transf"/>
+                                                    </div>
+                                                    <div class="transf_cell">
+                                                        <label class="name_transf">Кол-во гостей<span>*</span>:</label>
+                                                        <input autocomplete="off" onkeyup="this.value = this.value.replace (/\D/, '')" required pattern="[0-9]{2}" type="number" min="0" max="99"  id="GOSTY" name="GOSTY" class="input_transf col_people"/>
+                                                    </div>
+                                                    <div class="date_form">
+                                                    	<div class="date_form_item">
+                                                            <div class="transf_cell">
+                                                                <label class="name_transf">Дата заезда:</label>
+                                                                <div class="time_input">
+																<input type="text" name="DATE_1" id="DATE_1" size="" value="" class="date" /> 
+<img src="/bitrix/js/main/core/images/calendar-icon.gif" alt="Выбрать дату в календаре" class="calendar-icon" onclick="BX.calendar({node:this, field:'DATE_1', form: 'ajaxformexampleModal99999', bTime: false, currentTime: '1792819154', bHideTime: true});" onmouseover="BX.addClass(this, 'calendar-icon-hover');" onmouseout="BX.removeClass(this, 'calendar-icon-hover');" border="0"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="date_form_item">
+                                                            <div class="transf_cell">
+                                                                <label class="name_transf">Дата выезда:</label>
+                                                                <div class="time_input">
+																<input type="text" name="DATE_2" id="DATE_2" size="" value="" class="date" /> 
+<img src="/bitrix/js/main/core/images/calendar-icon.gif" alt="Выбрать дату в календаре" class="calendar-icon" onclick="BX.calendar({node:this, field:'DATE_2', form: 'ajaxformexampleModal99999', bTime: false, currentTime: '1792819154', bHideTime: true});" onmouseover="BX.addClass(this, 'calendar-icon-hover');" onmouseout="BX.removeClass(this, 'calendar-icon-hover');" border="0"/>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="clear"></div>
+                                                    </div>
+                                                </div>
+												<div id="resultexampleModal99999">
+
+                                                <div class="btn_form"><input type="submit" name="" value="Забронировать"/></div>
+												</div>
+                                                <div class="clear"></div>
+                                            </div>
+                                            	</form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+						
+						
+<script>
+document.getElementById('GOSTY').onkeypress = function (e) {
+  return !(/[А-Яа-яA-Za-z ]/.test(String.fromCharCode(e.charCode)));
+}
+</script><script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({pageLanguage: 'ru', includedLanguages: 'en,ru', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script type="text/javascript">
+$(document ).ready(function() {
+    $('#google_translate_element').css('display', 'none');
+    $('.translation-icons a').click(function(e) {
+        e.preventDefault();
+        var placement = $(this).data('placement');
+        var lang_num = $('.translation-icons a').length;
+        var $frame = $('.goog-te-menu-frame:first');
+        if (!$frame.size()) {
+            alert("Error: Could not find Google translate frame.");
+            return false;
+        }
+        var langs = $('.goog-te-menu-frame:first').contents().find('a span.text');
+        langs.each (function(){
+            if(jQuery(this).parent().parent().val()==placement) {
+                jQuery(this).click();
+                if(placement=="ru") window.location.href = window.location.href;
+            }
+        });
+        return false;
+    });
+});
+</script>
+	<script type="text/javascript">
+jQuery(function($){
+   $(".date").mask("99.99.9999",{placeholder:"mm.dd.yyyy"});
+   $(".phone").mask("+7(999) 999-9999");
+});
+	</script>
+
+<div id="google_translate_element"></div>
+
+<div id="whatsapp">
+	<a href="https://api.whatsapp.com/message/FGSV3TLMHEWCG1">
+		<img src="data:image/png;base64,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" alt="whatsapp">
+	</a>
+</div>
+
+
+	<!--<div class="sale"><a onclick="$('#exampleModal99999').arcticmodal()"><img src="/upload/sale.png" alt="" /></a></div>-->
+
+</body>
+</html>

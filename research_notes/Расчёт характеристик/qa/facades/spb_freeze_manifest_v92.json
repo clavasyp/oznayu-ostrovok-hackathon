@@ -1,0 +1,63 @@
+{
+  "city_id": "spb",
+  "version": "v9.2.facades",
+  "code_sha256": "14b8c3ea8f4791400fa7cf0ebe5788992f2d16b03f2029de4ac85bf80c3108a6",
+  "frozen_at_utc": "2026-10-24T14:10:19.746017+00:00",
+  "files": [
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/spb_target_components.jsonl",
+      "sha256": "e8faa532b6543f922b8d3f46bd7ff92343bd7825bfc984c47d01da0fdf753b77",
+      "bytes": 173206
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/spb_building_matches.jsonl",
+      "sha256": "35a24c54b8ef5d77aa417ad1a238aaa5380669c595353fda415ed0c5ce0b59af",
+      "bytes": 93531
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/spb_building_facts.jsonl",
+      "sha256": "f484bc5f62b2fec7d7f1b57b670768050eeeab4d5dbedee6155ac52f01ccafb1",
+      "bytes": 57032
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/spb_facts.jsonl",
+      "sha256": "253f0b6f1d277d0a3096e8c6e4f7308461dee54e60a44e9907661a9db762ec1e",
+      "bytes": 1274557
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/spb_summary.json",
+      "sha256": "682822730600ce1427a44bea5376cae0775c9cd9e155f04812526a6fadf2d43b",
+      "bytes": 2800
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/spb_diagnostics.jsonl",
+      "sha256": "33ecefea7f2189286cb0a068c32db5d633a86f4e89f2ee33ecccbb9e89902082",
+      "bytes": 226755
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/spb_fan_facts.jsonl.gz",
+      "sha256": "23170a5c9086b5cd643039753aaace1521963f4a4328d35683aff26b40186b9f",
+      "bytes": 7186830
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/spb_ota_comparisons.jsonl",
+      "sha256": "fbd0b4c772741761548f6ed95d0e8ee704762565db4db80896ec435c9febbae4",
+      "bytes": 6516
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/spb_geometry_quality.jsonl",
+      "sha256": "c8c5ff9ea82efbd9b13abb94f188cb433651d86ed018ac599fcf60dec17c6377",
+      "bytes": 28810
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/spb_fan.jsonl",
+      "sha256": "68b3c8433df420f1d5f073411e02c6970a500a41231ef15f3cac15d9a7e35eaf",
+      "bytes": 46889540
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/facades/spb_output_checks.json",
+      "sha256": "061e50f3c25ef34d6ec4a06cb7e2217931c026b7b040316bd0f2ab95f3db6554",
+      "bytes": 1526
+    }
+  ]
+}

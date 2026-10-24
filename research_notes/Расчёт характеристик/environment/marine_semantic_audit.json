@@ -1,0 +1,36 @@
+{
+  "at": "2026-10-24T02:17:40.041166+00:00",
+  "openmeteo_source_tree_sha": "ae5caa86c8b8b5e9c6d5f0b8b48f69dc36487bb4",
+  "native_netcdf_depth_m": 0.49402499198913574,
+  "native_netcdf_standard_name": "sea_water_potential_temperature",
+  "native_variable_data_read": false,
+  "source_code_audit": {
+    "MfWaveDownload.swift": [
+      "thetao→MfSSTVariable.sea_surface_temperature",
+      "4Dread:[time,depthindex0,y,x]",
+      "_FillValue→NaN→wetmask:land0sea-999"
+    ],
+    "ForecastapiController.swift": [
+      "meteofrance_currents→MFSSTandMFCurrentsdomainmapping"
+    ],
+    "MfWaveDomain.swift": [
+      "0.083333degreegrid",
+      "6hourMFSSTtimestep"
+    ]
+  },
+  "api_deployment_revision": "not exposed; public pinned importer is reproducible semantic evidence, not exact service deployment attestation",
+  "rejected_probes": [
+    {
+      "file": "marine_history_probe_202207.json",
+      "reason": "invalid model selector; HTTP400 not bypassed"
+    },
+    {
+      "file": "marine_history_probe_202207_correctmodel.json",
+      "reason": "2022July all744hourly valuesnull; choose2023–2025 completeperiod instead"
+    }
+  ],
+  "native_primary_metadata_reader_bytes": 147709,
+  "native_preliminary_header_probe_bytes": 65536,
+  "native_total_response_payload_bytes": 213245,
+  "note": "Metadatareader reread first64KiB after preliminaryformatprobe; totalHTTPpayload counts that duplicate, no thetao array."
+}

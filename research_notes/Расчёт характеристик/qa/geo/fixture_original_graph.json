@@ -1,0 +1,157 @@
+{
+  "crossings": {
+    "crossings": [
+      {
+        "coordinates": [
+          39.7210000000002,
+          43.579999999999984
+        ],
+        "crossing_type": "traffic_signals",
+        "grade_inspected": false,
+        "highway": "secondary",
+        "known_mapped_crossing": true,
+        "road_id": "way/201"
+      }
+    ],
+    "geometric_crossing_candidates": 1,
+    "known_crossings": 1,
+    "scope": "Known mapped crossings and additional geometric candidates separated; explicit unequal bridge/tunnel layers excluded; missing grade/type preserved unknown; not safety certification.",
+    "unknown_grade_and_type": 0
+  },
+  "csr_data": [
+    80.76981592822726,
+    80.76981592822726,
+    80.7698159308651,
+    111.10405439570421,
+    80.7698159308651,
+    80.76981592970235,
+    80.76981592970235,
+    111.10405439570421
+  ],
+  "csr_indices": [
+    1,
+    0,
+    2,
+    4,
+    1,
+    3,
+    2,
+    1
+  ],
+  "csr_indptr": [
+    0,
+    1,
+    4,
+    6,
+    7,
+    8
+  ],
+  "edge_source_ids": {
+    "0-1": "way/1",
+    "1-2": "way/1",
+    "1-4": "way/2",
+    "2-3": "way/1"
+  },
+  "lighting": {
+    "date_kind": "OSM way edit date; working lamps not field inspected",
+    "known_lit_percent": 42.09526591185524,
+    "known_unlit_percent": 0.0,
+    "total_graph_length_m": 191.87387032393147,
+    "unknown_percent": 57.90473408814476
+  },
+  "manifest": {
+    "bbox": [
+      39.15,
+      43.35,
+      40.5,
+      44.05
+    ],
+    "input_files": [
+      {
+        "sha256": "fixture-main-sha",
+        "snapshot_file": "fixture-main"
+      },
+      {
+        "sha256": "fixture-extra-sha",
+        "snapshot_file": "fixture-node-supplement"
+      }
+    ],
+    "sha256": "synthetic-composite",
+    "source_date": "2026-10-22T00:00:00Z"
+  },
+  "node_ids": [
+    101,
+    102,
+    103,
+    104,
+    105
+  ],
+  "poi_source": {
+    "dataset_sha256": "synthetic-composite",
+    "dataset_version": "2026-10-22T00:00:00Z",
+    "date_kind": "OSM edit, not physical inspection",
+    "license": "ODbL1.0",
+    "license_url": "https://www.openstreetmap.org/copyright",
+    "observed_at": "2026-10-22T00:00:00Z",
+    "provider": "OpenStreetMap",
+    "url": "https://www.openstreetmap.org/node/99",
+    "version": 1
+  },
+  "route": {
+    "coordinates": [
+      [
+        39.72,
+        43.579999999999984
+      ],
+      [
+        39.72099999999998,
+        43.57999999999999
+      ],
+      [
+        39.722,
+        43.57999999999999
+      ],
+      [
+        39.723,
+        43.57999999999999
+      ]
+    ],
+    "graph_length_m": 242.30944778879473,
+    "length_estimate_m": 242.30944778879473,
+    "node_ids": [
+      101,
+      102,
+      103,
+      104
+    ],
+    "route_id": "e91a155bc720710c2686"
+  },
+  "steps": {
+    "counting_convention": "Consecutive steps edges are one section even across way IDs; not individual risers; zero does not establish step-free route.",
+    "known_step_sections": 1,
+    "mapped_steps_length_m": 111.10405439570421,
+    "non_step_edges_not_surveyed_for_unmapped_obstacles_m": 80.76981592822726
+  },
+  "xy": [
+    [
+      -250.38642932531764,
+      -611.0678707303446
+    ],
+    [
+      -169.61661343661606,
+      -611.0703975791037
+    ],
+    [
+      -88.84679752071928,
+      -611.0719525628334
+    ],
+    [
+      -8.076981593121852,
+      -611.0725356820635
+    ],
+    [
+      -169.61380610187328,
+      -499.96634321886677
+    ]
+  ]
+}

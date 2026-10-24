@@ -1,0 +1,25 @@
+{
+  "requested_at": "2026-10-24T13:21:02.612175+00:00",
+  "finished_at": "2026-10-24T13:21:02.748306+00:00",
+  "url": "https://archive-api.open-meteo.com/v1/archive?latitude=41.0%2C41.0%2C41.0&longitude=28.75%2C29.0%2C29.25&start_date=2010-11-01&end_date=2010-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Etc%2FGMT-3&cell_selection=nearest&elevation=nan%2Cnan%2Cnan",
+  "http_status": 200,
+  "bytes": 3682,
+  "sha256": "5fcba1ea523e52c5be0da38031ef6f34426dfecda466bbf0058a88f040a70a7e",
+  "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/environment/raw/era5_istanbul_201011_2eb8c594b0a83d599a.json",
+  "params": {
+    "latitude": "41.0,41.0,41.0",
+    "longitude": "28.75,29.0,29.25",
+    "start_date": "2010-11-01",
+    "end_date": "2010-11-30",
+    "daily": "temperature_2m_mean,temperature_2m_max,precipitation_sum",
+    "models": "era5",
+    "timezone": "Etc/GMT-3",
+    "cell_selection": "nearest",
+    "elevation": "nan,nan,nan"
+  },
+  "n_locations": 3,
+  "conservative_weight_estimate": 6.428571428571429,
+  "published_weight_estimate": 1.9285714285714286,
+  "license": "CC BY 4.0 data; free API non-commercial hackathon D22 only; production Professional/self-host",
+  "elapsed_s": 0.13620941700355615
+}

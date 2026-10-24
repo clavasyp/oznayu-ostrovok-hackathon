@@ -1,0 +1,207 @@
+{
+  "at": "2026-10-24T13:02:50.233719+00:00",
+  "reviewer": "Independent Codex V9 quality agent",
+  "review_scope": "Sochi actual cached-cohort calculator contracts and scientific claims; permission for limited material geo repairs from root. No new OTA HTTP; no other-city calculator execution.",
+  "technical_status": "PASSED_WITH_MATERIAL_LIMITATIONS",
+  "technical_scale_recommendation": "GO for the same pipeline on the remaining seven cities after the parent freezes the regenerated Sochi report.",
+  "physical_accuracy_status": "NOT_ESTABLISHED",
+  "full_independent_gold_requirement_status": "NOT_SATISFIED_AS_A_FULL_FEATURE_GOLD_DATASET",
+  "result_gates": {
+    "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/quality/result_gates.json",
+    "passed": true,
+    "checks": 22,
+    "fact_rows_deduplicated": 7154,
+    "hotel_feature_pairs": 4806
+  },
+  "resolved_material_findings": [
+    {
+      "id": "QA01",
+      "severity": "P1",
+      "problem": "natural=beach includes river/lake/artificial inland beaches and was used as a sea-beach endpoint. Bergamo10575679 previously selected an inland candidate at9259.83m.",
+      "resolution": "Only an OSM beach adjacent to explicit OSM natural=coastline within declared25m geometric tolerance can supply a marine candidate. Failed adjacency remains unconfirmed; it is not proof of an inland beach. Coastline version/source/distance and target-kind are retained. Bergamo now has the sea beach Ohotnik at41299.51566757047m, still an estimate.",
+      "evidence": {
+        "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/geo.py",
+        "line": 32
+      },
+      "regression": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/quality/marine_gate_synthetic.json",
+      "limitations": "Geometric25m acceptance threshold is not a measured classifier accuracy; mapping gaps can omit real sea beaches. Artificial club45.88m away is excluded from this target set, not declared unrelated to the sea."
+    },
+    {
+      "id": "QA02",
+      "severity": "P1",
+      "problem": "Way access restrictions were enforced but explicit barrier-node restrictions were ignored;53 forbidden contacts occurred in37 baseline route IDs.",
+      "resolution": "Node foot/access prohibitions and unresolved conditionals are excluded from graph traversal and snapping; locked gates require explicit public-foot permission. A bollard alone is not a pedestrian ban. Final335saved routes contain0restricted-node contacts. The broader locked/conditional-node policy affected82baseline routes.",
+      "evidence": {
+        "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/geo.py",
+        "line": 72
+      },
+      "baseline": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/quality/barrier_route_audit.json",
+      "regression": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/quality/marine_barrier_regression.json"
+    },
+    {
+      "id": "QA03",
+      "severity": "P1",
+      "problem": "A mapped dog_park such as a husky attraction had been treated as a route to an officially permitted public dog-walking area without a confirmed entrance/access/animal rules.",
+      "resolution": "CanonicalP03 is unknown for89/89Sochi hotels; nearest mapped-candidate route and tags remain diagnostic components. R2does not acquire an extra mandatory legal-registry requirement: the actual missing inputs are target entrance, public admission and relevant animal/leash/season rules.",
+      "evidence": {
+        "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/geo.py",
+        "line": 393
+      }
+    },
+    {
+      "id": "QA04",
+      "severity": "P1",
+      "problem": "Q03wascomputed with a zero-length graph denominator and all percentagesnull for4hotels/8seasonal rows.",
+      "resolution": "These rows are now unknown with undefined_lighting_fraction_zero_graph_length; zero graph metrics stay diagnostic, no fabricated0percent. Q03best-statuscoverage is83/89computed and6/89unknown.",
+      "evidence": {
+        "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/geo.py",
+        "line": 85
+      },
+      "regression": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/quality/route_subject_fraction_synthetic.json"
+    },
+    {
+      "id": "QA05",
+      "severity": "P2",
+      "problem": "W04/W05/W06/Q03facts with a stable route_id were emitted as hotel subjects.",
+      "resolution": "They are now route subjects, subject_id=route:{id}, with hotel_id/params retained and fact_id recomputed in the calculator code.",
+      "evidence": {
+        "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/geo.py",
+        "line": 85
+      },
+      "regression": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/quality/route_subject_fraction_synthetic.json"
+    }
+  ],
+  "confirmed_scientific_contracts": [
+    {
+      "topic": "D5/D15recipe chain",
+      "finding": "Each canonical recipe has a trace. Accepted valid values, includingfalse, stop the chain. Missing object fields/coverage/meaning remainunknown rather than a search for a positive fallback.",
+      "evidence": {
+        "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/common.py",
+        "line": 31
+      }
+    },
+    {
+      "topic": "N02/N03 geometry",
+      "finding": "Computed values use an address-supported accepted building footprint. Without the footprint, point-to-axis distance is diagnostic and canonical resultunknown; there are no Sochi point-proxyN02/N03estimates.",
+      "evidence": {
+        "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/geo.py",
+        "line": 329
+      }
+    },
+    {
+      "topic": "N04 mapped count",
+      "finding": "Count is explicitly limited to mapped source objects in300m with declaredtypes; absent mapping is not physical absence or indoorquiet.",
+      "evidence": {
+        "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/geo.py",
+        "line": 312
+      }
+    },
+    {
+      "topic": "V01–V06/S01–S03",
+      "finding": "Exterior/courtyard facade×physical-ordinal fans and solar orientation bounds are computed as diagnostics. Existing windows, eye heights, ground datum and complete obstacles are not fabricated. Canonical window results remainunknown; this is a real input gap, not measured visibility.",
+      "evidence": {
+        "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/facades.py",
+        "line": 246
+      }
+    },
+    {
+      "topic": "H03",
+      "finding": "Observed OSMaboveground levels retain counting convention and per-building scope; room-floor labels and category placements remainunknown. Rawstart_date is not silently converted into construction completion.",
+      "evidence": {
+        "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/facades.py",
+        "line": 255
+      }
+    },
+    {
+      "topic": "W04 DSM",
+      "finding": "Canonical ground-DTM recipes fail explicitly. The handoff-authorized D18DSM surface-ascent estimate is a separately named extension outside mandatory constraints, with source hashes and no invented uncertainty interval.",
+      "evidence": {
+        "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/geo.py",
+        "line": 349
+      }
+    },
+    {
+      "topic": "C01–C03",
+      "finding": "Explicit ERA5nearest0.25degree grid, no temperature downscale, fixed local-standard daily boundaries, July/November1991–2020with30complete months, per-year monthly statistics, ≥1mm rain and >30Cheat operators.",
+      "evidence": {
+        "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/environment.py",
+        "line": 215
+      }
+    },
+    {
+      "topic": "E03",
+      "finding": "Historical2021WorldCover pixel-intersection area in300mhotel-centredAEQD. Permanentwater80isexcluded from the classified-land denominator; source epoch is not replaced with download date, and no park-access/shade/current-greenness claim is made.",
+      "evidence": {
+        "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/environment.py",
+        "line": 230
+      }
+    },
+    {
+      "topic": "B02",
+      "finding": "D22Open-Meteo archive as primary, thetao upper-level0.494024991989m evidenced by nativeCFmetadata and pinned importer, July/November2023–2025monthly means asestimate. APIcoordinates and nativeCFcoordinates with1/24degree offset are kept distinct. Same upstream metadata audit is not independent sea-temperature truth.",
+      "evidence": {
+        "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/environment.py",
+        "line": 33
+      }
+    },
+    {
+      "topic": "Time/route scope",
+      "finding": "Both requested arrival instants are Saturday02:00in explicit city timezone; the second is17Julwithin15–18Jultrip. Static graph projections into two trip contexts are not two independent observations. Unknown route/private connector/entrance legality remainsa limitation.",
+      "evidence": {
+        "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/common.py",
+        "line": 15
+      }
+    }
+  ],
+  "material_limitations": [
+    {
+      "id": "L01",
+      "topic": "Independent labelled accuracy",
+      "status": "unresolved",
+      "finding": "Casebook has34audit rows/30distinct contexts, but0independent full-feature gold labels and0human-verified cases. It is an auditable review workload, not a30-case physical accuracy dataset. Full-feature precision/recall and route-distance error remainunmeasured."
+    },
+    {
+      "id": "L02",
+      "topic": "Two current-hours checks",
+      "finding": "The1TP/1FPselected current recurring-hours component sample gives1/2positiveprecision. It does not estimate future02:00service, entire route correctness, full-feature accuracy or recall. Repairs on the same case are not held-out tests."
+    },
+    {
+      "id": "L03",
+      "topic": "Numerical agreement",
+      "finding": "The44/44numerical checks use the same original geometry/daily APIinputs with another reducer/projection. They measure arithmetic reproducibility, not physical truth, source completeness or independent-recipe accuracy."
+    },
+    {
+      "id": "L04",
+      "topic": "Sochi cohort/D28",
+      "finding": "89actualcached hotel entities areused:55fullroom-page snapshots and34cached search cards. Dagomys0remains an explicitblockedsubzone; no eligible entity is present in the permitted cache and no newOTArequests are authorized. This is not fullD28coverage or an operating-hotel census."
+    },
+    {
+      "id": "L05",
+      "topic": "Research routes",
+      "finding": "Estimated routes still use unverified≤100mendpoint connectors, unsurveyed hotel/target entrances and default pedestrian way rules. Knownnode prohibitions are now enforced, but connectors must not be treated as surveyed legal access. W05/Q03are mapped attributes conditional on the saved route, not accessible/safe route certification."
+    },
+    {
+      "id": "L06",
+      "topic": "Publication/scale claims",
+      "finding": "Any-subject/parameter coverage does not imply every body, window, floor, date or category. Cached historical climate/land-cover and3yearmarine data are not trip forecasts. Dockerstartup≤10minand commercial production deployment remainunmeasured by this QA."
+    }
+  ],
+  "immutable_inputs_and_current_hashes": {
+    "scripts/geo.py": "e575c51e28cbc3905eadb4e4d628005b9fad99031301a741d0477c80e73473ad",
+    "scripts/common.py": "76696ba92b64aab7ceef9bf255872bbc943311c0cde886098dffe8773d6637eb",
+    "scripts/facades.py": "7509c3ae212510319ff387b98c383a14435a54a4a31e0cd0689236320527099d",
+    "scripts/environment.py": "9c21840936872d33686e981e818a34d9d3e9a31023c31023edd18f10bf29185b",
+    "cohort/hotels.jsonl": "c0f37fe6fa70f0ac9134608ee4b08537f0fd332a9fa78c8691047069d798afd1",
+    "results/geo/sochi_facts.jsonl": "3b32471f7cd5a7a3f6a6048d5ec9a7c9b80c7c4f36675d4188fc2f544a93d01e",
+    "results/geo/sochi_beach_targets.jsonl": "7b2c2be935e6ea5c96b2cdd8cd90f52be7e578d7793328a9b65a511211e3bb7a"
+  },
+  "ownership": "Onlyqa/quality,codex_memory/progress_v9_quality.mdandroot-authorizedlimitedgeo.py/Sochigeooutputsrepairswerewritten. Claude/docs/AGENTS/olderartifactsnotedited.",
+  "environment_final_source_schema_qa": {
+    "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/environment/schema_source_qa.json",
+    "result_sha256": "d711dd7e54be80be7c3168be8e49bcaaaef995dc809eac32e80ae1454371b262",
+    "B02_estimate_hotels_n": 86,
+    "B02_cohort_N": 89,
+    "native_CF_cells_WorldCover80_n": 11,
+    "input_sha256_checked_n": 67
+  }
+}

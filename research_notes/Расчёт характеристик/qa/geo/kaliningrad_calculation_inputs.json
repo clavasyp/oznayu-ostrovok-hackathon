@@ -1,0 +1,30 @@
+{
+  "city_id": "kaliningrad",
+  "recorded_at": "2026-10-24T13:39:29.964226+00:00",
+  "accepted_geo_sha256": "e575c51e28cbc3905eadb4e4d628005b9fad99031301a741d0477c80e73473ad",
+  "runner_sha256": "ab27e8737b73edd6bcafeeb4d48d523aaf861e3eccbb02ecbd95dd06a506695a",
+  "supplement": {
+    "city_id": "kaliningrad",
+    "source_file": "/Users/turgov/Хакатон/research_notes/Аудит данных 8 городов/raw/russia_kaliningrad.osm.pbf",
+    "source_date": "2026-10-22T20:21:33Z",
+    "snapshot_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/cohort/osm_kaliningrad_pure_restriction_nodes.jsonl",
+    "bbox": [
+      20.285,
+      54.605,
+      20.665,
+      54.835
+    ],
+    "records": 1390,
+    "bytes": 312921,
+    "sha256": "4ce7dec58d9bd3c5a986fe38e33d1a45c0059f1c355f7cf318da02dfae15c679",
+    "seconds": 0.1418660410126904,
+    "built_at": "2026-10-24T13:39:18.724467+00:00",
+    "license": "ODbL1.0",
+    "license_url": "https://www.openstreetmap.org/copyright",
+    "new_http_requests": 0,
+    "method": "Node-only PBF filter barrier/access/foot/locked; exclude all nodes selected by V4KEYS. No geometry/identity inference.",
+    "source_pbf_sha256": "e58bcf57882da42abef8d7070c49073f8c8fca38b2df469f45005eeedc2ed522",
+    "source_pbf_sha256_verification": "Streamed actual cached PBF before this city run; no network."
+  },
+  "building_matches_sha256": "cfde8d031599c40fb8881e84d0a5a3cbd73d840f08fdb9b9bb50b41d8a0736b9"
+}

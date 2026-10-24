@@ -1,0 +1,4570 @@
+{
+  "method_version": "V9-Sochi-missing-POI-exact-replay-1",
+  "read_only_canonical_files": true,
+  "canonical_files_sha256_before": {
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/sochi_facts.jsonl": "3b32471f7cd5a7a3f6a6048d5ec9a7c9b80c7c4f36675d4188fc2f544a93d01e",
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/sochi_routes.jsonl": "6b6eb77b88172b5346cb76831195478a240c52c322f299a3863b0b394e748924",
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/sochi_run.json": "15c5d76e632156aee59cc14f562d482e90419897cdd97e090bfaed205ca4372f",
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/sochi_beach_targets.jsonl": "7b2c2be935e6ea5c96b2cdd8cd90f52be7e578d7793328a9b65a511211e3bb7a",
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/sochi_beach_classifications.jsonl": "0e1f94184dd1aae9e423a84344a412d26cc7bfcb9a6b4fa49abcc94e0a7e7ecd"
+  },
+  "canonical_files_sha256_after": {
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/sochi_facts.jsonl": "3b32471f7cd5a7a3f6a6048d5ec9a7c9b80c7c4f36675d4188fc2f544a93d01e",
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/sochi_routes.jsonl": "6b6eb77b88172b5346cb76831195478a240c52c322f299a3863b0b394e748924",
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/sochi_run.json": "15c5d76e632156aee59cc14f562d482e90419897cdd97e090bfaed205ca4372f",
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/sochi_beach_targets.jsonl": "7b2c2be935e6ea5c96b2cdd8cd90f52be7e578d7793328a9b65a511211e3bb7a",
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/sochi_beach_classifications.jsonl": "0e1f94184dd1aae9e423a84344a412d26cc7bfcb9a6b4fa49abcc94e0a7e7ecd"
+  },
+  "canonical_files_unchanged": true,
+  "graph_source_sha256": "e575c51e28cbc3905eadb4e4d628005b9fad99031301a741d0477c80e73473ad",
+  "source_code_archives": {
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/restore_sochi_poi_routes.py": {
+      "sha256": "8ccb0f8c6f82c40fb9b5bdf87bdb5da28202cd4e8690e211fee531fcc3ba3778",
+      "exact_archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/8ccb0f8c6f82c40fb9b5bdf87bdb5da28202cd4e8690e211fee531fcc3ba3778.py"
+    },
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/geo.py": {
+      "sha256": "e575c51e28cbc3905eadb4e4d628005b9fad99031301a741d0477c80e73473ad",
+      "exact_archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/e575c51e28cbc3905eadb4e4d628005b9fad99031301a741d0477c80e73473ad.py"
+    },
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/common.py": {
+      "sha256": "76696ba92b64aab7ceef9bf255872bbc943311c0cde886098dffe8773d6637eb",
+      "exact_archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/76696ba92b64aab7ceef9bf255872bbc943311c0cde886098dffe8773d6637eb.py"
+    },
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/geo_memory_containers.py": {
+      "sha256": "101779dba50738cb3105e33e04282bda672242a5e1829ee492cdd58f50507110",
+      "exact_archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/101779dba50738cb3105e33e04282bda672242a5e1829ee492cdd58f50507110.py"
+    }
+  },
+  "effective_input_manifest": {
+    "built_at": "2026-10-24T02:11:41.889278+00:00",
+    "source_file": "/Users/turgov/Хакатон/research_notes/Аудит данных 8 городов/raw/russia_southern-fed-district.osm.pbf",
+    "source_date": "2026-10-22T20:21:33Z",
+    "bbox": [
+      39.15,
+      43.35,
+      40.5,
+      44.05
+    ],
+    "rows": 258134,
+    "geometry_errors_region": 0,
+    "seconds": 40.32629695899959,
+    "sha256": "096c311507e0233200dbf5b458e53564a44ac7f10a7fb9644581257781b785f7",
+    "bytes": 154187579,
+    "license": "ODbL1.0",
+    "license_url": "https://www.openstreetmap.org/copyright",
+    "new_network_requests": 0,
+    "limitations": "First vertex candidate filter can miss large polygons crossing bbox with starting vertex outside; ordinary local roads/buildings within bbox covered; not complete official municipal inventory."
+  },
+  "new_nodes_added_to_replay_graph": false,
+  "original_saved_routes": 335,
+  "missing_unique_poi_routes": 317,
+  "reconstructed_routes_with_exact_saved_id_and_lengths": 317,
+  "failed_replays": [],
+  "replay_checks": [
+    {
+      "route_id": "52868f6ee62a0fbad9e2",
+      "hotel_id": "10012084",
+      "feature_id": "L03",
+      "target_id": "way/46916858",
+      "fact_ids": [
+        "11ee28f8e4e4079bdc9af942",
+        "72d54789d2c85da900995726"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "60db1500b06a4c5df7ff",
+      "hotel_id": "10012084",
+      "feature_id": "L01",
+      "target_id": "node/5873283438",
+      "fact_ids": [
+        "ee67b4a9c5e4bf065258b011",
+        "bc4f019482eaf207e5ce9347"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "7e24484d78ed836660b9",
+      "hotel_id": "10012084",
+      "feature_id": "F01",
+      "target_id": "way/114802748",
+      "fact_ids": [
+        "158490eb31ff96abec4c856c",
+        "925c85e6bb9f9b7012cc67d3"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "caf3ae83f45ae8496765",
+      "hotel_id": "10012084",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "aeca0a2dfd3bb35370da1b02",
+        "2c2cfbddbc192dbc3e722610"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "410bb04c77db4259209a",
+      "hotel_id": "10210406",
+      "feature_id": "F01",
+      "target_id": "way/767659611",
+      "fact_ids": [
+        "e34b5b4ad7ca57d10cb4ddc2",
+        "7ff3e49561e3246c59570e21"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "5315026daf6fa8d4386e",
+      "hotel_id": "10210406",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "527871ec50d24b1b132eff7c",
+        "70e8f73599a646e30a753392"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "c0a51435baf35681a546",
+      "hotel_id": "10210406",
+      "feature_id": "L01",
+      "target_id": "node/11332848301",
+      "fact_ids": [
+        "e15aeb8c7267aedf526d9f5c",
+        "8c91d1359ab8bd90ed48e99f"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "ffc0fd0640e62ee19ab9",
+      "hotel_id": "10210406",
+      "feature_id": "L03",
+      "target_id": "node/7302021692",
+      "fact_ids": [
+        "31cbf62c03cff77b940967df",
+        "1cf12d43304c9ae5739b298b"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "480a0437a1824b412c64",
+      "hotel_id": "10439075",
+      "feature_id": "F01",
+      "target_id": "node/7351671513",
+      "fact_ids": [
+        "68404e5ce9482dfe2b8670c4",
+        "fc061deb33d04c6f81c498a8"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "534d49e7a87077d3a20a",
+      "hotel_id": "10439075",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "f5bd10170a5140d7f6687bd9",
+        "b3a501bf2c75e2782975b8f4"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "90968f57fcdf8b6cae9e",
+      "hotel_id": "10439075",
+      "feature_id": "L01",
+      "target_id": "node/5507670523",
+      "fact_ids": [
+        "ec26d36066803fe4180b2cba",
+        "09874e3fef286af2eea5a9ce"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "9b430d9a8f94d85a9656",
+      "hotel_id": "10439075",
+      "feature_id": "L03",
+      "target_id": "node/5123957524",
+      "fact_ids": [
+        "993aaf65bd9b47839a703202",
+        "86f8dae10cad72bcddced7ab"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "1dd332608e81b868ec60",
+      "hotel_id": "10441489",
+      "feature_id": "L01",
+      "target_id": "node/12778129833",
+      "fact_ids": [
+        "f696654359102825c7f75cb5",
+        "a20431f5e9a7c98394cdb8b4"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "45b2c42cb63625579a30",
+      "hotel_id": "10441489",
+      "feature_id": "F01",
+      "target_id": "node/4213896116",
+      "fact_ids": [
+        "0aac376e7cea5009ec0ffe48",
+        "b0ea8951f869a36314f661ac"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "6cbf5283e1f355847f5c",
+      "hotel_id": "10441489",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "1bfda5eb78410cac68432a07",
+        "915396d9d16b95c84f032283"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "caaa74c73cb33dcf65dd",
+      "hotel_id": "10441489",
+      "feature_id": "L03",
+      "target_id": "node/8380032035",
+      "fact_ids": [
+        "0d76aa336b197bb07afa4b1b",
+        "7d7aa2f5b1e16576d2cd4718"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "160426e68a17b39021b1",
+      "hotel_id": "10479044",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "f12ba824a5fceff626b12502",
+        "639014ee48ce526c64492b68"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "1636e766fa8b8894b1bb",
+      "hotel_id": "10479044",
+      "feature_id": "L01",
+      "target_id": "node/5507670523",
+      "fact_ids": [
+        "15adf4d243b4767846ce569b",
+        "6a9ea579fadcbd25590f7377"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "87a8964793f99d74a591",
+      "hotel_id": "10479044",
+      "feature_id": "F01",
+      "target_id": "node/3642856479",
+      "fact_ids": [
+        "76b0b66d731706dc3787be37",
+        "2dd74d3d3b2e8411fe0a6a32"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "9b8e2a70396ff4f89de9",
+      "hotel_id": "10479044",
+      "feature_id": "L03",
+      "target_id": "node/5123957524",
+      "fact_ids": [
+        "201287b1e5ecbf830e4cc0fc",
+        "a22e4ba76d13cb7f89a12e7f"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "0826df7f96b244cbb257",
+      "hotel_id": "10575679",
+      "feature_id": "L01",
+      "target_id": "node/9954035017",
+      "fact_ids": [
+        "cb607be72bfb2c94240233e1",
+        "cc40169df7c0780c176ae9a7"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "3051d5d36c681a56a1f0",
+      "hotel_id": "10575679",
+      "feature_id": "F01",
+      "target_id": "way/860769208",
+      "fact_ids": [
+        "6923ce3885508bef202bf4b2",
+        "0ff45125757ee828d4ed3e47"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "45beb7a80ab0ffe995c6",
+      "hotel_id": "10575679",
+      "feature_id": "L03",
+      "target_id": "way/55609919",
+      "fact_ids": [
+        "e3ab730ac35679f377712647",
+        "d1a5e9763b4bf36076775229"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "73af7e2964512f95c601",
+      "hotel_id": "10595288",
+      "feature_id": "F01",
+      "target_id": "node/4920379521",
+      "fact_ids": [
+        "4da6781ba6da7b0e5154a0ed",
+        "6a77655b0214e2ab9976efc4"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "8a70d4c4c555d54a100d",
+      "hotel_id": "10595288",
+      "feature_id": "L01",
+      "target_id": "node/12778129833",
+      "fact_ids": [
+        "0882c4f8ce150d80344ab8c0",
+        "c866c1752b86d6dbc5440fd6"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "91d2bba33bd0b07518c0",
+      "hotel_id": "10595288",
+      "feature_id": "L03",
+      "target_id": "node/8380032035",
+      "fact_ids": [
+        "0e3aaded9adf80a4dd772ec3",
+        "90e1e88e2d685304f6191628"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "dc7cc1de0e148d197e2e",
+      "hotel_id": "10595288",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "464080451343da8d12d1614c",
+        "4d11d29356d3a72af50babc9"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "028f4961e80462f860fa",
+      "hotel_id": "11161657",
+      "feature_id": "L03",
+      "target_id": "node/7115085742",
+      "fact_ids": [
+        "f085beb8234ba4ad39a72b9c",
+        "6e95789a8fe58012346f4feb"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "0bafd921db9648a5b5fd",
+      "hotel_id": "11161657",
+      "feature_id": "F01",
+      "target_id": "way/491668593",
+      "fact_ids": [
+        "ebfe480f93f1b3f8fc8452f3",
+        "d2e35d112d5b9b9c994c761c"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "e223dc70e26da06144bc",
+      "hotel_id": "11161657",
+      "feature_id": "L01",
+      "target_id": "node/5033456927",
+      "fact_ids": [
+        "5565e0e2ad5268d13c8143e2",
+        "31f32b2f69dc087b50480c67"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "f88474ec3c14291ed4cc",
+      "hotel_id": "11161657",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "babd0e35de09b8ef968f16ab",
+        "c46853bdd58769323ea3431b"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "0232ca1f63cac27900f0",
+      "hotel_id": "11181978",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "596a6e0e923b3986089ef8ec",
+        "66646303700a7ded83ef6533"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "475ff0e7141da287523b",
+      "hotel_id": "11181978",
+      "feature_id": "L01",
+      "target_id": "way/235368455",
+      "fact_ids": [
+        "137f9cff267e19fc10314a9b",
+        "fb21952845aefe1791396577"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "806e6bc27fa215c4bcac",
+      "hotel_id": "11181978",
+      "feature_id": "L03",
+      "target_id": "node/7115085742",
+      "fact_ids": [
+        "7a07871ac73fc79f033de5ec",
+        "3d38f0173fa719d20856fcaa"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "dc00e2128c4ea25938af",
+      "hotel_id": "11181978",
+      "feature_id": "F01",
+      "target_id": "way/170900825",
+      "fact_ids": [
+        "741d43f421d6414c02ebbfa6",
+        "8964fea5ed58991810b0e051"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "1a5ba41206db2a4e0ac4",
+      "hotel_id": "11200750",
+      "feature_id": "L01",
+      "target_id": "way/235368455",
+      "fact_ids": [
+        "5ef02c674c5f085039fe4355",
+        "ce4c7dec42b19dd0b4f87871"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "3525e0aa3cb606a6f7ad",
+      "hotel_id": "11200750",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "28dbfc0ba6c9e669179983d2",
+        "597c0db040a575ccc8219407"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "733ac3f10f2e3d4b77c6",
+      "hotel_id": "11200750",
+      "feature_id": "L03",
+      "target_id": "node/7115085742",
+      "fact_ids": [
+        "99f68fc781b9f7c82d31806d",
+        "47cf8517d92025322e9ebf7b"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "d2ce8a66a28f6eb1ad8d",
+      "hotel_id": "11200750",
+      "feature_id": "F01",
+      "target_id": "way/170900825",
+      "fact_ids": [
+        "59b19d6dc2c5fe1b4110f5f8",
+        "eae3de71a5b7bcda286e6f5d"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "06f49f3959ad97cb7955",
+      "hotel_id": "11201577",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "70b36c9de4b8d3de407d3e97",
+        "59f2688b2c64acd86ddbcc30"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "2a107a5e101b8b50334b",
+      "hotel_id": "11201577",
+      "feature_id": "L01",
+      "target_id": "node/11135956614",
+      "fact_ids": [
+        "afffa2bf98f12c745b593382",
+        "ed528fa093685b893a415f50"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "c418dbfdea2f00784ae3",
+      "hotel_id": "11201577",
+      "feature_id": "L03",
+      "target_id": "node/5123957524",
+      "fact_ids": [
+        "2e74deae3f439af63c0220ea",
+        "fdb183088e1711d4b208ca2d"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "f0f7d1365191dbc94277",
+      "hotel_id": "11201577",
+      "feature_id": "F01",
+      "target_id": "way/439446269",
+      "fact_ids": [
+        "9b9fa14dc7c25f9824319395",
+        "eee2b6ec09c0b40f1f7ff906"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "136efb71c8806b6d5ec9",
+      "hotel_id": "11202853",
+      "feature_id": "L01",
+      "target_id": "node/5033456927",
+      "fact_ids": [
+        "7eb29a182822aa0230b0159b",
+        "4fc19575d80b3690c191a483"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "42237a984963deccb30f",
+      "hotel_id": "11202853",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "16a9dcc6639f00c6e4db8917",
+        "1efa9ee52d290968765810a3"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "57cdbf03c2ff5a40a056",
+      "hotel_id": "11202853",
+      "feature_id": "F01",
+      "target_id": "way/491668593",
+      "fact_ids": [
+        "3595c090c451b41cc255758e",
+        "578a856b3a7d502e66040ab8"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "b298953b2ac257bdaa35",
+      "hotel_id": "11202853",
+      "feature_id": "L03",
+      "target_id": "node/7115085742",
+      "fact_ids": [
+        "346356f50081426fcf715375",
+        "cf263dcf7aef1e53c1f66e85"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "97c880b765d9e5186540",
+      "hotel_id": "11205863",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "36885f809228e12af99e8679",
+        "47a8deb68257612bd12d5612"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "9d8e9ce6f7e0a13ad6c6",
+      "hotel_id": "11205863",
+      "feature_id": "L01",
+      "target_id": "node/12778129833",
+      "fact_ids": [
+        "ef1ae1f16066a7c2355c198c",
+        "dc55d951b5f2448cb5f342d0"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "be49453545716b9cab12",
+      "hotel_id": "11205863",
+      "feature_id": "F01",
+      "target_id": "node/6480934929",
+      "fact_ids": [
+        "7d3139ac35e49f8d10c07a28",
+        "e4b23218fd488e97e7cc2bc5"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "ffdcd60f10602f7e1768",
+      "hotel_id": "11205863",
+      "feature_id": "L03",
+      "target_id": "node/8380032035",
+      "fact_ids": [
+        "e66881107a8fd7047a70779a",
+        "a089ecd3fd96aca7f2489b91"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "0be55c8082baad45d87e",
+      "hotel_id": "11255055",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "a22da5df107c3f44c1a48635",
+        "97c3e47a6be306d2c0f80083"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "5263919c6e070277a8cd",
+      "hotel_id": "11255055",
+      "feature_id": "F01",
+      "target_id": "way/790522581",
+      "fact_ids": [
+        "ab4eb5ca383d2139df255db6",
+        "702b229aa177e5ff78737c2f"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "643c52ede28fd966b4c4",
+      "hotel_id": "11255055",
+      "feature_id": "L03",
+      "target_id": "node/1675419727",
+      "fact_ids": [
+        "ee862b48ceaa3a388f750196",
+        "0afd71bd10f53d7f7afb6add"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "e339c1d4e78e4c6eea18",
+      "hotel_id": "11255055",
+      "feature_id": "L01",
+      "target_id": "way/235368455",
+      "fact_ids": [
+        "f8a384eb7b9a75b9358881ae",
+        "5cc8b1cd018a5a31cf2a95a4"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "5e97b45bbef449884672",
+      "hotel_id": "11303583",
+      "feature_id": "L03",
+      "target_id": "node/5123957524",
+      "fact_ids": [
+        "cd1f3ca5003b99291d9c2940",
+        "e095a67d9f05dcc0562d3ca0"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "8b156f0a899f293c7369",
+      "hotel_id": "11303583",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "ad3f7714eef53a2ea5a7fcf6",
+        "f7488c4e7779280b9df43464"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "b1935a9c22b418c18701",
+      "hotel_id": "11303583",
+      "feature_id": "L01",
+      "target_id": "node/11135956614",
+      "fact_ids": [
+        "33767fd73dc62bc297d21e2e",
+        "b3a347000bd7163f44355ea9"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "eba727e1d31a308b289b",
+      "hotel_id": "11303583",
+      "feature_id": "F01",
+      "target_id": "way/1278225789",
+      "fact_ids": [
+        "641b4d54cc2c45c31a70c137",
+        "9e17632e6ef541f7020e4012"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "0b4bcbf16c809fbceb13",
+      "hotel_id": "11313836",
+      "feature_id": "L01",
+      "target_id": "way/235368455",
+      "fact_ids": [
+        "d7f7c9ae55b9b0f52d1019d9",
+        "3fa71d881c1f3a2900c06681"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "3ab6cec5aeefaa24ddab",
+      "hotel_id": "11313836",
+      "feature_id": "L03",
+      "target_id": "node/7120236419",
+      "fact_ids": [
+        "0705d2de02ef3dc5f5ad46c7",
+        "d48670ed31fe556bfe2738b1"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "4fea4db6ea3e2b3b6f11",
+      "hotel_id": "11313836",
+      "feature_id": "F01",
+      "target_id": "way/448479691",
+      "fact_ids": [
+        "b088ffda92e2334b659a382f",
+        "0e5aba96c42b45cc665f5d60"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "dfb94660416a58a0a001",
+      "hotel_id": "11313836",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "80a0e3aeb28ebe6d0eccec01",
+        "28d03a4f04342eb86d2e4b43"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "04b734f70bc985c6c348",
+      "hotel_id": "13124554",
+      "feature_id": "L03",
+      "target_id": "way/46916858",
+      "fact_ids": [
+        "16602e634327e1ae6707b0ac",
+        "1337865d17258f5ca4fde2fd"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "07e74949a50c4c0ec235",
+      "hotel_id": "13124554",
+      "feature_id": "F01",
+      "target_id": "way/299206276",
+      "fact_ids": [
+        "9fcf089f5f45b47ee9635472",
+        "4751d2917be030c0f6605198"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "13c451c177f9dc8008f3",
+      "hotel_id": "13124554",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "08ea6d4d49478896bfcdf5ed",
+        "cfbbe08f366166ba46bd1954"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "98b7a54d0956afe7adf4",
+      "hotel_id": "13124554",
+      "feature_id": "L01",
+      "target_id": "node/5873283438",
+      "fact_ids": [
+        "502f931a07aef850e7ebb337",
+        "dc8cd608e2bdce8c7b3298a6"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "13da970c887896f266c8",
+      "hotel_id": "13343374",
+      "feature_id": "F01",
+      "target_id": "node/6480934929",
+      "fact_ids": [
+        "b4e9d868ed22e30d21b08069",
+        "3fe9645ae8288a79179eda8f"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "176efb647d6bb0d7ac2f",
+      "hotel_id": "13343374",
+      "feature_id": "L03",
+      "target_id": "node/8380032035",
+      "fact_ids": [
+        "4c1fd2a334929f9a4f6032e0",
+        "9e5b36f42b4223859749fdf2"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "8a5f0fcd12444cc5d9bf",
+      "hotel_id": "13343374",
+      "feature_id": "L01",
+      "target_id": "node/13737497301",
+      "fact_ids": [
+        "32fd7e26cd140e06fea966fb",
+        "16893383a03de80c77d97259"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "cd17e5836f569fe910e3",
+      "hotel_id": "13343374",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "d286d5cf68da0f3021c1c8cb",
+        "b7cc4608cc75db0018088bd8"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "08d80c574a202c4e0745",
+      "hotel_id": "13429040",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "6376ceb24eed9d14b8b9875a",
+        "3cc99a2b084efd0c3e729206"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "2cc2db57debb3cfb240c",
+      "hotel_id": "13429040",
+      "feature_id": "F01",
+      "target_id": "way/1318127330",
+      "fact_ids": [
+        "974031a2ecd6c6382ec2e051",
+        "3196ee0272797120031e5956"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "b88cf9201e0ab3b26ee4",
+      "hotel_id": "13429040",
+      "feature_id": "L03",
+      "target_id": "way/46916858",
+      "fact_ids": [
+        "294783ee7f3eb02158e47c93",
+        "167909296270a1347245d7bb"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "e230cb51d2159b686dab",
+      "hotel_id": "13429040",
+      "feature_id": "L01",
+      "target_id": "node/11479246073",
+      "fact_ids": [
+        "64766a49be68c262eac44f72",
+        "1ffaa8b919485bd926169bc9"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "4164374fbe6064ca2a55",
+      "hotel_id": "13674260",
+      "feature_id": "L01",
+      "target_id": "node/6685536174",
+      "fact_ids": [
+        "8b2b9206f5690766dfba249b",
+        "775aed246f1a117b33ff7ef9"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "5e13207d98a4e1199a02",
+      "hotel_id": "13674260",
+      "feature_id": "F01",
+      "target_id": "way/413520752",
+      "fact_ids": [
+        "9db1f8cf61daeb3fd2b819ad",
+        "1474a84cf9271c827032e48c"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "8faf00876ace953cee84",
+      "hotel_id": "13674260",
+      "feature_id": "L03",
+      "target_id": "node/6122935133",
+      "fact_ids": [
+        "6dbd7058f5823f6978d1447c",
+        "029d8a143166bff4bca4e7c0"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "a1d9ee88558e113cc093",
+      "hotel_id": "13674260",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "952b776880200d0c41b985dd",
+        "542b8214451e273045b2aaba"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "08ab95fd270d71677cb4",
+      "hotel_id": "13714940",
+      "feature_id": "L03",
+      "target_id": "node/5123957524",
+      "fact_ids": [
+        "0872f521f3fde5edee5f38ed",
+        "b250c204cf32c61b0f8d7e3b"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "638a6c5a1c1262f2b916",
+      "hotel_id": "13714940",
+      "feature_id": "L01",
+      "target_id": "node/5033456927",
+      "fact_ids": [
+        "25aa8e978494826cd281bfb8",
+        "0dcb111669f1d1fa8ac6f846"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "6abd6170a82442cd420a",
+      "hotel_id": "13714940",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "6645632eacca54492e11118b",
+        "8d3ff3c9c8c3fb59dbfbd16c"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "7679380e761473ce32ce",
+      "hotel_id": "13714940",
+      "feature_id": "F01",
+      "target_id": "way/491668593",
+      "fact_ids": [
+        "ad9bf26376a68e1e4bbbf382",
+        "0a00c7015b11f0a8fe03580d"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "09210a0ce63854e79239",
+      "hotel_id": "6311444",
+      "feature_id": "F01",
+      "target_id": "way/1318127330",
+      "fact_ids": [
+        "8a8a07e743526a4befdb6471",
+        "3912e61d8a0ab02609b4da68"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "3f00e25614451097ac2e",
+      "hotel_id": "6311444",
+      "feature_id": "L03",
+      "target_id": "way/46916858",
+      "fact_ids": [
+        "09857b83dbbf8fbb4a17c102",
+        "e2ca14b8a6ac2497309593d7"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "50774fc84c106a298eff",
+      "hotel_id": "6311444",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "3c62bb8e9965c1174932fd34",
+        "1767015fa162c41870910bac"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "71a5075056d8db86030c",
+      "hotel_id": "6311444",
+      "feature_id": "L01",
+      "target_id": "node/11479246073",
+      "fact_ids": [
+        "6bc75609ca94061e62da75b4",
+        "73258461aa5f70eb359bc2d5"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "060f7bb4d23302c7ed0c",
+      "hotel_id": "6316833",
+      "feature_id": "L03",
+      "target_id": "way/55609919",
+      "fact_ids": [
+        "21a46e116213fb5338578c3a",
+        "3590fec43a632e1eca29cc05"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "18da6cfacad6c874baa2",
+      "hotel_id": "6316833",
+      "feature_id": "F01",
+      "target_id": "node/5331273014",
+      "fact_ids": [
+        "d0a5d3dda9d283b2b4959c97",
+        "1147930b5ff11adbad25b34e"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "b39c64531b1a8aa1d160",
+      "hotel_id": "6316833",
+      "feature_id": "L01",
+      "target_id": "node/9954035017",
+      "fact_ids": [
+        "39bd6ae78aed55f764c375d0",
+        "5a071bae38220996161b6b89"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "1651741c3ea81d54837c",
+      "hotel_id": "6329566",
+      "feature_id": "F01",
+      "target_id": "way/413969885",
+      "fact_ids": [
+        "269501016ab80628ce7aad0c",
+        "06a3b1da7dbea0fe783707b0"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "775f6ba1728d9ccba751",
+      "hotel_id": "6329566",
+      "feature_id": "L01",
+      "target_id": "node/6685536174",
+      "fact_ids": [
+        "42edaa7b41e653a970f46a6a",
+        "d3d21f85fc889cfbcce1c636"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "a6568b8f4b74ebb404fa",
+      "hotel_id": "6329566",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "481b1ea4014972b82946bf32",
+        "34699d05759f01b6e8a0899f"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "c5702744c6916b091a14",
+      "hotel_id": "6329566",
+      "feature_id": "L03",
+      "target_id": "node/6122935133",
+      "fact_ids": [
+        "ca4b907141bb1a90e2b95c49",
+        "f6f27a9d17091a0e47777295"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "5b487357ad6fed5cf8ff",
+      "hotel_id": "6398405",
+      "feature_id": "L01",
+      "target_id": "node/5507670523",
+      "fact_ids": [
+        "3ac32d7ebecbcbc095899d8d",
+        "ee663f482d24eeb5ec2e3569"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "85abd3b9ae25c30e64d3",
+      "hotel_id": "6398405",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "c2ee1ebcf3521f5532e6e9e3",
+        "dbba85f43f54797dc04a4c8b"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "9105e6417479f72393ef",
+      "hotel_id": "6398405",
+      "feature_id": "L03",
+      "target_id": "node/5123957524",
+      "fact_ids": [
+        "c84eacc76c66dfb78d20d1eb",
+        "9e1c20a579e7e452fb6b6b3d"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "be2042c73336b6719967",
+      "hotel_id": "6398405",
+      "feature_id": "F01",
+      "target_id": "node/7351671513",
+      "fact_ids": [
+        "ce19822b693aaaa458da7b6a",
+        "1a7d72ede909b335ffd3f8a4"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "032ae438bfdd2a0b6790",
+      "hotel_id": "6415851",
+      "feature_id": "L01",
+      "target_id": "way/235368455",
+      "fact_ids": [
+        "09e754f3faa38e57d7602091",
+        "3cd7c5b72e1f567d36eb09de"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "27ceb02079b129be5c24",
+      "hotel_id": "6415851",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "9125da336d173bc73e808f38",
+        "a59cfa2b9dc599d7d126c101"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "296d07b7f29dd7986e41",
+      "hotel_id": "6415851",
+      "feature_id": "F01",
+      "target_id": "way/448479691",
+      "fact_ids": [
+        "cad11f1bdd2cecbaac0b3de2",
+        "0dfe79c8abd059a965f9aeb5"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "9bfe3ae6a6d8eb3dd9a9",
+      "hotel_id": "6415851",
+      "feature_id": "L03",
+      "target_id": "node/7120236419",
+      "fact_ids": [
+        "f6cf5a6e8312652c193db8c6",
+        "194d120b3b98c31aeb9ba649"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "958942916f9e8763c763",
+      "hotel_id": "6416199",
+      "feature_id": "L01",
+      "target_id": "node/11135956614",
+      "fact_ids": [
+        "d18e2203c8ab40b4e657b817",
+        "64c274820162acff3a15dd38"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "b9b63b6b1ea6041d43d2",
+      "hotel_id": "6416199",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "a47106d2d0874fcc87506fcf",
+        "e42fe316825edd41ec2194c4"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "bc2fb18ef61373419559",
+      "hotel_id": "6416199",
+      "feature_id": "F01",
+      "target_id": "node/10139318617",
+      "fact_ids": [
+        "4694d2463e0b49a21f07bb96",
+        "bb0233e67428b40096925e5e"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "fd24c30d0c4b30a50335",
+      "hotel_id": "6416199",
+      "feature_id": "L03",
+      "target_id": "node/5123957524",
+      "fact_ids": [
+        "8b67fc7831e8827044ad7b7e",
+        "2fcacab916a9ee63fce3677e"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "4e77df479598086b93c2",
+      "hotel_id": "6443737",
+      "feature_id": "L01",
+      "target_id": "way/235368455",
+      "fact_ids": [
+        "3dd0b7121b69a72ec8169e00",
+        "21fee505c04005f33598001d"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "5f3ee63d3514e8cb63c8",
+      "hotel_id": "6443737",
+      "feature_id": "L03",
+      "target_id": "node/7120236419",
+      "fact_ids": [
+        "a2b4e3ddb6969adad4e72a31",
+        "6aa49be243eec3cc11732dd7"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "fbec9fa4adeb930be35d",
+      "hotel_id": "6443737",
+      "feature_id": "F01",
+      "target_id": "node/13114142680",
+      "fact_ids": [
+        "439aaa147751553e43498cee",
+        "af15de8a4d8dc333f3ef04be"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "fcd51ac5f20ddb2700b4",
+      "hotel_id": "6443737",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "0373d406e0a6ba2b84e6ca9d",
+        "2abcc1e63ad06da456925564"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "4548f27542cd68df05de",
+      "hotel_id": "6453529",
+      "feature_id": "F01",
+      "target_id": "node/9994818068",
+      "fact_ids": [
+        "99a31a1752f108aa48dd880d",
+        "31a50a63a543bb94b1f76674"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "bdd1d7e5ca7c95871fa7",
+      "hotel_id": "6453529",
+      "feature_id": "L01",
+      "target_id": "node/1425305279",
+      "fact_ids": [
+        "491b7089553cecbcf99b8e2f",
+        "0ab833a9837e33c1359d0458"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "14b9d794b856332c378a",
+      "hotel_id": "6460390",
+      "feature_id": "F01",
+      "target_id": "way/161202286",
+      "fact_ids": [
+        "f3ebe0c878d8328406c96a38",
+        "b69c8a3ca49027b1dcf575e8"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "2bcec0c13932a88b2288",
+      "hotel_id": "6460390",
+      "feature_id": "L03",
+      "target_id": "node/7115085742",
+      "fact_ids": [
+        "474f3b4d8afe6da51ee1a7fd",
+        "8f76ec00c0f823431189ac4a"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "36693b5d80ec3a0bc604",
+      "hotel_id": "6460390",
+      "feature_id": "L01",
+      "target_id": "node/5033456927",
+      "fact_ids": [
+        "5ed0b772e2e6e42c5d223823",
+        "f6424c7e4c3a8079d85ed02e"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "e63cd02686e9ce56e68e",
+      "hotel_id": "6460390",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "f60165c3c220aaee618a1fab",
+        "eefcc9b3c7d4d8380efd52f1"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "0e61086faedba2fa53ee",
+      "hotel_id": "6496437",
+      "feature_id": "L01",
+      "target_id": "node/5033456927",
+      "fact_ids": [
+        "b53e83d3b56afe63bd9c74ed",
+        "ff7bcd9d76591ed78fd901d6"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "1bc3c7d5eda282c6ff6c",
+      "hotel_id": "6496437",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "9a68ff235877c0399dcb58cd",
+        "7d91d9b7f15a9dd1b7581442"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "2390e58f39d5b5d80452",
+      "hotel_id": "6496437",
+      "feature_id": "F01",
+      "target_id": "way/170900825",
+      "fact_ids": [
+        "b9dc38a12e4491a1ca580310",
+        "2c2bbc8e34c7a02e759c09e0"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "e9efa4c5cfc76b32c903",
+      "hotel_id": "6496437",
+      "feature_id": "L03",
+      "target_id": "node/7115085742",
+      "fact_ids": [
+        "509f966eeced6e98cbfe53d6",
+        "489379bc2a9d3c93de351972"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "129ad2b3450fb3182f08",
+      "hotel_id": "6496747",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "c4374296dd32bd518244291e",
+        "deb3b84a6e6aaf9136b55d75"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "3bb10214053914966896",
+      "hotel_id": "6496747",
+      "feature_id": "L03",
+      "target_id": "node/5123957524",
+      "fact_ids": [
+        "a3a4d3bd3d6e65fec491c247",
+        "72bb2d81449c464ef90079c4"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "966d11509cc688835318",
+      "hotel_id": "6496747",
+      "feature_id": "F01",
+      "target_id": "way/491668593",
+      "fact_ids": [
+        "d0a5c574cab305cf187c4443",
+        "03cba65f3ac9f6420db3aab1"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "a56261eb4ef5b932d3e6",
+      "hotel_id": "6496747",
+      "feature_id": "L01",
+      "target_id": "node/5033456927",
+      "fact_ids": [
+        "77770cd44989360e3b08cf04",
+        "66808abbdc1de3ff1cc4ff4f"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "1cc7fa4b39e3b1c61f54",
+      "hotel_id": "6497279",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "6f0c5a2586156068725e8389",
+        "9930d855075488d749078870"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "267779ac3da2757eaec4",
+      "hotel_id": "6497279",
+      "feature_id": "L03",
+      "target_id": "node/5123957524",
+      "fact_ids": [
+        "a6f0734a63db77618b113b5d",
+        "27dc6ec0577173452674555b"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "4cb523ce6f9dc1246160",
+      "hotel_id": "6497279",
+      "feature_id": "F01",
+      "target_id": "node/3046952442",
+      "fact_ids": [
+        "7c5bcf3879556e5fccffb1a6",
+        "152f1f7d6cd061191409e2c6"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "949f31838ab501a1393f",
+      "hotel_id": "6497279",
+      "feature_id": "L01",
+      "target_id": "node/5507670523",
+      "fact_ids": [
+        "1a8af6388bcbf291f8f9ad5b",
+        "24f3873ba4b5b61b62269fcb"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "6b2e0101e8bff149a163",
+      "hotel_id": "6511778",
+      "feature_id": "F01",
+      "target_id": "way/170394551",
+      "fact_ids": [
+        "55c3579bbb8be70a864cd12a",
+        "17309b79f822de66e455f810"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "fcf5b3e58b48a8052ea6",
+      "hotel_id": "6511778",
+      "feature_id": "L01",
+      "target_id": "node/1425305279",
+      "fact_ids": [
+        "e110067dea0fc32830654347",
+        "80ce7735413f30091c7576ed"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "39f2bd00bc587c685f22",
+      "hotel_id": "6551265",
+      "feature_id": "F01",
+      "target_id": "way/806332822",
+      "fact_ids": [
+        "204be987b7e1c7e9fe16e384",
+        "ec33bd26f29c39b9d6a9e110"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "6e0929838e0a5c6140a0",
+      "hotel_id": "6551265",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "cfff9c7c57eaa3f9103131d1",
+        "be6441ca00932a9d9abc54a9"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "c08ed82f5aac109cb44a",
+      "hotel_id": "6551265",
+      "feature_id": "L03",
+      "target_id": "node/1675419727",
+      "fact_ids": [
+        "4ba03d67108788bace66632e",
+        "44d3cb3202271c4559f44c92"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "e3d53d26fb7547921baf",
+      "hotel_id": "6551265",
+      "feature_id": "L01",
+      "target_id": "way/235368455",
+      "fact_ids": [
+        "468f6629a216e82c800673cf",
+        "bca5733995d1d4b1fa9995e9"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "01c363a35b1a27f7e21e",
+      "hotel_id": "6551322",
+      "feature_id": "L03",
+      "target_id": "node/2371493269",
+      "fact_ids": [
+        "fd7e04dfc5067898bbdbfa67",
+        "4b704be4f5a8357efd746173"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "6119d288ba8cb23b5482",
+      "hotel_id": "6551322",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "591f7fab288e1d5e61a1b92f",
+        "afd8c2b9311bb334f33dadac"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "6d4a1c5d1b2263c152f7",
+      "hotel_id": "6551322",
+      "feature_id": "L01",
+      "target_id": "way/235368455",
+      "fact_ids": [
+        "e9b38a069fba271e3f2d1028",
+        "4db0ab885c1733967eb000b3"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "c1a86dc79148a73e4374",
+      "hotel_id": "6551322",
+      "feature_id": "F01",
+      "target_id": "node/7198076286",
+      "fact_ids": [
+        "7431869814bf5acf885f0c5d",
+        "3f5bab0d73910af3735b4584"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "34b584b0be14e7b51bc8",
+      "hotel_id": "6557901",
+      "feature_id": "L01",
+      "target_id": "way/235368455",
+      "fact_ids": [
+        "bcdf14cfff4a88a0b4b16f35",
+        "e2e4396f2a8cbda711d2b692"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "8a8b0bdcf05bcaa5dd1b",
+      "hotel_id": "6557901",
+      "feature_id": "L03",
+      "target_id": "node/1675419727",
+      "fact_ids": [
+        "9f9b3cb693f891a64a757373",
+        "5fdc7da88eb6da2f8db3356e"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "8f8c975eecd8d76bfb62",
+      "hotel_id": "6557901",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "afabed51dde7b64ac4d02aa6",
+        "bd9443a818615dd67cd109a7"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "f36e1bd442b5a970a554",
+      "hotel_id": "6557901",
+      "feature_id": "F01",
+      "target_id": "way/835847552",
+      "fact_ids": [
+        "c1009bdc9cbc46a8eb397b00",
+        "4c6a15453467f9751b666149"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "1379f68efa95b2dca79d",
+      "hotel_id": "6579389",
+      "feature_id": "L03",
+      "target_id": "node/11001882583",
+      "fact_ids": [
+        "2879f873bedbef2533ac4fe1",
+        "c11ad3df967c51f9202074d9"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "5b23c95ba9537c61c32c",
+      "hotel_id": "6579389",
+      "feature_id": "L01",
+      "target_id": "node/6685536174",
+      "fact_ids": [
+        "7acb267da5ab5e2a48bf99ea",
+        "bcfca6346906bf7ca18f5953"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "ce618628b82274e02495",
+      "hotel_id": "6579389",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "82edbc016533e058d471ab52",
+        "183b78d708a519d01e17bdae"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "eb5fe05657c9b7bfc4c7",
+      "hotel_id": "6579389",
+      "feature_id": "F01",
+      "target_id": "way/1112718867",
+      "fact_ids": [
+        "b169ef15e035692f655df4c0",
+        "899dc386cc7e6bae90a7f8b7"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "2b3ffd86563b07e4f62f",
+      "hotel_id": "6601612",
+      "feature_id": "L01",
+      "target_id": "way/235368455",
+      "fact_ids": [
+        "bcc074b2b27b50f77daea0f8",
+        "9067e827de7ee6d279ad1341"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "7e2635cdedfb42ba921d",
+      "hotel_id": "6601612",
+      "feature_id": "L03",
+      "target_id": "node/1675419727",
+      "fact_ids": [
+        "934353765569255a213270d6",
+        "a8167579392cf5a495c03a78"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "a3e4303969a8540f9a52",
+      "hotel_id": "6601612",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "e2da86592538ba8a250c4d04",
+        "25bb6225d5bc51400a4ad315"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "c10e8bf63b067e686742",
+      "hotel_id": "6601612",
+      "feature_id": "F01",
+      "target_id": "node/4214152022",
+      "fact_ids": [
+        "27a9c91807ef4fb47473370e",
+        "845ec00db9e5326934adf4f5"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "2011c5e638af7404d140",
+      "hotel_id": "6850191",
+      "feature_id": "F01",
+      "target_id": "way/1360622939",
+      "fact_ids": [
+        "b966d0599ccbdf6ef619e0ca",
+        "6576bbcbc919b5db59656d9f"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "2e65ae4a95d54aaad027",
+      "hotel_id": "6850191",
+      "feature_id": "L01",
+      "target_id": "node/9954035017",
+      "fact_ids": [
+        "d5deb7741d736a9dd8180d14",
+        "163fbea8ab1350778af8337d"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "50469b2a323be16dd854",
+      "hotel_id": "6850191",
+      "feature_id": "L03",
+      "target_id": "way/55609919",
+      "fact_ids": [
+        "0df6ea0c013048c7af06e823",
+        "510cd0ba372344d89efd6e56"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "5836deb4696f075a994a",
+      "hotel_id": "6876682",
+      "feature_id": "L01",
+      "target_id": "node/1425305279",
+      "fact_ids": [
+        "b956c704c11576a5d7b32738",
+        "c5ecec94126bca4f0b3f0041"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "6fefc148197d891ea7f3",
+      "hotel_id": "6876682",
+      "feature_id": "F01",
+      "target_id": "way/170394551",
+      "fact_ids": [
+        "be4d05c85256369c8f736bd2",
+        "d6d77b32b6afc49b5c0e3f76"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "101d613ef128f6032726",
+      "hotel_id": "6878465",
+      "feature_id": "F01",
+      "target_id": "node/7353938219",
+      "fact_ids": [
+        "5238bfa3ab87c14395e532d9",
+        "e988291fda060ca086579396"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "22135c814c50e1a6746c",
+      "hotel_id": "6878465",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "48242d6bc4919e59ca01b638",
+        "83e0898617899441a21c12a0"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "44b9c2c478390555b0d5",
+      "hotel_id": "6878465",
+      "feature_id": "L03",
+      "target_id": "node/2371493269",
+      "fact_ids": [
+        "b0158d7cade8690e71a7e13c",
+        "83fcaa352f8a7dc651a74358"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "493429b9553fc791ac49",
+      "hotel_id": "6878465",
+      "feature_id": "L01",
+      "target_id": "way/235368455",
+      "fact_ids": [
+        "26b17f3b90771c226f368d27",
+        "6938ac510d94c05b99458211"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "1a364cf2fd3c6177b0a0",
+      "hotel_id": "7018069",
+      "feature_id": "F01",
+      "target_id": "node/9994818068",
+      "fact_ids": [
+        "794a7de8fc0570ef86007c2e",
+        "14251b82994bbfca10efc67c"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "247f6cad62ca27c848f9",
+      "hotel_id": "7018069",
+      "feature_id": "L01",
+      "target_id": "node/1425305279",
+      "fact_ids": [
+        "afa07c4c9dd04a0bc72a4b17",
+        "8505a395e0ed85d5a3455c76"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "3faca9d86084c13e603b",
+      "hotel_id": "7631439",
+      "feature_id": "L03",
+      "target_id": "node/1675419727",
+      "fact_ids": [
+        "93af8a153378cb844ab9d2cd",
+        "0bc713d70b8159316c4fdf11"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "6fd672c6a432f99738b9",
+      "hotel_id": "7631439",
+      "feature_id": "L01",
+      "target_id": "way/235368455",
+      "fact_ids": [
+        "bbfaa9fcb4b4c0570077bccd",
+        "ec0142a6543edbc4c511bdf0"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "947c39d82cb265503c6f",
+      "hotel_id": "7631439",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "14fef2271b2926848889b9d6",
+        "e36593b534f822d5eed04aac"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "ff4039358216e1c3fee0",
+      "hotel_id": "7631439",
+      "feature_id": "F01",
+      "target_id": "node/11065573474",
+      "fact_ids": [
+        "fd94d00e13daed6676ba5ac1",
+        "b35a3d13dd798949d156de23"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "20e9f8abf14ebd32348a",
+      "hotel_id": "7725078",
+      "feature_id": "L03",
+      "target_id": "node/5123957524",
+      "fact_ids": [
+        "3c173dc96148fef193f39c40",
+        "afaf0e4e4a94e03f602e1afb"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "275cfcd1cab761d7a5f1",
+      "hotel_id": "7725078",
+      "feature_id": "L01",
+      "target_id": "node/11135956614",
+      "fact_ids": [
+        "3c786d0cfa5fa2457bfbf179",
+        "3a2eeb8efb8699bab5c25442"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "56ad3f2dd311eb49de19",
+      "hotel_id": "7725078",
+      "feature_id": "F01",
+      "target_id": "way/1278225789",
+      "fact_ids": [
+        "0e21a5873549cf9348b082bb",
+        "d01f1151082e2fe6ebf66e88"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "6b471d17a1befec7d939",
+      "hotel_id": "7725078",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "1e836d245505df3c86c7e257",
+        "0c49359c8537a1a7f0cadf7f"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "1f60b43d2a20b0189e43",
+      "hotel_id": "7726257",
+      "feature_id": "L03",
+      "target_id": "node/7115085742",
+      "fact_ids": [
+        "1972ea51998e6bb8dbc8d158",
+        "56ec0c888475e840d123db0a"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "4574fd6165235b69c021",
+      "hotel_id": "7726257",
+      "feature_id": "L01",
+      "target_id": "node/5033456927",
+      "fact_ids": [
+        "54e5c6e8ea3215e54d793e9a",
+        "9c7fc15a02d9361e69e5b034"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "8187925e14c82e8c275d",
+      "hotel_id": "7726257",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "a73b78026b201b5ef217bd73",
+        "002fac55001981bbd8b1a486"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "cd5859e95e26499df8b3",
+      "hotel_id": "7726257",
+      "feature_id": "F01",
+      "target_id": "way/161202286",
+      "fact_ids": [
+        "39a424bad745b93181d2fabf",
+        "d83983b34f80e0b131310861"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "0a8a3211d7e4d500d33d",
+      "hotel_id": "7807617",
+      "feature_id": "F01",
+      "target_id": "way/598410095",
+      "fact_ids": [
+        "85ee31d30a16fdd40657c77c",
+        "30f41334e1837b92dfcef91b"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "5a150ec36cf8df95844f",
+      "hotel_id": "7807617",
+      "feature_id": "L01",
+      "target_id": "node/6685536174",
+      "fact_ids": [
+        "a5c1f16ec49d7c5750966177",
+        "7e2ccbd1d4a4cd98a68cdc55"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "5d688fd5f0fb273cc83d",
+      "hotel_id": "7807617",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "e93ca1e29d3db09d03242a05",
+        "093814c3ef64173b0e758db3"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "b44c3510dd785d892fa7",
+      "hotel_id": "7807617",
+      "feature_id": "L03",
+      "target_id": "node/11001882583",
+      "fact_ids": [
+        "3f633f1280a2ca83d3d9d050",
+        "2a5b7f1b5833bdebaf788e25"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "12c627e1affd0674e882",
+      "hotel_id": "7840047",
+      "feature_id": "F01",
+      "target_id": "node/7951381636",
+      "fact_ids": [
+        "759abd1b0ec4f5d1613d120f",
+        "28f9e3e6f232a2c561f1e222"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "89566729406414b66aef",
+      "hotel_id": "7840047",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "1868316e0ac4b716a54c54ca",
+        "ed0299e081799a1c8504a1be"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "a932ba5a912bb3fbae70",
+      "hotel_id": "7840047",
+      "feature_id": "L01",
+      "target_id": "node/5033456927",
+      "fact_ids": [
+        "cda5535f2edba3382bb247f6",
+        "10ad9c5463d64d9fb6302518"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "e56aca1dd559bf4de00d",
+      "hotel_id": "7840047",
+      "feature_id": "L03",
+      "target_id": "node/5123957524",
+      "fact_ids": [
+        "a8d53decaaabca7d6f74a684",
+        "46f5576571040eb4fecdffa8"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "0477c739f4d12d4e2e22",
+      "hotel_id": "7851188",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "41152af9a238034a1c8aaa05",
+        "c555cc1a50e4875fbc1c8135"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "5ecea94e0c3558179d20",
+      "hotel_id": "7851188",
+      "feature_id": "F01",
+      "target_id": "way/170900825",
+      "fact_ids": [
+        "a47db604f3da82f214a4bb1f",
+        "1aabe7d2f7998bcf64a621eb"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "c46db4a49167e7a65435",
+      "hotel_id": "7851188",
+      "feature_id": "L03",
+      "target_id": "node/7115085742",
+      "fact_ids": [
+        "e4ad3d55e572462c41471508",
+        "2faf9fc6843a0305a081120d"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "e3ae516c385dc8f6895d",
+      "hotel_id": "7851188",
+      "feature_id": "L01",
+      "target_id": "way/235368455",
+      "fact_ids": [
+        "2218884f5983dff3c38cc51a",
+        "91009417311e47ae27e8a20f"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "25443186321ca63a57bd",
+      "hotel_id": "7935886",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "1e6156abe4009b0003dbe1c6",
+        "2785025596bb751db2dbc5e9"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "278888cfe9e268f51307",
+      "hotel_id": "7935886",
+      "feature_id": "F01",
+      "target_id": "way/170900825",
+      "fact_ids": [
+        "33a2428167f7f48862876d94",
+        "7b557a59b595c847894b9f6c"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "5c5d6ba84b26713a26e7",
+      "hotel_id": "7935886",
+      "feature_id": "L03",
+      "target_id": "node/7115085742",
+      "fact_ids": [
+        "9351641d36e7a84cadc7c1db",
+        "c55981c5608f6b1e3034a28e"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "cff404117ae68c93fa5a",
+      "hotel_id": "7935886",
+      "feature_id": "L01",
+      "target_id": "node/5033456927",
+      "fact_ids": [
+        "8310da173353d88c44905e5e",
+        "be6e30da3ed110cdbcace13b"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "117cde07cd7a467632ce",
+      "hotel_id": "7942708",
+      "feature_id": "F01",
+      "target_id": "way/1318127330",
+      "fact_ids": [
+        "5d860f06069984fcb2a2fbcf",
+        "567cfc3ea9a9a8a0fae32a64"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "5273c8c9728848c12183",
+      "hotel_id": "7942708",
+      "feature_id": "L01",
+      "target_id": "node/2414675500",
+      "fact_ids": [
+        "efe91199bad5f49351091ff1",
+        "8e06beace71f8cc05e737053"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "aef0f91ac4b96ac6bbff",
+      "hotel_id": "7942708",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "8072096d8c5fb0a66629f320",
+        "4097fd59aa4248a0e3eaa0c3"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "d2734209562da906eb09",
+      "hotel_id": "7942708",
+      "feature_id": "L03",
+      "target_id": "way/46916858",
+      "fact_ids": [
+        "43205be94168b577b8b3e28d",
+        "e9c170713fc75d229d32303a"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "1c3779e2e9b27bc3531a",
+      "hotel_id": "8085655",
+      "feature_id": "L01",
+      "target_id": "node/11135956614",
+      "fact_ids": [
+        "a14d726f8e31086ee7f2484c",
+        "f8b106927d40f833a7c75238"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "418114731b4fab92e049",
+      "hotel_id": "8085655",
+      "feature_id": "L03",
+      "target_id": "node/5123957524",
+      "fact_ids": [
+        "cc7ce4500564a4dcc62db4de",
+        "cfe6e8e9c7094199d3d82281"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "6f08659e21b6c7a9856a",
+      "hotel_id": "8085655",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "275aae123369069fb7180478",
+        "bed6e0f7139bdf03623d5ed6"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "b7e6aea737cd47d05870",
+      "hotel_id": "8085655",
+      "feature_id": "F01",
+      "target_id": "way/1278225789",
+      "fact_ids": [
+        "cb0c5e176ba5faee253db2a5",
+        "fdc8d0d7a6591595644d7327"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "206ee7999fb5923b34d4",
+      "hotel_id": "8105660",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "d125fcc2f3d762ebb9fb4d55",
+        "77df5165fc94c85b54ae63f9"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "6e3e887c0250b24c439d",
+      "hotel_id": "8105660",
+      "feature_id": "L03",
+      "target_id": "node/1675419727",
+      "fact_ids": [
+        "b4b353324d2f92b84f2b9585",
+        "5a2d8e89033848b3c4521dfc"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "98a16dea4fcbbbdcfc6a",
+      "hotel_id": "8105660",
+      "feature_id": "L01",
+      "target_id": "way/235368455",
+      "fact_ids": [
+        "a95597bcb3c123945930daaf",
+        "b1df0b16bb308f7a97c2215b"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "a4c3cfd9d7c9babc52eb",
+      "hotel_id": "8105660",
+      "feature_id": "F01",
+      "target_id": "node/13114142680",
+      "fact_ids": [
+        "a1d5d604db7d5300ecb44294",
+        "115981108e8ee34eb11d2268"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "289356c7f6265d46d8ba",
+      "hotel_id": "8310146",
+      "feature_id": "L03",
+      "target_id": "way/46916858",
+      "fact_ids": [
+        "fb49db7f342969af7ee9b388",
+        "a88b20c8f6cc0e1f0aba4866"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "7524a1f56e230bc4fa8e",
+      "hotel_id": "8310146",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "1e68c810b4aba444b4de55d4",
+        "5c93dc61c1d12d10a1ffd7dc"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "877f4100be7ddb61e94f",
+      "hotel_id": "8310146",
+      "feature_id": "F01",
+      "target_id": "way/316272081",
+      "fact_ids": [
+        "bf54da42f8a2050baa82013a",
+        "d5ac87fe48412c0737616ed8"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "ebe851113aeda07d0654",
+      "hotel_id": "8310146",
+      "feature_id": "L01",
+      "target_id": "node/5873283438",
+      "fact_ids": [
+        "3011642fad1779b849e9d12b",
+        "44dc06eb9380d5071dee756b"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "12d9be4709025f6dda37",
+      "hotel_id": "8398222",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "ffc0c9ea704ab49259f6c553",
+        "9d7b47e2e3b86319a57d9891"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "443bb6cc9ce5e8eafa9b",
+      "hotel_id": "8398222",
+      "feature_id": "L03",
+      "target_id": "node/7120236419",
+      "fact_ids": [
+        "e54b8cf4a1d47d11db674fef",
+        "721027e0a9872deab403016d"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "b65ae8c8d50fe148d7f1",
+      "hotel_id": "8398222",
+      "feature_id": "F01",
+      "target_id": "way/650973714",
+      "fact_ids": [
+        "7488fdf6d27a612f5eae7099",
+        "a817ad489b5d181ffdbd2b5a"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "b72ce4a5632778bf3908",
+      "hotel_id": "8398222",
+      "feature_id": "L01",
+      "target_id": "way/235368455",
+      "fact_ids": [
+        "c824b9c3bd5ee7371f3fbe63",
+        "9a982369ffec633e16ddc9b3"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "6d8a09072454679a60ff",
+      "hotel_id": "8417797",
+      "feature_id": "L03",
+      "target_id": "node/3413182118",
+      "fact_ids": [
+        "99d18e54358fd83c5d1f3538",
+        "1ca000157ed1c48379a41394"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "a4e039d2828da3890b94",
+      "hotel_id": "8417797",
+      "feature_id": "F01",
+      "target_id": "way/1468513460",
+      "fact_ids": [
+        "c6942f0933189ff8f6382905",
+        "af1d1371f39f0da3dfc408a0"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "bbafdd184017bc29b238",
+      "hotel_id": "8417797",
+      "feature_id": "L01",
+      "target_id": "node/11127528305",
+      "fact_ids": [
+        "3db6f6f823d479f71a850bc3",
+        "e1a82610c8f59abf08573aaf"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "eae9f33719c978ae7aca",
+      "hotel_id": "8417797",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "3403d0d9a54677d41b1394fe",
+        "19f00e7eb63abba4adacd8f7"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "07357634a633891dfad6",
+      "hotel_id": "8477232",
+      "feature_id": "L03",
+      "target_id": "node/1675419727",
+      "fact_ids": [
+        "30e5516122484ce76a103a42",
+        "3457344b9272a371de809744"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "c5fa50bb899602621f71",
+      "hotel_id": "8477232",
+      "feature_id": "L01",
+      "target_id": "way/235368455",
+      "fact_ids": [
+        "57c3eb145a3bb741af7cc396",
+        "303cf3cdfb1be5b489856f7e"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "ed54c10d0e82e4ebe50c",
+      "hotel_id": "8477232",
+      "feature_id": "F01",
+      "target_id": "node/7164395494",
+      "fact_ids": [
+        "cda3c5247e241fbf5dcd2922",
+        "cb4d8be6cc7f7ea969c07861"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "f6c38d3268a8cd832b22",
+      "hotel_id": "8477232",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "9bad6908a9e5e5124bfa505b",
+        "0e4331ab1e4633a824463766"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "07851d282b7731acc6e7",
+      "hotel_id": "8478929",
+      "feature_id": "L03",
+      "target_id": "node/1675419727",
+      "fact_ids": [
+        "c5898d1025575aa17eb0ce06",
+        "52f47713b48e910bcdadb1af"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "3dacc346647f07aacf3a",
+      "hotel_id": "8478929",
+      "feature_id": "L01",
+      "target_id": "way/235368455",
+      "fact_ids": [
+        "eec6fb8468ef1560e1a70528",
+        "af4abfff9b0028aa7c853199"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "41b7c5f6c10293f25969",
+      "hotel_id": "8478929",
+      "feature_id": "F01",
+      "target_id": "way/248626761",
+      "fact_ids": [
+        "8884b6ab8192c0e7bc8ebe21",
+        "b7d1c0f6e90beae994f1b1ff"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "8b199930e6e72bec5034",
+      "hotel_id": "8478929",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "1aedfee9d696b22fa7c8d158",
+        "ac828bbcff1f21c37202f4be"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "293f5cafe9ba6f7b4c98",
+      "hotel_id": "8509273",
+      "feature_id": "L03",
+      "target_id": "node/7115085742",
+      "fact_ids": [
+        "2e3d5bca54487adcc8faa507",
+        "fa433559ee9eed342400707a"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "31dea4e1387c78e094c1",
+      "hotel_id": "8509273",
+      "feature_id": "L01",
+      "target_id": "node/5033456927",
+      "fact_ids": [
+        "6cb870223fc5284d313ca841",
+        "5ae2ac7d7f473751e83f5110"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "a84014f56ac308b42ad1",
+      "hotel_id": "8509273",
+      "feature_id": "F01",
+      "target_id": "way/170900825",
+      "fact_ids": [
+        "d4a1b658e168f975cc20060c",
+        "fb033832124f0d41694b2dc1"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "d597c0039d09cb476c5e",
+      "hotel_id": "8509273",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "9ad33dfae5ff974b9ce037e8",
+        "ab454a67ace1c97ad6448e75"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "1d309af2940916c6c852",
+      "hotel_id": "8531041",
+      "feature_id": "F01",
+      "target_id": "way/209253769",
+      "fact_ids": [
+        "4616b0cb1104944232a94ff6",
+        "05c35deb25afae611470486a"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "869511b81b5a46d7f3b5",
+      "hotel_id": "8531041",
+      "feature_id": "L01",
+      "target_id": "node/11479246073",
+      "fact_ids": [
+        "204d5c9303f5f9ab0ee908b7",
+        "d0abe66d77ae0414c83d2483"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "939641b70f1371064548",
+      "hotel_id": "8531041",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "c4dc9aff2be35f95b9898bde",
+        "7a68b9f01406a4ce53f63602"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "c8633811f88898ef8596",
+      "hotel_id": "8531041",
+      "feature_id": "L03",
+      "target_id": "way/46916858",
+      "fact_ids": [
+        "e65c0570888406f1363a02dd",
+        "e98c5a2f3efcc9204a424db4"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "c55ece7760f53a9df30e",
+      "hotel_id": "8543887",
+      "feature_id": "F01",
+      "target_id": "node/2887194437",
+      "fact_ids": [
+        "7e21c4f8fbc1577af91f51e4",
+        "880a393ab8c5b83081a1ad03"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "7005f823a672180d3995",
+      "hotel_id": "8660598",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "0141026e151d146fb7f8db3b",
+        "757cf667403431cbda5ffb6e"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "8be304e1ffc1845b33c1",
+      "hotel_id": "8660598",
+      "feature_id": "L03",
+      "target_id": "node/8380032035",
+      "fact_ids": [
+        "9624e614189603aea6b3a5f9",
+        "ec962ed92e8e799978ef48ce"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "b573f68e7be1a25f663a",
+      "hotel_id": "8660598",
+      "feature_id": "F01",
+      "target_id": "node/4213896116",
+      "fact_ids": [
+        "2d6be36cbd82a26dc9a01385",
+        "191f64e80fa2cc9468d3b2c4"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "ee3b07043ffa176802f8",
+      "hotel_id": "8660598",
+      "feature_id": "L01",
+      "target_id": "node/12778129833",
+      "fact_ids": [
+        "68a775fb4e18acb125c21da1",
+        "cb0fb27b139dc65ae50d29aa"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "35645c11edcccdb141c0",
+      "hotel_id": "8684678",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "5efcf50e64a82fa61d7c1fab",
+        "02d517136eafa916992b35d8"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "60048c549a5aa0815e94",
+      "hotel_id": "8684678",
+      "feature_id": "L03",
+      "target_id": "way/46916858",
+      "fact_ids": [
+        "b7e4f72dd306419d56a98e13",
+        "0dabf452bec6f088098135ff"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "d88d1cf1204268b1a444",
+      "hotel_id": "8684678",
+      "feature_id": "L01",
+      "target_id": "node/11479246073",
+      "fact_ids": [
+        "939dd418a2440a1ca4fc753a",
+        "ba05d51fbbe86877268385aa"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "e2e4904a6d83e4f9f689",
+      "hotel_id": "8684678",
+      "feature_id": "F01",
+      "target_id": "way/766501744",
+      "fact_ids": [
+        "12178122eb49c1d74ace5d57",
+        "b5e7c9758b20bd61b90c1cca"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "1412f4cb7256820e40e0",
+      "hotel_id": "8685572",
+      "feature_id": "L03",
+      "target_id": "way/46916858",
+      "fact_ids": [
+        "f548e0c87ca5a9dfb325cfff",
+        "9a717c33fb6499c8a42a2e4a"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "276b063419d324765ffe",
+      "hotel_id": "8685572",
+      "feature_id": "F01",
+      "target_id": "node/6134961891",
+      "fact_ids": [
+        "b427fb05a846dd96792b6bca",
+        "df8e03e9a6d451e47e455721"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "4fe3a4b6489d323a96ad",
+      "hotel_id": "8685572",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "934de0e54abc87e97ed5c399",
+        "3203f56599ee6f4ea2d00815"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "a2c25eae95d44e459026",
+      "hotel_id": "8685572",
+      "feature_id": "L01",
+      "target_id": "node/2414675500",
+      "fact_ids": [
+        "75204c053a79912500d700c3",
+        "59a5ed01bca25fc71d135bd7"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "0788b38345fde1da2d51",
+      "hotel_id": "8686129",
+      "feature_id": "L01",
+      "target_id": "node/11127528305",
+      "fact_ids": [
+        "86a4e4ea63a2b8d6cd865405",
+        "78c4fdd9a34d2ff122336411"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "1510f54e13b506e82d08",
+      "hotel_id": "8686129",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "bbdb7b969a947a2d58b09b84",
+        "28f4f18a569c89be1cb3d688"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "63e8bf2cd2cea49a22ea",
+      "hotel_id": "8686129",
+      "feature_id": "F01",
+      "target_id": "node/3843497112",
+      "fact_ids": [
+        "454b13f595921464dae2145d",
+        "53f0564a540ed22314fa42f3"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "d86ff7d482a90b5f0285",
+      "hotel_id": "8686129",
+      "feature_id": "L03",
+      "target_id": "node/2421500715",
+      "fact_ids": [
+        "34973bc9e05042b20f190af0",
+        "3f263212c5b9184c946f6274"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "23212fb597c0c414fa74",
+      "hotel_id": "8705437",
+      "feature_id": "L01",
+      "target_id": "node/5873283438",
+      "fact_ids": [
+        "c0b5b605c4fe9b49c5cb4368",
+        "6a97d125bd363f1b23438084"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "41a8615d7ce4f3f7d5a3",
+      "hotel_id": "8705437",
+      "feature_id": "F01",
+      "target_id": "node/4994610332",
+      "fact_ids": [
+        "dd77897a9ef91fc88be06925",
+        "676a6dfeaa9a2e888f638bb2"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "8dcdc93a51c64432afbb",
+      "hotel_id": "8705437",
+      "feature_id": "L03",
+      "target_id": "way/46916858",
+      "fact_ids": [
+        "b76d2f3121b87b7231f8b328",
+        "d1da83f732299762979bc4e0"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "f5e6ee53e4ea9adb493a",
+      "hotel_id": "8705437",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "9689bac843730afa4faea2b1",
+        "a2b4367a55d78755b1682187"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "217fa22a6fc6f8614315",
+      "hotel_id": "8707953",
+      "feature_id": "F01",
+      "target_id": "way/1468513460",
+      "fact_ids": [
+        "9bdad6c1b775edd46ce680b0",
+        "88f433957d9f05a5c2495a0f"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "828aa0f24b3701640045",
+      "hotel_id": "8707953",
+      "feature_id": "L03",
+      "target_id": "node/3413182118",
+      "fact_ids": [
+        "03a55f4ba0c116e94c8695d5",
+        "f4619e64b196a41ed03cb533"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "9a500e37f3b058f94b8a",
+      "hotel_id": "8707953",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "fb435cda1c26c714e9830ac9",
+        "af76f4460490285c1c14a3f3"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "e97febe3ef828752783d",
+      "hotel_id": "8707953",
+      "feature_id": "L01",
+      "target_id": "node/11127528305",
+      "fact_ids": [
+        "88faa0847279a09a36e91f02",
+        "32d0bc65534faca3d6230b11"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "2b59f1ba83b4492bbbff",
+      "hotel_id": "8726190",
+      "feature_id": "L01",
+      "target_id": "node/13737497301",
+      "fact_ids": [
+        "8b21312bc739764dfef3c5dd",
+        "c8de4f62134f95261f487a65"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "5267c15fb329eba9d39a",
+      "hotel_id": "8726190",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "6383aaffcd7a02d423132e81",
+        "ec1cf5b127d574e188ebde18"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "d3da001353faa8ccbbab",
+      "hotel_id": "8726190",
+      "feature_id": "F01",
+      "target_id": "node/12272461876",
+      "fact_ids": [
+        "2508394637572ba0ab15941a",
+        "e3b4424047400e42e6496a33"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "e00b9649cde9303f6cd5",
+      "hotel_id": "8726190",
+      "feature_id": "L03",
+      "target_id": "node/8380032035",
+      "fact_ids": [
+        "6c9ab2ba87f5af480afd6553",
+        "e7cbba6738ff8b221ae47f94"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "3f3a83253f081184c8e5",
+      "hotel_id": "8733095",
+      "feature_id": "F01",
+      "target_id": "way/1499089335",
+      "fact_ids": [
+        "55b20f65aeff0d72425ada45",
+        "1111d17cca484adf4f0691b5"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "72b085b162bcc2f5aa27",
+      "hotel_id": "8733095",
+      "feature_id": "L01",
+      "target_id": "node/7861921728",
+      "fact_ids": [
+        "0d70f8daf858515dbe5bdcaa",
+        "6024024776e2679d218114b6"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "bfbec46d7881d75c5ca4",
+      "hotel_id": "8733095",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "a8dea005ab34c5933741ec9a",
+        "2bb3eac8528efb55d008ea2f"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "d2601985d01cfa695e7e",
+      "hotel_id": "8733095",
+      "feature_id": "L03",
+      "target_id": "way/46916858",
+      "fact_ids": [
+        "77f45d622ce1af3fe06b8361",
+        "dccaddf09a85b055dbe69f43"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "86347b04e649fad16ac7",
+      "hotel_id": "8734284",
+      "feature_id": "L03",
+      "target_id": "node/7115085742",
+      "fact_ids": [
+        "8cc68f91c249c4903072d82c",
+        "ece506aef2454a23074ecd43"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "8d82312d7acbe361f4b6",
+      "hotel_id": "8734284",
+      "feature_id": "L01",
+      "target_id": "node/5033456927",
+      "fact_ids": [
+        "1bdd9793100cf516581a01a1",
+        "a69b72152eacd4d45730df79"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "991a59df0ea8869f6924",
+      "hotel_id": "8734284",
+      "feature_id": "F01",
+      "target_id": "way/170900825",
+      "fact_ids": [
+        "2ebda8442058c76369eb5902",
+        "86d833e39c387a35024b85b1"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "a45ceaa1d8a5e53e0999",
+      "hotel_id": "8734284",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "618ab5b3222a8f0d9c165f07",
+        "3ee13f459e36b6eb274daa2c"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "b36998ac9878d653b742",
+      "hotel_id": "8740393",
+      "feature_id": "F01",
+      "target_id": "node/2887194437",
+      "fact_ids": [
+        "ce86f1056b4fbec435b66bc5",
+        "4df3246d8071a1ec63f037cb"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "16974463a9c5d3ec9f89",
+      "hotel_id": "8747640",
+      "feature_id": "L01",
+      "target_id": "node/5507670523",
+      "fact_ids": [
+        "79ac055c4db4a7adf359835b",
+        "82683f824fcfcdf22836a655"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "8a9b15d45576767f7ed0",
+      "hotel_id": "8747640",
+      "feature_id": "L03",
+      "target_id": "node/5123957524",
+      "fact_ids": [
+        "29faa11833c2cbc728011ca3",
+        "9c2b254368d0f177b36dcf2d"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "9223ee64a7adf596171b",
+      "hotel_id": "8747640",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "3909e8e5bc7fdf5d1999cfe2",
+        "ce6631f8dcd181dbeae5e49d"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "976b6725e8d2e89c8b0c",
+      "hotel_id": "8747640",
+      "feature_id": "F01",
+      "target_id": "way/1226927814",
+      "fact_ids": [
+        "63297e7f53e01fe0096044ac",
+        "f228bea7b0aa6ac43cec4595"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "4df0888132f6e03e7e9c",
+      "hotel_id": "8752976",
+      "feature_id": "L01",
+      "target_id": "node/1117261250",
+      "fact_ids": [
+        "7f629a85681e55fa31fe65ae",
+        "8ac4507ed147568642623653"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "8193d5af9e0adf0df465",
+      "hotel_id": "8752976",
+      "feature_id": "F01",
+      "target_id": "way/170566560",
+      "fact_ids": [
+        "d1593733ec5453b12956299e",
+        "831d2bd4f6161486e743aac5"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "5de66605eac71bd210e5",
+      "hotel_id": "8756112",
+      "feature_id": "F01",
+      "target_id": "way/1226927814",
+      "fact_ids": [
+        "8af1e66c0213cfff1e24d476",
+        "09003f60c07885eac3fb749b"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "a7c0073405fcf1556677",
+      "hotel_id": "8756112",
+      "feature_id": "L01",
+      "target_id": "node/5507670523",
+      "fact_ids": [
+        "5587b7de0d8b4c1ebbe499bb",
+        "8f55621d79f826d8249bbc2a"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "b3ddfc664cf035279fb5",
+      "hotel_id": "8756112",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "77c585dcce5a4c3b18ed08db",
+        "1a99173658d15a7b524ca640"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "fee3382e6aacb3f2c266",
+      "hotel_id": "8756112",
+      "feature_id": "L03",
+      "target_id": "node/5123957524",
+      "fact_ids": [
+        "3c53b4a226fcc9faded1e0bc",
+        "70130d8381b571a44248b9dc"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "30af6a2fca536816fc39",
+      "hotel_id": "8846754",
+      "feature_id": "L01",
+      "target_id": "way/235368455",
+      "fact_ids": [
+        "1a1052557df27fa8dcc787d0",
+        "8deaaf472122ee39f7e51c1a"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "9e0c9a89038733569cce",
+      "hotel_id": "8846754",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "0942b62d281ce95a288341c4",
+        "350581ff8880cf907434ea32"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "c68ffd5394315fcc17f0",
+      "hotel_id": "8846754",
+      "feature_id": "F01",
+      "target_id": "way/790522581",
+      "fact_ids": [
+        "839e1863a47559fe1578a074",
+        "2b54436c44777ed41bffcd14"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "dcf4a1ff993716b9ec00",
+      "hotel_id": "8846754",
+      "feature_id": "L03",
+      "target_id": "node/1675419727",
+      "fact_ids": [
+        "b023a715ad175505ec6a6292",
+        "09d9ba3df4aba238af671287"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "10907ecaa57e8ee0edb7",
+      "hotel_id": "8853896",
+      "feature_id": "L03",
+      "target_id": "node/6122935133",
+      "fact_ids": [
+        "e0a6fd7b9d55e09e44ac77f7",
+        "4f38100ac9b4337fa9ac2cf0"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "3698eaee13abe7b15f35",
+      "hotel_id": "8853896",
+      "feature_id": "F01",
+      "target_id": "way/413969880",
+      "fact_ids": [
+        "4264acb855c16d2a69b17ce1",
+        "5c9566e4cca38344c3aa9f70"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "6250b8d8b0f5f836dc97",
+      "hotel_id": "8853896",
+      "feature_id": "L01",
+      "target_id": "node/6685536174",
+      "fact_ids": [
+        "f8fb4e7e9536492f691830d2",
+        "43a36406caf18290b27ffd64"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "6722eb3a0690e66bb5bb",
+      "hotel_id": "8853896",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "7794924c506c151893a0834a",
+        "8113181bdd6ec9a00517bd54"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "0d88b5ac332e74213ce0",
+      "hotel_id": "8869683",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "65722d180dc35fe5543a29d1",
+        "8a31fc4fcc8fa990056d25c4"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "403399b70a24c2201884",
+      "hotel_id": "8869683",
+      "feature_id": "F01",
+      "target_id": "node/6134961891",
+      "fact_ids": [
+        "942549afc29459bbda2c9c60",
+        "784cdfa78b767e9fbc246bc0"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "708c92ef95e0a690ee59",
+      "hotel_id": "8869683",
+      "feature_id": "L01",
+      "target_id": "node/2414675500",
+      "fact_ids": [
+        "7a3efaa811e71e392d63673e",
+        "13daa55a2e4eeaa593579b9e"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "f7282d769a0bfec87f7b",
+      "hotel_id": "8869683",
+      "feature_id": "L03",
+      "target_id": "way/46916858",
+      "fact_ids": [
+        "853f359d1c9fb57b95241ad5",
+        "8913a21722ee2f98a6f9981f"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "60f0e412b2cec066e183",
+      "hotel_id": "8877049",
+      "feature_id": "L01",
+      "target_id": "node/11135956614",
+      "fact_ids": [
+        "35acbd76e22a4c4c1b2baa92",
+        "9b979f262a3b260f2c9af2fa"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "7b52d52b6b9a3cb56add",
+      "hotel_id": "8877049",
+      "feature_id": "L03",
+      "target_id": "node/5123957524",
+      "fact_ids": [
+        "6a218f8a6b8e78f5032f7c10",
+        "c6f8e175713b27f8f88707f1"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "a9ef94ece0ec5bf10949",
+      "hotel_id": "8877049",
+      "feature_id": "F01",
+      "target_id": "way/491668593",
+      "fact_ids": [
+        "94c65108d57885a88525ec50",
+        "5f2cc997fcfb2fa3518529ae"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "ff75521a0167388a87f9",
+      "hotel_id": "8877049",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "8df2832ce98faf172ccada87",
+        "af2fd2eb3420da2d0f2ddfcd"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "663a6a10616d22652432",
+      "hotel_id": "9024570",
+      "feature_id": "L01",
+      "target_id": "node/2414675500",
+      "fact_ids": [
+        "53ff592b01f1ec3107ce75d5",
+        "ffc9a736f243f4643fc9f943"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "8d2268287c32d46424a7",
+      "hotel_id": "9024570",
+      "feature_id": "L03",
+      "target_id": "way/46916858",
+      "fact_ids": [
+        "d6743426b765e8b289c140c1",
+        "be67e5784aaf50f9b1fb700f"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "b7dd0de2ee9ff89ab9db",
+      "hotel_id": "9024570",
+      "feature_id": "F01",
+      "target_id": "way/940950384",
+      "fact_ids": [
+        "d3cf7285d0286f1443732137",
+        "151ce6077cc96a55bc0551e6"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "f40daede06c6356aa04b",
+      "hotel_id": "9024570",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "12110cc6926f5471536a2c5b",
+        "6273c64e42192ee1328aebcc"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "38241630d63d0a48caa8",
+      "hotel_id": "9742403",
+      "feature_id": "L01",
+      "target_id": "node/12778129833",
+      "fact_ids": [
+        "bc5e55476f81a00fb823d76b",
+        "46c65e14a96a93840cbcff62"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "39b129bc3c065c3fa126",
+      "hotel_id": "9742403",
+      "feature_id": "F01",
+      "target_id": "node/3162630024",
+      "fact_ids": [
+        "689d5d9245c08eb3a466c606",
+        "1c9788749ba88aeb03943a1b"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "bbe067518f0cb0a50e5a",
+      "hotel_id": "9742403",
+      "feature_id": "L03",
+      "target_id": "node/8380032035",
+      "fact_ids": [
+        "95b7aa4fd4487b526e71a31b",
+        "2fc5c1abc64ba08a00406843"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "fdaf3bfe2f97627d57ef",
+      "hotel_id": "9742403",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "d7b81df330f6d93634ab084a",
+        "8f7954cc05e306e64db698c0"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "306afed626cc149a2493",
+      "hotel_id": "9769189",
+      "feature_id": "F01",
+      "target_id": "way/307669348",
+      "fact_ids": [
+        "4bda73840c7bb0ac7b7eeadf",
+        "789575cdf2cc6f91cccf5163"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "467d8d8f6dee8c07e79c",
+      "hotel_id": "9769189",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "dbe28fd06cd00834790cc00c",
+        "84925c6237644ae8eef3051c"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "4d43c2f99dedb225d721",
+      "hotel_id": "9769189",
+      "feature_id": "L01",
+      "target_id": "node/5507670523",
+      "fact_ids": [
+        "1dae042e33a5613a377be502",
+        "822a65615ac260a733c9494a"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "6f0d4e1342beaec96553",
+      "hotel_id": "9769189",
+      "feature_id": "L03",
+      "target_id": "node/5123957524",
+      "fact_ids": [
+        "dd8c07ada82e7b9b6bf3f606",
+        "4d30e3a7c5186422de0d5d81"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "5c643e33dedb375d98f3",
+      "hotel_id": "9829023",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "7976409176f733749b709ce7",
+        "25cd5950a7cf4e47ba21bff6"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "5dc0e90746e5878f2491",
+      "hotel_id": "9829023",
+      "feature_id": "F01",
+      "target_id": "way/835847552",
+      "fact_ids": [
+        "8100db9cee80b7ca3a455864",
+        "6af3199c338ad92458ca8a51"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "6e26c14da873b1fd26e0",
+      "hotel_id": "9829023",
+      "feature_id": "L01",
+      "target_id": "way/235368455",
+      "fact_ids": [
+        "369758a95cbf6dfcf00af964",
+        "9dabcaaa6b4d69d44a688df7"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "813f4cf58b8465a55c75",
+      "hotel_id": "9829023",
+      "feature_id": "L03",
+      "target_id": "node/1675419727",
+      "fact_ids": [
+        "01b34f8f4e61deb107b690ec",
+        "0364df7c391e2d81b3d7f7d0"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "2ef7617d3807d503435c",
+      "hotel_id": "9986868",
+      "feature_id": "L03",
+      "target_id": "way/46916858",
+      "fact_ids": [
+        "c72a0061c6dc5613a10e1709",
+        "354ecae7c9fbad2cf099f382"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "408d97ea6e9dfb471068",
+      "hotel_id": "9986868",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "6f02e97fe2f1ca78e7e3a950",
+        "47ecfa1949dfe2276dd73bfc"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "b701370c2a04a37f1659",
+      "hotel_id": "9986868",
+      "feature_id": "F01",
+      "target_id": "node/2016178503",
+      "fact_ids": [
+        "68a8d3331362082538566edc",
+        "bbed1b9c412d063ecb51602d"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "d0e0be34bdae20b8b3a9",
+      "hotel_id": "9986868",
+      "feature_id": "L01",
+      "target_id": "node/800929891",
+      "fact_ids": [
+        "65f80d8f7d3eed7d31a8e351",
+        "5e63e5f904628c414ef806e2"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "0609af02a548abed542a",
+      "hotel_id": "9995282",
+      "feature_id": "P04",
+      "target_id": "node/11016638319",
+      "fact_ids": [
+        "c3cfa348fde0e1a6601ad26b",
+        "296f5d29c18860800b08d1c8"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "8c154b97e1ebe3ec2834",
+      "hotel_id": "9995282",
+      "feature_id": "F01",
+      "target_id": "way/798086393",
+      "fact_ids": [
+        "e0d23bbb49d651d6ce9341d5",
+        "ae774dee43e1c598cf82e7a3"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "cad8d3aa756d011c0057",
+      "hotel_id": "9995282",
+      "feature_id": "L03",
+      "target_id": "node/8380032035",
+      "fact_ids": [
+        "9346d4189d9e92c85d7c323b",
+        "79004074dce8ff0543f084c3"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    },
+    {
+      "route_id": "cdbfe03659c3590fb03c",
+      "hotel_id": "9995282",
+      "feature_id": "L01",
+      "target_id": "node/10604900352",
+      "fact_ids": [
+        "fe53ed714ffb0f0b7642bf2b",
+        "88ae2978601a05e2ee8f890a"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true
+    }
+  ],
+  "newly_blocked_nodes_audited": [
+    655271566,
+    672097545,
+    7728269191
+  ],
+  "additional_routes_with_new_node_contacts": 1,
+  "new_node_contacts": [
+    {
+      "route_id": "73af7e2964512f95c601",
+      "hotel_id": "10595288",
+      "feature_id": "F01",
+      "target_id": "node/4920379521",
+      "fact_ids": [
+        "4da6781ba6da7b0e5154a0ed",
+        "6a77655b0214e2ab9976efc4"
+      ],
+      "route_identity_exact": true,
+      "all_saved_total_distances_exact": true,
+      "all_saved_graph_distances_exact": true,
+      "passed": true,
+      "newly_blocked_node_ids": [
+        655271566
+      ],
+      "edge_way_ids": [
+        "way/202727384",
+        "way/202727384",
+        "way/202727384",
+        "way/202727384",
+        "way/202727384",
+        "way/202727384",
+        "way/1130675319",
+        "way/51545840",
+        "way/51545840",
+        "way/51545840",
+        "way/51545840",
+        "way/51545840",
+        "way/51545840",
+        "way/51545840",
+        "way/51545840",
+        "way/51545840",
+        "way/51545840",
+        "way/51343708",
+        "way/51343708",
+        "way/51343708",
+        "way/51343708",
+        "way/231946260",
+        "way/231946259",
+        "way/51343740",
+        "way/231946263",
+        "way/231946264",
+        "way/231946261",
+        "way/940415801",
+        "way/81160382",
+        "way/81160382",
+        "way/81160382",
+        "way/81160382",
+        "way/51349552",
+        "way/51349552"
+      ]
+    }
+  ],
+  "additional_routes_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/sochi_additional_routes.jsonl",
+  "additional_routes_sha256": "f8f8eda79188c9ae252a7e8e70b7ddf144337a378e52b08771478810f3a1c896",
+  "additional_routes_bytes": 5568045,
+  "graph_load_seconds": 5.098901958001079,
+  "total_seconds": 8.083608832996106,
+  "scope": "Original graph POI path replay and restriction-contact audit. No canonical facts, selected targets, accepted report, or checkpoint changed."
+}

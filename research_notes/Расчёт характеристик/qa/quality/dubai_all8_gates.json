@@ -1,0 +1,243 @@
+{
+  "city_id": "dubai",
+  "at": "2026-10-24T14:26:45.755171+00:00",
+  "status": "PASSED_WITH_PHYSICAL_ACCURACY_UNMEASURED",
+  "N_hotels": 50,
+  "hotel_feature_pairs": 2700,
+  "fact_rows": 4000,
+  "checks": [
+    {
+      "name": "cohort_and54features_complete",
+      "passed": true,
+      "details": {
+        "N_hotels": 50,
+        "N_pairs": 2700
+      }
+    },
+    {
+      "name": "no_conflicting_fact_ids",
+      "passed": true,
+      "details": []
+    },
+    {
+      "name": "finite_values_and_valid_statuses",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "unknown_reason_null_value",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "known_value_sources_recipe",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "all_canonical_recipes_have_trace",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "valid_result_stops_recipe_chain",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "N02_N03_no_unmatched_point_proxy",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "accepted_buildings_have_address_support",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "H03_counting_convention_and_positive_scope",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "no_window_geometry_diagnostic_as_canonical_value",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "route_subjects_for_route_attributes",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "W04_explicit_DSM_extension",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Q03_defined_denominator_and_partition",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "climate_complete30years_explicit_model",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "green_landmask_historical_area_fraction",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "immutable_core_version_recorded",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "actual_overrides_versioned",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "composite_source_hash_reproducible",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "restriction_supplement_hash_and_original_PBF_version",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Dubai_actual_adapter_source_SHA_matches_run",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Dubai_unsupported_country_fallback_expected_states",
+      "passed": true,
+      "details": [
+        {
+          "expression": "24/7",
+          "expected": "open",
+          "actual": "open"
+        },
+        {
+          "expression": "Mo-Su 09:00-22:00",
+          "expected": "closed",
+          "actual": "closed"
+        },
+        {
+          "expression": "Fr 20:00-04:00",
+          "expected": "open",
+          "actual": "open"
+        },
+        {
+          "expression": "24/7; PH off",
+          "expected": "unknown",
+          "actual": "unknown"
+        },
+        {
+          "expression": "Mo-Su 00:00-24:00; SH off",
+          "expected": "unknown",
+          "actual": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "Dubai_actual_run_not_legacy_AE_failure_adapter",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "published_route_lengths_match_exact_trace",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "actual_routes_within_restriction_supplement_extent",
+      "passed": true,
+      "details": []
+    },
+    {
+      "name": "saved_routes_avoid_explicit_node_prohibitions",
+      "passed": true,
+      "details": {
+        "routes": 370,
+        "forbidden_route_ids": [],
+        "blocked_nodes": 1706,
+        "independently_tag_checked_supplement_blocked_nodes": 1471
+      }
+    },
+    {
+      "name": "every_published_route_has_exact_trace",
+      "passed": true,
+      "details": []
+    },
+    {
+      "name": "marine_mapping_matches_explicit_target_file",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "marine_targets_keep_coastline_gate",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "fallback_marine_context_not_access_claim",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "B02_explicit_thetao_depth_and_CF_support",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "B02_no_known_land_native_CF_point",
+      "passed": true,
+      "details": {
+        "80": 100
+      }
+    },
+    {
+      "name": "B02_exactly3_archive_year_sources",
+      "passed": true,
+      "details": null
+    }
+  ],
+  "pending": [],
+  "input_files": [
+    {
+      "kind": "geo",
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/dubai_facts.jsonl",
+      "sha256": "c0e6b94146484ef0d9d224d10de18e8e4851861f32af89f4173e4a01765f975f",
+      "rows": 2550
+    },
+    {
+      "kind": "facades",
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/dubai_facts.jsonl",
+      "sha256": "4ba5d5d067ce9c25d1ec7353da5d5fee39adf8732e0a3e647d89a3d1bd2d03ba",
+      "rows": 600
+    },
+    {
+      "kind": "environment",
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/environment/dubai_facts.jsonl",
+      "sha256": "82a18c98d7b0db9457631224dc7c4f9af4af2dc35f0a65bab88c2adc7c45f8c2",
+      "rows": 850
+    },
+    {
+      "kind": "individual_buildings",
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/dubai_building_facts.jsonl",
+      "sha256": "f9065e395e91c022ccdab614c7c104aca9844f50b7ccd6dc32cecc4a612fadfd"
+    },
+    {
+      "kind": "geo_run",
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/dubai_run.json",
+      "sha256": "3dfaa69ffea5710ec7d925db4cedb11c1334a0e79ea41bc3a809f43bf9b258f1"
+    }
+  ],
+  "physical_gold_scope": "No independent full-feature physical gold is implied by these contract and provenance checks."
+}

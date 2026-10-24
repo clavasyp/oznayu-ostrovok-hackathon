@@ -1,0 +1,141 @@
+{
+  "version": "V9.3-Sochi-F01-pure-node-repair-1",
+  "checkpoint": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/checkpoints/sochi_before_v9_3_F01_node_repair",
+  "changed_facts": [
+    {
+      "fact_id": "4da6781ba6da7b0e5154a0ed",
+      "hotel_id": "10595288",
+      "feature_id": "F01",
+      "params": {
+        "trip_start": "2026-11-14",
+        "trip_end": "2026-11-17",
+        "seasonal_route_revalidation": "not performed; snapshot projection only"
+      },
+      "old_value": {
+        "distance_m": 583.884354181755,
+        "route_id": "73af7e2964512f95c601",
+        "poi_id": "node/4920379521",
+        "poi_name": null,
+        "access_tag": "yes",
+        "age_or_dog_restrictions": {
+          "access": "yes",
+          "opening_hours": "Mo-Su 09:00-21:00"
+        }
+      },
+      "new_value": {
+        "distance_m": 501.7636126196188,
+        "route_id": "e0a0f137473c41e0b9d2",
+        "poi_id": "node/4920379521",
+        "poi_name": null,
+        "access_tag": "yes",
+        "age_or_dog_restrictions": {
+          "access": "yes",
+          "opening_hours": "Mo-Su 09:00-21:00"
+        },
+        "graph_length_m": 453.5738279481805,
+        "hotel_connector_gap_m": 16.692901773062765,
+        "target_connector_gap_m": 31.49688289837552
+      },
+      "old_status": "estimate",
+      "new_status": "estimate"
+    },
+    {
+      "fact_id": "6a77655b0214e2ab9976efc4",
+      "hotel_id": "10595288",
+      "feature_id": "F01",
+      "params": {
+        "trip_start": "2027-07-15",
+        "trip_end": "2027-07-18",
+        "seasonal_route_revalidation": "not performed; snapshot projection only"
+      },
+      "old_value": {
+        "distance_m": 583.884354181755,
+        "route_id": "73af7e2964512f95c601",
+        "poi_id": "node/4920379521",
+        "poi_name": null,
+        "access_tag": "yes",
+        "age_or_dog_restrictions": {
+          "access": "yes",
+          "opening_hours": "Mo-Su 09:00-21:00"
+        }
+      },
+      "new_value": {
+        "distance_m": 501.7636126196188,
+        "route_id": "e0a0f137473c41e0b9d2",
+        "poi_id": "node/4920379521",
+        "poi_name": null,
+        "access_tag": "yes",
+        "age_or_dog_restrictions": {
+          "access": "yes",
+          "opening_hours": "Mo-Su 09:00-21:00"
+        },
+        "graph_length_m": 453.5738279481805,
+        "hotel_connector_gap_m": 16.692901773062765,
+        "target_connector_gap_m": 31.49688289837552
+      },
+      "old_status": "estimate",
+      "new_status": "estimate"
+    }
+  ],
+  "facts_sha256": "7cf2886db72218b85fa558ed581a597082c9c03fc11900a436c9e3d2626579b3",
+  "run_sha256": "263462eabf6548eb7f96429cab46543e15333c31c4e53919179eb250e2cb3565",
+  "trace_index_sha256": "28ff06bc66706e6fca6d77bcacb7d61faaa730654db8175cf1ed4f345173baac",
+  "trace_count": 652,
+  "unrelated_passports_byte_identical": true,
+  "other_original_geo_files_unchanged": true,
+  "final_combined_route_restriction_contacts": [],
+  "known_route_references_all_saved": true,
+  "code_versions": {
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/repair_sochi_F01_node_restriction.py": {
+      "sha256": "8dffdea7389e5c2094163dec9b9cb29201919a134658cba5441e99571bd8bb53",
+      "exact_archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/8dffdea7389e5c2094163dec9b9cb29201919a134658cba5441e99571bd8bb53.py"
+    },
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/audit_sochi_restricted_poi_delta.py": {
+      "sha256": "0f5ff7e144abbc8d3c10c55e8efb28ba951d1869e0b0779cb045effb655aa7f7",
+      "exact_archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/0f5ff7e144abbc8d3c10c55e8efb28ba951d1869e0b0779cb045effb655aa7f7.py"
+    },
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/restore_sochi_poi_routes.py": {
+      "sha256": "8ccb0f8c6f82c40fb9b5bdf87bdb5da28202cd4e8690e211fee531fcc3ba3778",
+      "exact_archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/8ccb0f8c6f82c40fb9b5bdf87bdb5da28202cd4e8690e211fee531fcc3ba3778.py"
+    },
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/geo.py": {
+      "sha256": "e575c51e28cbc3905eadb4e4d628005b9fad99031301a741d0477c80e73473ad",
+      "exact_archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/e575c51e28cbc3905eadb4e4d628005b9fad99031301a741d0477c80e73473ad.py"
+    },
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/common.py": {
+      "sha256": "76696ba92b64aab7ceef9bf255872bbc943311c0cde886098dffe8773d6637eb",
+      "exact_archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/76696ba92b64aab7ceef9bf255872bbc943311c0cde886098dffe8773d6637eb.py"
+    },
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/geo_memory_containers.py": {
+      "sha256": "101779dba50738cb3105e33e04282bda672242a5e1829ee492cdd58f50507110",
+      "exact_archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/101779dba50738cb3105e33e04282bda672242a5e1829ee492cdd58f50507110.py"
+    }
+  },
+  "total_publication_seconds": 0.5592491249990417,
+  "passed": true,
+  "full_corrected_reselection_validation": {
+    "audit_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/sochi_full_corrected_reselect_audit.json",
+    "sha256": "eae6101dcac345fa719e9529a4322e255d5bbe5434242fb360fb02813943aed9",
+    "all_89_hotels_all_29_features_reselected": true,
+    "full_corrected_reselection_seconds": 13.480215290997876,
+    "old_graph_and_all_candidate_snap_audit_seconds": 5.547335499999463,
+    "total_readonly_validation_seconds": 19.460728833000758,
+    "additional_characteristic_deltas_after_two_F01_repairs": 0,
+    "all_652_trace_geometries_node_ids_edge_ids_graph_lengths_exact": true,
+    "all_origins_and_candidates_snap_audited": {
+      "hotel_origin": 89,
+      "all_POIs_including_unselected_candidates": 18378,
+      "all_transport_stops": 1318,
+      "all_marine_graph_contacts": 1916
+    },
+    "removed_unselected_beach_contact_diagnostic": {
+      "removed_marine_contact_candidate": "way/53012393#graph-node-655271566",
+      "beach_id": "way/53012393",
+      "old_graph_contacts": 24,
+      "corrected_graph_contacts": 23,
+      "meaning": "One unselected beach contact was removed; full re-selection confirms no W01 target/distance change for any of 89 hotels. Historical W01 passports retain the original graph candidate count."
+    },
+    "source_code_sha256": "098335eb8d380f958c458bb25783d15dd1112be16e392bcf1fb8d9cb90aa6c44",
+    "exact_archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/098335eb8d380f958c458bb25783d15dd1112be16e392bcf1fb8d9cb90aa6c44.py"
+  }
+}

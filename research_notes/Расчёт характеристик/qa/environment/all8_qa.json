@@ -1,0 +1,18 @@
+{
+  "at": "2026-10-24T13:49:56.553734+00:00",
+  "status": "passed",
+  "hotels": 439,
+  "fact_rows": 7313,
+  "source_files_hash_checked": 531,
+  "climate_API_files_unit_checked": 480,
+  "independent_arithmetic_checks": 2634,
+  "climate_annual_recalculations": 79020,
+  "marine_native_arithmetic_checks": 578,
+  "maximum_absolute_arithmetic_difference": 3.552713678800501e-15,
+  "arithmetic_scope": "Sharedinputimplementationcheck, notindependentphysicalgold",
+  "native_WorldCover_class_by_B02_fact": {
+    "80": 578
+  },
+  "gold_eligible_environment_cases": 0,
+  "errors": []
+}

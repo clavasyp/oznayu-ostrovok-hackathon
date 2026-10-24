@@ -1,0 +1,374 @@
+{
+  "at": "2026-10-24T14:10:40.933058+00:00",
+  "cities": [
+    "sochi",
+    "moscow",
+    "spb",
+    "kazan",
+    "kaliningrad",
+    "minsk",
+    "istanbul",
+    "dubai"
+  ],
+  "cohort_sha256": "c0f37fe6fa70f0ac9134608ee4b08537f0fd332a9fa78c8691047069d798afd1",
+  "fact_rows": 35015,
+  "identical_logical_export_duplicates_removed": 120,
+  "hotel_feature_pairs": 23706,
+  "N_hotels": 439,
+  "city_summary": [
+    {
+      "city_id": "sochi",
+      "N_hotels": 89,
+      "features_attempted": 54,
+      "features_with_computed_or_observed": 11,
+      "features_with_estimate": 9,
+      "hotel_feature_pairs": 4806,
+      "best_status_counts": {
+        "unknown": 3196,
+        "estimate": 742,
+        "computed": 818,
+        "observed": 50
+      },
+      "unknown_share": 0.6650020807324178
+    },
+    {
+      "city_id": "moscow",
+      "N_hotels": 50,
+      "features_attempted": 54,
+      "features_with_computed_or_observed": 11,
+      "features_with_estimate": 7,
+      "hotel_feature_pairs": 2700,
+      "best_status_counts": {
+        "unknown": 1596,
+        "not_applicable": 300,
+        "computed": 438,
+        "estimate": 350,
+        "observed": 16
+      },
+      "unknown_share": 0.5911111111111111
+    },
+    {
+      "city_id": "spb",
+      "N_hotels": 50,
+      "features_attempted": 54,
+      "features_with_computed_or_observed": 11,
+      "features_with_estimate": 9,
+      "hotel_feature_pairs": 2700,
+      "best_status_counts": {
+        "unknown": 1855,
+        "estimate": 383,
+        "computed": 438,
+        "observed": 24
+      },
+      "unknown_share": 0.687037037037037
+    },
+    {
+      "city_id": "kazan",
+      "N_hotels": 50,
+      "features_attempted": 54,
+      "features_with_computed_or_observed": 11,
+      "features_with_estimate": 7,
+      "hotel_feature_pairs": 2700,
+      "best_status_counts": {
+        "unknown": 1547,
+        "not_applicable": 300,
+        "computed": 473,
+        "estimate": 349,
+        "observed": 31
+      },
+      "unknown_share": 0.572962962962963
+    },
+    {
+      "city_id": "kaliningrad",
+      "N_hotels": 50,
+      "features_attempted": 54,
+      "features_with_computed_or_observed": 11,
+      "features_with_estimate": 9,
+      "hotel_feature_pairs": 2700,
+      "best_status_counts": {
+        "unknown": 1811,
+        "estimate": 442,
+        "computed": 441,
+        "observed": 6
+      },
+      "unknown_share": 0.6707407407407407
+    },
+    {
+      "city_id": "minsk",
+      "N_hotels": 50,
+      "features_attempted": 54,
+      "features_with_computed_or_observed": 8,
+      "features_with_estimate": 8,
+      "hotel_feature_pairs": 2700,
+      "best_status_counts": {
+        "unknown": 1600,
+        "not_applicable": 300,
+        "computed": 400,
+        "estimate": 400
+      },
+      "unknown_share": 0.5925925925925926
+    },
+    {
+      "city_id": "istanbul",
+      "N_hotels": 50,
+      "features_attempted": 54,
+      "features_with_computed_or_observed": 10,
+      "features_with_estimate": 9,
+      "hotel_feature_pairs": 2700,
+      "best_status_counts": {
+        "unknown": 1853,
+        "estimate": 445,
+        "computed": 402
+      },
+      "unknown_share": 0.6862962962962963
+    },
+    {
+      "city_id": "dubai",
+      "N_hotels": 50,
+      "features_attempted": 54,
+      "features_with_computed_or_observed": 11,
+      "features_with_estimate": 9,
+      "hotel_feature_pairs": 2700,
+      "best_status_counts": {
+        "unknown": 1881,
+        "estimate": 422,
+        "computed": 396,
+        "observed": 1
+      },
+      "unknown_share": 0.6966666666666667
+    }
+  ],
+  "unknown_reasons": {
+    "No licensed georeferenced accepted facade-height Lnight layer, complete emissions model, or independent acoustic validation in cached inputs; road distance is not dB.": 439,
+    "No zero-gap surveyed constraints: hotel exit, kerbs, width, slope, surface, stairs and working lifts unverified. A route with no mapped steps is insufficient.": 860,
+    "no_confirmed_open_service_hours_in_cached_source_or_extent": 2564,
+    "No OSM/hotelier-confirmed target entrance and public-admission/animal/leash/season policy for mapped candidate; OSM dog_park alone is insufficient.": 878,
+    "No licensed complete current operator schedule/active service calendar and verified terminal-to-hotel itinerary for requested date. Zero active cached services is not no real transit.": 2634,
+    "No accepted dated, geocoded primary-source event/closure/construction inventory with coverage, status and licence for requested trip. Generic OSM construction tags do not provide permit geometry and active dates.": 2634,
+    "No licensed fresh OpenCellID export with operator/radio/last_seen and observed cell coordinates. OSM mast location or phone bars is another meaning.": 439,
+    "No matched police-category numerator, resident population denominator, reporting period and statistical-boundary version.": 439,
+    "No complete official geocoded injury-crash IDs/dates/coordinate completeness for route buffer and period. Selective news bulletins cannot provide full count.": 439,
+    "verified_hotel_building_footprint_missing_or_ambiguous": 550,
+    "undefined_lighting_fraction_zero_graph_length": 10,
+    "Ground DTM/survey absent; DSM estimate unavailable": 10,
+    "no_connected_eligible_candidate_in_cached_graph": 118,
+    "no_connected_path_in_cached_graph_not_proof_no_real_path": 108,
+    "No eligible target/connected route in cached graph; absent mapping is not absence of playground/dog area.": 28,
+    "No selected connected route in cached graph; no absence or accessibility conclusion.": 90,
+    "no_verified_window_height_ground_datum_and_complete_obstacles": 1467,
+    "no_verified_construction_completion_event": 163,
+    "no_current_official_heritage_registry_match": 163,
+    "no_building_match": 3312,
+    "multiple_buildings_or_counting_scope_conflict": 9,
+    "missing_aboveground_levels": 34,
+    "No dated official material descriptor with matched named beach segment/extent; hotel marketing sand/pebble claims are not equivalent official data.": 289,
+    "Both requested trips beyond the16day marine forecast horizon at2026-10-24; no valid modelrun/lead/wetcell for requested dates.": 289,
+    "No matched authorized latest beach flag/status feed withissuer andobservationtime; future2026/2027status cannot be inferred fromhistoricalorweather.": 289,
+    "No published authorized labprotocol matchedtohotel-selected beachsamplepoint withsamplingdate/method/units.": 289,
+    "Requested trips beyond16day forecast horizon; no valid ensembleprobabilityrun. Historical rainy-dayfrequency is not rainprobabilityforecast.": 439,
+    "Requested trips beyondOpenMeteoairqualityAPImaximum7day horizon(default5days); no valid CAMSmodelrun for requested dates. Cached2026-10-23PM2.5 not transferable.": 439,
+    "D22 selects Open-Meteo asprimaryairsource; thisAPI exposesCAMSmodelPM2.5, no eligible stationmeasurements withstation/QC/timeaveraging. Directofficial/OpenAQstationpaths notapprovedunderD22; CAMSmodelE01 cannotreplaceobservation.": 439,
+    "No corrected BlackMarble monthlyA3 radiance plusQA/cloud/snow validpixel cached; no sufficient correctedA2 dailyseries. UncorrectedA1/otherVIIRS products rejected as different estimand.": 439,
+    "verified_hotel_building_footprint_rejected_or_unconfirmed_by_strict_full_address_corpus_gate": 2,
+    "hotel_snap_over_100m": 20,
+    "hotel_or_target_snap_over_100m": 4
+  },
+  "input_files": [
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/sochi_facts.jsonl",
+      "sha256": "0ac67a1055150ddfd699872723635cc052db3b9ef6a50c54207ea61bbe1aa113",
+      "bytes": 8972921,
+      "rows": 4555
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/sochi_facts.jsonl",
+      "sha256": "175f210c7e13b7c536eec03906aaee92897f6cfd60ac9a04e2ddc27cd6f0821f",
+      "bytes": 2295071,
+      "rows": 1068
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/environment/sochi_facts.jsonl",
+      "sha256": "449aad67294cf8a9519a36ca1ee16bafe47a69e74f4b85f1054008a1afe7e750",
+      "bytes": 21206341,
+      "rows": 1513
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/sochi_building_facts.jsonl",
+      "sha256": "febe5105f76beca2c95f966d69c11b26a41e9f75b977e6361d3420ac811c1fbc",
+      "bytes": 137822,
+      "rows": 58
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/moscow_facts.jsonl",
+      "sha256": "231cf82f83fa94cf8d2f90f2b8534ef8e360749241b4526fdba97e00b97d5775",
+      "bytes": 5042583,
+      "rows": 2550
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/moscow_facts.jsonl",
+      "sha256": "1e9875d3c81ae7157230e616b4dab701947cd96d78d9e0b60ff74c7122ce986e",
+      "bytes": 1274758,
+      "rows": 600
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/environment/moscow_facts.jsonl",
+      "sha256": "85d0f7cbc0a523ffcb400023f7dc8d44e96aca80b7c94ecfc2cad4720af46448",
+      "bytes": 11912361,
+      "rows": 800
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/moscow_building_facts.jsonl",
+      "sha256": "dbbb6958ed3dcd613a59a0c57aa1f5ed72c853651749bcd3e6c793bcbc4cc2fd",
+      "bytes": 38059,
+      "rows": 16
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/spb_facts.jsonl",
+      "sha256": "d821664ab88ed2cf9b6af99a6e987d43e3f85028d65073dc864e523e52d19c40",
+      "bytes": 5827191,
+      "rows": 2550
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/spb_facts.jsonl",
+      "sha256": "253f0b6f1d277d0a3096e8c6e4f7308461dee54e60a44e9907661a9db762ec1e",
+      "bytes": 1274557,
+      "rows": 600
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/environment/spb_facts.jsonl",
+      "sha256": "2fbe4c848a2619672092993bf452930a56520bfcefb831084db9da80e65534fa",
+      "bytes": 11458676,
+      "rows": 850
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/spb_building_facts.jsonl",
+      "sha256": "f484bc5f62b2fec7d7f1b57b670768050eeeab4d5dbedee6155ac52f01ccafb1",
+      "bytes": 57032,
+      "rows": 24
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/kazan_facts.jsonl",
+      "sha256": "6d715394dca595253c1f8b5a7ce64bd7cd80dba32c7f5d0a2bd8b14bded3f2b4",
+      "bytes": 5163216,
+      "rows": 2556
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/kazan_facts.jsonl",
+      "sha256": "949ef50b629cd9ce6171211a8c4f4766323b3821c5134997a03a483ef0748c22",
+      "bytes": 1273739,
+      "rows": 600
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/environment/kazan_facts.jsonl",
+      "sha256": "ae1ba28bcecfda2ccd0accc8862cd11f02102debebe31670097216fed8048852",
+      "bytes": 10781725,
+      "rows": 800
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/kazan_building_facts.jsonl",
+      "sha256": "78aeb7e745aa74591ffd480b482a36c1b6d0a566709eb46af1e98793b452b430",
+      "bytes": 78167,
+      "rows": 33
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/kaliningrad_facts.jsonl",
+      "sha256": "ead325af49eb0cd650989d9af50ef41cb6a0a2a5b8c1d9f71c3bc70562178e2d",
+      "bytes": 7436960,
+      "rows": 2554
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/kaliningrad_facts.jsonl",
+      "sha256": "f4daaaf30e93a5b64e539f38767dca31e7dbea0fcfb70a64de72b35250a7ff54",
+      "bytes": 1280521,
+      "rows": 600
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/environment/kaliningrad_facts.jsonl",
+      "sha256": "1bb01169fdf698191ac56598a6533409d79157303816ec42499d1e6873be0025",
+      "bytes": 11337377,
+      "rows": 850
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/kaliningrad_building_facts.jsonl",
+      "sha256": "4a3af233576f2f2a3412ed33135cc8297e4cbb569580994672be9ebcf165a0d5",
+      "bytes": 17002,
+      "rows": 7
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/minsk_facts.jsonl",
+      "sha256": "128feac908c5205ef06f8c1ba70023aaf09b7922e91bc6bb2cbc88470bf8fc91",
+      "bytes": 5159155,
+      "rows": 2550
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/minsk_facts.jsonl",
+      "sha256": "b8eb3dc65062cd371d8e3376bf64547f58f7b64dc68aca4d32e9069bf7f83037",
+      "bytes": 1277218,
+      "rows": 600
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/environment/minsk_facts.jsonl",
+      "sha256": "91e09d449fe04faa95eb017a3f2bdfae911706e6424fb6267d8e82a214a9609e",
+      "bytes": 10949703,
+      "rows": 800
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/minsk_building_facts.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "rows": 0
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/istanbul_facts.jsonl",
+      "sha256": "77874ec1f90fd0652287c53773b7a61eabcd16855cfd5a501362c7f2f8f42f8c",
+      "bytes": 8997974,
+      "rows": 2550
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/istanbul_facts.jsonl",
+      "sha256": "d35d8517ae95d22acdb3ebadbb5f585d648fdffa5379d40da60e55139397d05c",
+      "bytes": 1281231,
+      "rows": 600
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/environment/istanbul_facts.jsonl",
+      "sha256": "6c27742127d3541c387e0069eb033e70a08b4a8007b12107d10b1801387bfcc9",
+      "bytes": 11507948,
+      "rows": 850
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/istanbul_building_facts.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "rows": 0
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/dubai_facts.jsonl",
+      "sha256": "c0e6b94146484ef0d9d224d10de18e8e4851861f32af89f4173e4a01765f975f",
+      "bytes": 5750896,
+      "rows": 2550
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/dubai_facts.jsonl",
+      "sha256": "4ba5d5d067ce9c25d1ec7353da5d5fee39adf8732e0a3e647d89a3d1bd2d03ba",
+      "bytes": 1289205,
+      "rows": 600
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/environment/dubai_facts.jsonl",
+      "sha256": "82a18c98d7b0db9457631224dc7c4f9af4af2dc35f0a65bab88c2adc7c45f8c2",
+      "bytes": 11522638,
+      "rows": 850
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/dubai_building_facts.jsonl",
+      "sha256": "f9065e395e91c022ccdab614c7c104aca9844f50b7ccd6dc32cecc4a612fadfd",
+      "bytes": 2242,
+      "rows": 1
+    }
+  ],
+  "errors": [],
+  "warnings": [],
+  "status": "PASSED",
+  "coverage_semantics": "any stated subject/parameter, not whole hotel/category guarantee"
+}

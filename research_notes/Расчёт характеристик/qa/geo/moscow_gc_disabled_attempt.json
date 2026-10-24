@@ -1,0 +1,15 @@
+{
+  "attempt": "Moscowgcdisabled",
+  "status": "terminated without outputs; native profile found repeated Rust OpeningHours.next_change after graph construction",
+  "elapsed_seconds_observed_lower_bound": 553,
+  "process_id": 40090,
+  "exit_code": 143,
+  "calculator_sha256": "e575c51e28cbc3905eadb4e4d628005b9fad99031301a741d0477c80e73473ad",
+  "runner_sha256": "6a0e6b9e6cc58e9bc30e3457b9fd792e7a977da3d95667568f306a863eb18be4",
+  "profile_file": "research_notes/Расчёт характеристик/qa/geo/moscow_gc_disabled_profile.txt",
+  "restart_change": "Representation-only source node triples/sharededgeattrs/internedtext, exact fixture 19controls passed",
+  "replacement_runner_sha256": "e71875e0441890ef507542fb42b3f906ac1176a147e35606abf8e6eb888574a2",
+  "backend_sha256": "101779dba50738cb3105e33e04282bda672242a5e1829ee492cdd58f50507110",
+  "initial_hypothesis": "Persistent memory/compression thrash; superseded as primary cause by native call-stack evidence.",
+  "established_profile_blocker": "Rust OpeningHours.next_change TimeDomainIterator future calendar enumeration, unnecessary for requested-instant feature."
+}

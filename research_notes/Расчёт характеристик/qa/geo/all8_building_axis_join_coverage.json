@@ -1,0 +1,315 @@
+{
+  "method_version": "V9-all8-join-diff-to-axis-passport-coverage-1",
+  "cities": [
+    {
+      "city_id": "sochi",
+      "cohort_hotels": 89,
+      "old_building_match_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/facades/archive/address_repair_20261024T135705Z/results/facades/sochi_building_matches.jsonl",
+      "old_sha256": "e8a5c03f150c3ebcc552c0b2c2560b464df34dd97299222f68f979c1387c5a3e",
+      "unchanged_city_baseline_proof": null,
+      "final_building_match_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/sochi_building_matches.jsonl",
+      "final_sha256": "a991d1e23149f2d6a1614f478d512e09951b87be21d83d880c5b866f1c45174e",
+      "old_relations": 68,
+      "final_relations": 66,
+      "all_affected_hotel_ids": [
+        "7725078",
+        "8085655"
+      ],
+      "known_feature_rows": {
+        "N02": {
+          "computed_rows": 66,
+          "unknown_rows": 31
+        },
+        "N03": {
+          "computed_rows": 66,
+          "unknown_rows": 31
+        }
+      },
+      "final_known_subjects_equal_all_final_accepted_buildings": true,
+      "subject_mismatches": [],
+      "full_diff_repair_coverage_complete": true,
+      "repair_report": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/sochi_N02N03_strict_join_repair_report.json",
+      "repair_report_sha256": "214bb5d72ebdfe17173f48d169c7e55b86379ab7ea5bac66234be160236e70bb",
+      "repair_seconds": 1.114520499992068,
+      "unrelated_passport_lines_byte_identical": true,
+      "all_other_geo_files_byte_identical": true
+    },
+    {
+      "city_id": "moscow",
+      "cohort_hotels": 50,
+      "old_building_match_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/facades/archive/address_repair_20261024T135705Z/results/facades/moscow_building_matches.jsonl",
+      "old_sha256": "e8e2954cbe10abe8613eeaebdd625e9dd0e7397616da1cd3eb59cca0b380c821",
+      "unchanged_city_baseline_proof": null,
+      "final_building_match_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/moscow_building_matches.jsonl",
+      "final_sha256": "152e39a9471cb7c95e0bf41b018a0ef6587388f625954428fdd25abcb775eff7",
+      "old_relations": 17,
+      "final_relations": 19,
+      "all_affected_hotel_ids": [
+        "6878127",
+        "9771294"
+      ],
+      "known_feature_rows": {
+        "N02": {
+          "computed_rows": 19,
+          "unknown_rows": 31
+        },
+        "N03": {
+          "computed_rows": 19,
+          "unknown_rows": 31
+        }
+      },
+      "final_known_subjects_equal_all_final_accepted_buildings": true,
+      "subject_mismatches": [],
+      "full_diff_repair_coverage_complete": true,
+      "repair_report": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/moscow_N02N03_join_diff_repair_report.json",
+      "repair_report_sha256": "647de1a61b6e075b95c3d0d7267a5668853b247d36573cb03650900620bbda7f",
+      "repair_seconds": 9.502098249999108,
+      "unrelated_passport_lines_byte_identical": true,
+      "all_other_geo_files_byte_identical": true
+    },
+    {
+      "city_id": "spb",
+      "cohort_hotels": 50,
+      "old_building_match_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/facades/archive/address_repair_20261024T135705Z/results/facades/spb_building_matches.jsonl",
+      "old_sha256": "8c64ddea52092e80bcff4a63b4ef7d1e63cd461689c8ad1bc808b6faf4dfefca",
+      "unchanged_city_baseline_proof": null,
+      "final_building_match_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/spb_building_matches.jsonl",
+      "final_sha256": "35a24c54b8ef5d77aa417ad1a238aaa5380669c595353fda415ed0c5ce0b59af",
+      "old_relations": 24,
+      "final_relations": 25,
+      "all_affected_hotel_ids": [
+        "7059592"
+      ],
+      "known_feature_rows": {
+        "N02": {
+          "computed_rows": 25,
+          "unknown_rows": 25
+        },
+        "N03": {
+          "computed_rows": 25,
+          "unknown_rows": 25
+        }
+      },
+      "final_known_subjects_equal_all_final_accepted_buildings": true,
+      "subject_mismatches": [],
+      "full_diff_repair_coverage_complete": true,
+      "repair_report": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/spb_N02N03_join_diff_repair_report.json",
+      "repair_report_sha256": "ec84c3178c0e7ef16a07d466796fbe0c430db3266915254d49a6fa0c8fb843c2",
+      "repair_seconds": 5.259715000007418,
+      "unrelated_passport_lines_byte_identical": true,
+      "all_other_geo_files_byte_identical": true
+    },
+    {
+      "city_id": "kazan",
+      "cohort_hotels": 50,
+      "old_building_match_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/facades/archive/address_repair_20261024T135705Z/results/facades/kazan_building_matches.jsonl",
+      "old_sha256": "4c62bdcbb689d97cc898a7346a3b4d0f2354439a0d671e29c1bc63743640abf8",
+      "unchanged_city_baseline_proof": null,
+      "final_building_match_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/kazan_building_matches.jsonl",
+      "final_sha256": "e8ec72a6766d7a6553d490d75375fcd07ebb6774f59f4906e8114f12ede22a00",
+      "old_relations": 13,
+      "final_relations": 40,
+      "all_affected_hotel_ids": [
+        "10000424",
+        "10578721",
+        "10624272",
+        "6525746",
+        "6553077",
+        "6603336",
+        "6629550",
+        "6676686",
+        "6703160",
+        "6783438",
+        "7056833",
+        "7068529",
+        "7785037",
+        "7855394",
+        "8100824",
+        "8476743",
+        "8493229",
+        "8502922",
+        "8601881",
+        "8736968",
+        "8752463",
+        "8754999",
+        "8850847",
+        "8851352",
+        "9287655"
+      ],
+      "known_feature_rows": {
+        "N02": {
+          "computed_rows": 40,
+          "unknown_rows": 13
+        },
+        "N03": {
+          "computed_rows": 40,
+          "unknown_rows": 13
+        }
+      },
+      "final_known_subjects_equal_all_final_accepted_buildings": true,
+      "subject_mismatches": [],
+      "full_diff_repair_coverage_complete": true,
+      "repair_report": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/kazan_N02N03_join_diff_repair_report.json",
+      "repair_report_sha256": "584c59c34f244598c138ecb3758802add813427f38693daaa0cb9e5a27490106",
+      "repair_seconds": 1.2301797499967506,
+      "unrelated_passport_lines_byte_identical": true,
+      "all_other_geo_files_byte_identical": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "cohort_hotels": 50,
+      "old_building_match_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/facades/archive/address_repair_20261024T135705Z/results/facades/kaliningrad_building_matches.jsonl",
+      "old_sha256": "cfde8d031599c40fb8881e84d0a5a3cbd73d840f08fdb9b9bb50b41d8a0736b9",
+      "unchanged_city_baseline_proof": null,
+      "final_building_match_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/kaliningrad_building_matches.jsonl",
+      "final_sha256": "2dfbe141f26db5ff27e7a86c9faf8465d104d74d8471683305ceb9c974ab568e",
+      "old_relations": 15,
+      "final_relations": 24,
+      "all_affected_hotel_ids": [
+        "13647475",
+        "6433023",
+        "6495862",
+        "6584253",
+        "6622308",
+        "6659688",
+        "6815752",
+        "6840526",
+        "7057327",
+        "7719161",
+        "7783969",
+        "7891109",
+        "8746742"
+      ],
+      "known_feature_rows": {
+        "N02": {
+          "computed_rows": 24,
+          "unknown_rows": 28
+        },
+        "N03": {
+          "computed_rows": 24,
+          "unknown_rows": 28
+        }
+      },
+      "final_known_subjects_equal_all_final_accepted_buildings": true,
+      "subject_mismatches": [],
+      "full_diff_repair_coverage_complete": true,
+      "repair_report": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/kaliningrad_N02N03_join_diff_repair_report.json",
+      "repair_report_sha256": "822fa332e0a88878801c18f4c494bcf22895810576f91294cf144e3a3cf18a28",
+      "repair_seconds": 1.0173805410013301,
+      "unrelated_passport_lines_byte_identical": true,
+      "all_other_geo_files_byte_identical": true
+    },
+    {
+      "city_id": "minsk",
+      "cohort_hotels": 50,
+      "old_building_match_file": null,
+      "old_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "unchanged_city_baseline_proof": {
+        "file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/minsk_calculation_inputs.json",
+        "file_sha256": "0bf1b010a36bfffbd991fff7f4b8b3039853e5adb9e9498b330fa165f273f39c",
+        "original_recorded_join_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "current_join_byte_identical_to_recorded_baseline": true
+      },
+      "final_building_match_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/minsk_building_matches.jsonl",
+      "final_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "old_relations": 0,
+      "final_relations": 0,
+      "all_affected_hotel_ids": [],
+      "known_feature_rows": {
+        "N02": {
+          "computed_rows": 0,
+          "unknown_rows": 50
+        },
+        "N03": {
+          "computed_rows": 0,
+          "unknown_rows": 50
+        }
+      },
+      "final_known_subjects_equal_all_final_accepted_buildings": true,
+      "subject_mismatches": [],
+      "full_diff_repair_coverage_complete": true,
+      "repair_report": null,
+      "repair_report_sha256": null,
+      "repair_seconds": 0,
+      "unrelated_passport_lines_byte_identical": true,
+      "all_other_geo_files_byte_identical": true
+    },
+    {
+      "city_id": "istanbul",
+      "cohort_hotels": 50,
+      "old_building_match_file": null,
+      "old_sha256": "e4b4664fd414b4cc745a04e384320b6f9720d9b83db2b3e1755c0dc9e98e544f",
+      "unchanged_city_baseline_proof": {
+        "file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/istanbul_calculation_inputs.json",
+        "file_sha256": "1c81afa6f4d275827e895e0d9c6efa13530565230f92833ebf53134a5f1c9954",
+        "original_recorded_join_sha256": "e4b4664fd414b4cc745a04e384320b6f9720d9b83db2b3e1755c0dc9e98e544f",
+        "current_join_byte_identical_to_recorded_baseline": true
+      },
+      "final_building_match_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/istanbul_building_matches.jsonl",
+      "final_sha256": "e4b4664fd414b4cc745a04e384320b6f9720d9b83db2b3e1755c0dc9e98e544f",
+      "old_relations": 1,
+      "final_relations": 1,
+      "all_affected_hotel_ids": [],
+      "known_feature_rows": {
+        "N02": {
+          "computed_rows": 1,
+          "unknown_rows": 49
+        },
+        "N03": {
+          "computed_rows": 1,
+          "unknown_rows": 49
+        }
+      },
+      "final_known_subjects_equal_all_final_accepted_buildings": true,
+      "subject_mismatches": [],
+      "full_diff_repair_coverage_complete": true,
+      "repair_report": null,
+      "repair_report_sha256": null,
+      "repair_seconds": 0,
+      "unrelated_passport_lines_byte_identical": true,
+      "all_other_geo_files_byte_identical": true
+    },
+    {
+      "city_id": "dubai",
+      "cohort_hotels": 50,
+      "old_building_match_file": null,
+      "old_sha256": "682347278e9202286c8320fa2e3c68a4979bb35ac6b5113f6cb887a9fdc905fe",
+      "unchanged_city_baseline_proof": {
+        "file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/dubai_calculation_inputs.json",
+        "file_sha256": "54079888ce6ce65435dda47ec7086b90a76daa31033eda5093ea1ae4dbf0112d",
+        "original_recorded_join_sha256": "682347278e9202286c8320fa2e3c68a4979bb35ac6b5113f6cb887a9fdc905fe",
+        "current_join_byte_identical_to_recorded_baseline": true
+      },
+      "final_building_match_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/dubai_building_matches.jsonl",
+      "final_sha256": "682347278e9202286c8320fa2e3c68a4979bb35ac6b5113f6cb887a9fdc905fe",
+      "old_relations": 1,
+      "final_relations": 1,
+      "all_affected_hotel_ids": [],
+      "known_feature_rows": {
+        "N02": {
+          "computed_rows": 1,
+          "unknown_rows": 49
+        },
+        "N03": {
+          "computed_rows": 1,
+          "unknown_rows": 49
+        }
+      },
+      "final_known_subjects_equal_all_final_accepted_buildings": true,
+      "subject_mismatches": [],
+      "full_diff_repair_coverage_complete": true,
+      "repair_report": null,
+      "repair_report_sha256": null,
+      "repair_seconds": 0,
+      "unrelated_passport_lines_byte_identical": true,
+      "all_other_geo_files_byte_identical": true
+    }
+  ],
+  "cohort_hotels": 439,
+  "affected_hotels": 43,
+  "all_affected_hotel_ids_derived_from_complete_snapshot_diffs": true,
+  "source_code_sha256": "e9da81a553fd7b0c75c7b9c964f31b416dd17ee91be6a69a762d12b55bfe0d22",
+  "network_requests": 0,
+  "scope": "Every known N02/N03 building subject agrees with final accepted joins for all439hotels. The same AEQD/axis classes are used; no new route or full geo run occurred during join repairs.",
+  "passed": true
+}

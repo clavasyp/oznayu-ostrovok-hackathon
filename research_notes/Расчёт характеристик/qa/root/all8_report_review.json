@@ -1,0 +1,56 @@
+{
+  "at": "2026-10-24T14:37:10.784462+00:00",
+  "status": "PASSED_WITH_EXPLICIT_DATA_LIMITATIONS",
+  "root_full_read": "Full360-line main base and accepted325-line Sochi base, every added line of final candidates, then every final-author delta read. Final report bytes identified below.",
+  "reports": [
+    {
+      "path": "/Users/turgov/Хакатон/reports/Расчёт характеристик на реальных отелях.md",
+      "sha256": "e5936594b5aad76bfdd18437cd38a8a62bc74d822efb49895144258e97affc60",
+      "bytes": 107264,
+      "lines": 370
+    },
+    {
+      "path": "/Users/turgov/Хакатон/reports/Расчёт характеристик — Сочи.md",
+      "sha256": "814ee039d2d29b437899a31bc33befdbe058c0c2692c67f18858e4078f91a049",
+      "bytes": 97428,
+      "lines": 340
+    }
+  ],
+  "checks": {
+    "main_54x8_values_exact": true,
+    "sochi_54_values_exact": true,
+    "no_all_four_false_or_uncertain_known_parent_facts": true,
+    "main_21_fact_references_current": true,
+    "main_all_local_links_exist": true,
+    "main_no_hold_or_draft": true,
+    "main_7_sections_7_decisions": true,
+    "main_21_maps": true,
+    "main_all8_examples": true,
+    "sochi_21_fact_references_current": true,
+    "sochi_all_local_links_exist": true,
+    "sochi_no_hold_or_draft": true,
+    "sochi_7_sections_7_decisions": true,
+    "sochi_21_maps": true,
+    "main_26_prefill_counts_exact": true,
+    "independent_223_and48_pass": true,
+    "root_56_files28_versions_verified": true,
+    "prior12_reports_catalogue_unchanged": true,
+    "all8_author_pass": true,
+    "all8_author_freeze_exact": true,
+    "sochi_author_pass": true,
+    "sochi_author_freeze_exact": true,
+    "same_input244_pass": true,
+    "fan389025_pass": true
+  },
+  "matrix_errors": [],
+  "sochi_matrix_errors": [],
+  "forbidden_fact_ids": [],
+  "limitations": [
+    "0 independent full-feature gold and0 human verification; bonus physical accuracy work remains open.",
+    "34auditrows/30contexts are not30 independent full-feature truth labels.",
+    "V/S actual-window contracts remain unknown; Dagomys absent in permitted cache.",
+    "Docker startup and fieldwork costs unmeasured.",
+    "No new OTA requests, no new handoff automatically started."
+  ],
+  "decision": "Accept V9 calculator exports and both reports as the final research checkpoint with explicit limitations; preserve all earlier immutable checkpoints."
+}

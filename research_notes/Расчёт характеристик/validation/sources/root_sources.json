@@ -1,0 +1,27 @@
+[
+  {
+    "url": "https://www.ncei.noaa.gov/archive/accession/0253808/data/0-data/Region-6-WMO-Normals-9120/",
+    "fetched_at": "2026-10-24T02:10:03.610811+00:00",
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1032)>"
+  },
+  {
+    "url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/4.4/data/0-data/Region-6-WMO-Normals-9120/",
+    "fetched_at": "2026-10-24T02:10:04.181995+00:00",
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1032)>"
+  },
+  {
+    "url": "https://www.ncei.noaa.gov/products/wmo-climate-normals",
+    "fetched_at": "2026-10-24T02:10:05.188124+00:00",
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1032)>"
+  },
+  {
+    "url": "https://www.rta.ae/wps/portal/rta/ae/public-transport/timetable?lang=en",
+    "fetched_at": "2026-10-24T02:10:05.543556+00:00",
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1032)>"
+  },
+  {
+    "url": "https://www.sochi-tk.ru/routes.html",
+    "fetched_at": "2026-10-24T02:10:07.339907+00:00",
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1032)>"
+  }
+]

@@ -1,0 +1,25 @@
+{
+  "kind": "Representation-only exact fixture regression; no algorithm changes; not empirical accuracy",
+  "checks": {
+    "node_ids_exact": true,
+    "coordinate_arrays_bitwise_equal": true,
+    "sparse_graph_exact": true,
+    "edge_keys_equal": true,
+    "edge_distances_bitwise_equal": true,
+    "edge_source_ids_equal": true,
+    "route_id_exact": true,
+    "route_distance_bitwise_equal": true,
+    "route_nodes_and_geometry_exact": true,
+    "source_metadata_intact": true,
+    "packed_nodes_roundtrip_exact": true,
+    "node_ids_remain_python_int": true,
+    "csr_tie_breaking_order_exact": true,
+    "equal_length_edge_first_source_preserved": true,
+    "composite_manifest_exact": true,
+    "steps_metrics_exact": true,
+    "crossing_metrics_exact": true,
+    "lighting_metrics_exact": true,
+    "saved_graph_and_outputs_byte_exact": true
+  },
+  "passed": true
+}

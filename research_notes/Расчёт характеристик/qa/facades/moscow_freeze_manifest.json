@@ -1,0 +1,61 @@
+{
+  "frozen_at_utc": "2026-10-24T13:14:40.065276+00:00",
+  "city": "moscow",
+  "files": [
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/moscow_geometry_quality.jsonl",
+      "sha256": "49b8779d146587c13802384b924df5f6038fec650421a75a47d254bc183079bc",
+      "bytes": 19324
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/moscow_target_components.jsonl",
+      "sha256": "12ef5f62d102acb4123e692456d80239b2a223c9d9b6e1330923893f3d520d17",
+      "bytes": 171606
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/moscow_facts.jsonl",
+      "sha256": "4c6716f49b5c379e7dca81b20f55f27c9496714011e5d06fc12f90f99211de23",
+      "bytes": 1269529
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/moscow_diagnostics.jsonl",
+      "sha256": "705c1418d387fbb28c8aff6a75d762f6e535d22dba5a3faf7f9dcf56a157e698",
+      "bytes": 176749
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/moscow_fan_facts.jsonl.gz",
+      "sha256": "8822132276f504368ee89d586deef53a0321857cb7eedc8f334999d0f2f42171",
+      "bytes": 2488544
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/moscow_building_matches.jsonl",
+      "sha256": "e8e2954cbe10abe8613eeaebdd625e9dd0e7397616da1cd3eb59cca0b380c821",
+      "bytes": 48318
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/moscow_fan.jsonl",
+      "sha256": "722b9452ab82d8379541638e541821caf7f6ba68b4488aac84075608fd5f9b67",
+      "bytes": 16253126
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/moscow_building_facts.jsonl",
+      "sha256": "fab04a7243fd60dd960a418d57df4a72ab02ce8ab4fef5de702c8e2ce9362428",
+      "bytes": 31702
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/moscow_ota_comparisons.jsonl",
+      "sha256": "f1597b62ca0ed2d2bd06f148d2d915e1efb499fca8f31af97c43f07bf5cc38ed",
+      "bytes": 3477
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/moscow_summary.json",
+      "sha256": "75150a3dda967e56c4d7765aba43a51dabb30c3043597840fec26e66b0927633",
+      "bytes": 2679
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/facades/moscow_output_checks.json",
+      "sha256": "e9656e703b6fdfc4e911fce937cc7d135a46aaa1f85253ff44888181cea935fe",
+      "bytes": 1528
+    }
+  ]
+}

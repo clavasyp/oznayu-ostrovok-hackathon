@@ -1,0 +1,12 @@
+{
+  "questions": 26,
+  "hotel_feature_pairs": 11414,
+  "pairs_with_prefill": 2010,
+  "actual_answers": 0,
+  "new_network_requests": 0,
+  "v5_structured_claim_count": 3922,
+  "v5_structured_hotels": 222,
+  "claim_source_sha256": "d96b88828d0bd2cb594a140bba5d38a361df972e54e80cbc8304f02e2a0ed2c5",
+  "cohort_sha256": "c0f37fe6fa70f0ac9134608ee4b08537f0fd332a9fa78c8691047069d798afd1",
+  "limitation": "No new research or hotel contact. Existing claims are prefill, not physical verification."
+}

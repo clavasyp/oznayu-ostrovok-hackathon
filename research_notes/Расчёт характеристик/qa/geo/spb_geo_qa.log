@@ -1,0 +1,34 @@
+{
+  "city_id": "spb",
+  "checked_at": "2026-10-24T13:38:42.210679+00:00",
+  "facts_sha256": "b3ad3da47d3f5328703d1c047f9cf27b2be53401f04c1d6b55093e2208528762",
+  "checks": {
+    "all_expected_hotel_feature_pairs": true,
+    "unique_fact_ids": true,
+    "unknown_has_reason": true,
+    "known_sources_recipe": true,
+    "every_recipe_trace_present": true,
+    "all_selected_route_ids_saved": true,
+    "DSM_only_explicit_estimate_extension": true,
+    "marine_not_inland_beach_substitution": true,
+    "zero_lighting_denominator_not_computed": true,
+    "lighting_percent_partition": true,
+    "route_subjects_for_route_measurements": true,
+    "no_fake_future_hours_validity": true,
+    "N02N03_building_scope": true,
+    "P03_canonical_not_filled_without_required_policy": true
+  },
+  "passed": true,
+  "hotel_denominator": 50,
+  "owned_feature_count": 29,
+  "hotel_feature_pairs": 1450,
+  "fact_rows": 2550,
+  "route_fact_rows": 574,
+  "unique_saved_selected_routes": 333,
+  "statuses": {
+    "computed": 374,
+    "unknown": 1510,
+    "estimate": 666
+  },
+  "check_kind": "Contract/regression checks, not measured empirical accuracy"
+}

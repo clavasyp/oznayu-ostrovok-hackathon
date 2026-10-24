@@ -1,0 +1,90 @@
+{
+  "at": "2026-10-24T14:11:20.547095+00:00",
+  "cities": [
+    "sochi"
+  ],
+  "cohort_sha256": "c0f37fe6fa70f0ac9134608ee4b08537f0fd332a9fa78c8691047069d798afd1",
+  "fact_rows": 7148,
+  "identical_logical_export_duplicates_removed": 46,
+  "hotel_feature_pairs": 4806,
+  "N_hotels": 89,
+  "city_summary": [
+    {
+      "city_id": "sochi",
+      "N_hotels": 89,
+      "features_attempted": 54,
+      "features_with_computed_or_observed": 11,
+      "features_with_estimate": 9,
+      "hotel_feature_pairs": 4806,
+      "best_status_counts": {
+        "unknown": 3196,
+        "estimate": 742,
+        "computed": 818,
+        "observed": 50
+      },
+      "unknown_share": 0.6650020807324178
+    }
+  ],
+  "unknown_reasons": {
+    "No licensed georeferenced accepted facade-height Lnight layer, complete emissions model, or independent acoustic validation in cached inputs; road distance is not dB.": 89,
+    "No zero-gap surveyed constraints: hotel exit, kerbs, width, slope, surface, stairs and working lifts unverified. A route with no mapped steps is insufficient.": 174,
+    "no_confirmed_open_service_hours_in_cached_source_or_extent": 564,
+    "No OSM/hotelier-confirmed target entrance and public-admission/animal/leash/season policy for mapped candidate; OSM dog_park alone is insufficient.": 178,
+    "No licensed complete current operator schedule/active service calendar and verified terminal-to-hotel itinerary for requested date. Zero active cached services is not no real transit.": 534,
+    "No accepted dated, geocoded primary-source event/closure/construction inventory with coverage, status and licence for requested trip. Generic OSM construction tags do not provide permit geometry and active dates.": 534,
+    "No licensed fresh OpenCellID export with operator/radio/last_seen and observed cell coordinates. OSM mast location or phone bars is another meaning.": 89,
+    "No matched police-category numerator, resident population denominator, reporting period and statistical-boundary version.": 89,
+    "No complete official geocoded injury-crash IDs/dates/coordinate completeness for route buffer and period. Selective news bulletins cannot provide full count.": 89,
+    "verified_hotel_building_footprint_missing_or_ambiguous": 62,
+    "undefined_lighting_fraction_zero_graph_length": 8,
+    "Ground DTM/survey absent; DSM estimate unavailable": 8,
+    "no_connected_eligible_candidate_in_cached_graph": 52,
+    "no_connected_path_in_cached_graph_not_proof_no_real_path": 14,
+    "No eligible target/connected route in cached graph; absent mapping is not absence of playground/dog area.": 10,
+    "No selected connected route in cached graph; no absence or accessibility conclusion.": 20,
+    "no_verified_window_height_ground_datum_and_complete_obstacles": 522,
+    "no_verified_construction_completion_event": 58,
+    "no_current_official_heritage_registry_match": 58,
+    "no_building_match": 372,
+    "multiple_buildings_or_counting_scope_conflict": 4,
+    "missing_aboveground_levels": 8,
+    "No dated official material descriptor with matched named beach segment/extent; hotel marketing sand/pebble claims are not equivalent official data.": 89,
+    "Both requested trips beyond the16day marine forecast horizon at2026-10-24; no valid modelrun/lead/wetcell for requested dates.": 89,
+    "No matched authorized latest beach flag/status feed withissuer andobservationtime; future2026/2027status cannot be inferred fromhistoricalorweather.": 89,
+    "No published authorized labprotocol matchedtohotel-selected beachsamplepoint withsamplingdate/method/units.": 89,
+    "Requested trips beyond16day forecast horizon; no valid ensembleprobabilityrun. Historical rainy-dayfrequency is not rainprobabilityforecast.": 89,
+    "Requested trips beyondOpenMeteoairqualityAPImaximum7day horizon(default5days); no valid CAMSmodelrun for requested dates. Cached2026-10-23PM2.5 not transferable.": 89,
+    "D22 selects Open-Meteo asprimaryairsource; thisAPI exposesCAMSmodelPM2.5, no eligible stationmeasurements withstation/QC/timeaveraging. Directofficial/OpenAQstationpaths notapprovedunderD22; CAMSmodelE01 cannotreplaceobservation.": 89,
+    "No corrected BlackMarble monthlyA3 radiance plusQA/cloud/snow validpixel cached; no sufficient correctedA2 dailyseries. UncorrectedA1/otherVIIRS products rejected as different estimand.": 89
+  },
+  "input_files": [
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/sochi_facts.jsonl",
+      "sha256": "0ac67a1055150ddfd699872723635cc052db3b9ef6a50c54207ea61bbe1aa113",
+      "bytes": 8972921,
+      "rows": 4555
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/sochi_facts.jsonl",
+      "sha256": "175f210c7e13b7c536eec03906aaee92897f6cfd60ac9a04e2ddc27cd6f0821f",
+      "bytes": 2295071,
+      "rows": 1068
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/environment/sochi_facts.jsonl",
+      "sha256": "449aad67294cf8a9519a36ca1ee16bafe47a69e74f4b85f1054008a1afe7e750",
+      "bytes": 21206341,
+      "rows": 1513
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/sochi_building_facts.jsonl",
+      "sha256": "febe5105f76beca2c95f966d69c11b26a41e9f75b977e6361d3420ac811c1fbc",
+      "bytes": 137822,
+      "rows": 58
+    }
+  ],
+  "errors": [],
+  "warnings": [],
+  "status": "PASSED",
+  "coverage_semantics": "any stated subject/parameter, not whole hotel/category guarantee"
+}

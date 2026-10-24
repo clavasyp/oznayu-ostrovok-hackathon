@@ -1,0 +1,35 @@
+{
+  "city_id": "spb",
+  "at": "2026-10-24T13:17:03.189516+00:00",
+  "runtime_s": 64.71296658400388,
+  "hotel_count": 50,
+  "cells": [
+    [
+      59.75,
+      30.25
+    ],
+    [
+      60.0,
+      30.25
+    ],
+    [
+      60.0,
+      30.5
+    ]
+  ],
+  "counts": {
+    "http_200": 60
+  },
+  "new_conservative_weight_estimate": 392.1428571428574,
+  "months": [
+    7,
+    11
+  ],
+  "period": [
+    1991,
+    2020
+  ],
+  "model": "ERA5 0.25 degree",
+  "timezone_policy": "fixed current local standard offset; no historical DST; explicitly retained",
+  "temperature_downscaling": false
+}

@@ -1,0 +1,63 @@
+{
+  "city_id": "sochi",
+  "version": "v9.2.facades",
+  "code_sha256": "14b8c3ea8f4791400fa7cf0ebe5788992f2d16b03f2029de4ac85bf80c3108a6",
+  "frozen_at_utc": "2026-10-24T14:10:19.633801+00:00",
+  "files": [
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/sochi_fan_facts.jsonl.gz",
+      "sha256": "87610d1a7325ccdcd80f2d4a4945102a4960570d0c7204123b258091ecf68bfc",
+      "bytes": 5411452
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/sochi_target_components.jsonl",
+      "sha256": "49a38199d34e53a9766cdcad2f06739c7435ddcd7cbcfb9197148e064b0b976e",
+      "bytes": 275572
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/sochi_fan.jsonl",
+      "sha256": "3eee696b461415f9d0e07df07efdea0e4512cc35dc27d2e527a547cecb28e072",
+      "bytes": 34644793
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/sochi_building_facts.jsonl",
+      "sha256": "febe5105f76beca2c95f966d69c11b26a41e9f75b977e6361d3420ac811c1fbc",
+      "bytes": 137822
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/sochi_building_matches.jsonl",
+      "sha256": "a991d1e23149f2d6a1614f478d512e09951b87be21d83d880c5b866f1c45174e",
+      "bytes": 186013
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/sochi_summary.json",
+      "sha256": "d39d7a421eae30117671e23ff445fdebc932bcc6a9dcd5a83b5f57ed0dd91e90",
+      "bytes": 2819
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/sochi_ota_comparisons.jsonl",
+      "sha256": "adfab76112f4a2e6d38a2b41b4768a12de13a9371cac9bce7668d1c50277f374",
+      "bytes": 15050
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/sochi_diagnostics.jsonl",
+      "sha256": "bbfc5acc1d6dd70b2586b3e39d100095615a3d15145bcd3733ed280e5b0c5c33",
+      "bytes": 525025
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/sochi_facts.jsonl",
+      "sha256": "175f210c7e13b7c536eec03906aaee92897f6cfd60ac9a04e2ddc27cd6f0821f",
+      "bytes": 2295071
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/sochi_geometry_quality.jsonl",
+      "sha256": "665aead200ac345bff1fafb39fb5432ac629307901904bc2b83df0b8364dc836",
+      "bytes": 75151
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/facades/sochi_output_checks.json",
+      "sha256": "1e8a77a6c879555146a1c94362e29c3c19aeec4fa282f1d413d0d4bd4b1289b5",
+      "bytes": 1529
+    }
+  ]
+}

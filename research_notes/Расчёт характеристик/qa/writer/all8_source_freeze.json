@@ -1,0 +1,427 @@
+{
+  "at": "2026-10-24T14:35:47.611330+00:00",
+  "purpose": "Exact writer inputs and linked local evidence; upstream source datasets remain pinned through the accepted calculator manifests.",
+  "report_sha256": "e5936594b5aad76bfdd18437cd38a8a62bc74d822efb49895144258e97affc60",
+  "files": [
+    {
+      "path": "/Users/turgov/Хакатон/docs/research/track_alignment.md",
+      "sha256": "c5c3c4f2e5778f402d6181cac271584e75340dab154dbdfad7d8c3535a9d1054",
+      "bytes": 9060
+    },
+    {
+      "path": "/Users/turgov/Хакатон/handoff_chatgpt_v9_compute.md",
+      "sha256": "a00271aff43e61a3d85855d9ec404b99c08872a518d2b8ccbd5c4e9dd2552cc1",
+      "bytes": 14183
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/README.md",
+      "sha256": "df9ecb2f4e8b89dedd19b57e53346d995f2727ec10b827dd9c62a849d54c56d8",
+      "bytes": 18698
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/cohort/hotels.jsonl",
+      "sha256": "c0f37fe6fa70f0ac9134608ee4b08537f0fd332a9fa78c8691047069d798afd1",
+      "bytes": 640606
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/cohort/manifest.json",
+      "sha256": "b68e89e7ee9a9d0215ecc97dfec127f6905d2eaeedbad0db786d4708ed9fbd2b",
+      "bytes": 1634
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/environment/README.md",
+      "sha256": "33346649b38b6a5cb5d38f116510447c1f0b41650113a9f3d2216ec4f107db0a",
+      "bytes": 19271
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/facades/README.md",
+      "sha256": "e27e3deee897dfa9441612b66ac86ac0346b52a0d4f524b0843278d044eb693c",
+      "bytes": 10665
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/facades/reference_cases.csv",
+      "sha256": "1607825d76902515057cb92114a10fcae665023fcf2f21238558877800c56efa",
+      "bytes": 2174
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/hotelier/manifest.json",
+      "sha256": "73a8dbba15b5392f4dc04dbcf26548e74a9d3b1776ed148fe0a6b3a018482f9e",
+      "bytes": 492
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/hotelier/prefill.jsonl",
+      "sha256": "7b61071865f8e91e0c814b7407ea7d85465afde9e2bb302a8038ef7bf5e95b06",
+      "bytes": 11771807
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/hotelier/questions_26.csv",
+      "sha256": "a28473b281a50f6c7cfcdb8e1965d303c8c73b74f6543c5e0a07ac510dcc8607",
+      "bytes": 19552
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/integrated/all8_coverage.csv",
+      "sha256": "6a5a6e40e4c89696445907639501d01d3c65fea187574ed0b055daf7ddcf84dc",
+      "bytes": 163035
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/integrated/all8_facts.jsonl",
+      "sha256": "980c22194eeea656fcf20923745be70aa3026969967b81a5d270a1b8825f3244",
+      "bytes": 164319920
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/integrated/all8_summary.json",
+      "sha256": "f2859f85a8b0498fdb1d85d83084f78e4e1dfd8691d6277d6d40dc2696b7c863",
+      "bytes": 16465
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/environment/all8_network_metrics.json",
+      "sha256": "d0269faeed0680fbad1eb7e0a6b6fd81d5e5a10e1b222f0f76c1710599984860",
+      "bytes": 10243
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/environment/audit_cases.csv",
+      "sha256": "0df51fcc50513b5b2fde2b164b0ccc09bb946c51c98a5be7f13cb51b5136eb6b",
+      "bytes": 6232
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/environment/coastal_wetcell_validation.json",
+      "sha256": "6411ec5d67900edcee9eb8840998eb998af019544eb73879f3b6420eddf7321d",
+      "bytes": 74958
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/facades/final8_review.json",
+      "sha256": "9d09aa340813d5e10ce6be3e9d69727ca362ab6f6fbdfbc0e1cad85f850efae5",
+      "bytes": 169217
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/all8_building_axis_join_coverage.json",
+      "sha256": "0cdf3bd6bed36d955f6e963759e3806e6507315622839c195d1e68f9279bb1ef",
+      "bytes": 13755
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/building_axis_repair_manifest.json",
+      "sha256": "4012928b6beca67051e2865eec329b7788fd4251035d6276f9601dad70d4c03d",
+      "bytes": 25532
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/kaliningrad_N02N03_join_diff_repair_report.json",
+      "sha256": "822fa332e0a88878801c18f4c494bcf22895810576f91294cf144e3a3cf18a28",
+      "bytes": 40246
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/kazan_N02N03_join_diff_repair_report.json",
+      "sha256": "584c59c34f244598c138ecb3758802add813427f38693daaa0cb9e5a27490106",
+      "bytes": 75319
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/moscow_N02N03_join_diff_repair_report.json",
+      "sha256": "647de1a61b6e075b95c3d0d7267a5668853b247d36573cb03650900620bbda7f",
+      "bytes": 12803
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/moscow_compact_pre_hours_attempt.json",
+      "sha256": "ca9a5968505bf17e5c8686cbca3269599afea3fb3771e34b94d979a2d6560f43",
+      "bytes": 338
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/moscow_gc_disabled_attempt.json",
+      "sha256": "1cab8901bd203599a89db4cce221e03f046c1e99ad436e0ed0c8e8bf9a625db6",
+      "bytes": 1139
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/moscow_initial_attempt.json",
+      "sha256": "4176ca2eb57dc3d4ea5dd30e25a793b0d97e0b67bf80b4c6940a01239d18f4d4",
+      "bytes": 1005
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/opening_point_cache_equivalence.json",
+      "sha256": "18abf286755c3e1842556575fec76f2e67853367ac0c989d2fad870491267d4d",
+      "bytes": 189723
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/opening_point_cache_v2_checks.json",
+      "sha256": "ea8c00ad3b2ecdb434eb4ca5d6c0c454811bdfec1a8bc796684bbb443562d3fb",
+      "bytes": 180247
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/reference_cases.csv",
+      "sha256": "6a6dde263cf4b8fd9d76628c693647ccf089eeed15501d03283ca77c7b586109",
+      "bytes": 13006
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/sochi_F01_node_repair_report.json",
+      "sha256": "d873252926227904e6e460482af5efb47453fe03dee85c85f655d22daf18f132",
+      "bytes": 7262
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/sochi_N02N03_strict_join_repair_report.json",
+      "sha256": "214bb5d72ebdfe17173f48d169c7e55b86379ab7ea5bac66234be160236e70bb",
+      "bytes": 12164
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/sochi_full_corrected_reselect_audit.json",
+      "sha256": "eae6101dcac345fa719e9529a4322e255d5bbe5434242fb360fb02813943aed9",
+      "bytes": 14929
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/spb_N02N03_join_diff_repair_report.json",
+      "sha256": "ec84c3178c0e7ef16a07d466796fbe0c430db3266915254d49a6fa0c8fb843c2",
+      "bytes": 10416
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/quality/Q03_graph_denominator_scope.json",
+      "sha256": "d6cae270fddc4c484fcc7422d9de9cf2774530ca3c123bfabcd706df59d2da2a",
+      "bytes": 8696
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/quality/all8_review.json",
+      "sha256": "e9eacfe6f3bac0839f1b48346f6942f491c8cc3c0260e9da70cdc205126b0011",
+      "bytes": 41969
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/root/all8_fan_audit.json",
+      "sha256": "10e4c34748ed8e8734cd3b644e7aa914dfa596aac74384bec9eaf11026f857ca",
+      "bytes": 4917
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/writer/check_all8_report.py",
+      "sha256": "22431cea71aa020e261cf8914fec0a50449bdbf0acbd6cb006550d8347d4583f",
+      "bytes": 7373
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/writer/check_sochi_report.py",
+      "sha256": "5ae3a898e49c81055741c710199475dfd7b9719018b27c5b3a7238c37f7b63de",
+      "bytes": 5149
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/writer/ota_comparisons_all8.csv",
+      "sha256": "2b39ceb723bd94c6e52678b728df1d4bccb177623ff5def4b4db4f15d71eea4a",
+      "bytes": 72518
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/environment/dubai_summary.json",
+      "sha256": "7cae811d0826becbad2c06f45a070bf1e6ebd883a1bae2933920e47833f4e34a",
+      "bytes": 1268
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/environment/istanbul_summary.json",
+      "sha256": "538be671f982a4ff84b4c8939f48009263651146d2c6b828734b2824c0a57c05",
+      "bytes": 1276
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/environment/kaliningrad_summary.json",
+      "sha256": "c39c73e25b65284e2b5f3a949bb574b59ef0172596160e6a839ef457240ff96c",
+      "bytes": 1278
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/environment/kazan_summary.json",
+      "sha256": "8fa67e10224928c4f9489f7e4901689621bd0e3355f9129e304e29b388fbedc8",
+      "bytes": 1293
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/environment/minsk_summary.json",
+      "sha256": "45e3f540b49c7a807b9131324c89bf78ea5d7616be17cca7ac3f6a08fae11e95",
+      "bytes": 1291
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/environment/moscow_summary.json",
+      "sha256": "ef58c596ecfe467c474ecbf992e366c3348b2b38c5f8ad4e89cbff2d9d3f4d68",
+      "bytes": 1295
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/environment/sochi_summary.json",
+      "sha256": "75fee2a33161895b89688bfb7709aa74016433f784b712f92cfc6a720f7ed180",
+      "bytes": 1270
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/environment/spb_summary.json",
+      "sha256": "02f375cf102312c11d94c3106425398d03ef8b26ada9f3de055f9044a2df0bd2",
+      "bytes": 1268
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/dubai_ota_comparisons.jsonl",
+      "sha256": "069fb96eb675b32e254bf497e4e17b5a324a5aca8f39e0bc17cf166412ec19f0",
+      "bytes": 37463
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/dubai_summary.json",
+      "sha256": "7d3e0f951e50bb560af3b42d6a5dd54263a51b0794090e1688d4d876ca347f4e",
+      "bytes": 2658
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/istanbul_ota_comparisons.jsonl",
+      "sha256": "7f3f1790df087748d36af63bb335557d97bf152c9d22433bce642fb1f30214a3",
+      "bytes": 13588
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/istanbul_summary.json",
+      "sha256": "8d71de7635a336c4d63271afdca7b3e9d149e938ded1c690b548f093014f88c9",
+      "bytes": 2634
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/kaliningrad_ota_comparisons.jsonl",
+      "sha256": "e1f7f88569d540388e33637799d11bf23f7f923f20525be4c4bc28351807fcef",
+      "bytes": 5667
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/kaliningrad_summary.json",
+      "sha256": "aec01a69a335f0067762826288b7aa71a9df8787c5c7be9bf6165c911e146255",
+      "bytes": 2859
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/kazan_ota_comparisons.jsonl",
+      "sha256": "4df9177ff8a169ab2263b4429a48c40d12119635a8ee04d03aa9d7835a0f5749",
+      "bytes": 699
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/kazan_summary.json",
+      "sha256": "b00b355c6f47b4216a9b70dd402ca102f5ada7bf42b3687f118fa9b2932f339b",
+      "bytes": 2804
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/minsk_ota_comparisons.jsonl",
+      "sha256": "0af1c2100cf60697c0705d816bb9e53f471052984d36ca7698fd1f680ec4835a",
+      "bytes": 2074
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/minsk_summary.json",
+      "sha256": "8898f09eb35e337ca9a85de4e811c221e935ac6cb15400690dc1e65701e452a0",
+      "bytes": 2586
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/moscow_ota_comparisons.jsonl",
+      "sha256": "f1597b62ca0ed2d2bd06f148d2d915e1efb499fca8f31af97c43f07bf5cc38ed",
+      "bytes": 3477
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/moscow_summary.json",
+      "sha256": "6bc000b6480fb47d3f13699cb37b7fd3278670b1114990ec685f7eb0e84d0588",
+      "bytes": 2816
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/sochi_ota_comparisons.jsonl",
+      "sha256": "adfab76112f4a2e6d38a2b41b4768a12de13a9371cac9bce7668d1c50277f374",
+      "bytes": 15050
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/sochi_summary.json",
+      "sha256": "d39d7a421eae30117671e23ff445fdebc932bcc6a9dcd5a83b5f57ed0dd91e90",
+      "bytes": 2819
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/spb_ota_comparisons.jsonl",
+      "sha256": "fbd0b4c772741761548f6ed95d0e8ee704762565db4db80896ec435c9febbae4",
+      "bytes": 6516
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/spb_summary.json",
+      "sha256": "682822730600ce1427a44bea5376cae0775c9cd9e155f04812526a6fadf2d43b",
+      "bytes": 2800
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/dubai_run.json",
+      "sha256": "3dfaa69ffea5710ec7d925db4cedb11c1334a0e79ea41bc3a809f43bf9b258f1",
+      "bytes": 13563
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/istanbul_run.json",
+      "sha256": "719a426b8c9d1c7f4132961e6d6e70d00578c9efccbcc3d643b79a8d05b1d702",
+      "bytes": 8848
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/kaliningrad_run.json",
+      "sha256": "8f4072fb9b5b3a806d9e65b8afc6381732cba6dc67795896660aa22a93e2acde",
+      "bytes": 52298
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/kazan_run.json",
+      "sha256": "555bcdd99f7da932cf3bba2b940c2876d0fc8ec86d8b1b335f276a535bbcfcf7",
+      "bytes": 92186
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/minsk_run.json",
+      "sha256": "b3ba8470d3b37f34716d9112f8188c235a2dc311d969875135f33592e360d69f",
+      "bytes": 8776
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/moscow_run.json",
+      "sha256": "f4d8a7908fa633116c793ac509315392f24fe12f4b5f40237495d9b15369e103",
+      "bytes": 21076
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/sochi_run.json",
+      "sha256": "389505c9de6f37d72932a6bbfd9863789d7ce648839d8eaeb4ab7e289d131075",
+      "bytes": 27451
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/spb_run.json",
+      "sha256": "0ac968ce6f63198fa1565b98f0ecc642eb4fd614533d8c4cde661701990b602a",
+      "bytes": 19443
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scale/city_metrics.csv",
+      "sha256": "51e25b6be1d6e0f194f34f58957a031c5aeec045531be2bea92f1d38e73633b4",
+      "bytes": 2312
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scale/family_metrics.csv",
+      "sha256": "51c4148efb15c7c51fd5865115bb4fa8a47d910ed21edae7fd605f36cbe6f4b0",
+      "bytes": 42731
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scale/summary.json",
+      "sha256": "9468a492e565848ce61924f7ab2b433d8947bf417ed83d0c66c7bd7da71c4b77",
+      "bytes": 17491
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/run_geo_v9_other_city_compact.py",
+      "sha256": "ab27e8737b73edd6bcafeeb4d48d523aaf861e3eccbb02ecbd95dd06a506695a",
+      "bytes": 7559
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/run_geo_v9_other_city_compact_v2.py",
+      "sha256": "6a9c05f6bc8e3f6dd5a3f2f63276a18bb465c3baaea8d382ef483814df4f9933",
+      "bytes": 9110
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/write_all8_report.py",
+      "sha256": "df2bcc84ecebacd654f489c6f10fd51f2ab0b35a6a6b9c5749f2b44a279cd17a",
+      "bytes": 87155
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/write_sochi_report.py",
+      "sha256": "ea04fbd9c7b95e96e7abb59f43c1ad8103ed97b598134a196524327b2b6b33b5",
+      "bytes": 78045
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/validation/cases.csv",
+      "sha256": "75f911e3e86195366628e9fe1c7e7a8deb2320fbb87fe5caa0c810cd6eb313b7",
+      "bytes": 67599
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/validation/cases_summary.json",
+      "sha256": "bb38b15fe605c1d7148eca2f6661292ed4fe11da73299a0a900a73819df330f0",
+      "bytes": 1171
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/validation/kaliningrad_waterbody_scope.json",
+      "sha256": "339e8f38ef5a83c9da2eb8bb684c0eca34e85151f8ed52c824ad4b0a3555e884",
+      "bytes": 1233
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/validation/numerical_all8_summary.json",
+      "sha256": "53941fa6363e925c308ada1505152be25d1a0e79f530622cfca0208cc45e6aae",
+      "bytes": 705
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/validation/station_comparison.csv",
+      "sha256": "70bda43a2a22d99fb7c3777aaeecfe54527a34bdcd2655e0e3ffc94abfb0f7d6",
+      "bytes": 4497
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/validation/station_summary.json",
+      "sha256": "b052b7d5b4b1f370607f4fbca35cc5f77b84e9acbf812f54a2ac69a2af7fd0ec",
+      "bytes": 717
+    }
+  ]
+}

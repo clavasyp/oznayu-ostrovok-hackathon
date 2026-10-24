@@ -1,0 +1,73 @@
+{
+  "city": "spb",
+  "passed": true,
+  "checks": [
+    {
+      "name": "one_main_record_per_hotel_feature",
+      "passed": true
+    },
+    {
+      "name": "main_fact_identity_unique",
+      "passed": true
+    },
+    {
+      "name": "cohort_membership",
+      "passed": true
+    },
+    {
+      "name": "unknown_has_reason_and_null_value",
+      "passed": true
+    },
+    {
+      "name": "all_recipes_accounted",
+      "passed": true
+    },
+    {
+      "name": "all_v_s_canonical_unverified_window_gated",
+      "passed": true
+    },
+    {
+      "name": "history_observed_single_matched_building",
+      "passed": true
+    },
+    {
+      "name": "nearest_only_never_accepted",
+      "passed": true
+    },
+    {
+      "name": "matched_summary_not_defaultdict_inflation",
+      "passed": true
+    },
+    {
+      "name": "fan_no_existing_window_fabrication",
+      "passed": true
+    },
+    {
+      "name": "fan_unknown_floor_not_fabricated",
+      "passed": true
+    },
+    {
+      "name": "fan_canonical_values_null",
+      "passed": true
+    },
+    {
+      "name": "solar_components_not_canonical_hours",
+      "passed": true
+    },
+    {
+      "name": "full_passport_fan_n",
+      "passed": true
+    },
+    {
+      "name": "full_passport_fan_identity_unique",
+      "passed": true
+    },
+    {
+      "name": "full_passport_fan_dates_not_checkout",
+      "passed": true
+    }
+  ],
+  "main_facts": 600,
+  "full_passport_fan_facts": 144775,
+  "scope": "Format, exact input lineage and semantic gates; not real-hotel accuracy."
+}

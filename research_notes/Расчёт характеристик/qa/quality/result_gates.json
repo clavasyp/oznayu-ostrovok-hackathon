@@ -1,0 +1,158 @@
+{
+  "at": "2026-10-24T13:01:11.125760+00:00",
+  "scope": "Independent source/contract QA plus repair regressions; not physical hotel accuracy.",
+  "passed": true,
+  "checks": [
+    {
+      "name": "54_catalogue_features_attempted_for_all89",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "no_conflicting_fact_identity",
+      "passed": true,
+      "details": []
+    },
+    {
+      "name": "unknown_has_reason_and_null_value",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "known_has_value_source_recipe",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "every_canonical_recipe_has_trace",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "accepted_stops_later_recipes_including_false",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "trip_arrivals_are_saturdays_at02local",
+      "passed": true,
+      "details": [
+        {
+          "start": "2026-11-14",
+          "end": "2026-11-17",
+          "arrival_local": "2026-11-14T02:00:00"
+        },
+        {
+          "start": "2027-07-15",
+          "end": "2027-07-18",
+          "arrival_local": "2027-07-17T02:00:00"
+        }
+      ]
+    },
+    {
+      "name": "no_canonical_window_result_from_orientation_only",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "N02_N03_building_subject_has_accepted_address_join",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "building_join_never_nearest_only",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "H03_keeps_counting_convention",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "W04_DSM_only_explicit_D18_extension",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "P03_no_dogpark_only_canonical_claim",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Q03_computed_requires_nonzero_denominator_and_fractions",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Q03_known_unlit_unknown_sum100",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "E03_historical_land_mask_area_weighted",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "C01_C03_full30year_ERA5_no_downscale",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "C02_C03_threshold_operators_explicit",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "marine_mapping_matches_frozen_target_hash",
+      "passed": true,
+      "details": {
+        "mapping_hash": "7b2c2be935e6ea5c96b2cdd8cd90f52be7e578d7793328a9b65a511211e3bb7a",
+        "actual_hash": "7b2c2be935e6ea5c96b2cdd8cd90f52be7e578d7793328a9b65a511211e3bb7a"
+      }
+    },
+    {
+      "name": "all_selected_beaches_have_geometric_marine_gate",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "all_saved_routes_avoid_explicitly_blocked_nodes",
+      "passed": true,
+      "details": {
+        "routes": 335,
+        "blocked_nodes": 1960
+      }
+    },
+    {
+      "name": "B02_depth_model_shortperiod_and_CF_support_explicit",
+      "passed": true,
+      "details": null
+    }
+  ],
+  "input_files": [
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/sochi_facts.jsonl",
+      "sha256": "3b32471f7cd5a7a3f6a6048d5ec9a7c9b80c7c4f36675d4188fc2f544a93d01e",
+      "rows": 4559
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/sochi_facts.jsonl",
+      "sha256": "e9a735a83537b3fb525e032e6c7b4f013e73d56397884408d13cbdf68d8312e7",
+      "rows": 1068
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/environment/sochi_facts.jsonl",
+      "sha256": "d711dd7e54be80be7c3168be8e49bcaaaef995dc809eac32e80ae1454371b262",
+      "rows": 1513
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/sochi_building_facts.jsonl",
+      "sha256": "77107cea97809ef0791d17805601e866e081956aafc0c180db9d9effab2ada22"
+    }
+  ],
+  "fact_rows_deduplicated": 7154,
+  "hotel_feature_pairs": 4806,
+  "marine_target_sha256": "7b2c2be935e6ea5c96b2cdd8cd90f52be7e578d7793328a9b65a511211e3bb7a"
+}

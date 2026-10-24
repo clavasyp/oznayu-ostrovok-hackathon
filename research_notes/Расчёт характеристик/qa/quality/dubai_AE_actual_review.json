@@ -1,0 +1,114 @@
+{
+  "passed": true,
+  "expected_state_cases": [
+    {
+      "date": "2026-11-14T02:00:00",
+      "expression": "24/7",
+      "expected": "open",
+      "actual": "open",
+      "country_requested": "AE",
+      "country_used": null,
+      "evaluated_local": "2026-11-14T02:00:00+04:00",
+      "reason": "Installed parser rejects ISO AE; expression has no PH/SH tokens, so no country holiday calendar affects its requested-instant state. Asia/Dubai retained."
+    },
+    {
+      "date": "2026-11-14T02:00:00",
+      "expression": "Mo-Su 09:00-22:00",
+      "expected": "closed",
+      "actual": "closed",
+      "country_requested": "AE",
+      "country_used": null,
+      "evaluated_local": "2026-11-14T02:00:00+04:00",
+      "reason": "Installed parser rejects ISO AE; expression has no PH/SH tokens, so no country holiday calendar affects its requested-instant state. Asia/Dubai retained."
+    },
+    {
+      "date": "2026-11-14T02:00:00",
+      "expression": "Fr 20:00-04:00",
+      "expected": "open",
+      "actual": "open",
+      "country_requested": "AE",
+      "country_used": null,
+      "evaluated_local": "2026-11-14T02:00:00+04:00",
+      "reason": "Installed parser rejects ISO AE; expression has no PH/SH tokens, so no country holiday calendar affects its requested-instant state. Asia/Dubai retained."
+    },
+    {
+      "date": "2026-11-14T02:00:00",
+      "expression": "24/7; PH off",
+      "expected": "unknown",
+      "actual": "unknown",
+      "country_requested": "AE",
+      "country_used": "AE",
+      "evaluated_local": "2026-11-14T02:00:00+04:00",
+      "reason": "AE unsupported by installed parser; holiday tokens prevent a calendar-free fallback."
+    },
+    {
+      "date": "2026-11-14T02:00:00",
+      "expression": "Mo-Su 00:00-24:00; SH off",
+      "expected": "unknown",
+      "actual": "unknown",
+      "country_requested": "AE",
+      "country_used": "AE",
+      "evaluated_local": "2026-11-14T02:00:00+04:00",
+      "reason": "AE unsupported by installed parser; holiday tokens prevent a calendar-free fallback."
+    },
+    {
+      "date": "2027-07-17T02:00:00",
+      "expression": "24/7",
+      "expected": "open",
+      "actual": "open",
+      "country_requested": "AE",
+      "country_used": null,
+      "evaluated_local": "2027-07-17T02:00:00+04:00",
+      "reason": "Installed parser rejects ISO AE; expression has no PH/SH tokens, so no country holiday calendar affects its requested-instant state. Asia/Dubai retained."
+    },
+    {
+      "date": "2027-07-17T02:00:00",
+      "expression": "Mo-Su 09:00-22:00",
+      "expected": "closed",
+      "actual": "closed",
+      "country_requested": "AE",
+      "country_used": null,
+      "evaluated_local": "2027-07-17T02:00:00+04:00",
+      "reason": "Installed parser rejects ISO AE; expression has no PH/SH tokens, so no country holiday calendar affects its requested-instant state. Asia/Dubai retained."
+    },
+    {
+      "date": "2027-07-17T02:00:00",
+      "expression": "Fr 20:00-04:00",
+      "expected": "open",
+      "actual": "open",
+      "country_requested": "AE",
+      "country_used": null,
+      "evaluated_local": "2027-07-17T02:00:00+04:00",
+      "reason": "Installed parser rejects ISO AE; expression has no PH/SH tokens, so no country holiday calendar affects its requested-instant state. Asia/Dubai retained."
+    },
+    {
+      "date": "2027-07-17T02:00:00",
+      "expression": "24/7; PH off",
+      "expected": "unknown",
+      "actual": "unknown",
+      "country_requested": "AE",
+      "country_used": "AE",
+      "evaluated_local": "2027-07-17T02:00:00+04:00",
+      "reason": "AE unsupported by installed parser; holiday tokens prevent a calendar-free fallback."
+    },
+    {
+      "date": "2027-07-17T02:00:00",
+      "expression": "Mo-Su 00:00-24:00; SH off",
+      "expected": "unknown",
+      "actual": "unknown",
+      "country_requested": "AE",
+      "country_used": "AE",
+      "evaluated_local": "2027-07-17T02:00:00+04:00",
+      "reason": "AE unsupported by installed parser; holiday tokens prevent a calendar-free fallback."
+    }
+  ],
+  "actual_positive_POI_rows": 274,
+  "all_actual_country_contexts_correct": true,
+  "actual_adapter": {
+    "version": "V9-local-instant-hours-cache-2-AE-calendar-safe",
+    "source_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/geo_opening_point_cache_v2.py",
+    "sha256": "aa5d816a3c83d31d8394563808fcee8ef4b715bf6cc432d50538afd1d764e6d8",
+    "scope": "Exact requested-instant is_open/is_closed and timezone. Only unsupported ISO AE and expressions without PH/SH use country=None, with explicit requested/used country and reason; PH/SH unknown. Optional next_change omitted."
+  },
+  "scope": "Requested local-instant parser correctness; no claim of physical/future opening or route accuracy."
+}

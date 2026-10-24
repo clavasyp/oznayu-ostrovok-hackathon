@@ -1,0 +1,23 @@
+{
+  "requested_at": "2026-10-24T13:43:03.867126+00:00",
+  "finished_at": "2026-10-24T13:43:05.465157+00:00",
+  "url": "https://marine-api.open-meteo.com/v1/marine?latitude=40.958336%2C40.958336%2C40.958336%2C41.208336&longitude=28.791672%2C29.041672%2C29.125015%2C29.125015&start_date=2025-11-01&end_date=2025-11-30&hourly=sea_surface_temperature&models=meteofrance_currents&cell_selection=sea&timezone=UTC",
+  "http_status": 200,
+  "bytes": 70307,
+  "sha256": "f83697e7959f33dbe774ae5b2c7d2196d0f70d262fe48615f1cd12e53a46ed9b",
+  "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/environment/raw/marine_istanbul_202511_cells_59f95f3ee1f685df0e.json",
+  "params": {
+    "latitude": "40.958336,40.958336,40.958336,41.208336",
+    "longitude": "28.791672,29.041672,29.125015,29.125015",
+    "start_date": "2025-11-01",
+    "end_date": "2025-11-30",
+    "hourly": "sea_surface_temperature",
+    "models": "meteofrance_currents",
+    "cell_selection": "sea",
+    "timezone": "UTC"
+  },
+  "n_locations": 4,
+  "conservative_weight_estimate": 8.571428571428571,
+  "license": "CC BY4.0; D22hackathonfreeAPI; productionpaidplan/selfhost required",
+  "elapsed_s": 1.5985734999994747
+}

@@ -1,0 +1,23 @@
+{
+  "requested_at": "2026-10-24T13:25:52.059744+00:00",
+  "finished_at": "2026-10-24T13:25:57.645200+00:00",
+  "url": "https://marine-api.open-meteo.com/v1/marine?latitude=43.791664&longitude=39.458344&start_date=2025-11-01&end_date=2025-11-30&hourly=sea_surface_temperature&models=meteofrance_currents&cell_selection=sea&timezone=UTC",
+  "http_status": 200,
+  "bytes": 17564,
+  "sha256": "4206f9333f3e11006faef51b8cdc00bfb791d7ad63d9011270f24b0bb021b86f",
+  "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/environment/raw/marine_sochi_202511_cells_605e101bb7db64b558.json",
+  "params": {
+    "latitude": "43.791664",
+    "longitude": "39.458344",
+    "start_date": "2025-11-01",
+    "end_date": "2025-11-30",
+    "hourly": "sea_surface_temperature",
+    "models": "meteofrance_currents",
+    "cell_selection": "sea",
+    "timezone": "UTC"
+  },
+  "n_locations": 1,
+  "conservative_weight_estimate": 2.142857142857143,
+  "license": "CC BY4.0; D22hackathonfreeAPI; productionpaidplan/selfhost required",
+  "elapsed_s": 5.584323791990755
+}

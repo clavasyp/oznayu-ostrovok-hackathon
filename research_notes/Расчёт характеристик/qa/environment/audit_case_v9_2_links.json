@@ -1,0 +1,12 @@
+[
+  {
+    "case_id": "ENV-B02-13736470-07",
+    "old_fact_id": "6485aa2d148d92132cc3ca45",
+    "new_fact_id": "06162fd1aac6779e3732022f"
+  },
+  {
+    "case_id": "ENV-B02-10012084-11",
+    "old_fact_id": "abef034dbf5f130a716648e8",
+    "new_fact_id": "0ed4c01ae202c50d1c464baa"
+  }
+]

@@ -1,0 +1,31 @@
+{
+  "at": "2026-10-24T14:10:56.517171+00:00",
+  "checks": 244,
+  "passed": 244,
+  "by_city": {
+    "sochi": 40,
+    "moscow": 64,
+    "spb": 28,
+    "kazan": 28,
+    "kaliningrad": 22,
+    "minsk": 24,
+    "istanbul": 19,
+    "dubai": 19
+  },
+  "by_feature": {
+    "C01": 64,
+    "C02": 64,
+    "C03": 64,
+    "N02": 52
+  },
+  "maximum_N02_difference_m": 0.007172912734858983,
+  "failed": [],
+  "skips": [
+    {
+      "city_id": "minsk",
+      "feature_id": "N02",
+      "reason": "no accepted building-distance output"
+    }
+  ],
+  "scope": "Arithmetic reproducibility on the same original inputs. Not independent-source gold, source completeness, feature precision/recall or physical distance error."
+}

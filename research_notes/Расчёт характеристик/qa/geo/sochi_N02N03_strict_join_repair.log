@@ -1,0 +1,213 @@
+/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/repair_building_axis_features.py:87: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+  projected = transform(tr.transform, geometry)
+/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/repair_building_axis_features.py:117: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+  footprint = transform(tr.transform, wkb.loads(building.get('geometry_wkb4326') or building.get('geometry_wkb') or building.get('building_geometry_wkb'), hex=True))
+{
+  "version": "V9-N02N03-strict-address-join-repair-1",
+  "city_id": "sochi",
+  "prepared_at": "2026-10-24T13:59:16.150140+00:00",
+  "published": true,
+  "affected_hotel_ids": [
+    "7725078",
+    "8085655"
+  ],
+  "final_building_match_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/sochi_building_matches.jsonl",
+  "final_building_match_sha256": "a991d1e23149f2d6a1614f478d512e09951b87be21d83d880c5b866f1c45174e",
+  "new_match_count_by_hotel": {
+    "7725078": 1,
+    "8085655": 1
+  },
+  "old_facts": 4559,
+  "new_facts": 4555,
+  "changes": [
+    {
+      "hotel_id": "7725078",
+      "feature_id": "N02",
+      "removed_subjects": [
+        {
+          "subject_id": "way/808856239",
+          "fact_id": "782f0f2b99de01b1386025ad",
+          "value": {
+            "distance_m": 729.8123233277215,
+            "target_id": "way/53731183",
+            "target_class": "secondary",
+            "target_name": "улица Ленина",
+            "building_id": "way/808856239"
+          },
+          "status": "computed"
+        }
+      ],
+      "new_subjects": [],
+      "retained_subject_ids": [
+        "way/53292016"
+      ]
+    },
+    {
+      "hotel_id": "7725078",
+      "feature_id": "N03",
+      "removed_subjects": [
+        {
+          "subject_id": "way/808856239",
+          "fact_id": "7250a568ec17801d1ca6557f",
+          "value": {
+            "distance_m": 1471.441693546726,
+            "target_id": "way/208285067",
+            "target_class": "rail",
+            "target_name": null,
+            "building_id": "way/808856239"
+          },
+          "status": "computed"
+        }
+      ],
+      "new_subjects": [],
+      "retained_subject_ids": [
+        "way/53292016"
+      ]
+    },
+    {
+      "hotel_id": "8085655",
+      "feature_id": "N02",
+      "removed_subjects": [
+        {
+          "subject_id": "way/80180198",
+          "fact_id": "9c5e9283b421e2d345f48ab4",
+          "value": {
+            "distance_m": 684.4686670957631,
+            "target_id": "way/53731183",
+            "target_class": "secondary",
+            "target_name": "улица Ленина",
+            "building_id": "way/80180198"
+          },
+          "status": "computed"
+        }
+      ],
+      "new_subjects": [],
+      "retained_subject_ids": [
+        "way/80180160"
+      ]
+    },
+    {
+      "hotel_id": "8085655",
+      "feature_id": "N03",
+      "removed_subjects": [
+        {
+          "subject_id": "way/80180198",
+          "fact_id": "9ec1c5a4a2edb484822b9d27",
+          "value": {
+            "distance_m": 1546.3930175174755,
+            "target_id": "way/38882650",
+            "target_class": "rail",
+            "target_name": null,
+            "building_id": "way/80180198"
+          },
+          "status": "computed"
+        }
+      ],
+      "new_subjects": [],
+      "retained_subject_ids": [
+        "way/80180160"
+      ]
+    }
+  ],
+  "recomputed_surviving_subjects": [
+    {
+      "hotel_id": "7725078",
+      "feature_id": "N02",
+      "subject_id": "way/53292016",
+      "retained_existing_subject": true,
+      "same_value_as_existing_subject": true,
+      "old_value": {
+        "distance_m": 758.4816086201872,
+        "target_id": "way/53731183",
+        "target_class": "secondary",
+        "target_name": "улица Ленина",
+        "building_id": "way/53292016"
+      },
+      "new_value": {
+        "distance_m": 758.4816086201872,
+        "target_id": "way/53731183",
+        "target_class": "secondary",
+        "target_name": "улица Ленина",
+        "building_id": "way/53292016"
+      }
+    },
+    {
+      "hotel_id": "7725078",
+      "feature_id": "N03",
+      "subject_id": "way/53292016",
+      "retained_existing_subject": true,
+      "same_value_as_existing_subject": true,
+      "old_value": {
+        "distance_m": 1475.6941520943578,
+        "target_id": "way/208285067",
+        "target_class": "rail",
+        "target_name": null,
+        "building_id": "way/53292016"
+      },
+      "new_value": {
+        "distance_m": 1475.6941520943578,
+        "target_id": "way/208285067",
+        "target_class": "rail",
+        "target_name": null,
+        "building_id": "way/53292016"
+      }
+    },
+    {
+      "hotel_id": "8085655",
+      "feature_id": "N02",
+      "subject_id": "way/80180160",
+      "retained_existing_subject": true,
+      "same_value_as_existing_subject": true,
+      "old_value": {
+        "distance_m": 683.8313739097382,
+        "target_id": "way/53731183",
+        "target_class": "secondary",
+        "target_name": "улица Ленина",
+        "building_id": "way/80180160"
+      },
+      "new_value": {
+        "distance_m": 683.8313739097382,
+        "target_id": "way/53731183",
+        "target_class": "secondary",
+        "target_name": "улица Ленина",
+        "building_id": "way/80180160"
+      }
+    },
+    {
+      "hotel_id": "8085655",
+      "feature_id": "N03",
+      "subject_id": "way/80180160",
+      "retained_existing_subject": true,
+      "same_value_as_existing_subject": true,
+      "old_value": {
+        "distance_m": 1530.3808440688222,
+        "target_id": "way/38882650",
+        "target_class": "rail",
+        "target_name": null,
+        "building_id": "way/80180160"
+      },
+      "new_value": {
+        "distance_m": 1530.3808440688222,
+        "target_id": "way/38882650",
+        "target_class": "rail",
+        "target_name": null,
+        "building_id": "way/80180160"
+      }
+    }
+  ],
+  "input_records_streamed": 258134,
+  "axis_geometry_counts": {
+    "N02": 1996,
+    "N03": 1008
+  },
+  "axis_load_seconds": 0.8675736669974867,
+  "full_geo_run_or_graph_executed": false,
+  "draft_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/sochi_N02N03_strict_join_repair_draft.jsonl",
+  "network_requests": 0,
+  "checkpoint": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/checkpoints/sochi_before_N02N03_strict_join_repair",
+  "unrelated_passport_lines_byte_identical": true,
+  "facts_sha256": "0ac67a1055150ddfd699872723635cc052db3b9ef6a50c54207ea61bbe1aa113",
+  "repair_seconds": 1.114520499992068,
+  "run_sha256": "389505c9de6f37d72932a6bbfd9863789d7ce648839d8eaeb4ab7e289d131075",
+  "passed": true
+}

@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Access Restricted | Radisson Hotel Group</title>
+    <script src="https://tags.tiqcdn.com/utag/carlson/rh-com/prod/utag.js" type="text/javascript" async=""></script>
+    <script>
+        /**
+        * COOKIE
+        * @type {Module pattern}
+        * @include:
+
+        */
+        var Cookie = (function () {
+
+           var config = {}
+
+           window.cookieDictionary = {
+              facilitatorId : 'facilitator-id',
+              altFacilitatorId : 'alt-facilitator-id',
+              siteId : 'merchantsite-id',
+              bookAndJoin: 'book-and-join',
+              ck: 'CK',
+              akamai: 'rhg-device-info',
+              firstSearchCompleted: 'first_search_completed',
+              subscriptionBrandPreference: 'subscription-brand-preference',
+              bannerAppDismissed: 'banner-app-dismissed',
+              cookiesAcceptedKey: 'cookies-accepted',
+              previousUrlKey: 'previous-url'
+           };
+
+           var set = function(name, value) {
+              if (!name) {
+                 return;
+              }
+
+             document.cookie = [
+                _encode(name), '=', value,
+              ].join('')
+           }
+
+           var create = function (name, value, options) {
+              Cookie.set(name, value, options);
+              return Cookie.read('authorization_token') || null;
+           };
+
+           var read = function (name) {
+              var cookies = document.cookie ? document.cookie.split('; ') : [];
+              var result;
+
+              for (i = 0; i < cookies.length; i++) {
+                 var parts = cookies[i].split('=');
+                 var cookieName = _decode(parts.shift());
+                 var cookieValue = parts.join('=');
+
+                 if (name == cookieName) {
+                    result = cookieValue;
+                    break;
+                 }
+              }
+
+              return result;
+           };
+
+           var remove = function (name, options) {
+              if (!name) {
+                 return;
+              }
+
+              var pastDate = new Date();
+              pastDate.setDate(pastDate.getDate() - 1);
+
+              return create(name, '', $.extend({}, options, { expires: pastDate }));
+           };
+
+           var _encode = function (value) {
+              return encodeURIComponent(value);
+           }
+
+           var _decode = function (value) {
+              return decodeURIComponent(value);
+           }
+
+           var readDeviceCookie = function () {
+
+              if (!Cookie.read("rhg-device-info")) return;
+              let cookieQuery = new URLSearchParams(Cookie.read("rhg-device-info"));
+
+              if (cookieQuery.get("is_mobile") == "true") {
+                 return "mobile";
+              }
+              else if (cookieQuery.get("is_tablet") == "true") {
+                 return "tablet";
+              }
+              else return "desktop";
+           }
+
+           return {
+              create: create,
+              read: read,
+              readDeviceCookie: readDeviceCookie,
+              remove: remove,
+              set: set
+           };
+
+        })()
+    </script>
+    <style>
+        :root {
+            --primary-color: #222222;
+            --accent-color: #9e8a5b;
+            --text-main: #333333;
+            --text-muted: #666666;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-image: linear-gradient(rgba(0,0,0,0.10), rgba(0,0,0,0.10)), url("https://statics.radissonhotels.com/main/img/doorknob.jpg");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            color: var(--white);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .logo {
+            max-width: 220px;
+            height: auto;
+            margin-bottom: 30px;
+            filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.3));
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.90);
+            padding: 40px;
+            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            text-align: left;
+            color: var(--text-main);
+        }
+
+        h1 {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin: 0 0 15px 0;
+            letter-spacing: -0.5px;
+        }
+
+        .alert-text {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .steps-section h3 {
+            font-size: 18px;
+            margin-bottom: 12px;
+            color: var(--primary-color);
+        }
+
+        .steps-list {
+            padding-left: 1.2rem;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+
+        .steps-list li {
+            margin-bottom: 8px;
+        }
+
+        /* App Promotion Section */
+        .app-promo {
+            background: #F0F0F0;
+            border-radius: 8px;
+            padding: 20px;
+            display: flex;
+            align-items: anchor-center;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+
+        .qr-box {
+            flex-shrink: 0;
+            background: white;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .qr-img { width: 80px; height: 80px; display: block; }
+
+        .app-content h3 {
+            font-size: 14px;
+            margin: 0 0 5px 0;
+            color: var(--primary-color);
+        }
+
+        .app-content p {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin: 0 0 12px 0;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background: var(--primary-color);
+            color: var(--white);
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+
+        .btn-primary:hover { background: var(--accent-color); }
+
+        /* Support Grid */
+        .support-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            border-top: 1px;
+        }
+
+        .support-item span {
+            display: block;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #888;
+            margin-bottom: 2px;
+        }
+        span{
+        font-size: 12px;
+        }
+
+        .support-item a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+
+        .support-item a:hover { color: var(--accent-color); }
+
+        /* Technical Footer */
+        .tech-details {
+            margin-top: 20px;
+            align-items: center;
+            font-size: 12px;
+            color: #999;
+        }
+        .support-header {
+        grid-column: 1 / -1; /* Makes "Need help?" span across both columns */
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 10px;
+        color: var(--primary-color);
+        }
+
+        .tech-details strong { color: #888; }
+
+        footer {
+            margin-top: 30px;
+            font-size: 12px;
+            color: rgba(255,255,255,0.8);
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        }
+
+
+    </style>
+
+<script>(window.BOOMR_mq=window.BOOMR_mq||[]).push(["addVar",{"rua.upush":"false","rua.cpush":"false","rua.upre":"false","rua.cpre":"false","rua.uprl":"false","rua.cprl":"false","rua.cprf":"false","rua.trans":"","rua.cook":"false","rua.ims":"false","rua.ufprl":"false","rua.cfprl":"false","rua.isuxp":"false","rua.texp":"norulematch","rua.ceh":"false","rua.ueh":"false","rua.ieh.st":"0"}]);</script>
+                                <script>!function(a){var e="https://s.go-mpulse.net/boomerang/",t="addEventListener";if(""=="True")a.BOOMR_config=a.BOOMR_config||{},a.BOOMR_config.PageParams=a.BOOMR_config.PageParams||{},a.BOOMR_config.PageParams.pci=!0,e="https://s2.go-mpulse.net/boomerang/";if(window.BOOMR_API_key="G2XZU-QLPA9-MKHVD-WHFXL-EK9LZ",function(){function n(e){a.BOOMR_onload=e&&e.timeStamp||(new Date).getTime()}if(!a.BOOMR||!a.BOOMR.version&&!a.BOOMR.snippetExecuted){a.BOOMR=a.BOOMR||{},a.BOOMR.snippetExecuted=!0;var i,_,o,r=document.createElement("iframe");if(a[t])a[t]("load",n,!1);else if(a.attachEvent)a.attachEvent("onload",n);r.src="javascript:void(0)",r.title="",r.role="presentation",(r.frameElement||r).style.cssText="width:0;height:0;border:0;display:none;",o=document.getElementsByTagName("script")[0],o.parentNode.insertBefore(r,o);try{_=r.contentWindow.document}catch(O){i=document.domain,r.src="javascript:var d=document.open();d.domain='"+i+"';void(0);",_=r.contentWindow.document}_.open()._l=function(){var a=this.createElement("script");if(i)this.domain=i;a.id="boomr-if-as",a.src=e+"G2XZU-QLPA9-MKHVD-WHFXL-EK9LZ",BOOMR_lstart=(new Date).getTime(),this.body.appendChild(a)},_.write("<bo"+'dy onload="document._l();">'),_.close()}}(),"".length>0)if(a&&"performance"in a&&a.performance&&"function"==typeof a.performance.setResourceTimingBufferSize)a.performance.setResourceTimingBufferSize();!function(){if(BOOMR=a.BOOMR||{},BOOMR.plugins=BOOMR.plugins||{},!BOOMR.plugins.AK){var e=""=="true"?1:0,t="",n="zsulx2yxfz4c22w4cqda-f-3a791e00e-clientnsv4-s.akamaihd.net",i="false"=="true"?2:1,_={"ak.v":"41","ak.cp":"346728","ak.ai":parseInt("508714",10),"ak.ol":"0","ak.cr":53,"ak.ipv":4,"ak.proto":"h2","ak.rid":"9497262","ak.r":48863,"ak.a2":e,"ak.m":"","ak.n":"essl","ak.cport":49572,"ak.gh":"2.23.186.35","ak.quicv":"","ak.tlsv":"tls1.3","ak.0rtt":"","ak.0rtt.ed":"","ak.csrc":"-","ak.acc":"","ak.t":"1792807942","ak.ak":"hOBiQwZUYzCg5VSAfCLimQ==gcgoM1ESHJy/LZZE8p0gwNeC9IMymqDMGGYE99aspcx9yYJsKMqBasY9kbM4VTYxQkNndP7ux/HNcxx6z4ykE6JP57ORM/zZGBD/9obqAA72ekPqPzbjNZxwgdJtUn+kxdih69CGQ52NtW8F7z2TGJTdnZ30EFLVYJNPvhrv9nx9UMqQGXEr/a7TUPFUvPz6cdfKYnfrpqmyffOuNu1M/HDCwH3t4D1VXVg+EszA0tiWerhKVP6JFLrQozLegMTasxLRiM2r8YwvEJD+cvZ6LD6i4V/D911shTgfRogzxnjjq/ysaw8MxPJ/z/M6cnsiGayR8hID4G43J3AY5t5UBV8EmYtuMFIV1LwXRQ2ayUl922NalVExfXA+00+TWUgCg3RWJEJW1YdLUiZeyC10mfMs1X+T2RUzXKQ0v+aK4pE=","ak.pv":"646","ak.dpoabenc":"","ak.tf":i};if(""!==t)_["ak.ruds"]=t;var o={i:!1,av:function(e){var t="http.initiator";if(e&&(!e[t]||"spa_hard"===e[t]))_["ak.feo"]=void 0!==a.aFeoApplied?1:0,BOOMR.addVar(_)},rv:function(){var a=["ak.cport","ak.cr","ak.csrc","ak.gh","ak.ipv","ak.m","ak.n","ak.ol","ak.proto","ak.quicv","ak.tlsv","ak.0rtt","ak.0rtt.ed","ak.r","ak.acc","ak.t","ak.tf"];BOOMR.removeVar(a)}};BOOMR.plugins.AK={akVars:_,akDNSPreFetchDomain:n,init:function(){if(!o.i){var a=BOOMR.subscribe;a("before_beacon",o.av,null,null),a("onbeacon",o.rv,null,null),o.i=!0}return this},is_complete:function(){return!0}}}}()}(window);</script></head>
+<body>
+
+<div class="container">
+    <div class="logo-header">
+        <img src="https://rawcdn.githack.com/Radisson-DXCoE/RadissonCDN/e802ad91ee6883e1989ba3365a7d56fe9a1730f2/logo.png" class="logo" alt="Radisson">
+    </div>
+
+    <div class="card">
+        <h1>Your access has been restricted</h1>
+        <p class="alert-text">
+            For security reasons, your access to this page has been temporarily restricted. This may be due to automated detection.
+        </p>
+
+        <section class="steps-section">
+            <h3>How to resolve this:</h3>
+            <ul class="steps-list">
+                <li><strong>Clear Cookies:</strong> Clear browser cookies and cache.</li>
+                <li><strong>Disconnect VPN:</strong> Disable any active VPNs or Proxies.</li>
+                <li><strong>Update Browser:</strong> Ensure your browser is on the latest version or switch to a different browser (e.g., Chrome, Firefox, or Edge).</li>
+                <li><strong>Disable Extensions:</strong> Turn off extensions that may interfere with network headers or script execution.</li>
+            </ul>
+        </section>
+
+        <div class="app-promo">
+            <div class="qr-box">
+                <img src="https://media.radissonhotels.net/image/radisson-hotels-app/promotional/16256-142038-m41881791.png" class="qr-img" alt="QR Code">
+            </div>
+            <div class="app-content">
+                <h3>Encountering issues?</h3>
+                <p>Skip the wait and book instantly via our secure mobile app with Member Only rates.</p>
+                <a href="https://www.radissonhotels.com/app-403-landing-page" class="btn-primary" target="_blank">Continue in App</a>
+            </div>
+        </div>
+
+
+        <div class="support-grid">
+            <div class="support-header">Need help?</div>
+            <div class="support-item">
+                <span>Europe</span>
+                <a href="tel:+35315138380">+353 1 513 8380</a>
+            </div>
+            <div class="support-item">
+                <span>Asia Pacific</span>
+                <a href="tel:+14024150664">+1 402 415 0664</a>
+            </div>
+            <div class="support-item">
+                <span>EMEA</span>
+                <a href="tel:+35315138373">+353 1 513 8373</a>
+            </div>
+        </div>
+
+        <div class="tech-details">
+			<p id="yourip"><strong>Your IP:</strong> 204.168.187.235</p>
+            <p id="referror"><strong>Ref Error:</strong> 18.23ba1702.1792807942.9497262</p>
+            
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 Radisson Hotel Group. All rights reserved.
+    </footer>
+</div>
+<script>
+
+    let cookieQuery = new URLSearchParams(Cookie.read("rhg-device-info"));
+    var errorElement = document.getElementById('referror');
+    var extracted_akamai_str = errorElement ? errorElement.textContent.split(': ')[1] : "No Error String";
+
+    var utag_data = {
+       "adobe_event": "error_message",
+       "device_type": Cookie.readDeviceCookie(),
+       "user_agent_info": navigator.userAgent,
+       "facilitator_id": Cookie.read('facilitator_id'),
+       "alt_facilitator_id": Cookie.read('alt_facilitator_id'),
+       "error_code": 403,
+       "error_message": "fobidden error 403",
+       "page_name": "error 403",
+       "transactionId": "${transactionId}",
+       "akamai_error_str": extracted_akamai_str,
+       "page_url": window.location.href,
+       "previous_page_name":document.referrer
+
+    }
+
+    var getEnvironment = function () {
+
+       let url = window.location.href;
+       var head = document.getElementsByTagName('head')[0];
+       var script = document.createElement('script');
+       script.type = 'text/javascript';
+    } ()
+</script>
+
+</body>
+</html>

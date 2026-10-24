@@ -1,0 +1,275 @@
+{
+  "version": "V9-N02N03-strict-address-join-repair-1",
+  "city_id": "sochi",
+  "prepared_at": "2026-10-24T13:59:16.150140+00:00",
+  "published": true,
+  "affected_hotel_ids": [
+    "7725078",
+    "8085655"
+  ],
+  "final_building_match_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/sochi_building_matches.jsonl",
+  "final_building_match_sha256": "a991d1e23149f2d6a1614f478d512e09951b87be21d83d880c5b866f1c45174e",
+  "new_match_count_by_hotel": {
+    "7725078": 1,
+    "8085655": 1
+  },
+  "old_facts": 4559,
+  "new_facts": 4555,
+  "changes": [
+    {
+      "hotel_id": "7725078",
+      "feature_id": "N02",
+      "removed_subjects": [
+        {
+          "subject_id": "way/808856239",
+          "fact_id": "782f0f2b99de01b1386025ad",
+          "value": {
+            "distance_m": 729.8123233277215,
+            "target_id": "way/53731183",
+            "target_class": "secondary",
+            "target_name": "улица Ленина",
+            "building_id": "way/808856239"
+          },
+          "status": "computed"
+        }
+      ],
+      "new_subjects": [],
+      "retained_subject_ids": [
+        "way/53292016"
+      ]
+    },
+    {
+      "hotel_id": "7725078",
+      "feature_id": "N03",
+      "removed_subjects": [
+        {
+          "subject_id": "way/808856239",
+          "fact_id": "7250a568ec17801d1ca6557f",
+          "value": {
+            "distance_m": 1471.441693546726,
+            "target_id": "way/208285067",
+            "target_class": "rail",
+            "target_name": null,
+            "building_id": "way/808856239"
+          },
+          "status": "computed"
+        }
+      ],
+      "new_subjects": [],
+      "retained_subject_ids": [
+        "way/53292016"
+      ]
+    },
+    {
+      "hotel_id": "8085655",
+      "feature_id": "N02",
+      "removed_subjects": [
+        {
+          "subject_id": "way/80180198",
+          "fact_id": "9c5e9283b421e2d345f48ab4",
+          "value": {
+            "distance_m": 684.4686670957631,
+            "target_id": "way/53731183",
+            "target_class": "secondary",
+            "target_name": "улица Ленина",
+            "building_id": "way/80180198"
+          },
+          "status": "computed"
+        }
+      ],
+      "new_subjects": [],
+      "retained_subject_ids": [
+        "way/80180160"
+      ]
+    },
+    {
+      "hotel_id": "8085655",
+      "feature_id": "N03",
+      "removed_subjects": [
+        {
+          "subject_id": "way/80180198",
+          "fact_id": "9ec1c5a4a2edb484822b9d27",
+          "value": {
+            "distance_m": 1546.3930175174755,
+            "target_id": "way/38882650",
+            "target_class": "rail",
+            "target_name": null,
+            "building_id": "way/80180198"
+          },
+          "status": "computed"
+        }
+      ],
+      "new_subjects": [],
+      "retained_subject_ids": [
+        "way/80180160"
+      ]
+    }
+  ],
+  "recomputed_surviving_subjects": [
+    {
+      "hotel_id": "7725078",
+      "feature_id": "N02",
+      "subject_id": "way/53292016",
+      "retained_existing_subject": true,
+      "same_value_as_existing_subject": true,
+      "old_value": {
+        "distance_m": 758.4816086201872,
+        "target_id": "way/53731183",
+        "target_class": "secondary",
+        "target_name": "улица Ленина",
+        "building_id": "way/53292016"
+      },
+      "new_value": {
+        "distance_m": 758.4816086201872,
+        "target_id": "way/53731183",
+        "target_class": "secondary",
+        "target_name": "улица Ленина",
+        "building_id": "way/53292016"
+      }
+    },
+    {
+      "hotel_id": "7725078",
+      "feature_id": "N03",
+      "subject_id": "way/53292016",
+      "retained_existing_subject": true,
+      "same_value_as_existing_subject": true,
+      "old_value": {
+        "distance_m": 1475.6941520943578,
+        "target_id": "way/208285067",
+        "target_class": "rail",
+        "target_name": null,
+        "building_id": "way/53292016"
+      },
+      "new_value": {
+        "distance_m": 1475.6941520943578,
+        "target_id": "way/208285067",
+        "target_class": "rail",
+        "target_name": null,
+        "building_id": "way/53292016"
+      }
+    },
+    {
+      "hotel_id": "8085655",
+      "feature_id": "N02",
+      "subject_id": "way/80180160",
+      "retained_existing_subject": true,
+      "same_value_as_existing_subject": true,
+      "old_value": {
+        "distance_m": 683.8313739097382,
+        "target_id": "way/53731183",
+        "target_class": "secondary",
+        "target_name": "улица Ленина",
+        "building_id": "way/80180160"
+      },
+      "new_value": {
+        "distance_m": 683.8313739097382,
+        "target_id": "way/53731183",
+        "target_class": "secondary",
+        "target_name": "улица Ленина",
+        "building_id": "way/80180160"
+      }
+    },
+    {
+      "hotel_id": "8085655",
+      "feature_id": "N03",
+      "subject_id": "way/80180160",
+      "retained_existing_subject": true,
+      "same_value_as_existing_subject": true,
+      "old_value": {
+        "distance_m": 1530.3808440688222,
+        "target_id": "way/38882650",
+        "target_class": "rail",
+        "target_name": null,
+        "building_id": "way/80180160"
+      },
+      "new_value": {
+        "distance_m": 1530.3808440688222,
+        "target_id": "way/38882650",
+        "target_class": "rail",
+        "target_name": null,
+        "building_id": "way/80180160"
+      }
+    }
+  ],
+  "input_records_streamed": 258134,
+  "axis_geometry_counts": {
+    "N02": 1996,
+    "N03": 1008
+  },
+  "axis_load_seconds": 0.8675736669974867,
+  "effective_axis_input_manifest": {
+    "built_at": "2026-10-24T02:11:41.889278+00:00",
+    "source_file": "/Users/turgov/Хакатон/research_notes/Аудит данных 8 городов/raw/russia_southern-fed-district.osm.pbf",
+    "source_date": "2026-10-22T20:21:33Z",
+    "bbox": [
+      39.15,
+      43.35,
+      40.5,
+      44.05
+    ],
+    "rows": 258134,
+    "geometry_errors_region": 0,
+    "seconds": 40.32629695899959,
+    "sha256": "21d445fd9bfd6b1fef4e204dc9ff7a4ae418d66888b9ee13e65d5ef030ffe854",
+    "bytes": 154187579,
+    "license": "ODbL1.0",
+    "license_url": "https://www.openstreetmap.org/copyright",
+    "new_network_requests": 0,
+    "limitations": "First vertex candidate filter can miss large polygons crossing bbox with starting vertex outside; ordinary local roads/buildings within bbox covered; not complete official municipal inventory.",
+    "sha256_kind": "composite SHA256 of ordered road/rail input path+SHA manifests, not file hash",
+    "input_files": [
+      {
+        "snapshot_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/cohort/osm_sochi_extended.jsonl",
+        "sha256": "096c311507e0233200dbf5b458e53564a44ac7f10a7fb9644581257781b785f7"
+      }
+    ],
+    "scope": "N02/N03 axis layers only. No pedestrian graph/node supplement is required for footprint-to-axis distance."
+  },
+  "full_geo_run_or_graph_executed": false,
+  "source_code_versions": {
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/repair_building_axis_features.py": {
+      "sha256": "15d4e99a6362be7c391a1e075265e85061995e9f4f074a31cfa3d35d633c70d9",
+      "exact_archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/15d4e99a6362be7c391a1e075265e85061995e9f4f074a31cfa3d35d633c70d9.py"
+    },
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/geo.py": {
+      "sha256": "e575c51e28cbc3905eadb4e4d628005b9fad99031301a741d0477c80e73473ad",
+      "exact_archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/e575c51e28cbc3905eadb4e4d628005b9fad99031301a741d0477c80e73473ad.py"
+    },
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/common.py": {
+      "sha256": "76696ba92b64aab7ceef9bf255872bbc943311c0cde886098dffe8773d6637eb",
+      "exact_archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/76696ba92b64aab7ceef9bf255872bbc943311c0cde886098dffe8773d6637eb.py"
+    },
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/facades.py": {
+      "sha256": "14b8c3ea8f4791400fa7cf0ebe5788992f2d16b03f2029de4ac85bf80c3108a6",
+      "exact_archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/14b8c3ea8f4791400fa7cf0ebe5788992f2d16b03f2029de4ac85bf80c3108a6.py"
+    }
+  },
+  "draft_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/sochi_N02N03_strict_join_repair_draft.jsonl",
+  "old_geo_file_sha256": {
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/sochi_beach_targets.jsonl": "7b2c2be935e6ea5c96b2cdd8cd90f52be7e578d7793328a9b65a511211e3bb7a",
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/sochi_all_selected_routes.jsonl": "28ff06bc66706e6fca6d77bcacb7d61faaa730654db8175cf1ed4f345173baac",
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/sochi_beach_classifications.jsonl": "0e1f94184dd1aae9e423a84344a412d26cc7bfcb9a6b4fa49abcc94e0a7e7ecd",
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/sochi_marine_targets_with_fallback.jsonl": "f9398ef2bef548b097631e71314da3e0c6b5afd8affd9df77265d1f86ea6f26d",
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/sochi_blocked_nodes.jsonl": "a8d790ff5f5554d969a36188c0e1c8218f86e23d99867a2d1127d84293eada50",
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/sochi_routes.jsonl": "6b6eb77b88172b5346cb76831195478a240c52c322f299a3863b0b394e748924",
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/sochi_poi_audit.jsonl": "d35b5e28cf829eff30bdbf0d132f8fc5b463fd77e9e5eafd28f6dd18e3af9cb9",
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/sochi_facts.jsonl": "7cf2886db72218b85fa558ed581a597082c9c03fc11900a436c9e3d2626579b3",
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/sochi_run.json": "263462eabf6548eb7f96429cab46543e15333c31c4e53919179eb250e2cb3565"
+  },
+  "network_requests": 0,
+  "checkpoint": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/checkpoints/sochi_before_N02N03_strict_join_repair",
+  "unrelated_passport_lines_byte_identical": true,
+  "all_other_geo_files_byte_identical": {
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/sochi_beach_targets.jsonl": true,
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/sochi_all_selected_routes.jsonl": true,
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/sochi_beach_classifications.jsonl": true,
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/sochi_marine_targets_with_fallback.jsonl": true,
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/sochi_blocked_nodes.jsonl": true,
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/sochi_routes.jsonl": true,
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/sochi_poi_audit.jsonl": true
+  },
+  "facts_sha256": "0ac67a1055150ddfd699872723635cc052db3b9ef6a50c54207ea61bbe1aa113",
+  "repair_seconds": 1.114520499992068,
+  "run_sha256": "389505c9de6f37d72932a6bbfd9863789d7ce648839d8eaeb4ab7e289d131075",
+  "passed": true
+}

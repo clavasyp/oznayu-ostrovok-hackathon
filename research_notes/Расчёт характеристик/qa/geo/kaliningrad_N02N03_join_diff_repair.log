@@ -1,0 +1,1178 @@
+/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/repair_building_axis_features_v2.py:100: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+  projected = transform(tr.transform, geometry)
+/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/repair_building_axis_features_v2.py:130: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+  footprint = transform(tr.transform, wkb.loads(building.get('geometry_wkb4326') or building.get('geometry_wkb') or building.get('building_geometry_wkb'), hex=True))
+{
+  "version": "V9-N02N03-building-join-diff-repair-2",
+  "city_id": "kaliningrad",
+  "prepared_at": "2026-10-24T14:04:16.739897+00:00",
+  "published": true,
+  "affected_hotel_ids": [
+    "13647475",
+    "6433023",
+    "6495862",
+    "6584253",
+    "6622308",
+    "6659688",
+    "6815752",
+    "6840526",
+    "7057327",
+    "7719161",
+    "7783969",
+    "7891109",
+    "8746742"
+  ],
+  "previous_building_match_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/facades/archive/address_repair_20261024T135705Z/results/facades/kaliningrad_building_matches.jsonl",
+  "previous_building_match_sha256": "cfde8d031599c40fb8881e84d0a5a3cbd73d840f08fdb9b9bb50b41d8a0736b9",
+  "affected_selection_rule": "All cohort hotels whose accepted building ID+geometry sets differ between previous and FINAL snapshots; not a hardcoded hotel list.",
+  "final_building_match_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/kaliningrad_building_matches.jsonl",
+  "final_building_match_sha256": "2dfbe141f26db5ff27e7a86c9faf8465d104d74d8471683305ceb9c974ab568e",
+  "new_match_count_by_hotel": {
+    "6433023": 1,
+    "7891109": 1,
+    "6622308": 1,
+    "6815752": 1,
+    "7057327": 1,
+    "6840526": 1,
+    "6584253": 1,
+    "6659688": 1,
+    "7719161": 1,
+    "13647475": 0,
+    "7783969": 1,
+    "8746742": 1,
+    "6495862": 1
+  },
+  "old_facts": 2556,
+  "new_facts": 2554,
+  "changes": [
+    {
+      "hotel_id": "13647475",
+      "feature_id": "N02",
+      "removed_subjects": [
+        {
+          "subject_id": "way/39386693",
+          "fact_id": "17fb9e46174ad9444913847c",
+          "value": {
+            "distance_m": 8.941870844046322,
+            "target_id": "way/42758174",
+            "target_class": "secondary",
+            "target_name": "Свободная улица",
+            "building_id": "way/39386693"
+          },
+          "status": "computed"
+        }
+      ],
+      "new_subjects": [
+        {
+          "subject_id": "hotel:13647475",
+          "fact_id": "b979110fb31fc02ae6c58eaa",
+          "value": null,
+          "status": "unknown",
+          "unknown_reason": "verified_hotel_building_footprint_rejected_or_unconfirmed_by_strict_full_address_corpus_gate"
+        }
+      ],
+      "retained_subject_ids": []
+    },
+    {
+      "hotel_id": "13647475",
+      "feature_id": "N03",
+      "removed_subjects": [
+        {
+          "subject_id": "way/39386693",
+          "fact_id": "438b60055cdd321fbee58dc8",
+          "value": {
+            "distance_m": 124.87039917627291,
+            "target_id": "way/464709374",
+            "target_class": "tram",
+            "target_name": null,
+            "building_id": "way/39386693"
+          },
+          "status": "computed"
+        }
+      ],
+      "new_subjects": [
+        {
+          "subject_id": "hotel:13647475",
+          "fact_id": "74480be2d7cc8bfec53c8e25",
+          "value": null,
+          "status": "unknown",
+          "unknown_reason": "verified_hotel_building_footprint_rejected_or_unconfirmed_by_strict_full_address_corpus_gate"
+        }
+      ],
+      "retained_subject_ids": []
+    },
+    {
+      "hotel_id": "6433023",
+      "feature_id": "N02",
+      "removed_subjects": [
+        {
+          "subject_id": "hotel:6433023",
+          "fact_id": "e650e531fd9cb40847a6d105",
+          "value": null,
+          "status": "unknown"
+        }
+      ],
+      "new_subjects": [
+        {
+          "subject_id": "way/193281686",
+          "fact_id": "4afe6ade80e3b3ff5d4ca174",
+          "value": {
+            "distance_m": 64.64222476663883,
+            "target_id": "way/980161366",
+            "target_class": "primary",
+            "target_name": "Советский проспект",
+            "building_id": "way/193281686"
+          },
+          "status": "computed",
+          "unknown_reason": null
+        }
+      ],
+      "retained_subject_ids": []
+    },
+    {
+      "hotel_id": "6433023",
+      "feature_id": "N03",
+      "removed_subjects": [
+        {
+          "subject_id": "hotel:6433023",
+          "fact_id": "f1d479e84f4d665ccdfb7602",
+          "value": null,
+          "status": "unknown"
+        }
+      ],
+      "new_subjects": [
+        {
+          "subject_id": "way/193281686",
+          "fact_id": "eeebbe298a9d2cf4deae79d3",
+          "value": {
+            "distance_m": 108.1755291537915,
+            "target_id": "way/91277967",
+            "target_class": "tram",
+            "target_name": null,
+            "building_id": "way/193281686"
+          },
+          "status": "computed",
+          "unknown_reason": null
+        }
+      ],
+      "retained_subject_ids": []
+    },
+    {
+      "hotel_id": "6495862",
+      "feature_id": "N02",
+      "removed_subjects": [
+        {
+          "subject_id": "hotel:6495862",
+          "fact_id": "5513c0f81a24bacab6459019",
+          "value": null,
+          "status": "unknown"
+        }
+      ],
+      "new_subjects": [
+        {
+          "subject_id": "way/134875794",
+          "fact_id": "7899ead8c8aa7c7c8af8a2ae",
+          "value": {
+            "distance_m": 88.3307249835688,
+            "target_id": "way/723879882",
+            "target_class": "primary",
+            "target_name": "улица Горького",
+            "building_id": "way/134875794"
+          },
+          "status": "computed",
+          "unknown_reason": null
+        }
+      ],
+      "retained_subject_ids": []
+    },
+    {
+      "hotel_id": "6495862",
+      "feature_id": "N03",
+      "removed_subjects": [
+        {
+          "subject_id": "hotel:6495862",
+          "fact_id": "bc75a7d1c18caecfdf0be718",
+          "value": null,
+          "status": "unknown"
+        }
+      ],
+      "new_subjects": [
+        {
+          "subject_id": "way/134875794",
+          "fact_id": "08be5b15f521890490d0425e",
+          "value": {
+            "distance_m": 1324.2986739340138,
+            "target_id": "way/335233181",
+            "target_class": "rail",
+            "target_name": null,
+            "building_id": "way/134875794"
+          },
+          "status": "computed",
+          "unknown_reason": null
+        }
+      ],
+      "retained_subject_ids": []
+    },
+    {
+      "hotel_id": "6584253",
+      "feature_id": "N02",
+      "removed_subjects": [
+        {
+          "subject_id": "hotel:6584253",
+          "fact_id": "acf1551c7caa706e8f7e71f7",
+          "value": null,
+          "status": "unknown"
+        }
+      ],
+      "new_subjects": [
+        {
+          "subject_id": "way/390659065",
+          "fact_id": "651db5955728affe218e3d13",
+          "value": {
+            "distance_m": 23.854222862257878,
+            "target_id": "way/231203399",
+            "target_class": "primary",
+            "target_name": "улица Горького",
+            "building_id": "way/390659065"
+          },
+          "status": "computed",
+          "unknown_reason": null
+        }
+      ],
+      "retained_subject_ids": []
+    },
+    {
+      "hotel_id": "6584253",
+      "feature_id": "N03",
+      "removed_subjects": [
+        {
+          "subject_id": "hotel:6584253",
+          "fact_id": "e0aff97e02ef13150a18e95b",
+          "value": null,
+          "status": "unknown"
+        }
+      ],
+      "new_subjects": [
+        {
+          "subject_id": "way/390659065",
+          "fact_id": "aeca2af2ad702eb7d657a8b9",
+          "value": {
+            "distance_m": 163.6373569865158,
+            "target_id": "way/52587484",
+            "target_class": "rail",
+            "target_name": null,
+            "building_id": "way/390659065"
+          },
+          "status": "computed",
+          "unknown_reason": null
+        }
+      ],
+      "retained_subject_ids": []
+    },
+    {
+      "hotel_id": "6622308",
+      "feature_id": "N02",
+      "removed_subjects": [
+        {
+          "subject_id": "hotel:6622308",
+          "fact_id": "d38417e568e4ee327318a21e",
+          "value": null,
+          "status": "unknown"
+        }
+      ],
+      "new_subjects": [
+        {
+          "subject_id": "way/135511280",
+          "fact_id": "122751f2086d66879457b490",
+          "value": {
+            "distance_m": 173.23238866809731,
+            "target_id": "way/169303561",
+            "target_class": "secondary",
+            "target_name": "проспект Мира",
+            "building_id": "way/135511280"
+          },
+          "status": "computed",
+          "unknown_reason": null
+        }
+      ],
+      "retained_subject_ids": []
+    },
+    {
+      "hotel_id": "6622308",
+      "feature_id": "N03",
+      "removed_subjects": [
+        {
+          "subject_id": "hotel:6622308",
+          "fact_id": "4a566468b7bbf9c149c72848",
+          "value": null,
+          "status": "unknown"
+        }
+      ],
+      "new_subjects": [
+        {
+          "subject_id": "way/135511280",
+          "fact_id": "d546ac0f2420d034dd365077",
+          "value": {
+            "distance_m": 659.1417813562429,
+            "target_id": "way/93937403",
+            "target_class": "tram",
+            "target_name": null,
+            "building_id": "way/135511280"
+          },
+          "status": "computed",
+          "unknown_reason": null
+        }
+      ],
+      "retained_subject_ids": []
+    },
+    {
+      "hotel_id": "6659688",
+      "feature_id": "N02",
+      "removed_subjects": [
+        {
+          "subject_id": "hotel:6659688",
+          "fact_id": "397751d828b8a87366802d8b",
+          "value": null,
+          "status": "unknown"
+        }
+      ],
+      "new_subjects": [
+        {
+          "subject_id": "way/175185576",
+          "fact_id": "0c33782689de9ef68225ee74",
+          "value": {
+            "distance_m": 114.14328759248266,
+            "target_id": "way/832609505",
+            "target_class": "primary",
+            "target_name": "улица Дмитрия Донского",
+            "building_id": "way/175185576"
+          },
+          "status": "computed",
+          "unknown_reason": null
+        }
+      ],
+      "retained_subject_ids": []
+    },
+    {
+      "hotel_id": "6659688",
+      "feature_id": "N03",
+      "removed_subjects": [
+        {
+          "subject_id": "hotel:6659688",
+          "fact_id": "9c29b5845382f12b1d0cdbf9",
+          "value": null,
+          "status": "unknown"
+        }
+      ],
+      "new_subjects": [
+        {
+          "subject_id": "way/175185576",
+          "fact_id": "efd7c76bc212fe580a0c40a7",
+          "value": {
+            "distance_m": 270.4999169558357,
+            "target_id": "way/74948778",
+            "target_class": "rail",
+            "target_name": null,
+            "building_id": "way/175185576"
+          },
+          "status": "computed",
+          "unknown_reason": null
+        }
+      ],
+      "retained_subject_ids": []
+    },
+    {
+      "hotel_id": "6815752",
+      "feature_id": "N02",
+      "removed_subjects": [
+        {
+          "subject_id": "hotel:6815752",
+          "fact_id": "df4a1d78daae71ddfdc448cd",
+          "value": null,
+          "status": "unknown"
+        }
+      ],
+      "new_subjects": [
+        {
+          "subject_id": "way/103168130",
+          "fact_id": "8dcac3c94072cd77a7702e1b",
+          "value": {
+            "distance_m": 79.77442901482817,
+            "target_id": "way/222850527",
+            "target_class": "primary",
+            "target_name": "улица Маршала Борзова",
+            "building_id": "way/103168130"
+          },
+          "status": "computed",
+          "unknown_reason": null
+        }
+      ],
+      "retained_subject_ids": []
+    },
+    {
+      "hotel_id": "6815752",
+      "feature_id": "N03",
+      "removed_subjects": [
+        {
+          "subject_id": "hotel:6815752",
+          "fact_id": "e5f086af31af34a02256c07c",
+          "value": null,
+          "status": "unknown"
+        }
+      ],
+      "new_subjects": [
+        {
+          "subject_id": "way/103168130",
+          "fact_id": "55f6777cc5adf0c2dfadeda5",
+          "value": {
+            "distance_m": 714.6064234438808,
+            "target_id": "way/335233181",
+            "target_class": "rail",
+            "target_name": null,
+            "building_id": "way/103168130"
+          },
+          "status": "computed",
+          "unknown_reason": null
+        }
+      ],
+      "retained_subject_ids": []
+    },
+    {
+      "hotel_id": "6840526",
+      "feature_id": "N02",
+      "removed_subjects": [
+        {
+          "subject_id": "hotel:6840526",
+          "fact_id": "d96197840579c1a9963577b1",
+          "value": null,
+          "status": "unknown"
+        }
+      ],
+      "new_subjects": [
+        {
+          "subject_id": "way/136288878",
+          "fact_id": "c9c58f4c91838fbd98d88f0f",
+          "value": {
+            "distance_m": 107.49319352447685,
+            "target_id": "way/736647404",
+            "target_class": "primary",
+            "target_name": "улица Подполковника Емельянова",
+            "building_id": "way/136288878"
+          },
+          "status": "computed",
+          "unknown_reason": null
+        }
+      ],
+      "retained_subject_ids": []
+    },
+    {
+      "hotel_id": "6840526",
+      "feature_id": "N03",
+      "removed_subjects": [
+        {
+          "subject_id": "hotel:6840526",
+          "fact_id": "ed62bd3fe805b4d9a0c0ef9c",
+          "value": null,
+          "status": "unknown"
+        }
+      ],
+      "new_subjects": [
+        {
+          "subject_id": "way/136288878",
+          "fact_id": "b881c1560f49848538d6420c",
+          "value": {
+            "distance_m": 1404.1495980564423,
+            "target_id": "way/981602793",
+            "target_class": "rail",
+            "target_name": null,
+            "building_id": "way/136288878"
+          },
+          "status": "computed",
+          "unknown_reason": null
+        }
+      ],
+      "retained_subject_ids": []
+    },
+    {
+      "hotel_id": "7057327",
+      "feature_id": "N02",
+      "removed_subjects": [
+        {
+          "subject_id": "hotel:7057327",
+          "fact_id": "003b0b950f6470699dccbdac",
+          "value": null,
+          "status": "unknown"
+        }
+      ],
+      "new_subjects": [
+        {
+          "subject_id": "way/134875910",
+          "fact_id": "30036b775382e85b4bc4f2e6",
+          "value": {
+            "distance_m": 469.7929874155687,
+            "target_id": "way/1266598195",
+            "target_class": "secondary",
+            "target_name": "улица Героя России Катериничева",
+            "building_id": "way/134875910"
+          },
+          "status": "computed",
+          "unknown_reason": null
+        }
+      ],
+      "retained_subject_ids": []
+    },
+    {
+      "hotel_id": "7057327",
+      "feature_id": "N03",
+      "removed_subjects": [
+        {
+          "subject_id": "hotel:7057327",
+          "fact_id": "1ff4b6b221634ae128a0f9c3",
+          "value": null,
+          "status": "unknown"
+        }
+      ],
+      "new_subjects": [
+        {
+          "subject_id": "way/134875910",
+          "fact_id": "53ce04501cbf4cf67eaeef1a",
+          "value": {
+            "distance_m": 1065.2782723881076,
+            "target_id": "way/335233181",
+            "target_class": "rail",
+            "target_name": null,
+            "building_id": "way/134875910"
+          },
+          "status": "computed",
+          "unknown_reason": null
+        }
+      ],
+      "retained_subject_ids": []
+    },
+    {
+      "hotel_id": "7719161",
+      "feature_id": "N02",
+      "removed_subjects": [
+        {
+          "subject_id": "way/134871120",
+          "fact_id": "43a808cad793d50af69f6f54",
+          "value": {
+            "distance_m": 136.40428756441395,
+            "target_id": "way/131476385",
+            "target_class": "secondary",
+            "target_name": "улица Островского",
+            "building_id": "way/134871120"
+          },
+          "status": "computed"
+        }
+      ],
+      "new_subjects": [],
+      "retained_subject_ids": [
+        "way/134871260"
+      ]
+    },
+    {
+      "hotel_id": "7719161",
+      "feature_id": "N03",
+      "removed_subjects": [
+        {
+          "subject_id": "way/134871120",
+          "fact_id": "7411fedf89c3b1b09b36158b",
+          "value": {
+            "distance_m": 815.9845763804583,
+            "target_id": "way/55725908",
+            "target_class": "rail",
+            "target_name": null,
+            "building_id": "way/134871120"
+          },
+          "status": "computed"
+        }
+      ],
+      "new_subjects": [],
+      "retained_subject_ids": [
+        "way/134871260"
+      ]
+    },
+    {
+      "hotel_id": "7783969",
+      "feature_id": "N02",
+      "removed_subjects": [
+        {
+          "subject_id": "hotel:7783969",
+          "fact_id": "0990c9959493c193872be9d0",
+          "value": null,
+          "status": "unknown"
+        }
+      ],
+      "new_subjects": [
+        {
+          "subject_id": "way/190580815",
+          "fact_id": "2a016fde65b44e08a299197a",
+          "value": {
+            "distance_m": 11.861483252750244,
+            "target_id": "way/256803169",
+            "target_class": "secondary",
+            "target_name": "улица Тенистая Аллея",
+            "building_id": "way/190580815"
+          },
+          "status": "computed",
+          "unknown_reason": null
+        }
+      ],
+      "retained_subject_ids": []
+    },
+    {
+      "hotel_id": "7783969",
+      "feature_id": "N03",
+      "removed_subjects": [
+        {
+          "subject_id": "hotel:7783969",
+          "fact_id": "25230aac78633fb71e0fcfd3",
+          "value": null,
+          "status": "unknown"
+        }
+      ],
+      "new_subjects": [
+        {
+          "subject_id": "way/190580815",
+          "fact_id": "27ff7f75037cd0c908cdad7c",
+          "value": {
+            "distance_m": 729.6875386736856,
+            "target_id": "way/58486022",
+            "target_class": "rail",
+            "target_name": null,
+            "building_id": "way/190580815"
+          },
+          "status": "computed",
+          "unknown_reason": null
+        }
+      ],
+      "retained_subject_ids": []
+    },
+    {
+      "hotel_id": "7891109",
+      "feature_id": "N02",
+      "removed_subjects": [
+        {
+          "subject_id": "hotel:7891109",
+          "fact_id": "80c3e260142f233869b733ae",
+          "value": null,
+          "status": "unknown"
+        }
+      ],
+      "new_subjects": [
+        {
+          "subject_id": "way/138947876",
+          "fact_id": "9e603977155efb3e92ea4955",
+          "value": {
+            "distance_m": 104.7821939914108,
+            "target_id": "way/107162765",
+            "target_class": "secondary",
+            "target_name": "Аральская улица",
+            "building_id": "way/138947876"
+          },
+          "status": "computed",
+          "unknown_reason": null
+        }
+      ],
+      "retained_subject_ids": []
+    },
+    {
+      "hotel_id": "7891109",
+      "feature_id": "N03",
+      "removed_subjects": [
+        {
+          "subject_id": "hotel:7891109",
+          "fact_id": "f6b88a996f8a24248ce3bb6d",
+          "value": null,
+          "status": "unknown"
+        }
+      ],
+      "new_subjects": [
+        {
+          "subject_id": "way/138947876",
+          "fact_id": "0b61fe205181cc4481c8834d",
+          "value": {
+            "distance_m": 257.82939464220294,
+            "target_id": "way/57935438",
+            "target_class": "rail",
+            "target_name": null,
+            "building_id": "way/138947876"
+          },
+          "status": "computed",
+          "unknown_reason": null
+        }
+      ],
+      "retained_subject_ids": []
+    },
+    {
+      "hotel_id": "8746742",
+      "feature_id": "N02",
+      "removed_subjects": [
+        {
+          "subject_id": "hotel:8746742",
+          "fact_id": "63c9b570653af2f7fc83c967",
+          "value": null,
+          "status": "unknown"
+        }
+      ],
+      "new_subjects": [
+        {
+          "subject_id": "way/390659065",
+          "fact_id": "1a85f2d6247069538011721a",
+          "value": {
+            "distance_m": 23.854222862257878,
+            "target_id": "way/231203399",
+            "target_class": "primary",
+            "target_name": "улица Горького",
+            "building_id": "way/390659065"
+          },
+          "status": "computed",
+          "unknown_reason": null
+        }
+      ],
+      "retained_subject_ids": []
+    },
+    {
+      "hotel_id": "8746742",
+      "feature_id": "N03",
+      "removed_subjects": [
+        {
+          "subject_id": "hotel:8746742",
+          "fact_id": "3e28fbe53dde057ee418c6bd",
+          "value": null,
+          "status": "unknown"
+        }
+      ],
+      "new_subjects": [
+        {
+          "subject_id": "way/390659065",
+          "fact_id": "734d4437563458ee71de8709",
+          "value": {
+            "distance_m": 163.6373569865158,
+            "target_id": "way/52587484",
+            "target_class": "rail",
+            "target_name": null,
+            "building_id": "way/390659065"
+          },
+          "status": "computed",
+          "unknown_reason": null
+        }
+      ],
+      "retained_subject_ids": []
+    }
+  ],
+  "recomputed_surviving_subjects": [
+    {
+      "hotel_id": "6433023",
+      "feature_id": "N02",
+      "subject_id": "way/193281686",
+      "retained_existing_subject": false,
+      "same_value_as_existing_subject": false,
+      "geometry_changed_in_final_join": true,
+      "old_value": null,
+      "new_value": {
+        "distance_m": 64.64222476663883,
+        "target_id": "way/980161366",
+        "target_class": "primary",
+        "target_name": "Советский проспект",
+        "building_id": "way/193281686"
+      }
+    },
+    {
+      "hotel_id": "6433023",
+      "feature_id": "N03",
+      "subject_id": "way/193281686",
+      "retained_existing_subject": false,
+      "same_value_as_existing_subject": false,
+      "geometry_changed_in_final_join": true,
+      "old_value": null,
+      "new_value": {
+        "distance_m": 108.1755291537915,
+        "target_id": "way/91277967",
+        "target_class": "tram",
+        "target_name": null,
+        "building_id": "way/193281686"
+      }
+    },
+    {
+      "hotel_id": "6495862",
+      "feature_id": "N02",
+      "subject_id": "way/134875794",
+      "retained_existing_subject": false,
+      "same_value_as_existing_subject": false,
+      "geometry_changed_in_final_join": true,
+      "old_value": null,
+      "new_value": {
+        "distance_m": 88.3307249835688,
+        "target_id": "way/723879882",
+        "target_class": "primary",
+        "target_name": "улица Горького",
+        "building_id": "way/134875794"
+      }
+    },
+    {
+      "hotel_id": "6495862",
+      "feature_id": "N03",
+      "subject_id": "way/134875794",
+      "retained_existing_subject": false,
+      "same_value_as_existing_subject": false,
+      "geometry_changed_in_final_join": true,
+      "old_value": null,
+      "new_value": {
+        "distance_m": 1324.2986739340138,
+        "target_id": "way/335233181",
+        "target_class": "rail",
+        "target_name": null,
+        "building_id": "way/134875794"
+      }
+    },
+    {
+      "hotel_id": "6584253",
+      "feature_id": "N02",
+      "subject_id": "way/390659065",
+      "retained_existing_subject": false,
+      "same_value_as_existing_subject": false,
+      "geometry_changed_in_final_join": true,
+      "old_value": null,
+      "new_value": {
+        "distance_m": 23.854222862257878,
+        "target_id": "way/231203399",
+        "target_class": "primary",
+        "target_name": "улица Горького",
+        "building_id": "way/390659065"
+      }
+    },
+    {
+      "hotel_id": "6584253",
+      "feature_id": "N03",
+      "subject_id": "way/390659065",
+      "retained_existing_subject": false,
+      "same_value_as_existing_subject": false,
+      "geometry_changed_in_final_join": true,
+      "old_value": null,
+      "new_value": {
+        "distance_m": 163.6373569865158,
+        "target_id": "way/52587484",
+        "target_class": "rail",
+        "target_name": null,
+        "building_id": "way/390659065"
+      }
+    },
+    {
+      "hotel_id": "6622308",
+      "feature_id": "N02",
+      "subject_id": "way/135511280",
+      "retained_existing_subject": false,
+      "same_value_as_existing_subject": false,
+      "geometry_changed_in_final_join": true,
+      "old_value": null,
+      "new_value": {
+        "distance_m": 173.23238866809731,
+        "target_id": "way/169303561",
+        "target_class": "secondary",
+        "target_name": "проспект Мира",
+        "building_id": "way/135511280"
+      }
+    },
+    {
+      "hotel_id": "6622308",
+      "feature_id": "N03",
+      "subject_id": "way/135511280",
+      "retained_existing_subject": false,
+      "same_value_as_existing_subject": false,
+      "geometry_changed_in_final_join": true,
+      "old_value": null,
+      "new_value": {
+        "distance_m": 659.1417813562429,
+        "target_id": "way/93937403",
+        "target_class": "tram",
+        "target_name": null,
+        "building_id": "way/135511280"
+      }
+    },
+    {
+      "hotel_id": "6659688",
+      "feature_id": "N02",
+      "subject_id": "way/175185576",
+      "retained_existing_subject": false,
+      "same_value_as_existing_subject": false,
+      "geometry_changed_in_final_join": true,
+      "old_value": null,
+      "new_value": {
+        "distance_m": 114.14328759248266,
+        "target_id": "way/832609505",
+        "target_class": "primary",
+        "target_name": "улица Дмитрия Донского",
+        "building_id": "way/175185576"
+      }
+    },
+    {
+      "hotel_id": "6659688",
+      "feature_id": "N03",
+      "subject_id": "way/175185576",
+      "retained_existing_subject": false,
+      "same_value_as_existing_subject": false,
+      "geometry_changed_in_final_join": true,
+      "old_value": null,
+      "new_value": {
+        "distance_m": 270.4999169558357,
+        "target_id": "way/74948778",
+        "target_class": "rail",
+        "target_name": null,
+        "building_id": "way/175185576"
+      }
+    },
+    {
+      "hotel_id": "6815752",
+      "feature_id": "N02",
+      "subject_id": "way/103168130",
+      "retained_existing_subject": false,
+      "same_value_as_existing_subject": false,
+      "geometry_changed_in_final_join": true,
+      "old_value": null,
+      "new_value": {
+        "distance_m": 79.77442901482817,
+        "target_id": "way/222850527",
+        "target_class": "primary",
+        "target_name": "улица Маршала Борзова",
+        "building_id": "way/103168130"
+      }
+    },
+    {
+      "hotel_id": "6815752",
+      "feature_id": "N03",
+      "subject_id": "way/103168130",
+      "retained_existing_subject": false,
+      "same_value_as_existing_subject": false,
+      "geometry_changed_in_final_join": true,
+      "old_value": null,
+      "new_value": {
+        "distance_m": 714.6064234438808,
+        "target_id": "way/335233181",
+        "target_class": "rail",
+        "target_name": null,
+        "building_id": "way/103168130"
+      }
+    },
+    {
+      "hotel_id": "6840526",
+      "feature_id": "N02",
+      "subject_id": "way/136288878",
+      "retained_existing_subject": false,
+      "same_value_as_existing_subject": false,
+      "geometry_changed_in_final_join": true,
+      "old_value": null,
+      "new_value": {
+        "distance_m": 107.49319352447685,
+        "target_id": "way/736647404",
+        "target_class": "primary",
+        "target_name": "улица Подполковника Емельянова",
+        "building_id": "way/136288878"
+      }
+    },
+    {
+      "hotel_id": "6840526",
+      "feature_id": "N03",
+      "subject_id": "way/136288878",
+      "retained_existing_subject": false,
+      "same_value_as_existing_subject": false,
+      "geometry_changed_in_final_join": true,
+      "old_value": null,
+      "new_value": {
+        "distance_m": 1404.1495980564423,
+        "target_id": "way/981602793",
+        "target_class": "rail",
+        "target_name": null,
+        "building_id": "way/136288878"
+      }
+    },
+    {
+      "hotel_id": "7057327",
+      "feature_id": "N02",
+      "subject_id": "way/134875910",
+      "retained_existing_subject": false,
+      "same_value_as_existing_subject": false,
+      "geometry_changed_in_final_join": true,
+      "old_value": null,
+      "new_value": {
+        "distance_m": 469.7929874155687,
+        "target_id": "way/1266598195",
+        "target_class": "secondary",
+        "target_name": "улица Героя России Катериничева",
+        "building_id": "way/134875910"
+      }
+    },
+    {
+      "hotel_id": "7057327",
+      "feature_id": "N03",
+      "subject_id": "way/134875910",
+      "retained_existing_subject": false,
+      "same_value_as_existing_subject": false,
+      "geometry_changed_in_final_join": true,
+      "old_value": null,
+      "new_value": {
+        "distance_m": 1065.2782723881076,
+        "target_id": "way/335233181",
+        "target_class": "rail",
+        "target_name": null,
+        "building_id": "way/134875910"
+      }
+    },
+    {
+      "hotel_id": "7719161",
+      "feature_id": "N02",
+      "subject_id": "way/134871260",
+      "retained_existing_subject": true,
+      "same_value_as_existing_subject": true,
+      "geometry_changed_in_final_join": false,
+      "old_value": {
+        "distance_m": 165.05062502393272,
+        "target_id": "way/131476385",
+        "target_class": "secondary",
+        "target_name": "улица Островского",
+        "building_id": "way/134871260"
+      },
+      "new_value": {
+        "distance_m": 165.05062502393272,
+        "target_id": "way/131476385",
+        "target_class": "secondary",
+        "target_name": "улица Островского",
+        "building_id": "way/134871260"
+      }
+    },
+    {
+      "hotel_id": "7719161",
+      "feature_id": "N03",
+      "subject_id": "way/134871260",
+      "retained_existing_subject": true,
+      "same_value_as_existing_subject": true,
+      "geometry_changed_in_final_join": false,
+      "old_value": {
+        "distance_m": 839.0991924988845,
+        "target_id": "way/55725908",
+        "target_class": "rail",
+        "target_name": null,
+        "building_id": "way/134871260"
+      },
+      "new_value": {
+        "distance_m": 839.0991924988845,
+        "target_id": "way/55725908",
+        "target_class": "rail",
+        "target_name": null,
+        "building_id": "way/134871260"
+      }
+    },
+    {
+      "hotel_id": "7783969",
+      "feature_id": "N02",
+      "subject_id": "way/190580815",
+      "retained_existing_subject": false,
+      "same_value_as_existing_subject": false,
+      "geometry_changed_in_final_join": true,
+      "old_value": null,
+      "new_value": {
+        "distance_m": 11.861483252750244,
+        "target_id": "way/256803169",
+        "target_class": "secondary",
+        "target_name": "улица Тенистая Аллея",
+        "building_id": "way/190580815"
+      }
+    },
+    {
+      "hotel_id": "7783969",
+      "feature_id": "N03",
+      "subject_id": "way/190580815",
+      "retained_existing_subject": false,
+      "same_value_as_existing_subject": false,
+      "geometry_changed_in_final_join": true,
+      "old_value": null,
+      "new_value": {
+        "distance_m": 729.6875386736856,
+        "target_id": "way/58486022",
+        "target_class": "rail",
+        "target_name": null,
+        "building_id": "way/190580815"
+      }
+    },
+    {
+      "hotel_id": "7891109",
+      "feature_id": "N02",
+      "subject_id": "way/138947876",
+      "retained_existing_subject": false,
+      "same_value_as_existing_subject": false,
+      "geometry_changed_in_final_join": true,
+      "old_value": null,
+      "new_value": {
+        "distance_m": 104.7821939914108,
+        "target_id": "way/107162765",
+        "target_class": "secondary",
+        "target_name": "Аральская улица",
+        "building_id": "way/138947876"
+      }
+    },
+    {
+      "hotel_id": "7891109",
+      "feature_id": "N03",
+      "subject_id": "way/138947876",
+      "retained_existing_subject": false,
+      "same_value_as_existing_subject": false,
+      "geometry_changed_in_final_join": true,
+      "old_value": null,
+      "new_value": {
+        "distance_m": 257.82939464220294,
+        "target_id": "way/57935438",
+        "target_class": "rail",
+        "target_name": null,
+        "building_id": "way/138947876"
+      }
+    },
+    {
+      "hotel_id": "8746742",
+      "feature_id": "N02",
+      "subject_id": "way/390659065",
+      "retained_existing_subject": false,
+      "same_value_as_existing_subject": false,
+      "geometry_changed_in_final_join": true,
+      "old_value": null,
+      "new_value": {
+        "distance_m": 23.854222862257878,
+        "target_id": "way/231203399",
+        "target_class": "primary",
+        "target_name": "улица Горького",
+        "building_id": "way/390659065"
+      }
+    },
+    {
+      "hotel_id": "8746742",
+      "feature_id": "N03",
+      "subject_id": "way/390659065",
+      "retained_existing_subject": false,
+      "same_value_as_existing_subject": false,
+      "geometry_changed_in_final_join": true,
+      "old_value": null,
+      "new_value": {
+        "distance_m": 163.6373569865158,
+        "target_id": "way/52587484",
+        "target_class": "rail",
+        "target_name": null,
+        "building_id": "way/390659065"
+      }
+    }
+  ],
+  "input_records_streamed": 118662,
+  "axis_geometry_counts": {
+    "N02": 4372,
+    "N03": 1051
+  },
+  "axis_load_seconds": 0.5736088330013445,
+  "full_geo_run_or_graph_executed": false,
+  "draft_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/kaliningrad_N02N03_join_diff_repair_draft.jsonl",
+  "network_requests": 0,
+  "checkpoint": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/checkpoints/kaliningrad_before_N02N03_join_diff_2dfbe141f26d",
+  "unrelated_passport_lines_byte_identical": true,
+  "facts_sha256": "ead325af49eb0cd650989d9af50ef41cb6a0a2a5b8c1d9f71c3bc70562178e2d",
+  "repair_seconds": 1.0173805410013301,
+  "run_sha256": "8f4072fb9b5b3a806d9e65b8afc6381732cba6dc67795896660aa22a93e2acde",
+  "passed": true
+}

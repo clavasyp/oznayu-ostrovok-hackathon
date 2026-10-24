@@ -1,0 +1,242 @@
+[
+  {
+    "source_id": "node/9116268627",
+    "tags": {
+      "access": "yes",
+      "addr:city": "İstanbul",
+      "addr:district": "Pendik",
+      "addr:neighbourhood": "Yenişehir Mah.",
+      "addr:street": "Kardelen Sokak",
+      "dog": "yes",
+      "leisure": "dog_park",
+      "name": "Neşeli Patiler Köpek Eğitim Parkı",
+      "operator": "Pendik Belediyesi",
+      "operator:type": "public"
+    }
+  },
+  {
+    "source_id": "node/9457604894",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "node/13444940470",
+    "tags": {
+      "leisure": "dog_park",
+      "name": "HTT Köpek Eğitim Takımı"
+    }
+  },
+  {
+    "source_id": "way/376038815",
+    "tags": {
+      "leisure": "dog_park",
+      "name": "Üçgen Köpek Parkı"
+    }
+  },
+  {
+    "source_id": "way/666545732",
+    "tags": {
+      "access": "private",
+      "leisure": "dog_park",
+      "name": "Çamlıca Konakları Köpek Gezdirme Bölgesi"
+    }
+  },
+  {
+    "source_id": "way/708288304",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/833849783",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/931875803",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/940805195",
+    "tags": {
+      "access": "private",
+      "dog": "leashed",
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/953198184",
+    "tags": {
+      "access": "private",
+      "addr:city": "İstanbul",
+      "addr:district": "Çekmeköy",
+      "addr:housenumber": "208",
+      "addr:neighbourhood": "Hüseyinli",
+      "addr:street": "Beykoz",
+      "dog": "yes",
+      "leisure": "dog_park",
+      "name": "Cihan Akın Köpek Eğitimi ve Pansiyon Hizmetleri",
+      "operator": "Cihan Akın Köpek Eğitimi ve Pansiyon Hizmetleri",
+      "operator:type": "business",
+      "website": "https://cihanakinacademy.com/"
+    }
+  },
+  {
+    "source_id": "way/958808439",
+    "tags": {
+      "barrier": "fence",
+      "dog": "yes",
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/991724186",
+    "tags": {
+      "leisure": "dog_park",
+      "wheelchair": "yes"
+    }
+  },
+  {
+    "source_id": "way/995897873",
+    "tags": {
+      "leisure": "dog_park",
+      "wheelchair": "yes"
+    }
+  },
+  {
+    "source_id": "way/1007474783",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/1116778295",
+    "tags": {
+      "barrier": "fence",
+      "leisure": "dog_park",
+      "opening_hours": "24/7",
+      "wheelchair": "limited"
+    }
+  },
+  {
+    "source_id": "way/1116778296",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/1137099490",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/1149525816",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/1202390889",
+    "tags": {
+      "access": "yes",
+      "leisure": "dog_park",
+      "wheelchair": "yes"
+    }
+  },
+  {
+    "source_id": "way/1204046785",
+    "tags": {
+      "barrier": "fence",
+      "barrier_type": "wire",
+      "leisure": "dog_park",
+      "surface": "dirt",
+      "wheelchair": "limited"
+    }
+  },
+  {
+    "source_id": "way/1214157094",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/1237036755",
+    "tags": {
+      "leisure": "dog_park",
+      "name": "Evcil Hayvan Manej Alanı"
+    }
+  },
+  {
+    "source_id": "way/1245747188",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/1280529506",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/1309034417",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/1388495212",
+    "tags": {
+      "access": "yes",
+      "leisure": "dog_park",
+      "operator": "Kadıköy Belediyesi",
+      "operator:type": "government"
+    }
+  },
+  {
+    "source_id": "way/1424131471",
+    "tags": {
+      "access": "residents",
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/1465114017",
+    "tags": {
+      "barrier": "fence",
+      "leisure": "dog_park",
+      "name": "Evcil Hayvan Oyun Alanı"
+    }
+  },
+  {
+    "source_id": "way/1470265043",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/1504214910",
+    "tags": {
+      "access": "yes",
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/1540052479",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/1563179070",
+    "tags": {
+      "barrier": "fence",
+      "leisure": "dog_park"
+    }
+  }
+]

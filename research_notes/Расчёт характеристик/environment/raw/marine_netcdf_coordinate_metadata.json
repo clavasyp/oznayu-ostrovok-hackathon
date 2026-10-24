@@ -1,0 +1,17 @@
+{
+  "latitude_first": [
+    -80.0,
+    -79.91666412353516,
+    -79.83333587646484
+  ],
+  "longitude_first": [
+    -180.0,
+    -179.9166717529297,
+    -179.8333282470703
+  ],
+  "latitude_attrs": "{'CLASS': np.bytes_(b'DIMENSION_SCALE'), 'NAME': np.bytes_(b'latitude'), '_Netcdf4Dimid': np.int32(2), 'valid_min': array([-80.], dtype=float32), 'valid_max': array([90.], dtype=float32), 'step': array([0.08333588], dtype=float32), 'units': np.bytes_(b'degrees_north'), 'unit_long': np.bytes_(b'Degrees North'), 'long_name': np.bytes_(b'Latitude'), 'standard_name': np.bytes_(b'latitude'), 'axis': np.bytes_(b'Y'), 'REFERENCE_LIST': array([(<HDF5 object reference>, 2)],\n      dtype={'names': ['dataset', 'dimension'], 'formats': ['O', '<i4'], 'offsets': [0, 8], 'itemsize': 16})}",
+  "longitude_attrs": "{'CLASS': np.bytes_(b'DIMENSION_SCALE'), 'NAME': np.bytes_(b'longitude'), '_Netcdf4Dimid': np.int32(3), 'valid_min': array([-180.], dtype=float32), 'valid_max': array([179.91669], dtype=float32), 'step': array([0.08332825], dtype=float32), 'units': np.bytes_(b'degrees_east'), 'unit_long': np.bytes_(b'Degrees East'), 'long_name': np.bytes_(b'Longitude'), 'standard_name': np.bytes_(b'longitude'), 'axis': np.bytes_(b'X'), 'REFERENCE_LIST': array([(<HDF5 object reference>, 3)],\n      dtype={'names': ['dataset', 'dimension'], 'formats': ['O', '<i4'], 'offsets': [0, 8], 'itemsize': 16})}",
+  "latitude_at_index1483": 43.583335876464844,
+  "longitude_at_index2636": 39.66667175292969,
+  "new_ranges": []
+}

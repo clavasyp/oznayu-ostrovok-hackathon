@@ -1,0 +1,12 @@
+{
+  "city_id": "moscow",
+  "supplement_bbox": [
+    36.785,
+    55.105,
+    38.005,
+    56.045
+  ],
+  "coordinates_checked": 32662,
+  "routes_outside_supplement_extent": [],
+  "interpretation": "Node-only supplement covers the actual saved route coordinates when this list is empty; no full graph loaded."
+}

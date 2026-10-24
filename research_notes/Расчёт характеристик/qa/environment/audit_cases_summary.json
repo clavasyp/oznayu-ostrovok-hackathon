@@ -1,0 +1,9 @@
+{
+  "at": "2026-10-24T02:20:29.420602+00:00",
+  "n_codex_audit_cases": 8,
+  "gold_eligible": 0,
+  "empirical_precision": null,
+  "empirical_recall": null,
+  "numeric_gold_MAE": null,
+  "note": "Casesauditreadability/meaning. C01differencesstationvsgridreportedseparately; B02sameupstreamsemantics; E03nogold. Not8goldaccuracylabels."
+}

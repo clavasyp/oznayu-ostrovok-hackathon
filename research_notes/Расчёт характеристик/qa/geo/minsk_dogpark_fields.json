@@ -1,0 +1,514 @@
+[
+  {
+    "source_id": "node/1722587032",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "node/7683568550",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "node/7762557747",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "node/8765508508",
+    "tags": {
+      "access": "yes",
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "node/11793706788",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "node/12238805905",
+    "tags": {
+      "access": "yes",
+      "leisure": "dog_park",
+      "operator:type": "public",
+      "source": "survey"
+    }
+  },
+  {
+    "source_id": "node/12438519108",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "node/13822375598",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/131111066",
+    "tags": {
+      "barrier": "fence",
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/219041828",
+    "tags": {
+      "barrier": "fence",
+      "leaf_type": "needleleaved",
+      "leisure": "dog_park",
+      "natural": "wood",
+      "wheelchair": "yes"
+    }
+  },
+  {
+    "source_id": "way/223846553",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/248115635",
+    "tags": {
+      "barrier": "fence",
+      "leisure": "dog_park",
+      "opening_hours": "24/7"
+    }
+  },
+  {
+    "source_id": "way/265059109",
+    "tags": {
+      "barrier": "fence",
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/321288045",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/353433765",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/373606262",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/414991578",
+    "tags": {
+      "barrier": "fence",
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/416764968",
+    "tags": {
+      "barrier": "fence",
+      "fence_type": "wire",
+      "height": "3",
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/418299609",
+    "tags": {
+      "leisure": "dog_park",
+      "wheelchair": "limited"
+    }
+  },
+  {
+    "source_id": "way/425855423",
+    "tags": {
+      "leisure": "dog_park",
+      "wheelchair": "no"
+    }
+  },
+  {
+    "source_id": "way/425996230",
+    "tags": {
+      "barrier": "fence",
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/430232408",
+    "tags": {
+      "barrier": "fence",
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/435382380",
+    "tags": {
+      "barrier": "fence",
+      "leisure": "dog_park",
+      "wheelchair": "limited"
+    }
+  },
+  {
+    "source_id": "way/447248676",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/452292636",
+    "tags": {
+      "leisure": "dog_park",
+      "wheelchair": "no"
+    }
+  },
+  {
+    "source_id": "way/463277675",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/526677606",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/550918367",
+    "tags": {
+      "leisure": "dog_park",
+      "wheelchair": "yes"
+    }
+  },
+  {
+    "source_id": "way/553066586",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/553066588",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/553066601",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/553066604",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/553066605",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/553066609",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/553066611",
+    "tags": {
+      "leisure": "dog_park",
+      "wheelchair": "no"
+    }
+  },
+  {
+    "source_id": "way/556467207",
+    "tags": {
+      "barrier": "fence",
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/608104090",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/621566459",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/627350963",
+    "tags": {
+      "barrier": "fence",
+      "fence_type": "metal",
+      "height": "2",
+      "leisure": "dog_park",
+      "lit": "no",
+      "wheelchair": "no"
+    }
+  },
+  {
+    "source_id": "way/727443639",
+    "tags": {
+      "barrier": "fence",
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/727443640",
+    "tags": {
+      "barrier": "fence",
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/770566601",
+    "tags": {
+      "barrier": "fence",
+      "leisure": "dog_park",
+      "operator": "Администрация Фрунзенского района города Минска",
+      "operator:type": "government"
+    }
+  },
+  {
+    "source_id": "way/778244671",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/792506420",
+    "tags": {
+      "access": "yes",
+      "leisure": "dog_park",
+      "wheelchair": "no"
+    }
+  },
+  {
+    "source_id": "way/802556243",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/845597640",
+    "tags": {
+      "access": "permit",
+      "leisure": "dog_park",
+      "operator": "A100-K",
+      "operator:type": "private"
+    }
+  },
+  {
+    "source_id": "way/895177623",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "relation/12193626",
+    "tags": {
+      "barrier": "fence",
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/927229590",
+    "tags": {
+      "addr:city": "Мінск",
+      "addr:postcode": "220006",
+      "addr:street": "вуліца Сямёнава",
+      "dog": "yes",
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/947935844",
+    "tags": {
+      "access": "yes",
+      "barrier": "fence",
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/947935845",
+    "tags": {
+      "barrier": "fence",
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/981235346",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/995998828",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/1018326688",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/1054937203",
+    "tags": {
+      "leisure": "dog_park",
+      "surface": "grass",
+      "wheelchair": "yes"
+    }
+  },
+  {
+    "source_id": "way/1077506880",
+    "tags": {
+      "barrier": "fence",
+      "leisure": "dog_park",
+      "wheelchair": "no"
+    }
+  },
+  {
+    "source_id": "way/1149093719",
+    "tags": {
+      "barrier": "fence",
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/1182437611",
+    "tags": {
+      "barrier": "fence",
+      "landuse": "grass",
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/1198472848",
+    "tags": {
+      "leisure": "dog_park",
+      "wheelchair": "yes"
+    }
+  },
+  {
+    "source_id": "way/1200656813",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/1221724140",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/1313480440",
+    "tags": {
+      "barrier": "fence",
+      "fence_type": "wire",
+      "height": "2",
+      "leisure": "dog_park",
+      "lit": "no"
+    }
+  },
+  {
+    "source_id": "way/1315307803",
+    "tags": {
+      "barrier": "fence",
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/1351695881",
+    "tags": {
+      "barrier": "fence",
+      "leisure": "dog_park",
+      "wheelchair": "yes"
+    }
+  },
+  {
+    "source_id": "way/1365977018",
+    "tags": {
+      "barrier": "fenceq",
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/1378014270",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/1387407947",
+    "tags": {
+      "barrier": "fence",
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/1387407949",
+    "tags": {
+      "barrier": "fence",
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/1387407951",
+    "tags": {
+      "barrier": "fence",
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/1441947162",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/1510460278",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/1510915748",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/1537489933",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/1537489939",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  }
+]

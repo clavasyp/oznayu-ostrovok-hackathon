@@ -1,0 +1,16 @@
+{
+  "attempt": "Moscowinitial",
+  "status": "terminated before any result files, due full-generation cyclic GC/swap thrash",
+  "elapsed_seconds_at_termination_observed": 286,
+  "process_id": 39552,
+  "exit_code": 143,
+  "physical_footprint_sample_gb": 5.1,
+  "native_memory_gb": 8,
+  "profile_source": "macOSsample1s,Python dict_traverse was dominant",
+  "profile_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/moscow_initial_memory_profile.txt",
+  "restart_change": "gc.disable in own wrapper; CPython reference counting remains active; calculator semantics/SHA unchanged",
+  "initial_executed_runner_snapshot": "qa/geo/runner_source_moscow_v1.py",
+  "initial_executed_runner_sha256": "78c287bb4abd2a4931f5722a2c945de039eef95d99aff271a3760a5bdc1c923a",
+  "restarted_runner_sha256": "6a0e6b9e6cc58e9bc30e3457b9fd792e7a977da3d95667568f306a863eb18be4",
+  "note": "First attempt is not part of final successful city runtime and is disclosed separately."
+}

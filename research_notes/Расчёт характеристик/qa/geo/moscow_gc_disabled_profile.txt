@@ -1,0 +1,775 @@
+Analysis of sampling Python (pid 40090) every 1 millisecond
+Process:         Python [40090]
+Path:            /Library/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python
+Load Address:    0x104ba0000
+Identifier:      Python
+Version:         ???
+Code Type:       ARM64
+Platform:        macOS
+Parent Process:  codex [1340]
+
+Date/Time:       2026-10-24 16:31:09.222 +0300
+Launch Time:     2026-10-24 16:21:46.844 +0300
+OS Version:      macOS 15.3.2 (24D81)
+Report Version:  7
+Analysis Tool:   /usr/bin/sample
+
+Physical footprint:         5.3G
+Physical footprint (peak):  5.6G
+Idle exit:                  untracked
+----
+
+Call graph:
+    848 Thread_1108560   DispatchQueue_1: com.apple.main-thread  (serial)
+      836 start  (in dyld) + 2840  [0x182908274]
+      + 836 Py_BytesMain  (in Python) + 40  [0x105ea5234]
+      +   836 pymain_main  (in Python) + 436  [0x105ea50d8]
+      +     836 Py_RunMain  (in Python) + 1000  [0x105ea3900]
+      +       836 pymain_run_file  (in Python) + 76  [0x105ea4548]
+      +         836 pymain_run_file_obj  (in Python) + 164  [0x105ea4e28]
+      +           836 _PyRun_AnyFileObject  (in Python) + 80  [0x105e78d00]
+      +             836 _PyRun_SimpleFileObject  (in Python) + 256  [0x105e79478]
+      +               836 pyrun_file  (in Python) + 144  [0x105e79b7c]
+      +                 836 run_mod  (in Python) + 168  [0x105e79dd0]
+      +                   836 run_eval_code_obj  (in Python) + 148  [0x105e7a4a8]
+      +                     836 PyEval_EvalCode  (in Python) + 132  [0x105dc3598]
+      +                       834 _PyEval_EvalFrameDefault  (in Python) + 76940  [0x105dd8c2c]
+      +                       ! 831 pyo3::impl_::trampoline::fastcall_cfunction_with_keywords::h892ccf152319f575  (in opening_hours.abi3.so) + 72  [0x10aee25f4]
+      +                       ! : 831 pyo3::impl_::trampoline::trampoline::h940d5933de938bb0  (in opening_hours.abi3.so) + 92  [0x10aee2038]
+      +                       ! :   831 opening_hours::PyOpeningHours::__pymethod_next_change__::h9918e55c6b075bac  (in opening_hours.abi3.so) + 476  [0x10aeda128]
+      +                       ! :     831 opening_hours::opening_hours::OpeningHours$LT$L$GT$::next_change::h3872d326f123ae2a  (in opening_hours.abi3.so) + 144  [0x10aeeb89c]
+      +                       ! :       831 _$LT$core..iter..adapters..map..Map$LT$I$C$F$GT$$u20$as$u20$core..iter..traits..iterator..Iterator$GT$::next::ha4339ed6aca7f842  (in opening_hours.abi3.so) + 52  [0x10aeea994]
+      +                       ! :         578 _$LT$opening_hours..opening_hours..TimeDomainIterator$LT$L$GT$$u20$as$u20$core..iter..traits..iterator..Iterator$GT$::next::h8213fa01fd3ccc32  (in opening_hours.abi3.so) + 972  [0x10aeeafa4]
+      +                       ! :         | 137 opening_hours::opening_hours::OpeningHours$LT$L$GT$::schedule_at::h94953cdbfb94ec75  (in opening_hours.abi3.so) + 528  [0x10aeebd30]
+      +                       ! :         | + 116 opening_hours::schedule::Schedule::from_ranges::h8ecdb8352e5c27cc  (in opening_hours.abi3.so) + 76  [0x10aee77a4]
+      +                       ! :         | + ! 51 _$LT$alloc..vec..Vec$LT$T$GT$$u20$as$u20$alloc..vec..spec_from_iter..SpecFromIter$LT$T$C$I$GT$$GT$::from_iter::h34dd1895fa8b6bbf  (in opening_hours.abi3.so) + 808  [0x10aedcef8]
+      +                       ! :         | + ! : 35 free_tiny  (in libsystem_malloc.dylib) + 512,60,...  [0x182a95758,0x182a95594,...]
+      +                       ! :         | + ! : 9 _szone_free  (in libsystem_malloc.dylib) + 188,148,...  [0x182aa7a10,0x182aa79e8,...]
+      +                       ! :         | + ! : 7 free_tiny  (in libsystem_malloc.dylib) + 136  [0x182a955e0]
+      +                       ! :         | + ! :   4 _platform_memset  (in libsystem_platform.dylib) + 180,208  [0x182cbe7f4,0x182cbe810]
+      +                       ! :         | + ! :   3 DYLD-STUB$$_platform_memset  (in libsystem_malloc.dylib) + 8  [0x182ac7558]
+      +                       ! :         | + ! 32 _$LT$alloc..vec..Vec$LT$T$GT$$u20$as$u20$alloc..vec..spec_from_iter..SpecFromIter$LT$T$C$I$GT$$GT$::from_iter::h34dd1895fa8b6bbf  (in opening_hours.abi3.so) + 416  [0x10aedcd70]
+      +                       ! :         | + ! : 15 _$LT$alloc..vec..Vec$LT$T$GT$$u20$as$u20$alloc..vec..spec_from_iter..SpecFromIter$LT$T$C$I$GT$$GT$::from_iter::h34dd1895fa8b6bbf  (in opening_hours.abi3.so) + 808  [0x10aedcef8]
+      +                       ! :         | + ! : | 14 _free  (in libsystem_malloc.dylib) + 20,80,...  [0x182ac0238,0x182ac0274,...]
+      +                       ! :         | + ! : | 1 DYLD-STUB$$free  (in opening_hours.abi3.so) + 4  [0x10afd7ed4]
+      +                       ! :         | + ! : 11 szone_malloc_should_clear  (in libsystem_malloc.dylib) + 88  [0x182a91a80]
+      +                       ! :         | + ! : | 10 tiny_malloc_should_clear  (in libsystem_malloc.dylib) + 232,28,...  [0x182a92d08,0x182a92c3c,...]
+      +                       ! :         | + ! : | 1 tiny_malloc_should_clear  (in libsystem_malloc.dylib) + 52  [0x182a92c54]
+      +                       ! :         | + ! : |   1 rack_get_thread_index  (in libsystem_malloc.dylib) + 64  [0x182aab058]
+      +                       ! :         | + ! : 5 szone_malloc_should_clear  (in libsystem_malloc.dylib) + 68,280,...  [0x182a91a6c,0x182a91b40,...]
+      +                       ! :         | + ! : 1 tiny_malloc_should_clear  (in libsystem_malloc.dylib) + 468  [0x182a92df4]
+      +                       ! :         | + ! 24 _$LT$alloc..vec..Vec$LT$T$GT$$u20$as$u20$alloc..vec..spec_from_iter..SpecFromIter$LT$T$C$I$GT$$GT$::from_iter::h34dd1895fa8b6bbf  (in opening_hours.abi3.so) + 104,372,...  [0x10aedcc38,0x10aedcd44,...]
+      +                       ! :         | + ! 4 _szone_free  (in libsystem_malloc.dylib) + 688  [0x182aa7c04]
+      +                       ! :         | + ! 3 free_tiny  (in libsystem_malloc.dylib) + 532  [0x182a9576c]
+      +                       ! :         | + ! 2 szone_malloc_should_clear  (in libsystem_malloc.dylib) + 364  [0x182a91b94]
+      +                       ! :         | + 19 _$LT$alloc..vec..Vec$LT$T$GT$$u20$as$u20$alloc..vec..spec_from_iter..SpecFromIter$LT$T$C$I$GT$$GT$::from_iter::h34dd1895fa8b6bbf  (in opening_hours.abi3.so) + 836,844  [0x10aedcf14,0x10aedcf1c]
+      +                       ! :         | + 2 opening_hours::schedule::Schedule::from_ranges::h8ecdb8352e5c27cc  (in opening_hours.abi3.so) + 584  [0x10aee79a0]
+      +                       ! :         | 111 opening_hours::opening_hours::OpeningHours$LT$L$GT$::schedule_at::h94953cdbfb94ec75  (in opening_hours.abi3.so) + 256  [0x10aeebc20]
+      +                       ! :         | + 69 _$LT$alloc..vec..Vec$LT$T$GT$$u20$as$u20$alloc..vec..spec_from_iter..SpecFromIter$LT$T$C$I$GT$$GT$::from_iter::h30b7ac031929ef04  (in opening_hours.abi3.so) + 196  [0x10aedca68]
+      +                       ! :         | + ! 33 szone_malloc_should_clear  (in libsystem_malloc.dylib) + 88  [0x182a91a80]
+      +                       ! :         | + ! : 18 tiny_malloc_should_clear  (in libsystem_malloc.dylib) + 288  [0x182a92d40]
+      +                       ! :         | + ! : | 14 tiny_malloc_from_free_list  (in libsystem_malloc.dylib) + 396,328,...  [0x182a93584,0x182a93540,...]
+      +                       ! :         | + ! : | 3 tiny_malloc_from_free_list  (in libsystem_malloc.dylib) + 444  [0x182a935b4]
+      +                       ! :         | + ! : | + 3 _tiny_check_and_zero_inline_meta_from_freelist  (in libsystem_malloc.dylib) + 48,56  [0x182ac6138,0x182ac6140]
+      +                       ! :         | + ! : | 1 _tiny_check_and_zero_inline_meta_from_freelist  (in libsystem_malloc.dylib) + 200  [0x182ac61d0]
+      +                       ! :         | + ! : 8 tiny_malloc_should_clear  (in libsystem_malloc.dylib) + 308,28,...  [0x182a92d54,0x182a92c3c,...]
+      +                       ! :         | + ! : 4 tiny_malloc_should_clear  (in libsystem_malloc.dylib) + 52  [0x182a92c54]
+      +                       ! :         | + ! : | 4 rack_get_thread_index  (in libsystem_malloc.dylib) + 12,40,...  [0x182aab024,0x182aab040,...]
+      +                       ! :         | + ! : 3 tiny_malloc_from_free_list  (in libsystem_malloc.dylib) + 1696,1692  [0x182a93a98,0x182a93a94]
+      +                       ! :         | + ! 22 _malloc_zone_malloc  (in libsystem_malloc.dylib) + 52,12,...  [0x182abf660,0x182abf638,...]
+      +                       ! :         | + ! 5 DYLD-STUB$$malloc  (in opening_hours.abi3.so) + 4  [0x10afd7f1c]
+      +                       ! :         | + ! 4 _RNvCsGIExRX8pES_7___rustc11___rdl_alloc  (in opening_hours.abi3.so) + 0,12  [0x10afa4bec,0x10afa4bf8]
+      +                       ! :         | + ! 3 szone_malloc_should_clear  (in libsystem_malloc.dylib) + 72  [0x182a91a70]
+      +                       ! :         | + ! 2 tiny_malloc_should_clear  (in libsystem_malloc.dylib) + 468  [0x182a92df4]
+      +                       ! :         | + 20 _$LT$alloc..vec..Vec$LT$T$GT$$u20$as$u20$alloc..vec..spec_from_iter..SpecFromIter$LT$T$C$I$GT$$GT$::from_iter::h30b7ac031929ef04  (in opening_hours.abi3.so) + 88  [0x10aedc9fc]
+      +                       ! :         | + ! 20 _$LT$opening_hours_syntax..rules..time..TimeSpan$u20$as$u20$opening_hours..filter..time_filter..TimeFilter$GT$::as_naive::ha12737a7457fbbac  (in opening_hours.abi3.so) + 840,444,...  [0x10aef13c8,0x10aef123c,...]
+      +                       ! :         | + 18 _$LT$alloc..vec..Vec$LT$T$GT$$u20$as$u20$alloc..vec..spec_from_iter..SpecFromIter$LT$T$C$I$GT$$GT$::from_iter::h30b7ac031929ef04  (in opening_hours.abi3.so) + 168,48,...  [0x10aedca4c,0x10aedc9d4,...]
+      +                       ! :         | + 3 _$LT$alloc..vec..Vec$LT$T$GT$$u20$as$u20$alloc..vec..spec_from_iter..SpecFromIter$LT$T$C$I$GT$$GT$::from_iter::h30b7ac031929ef04  (in opening_hours.abi3.so) + 184  [0x10aedca5c]
+      +                       ! :         | + ! 3 _RNvCsGIExRX8pES_7___rustc35___rust_no_alloc_shim_is_unstable_v2  (in opening_hours.abi3.so) + 0  [0x10aef2608]
+      +                       ! :         | + 1 szone_malloc_should_clear  (in libsystem_malloc.dylib) + 364  [0x182a91b94]
+      +                       ! :         | 92 opening_hours::opening_hours::OpeningHours$LT$L$GT$::schedule_at::h94953cdbfb94ec75  (in opening_hours.abi3.so) + 296  [0x10aeebc48]
+      +                       ! :         | + 86 _$LT$opening_hours_syntax..rules..day..DaySelector$u20$as$u20$opening_hours..filter..date_filter..DateFilter$GT$::filter::h339d3c8175011dba  (in opening_hours.abi3.so) + 588  [0x10aeea1c8]
+      +                       ! :         | + ! 35 _$LT$opening_hours_syntax..rules..day..WeekDayRange$u20$as$u20$opening_hours..filter..date_filter..DateFilter$GT$::filter::h61c4122d20839888  (in opening_hours.abi3.so) + 356  [0x10aeea59c]
+      +                       ! :         | + ! : 14 opening_hours::utils::dates::count_days_in_month::h316089e245c98122  (in opening_hours.abi3.so) + 28  [0x10af0a304]
+      +                       ! :         | + ! : | 12 chrono::naive::date::NaiveDate::diff_months::h095bec5b69abc139  (in opening_hours.abi3.so) + 260,324,...  [0x10af94594,0x10af945d4,...]
+      +                       ! :         | + ! : | 2 chrono::naive::date::NaiveDate::checked_add_months::h7993d3f213683dce  (in opening_hours.abi3.so) + 0  [0x10af94840]
+      +                       ! :         | + ! : 13 opening_hours::utils::dates::count_days_in_month::h316089e245c98122  (in opening_hours.abi3.so) + 204  [0x10af0a3b4]
+      +                       ! :         | + ! : | 13 chrono::naive::date::NaiveDate::signed_duration_since::hf5254e732aecff2a  (in opening_hours.abi3.so) + 188,160,...  [0x10af949bc,0x10af949a0,...]
+      +                       ! :         | + ! : 8 opening_hours::utils::dates::count_days_in_month::h316089e245c98122  (in opening_hours.abi3.so) + 148,232,...  [0x10af0a37c,0x10af0a3d0,...]
+      +                       ! :         | + ! 31 _$LT$opening_hours_syntax..rules..day..WeekDayRange$u20$as$u20$opening_hours..filter..date_filter..DateFilter$GT$::filter::h61c4122d20839888  (in opening_hours.abi3.so) + 316  [0x10aeea574]
+      +                       ! :         | + ! : 16 chrono::naive::date::NaiveDate::add_days::h64a3250fb66889d1  (in opening_hours.abi3.so) + 364,28,...  [0x10af94d6c,0x10af94c1c,...]
+      +                       ! :         | + ! : 15 chrono::naive::date::NaiveDate::checked_sub_signed::h93bff997151e90d8  (in opening_hours.abi3.so) + 0,28,...  [0x10af948a8,0x10af948c4,...]
+      +                       ! :         | + ! 17 _$LT$opening_hours_syntax..rules..day..WeekDayRange$u20$as$u20$opening_hours..filter..date_filter..DateFilter$GT$::filter::h61c4122d20839888  (in opening_hours.abi3.so) + 124,320,...  [0x10aeea4b4,0x10aeea578,...]
+      +                       ! :         | + ! 3 opening_hours::utils::dates::count_days_in_month::h316089e245c98122  (in opening_hours.abi3.so) + 280  [0x10af0a400]
+      +                       ! :         | + 5 _$LT$opening_hours_syntax..rules..day..DaySelector$u20$as$u20$opening_hours..filter..date_filter..DateFilter$GT$::filter::h339d3c8175011dba  (in opening_hours.abi3.so) + 564,392  [0x10aeea1b0,0x10aeea104]
+      +                       ! :         | + 1 _$LT$opening_hours_syntax..rules..day..WeekDayRange$u20$as$u20$opening_hours..filter..date_filter..DateFilter$GT$::filter::h61c4122d20839888  (in opening_hours.abi3.so) + 580  [0x10aeea67c]
+      +                       ! :         | 68 opening_hours::opening_hours::OpeningHours$LT$L$GT$::schedule_at::h94953cdbfb94ec75  (in opening_hours.abi3.so) + 660  [0x10aeebdb4]
+      +                       ! :         | + 63 _$LT$opening_hours_syntax..rules..day..DaySelector$u20$as$u20$opening_hours..filter..date_filter..DateFilter$GT$::filter::h339d3c8175011dba  (in opening_hours.abi3.so) + 588  [0x10aeea1c8]
+      +                       ! :         | + ! 39 _$LT$opening_hours_syntax..rules..day..WeekDayRange$u20$as$u20$opening_hours..filter..date_filter..DateFilter$GT$::filter::h61c4122d20839888  (in opening_hours.abi3.so) + 356  [0x10aeea59c]
+      +                       ! :         | + ! : 22 opening_hours::utils::dates::count_days_in_month::h316089e245c98122  (in opening_hours.abi3.so) + 28  [0x10af0a304]
+      +                       ! :         | + ! : | 21 chrono::naive::date::NaiveDate::diff_months::h095bec5b69abc139  (in opening_hours.abi3.so) + 300,136,...  [0x10af945bc,0x10af94518,...]
+      +                       ! :         | + ! : | 1 chrono::naive::date::NaiveDate::checked_add_months::h7993d3f213683dce  (in opening_hours.abi3.so) + 0  [0x10af94840]
+      +                       ! :         | + ! : 9 opening_hours::utils::dates::count_days_in_month::h316089e245c98122  (in opening_hours.abi3.so) + 80,148,...  [0x10af0a338,0x10af0a37c,...]
+      +                       ! :         | + ! : 8 opening_hours::utils::dates::count_days_in_month::h316089e245c98122  (in opening_hours.abi3.so) + 204  [0x10af0a3b4]
+      +                       ! :         | + ! :   8 chrono::naive::date::NaiveDate::signed_duration_since::hf5254e732aecff2a  (in opening_hours.abi3.so) + 132,184,...  [0x10af94984,0x10af949b8,...]
+      +                       ! :         | + ! 17 _$LT$opening_hours_syntax..rules..day..WeekDayRange$u20$as$u20$opening_hours..filter..date_filter..DateFilter$GT$::filter::h61c4122d20839888  (in opening_hours.abi3.so) + 484,320,...  [0x10aeea61c,0x10aeea578,...]
+      +                       ! :         | + ! 6 _$LT$opening_hours_syntax..rules..day..WeekDayRange$u20$as$u20$opening_hours..filter..date_filter..DateFilter$GT$::filter::h61c4122d20839888  (in opening_hours.abi3.so) + 316  [0x10aeea574]
+      +                       ! :         | + ! : 3 chrono::naive::date::NaiveDate::add_days::h64a3250fb66889d1  (in opening_hours.abi3.so) + 0,20,...  [0x10af94c00,0x10af94c14,...]
+      +                       ! :         | + ! : 3 chrono::naive::date::NaiveDate::checked_sub_signed::h93bff997151e90d8  (in opening_hours.abi3.so) + 32,28  [0x10af948c8,0x10af948c4]
+      +                       ! :         | + ! 1 opening_hours::utils::dates::count_days_in_month::h316089e245c98122  (in opening_hours.abi3.so) + 288  [0x10af0a408]
+      +                       ! :         | + 3 _$LT$opening_hours_syntax..rules..day..DaySelector$u20$as$u20$opening_hours..filter..date_filter..DateFilter$GT$::filter::h339d3c8175011dba  (in opening_hours.abi3.so) + 40,12  [0x10aee9fa4,0x10aee9f88]
+      +                       ! :         | + 2 _$LT$opening_hours_syntax..rules..day..WeekDayRange$u20$as$u20$opening_hours..filter..date_filter..DateFilter$GT$::filter::h61c4122d20839888  (in opening_hours.abi3.so) + 580  [0x10aeea67c]
+      +                       ! :         | 67 opening_hours::opening_hours::OpeningHours$LT$L$GT$::schedule_at::h94953cdbfb94ec75  (in opening_hours.abi3.so) + 216  [0x10aeebbf8]
+      +                       ! :         | + 59 _$LT$opening_hours_syntax..rules..day..DaySelector$u20$as$u20$opening_hours..filter..date_filter..DateFilter$GT$::filter::h339d3c8175011dba  (in opening_hours.abi3.so) + 588  [0x10aeea1c8]
+      +                       ! :         | + ! 29 _$LT$opening_hours_syntax..rules..day..WeekDayRange$u20$as$u20$opening_hours..filter..date_filter..DateFilter$GT$::filter::h61c4122d20839888  (in opening_hours.abi3.so) + 356  [0x10aeea59c]
+      +                       ! :         | + ! : 17 opening_hours::utils::dates::count_days_in_month::h316089e245c98122  (in opening_hours.abi3.so) + 28  [0x10af0a304]
+      +                       ! :         | + ! : | 15 chrono::naive::date::NaiveDate::diff_months::h095bec5b69abc139  (in opening_hours.abi3.so) + 124,260,...  [0x10af9450c,0x10af94594,...]
+      +                       ! :         | + ! : | 2 chrono::naive::date::NaiveDate::checked_add_months::h7993d3f213683dce  (in opening_hours.abi3.so) + 0  [0x10af94840]
+      +                       ! :         | + ! : 7 opening_hours::utils::dates::count_days_in_month::h316089e245c98122  (in opening_hours.abi3.so) + 204  [0x10af0a3b4]
+      +                       ! :         | + ! : | 7 chrono::naive::date::NaiveDate::signed_duration_since::hf5254e732aecff2a  (in opening_hours.abi3.so) + 132,156,...  [0x10af94984,0x10af9499c,...]
+      +                       ! :         | + ! : 5 opening_hours::utils::dates::count_days_in_month::h316089e245c98122  (in opening_hours.abi3.so) + 32,100,...  [0x10af0a308,0x10af0a34c,...]
+      +                       ! :         | + ! 13 _$LT$opening_hours_syntax..rules..day..WeekDayRange$u20$as$u20$opening_hours..filter..date_filter..DateFilter$GT$::filter::h61c4122d20839888  (in opening_hours.abi3.so) + 484,128,...  [0x10aeea61c,0x10aeea4b8,...]
+      +                       ! :         | + ! 12 _$LT$opening_hours_syntax..rules..day..WeekDayRange$u20$as$u20$opening_hours..filter..date_filter..DateFilter$GT$::filter::h61c4122d20839888  (in opening_hours.abi3.so) + 316  [0x10aeea574]
+      +                       ! :         | + ! : 10 chrono::naive::date::NaiveDate::add_days::h64a3250fb66889d1  (in opening_hours.abi3.so) + 364,0,...  [0x10af94d6c,0x10af94c00,...]
+      +                       ! :         | + ! : 2 chrono::naive::date::NaiveDate::checked_sub_signed::h93bff997151e90d8  (in opening_hours.abi3.so) + 28  [0x10af948c4]
+      +                       ! :         | + ! 5 opening_hours::utils::dates::count_days_in_month::h316089e245c98122  (in opening_hours.abi3.so) + 288  [0x10af0a408]
+      +                       ! :         | + 5 _$LT$opening_hours_syntax..rules..day..DaySelector$u20$as$u20$opening_hours..filter..date_filter..DateFilter$GT$::filter::h339d3c8175011dba  (in opening_hours.abi3.so) + 392,36,...  [0x10aeea104,0x10aee9fa0,...]
+      +                       ! :         | + 3 _$LT$opening_hours_syntax..rules..day..WeekDayRange$u20$as$u20$opening_hours..filter..date_filter..DateFilter$GT$::filter::h61c4122d20839888  (in opening_hours.abi3.so) + 580  [0x10aeea67c]
+      +                       ! :         | 24 opening_hours::opening_hours::OpeningHours$LT$L$GT$::schedule_at::h94953cdbfb94ec75  (in opening_hours.abi3.so) + 604  [0x10aeebd7c]
+      +                       ! :         | + 9 _$LT$alloc..vec..Vec$LT$T$GT$$u20$as$u20$alloc..vec..spec_from_iter..SpecFromIter$LT$T$C$I$GT$$GT$::from_iter::h45131aa3090cbfe3  (in opening_hours.abi3.so) + 76  [0x10aedd260]
+      +                       ! :         | + ! 9 _$LT$opening_hours_syntax..rules..time..TimeSpan$u20$as$u20$opening_hours..filter..time_filter..TimeFilter$GT$::as_naive::ha12737a7457fbbac  (in opening_hours.abi3.so) + 936,24,...  [0x10aef1428,0x10aef1098,...]
+      +                       ! :         | + 9 _$LT$alloc..vec..Vec$LT$T$GT$$u20$as$u20$alloc..vec..spec_from_iter..SpecFromIter$LT$T$C$I$GT$$GT$::from_iter::h45131aa3090cbfe3  (in opening_hours.abi3.so) + 108  [0x10aedd280]
+      +                       ! :         | + ! 9 core::ops::function::impls::_$LT$impl$u20$core..ops..function..FnMut$LT$A$GT$$u20$for$u20$$RF$mut$u20$F$GT$::call_mut::h93fe067abd3d11d4  (in opening_hours.abi3.so) + 68,120,...  [0x10aeefc18,0x10aeefc4c,...]
+      +                       ! :         | + 4 _$LT$alloc..vec..Vec$LT$T$GT$$u20$as$u20$alloc..vec..spec_from_iter..SpecFromIter$LT$T$C$I$GT$$GT$::from_iter::h45131aa3090cbfe3  (in opening_hours.abi3.so) + 44  [0x10aedd240]
+      +                       ! :         | + 2 _$LT$opening_hours_syntax..rules..time..TimeSpan$u20$as$u20$opening_hours..filter..time_filter..TimeFilter$GT$::as_naive::ha12737a7457fbbac  (in opening_hours.abi3.so) + 1248  [0x10aef1560]
+      +                       ! :         | 23 opening_hours::opening_hours::OpeningHours$LT$L$GT$::schedule_at::h94953cdbfb94ec75  (in opening_hours.abi3.so) + 24,944,...  [0x10aeebb38,0x10aeebed0,...]
+      +                       ! :         | 15 opening_hours::opening_hours::OpeningHours$LT$L$GT$::schedule_at::h94953cdbfb94ec75  (in opening_hours.abi3.so) + 968  [0x10aeebee8]
+      +                       ! :         | + 6 opening_hours::schedule::Schedule::from_ranges::h2285b694a1e9e3f1  (in opening_hours.abi3.so) + 36,584  [0x10aee7424,0x10aee7648]
+      +                       ! :         | + 5 _$LT$alloc..vec..Vec$LT$T$GT$$u20$as$u20$alloc..vec..spec_from_iter..SpecFromIter$LT$T$C$I$GT$$GT$::from_iter::h34dd1895fa8b6bbf  (in opening_hours.abi3.so) + 844  [0x10aedcf1c]
+      +                       ! :         | + 4 opening_hours::schedule::Schedule::from_ranges::h2285b694a1e9e3f1  (in opening_hours.abi3.so) + 76  [0x10aee744c]
+      +                       ! :         | +   4 _$LT$alloc..vec..Vec$LT$T$GT$$u20$as$u20$alloc..vec..spec_from_iter..SpecFromIter$LT$T$C$I$GT$$GT$::from_iter::h34dd1895fa8b6bbf  (in opening_hours.abi3.so) + 104,0,...  [0x10aedcc38,0x10aedcbd0,...]
+      +                       ! :         | 10 opening_hours::opening_hours::OpeningHours$LT$L$GT$::schedule_at::h94953cdbfb94ec75  (in opening_hours.abi3.so) + 2276  [0x10aeec404]
+      +                       ! :         | + 6 opening_hours::schedule::Schedule::filter_closed_ranges::h63133ceb003cee2a  (in opening_hours.abi3.so) + 24  [0x10af0f4ec]
+      +                       ! :         | + ! 6 alloc::vec::Vec$LT$T$C$A$GT$::retain::h66eb1b599d4868ad  (in opening_hours.abi3.so) + 44,24,...  [0x10af070e4,0x10af070d0,...]
+      +                       ! :         | + 4 alloc::vec::Vec$LT$T$C$A$GT$::retain::h66eb1b599d4868ad  (in opening_hours.abi3.so) + 112  [0x10af07128]
+      +                       ! :         | 10 opening_hours::schedule::Schedule::addition::h53cce5224ccff411  (in opening_hours.abi3.so) + 720,716  [0x10af0f82c,0x10af0f828]
+      +                       ! :         | 6 opening_hours::opening_hours::OpeningHours$LT$L$GT$::schedule_at::h94953cdbfb94ec75  (in opening_hours.abi3.so) + 1060  [0x10aeebf44]
+      +                       ! :         | + 6 opening_hours::schedule::Schedule::addition::h53cce5224ccff411  (in opening_hours.abi3.so) + 744,44  [0x10af0f844,0x10af0f588]
+      +                       ! :         | 5 _$LT$alloc..vec..Vec$LT$T$GT$$u20$as$u20$alloc..vec..spec_from_iter..SpecFromIter$LT$T$C$I$GT$$GT$::from_iter::h30b7ac031929ef04  (in opening_hours.abi3.so) + 464,468,...  [0x10aedcb74,0x10aedcb78,...]
+      +                       ! :         | 5 _$LT$opening_hours_syntax..rules..day..DaySelector$u20$as$u20$opening_hours..filter..date_filter..DateFilter$GT$::filter::h339d3c8175011dba  (in opening_hours.abi3.so) + 620  [0x10aeea1e8]
+      +                       ! :         | 3 opening_hours::schedule::Schedule::filter_closed_ranges::h63133ceb003cee2a  (in opening_hours.abi3.so) + 44  [0x10af0f500]
+      +                       ! :         | 1 _$LT$alloc..vec..Vec$LT$T$GT$$u20$as$u20$alloc..vec..spec_from_iter..SpecFromIter$LT$T$C$I$GT$$GT$::from_iter::h45131aa3090cbfe3  (in opening_hours.abi3.so) + 348  [0x10aedd370]
+      +                       ! :         | 1 opening_hours::opening_hours::OpeningHours$LT$L$GT$::schedule_at::h94953cdbfb94ec75  (in opening_hours.abi3.so) + 560  [0x10aeebd50]
+      +                       ! :         |   1 chrono::naive::date::NaiveDate::from_ymd_opt::h5e3149bb4f5abc78  (in opening_hours.abi3.so) + 0  [0x10af94680]
+      +                       ! :         133 _$LT$opening_hours..opening_hours..TimeDomainIterator$LT$L$GT$$u20$as$u20$core..iter..traits..iterator..Iterator$GT$::next::h8213fa01fd3ccc32  (in opening_hours.abi3.so) + 996  [0x10aeeafbc]
+      +                       ! :         | 124 core::ptr::drop_in_place$LT$core..iter..adapters..peekable..Peekable$LT$opening_hours..schedule..IntoIter$GT$$GT$::hb87f9af0ffeb5e1c  (in opening_hours.abi3.so) + 20  [0x10aeecb0c]
+      +                       ! :         | + 49 free_tiny  (in libsystem_malloc.dylib) + 496  [0x182a95748]
+      +                       ! :         | + ! 30 tiny_free_no_lock  (in libsystem_malloc.dylib) + 28,72,...  [0x182a958e8,0x182a95914,...]
+      +                       ! :         | + ! 15 tiny_free_no_lock  (in libsystem_malloc.dylib) + 636  [0x182a95b48]
+      +                       ! :         | + ! : 15 tiny_free_list_add_ptr  (in libsystem_malloc.dylib) + 92,576,...  [0x182a96178,0x182a9635c,...]
+      +                       ! :         | + ! 4 tiny_free_no_lock  (in libsystem_malloc.dylib) + 152  [0x182a95964]
+      +                       ! :         | + !   4 get_tiny_previous_free_msize  (in libsystem_malloc.dylib) + 56,92  [0x182aa1a80,0x182aa1aa4]
+      +                       ! :         | + 31 free_tiny  (in libsystem_malloc.dylib) + 76,356,...  [0x182a955a4,0x182a956bc,...]
+      +                       ! :         | + 13 _szone_free  (in libsystem_malloc.dylib) + 148,20,...  [0x182aa79e8,0x182aa7968,...]
+      +                       ! :         | + 11 free_tiny  (in libsystem_malloc.dylib) + 136  [0x182a955e0]
+      +                       ! :         | + ! 11 _platform_memset  (in libsystem_platform.dylib) + 140,160,...  [0x182cbe7cc,0x182cbe7e0,...]
+      +                       ! :         | + 9 _free  (in libsystem_malloc.dylib) + 20,60,...  [0x182ac0238,0x182ac0260,...]
+      +                       ! :         | + 5 tiny_free_no_lock  (in libsystem_malloc.dylib) + 1688  [0x182a95f64]
+      +                       ! :         | + 4 DYLD-STUB$$free  (in opening_hours.abi3.so) + 4  [0x10afd7ed4]
+      +                       ! :         | + 1 _$LT$alloc..vec..into_iter..IntoIter$LT$T$C$A$GT$$u20$as$u20$core..ops..drop..Drop$GT$::drop::hdf01d1017d036e91  (in opening_hours.abi3.so) + 12  [0x10aee98bc]
+      +                       ! :         | + 1 _RNvCsGIExRX8pES_7___rustc13___rdl_dealloc  (in opening_hours.abi3.so) + 0  [0x10afa4c58]
+      +                       ! :         | 5 core::ptr::drop_in_place$LT$core..iter..adapters..peekable..Peekable$LT$opening_hours..schedule..IntoIter$GT$$GT$::hb87f9af0ffeb5e1c  (in opening_hours.abi3.so) + 20,8,...  [0x10aeecb0c,0x10aeecb00,...]
+      +                       ! :         | 2 _szone_free  (in libsystem_malloc.dylib) + 688  [0x182aa7c04]
+      +                       ! :         | 2 free_tiny  (in libsystem_malloc.dylib) + 540  [0x182a95774]
+      +                       ! :         24 _$LT$opening_hours..opening_hours..TimeDomainIterator$LT$L$GT$$u20$as$u20$core..iter..traits..iterator..Iterator$GT$::next::h8213fa01fd3ccc32  (in opening_hours.abi3.so) + 232  [0x10aeeacc0]
+      +                       ! :         | 24 _$LT$opening_hours..schedule..IntoIter$u20$as$u20$core..iter..traits..iterator..Iterator$GT$::next::h9c77fc6c76bf5c5b  (in opening_hours.abi3.so) + 144,100,...  [0x10af10044,0x10af10018,...]
+      +                       ! :         24 _$LT$opening_hours..opening_hours..TimeDomainIterator$LT$L$GT$$u20$as$u20$core..iter..traits..iterator..Iterator$GT$::next::h8213fa01fd3ccc32  (in opening_hours.abi3.so) + 692  [0x10aeeae8c]
+      +                       ! :         | 17 opening_hours_syntax::rules::OpeningHoursExpression::is_constant::he515539ab5cdc326  (in opening_hours.abi3.so) + 28,64,...  [0x10af723e8,0x10af7240c,...]
+      +                       ! :         | 7 opening_hours_syntax::rules::OpeningHoursExpression::is_constant::he515539ab5cdc326  (in opening_hours.abi3.so) + 264  [0x10af724d4]
+      +                       ! :         |   4 _platform_memcmp  (in libsystem_platform.dylib) + 272,140,...  [0x182cbc6c0,0x182cbc63c,...]
+      +                       ! :         |   3 DYLD-STUB$$memcmp  (in opening_hours.abi3.so) + 4  [0x10afd7f28]
+      +                       ! :         24 _$LT$opening_hours..opening_hours..TimeDomainIterator$LT$L$GT$$u20$as$u20$core..iter..traits..iterator..Iterator$GT$::next::h8213fa01fd3ccc32  (in opening_hours.abi3.so) + 576,868,...  [0x10aeeae18,0x10aeeaf3c,...]
+      +                       ! :         19 _$LT$opening_hours..opening_hours..TimeDomainIterator$LT$L$GT$$u20$as$u20$core..iter..traits..iterator..Iterator$GT$::next::h8213fa01fd3ccc32  (in opening_hours.abi3.so) + 832  [0x10aeeaf18]
+      +                       ! :         | 14 _$LT$opening_hours_syntax..rules..day..DaySelector$u20$as$u20$opening_hours..filter..date_filter..DateFilter$GT$::next_change_hint::h0f6190170add5f36  (in opening_hours.abi3.so) + 48,552,...  [0x10aee9c88,0x10aee9e80,...]
+      +                       ! :         | 3 _$LT$opening_hours_syntax..rules..day..WeekDayRange$u20$as$u20$opening_hours..filter..date_filter..DateFilter$GT$::next_change_hint::h12162baa5c476577  (in opening_hours.abi3.so) + 448  [0x10aeea418]
+      +                       ! :         | 2 _$LT$opening_hours_syntax..rules..day..DaySelector$u20$as$u20$opening_hours..filter..date_filter..DateFilter$GT$::next_change_hint::h0f6190170add5f36  (in opening_hours.abi3.so) + 660  [0x10aee9eec]
+      +                       ! :         |   2 _$LT$opening_hours_syntax..rules..day..WeekDayRange$u20$as$u20$opening_hours..filter..date_filter..DateFilter$GT$::next_change_hint::h12162baa5c476577  (in opening_hours.abi3.so) + 24  [0x10aeea270]
+      +                       ! :         7 _$LT$opening_hours..schedule..IntoIter$u20$as$u20$core..iter..traits..iterator..Iterator$GT$::next::h9c77fc6c76bf5c5b  (in opening_hours.abi3.so) + 1152,1140  [0x10af10434,0x10af10428]
+      +                       ! :         5 _$LT$opening_hours..opening_hours..TimeDomainIterator$LT$L$GT$$u20$as$u20$core..iter..traits..iterator..Iterator$GT$::next::h8213fa01fd3ccc32  (in opening_hours.abi3.so) + 844  [0x10aeeaf24]
+      +                       ! :         | 5 _$LT$core..iter..adapters..map..Map$LT$I$C$F$GT$$u20$as$u20$core..iter..traits..iterator..Iterator$GT$::fold::hc21394c32f5d88a9  (in opening_hours.abi3.so) + 24,0  [0x10aee6d3c,0x10aee6d24]
+      +                       ! :         3 _$LT$opening_hours..opening_hours..TimeDomainIterator$LT$L$GT$$u20$as$u20$core..iter..traits..iterator..Iterator$GT$::next::h8213fa01fd3ccc32  (in opening_hours.abi3.so) + 300  [0x10aeead04]
+      +                       ! :         | 2 _platform_memcmp  (in libsystem_platform.dylib) + 140,168  [0x182cbc63c,0x182cbc658]
+      +                       ! :         | 1 DYLD-STUB$$memcmp  (in opening_hours.abi3.so) + 4  [0x10afd7f28]
+      +                       ! :         3 _$LT$opening_hours..opening_hours..TimeDomainIterator$LT$L$GT$$u20$as$u20$core..iter..traits..iterator..Iterator$GT$::next::h8213fa01fd3ccc32  (in opening_hours.abi3.so) + 756  [0x10aeeaecc]
+      +                       ! :         | 3 _$LT$opening_hours_syntax..rules..time..TimeSelector$u20$as$u20$opening_hours..filter..time_filter..TimeFilter$GT$::is_immutable_full_day::h41cdaede685930e4  (in opening_hours.abi3.so) + 20,92,...  [0x10af0ba38,0x10af0ba80,...]
+      +                       ! :         3 _$LT$opening_hours_syntax..rules..day..DaySelector$u20$as$u20$opening_hours..filter..date_filter..DateFilter$GT$::next_change_hint::h0f6190170add5f36  (in opening_hours.abi3.so) + 712  [0x10aee9f20]
+      +                       ! :         3 opening_hours_syntax::rules::OpeningHoursExpression::is_constant::he515539ab5cdc326  (in opening_hours.abi3.so) + 424,428  [0x10af72574,0x10af72578]
+      +                       ! :         2 _$LT$opening_hours..opening_hours..TimeDomainIterator$LT$L$GT$$u20$as$u20$core..iter..traits..iterator..Iterator$GT$::next::h8213fa01fd3ccc32  (in opening_hours.abi3.so) + 620  [0x10aeeae44]
+      +                       ! :         | 2 _$LT$opening_hours..schedule..IntoIter$u20$as$u20$core..iter..traits..iterator..Iterator$GT$::next::h9c77fc6c76bf5c5b  (in opening_hours.abi3.so) + 36  [0x10af0ffd8]
+      +                       ! :         2 opening_hours::opening_hours::OpeningHours$LT$L$GT$::schedule_at::h94953cdbfb94ec75  (in opening_hours.abi3.so) + 2236  [0x10aeec3dc]
+      +                       ! :         1 _$LT$core..iter..adapters..map..Map$LT$I$C$F$GT$$u20$as$u20$core..iter..traits..iterator..Iterator$GT$::fold::hc21394c32f5d88a9  (in opening_hours.abi3.so) + 216  [0x10aee6dfc]
+      +                       ! 2 pyo3::impl_::trampoline::fastcall_cfunction_with_keywords::h284597edc64bf1c2  (in opening_hours.abi3.so) + 72  [0x10aee24ec]
+      +                       ! : 2 pyo3::impl_::trampoline::trampoline::h940d5933de938bb0  (in opening_hours.abi3.so) + 92  [0x10aee2038]
+      +                       ! :   1 opening_hours::PyOpeningHours::__pymethod_is_open__::h84709fd293d15092  (in opening_hours.abi3.so) + 164  [0x10aed91b0]
+      +                       ! :   | 1 _$LT$opening_hours..types..datetime..DateTimeMaybeAware$u20$as$u20$pyo3..conversion..FromPyObject$GT$::extract::h758a09933ca28e45  (in opening_hours.abi3.so) + 176  [0x10aee8428]
+      +                       ! :   |   1 pyo3::impl_::frompyobject::failed_to_extract_tuple_struct_field::ha066cbad44e4df3e  (in opening_hours.abi3.so) + 224  [0x10afd1ee4]
+      +                       ! :   |     1 pyo3::err::PyErr::set_cause::he20485b300cb07de  (in opening_hours.abi3.so) + 100  [0x10af7bf78]
+      +                       ! :   |       1 pyo3::err::PyErr::into_value::h2f97f3ef89dc4074  (in opening_hours.abi3.so) + 108  [0x10af7bc2c]
+      +                       ! :   |         1 core::ptr::drop_in_place$LT$pyo3..err..PyErr$GT$::hb09fdc351fa8b4c5  (in opening_hours.abi3.so) + 28  [0x10af7b6c8]
+      +                       ! :   |           1 free_tiny  (in libsystem_malloc.dylib) + 496  [0x182a95748]
+      +                       ! :   |             1 tiny_free_no_lock  (in libsystem_malloc.dylib) + 636  [0x182a95b48]
+      +                       ! :   |               1 tiny_free_list_add_ptr  (in libsystem_malloc.dylib) + 168  [0x182a961c4]
+      +                       ! :   1 opening_hours::PyOpeningHours::__pymethod_is_open__::h84709fd293d15092  (in opening_hours.abi3.so) + 456  [0x10aed92d4]
+      +                       ! :     1 opening_hours::opening_hours::OpeningHours$LT$L$GT$::state::h4fbdb898645211bc  (in opening_hours.abi3.so) + 76  [0x10aeec7a4]
+      +                       ! :       1 opening_hours::opening_hours::OpeningHours$LT$L$GT$::iter_range::ha80b816b4f57ec19  (in opening_hours.abi3.so) + 404  [0x10aeeb554]
+      +                       ! :         1 opening_hours::opening_hours::OpeningHours$LT$L$GT$::schedule_at::h94953cdbfb94ec75  (in opening_hours.abi3.so) + 604  [0x10aeebd7c]
+      +                       ! :           1 _$LT$alloc..vec..Vec$LT$T$GT$$u20$as$u20$alloc..vec..spec_from_iter..SpecFromIter$LT$T$C$I$GT$$GT$::from_iter::h45131aa3090cbfe3  (in opening_hours.abi3.so) + 44  [0x10aedd240]
+      +                       ! 1 pyo3::impl_::trampoline::fastcall_cfunction_with_keywords::h818ce478a1a98038  (in opening_hours.abi3.so) + 72  [0x10aee259c]
+      +                       !   1 pyo3::impl_::trampoline::trampoline::h940d5933de938bb0  (in opening_hours.abi3.so) + 92  [0x10aee2038]
+      +                       !     1 opening_hours::PyOpeningHours::__pymethod_is_closed__::h8d24b44d99311f18  (in opening_hours.abi3.so) + 164  [0x10aed99f0]
+      +                       !       1 _$LT$opening_hours..types..datetime..DateTimeMaybeAware$u20$as$u20$pyo3..conversion..FromPyObject$GT$::extract::h758a09933ca28e45  (in opening_hours.abi3.so) + 176  [0x10aee8428]
+      +                       !         1 pyo3::impl_::frompyobject::failed_to_extract_tuple_struct_field::ha066cbad44e4df3e  (in opening_hours.abi3.so) + 224  [0x10afd1ee4]
+      +                       !           1 pyo3::err::PyErr::set_cause::he20485b300cb07de  (in opening_hours.abi3.so) + 144  [0x10af7bfa4]
+      +                       !             1 pyo3::err::err_state::PyErrState::make_normalized::h7e2bce3782b01433  (in opening_hours.abi3.so) + 164  [0x10afd089c]
+      +                       !               1 pyo3::marker::Python::detach::h3742c74d8db0bb2d  (in opening_hours.abi3.so) + 152  [0x10af8a880]
+      +                       !                 1 _RNvMNtNtNtNtCsaLOjE9VYtxK_3std3sys4sync4once5queueNtB2_4Once4call  (in opening_hours.abi3.so) + 256  [0x10afd65e0]
+      +                       !                   1 std::sync::once::Once::call_once::_$u7b$$u7b$closure$u7d$$u7d$::hf4f0fefe7c96b52a  (in opening_hours.abi3.so) + 380  [0x10af89afc]
+      +                       !                     1 pyo3::err::err_state::lazy_into_normalized_ffi_tuple::h89218518a2f7d532  (in opening_hours.abi3.so) + 140  [0x10af7db4c]
+      +                       !                       1 _PyErr_SetObject  (in Python) + 504  [0x105e254f8]
+      +                       !                         1 type_call  (in Python) + 148  [0x105ce5a60]
+      +                       !                           1 BaseException_init  (in Python) + 24  [0x105c3a4ac]
+      +                       1 _PyEval_EvalFrameDefault  (in Python) + 78636  [0x105dd92cc]
+      +                       ! 1 method_vectorcall_VARARGS_KEYWORDS  (in Python) + 144  [0x105c37110]
+      +                       !   1 datetime_isoformat  (in _datetime.cpython-313-darwin.so) + 220  [0x104e595cc]
+      +                       !     1 PyUnicode_FromFormat  (in Python) + 28  [0x105d41c58]
+      +                       !       1 PyUnicode_FromFormatV  (in Python) + 2328  [0x105d3eb90]
+      +                       !         1 __sprintf_chk  (in libsystem_c.dylib) + 60  [0x182b2802c]
+      +                       !           1 _vsnprintf  (in libsystem_c.dylib) + 224  [0x182b4945c]
+      +                       !             1 __vfprintf  (in libsystem_c.dylib) + 11368  [0x182b205b8]
+      +                       1 _PyEval_EvalFrameDefault  (in Python) + 195252  [0x105df5a54]
+      +                         1 PyFunction_New  (in Python) + 2348  [0x105c54f1c]
+      6 ???  (in <unknown binary>)  [0x35fe57320]
+      + 6 tiny_malloc_should_clear  (in libsystem_malloc.dylib) + 288  [0x182a92d40]
+      +   5 _$LT$alloc..vec..Vec$LT$T$GT$$u20$as$u20$alloc..vec..spec_from_iter..SpecFromIter$LT$T$C$I$GT$$GT$::from_iter::h34dd1895fa8b6bbf  (in opening_hours.abi3.so) + 416  [0x10aedcd70]
+      +   ! 4 _malloc_zone_malloc  (in libsystem_malloc.dylib) + 84,96,...  [0x182abf680,0x182abf68c,...]
+      +   ! 1 DYLD-STUB$$malloc  (in opening_hours.abi3.so) + 4  [0x10afd7f1c]
+      +   1 _$LT$alloc..vec..Vec$LT$T$GT$$u20$as$u20$alloc..vec..spec_from_iter..SpecFromIter$LT$T$C$I$GT$$GT$::from_iter::h34dd1895fa8b6bbf  (in opening_hours.abi3.so) + 404  [0x10aedcd64]
+      +     1 _RNvCsGIExRX8pES_7___rustc35___rust_no_alloc_shim_is_unstable_v2  (in opening_hours.abi3.so) + 0  [0x10aef2608]
+      3 ???  (in <unknown binary>)  [0x362884120]
+      + 3 tiny_malloc_should_clear  (in libsystem_malloc.dylib) + 288  [0x182a92d40]
+      +   3 _$LT$alloc..vec..Vec$LT$T$GT$$u20$as$u20$alloc..vec..spec_from_iter..SpecFromIter$LT$T$C$I$GT$$GT$::from_iter::h34dd1895fa8b6bbf  (in opening_hours.abi3.so) + 416  [0x10aedcd70]
+      +     2 _malloc_zone_malloc  (in libsystem_malloc.dylib) + 12,68  [0x182abf638,0x182abf670]
+      +     1 _RNvCsGIExRX8pES_7___rustc11___rdl_alloc  (in opening_hours.abi3.so) + 12  [0x10afa4bf8]
+      3 ???  (in <unknown binary>)  [0x3759b8ac0]
+        3 tiny_malloc_should_clear  (in libsystem_malloc.dylib) + 288  [0x182a92d40]
+          3 _$LT$alloc..vec..Vec$LT$T$GT$$u20$as$u20$alloc..vec..spec_from_iter..SpecFromIter$LT$T$C$I$GT$$GT$::from_iter::h34dd1895fa8b6bbf  (in opening_hours.abi3.so) + 416  [0x10aedcd70]
+            2 _malloc_zone_malloc  (in libsystem_malloc.dylib) + 12,52  [0x182abf638,0x182abf660]
+            1 _RNvCsGIExRX8pES_7___rustc11___rdl_alloc  (in opening_hours.abi3.so) + 12  [0x10afa4bf8]
+
+Total number in stack (recursive counted multiple, when >=5):
+        6       _$LT$opening_hours_syntax..rules..day..WeekDayRange$u20$as$u20$opening_hours..filter..date_filter..DateFilter$GT$::filter::h61c4122d20839888  (in opening_hours.abi3.so) + 0  [0x10aeea438]
+        6       opening_hours::utils::dates::count_days_in_month::h316089e245c98122  (in opening_hours.abi3.so) + 0  [0x10af0a2e8]
+
+Sort by top of stack, same collapsed (when >= 5):
+        free_tiny  (in libsystem_malloc.dylib)        71
+        _$LT$opening_hours_syntax..rules..day..WeekDayRange$u20$as$u20$opening_hours..filter..date_filter..DateFilter$GT$::filter::h61c4122d20839888  (in opening_hours.abi3.so)        53
+        _$LT$alloc..vec..Vec$LT$T$GT$$u20$as$u20$alloc..vec..spec_from_iter..SpecFromIter$LT$T$C$I$GT$$GT$::from_iter::h34dd1895fa8b6bbf  (in opening_hours.abi3.so)        52
+        chrono::naive::date::NaiveDate::diff_months::h095bec5b69abc139  (in opening_hours.abi3.so)        48
+        tiny_free_no_lock  (in libsystem_malloc.dylib)        35
+        _$LT$opening_hours..schedule..IntoIter$u20$as$u20$core..iter..traits..iterator..Iterator$GT$::next::h9c77fc6c76bf5c5b  (in opening_hours.abi3.so)        33
+        _$LT$opening_hours_syntax..rules..time..TimeSpan$u20$as$u20$opening_hours..filter..time_filter..TimeFilter$GT$::as_naive::ha12737a7457fbbac  (in opening_hours.abi3.so)        31
+        opening_hours::utils::dates::count_days_in_month::h316089e245c98122  (in opening_hours.abi3.so)        31
+        _malloc_zone_malloc  (in libsystem_malloc.dylib)        30
+        chrono::naive::date::NaiveDate::add_days::h64a3250fb66889d1  (in opening_hours.abi3.so)        29
+        _szone_free  (in libsystem_malloc.dylib)        28
+        chrono::naive::date::NaiveDate::signed_duration_since::hf5254e732aecff2a  (in opening_hours.abi3.so)        28
+        opening_hours::opening_hours::OpeningHours$LT$L$GT$::schedule_at::h94953cdbfb94ec75  (in opening_hours.abi3.so)        25
+        _$LT$opening_hours..opening_hours..TimeDomainIterator$LT$L$GT$$u20$as$u20$core..iter..traits..iterator..Iterator$GT$::next::h8213fa01fd3ccc32  (in opening_hours.abi3.so)        24
+        _$LT$alloc..vec..Vec$LT$T$GT$$u20$as$u20$alloc..vec..spec_from_iter..SpecFromIter$LT$T$C$I$GT$$GT$::from_iter::h30b7ac031929ef04  (in opening_hours.abi3.so)        23
+        _free  (in libsystem_malloc.dylib)        23
+        tiny_malloc_should_clear  (in libsystem_malloc.dylib)        21
+        chrono::naive::date::NaiveDate::checked_sub_signed::h93bff997151e90d8  (in opening_hours.abi3.so)        20
+        opening_hours_syntax::rules::OpeningHoursExpression::is_constant::he515539ab5cdc326  (in opening_hours.abi3.so)        20
+        _$LT$opening_hours_syntax..rules..day..DaySelector$u20$as$u20$opening_hours..filter..date_filter..DateFilter$GT$::filter::h339d3c8175011dba  (in opening_hours.abi3.so)        18
+        _$LT$opening_hours_syntax..rules..day..DaySelector$u20$as$u20$opening_hours..filter..date_filter..DateFilter$GT$::next_change_hint::h0f6190170add5f36  (in opening_hours.abi3.so)        17
+        tiny_malloc_from_free_list  (in libsystem_malloc.dylib)        17
+        opening_hours::schedule::Schedule::addition::h53cce5224ccff411  (in opening_hours.abi3.so)        16
+        tiny_free_list_add_ptr  (in libsystem_malloc.dylib)        16
+        _platform_memset  (in libsystem_platform.dylib)        15
+        szone_malloc_should_clear  (in libsystem_malloc.dylib)        11
+        alloc::vec::Vec$LT$T$C$A$GT$::retain::h66eb1b599d4868ad  (in opening_hours.abi3.so)        10
+        core::ops::function::impls::_$LT$impl$u20$core..ops..function..FnMut$LT$A$GT$$u20$for$u20$$RF$mut$u20$F$GT$::call_mut::h93fe067abd3d11d4  (in opening_hours.abi3.so)        9
+        DYLD-STUB$$malloc  (in opening_hours.abi3.so)        6
+        _$LT$alloc..vec..Vec$LT$T$GT$$u20$as$u20$alloc..vec..spec_from_iter..SpecFromIter$LT$T$C$I$GT$$GT$::from_iter::h45131aa3090cbfe3  (in opening_hours.abi3.so)        6
+        _$LT$core..iter..adapters..map..Map$LT$I$C$F$GT$$u20$as$u20$core..iter..traits..iterator..Iterator$GT$::fold::hc21394c32f5d88a9  (in opening_hours.abi3.so)        6
+        _RNvCsGIExRX8pES_7___rustc11___rdl_alloc  (in opening_hours.abi3.so)        6
+        _platform_memcmp  (in libsystem_platform.dylib)        6
+        opening_hours::schedule::Schedule::from_ranges::h2285b694a1e9e3f1  (in opening_hours.abi3.so)        6
+        DYLD-STUB$$free  (in opening_hours.abi3.so)        5
+        _$LT$opening_hours_syntax..rules..day..WeekDayRange$u20$as$u20$opening_hours..filter..date_filter..DateFilter$GT$::next_change_hint::h12162baa5c476577  (in opening_hours.abi3.so)        5
+        chrono::naive::date::NaiveDate::checked_add_months::h7993d3f213683dce  (in opening_hours.abi3.so)        5
+        core::ptr::drop_in_place$LT$core..iter..adapters..peekable..Peekable$LT$opening_hours..schedule..IntoIter$GT$$GT$::hb87f9af0ffeb5e1c  (in opening_hours.abi3.so)        5
+        rack_get_thread_index  (in libsystem_malloc.dylib)        5
+
+Binary Images:
+       0x104ba0000 -        0x104ba3fff +org.python.python (3.13.9 - 3.13.9) <779BBBE6-5927-3A0B-B767-256353F44438> /Library/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python
+       0x104e08000 -        0x104e0ffff +_hashlib.cpython-313-darwin.so (0) <7B1EE94B-2C94-3D70-AB16-92F64522C070> /Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/_hashlib.cpython-313-darwin.so
+       0x104e34000 -        0x104e3bfff +_json.cpython-313-darwin.so (0) <560B73E1-9B5D-37F5-A86E-CBCA769D0545> /Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/_json.cpython-313-darwin.so
+       0x104e4c000 -        0x104e5ffff +_datetime.cpython-313-darwin.so (0) <644863C0-5DEC-3047-B96D-6F1FC0A0F9B4> /Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/_datetime.cpython-313-darwin.so
+       0x104fc8000 -        0x104fcfff7 +_blake2.cpython-313-darwin.so (0) <34FC9878-586C-3ABB-91E1-E3580F1DE139> /Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/_blake2.cpython-313-darwin.so
+       0x1050e0000 -        0x1050e3fff +grp.cpython-313-darwin.so (0) <98829C5B-DB22-3C10-AAD0-D18B665DDAFD> /Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/grp.cpython-313-darwin.so
+       0x1050f4000 -        0x1050fbfff +_struct.cpython-313-darwin.so (0) <4FB3019D-006D-3E9F-B1A6-383CEC025F86> /Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/_struct.cpython-313-darwin.so
+       0x105120000 -        0x105127fff +_csv.cpython-313-darwin.so (0) <65833C4D-D263-3093-A9AA-AEF6136CD6E9> /Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/_csv.cpython-313-darwin.so
+       0x105138000 -        0x105143ff7 +math.cpython-313-darwin.so (0) <B9988AF9-9CCA-3077-8789-DABF1B1F805C> /Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/math.cpython-313-darwin.so
+       0x105158000 -        0x10515bfff +binascii.cpython-313-darwin.so (0) <8EED9FA8-A82B-327F-BD64-D61F4DA3A271> /Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/binascii.cpython-313-darwin.so
+       0x10516c000 -        0x105173ffb +zlib.cpython-313-darwin.so (0) <5BA7042F-FD13-3F77-997D-6ED96DA14405> /Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/zlib.cpython-313-darwin.so
+       0x105188000 -        0x10518ffff +_zoneinfo.cpython-313-darwin.so (0) <1475B909-E330-398A-8BA6-2935B37547C0> /Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/_zoneinfo.cpython-313-darwin.so
+       0x1051ac000 -        0x1051afffb +_bz2.cpython-313-darwin.so (0) <23AF8706-C693-3027-AFFF-7742CDC7A27B> /Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/_bz2.cpython-313-darwin.so
+       0x1051c0000 -        0x1051c3fff +_opcode.cpython-313-darwin.so (0) <390FCA82-CA69-3D57-9F5E-F9DEA9C43045> /Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/_opcode.cpython-313-darwin.so
+       0x1051e0000 -        0x1051e3fff +_contextvars.cpython-313-darwin.so (0) <7BD51481-4A3F-3BEB-9EC6-0D913B20DAF6> /Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/_contextvars.cpython-313-darwin.so
+       0x1051f4000 -        0x10520bff3 +_pickle.cpython-313-darwin.so (0) <EC419EC7-D968-3C73-A66D-C90CD41B8433> /Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/_pickle.cpython-313-darwin.so
+       0x105220000 -        0x105227fff +select.cpython-313-darwin.so (0) <74EFDB59-0916-3E64-8CCF-49418455E37A> /Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/select.cpython-313-darwin.so
+       0x105248000 -        0x10527bff7 +_lzma.cpython-313-darwin.so (0) <EC1A8475-F5B2-370D-811E-E5BC6C300D57> /Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/_lzma.cpython-313-darwin.so
+       0x105690000 -        0x1056a7ff3 +_umath_linalg.cpython-313-darwin.so (0) <BABA0E61-50EE-36D0-BF4A-E39013C0F02B> /Users/*/_umath_linalg.cpython-313-darwin.so
+       0x1056b8000 -        0x1056bbfff +fcntl.cpython-313-darwin.so (0) <A96FCD48-5A9E-3E8D-BA65-92DD396A3237> /Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/fcntl.cpython-313-darwin.so
+       0x1056cc000 -        0x1056cffff +_posixsubprocess.cpython-313-darwin.so (0) <EA9C3AB3-D072-307C-A898-5C0F2F36CCA9> /Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/_posixsubprocess.cpython-313-darwin.so
+       0x1056e0000 -        0x1056e3ffb +_rank_filter_1d.cpython-313-darwin.so (0) <F81A7E02-86A1-3C68-9AD2-196504C83032> /Users/*/_rank_filter_1d.cpython-313-darwin.so
+       0x1056f0000 -        0x105707ffb +_ctypes.cpython-313-darwin.so (0) <70BA593B-79EB-32D2-89BA-6B6758DED46C> /Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/_ctypes.cpython-313-darwin.so
+       0x105734000 -        0x10599741f +libcrypto.3.dylib (0) <3FD8E61D-CF34-365D-B2CE-56E129D864E3> /Library/Frameworks/Python.framework/Versions/3.13/lib/libcrypto.3.dylib
+       0x105aa8000 -        0x105aaffff +_multibytecodec.cpython-313-darwin.so (0) <AD32D9FA-F605-30D7-B3B8-D47B36D1BA10> /Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/_multibytecodec.cpython-313-darwin.so
+       0x105acc000 -        0x105acffff +_heapq.cpython-313-darwin.so (0) <A35A393A-B5B7-3D45-8F79-9EB03D8E39F2> /Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/_heapq.cpython-313-darwin.so
+       0x105ae0000 -        0x105ae3ff3 +_queue.cpython-313-darwin.so (0) <CD8C63C1-10CC-31FB-8C67-9A568E27328C> /Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/_queue.cpython-313-darwin.so
+       0x105af4000 -        0x105b03ff3 +_ccallback_c.cpython-313-darwin.so (0) <0BF0A8D0-FD23-3208-B9A3-A1608D60AA6C> /Users/*/_ccallback_c.cpython-313-darwin.so
+       0x105b14000 -        0x105b17fff +_bisect.cpython-313-darwin.so (0) <FBE72E20-9404-3520-848C-B1B401F756C3> /Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/_bisect.cpython-313-darwin.so
+       0x105b28000 -        0x105b2bfff +_random.cpython-313-darwin.so (0) <EE4E50C4-42CD-34D8-9B6E-9AFC87B71C8F> /Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/_random.cpython-313-darwin.so
+       0x105b40000 -        0x105b5bff3 +_cyutility.cpython-313-darwin.so (0) <770F84B6-FE6A-3D9F-96C9-6C065D91EA5F> /Users/*/_cyutility.cpython-313-darwin.so
+       0x105b6c000 -        0x105b7ffff +_mt19937.cpython-313-darwin.so (0) <96DF1871-C975-34DF-AF40-1B6023F1B74E> /Users/*/_mt19937.cpython-313-darwin.so
+       0x105ba0000 -        0x106027fdb +org.python.python (3.13.9, [c] 2001-2024 Python Software Foundation. - 3.13.9) <1F5A15B1-60C1-3172-9922-BABEEC9E2637> /Library/Frameworks/Python.framework/Versions/3.13/Python
+       0x106358000 -        0x10637bfff +bit_generator.cpython-313-darwin.so (0) <975053CC-97F5-329F-AA33-8B950D4287A1> /Users/*/bit_generator.cpython-313-darwin.so
+       0x10638c000 -        0x106397fff +_sfc64.cpython-313-darwin.so (0) <6A732252-021F-3D32-BFDD-A4B1DE8519CC> /Users/*/_sfc64.cpython-313-darwin.so
+       0x1063a4000 -        0x1063dfff3 +_bounded_integers.cpython-313-darwin.so (0) <0E0EECA0-D383-3D58-8C3E-A59EBEC510D9> /Users/*/_bounded_integers.cpython-313-darwin.so
+       0x106600000 -        0x106617ffb +_pcg64.cpython-313-darwin.so (0) <51699E5B-8614-37F0-AC5C-625082A359AB> /Users/*/_pcg64.cpython-313-darwin.so
+       0x106628000 -        0x106953fff +_multiarray_umath.cpython-313-darwin.so (0) <087B7152-6DCC-30F3-834A-07862A27F029> /Users/*/_multiarray_umath.cpython-313-darwin.so
+       0x106a10000 -        0x106a7bffb +_ckdtree.cpython-313-darwin.so (0) <6C313D53-1591-33BF-966A-C69532607B47> /Users/*/_ckdtree.cpython-313-darwin.so
+       0x106b94000 -        0x106ba7ffb +_philox.cpython-313-darwin.so (0) <EEE94B1F-AF81-3484-8125-2B62EE77A97B> /Users/*/_philox.cpython-313-darwin.so
+       0x106bb8000 -        0x106bebfff +md.cpython-313-darwin.so (0) <D3DACF35-8BCD-3A5A-AB74-519CF8E39184> /Users/*/md.cpython-313-darwin.so
+       0x106d00000 -        0x106d2fffb +_common.cpython-313-darwin.so (0) <CF24FBFA-48CA-357D-8DDC-A0E3BF965B60> /Users/*/_common.cpython-313-darwin.so
+       0x106d40000 -        0x106d5bff7 +_codecs_kr.cpython-313-darwin.so (0) <582161A7-8247-3B9D-B32F-83EFEDFEFD57> /Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/_codecs_kr.cpython-313-darwin.so
+       0x106d6c000 -        0x106d6fffb +_codecs_iso2022.cpython-313-darwin.so (0) <373E499A-4B5D-35E0-B96B-0DB59DD5D9EC> /Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/_codecs_iso2022.cpython-313-darwin.so
+       0x106d80000 -        0x106d83fff +_scproxy.cpython-313-darwin.so (0) <6C18F055-86A8-3D65-A7D5-AB13F0A3937D> /Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/_scproxy.cpython-313-darwin.so
+       0x106d94000 -        0x106dd3fff +_pocketfft_umath.cpython-313-darwin.so (0) <086C808E-A487-3203-A377-99E4F82E8CE4> /Users/*/_pocketfft_umath.cpython-313-darwin.so
+       0x106dec000 -        0x106e7fffb +_generator.cpython-313-darwin.so (0) <A228F371-DCE5-3250-B741-9A4679B77859> /Users/*/_generator.cpython-313-darwin.so
+       0x106e9c000 -        0x106ecbff3 +_codecs_jp.cpython-313-darwin.so (0) <277D5A9E-A8CD-38B7-94A1-5BB20A3EAE44> /Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/_codecs_jp.cpython-313-darwin.so
+       0x106ee8000 -        0x106eeffff +_comb.cpython-313-darwin.so (0) <E4C9C4A3-31DE-3AE2-9D31-1EFAC5574081> /Users/*/_comb.cpython-313-darwin.so
+       0x106efc000 -        0x106effffb +libsharpyuv.0.1.2.dylib (0) <D8238240-5AB6-3B23-A4ED-96AAC8F91A64> /Users/*/libsharpyuv.0.1.2.dylib
+       0x106f14000 -        0x10721fff7 +_sparsetools.cpython-313-darwin.so (0) <F2EE6A32-3321-31BA-80DB-D588B7F1E6AD> /Users/*/_sparsetools.cpython-313-darwin.so
+       0x107294000 -        0x10730ffff +mtrand.cpython-313-darwin.so (0) <D6D339BF-6D14-34D8-9B70-EC29346419C9> /Users/*/mtrand.cpython-313-darwin.so
+       0x107624000 -        0x10763ffff +cd.cpython-313-darwin.so (0) <ADFE7E60-FDBB-32B0-9067-108B92D2372E> /Users/*/cd.cpython-313-darwin.so
+       0x1078e0000 -        0x1078ffff7 +_codecs_hk.cpython-313-darwin.so (0) <C947A72B-2D8D-3094-BB44-B3E5D06ED75D> /Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/_codecs_hk.cpython-313-darwin.so
+       0x107910000 -        0x107927ffb +_codecs_tw.cpython-313-darwin.so (0) <EF9CD894-A092-32E5-8924-EF6799D8C0E7> /Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/_codecs_tw.cpython-313-darwin.so
+       0x10793c000 -        0x107957ff7 +_codecs_cn.cpython-313-darwin.so (0) <5C8A0CE4-B66A-3F08-99D4-8F968F2D4684> /Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/_codecs_cn.cpython-313-darwin.so
+       0x10796c000 -        0x10797bffb +_solve_toeplitz.cpython-313-darwin.so (0) <5E381D7D-E498-3483-839B-B9B28A6C82BF> /Users/*/_solve_toeplitz.cpython-313-darwin.so
+       0x10798c000 -        0x10799fffb +_internal_matfuncs.cpython-313-darwin.so (0) <D661EBCC-832C-36AA-862D-5FD7EAD7C0F2> /Users/*/_internal_matfuncs.cpython-313-darwin.so
+       0x1079ac000 -        0x1079bbfff +_ellip_harm_2.cpython-313-darwin.so (0) <2ABF26F2-B748-3402-A012-973751C1247B> /Users/*/_ellip_harm_2.cpython-313-darwin.so
+       0x1079cc000 -        0x107a1bffb +_csparsetools.cpython-313-darwin.so (0) <5C625519-4B2F-3A6F-B4C0-4BEAA4E1C4ED> /Users/*/_csparsetools.cpython-313-darwin.so
+       0x107a2c000 -        0x107a37fff +_hausdorff.cpython-313-darwin.so (0) <5FF43019-65AD-3EF8-8854-530E59981539> /Users/*/_hausdorff.cpython-313-darwin.so
+       0x107a4c000 -        0x107af3ff7 +unicodedata.cpython-313-darwin.so (0) <85E1B92A-20B9-3819-AD98-F797C142F859> /Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/unicodedata.cpython-313-darwin.so
+       0x107d04000 -        0x107d33fff +_batched_linalg.cpython-313-darwin.so (0) <C13A8F5A-7FED-3BBC-B0C9-8FCFA5CA51BC> /Users/*/_batched_linalg.cpython-313-darwin.so
+       0x107d48000 -        0x107d6bffb +_cythonized_array_utils.cpython-313-darwin.so (0) <BF26BFA0-A5BE-3A4B-9EA6-5D00501C57A6> /Users/*/_cythonized_array_utils.cpython-313-darwin.so
+       0x107d8c000 -        0x107ddbff2 +_fblas.cpython-313-darwin.so (0) <060CB330-9584-3E5E-B479-EA0B416ED8F9> /Users/*/_fblas.cpython-313-darwin.so
+       0x107f14000 -        0x107f2bfff +_linalg_pythran.cpython-313-darwin.so (0) <A4B1E9FB-3A18-3131-8332-E8683A71EB7E> /Users/*/_linalg_pythran.cpython-313-darwin.so
+       0x107f38000 -        0x107f4bfff +cython_blas.cpython-313-darwin.so (0) <9A977C04-F621-38DF-9AA0-AED14A3C5873> /Users/*/cython_blas.cpython-313-darwin.so
+       0x107f60000 -        0x107f6bffb +messagestream.cpython-313-darwin.so (0) <3A46B24C-E7A6-3D65-97E1-FA387C8A3CA5> /Users/*/messagestream.cpython-313-darwin.so
+       0x107f78000 -        0x107fa7ff7 +_decomp_update.cpython-313-darwin.so (0) <E4066154-659B-38A3-8A93-5BA83666BCD9> /Users/*/_decomp_update.cpython-313-darwin.so
+       0x107fb8000 -        0x107fc3ffb +_voronoi.cpython-313-darwin.so (0) <79C0A5CB-FE1D-3383-8FDD-96C1F9187490> /Users/*/_voronoi.cpython-313-darwin.so
+       0x107fd0000 -        0x107fd3fff +_version.cpython-313-darwin.so (0) <F6845419-0368-340C-9BC3-A0B2BE82BE75> /Users/*/_version.cpython-313-darwin.so
+       0x107fe4000 -        0x1080f3fff +_flapack.cpython-313-darwin.so (0) <1A788A8E-3440-3094-B488-E8F730B7C6D5> /Users/*/_flapack.cpython-313-darwin.so
+       0x1081b4000 -        0x1081c3fff +_distance_wrap.cpython-313-darwin.so (0) <0E121E25-9B68-3463-A262-941F2AAA2AC7> /Users/*/_distance_wrap.cpython-313-darwin.so
+       0x1081d0000 -        0x1081d88d3 +_geos.cpython-313-darwin.so (0) <10A25119-078B-36A2-B9F0-DE9A5019A4B0> /Users/*/_geos.cpython-313-darwin.so
+       0x1081f0000 -        0x1081fffff +_min_spanning_tree.cpython-313-darwin.so (0) <A02A40BA-4653-3666-A405-AB6426110EFE> /Users/*/_min_spanning_tree.cpython-313-darwin.so
+       0x108210000 -        0x10822fffb +cython_lapack.cpython-313-darwin.so (0) <D879172F-78D7-3137-8A57-B8BD0B7A445A> /Users/*/cython_lapack.cpython-313-darwin.so
+       0x10826c000 -        0x10828bffb +_specfun.cpython-313-darwin.so (0) <EA7B634F-F6C2-30D1-BB04-9EBFD7DE4DCF> /Users/*/_specfun.cpython-313-darwin.so
+       0x10829c000 -        0x1082c3fff +_rigid_transform_cy.cpython-313-darwin.so (0) <DC2781FE-203F-3827-B025-E56698EA2229> /Users/*/_rigid_transform_cy.cpython-313-darwin.so
+       0x1082d4000 -        0x1082f3ffb +_arpacklib.cpython-313-darwin.so (0) <D2C340CD-0336-37D3-A574-8C30C9441F56> /Users/*/_arpacklib.cpython-313-darwin.so
+       0x108300000 -        0x108303fff +_uuid.cpython-313-darwin.so (0) <B5D096B3-1F16-3127-B0FB-8B5CAE77C791> /Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/_uuid.cpython-313-darwin.so
+       0x108314000 -        0x1083a7ff7 +_ufuncs.cpython-313-darwin.so (0) <0E7AE061-D9CE-3DA7-9F93-6328D4B1A5C1> /Users/*/_ufuncs.cpython-313-darwin.so
+       0x1084c0000 -        0x108513fff +_rotation_cy.cpython-313-darwin.so (0) <FD03E3C6-3A57-3A9F-9C5E-BE8039D45390> /Users/*/_rotation_cy.cpython-313-darwin.so
+       0x108530000 -        0x108637ffb +_ufuncs_cxx.cpython-313-darwin.so (0) <0CCFC127-E32A-3E19-AD1F-D4EDE3ABFCB2> /Users/*/_ufuncs_cxx.cpython-313-darwin.so
+       0x1086a0000 -        0x108787ff7 +_special_ufuncs.cpython-313-darwin.so (0) <D315318E-D49A-39BD-A047-294CA1E5DDBC> /Users/*/_special_ufuncs.cpython-313-darwin.so
+       0x1087b8000 -        0x108813ff7 +_gufuncs.cpython-313-darwin.so (0) <48123FEC-75FC-3DEF-A4D4-8569841B0EC8> /Users/*/_gufuncs.cpython-313-darwin.so
+       0x108854000 -        0x10886bfff +_propack.cpython-313-darwin.so (0) <311B4676-4B37-326B-B27F-0CCD9689D458> /Users/*/_propack.cpython-313-darwin.so
+       0x108878000 -        0x108893fff +_tools.cpython-313-darwin.so (0) <03897177-B411-36DD-B3DD-40C5DF739A71> /Users/*/_tools.cpython-313-darwin.so
+       0x1088a4000 -        0x1088aa6f7 +libaec.0.1.7.dylib (0) <772E3DDA-0DEA-3464-B701-7C02B6F00846> /Users/*/libaec.0.1.7.dylib
+       0x1088c0000 -        0x1088c7fff +_compat.cpython-313-darwin.so (0) <8A649ECA-5BF0-3C5E-95D1-8A73F93CCA93> /Users/*/_compat.cpython-313-darwin.so
+       0x1088e0000 -        0x108943ff7 +_distance_pybind.cpython-313-darwin.so (0) <5EC31081-EC90-397A-91D9-B2B28087FB28> /Users/*/_distance_pybind.cpython-313-darwin.so
+       0x108a6c000 -        0x108aa3ff7 +_superlu.cpython-313-darwin.so (0) <60B5D4BB-7FE2-37B7-8007-03CCA079AF72> /Users/*/_superlu.cpython-313-darwin.so
+       0x108ab4000 -        0x108af7ff3 +_shortest_path.cpython-313-darwin.so (0) <F3EE93B2-6C42-3DF0-B5AE-732E451D5241> /Users/*/_shortest_path.cpython-313-darwin.so
+       0x108b0c000 -        0x108b11a3f +libgif.7.2.0.dylib (0) <43CA807C-045F-3504-BA3B-364A27E52BD0> /Users/*/libgif.7.2.0.dylib
+       0x108b20000 -        0x108bbbff7 +_qhull.cpython-313-darwin.so (0) <21F4B94F-38ED-3D0C-842F-99A66759B1B9> /Users/*/_qhull.cpython-313-darwin.so
+       0x108bd4000 -        0x108beffff +_flow.cpython-313-darwin.so (0) <EC36CF13-A70B-3056-8F97-9767F07911FC> /Users/*/_flow.cpython-313-darwin.so
+       0x108e00000 -        0x108e1bfff +_matching.cpython-313-darwin.so (0) <14EB4057-F928-3EB4-AD75-81C2E8A20326> /Users/*/_matching.cpython-313-darwin.so
+       0x108e2c000 -        0x108e33fff +_network.cpython-313-darwin.so (0) <EB6926EF-BFA7-3733-9CB8-73AB8AF8E83A> /Users/*/_network.cpython-313-darwin.so
+       0x108e48000 -        0x108e7fff7 +_traversal.cpython-313-darwin.so (0) <F74192FE-5964-31FD-A441-9C5C65770754> /Users/*/_traversal.cpython-313-darwin.so
+       0x108e90000 -        0x108ea7ff7 +_reordering.cpython-313-darwin.so (0) <B7000967-3653-3D25-AF69-959F61889BBF> /Users/*/_reordering.cpython-313-darwin.so
+       0x108eb8000 -        0x108ed5b63 +lib.cpython-313-darwin.so (0) <C7DE79EB-5048-38DF-BDAE-65C1E44F2C54> /Users/*/lib.cpython-313-darwin.so
+       0x108ef0000 -        0x108efbffb +array.cpython-313-darwin.so (0) <5D419838-27D0-372D-8170-1FCD859A35CE> /Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/array.cpython-313-darwin.so
+       0x108f10000 -        0x108f1fffb +_context.cpython-313-darwin.so (0) <31258D72-D387-3CEA-A94A-E8F062601EE0> /Users/*/_context.cpython-313-darwin.so
+       0x108f34000 -        0x108f3bfff +list.cpython-313-darwin.so (0) <B7CECB6A-9142-3C71-8695-84406CF1D4FD> /Users/*/list.cpython-313-darwin.so
+       0x108f54000 -        0x108f8892f +libgeos_c.1.20.5.dylib (0) <78665131-74B3-3B3E-8D16-65F9748AA01A> /Users/*/libgeos_c.1.20.5.dylib
+       0x108fb8000 -        0x108fecd1b +_geometry_helpers.cpython-313-darwin.so (0) <9BBE65B2-F0F0-3E23-AC22-C0D5CDCEECE7> /Users/*/_geometry_helpers.cpython-313-darwin.so
+       0x10910c000 -        0x10912bfff +liblzma.5.dylib (0) <12313148-5E51-380A-8C6F-B7BE179754D9> /Users/*/liblzma.5.dylib
+       0x10913c000 -        0x10914bfff +_socket.cpython-313-darwin.so (0) <9F100D37-C708-35C2-B769-EE497B63DFB4> /Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/_socket.cpython-313-darwin.so
+       0x109168000 -        0x10917fffb +_geod.cpython-313-darwin.so (0) <4D8EF15D-BA23-321F-8523-DB73FC16A872> /Users/*/_geod.cpython-313-darwin.so
+       0x109194000 -        0x1091fbff7 +libtiff.6.dylib (0) <9E604587-B9DE-3B4F-9F67-CA228489B074> /Users/*/libtiff.6.dylib
+       0x10921c000 -        0x10925bfff +libwebp.7.2.0.dylib (0) <1BAF7F67-3BEB-3DBB-800D-35C98A2D38EB> /Users/*/libwebp.7.2.0.dylib
+       0x109274000 -        0x109287ffb +database.cpython-313-darwin.so (0) <7AAFCA3B-6C45-3219-8411-B56D7851A2CB> /Users/*/database.cpython-313-darwin.so
+       0x10929c000 -        0x10929f223 +libsharpyuv.0.dylib (0) <8B9363B1-9EAF-3175-B071-DA23D45AFCC0> /Users/*/libsharpyuv.0.dylib
+       0x1092b0000 -        0x10946112b +libgeos.3.14.1.dylib (0) <89B8C581-23C2-34D9-A1D8-FCF018673081> /Users/*/libgeos.3.14.1.dylib
+       0x1095a8000 -        0x1095c3fff +_ssl.cpython-313-darwin.so (0) <12A29648-9098-303C-B4A2-978618ACC775> /Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/_ssl.cpython-313-darwin.so
+       0x1095e4000 -        0x1095ebffb +_sync.cpython-313-darwin.so (0) <9B468546-128F-3212-9B31-D21CE3E1BCB9> /Users/*/_sync.cpython-313-darwin.so
+       0x109700000 -        0x109723ffb +_transformer.cpython-313-darwin.so (0) <1BF1191F-327E-34C1-B897-D734DA0532D0> /Users/*/_transformer.cpython-313-darwin.so
+       0x1097a4000 -        0x10982ffff +libzstd.1.5.7.dylib (0) <A101F9A2-32DA-3484-AC68-4D3A5F26DA31> /Users/*/libzstd.1.5.7.dylib
+       0x10984c000 -        0x1098a7fe7 +libjpeg.8.3.2.dylib (0) <02FDF09D-3434-39AA-99E5-009183BBE870> /Users/*/libjpeg.8.3.2.dylib
+       0x1098bc000 -        0x10990bff3 +_crs.cpython-313-darwin.so (0) <D06F2677-05DD-31AD-BB4B-9EE6AE02D022> /Users/*/_crs.cpython-313-darwin.so
+       0x109a34000 -        0x109a9bfff +libssl.3.dylib (0) <FEAF9C18-7B1D-3A7B-A313-9223C0D0578B> /Library/Frameworks/Python.framework/Versions/3.13/lib/libssl.3.dylib
+       0x109b34000 -        0x109b3af5f +libsz.2.0.1.dylib (0) <652834DA-768C-39DA-BE23-D519B499DD39> /Users/*/libsz.2.0.1.dylib
+       0x109b48000 -        0x109b53fff +_elementtree.cpython-313-darwin.so (0) <783EA18C-E2E4-3CE3-B655-960778FFAC24> /Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/_elementtree.cpython-313-darwin.so
+       0x109b70000 -        0x109ec7ff7 +libproj.25.9.8.1.dylib (0) <B1507156-0C5F-3646-8207-5FAF06BD5774> /Users/*/libproj.25.9.8.1.dylib
+       0x10a0e0000 -        0x10a0ee2a7 +libdeflate.0.dylib (0) <2C540E6F-8C4D-3B73-8BA4-A429FE16F666> /Users/*/libdeflate.0.dylib
+       0x10aecc000 -        0x10b904d27 +opening_hours.abi3.so (0) <01928D84-BBA4-371A-AF9E-610AE238A7C3> /Users/*/opening_hours.abi3.so
+       0x10c598000 -        0x10c5b8bbf +liblzma.5.dylib (0) <14AC2EA8-9C36-36D8-8ED4-B2C3B43422DB> /Users/*/liblzma.5.dylib
+       0x10c5d4000 -        0x10c5de3af +libjson-c.5.4.0.dylib (0) <542A72F7-6816-3BCD-B6FE-00F9CCBBEB65> /Users/*/libjson-c.5.4.0.dylib
+       0x16a200000 -        0x16a210f67 +libz.1.3.2.dylib (0) <FA559511-180A-3872-BAEA-9BBD16F576B9> /Users/*/libz.1.3.2.dylib
+       0x16a224000 -        0x16a23b857 +libhdf5_hl.320.0.3.dylib (0) <251CC718-E12C-392A-B9A8-639DD94FDA5C> /Users/*/libhdf5_hl.320.0.3.dylib
+       0x16b360000 -        0x16b38822b +libpng16.16.dylib (0) <84603788-44CD-31BD-B66C-23E87FB73B5C> /Users/*/libpng16.16.dylib
+       0x16b3a4000 -        0x16b3b2d63 +_filepath.cpython-313-darwin.so (0) <9DE2A78E-EC9F-390A-8C5C-8E11A14241EA> /Users/*/_filepath.cpython-313-darwin.so
+       0x16b3cc000 -        0x16b3d70f3 +_version.cpython-313-darwin.so (0) <DE14ACD7-32E1-3FA2-844B-16081D4450F4> /Users/*/_version.cpython-313-darwin.so
+       0x1828b0000 -        0x182901ca3  libobjc.A.dylib (928.3) <B2882096-462B-3878-BE2A-410F7B1A27FD> /usr/lib/libobjc.A.dylib
+       0x182902000 -        0x182983f3f  dyld (1.0.0 - 1245.1) <398A133C-9BCB-317F-A064-A40D3CEA3C0F> /usr/lib/dyld
+       0x182984000 -        0x182987ff8  libsystem_blocks.dylib (95) <A33D811C-BD2D-3833-9C38-9BF3960A1F8C> /usr/lib/system/libsystem_blocks.dylib
+       0x182988000 -        0x1829d2fff  libxpc.dylib (2866.81.1) <564B7785-E7C4-3231-8BF1-3FBB266B6599> /usr/lib/system/libxpc.dylib
+       0x1829d3000 -        0x1829eefff  libsystem_trace.dylib (1612.80.7) <7F5EC174-AB45-37E7-B783-83A04B6154A1> /usr/lib/system/libsystem_trace.dylib
+       0x1829ef000 -        0x182a8efdf  libcorecrypto.dylib (1736.80.2) <8A08F4FE-C92E-35AA-BBB8-45A9D7A00AAD> /usr/lib/system/libcorecrypto.dylib
+       0x182a8f000 -        0x182ad0fff  libsystem_malloc.dylib (657.80.3) <1480B446-99F7-3757-9D4E-5BA3014A2726> /usr/lib/system/libsystem_malloc.dylib
+       0x182ad1000 -        0x182b17fff  libdispatch.dylib (1504.60.7) <5576E4FD-AAD2-3608-8C8F-4EEC421236F9> /usr/lib/system/libdispatch.dylib
+       0x182b18000 -        0x182b1affb  libsystem_featureflags.dylib (94) <64FD190D-C0D7-3B9A-837B-E63EA386BE14> /usr/lib/system/libsystem_featureflags.dylib
+       0x182b1b000 -        0x182b9cffb  libsystem_c.dylib (1669.60.4) <92699527-645F-3D8D-AED8-1CFB0C034E15> /usr/lib/system/libsystem_c.dylib
+       0x182b9d000 -        0x182c2affb  libc++.1.dylib (1800.105) <BBAB286C-2E51-3D64-9AE3-A4102935FE32> /usr/lib/libc++.1.dylib
+       0x182c2b000 -        0x182c45fff  libc++abi.dylib (1800.105) <E7DBA219-4E97-307D-8E80-E0D97BE8517B> /usr/lib/libc++abi.dylib
+       0x182c46000 -        0x182c80ff7  libsystem_kernel.dylib (11215.81.4) <EEE9D0D3-DFFC-37CB-9CED-B27CD0286D8C> /usr/lib/system/libsystem_kernel.dylib
+       0x182c81000 -        0x182c8dfff  libsystem_pthread.dylib (535) <642FAF7A-874E-37E6-8ABA-2B0CC09A3025> /usr/lib/system/libsystem_pthread.dylib
+       0x182c8e000 -        0x182cbaffb  libdyld.dylib (1245.1) <C0C53058-94D2-3D9E-9E92-56BA8B43C327> /usr/lib/system/libdyld.dylib
+       0x182cbb000 -        0x182cc2feb  libsystem_platform.dylib (340.60.2) <984D08B8-F85C-36F5-9E17-5BFF7FC779A3> /usr/lib/system/libsystem_platform.dylib
+       0x182cc3000 -        0x182cf2ffb  libsystem_info.dylib (592) <8C7C4902-FEC1-3776-87FF-2373BA19B1CE> /usr/lib/system/libsystem_info.dylib
+       0x182cf3000 -        0x1831e7fff  com.apple.CoreFoundation (6.9 - 3302.1.400) <190E6A36-FCAA-3EA3-94BB-7009C44653DA> /System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation
+       0x1831e8000 -        0x1834cffff  com.apple.LaunchServices (1141.1 - 1141.1) <0BD79215-03E1-3D88-8104-97D48BF358AF> /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/LaunchServices
+       0x1834d0000 -        0x18364bfff  com.apple.gpusw.MetalTools (1.0 - 1) <96903DB1-40B9-33C2-8A15-5467628D2E30> /System/Library/PrivateFrameworks/MetalTools.framework/Versions/A/MetalTools
+       0x18364c000 -        0x1839dbfef  libBLAS.dylib (1510.80.2) <0BF9D1E6-E6F8-3C3C-B387-A1D026A35421> /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libBLAS.dylib
+       0x1839dc000 -        0x183addfff  com.apple.Lexicon-framework (1.0 - 170) <CB56B935-5BA1-3433-8A90-4C19028119BA> /System/Library/PrivateFrameworks/Lexicon.framework/Versions/A/Lexicon
+       0x183ade000 -        0x183b3eff7  libSparse.dylib (127) <2EFCD141-921F-3A98-AB50-407D7B836E03> /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libSparse.dylib
+       0x183b3f000 -        0x183bd2fff  com.apple.SystemConfiguration (1.21 - 1.21) <C432C6F3-58A3-324A-AA32-9BE164948D73> /System/Library/Frameworks/SystemConfiguration.framework/Versions/A/SystemConfiguration
+       0x183bd3000 -        0x183c08fff  libCRFSuite.dylib (55) <46CEF889-1D1C-351C-B617-7EC20152D174> /usr/lib/libCRFSuite.dylib
+       0x183ee5000 -        0x184d2cfff  com.apple.Foundation (6.9 - 3302.1.400) <16D282D0-8B48-3E76-8036-FCB45DECE518> /System/Library/Frameworks/Foundation.framework/Versions/C/Foundation
+       0x184eef000 -        0x18500ffff  com.apple.CoreDisplay (288 - 288) <675C41D6-FF46-3086-A6EB-0C833A551E12> /System/Library/Frameworks/CoreDisplay.framework/Versions/A/CoreDisplay
+       0x185010000 -        0x1853c1fff  com.apple.audio.AudioToolboxCore (1.0 - 1456.404) <3573E5A3-0C97-33BD-82EC-8B2A0E152826> /System/Library/PrivateFrameworks/AudioToolboxCore.framework/Versions/A/AudioToolboxCore
+       0x1853c2000 -        0x1855d1fff  com.apple.CoreText (844.2.0.4 - 844.2.0.4) <EDDB0FFF-E301-3F43-B44B-088BA48BA8D4> /System/Library/Frameworks/CoreText.framework/Versions/A/CoreText
+       0x1855d2000 -        0x185d1dfff  com.apple.audio.CoreAudio (5.0 - 5.0) <214B90DC-87E8-30A8-B682-C2C1883F9635> /System/Library/Frameworks/CoreAudio.framework/Versions/A/CoreAudio
+       0x185d1e000 -        0x186114fff  com.apple.security (7.0 - 61439.81.1) <2CDC4B1D-902A-3808-8B42-7473A3BE43F2> /System/Library/Frameworks/Security.framework/Versions/A/Security
+       0x186115000 -        0x1863d8fff  libicucore.A.dylib (74222.203) <406B2B81-9520-3A45-AD64-39AE0DF5291E> /usr/lib/libicucore.A.dylib
+       0x1863d9000 -        0x1863e3ff7  libsystem_darwin.dylib (1669.60.4) <F23DCA7C-AF18-3BB9-9D2F-FFBC4645DDC1> /usr/lib/system/libsystem_darwin.dylib
+       0x1863e4000 -        0x1866d9fff  com.apple.CoreServices.CarbonCore (1333 - 1333) <4F74B7C7-7D08-3067-A12E-DD1873D04A2B> /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/CarbonCore.framework/Versions/A/CarbonCore
+       0x1866da000 -        0x186719ffb  com.apple.CoreServicesInternal (505 - 505) <36144ED0-C50B-3319-B3C1-B1CB578D3633> /System/Library/PrivateFrameworks/CoreServicesInternal.framework/Versions/A/CoreServicesInternal
+       0x18671a000 -        0x18675afff  com.apple.CSStore (1141.1 - 1141.1) <F05A3728-86E9-362C-A3D2-915CF8CE0BEB> /System/Library/PrivateFrameworks/CoreServicesStore.framework/Versions/A/CoreServicesStore
+       0x18675b000 -        0x18683bfff  com.apple.framework.IOKit (2.0.2 - 100140.81.1) <FFD74642-9D8E-31DB-AD51-41EB5F08837B> /System/Library/Frameworks/IOKit.framework/Versions/A/IOKit
+       0x18683c000 -        0x18684efff  libsystem_notify.dylib (327.60.1) <A3EE7CB1-6FCC-37AB-A8BC-256B9642B47D> /usr/lib/system/libsystem_notify.dylib
+       0x187e9a000 -        0x187eaffff  com.apple.UniformTypeIdentifiers (709 - 709) <AEC24D03-1CF7-3B72-9B70-84D3ACB12B8A> /System/Library/Frameworks/UniformTypeIdentifiers.framework/Versions/A/UniformTypeIdentifiers
+       0x188356000 -        0x18841fff2  libboringssl.dylib (486.60.4) <D1D95DEA-FA2D-37B9-9D95-1DFFFEADCD17> /usr/lib/libboringssl.dylib
+       0x188420000 -        0x188420fff  libnetwork.dylib (4277.81.1) <4B0437CD-9875-3427-A933-0079F0801589> /usr/lib/libnetwork.dylib
+       0x188421000 -        0x1887e9fff  com.apple.CFNetwork (1.0 - 3826.400.120) <446389BE-E9E5-34D6-B055-567FAB324E8B> /System/Library/Frameworks/CFNetwork.framework/Versions/A/CFNetwork
+       0x1887ea000 -        0x188804ff7  libsystem_networkextension.dylib (2063.80.10) <CD0C82E0-9B1B-3CAA-8CA7-466D1C439C3B> /usr/lib/system/libsystem_networkextension.dylib
+       0x188805000 -        0x188806fff  libenergytrace.dylib (23) <B32AD8E4-B509-381A-A923-2C2779607316> /usr/lib/libenergytrace.dylib
+       0x188807000 -        0x18887ffff  libMobileGestalt.dylib (1393.60.16) <2948F2A2-8914-3311-8F59-15D4091D81D4> /usr/lib/libMobileGestalt.dylib
+       0x188880000 -        0x188898ffb  libsystem_asl.dylib (402) <26693E85-AFDC-38E2-B939-D6EC865FA506> /usr/lib/system/libsystem_asl.dylib
+       0x188899000 -        0x1888baff4  com.apple.TCC (1.0 - 1) <95F2C668-A363-3532-A8FE-A3477FBB70F3> /System/Library/PrivateFrameworks/TCC.framework/Versions/A/TCC
+       0x1888bb000 -        0x188de7fff  com.apple.SkyLight (1.600.0 - 882.26) <F66E0C94-99B5-3FCD-B726-3E3CBCA668A3> /System/Library/PrivateFrameworks/SkyLight.framework/Versions/A/SkyLight
+       0x188de8000 -        0x189506fff  com.apple.CoreGraphics (2.0 - 1889.3.2) <98B2EB82-3B9F-35EF-B7FC-936BC0F7A900> /System/Library/Frameworks/CoreGraphics.framework/Versions/A/CoreGraphics
+       0x189507000 -        0x1896beff7  com.apple.ColorSync (4.13.0 - 3777) <710462FA-9380-3B51-B69F-EA76457A113D> /System/Library/Frameworks/ColorSync.framework/Versions/A/ColorSync
+       0x189f51000 -        0x189f6afff  com.apple.ProtocolBuffer (1 - 303.23.11.14.1) <7D868DB1-5E16-3785-98E0-D883FFC85BFE> /System/Library/PrivateFrameworks/ProtocolBuffer.framework/Versions/A/ProtocolBuffer
+       0x189f6b000 -        0x18a11dff3  libsqlite3.dylib (358.1) <03A3F0E0-3898-360D-8138-2A6E0E43CC70> /usr/lib/libsqlite3.dylib
+       0x18a1b7000 -        0x18a29bfff  com.apple.BaseBoard (694.3.4 - 694.3.4) <F6CE5B34-65B7-38D9-A7A0-BD366CE4E692> /System/Library/PrivateFrameworks/BaseBoard.framework/Versions/A/BaseBoard
+       0x18a29c000 -        0x18a302fff  com.apple.RunningBoardServices (1.0 - 945.80.1.0.1) <C6A2DA05-DD7B-30D9-9C9B-3A0171803A5D> /System/Library/PrivateFrameworks/RunningBoardServices.framework/Versions/A/RunningBoardServices
+       0x18a303000 -        0x18a377ff7  com.apple.AE (944 - 944) <09E72A53-8B7E-3365-987B-3B6CA4F73672> /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/AE.framework/Versions/A/AE
+       0x18a378000 -        0x18a388ffb  libdns_services.dylib (2559.80.8) <0CB47A92-D03D-3F59-8E40-7C8E7596A13D> /usr/lib/libdns_services.dylib
+       0x18a389000 -        0x18a391fff  libsystem_symptoms.dylib (2001.80.5) <695D143C-5D59-37B0-8784-4AE727AFEEF5> /usr/lib/system/libsystem_symptoms.dylib
+       0x18a392000 -        0x18b3acfff  com.apple.Network (1.0 - 4277.81.1) <C8EC9CCA-B25B-38A5-878C-FEF450B0F4F6> /System/Library/Frameworks/Network.framework/Versions/A/Network
+       0x18b3ad000 -        0x18b3defff  com.apple.analyticsd (1.0 - 1) <51A78775-2A2A-3A2D-A111-97563EDFC22E> /System/Library/PrivateFrameworks/CoreAnalytics.framework/Versions/A/CoreAnalytics
+       0x18b3df000 -        0x18b3e0fff  libDiagnosticMessagesClient.dylib (113) <7A6FFFA7-533C-3598-9D47-9110B143C53D> /usr/lib/libDiagnosticMessagesClient.dylib
+       0x18b3e1000 -        0x18b440fff  com.apple.spotlight.metadata.utilities (1.0 - 2328.7.8.7) <E758C584-F7F6-3484-AF84-06E9DFCA1D21> /System/Library/PrivateFrameworks/MetadataUtilities.framework/Versions/A/MetadataUtilities
+       0x18b441000 -        0x18b4cafff  com.apple.Metadata (15.3 - 2328.7.8.7) <1AFBB369-31F2-37B3-AE03-2EDB3E9AD439> /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Metadata
+       0x18b4cb000 -        0x18b4d3ffb  com.apple.DiskArbitration (2.7 - 2.7) <5B54B140-0055-302C-94FE-06522FB8A1E8> /System/Library/Frameworks/DiskArbitration.framework/Versions/A/DiskArbitration
+       0x18b4d4000 -        0x18b8affcf  com.apple.vImage (8.1 - 602.81.1) <F8CC3605-0E2A-36D5-AB42-A80D3E9E9644> /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vImage.framework/Versions/A/vImage
+       0x18b8b0000 -        0x18bc77fff  com.apple.QuartzCore (1.11 - 1150.21) <EE3AC490-BA65-3238-8ABA-BB234BF4A480> /System/Library/Frameworks/QuartzCore.framework/Versions/A/QuartzCore
+       0x18bc78000 -        0x18bcc9fff  libFontRegistry.dylib (387) <89CDA507-C362-3BA2-8C8D-6EAAF75B3B74> /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/ATS.framework/Versions/A/Resources/libFontRegistry.dylib
+       0x18bf4c000 -        0x18bf59fff  com.apple.OpenDirectory (15.3 - 643) <F65493A7-19A1-3694-927F-B50B2855DC33> /System/Library/Frameworks/OpenDirectory.framework/Versions/A/OpenDirectory
+       0x18bf5a000 -        0x18bf78ffb  com.apple.CFOpenDirectory (15.3 - 643) <B2999F75-22EC-3E1B-9F76-952744E82F45> /System/Library/Frameworks/OpenDirectory.framework/Versions/A/Frameworks/CFOpenDirectory.framework/Versions/A/CFOpenDirectory
+       0x18bf79000 -        0x18bf86ffb  com.apple.CoreServices.FSEvents (1400 - 1400) <31542F66-1FA7-3A5C-B3BE-EB872DBCE104> /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/FSEvents.framework/Versions/A/FSEvents
+       0x18bf87000 -        0x18bfb0fff  com.apple.coreservices.SharedFileList (225 - 225) <58EF0C88-7857-30AF-8577-A76E86767816> /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/SharedFileList.framework/Versions/A/SharedFileList
+       0x18bfb1000 -        0x18bfb4fff  libapp_launch_measurement.dylib (17) <138B5A31-DC0D-362A-BCC6-D3E9FA7706E3> /usr/lib/libapp_launch_measurement.dylib
+       0x18bfb5000 -        0x18bffefff  com.apple.CoreAutoLayout (1.0 - 33) <680ADBE3-63F8-3685-8758-5D5E5FFCF820> /System/Library/PrivateFrameworks/CoreAutoLayout.framework/Versions/A/CoreAutoLayout
+       0x18bfff000 -        0x18c0e8ffb  libxml2.2.dylib (38.2) <C7A4F000-76AA-3DD1-B156-0FCE1CD4AA9B> /usr/lib/libxml2.2.dylib
+       0x18c0e9000 -        0x18c149fff  com.apple.CoreVideo (1.8 - 672.10) <0FCFE924-013C-3974-9FDF-58F9A8D71845> /System/Library/Frameworks/CoreVideo.framework/Versions/A/CoreVideo
+       0x18c14a000 -        0x18c14cfff  com.apple.loginsupport (3.0 - 259) <E17461AF-3BCD-371F-8303-9E64DB168069> /System/Library/PrivateFrameworks/login.framework/Versions/A/Frameworks/loginsupport.framework/Versions/A/loginsupport
+       0x18c189000 -        0x18c1b3fff  com.apple.UserManagement (1.0 - 1) <410D3AC7-C9C3-36CB-969E-BC461BBBC260> /System/Library/PrivateFrameworks/UserManagement.framework/Versions/A/UserManagement
+       0x18dae6000 -        0x18db14ff7  libsystem_containermanager.dylib (689) <A72C2FD5-969A-342F-B8A4-4216D7C7957E> /usr/lib/system/libsystem_containermanager.dylib
+       0x18db15000 -        0x18db2dfff  com.apple.IOSurface (372.3.5 - 372.3.5) <9A10F15D-D321-3810-B726-57F9362B16D0> /System/Library/Frameworks/IOSurface.framework/Versions/A/IOSurface
+       0x18db2e000 -        0x18db37fff  com.apple.IOAccelerator (485 - 485) <87899916-AE41-398D-BDED-92172C92451F> /System/Library/PrivateFrameworks/IOAccelerator.framework/Versions/A/IOAccelerator
+       0x18db38000 -        0x18ddb1fff  com.apple.Metal (367.6 - 367.6) <8E4D919E-AA4B-36C5-8621-DBC72ED287CD> /System/Library/Frameworks/Metal.framework/Versions/A/Metal
+       0x18ddb2000 -        0x18ddd9fff  com.apple.audio.caulk (1.0 - 181.300) <A307BA82-97DE-37D1-99B7-BF68AC23C35C> /System/Library/PrivateFrameworks/caulk.framework/Versions/A/caulk
+       0x18ddda000 -        0x18df44fff  com.apple.CoreMedia (1.0 - 3200.5.1) <3B231B1B-4BEB-3F2B-819A-06D087C30C75> /System/Library/Frameworks/CoreMedia.framework/Versions/A/CoreMedia
+       0x18df45000 -        0x18e1d1fff  libFontParser.dylib (409.2.0.1) <F199B999-BD68-3096-894C-A23361125F37> /System/Library/PrivateFrameworks/FontServices.framework/libFontParser.dylib
+       0x18e531000 -        0x18e8b2fff  com.apple.ImageIO (3.3.0 - 2661.3.5) <327ED0E7-DC55-33E8-B065-B56558531542> /System/Library/Frameworks/ImageIO.framework/Versions/A/ImageIO
+       0x18e8b3000 -        0x18ec70fff  com.apple.CoreImage (19.0.0 - 1510.80.3) <8F0F7BA4-8492-361D-AAB4-CD0A4BF56AEF> /System/Library/Frameworks/CoreImage.framework/Versions/A/CoreImage
+       0x18ec71000 -        0x18ed22fff  com.apple.MetalPerformanceShaders.MPSCore (1.0 - 1) <BA925B23-4A18-358E-B607-E1E723E6FE15> /System/Library/Frameworks/MetalPerformanceShaders.framework/Versions/A/Frameworks/MPSCore.framework/Versions/A/MPSCore
+       0x18ed23000 -        0x18ed27fff  libsystem_configuration.dylib (1351.80.2) <C218F939-9E60-37A3-B2EC-93837054946D> /usr/lib/system/libsystem_configuration.dylib
+       0x18ed28000 -        0x18ed2efff  libsystem_sandbox.dylib (2401.81.2) <BF38E17B-6A57-3EE2-A805-8E9B35542182> /usr/lib/system/libsystem_sandbox.dylib
+       0x18ed2f000 -        0x18ed30fff  com.apple.AggregateDictionary (1.0 - 1) <81976928-DABD-365F-9DAC-DCF70A84C96E> /System/Library/PrivateFrameworks/AggregateDictionary.framework/Versions/A/AggregateDictionary
+       0x18ed31000 -        0x18ed35ffb  com.apple.AppleSystemInfo (3.1.5 - 3.1.5) <E47837B4-7F08-3EB7-8DA9-FF9CF6A1FFE7> /System/Library/PrivateFrameworks/AppleSystemInfo.framework/Versions/A/AppleSystemInfo
+       0x18ed36000 -        0x18ed37fff  liblangid.dylib (140) <F8BF36DD-786A-3C96-885A-797572EA209E> /usr/lib/liblangid.dylib
+       0x18ed38000 -        0x18ee57fff  com.apple.CoreNLP (1.0 - 313) <0A576909-71AA-301C-9723-0D5934A7E39D> /System/Library/PrivateFrameworks/CoreNLP.framework/Versions/A/CoreNLP
+       0x18ee58000 -        0x18ee5efff  com.apple.LinguisticData (1.0 - 483.10) <1D1A3D4F-880B-3AED-BB2D-03EF563A52A0> /System/Library/PrivateFrameworks/LinguisticData.framework/Versions/A/LinguisticData
+       0x18ee5f000 -        0x18f824fff  libBNNS.dylib (1361.60.15) <0A0EA04E-3AE2-3734-9E57-D13FBD17FA9A> /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libBNNS.dylib
+       0x18f825000 -        0x18f917fb7  libvDSP.dylib (1068.60.2) <8201128F-5340-3197-B0A5-5D094E17C0CA> /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libvDSP.dylib
+       0x18f94b000 -        0x18f95bff3  com.apple.IOMobileFramebuffer (343.0.0 - 343.0.0) <2A45A0EA-9C87-3635-B309-0B172D8EEF56> /System/Library/PrivateFrameworks/IOMobileFramebuffer.framework/Versions/A/IOMobileFramebuffer
+       0x18fb4c000 -        0x18fb68fff  com.apple.MobileKeyBag (2.0 - 1.0) <7025128F-E5D4-32F3-8993-ED007E18B278> /System/Library/PrivateFrameworks/MobileKeyBag.framework/Versions/A/MobileKeyBag
+       0x18fb69000 -        0x18fb76fff  com.apple.AssertionServices (1.0 - 945.80.1.0.1) <08A44127-D26E-38B2-A025-56FE5B102127> /System/Library/PrivateFrameworks/AssertionServices.framework/Versions/A/AssertionServices
+       0x18fb77000 -        0x18fc04fff  com.apple.securityfoundation (6.0 - 55289) <4FDFC8E3-483F-37EB-A643-03715E827D61> /System/Library/Frameworks/SecurityFoundation.framework/Versions/A/SecurityFoundation
+       0x18fc05000 -        0x18fc34fff  com.apple.coreservices.BackgroundTaskManagement (1.0 - 104) <A3DD0080-8E6B-3DE9-BA99-A0337CBC0E59> /System/Library/PrivateFrameworks/BackgroundTaskManagement.framework/Versions/A/BackgroundTaskManagement
+       0x18fc40000 -        0x18fc42ffb  libquarantine.dylib (181.80.2) <90D46A44-087C-3900-8509-EA90C6CFAD58> /usr/lib/system/libquarantine.dylib
+       0x18fc43000 -        0x18fc4efff  libCheckFix.dylib (33) <B3D83440-97EA-3E1A-9F75-4AD6D66A47F5> /usr/lib/libCheckFix.dylib
+       0x18fc4f000 -        0x18fc66fff  libcoretls.dylib (186) <54006172-9144-3320-8739-D1D273ACB8EA> /usr/lib/libcoretls.dylib
+       0x18fc67000 -        0x18fc78ffb  libbsm.0.dylib (89) <31792784-758D-3FC2-8B40-9C321D82EB93> /usr/lib/libbsm.0.dylib
+       0x18fc79000 -        0x18fcd9ff7  libmecab.dylib (1093.209) <7C6D81B8-3188-347D-9DA9-8074CA92F7A0> /usr/lib/libmecab.dylib
+       0x18fcda000 -        0x18fcdcffb  libgermantok.dylib (31) <1DCFC156-828E-3125-B0F3-A80310A83E33> /usr/lib/libgermantok.dylib
+       0x18fcdd000 -        0x18fcf1fff  libLinearAlgebra.dylib (1510.80.2) <7968C309-63F8-38E8-A286-4B0FB1188825> /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libLinearAlgebra.dylib
+       0x18fcf2000 -        0x18ff3ffff  com.apple.MetalPerformanceShaders.MPSNeuralNetwork (1.0 - 1) <93AA5A10-C8AB-34FB-A515-5D92662CFC7D> /System/Library/Frameworks/MetalPerformanceShaders.framework/Versions/A/Frameworks/MPSNeuralNetwork.framework/Versions/A/MPSNeuralNetwork
+       0x18ff40000 -        0x18ff92fff  com.apple.MetalPerformanceShaders.MPSRayIntersector (1.0 - 1) <133C1F7E-9848-3AC9-A2DB-C7C2AFB52081> /System/Library/Frameworks/MetalPerformanceShaders.framework/Versions/A/Frameworks/MPSRayIntersector.framework/Versions/A/MPSRayIntersector
+       0x190128000 -        0x190159fff  com.apple.MetalPerformanceShaders.MPSMatrix (1.0 - 1) <40E641E8-CFD5-33B3-8417-5DFCB50C2058> /System/Library/Frameworks/MetalPerformanceShaders.framework/Versions/A/Frameworks/MPSMatrix.framework/Versions/A/MPSMatrix
+       0x19015a000 -        0x1902a2fff  com.apple.MetalPerformanceShaders.MPSNDArray (1.0 - 1) <C6F32BA3-F91D-3DAE-BA28-080B0ECC6682> /System/Library/Frameworks/MetalPerformanceShaders.framework/Versions/A/Frameworks/MPSNDArray.framework/Versions/A/MPSNDArray
+       0x1902a3000 -        0x190336fff  com.apple.MetalPerformanceShaders.MPSImage (1.0 - 1) <6B7959F4-17AA-387B-AB68-B7078E02C67C> /System/Library/Frameworks/MetalPerformanceShaders.framework/Versions/A/Frameworks/MPSImage.framework/Versions/A/MPSImage
+       0x190337000 -        0x190342fff  com.apple.AppleFSCompression (168 - 1.0) <6A18573B-0E8B-3B3A-9980-C3920EC792A4> /System/Library/PrivateFrameworks/AppleFSCompression.framework/Versions/A/AppleFSCompression
+       0x190343000 -        0x19034effb  libbz2.1.0.dylib (46) <24E2EF9A-CAB9-318A-8D1A-10E0E688D941> /usr/lib/libbz2.1.0.dylib
+       0x19034f000 -        0x190355ffb  libsystem_coreservices.dylib (171.1) <579E4601-365D-346F-9CD9-37851FB2874C> /usr/lib/system/libsystem_coreservices.dylib
+       0x190356000 -        0x190388fff  com.apple.CoreServices.OSServices (1141.1 - 1141.1) <9DA8BA49-4166-3C9E-BED2-9B14E6A7FA36> /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/OSServices.framework/Versions/A/OSServices
+       0x1907ad000 -        0x1907bbfff  libz.1.dylib (96) <2F124824-B5AD-3E20-996D-9835D9711F47> /usr/lib/libz.1.dylib
+       0x1907bc000 -        0x1907f9fff  libsystem_m.dylib (3289) <1B9E3C19-420A-38C5-96CE-6C2CE6EB56BA> /usr/lib/system/libsystem_m.dylib
+       0x1907fa000 -        0x1907fafff  libcharset.1.dylib (109) <0F68DB90-93D6-388A-9702-0AD069319AF6> /usr/lib/libcharset.1.dylib
+       0x1907fb000 -        0x1907feff7  libmacho.dylib (1022.1) <9E0F73E3-1865-3F72-9ED1-465C68D23BA6> /usr/lib/system/libmacho.dylib
+       0x1907ff000 -        0x19081bfff  libkxld.dylib (11215.81.4) <9A9AF962-D740-3ACF-BE08-8EC62C955917> /usr/lib/system/libkxld.dylib
+       0x19081c000 -        0x190829fff  libcommonCrypto.dylib (600033.60.1) <1C8E15A6-869F-3AAD-AAE8-5825C7C4F902> /usr/lib/system/libcommonCrypto.dylib
+       0x19082a000 -        0x190835fff  libunwind.dylib (1800.85) <BEFBB85F-B46E-3C52-9A92-2F8EE957E3D9> /usr/lib/system/libunwind.dylib
+       0x190836000 -        0x19083dfff  liboah.dylib (342) <D8407F3E-5522-3C66-8A60-C29567136FD5> /usr/lib/liboah.dylib
+       0x19083e000 -        0x190848ff7  libcopyfile.dylib (213.40.2) <0D18978A-4446-31EE-8228-25FABB44DB94> /usr/lib/system/libcopyfile.dylib
+       0x190849000 -        0x19084cfff  libcompiler_rt.dylib (103.3) <F22CE10B-B1DF-3A58-9B8B-7F0ED73962DF> /usr/lib/system/libcompiler_rt.dylib
+       0x19084d000 -        0x190851ffb  libsystem_collections.dylib (1669.60.4) <74DC56B7-7BE5-3392-835A-7C6863986FF2> /usr/lib/system/libsystem_collections.dylib
+       0x190852000 -        0x190855ffb  libsystem_secinit.dylib (153.60.1) <9BFA7CCC-E31E-3D39-832D-CA425269A795> /usr/lib/system/libsystem_secinit.dylib
+       0x190856000 -        0x190858fff  libremovefile.dylib (75.80.1) <D242539B-BA45-363C-8B08-83FBCE4EC1C2> /usr/lib/system/libremovefile.dylib
+       0x190859000 -        0x190859fff  libkeymgr.dylib (31) <95E4D67C-51BF-36C9-99B5-35F5E2D6E2CA> /usr/lib/system/libkeymgr.dylib
+       0x19085a000 -        0x190862fff  libsystem_dnssd.dylib (2559.80.8) <35DE5A07-AF58-33F0-A950-1F7CCAE85F3E> /usr/lib/system/libsystem_dnssd.dylib
+       0x190863000 -        0x190868ffb  libcache.dylib (95) <46788F12-8B07-3253-BF23-C49BC753A327> /usr/lib/system/libcache.dylib
+       0x190869000 -        0x19086affb  libSystem.B.dylib (1351) <E7A14776-89AB-310A-9FCF-F47CAE8043B6> /usr/lib/libSystem.B.dylib
+       0x19086b000 -        0x19086dfff  libfakelink.dylib (5) <BAF73E4A-7B10-3626-99D9-0E2832C4153B> /usr/lib/libfakelink.dylib
+       0x19086e000 -        0x19086effb  com.apple.SoftLinking (1.0 - 59) <0771644F-636F-377F-B86C-564D33FA62DA> /System/Library/PrivateFrameworks/SoftLinking.framework/Versions/A/SoftLinking
+       0x1908a5000 -        0x1908acffb  libiconv.2.dylib (109) <5CF5071E-B8E9-3CE3-9AFC-FA99DA46DF13> /usr/lib/libiconv.2.dylib
+       0x1908c0000 -        0x190948ff7  libarchive.2.dylib (138.40.4) <2D28EACA-D571-3EA2-86F5-40770FDBE40C> /usr/lib/libarchive.2.dylib
+       0x190949000 -        0x1909b4fff  com.apple.SearchKit (1.4.2 - 1.4.2) <91755813-62B1-3576-AF8F-D9133681BD1F> /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/SearchKit.framework/Versions/A/SearchKit
+       0x1909b5000 -        0x1909bdfff  libThaiTokenizer.dylib (28) <7DD4FA2E-21F8-3E2B-8522-E4C92E4BB99C> /usr/lib/libThaiTokenizer.dylib
+       0x1909be000 -        0x1909e3ff7  com.apple.applesauce (1.0 - 16.62) <6A21081A-0C67-358F-A46C-A8F8CAD3FFA9> /System/Library/PrivateFrameworks/AppleSauce.framework/Versions/A/AppleSauce
+       0x1909e4000 -        0x1909feff7  libapple_nghttp2.dylib (27) <4B8F296F-6B47-3CBA-8646-4AEF932F6D22> /usr/lib/libapple_nghttp2.dylib
+       0x1909ff000 -        0x190a11ff3  libSparseBLAS.dylib (1510.80.2) <2118AB7C-04A7-35E2-92BE-942A2A91CCB3> /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libSparseBLAS.dylib
+       0x190a12000 -        0x190a13fff  com.apple.MetalPerformanceShaders.MetalPerformanceShaders (1.0 - 1) <AB739C3C-CD38-3AE6-85A0-5CF946870471> /System/Library/Frameworks/MetalPerformanceShaders.framework/Versions/A/MetalPerformanceShaders
+       0x190a14000 -        0x190a19fff  libpam.2.dylib (34) <E0A5E9E6-8709-3F5C-89F5-D32232CEDA1E> /usr/lib/libpam.2.dylib
+       0x190a1a000 -        0x190aeafef  libcompression.dylib (181) <09D2A140-CDF6-37A6-9A3F-7085F752A004> /usr/lib/libcompression.dylib
+       0x190aeb000 -        0x190aefff7  libQuadrature.dylib (8) <D197974B-5D68-39E3-8251-F5A0FAD42944> /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libQuadrature.dylib
+       0x190af0000 -        0x191cacfc7  libLAPACK.dylib (1510.80.2) <66C83F80-4F8C-3002-885E-F8D9562B5944> /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libLAPACK.dylib
+       0x191cad000 -        0x191d04fff  com.apple.DictionaryServices (1.2 - 368.201) <5AB3B4E6-4116-317B-83D1-A10E01C73496> /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/DictionaryServices.framework/Versions/A/DictionaryServices
+       0x191d05000 -        0x191d23fff  liblzma.5.dylib (20) <211F1D1C-75E9-3910-BE41-05DD21676DB6> /usr/lib/liblzma.5.dylib
+       0x191d24000 -        0x191d25fff  libcoretls_cfhelpers.dylib (186) <301A9407-FEF4-35FA-B542-82443942D6A3> /usr/lib/libcoretls_cfhelpers.dylib
+       0x191d26000 -        0x191d96fff  com.apple.APFS (2317.81.2 - 2317.81.2) <D1F696F1-1BAF-3D69-9A92-8B0521CA2120> /System/Library/PrivateFrameworks/APFS.framework/Versions/A/APFS
+       0x191d97000 -        0x191da5fff  libxar.1.dylib (501) <0220EE49-4813-3B16-8ADA-1F4C4623B5AC> /usr/lib/libxar.1.dylib
+       0x191da6000 -        0x191da9ffb  libutil.dylib (72) <A8586B94-0399-30F0-9463-7B97CC410E30> /usr/lib/libutil.dylib
+       0x191daa000 -        0x191dd5ff7  libxslt.1.dylib (21.5) <F067D19F-E16B-3BA8-BE8C-AAA5C2D8E623> /usr/lib/libxslt.1.dylib
+       0x191dde000 -        0x191e5afe7  libvMisc.dylib (1068.60.2) <78438525-303A-3AE3-A7F4-82AB82A378F2> /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libvMisc.dylib
+       0x191e5b000 -        0x191eebfdf  libate.dylib (3.0.9) <F2EF0E84-65A1-338D-855F-8843F578297A> /usr/lib/libate.dylib
+       0x191ef5000 -        0x191f08fff  com.apple.CrashReporterSupport (10.13 - 15131) <68712F82-E469-3B6A-A63B-CFF119BC8F2A> /System/Library/PrivateFrameworks/CrashReporterSupport.framework/Versions/A/CrashReporterSupport
+       0x192054000 -        0x192094fff  com.apple.pluginkit.framework (1.0 - 1) <D7DEB0D9-9074-3562-AA18-5D96ECA9DA7C> /System/Library/PrivateFrameworks/PlugInKit.framework/Versions/A/PlugInKit
+       0x19210d000 -        0x192156fff  com.apple.AppleVAFramework (6.2.10 - 6.2.10) <DAC92E71-70A8-37FA-878E-8273FEE284A6> /System/Library/PrivateFrameworks/AppleVA.framework/Versions/A/AppleVA
+       0x192157000 -        0x192171fff  libexpat.1.dylib (38) <F5930C97-C0BE-3224-B33F-943BC5178C07> /usr/lib/libexpat.1.dylib
+       0x192172000 -        0x19217cffb  libheimdal-asn1.dylib (693.60.3) <BD048EB0-FE92-3D97-82D2-744937207C3B> /usr/lib/libheimdal-asn1.dylib
+       0x19225c000 -        0x19230afff  com.apple.MediaExperience (1.0 - 1) <EE046AC8-F1BC-3CA5-B283-506BB729ECC2> /System/Library/PrivateFrameworks/MediaExperience.framework/Versions/A/MediaExperience
+       0x192336000 -        0x192341fff  com.apple.GraphVisualizer (1.0 - 120.1) <E5F20865-1979-3E07-A89C-EF32A974EF0D> /System/Library/PrivateFrameworks/GraphVisualizer.framework/Versions/A/GraphVisualizer
+       0x192342000 -        0x192381fff  com.apple.OTSVG (1.0 - 844.2.0.4) <79957785-0285-3BA1-BB17-88B20A861E0F> /System/Library/PrivateFrameworks/OTSVG.framework/Versions/A/OTSVG
+       0x192382000 -        0x19238bfff  com.apple.xpc.AppServerSupport (1.0 - 2866.81.1) <A0745B4D-38C0-34C4-AA05-8D4D274874F5> /System/Library/PrivateFrameworks/AppServerSupport.framework/Versions/A/AppServerSupport
+       0x19238c000 -        0x192397fff  libhvf.dylib (1.0 - 409.2.0.1) <CB6095FE-D6A7-3A28-92FF-BCCBE0853A97> /System/Library/PrivateFrameworks/FontServices.framework/libhvf.dylib
+       0x192398000 -        0x19239efff  libspindump.dylib (383.2) <0497F1E3-5CB4-3AA0-857A-749962E90B5E> /usr/lib/libspindump.dylib
+       0x19239f000 -        0x192470fff  com.apple.Heimdal (4.0 - 2.0) <D7424264-0BE6-3FED-9C6F-427B03D1E905> /System/Library/PrivateFrameworks/Heimdal.framework/Versions/A/Heimdal
+       0x1926d0000 -        0x192715fff  com.apple.AppleJPEG (1.0 - 1) <6FA9292C-2499-3CDD-8863-A454408D73A1> /System/Library/PrivateFrameworks/AppleJPEG.framework/Versions/A/AppleJPEG
+       0x192716000 -        0x192808ff7  libJP2.dylib (2661.3.5) <A583E05B-03F7-3873-B6C8-A41DF6A89C1E> /System/Library/Frameworks/ImageIO.framework/Versions/A/Resources/libJP2.dylib
+       0x192809000 -        0x19280affb  com.apple.WatchdogClient.framework (1.0 - 277.80.2) <4850B029-4065-3134-B72E-50EBF3644007> /System/Library/PrivateFrameworks/WatchdogClient.framework/Versions/A/WatchdogClient
+       0x19280b000 -        0x19284ffff  com.apple.MultitouchSupport.framework (8420.1 - 8420.1) <68841138-333A-3FB8-8C94-DBD92C95253C> /System/Library/PrivateFrameworks/MultitouchSupport.framework/Versions/A/MultitouchSupport
+       0x192850000 -        0x192ccdfff  com.apple.VideoToolbox (1.0 - 3200.5.1) <E592940B-133B-3BFF-B7C8-AFEDE3F3E78F> /System/Library/Frameworks/VideoToolbox.framework/Versions/A/VideoToolbox
+       0x192cce000 -        0x192d03fff  libAudioToolboxUtility.dylib (1456.404) <94FA2E67-57D3-35B1-A5B6-62594481E769> /usr/lib/libAudioToolboxUtility.dylib
+       0x192d04000 -        0x192d2efff  libPng.dylib (2661.3.5) <563763E0-CCF4-36B1-AE45-94075EE7D8A3> /System/Library/Frameworks/ImageIO.framework/Versions/A/Resources/libPng.dylib
+       0x192d2f000 -        0x192d91ff3  libTIFF.dylib (2661.3.5) <8D9C3019-4722-396F-A7E9-CE839E8C7704> /System/Library/Frameworks/ImageIO.framework/Versions/A/Resources/libTIFF.dylib
+       0x192d92000 -        0x192db1ff3  com.apple.IOPresentment (66 - 66) <62EC4ABA-542F-3C8E-9B70-ED243C053931> /System/Library/PrivateFrameworks/IOPresentment.framework/Versions/A/IOPresentment
+       0x192db2000 -        0x192db6ffb  com.apple.GPUWrangler (8.1.10 - 8.1.10) <A8FA21C4-42EE-325A-B114-F2E0202320C5> /System/Library/PrivateFrameworks/GPUWrangler.framework/Versions/A/GPUWrangler
+       0x192db7000 -        0x192db9ffb  libRadiance.dylib (2661.3.5) <0850CEFF-37C1-320B-AE61-534DFF1FE608> /System/Library/Frameworks/ImageIO.framework/Versions/A/Resources/libRadiance.dylib
+       0x192dba000 -        0x192dbffff  com.apple.DSExternalDisplay (3.1 - 380) <D09319DE-EB4A-33A6-9496-DFB35DA2C956> /System/Library/PrivateFrameworks/DSExternalDisplay.framework/Versions/A/DSExternalDisplay
+       0x192dc0000 -        0x192deaff7  libJPEG.dylib (2661.3.5) <B2999762-13F1-3024-8DDB-233F74FC78D4> /System/Library/Frameworks/ImageIO.framework/Versions/A/Resources/libJPEG.dylib
+       0x192e1a000 -        0x192e1fffb  libGIF.dylib (2661.3.5) <CF2F5003-DB41-3D7C-9CAE-878F0B76FCDF> /System/Library/Frameworks/ImageIO.framework/Versions/A/Resources/libGIF.dylib
+       0x192e20000 -        0x192e2efff  com.apple.CMCaptureCore (1.0 - 587.81.10) <583EC52E-5E91-36A6-A211-279E04C9831A> /System/Library/PrivateFrameworks/CMCaptureCore.framework/Versions/A/CMCaptureCore
+       0x1939b9000 -        0x193a28ff3  libusrtcp.dylib (4277.81.1) <3C4137B4-B6EA-3D39-B9CF-B203A3B7F436> /usr/lib/libusrtcp.dylib
+       0x193a29000 -        0x193fccfff  libswiftCore.dylib (6.0.3 - 6.0.3.1.5) <A0EBE73E-3B7B-329E-985C-E884ABA916DF> /usr/lib/swift/libswiftCore.dylib
+       0x19407f000 -        0x1940c7fff  libSessionUtility.dylib (321.401) <93F8C841-BA6F-31D0-8996-69FF23211C6D> /System/Library/PrivateFrameworks/AudioSession.framework/libSessionUtility.dylib
+       0x1940c8000 -        0x19426bfff  com.apple.audio.toolbox.AudioToolbox (1.14 - 1.14) <CF6ED93A-D59F-3714-95D0-1ED022DC9729> /System/Library/Frameworks/AudioToolbox.framework/Versions/A/AudioToolbox
+       0x19426c000 -        0x1942c8fff  com.apple.audio.AudioSession (1.0 - 321.401) <1BFDB7EB-4E14-35BF-866B-74E6E6A12086> /System/Library/PrivateFrameworks/AudioSession.framework/Versions/A/AudioSession
+       0x1942c9000 -        0x1942e1fff  libAudioStatistics.dylib (235.401) <9F9BF287-F4F4-303F-88DE-22623A8D4623> /usr/lib/libAudioStatistics.dylib
+       0x19438f000 -        0x1943a7ff7  libresolv.9.dylib (83) <552F31FA-51A1-30D9-9740-94588873A914> /usr/lib/libresolv.9.dylib
+       0x1943a8000 -        0x1943baff7  libsasl2.2.dylib (215) <414D826D-F1AA-3315-9C6C-B6B79EF2FDC3> /usr/lib/libsasl2.2.dylib
+       0x1945a5000 -        0x194685fff  libSMC.dylib (34) <E7EAB738-D9B0-3E10-913E-B8D053CD21EE> /usr/lib/libSMC.dylib
+       0x1946e6000 -        0x1946f2fff  com.apple.NetAuth (6.2 - 6.2) <C21B1F1D-F71F-3B86-8D74-247C87D7CD63> /System/Library/PrivateFrameworks/NetAuth.framework/Versions/A/NetAuth
+       0x194706000 -        0x194713fff  com.apple.perfdata (1.0 - 121) <ED318D59-2E86-38F0-B352-FCE9FD5BEEC2> /System/Library/PrivateFrameworks/perfdata.framework/Versions/A/perfdata
+       0x194714000 -        0x194721fff  libperfcheck.dylib (46) <4CF360A5-5BAE-396A-AB59-27C00980028E> /usr/lib/libperfcheck.dylib
+       0x194722000 -        0x194733fff  com.apple.Kerberos (3.0 - 1) <7DBBBDA0-3E54-3F81-A0D3-460C09E82242> /System/Library/Frameworks/Kerberos.framework/Versions/A/Kerberos
+       0x194734000 -        0x19478efff  com.apple.GSS (4.0 - 2.0) <D5717A82-1F4E-3341-8097-C01E5720351C> /System/Library/Frameworks/GSS.framework/Versions/A/GSS
+       0x19478f000 -        0x1947a1fff  com.apple.CommonAuth (4.0 - 2.0) <90BB26F0-F71C-398E-9F6C-882DC3388063> /System/Library/PrivateFrameworks/CommonAuth.framework/Versions/A/CommonAuth
+       0x194a53000 -        0x194a64687  libffi.dylib (39) <C905DE64-6119-31B9-82B5-4B11A44D90B3> /usr/lib/libffi.dylib
+       0x195e25000 -        0x195f50fff  com.apple.combine (1.0 - 338) <B9F26DAD-2FA4-3139-9C77-B234F12943C6> /System/Library/Frameworks/Combine.framework/Versions/A/Combine
+       0x197eff000 -        0x197efffff  com.apple.Accelerate.vecLib (3.11 - vecLib 3.11) <8C169781-389F-3DF9-B998-BB5B8520DF8B> /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/vecLib
+       0x197f24000 -        0x197f24fff  com.apple.CoreServices (1226 - 1226) <718FC148-CF8D-3C56-99A2-D30B3CEF62D8> /System/Library/Frameworks/CoreServices.framework/Versions/A/CoreServices
+       0x1981ce000 -        0x1981cefff  com.apple.Accelerate (1.11 - Accelerate 1.11) <81FFBDC1-F06D-3E68-825F-32A9B9F898B0> /System/Library/Frameworks/Accelerate.framework/Versions/A/Accelerate
+       0x198ed9000 -        0x198f06fff  com.apple.PowerLog (1.0 - 1) <E31AB967-56EB-3D34-AA37-D38A41DB481A> /System/Library/PrivateFrameworks/PowerLog.framework/Versions/A/PowerLog
+       0x198f14000 -        0x198fc8fff  com.apple.DiscRecording (9.0.3 - 9030.4.5) <3F138300-72BA-3AAE-A35C-FA0A07FC116B> /System/Library/Frameworks/DiscRecording.framework/Versions/A/DiscRecording
+       0x198fc9000 -        0x198ffafff  com.apple.MediaKit (16 - 938) <CF4790DD-0363-3D84-918F-586280C7B6DD> /System/Library/PrivateFrameworks/MediaKit.framework/Versions/A/MediaKit
+       0x1999de000 -        0x1999f5ff8  libswiftDispatch.dylib (49) <2C922043-216F-3091-B078-54996C8E2060> /usr/lib/swift/libswiftDispatch.dylib
+       0x199d49000 -        0x199db4fff  com.apple.BoardServices (1.0 - 694.3.4) <859D3BCA-4A5C-3A3E-A698-65A540D84A1A> /System/Library/PrivateFrameworks/BoardServices.framework/Versions/A/BoardServices
+       0x19a14a000 -        0x19a18fffc  com.apple.DebugSymbols (195.1 - 195.1) <E007C9AB-65EF-35B2-947E-E9EC48865726> /System/Library/PrivateFrameworks/DebugSymbols.framework/Versions/A/DebugSymbols
+       0x19a190000 -        0x19a2a3ff3  com.apple.CoreSymbolication (16.0 - 64566.101.4) <EA5B40F8-76B7-3868-A2D6-98AAF6E28595> /System/Library/PrivateFrameworks/CoreSymbolication.framework/Versions/A/CoreSymbolication
+       0x19a2a4000 -        0x19a2aefff  com.apple.CoreTime (334.0.2) <A1F67E67-A2B5-312E-A4A3-6A17F34217DF> /System/Library/PrivateFrameworks/CoreTime.framework/Versions/A/CoreTime
+       0x19b9a1000 -        0x19b9dcfff  com.apple.LDAPFramework (2.4.28 - 194.5) <24E444D5-0AFA-3907-A351-C49D127A2359> /System/Library/Frameworks/LDAP.framework/Versions/A/LDAP
+       0x19b9dd000 -        0x19b9defff  com.apple.TrustEvaluationAgent (2.0 - 38) <A61BB7D6-C707-33CA-A0A3-1F183C2DAFFA> /System/Library/PrivateFrameworks/TrustEvaluationAgent.framework/Versions/A/TrustEvaluationAgent
+       0x19bb0b000 -        0x19bbcbfff  com.apple.DiskImagesFramework (665.80.2 - 665.80.2) <7E145C58-C431-33D3-A62E-1AEA37BE394A> /System/Library/PrivateFrameworks/DiskImages.framework/Versions/A/DiskImages
+       0x19bccd000 -        0x19bd4fff7  libcurl.4.dylib (158) <6D045465-1D73-3E87-B4D8-DD268F2320F2> /usr/lib/libcurl.4.dylib
+       0x19c520000 -        0x19c520fff  libHeimdalProxy.dylib (87) <AC70F1FE-1431-30BB-82BF-9CECA2339140> /System/Library/Frameworks/Kerberos.framework/Versions/A/Libraries/libHeimdalProxy.dylib
+       0x19c5c5000 -        0x19c5c8ff5  libswiftObjectiveC.dylib (10) <6EE1AA58-9D41-3075-85DA-BF8F5C5A0BD3> /usr/lib/swift/libswiftObjectiveC.dylib
+       0x19c5c9000 -        0x19c5e2fff  libswiftos.dylib (1062.0.2) <E7E4E2D9-F8EA-3288-9BF7-CFE4E2B8B542> /usr/lib/swift/libswiftos.dylib
+       0x19d702000 -        0x19d753fff  com.apple.ASEProcessing (1.37.0 - 1.37.0) <82CD0969-9307-31CD-A557-A86660A5F5B8> /System/Library/PrivateFrameworks/ASEProcessing.framework/Versions/A/ASEProcessing
+       0x19e7ac000 -        0x19e864fff  com.apple.audio.midi.CoreMIDI (2.0 - 88) <CCB045B1-4CFC-3FBB-BDD7-44A103588428> /System/Library/Frameworks/CoreMIDI.framework/Versions/A/CoreMIDI
+       0x19f3ec000 -        0x19f3f0fff  com.apple.IOSurfaceAccelerator (1.0.0 - 1.0.0) <14EEB188-D331-37C5-A7F1-366A4CE07D1B> /System/Library/PrivateFrameworks/IOSurfaceAccelerator.framework/Versions/A/IOSurfaceAccelerator
+       0x1a3c74000 -        0x1a3c84fff  com.apple.HID (1.0 - 1) <42F72FDA-C467-32D6-AA2A-EA0442331477> /System/Library/PrivateFrameworks/HID.framework/Versions/A/HID
+       0x1a804f000 -        0x1a805efff  com.apple.NetFS (6.0 - 4.0) <90AC4AD1-24E2-32F6-9680-50FFEF89D45C> /System/Library/Frameworks/NetFS.framework/Versions/A/NetFS
+       0x1a8522000 -        0x1a8523ffb  libswiftDarwin.dylib (234.60.42) <26A4C1CC-1525-3829-9C07-DD186D2F00FA> /usr/lib/swift/libswiftDarwin.dylib
+       0x1a9e58000 -        0x1a9f44fff  libquic.dylib (4277.81.1) <F39717BD-0C54-3A7A-8C46-DCE046FF377B> /usr/lib/libquic.dylib
+       0x1a9f4f000 -        0x1a9f73fff  com.apple.private.SystemPolicy (1.0 - 1) <24144DD3-FFF1-364A-8359-05A83237BE1C> /System/Library/PrivateFrameworks/SystemPolicy.framework/Versions/A/SystemPolicy
+       0x1aac69000 -        0x1aace6fff  com.apple.LoggingSupport (1.0 - 1612.80.7) <50A234EA-EC0F-3739-9693-4550EE03023B> /System/Library/PrivateFrameworks/LoggingSupport.framework/Versions/A/LoggingSupport
+       0x1aace7000 -        0x1aacf3ffb  com.apple.MallocStackLogging (1.0 - 64567.3.3) <05EF3C0E-574F-3F1B-8A57-046AF3E4E177> /System/Library/PrivateFrameworks/MallocStackLogging.framework/Versions/A/MallocStackLogging
+       0x1aad19000 -        0x1aad4cfff  libmis.dylib (436.40.5) <464330D9-7AC7-3C6A-BA8E-27B51C699CD9> /usr/lib/libmis.dylib
+       0x1aad4d000 -        0x1aad50fff  com.apple.gpusw.GPURawCounter (34 - 34) <E020FC9F-27E2-3D04-A5E1-16DAFA84C5D7> /System/Library/PrivateFrameworks/GPURawCounter.framework/Versions/A/GPURawCounter
+       0x1aad76000 -        0x1aad7cff7  libswiftCoreFoundation.dylib (2401) <CE98BE37-7964-3224-9B67-3EB7F8626D4A> /usr/lib/swift/libswiftCoreFoundation.dylib
+       0x1aad88000 -        0x1aadd2ffa  libswiftXPC.dylib (62.0.1) <EBBE8050-7CB6-3648-BF57-8A5567AE19E2> /usr/lib/swift/libswiftXPC.dylib
+       0x1aadd4000 -        0x1aadd4fff  libswiftIOKit.dylib (1) <6D0023B3-BF29-3B24-B543-1EF99646B39C> /usr/lib/swift/libswiftIOKit.dylib
+       0x1ae54c000 -        0x1ae564ff3  libswiftsimd.dylib (21) <ABB84DF3-BFAC-3F22-817F-EA6DF17D7C64> /usr/lib/swift/libswiftsimd.dylib
+       0x1af8b6000 -        0x1af8bffff  com.apple.IOAccelMemoryInfo (1.0 - 1) <2F3B9565-AAB1-362A-A4E1-635D584B78E5> /System/Library/PrivateFrameworks/IOAccelMemoryInfo.framework/Versions/A/IOAccelMemoryInfo
+       0x1b7601000 -        0x1b7607ff8  libswiftMetal.dylib (367.6) <7574A46D-14FD-3B85-8E41-4D18AFD7C436> /usr/lib/swift/libswiftMetal.dylib
+       0x1bb5c0000 -        0x1bb61cfff  com.apple.osanalytics.OSAnalytics (1.0 - 1) <7EFA8BCB-16FD-374F-87D6-9963539F6D70> /System/Library/PrivateFrameworks/OSAnalytics.framework/Versions/A/OSAnalytics
+       0x1bbf2c000 -        0x1bbf2dffd  libswiftQuartzCore.dylib (4) <D66E9A4B-02CA-3320-86C9-2F0C0901E242> /usr/lib/swift/libswiftQuartzCore.dylib
+       0x1bc328000 -        0x1bc32dfff  com.apple.kperf (1.0 - 1) <9C05D89A-81CE-3252-9079-384A3F6CE319> /System/Library/PrivateFrameworks/kperf.framework/Versions/A/kperf
+       0x1bc434000 -        0x1bc439fff  com.apple.MobileSystemServices (1.0 - 1) <4B77859F-005B-37CC-AF62-EA090BE1F069> /System/Library/PrivateFrameworks/MobileSystemServices.framework/Versions/A/MobileSystemServices
+       0x1c045b000 -        0x1c0469ff5  libswiftUniformTypeIdentifiers.dylib (827.5.4) <96AF8EAB-2D50-3442-A752-416AB8B5F8ED> /usr/lib/swift/libswiftUniformTypeIdentifiers.dylib
+       0x1c58ff000 -        0x1c5900ffb  libswiftOSLog.dylib (8) <452649CE-D8F8-3EF2-8861-20D21F793FF9> /usr/lib/swift/libswiftOSLog.dylib
+       0x1c9095000 -        0x1c918bfff  com.apple.Symbolication (16.0 - 64567.3.3) <81116151-EC8C-3F0D-B0FC-CA815F946D31> /System/Library/PrivateFrameworks/Symbolication.framework/Versions/A/Symbolication
+       0x1ccd54000 -        0x1ccd64fff  com.apple.OSLog (1.0 - 1612.80.7) <AFA32EDE-E96E-35B1-9CB2-954FA4A250FE> /System/Library/Frameworks/OSLog.framework/Versions/A/OSLog
+       0x1ccf88000 -        0x1cd099ff4  com.apple.InternalSwiftProtobuf (1.0 - 1.26.0) <93F647EA-926F-31DD-891A-B519C06203DE> /System/Library/PrivateFrameworks/InternalSwiftProtobuf.framework/Versions/A/InternalSwiftProtobuf
+       0x1cd161000 -        0x1cd16cfff  com.apple.HIDDisplay (1.0 - 1) <CB108F05-CBA5-3895-8FA5-DED7EF57E2EE> /System/Library/PrivateFrameworks/HIDDisplay.framework/Versions/A/HIDDisplay
+       0x1d40ba000 -        0x1d40baffb  com.apple.FeatureFlags (1.0 - 94) <9F44F557-BCC9-3C5F-BD15-2E2206E39272> /System/Library/PrivateFrameworks/FeatureFlags.framework/Versions/A/FeatureFlags
+       0x1dcac5000 -        0x1dcac7fff  com.apple.ConfigProfileHelper (17.0 - 1721) <C0673608-67FF-3277-B1FF-407B0803EDC6> /System/Library/PrivateFrameworks/ConfigProfileHelper.framework/Versions/A/ConfigProfileHelper
+       0x1dfb57000 -        0x1dfb5eff7  libCoreFSCache.dylib (301) <1FEC93F6-CFEB-3317-B3C8-CAE341AC204D> /System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libCoreFSCache.dylib
+       0x1dfb5f000 -        0x1dfb64fff  libCoreVMClient.dylib (301) <BA339196-BC44-3D08-9447-60C525F0B5D6> /System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libCoreVMClient.dylib
+       0x1dfb65000 -        0x1dfb75ff7  com.apple.opengl (21.0.27 - 21.0.27) <B755A682-2EBA-3CB4-8864-82F48EC15100> /System/Library/Frameworks/OpenGL.framework/Versions/A/OpenGL
+       0x1dfb76000 -        0x1dfb78fff  libCVMSPluginSupport.dylib (21.0.27) <3F2AED4F-78D3-37C3-9146-46E5BBBB7518> /System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libCVMSPluginSupport.dylib
+       0x1dfb79000 -        0x1dfb81fff  libGFXShared.dylib (21.0.27) <E87429AE-E8DE-3E3E-84D3-42B073D1FB28> /System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGFXShared.dylib
+       0x1dfb82000 -        0x1dfbb6ff3  libGLImage.dylib (21.0.27) <48405265-388D-3924-89B2-A3FE2F5E8E24> /System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGLImage.dylib
+       0x1dfbb7000 -        0x1dfbf0ff7  libGLU.dylib (21.0.27) <6794A70E-34C2-395F-9C8C-2DCCB7B6F24D> /System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGLU.dylib
+       0x1dfd4a000 -        0x1dfd53fff  libGL.dylib (21.0.27) <ADE2B449-DE1D-3247-B965-404DD2D4D49A> /System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGL.dylib
+       0x1e17ba000 -        0x1e1884fff  com.apple.ExtensionFoundation (97 - 97) <C92A99B4-4ADF-3935-8B99-B0440F294894> /System/Library/Frameworks/ExtensionFoundation.framework/Versions/A/ExtensionFoundation
+       0x1e3913000 -        0x1e392efff  com.apple.MPSBenchmarkLoop (1.0 - 1) <EFE47D01-4814-3EFF-A5DA-D1C3CC84A2E9> /System/Library/Frameworks/MetalPerformanceShaders.framework/Versions/A/Frameworks/MPSBenchmarkLoop.framework/Versions/A/MPSBenchmarkLoop
+       0x1e392f000 -        0x1e3943fff  com.apple.MPSFunctions (1.0 - 1) <B6A91DE6-D0BB-32D3-A008-21376070154D> /System/Library/Frameworks/MetalPerformanceShaders.framework/Versions/A/Frameworks/MPSFunctions.framework/Versions/A/MPSFunctions
+       0x228190000 -        0x2281eeff7  com.apple.AppleKeyStore (1.0 - 1.0) <9B00219C-7CE4-39CB-A9E8-EB449DA39CC5> /System/Library/PrivateFrameworks/AppleKeyStore.framework/Versions/A/AppleKeyStore
+       0x228390000 -        0x2283a7fff  com.apple.private.AppleMobileFileIntegrity-fmk (1.0 - 1) <90625AE8-01B2-3B79-9E84-F4A9286DB7A3> /System/Library/PrivateFrameworks/AppleMobileFileIntegrity.framework/Versions/A/AppleMobileFileIntegrity
+       0x228775000 -        0x2287a2ff5  com.apple.imgaudio.AudioAnalytics (1.0 - 1) <568509E7-2444-3AB9-A78B-9F36DA2BB2DE> /System/Library/PrivateFrameworks/AudioAnalytics.framework/Versions/A/AudioAnalytics
+       0x22ba07000 -        0x22bb56ff7  com.apple.CollectionsInternal (1.1.0 - 102) <05707086-CE88-39A4-84F3-622E04F0DF5A> /System/Library/PrivateFrameworks/CollectionsInternal.framework/Versions/A/CollectionsInternal
+       0x2324a6000 -        0x2324a6ffb  com.apple.FontServices (1.0 - 1) <F78070A2-AAD5-38E4-8A50-66A29BCA2160> /System/Library/PrivateFrameworks/FontServices.framework/Versions/A/FontServices
+       0x2324a7000 -        0x23256afff  libXTFontStaticRegistryData.dylib (309.2.0.3) <DB36CEF2-B5E8-3BE8-8D8D-C56DA3347835> /System/Library/PrivateFrameworks/FontServices.framework/libXTFontStaticRegistryData.dylib
+       0x23256c000 -        0x232578fff  com.apple.FramePacing (1.0 - 1) <5B56E55B-D4AA-3560-9395-65C2D729356D> /System/Library/PrivateFrameworks/FramePacing.framework/Versions/A/FramePacing
+       0x233117000 -        0x23311ffff  libGPUCompilerUtils.dylib (32023.406) <99DE9A8D-AE1E-360C-B128-162EB4A7D3BF> /System/Library/PrivateFrameworks/GPUCompiler.framework/Versions/32023/Libraries/libGPUCompilerUtils.dylib
+       0x23726e000 -        0x2372b5ffb  libllvm-flatbuffers.dylib (32023.406) <194DE919-DB06-35DF-8385-EAB059773B9D> /System/Library/PrivateFrameworks/GPUCompiler.framework/Versions/32023/Libraries/libllvm-flatbuffers.dylib
+       0x23b092000 -        0x23b172fff  com.apple.InstalledContentLibrary (1.0 - 1.0) <33C949F0-4F22-3E1A-A628-AB938FDBF953> /System/Library/PrivateFrameworks/InstalledContentLibrary.framework/Versions/A/InstalledContentLibrary
+       0x23f1cb000 -        0x23f860ff7  com.apple.MIL (3402.3 - 3402.3.2) <86506C70-B1CB-33F1-9619-707079F6A646> /System/Library/PrivateFrameworks/MIL.framework/Versions/A/MIL
+       0x241028000 -        0x24107bfff  com.apple.MessageSecurity (1.0 - 115.80.1) <AE9B5751-647E-3331-A3D0-6034D16A7B5F> /System/Library/PrivateFrameworks/MessageSecurity.framework/Versions/A/MessageSecurity
+       0x2444b6000 -        0x24467afff  com.apple.ParsingInternal (0.0.1 - 102) <7B3659A4-27F5-3ED0-8D52-C33EE249DE6B> /System/Library/PrivateFrameworks/ParsingInternal.framework/Versions/A/ParsingInternal
+       0x247669000 -        0x247686fff  com.apple.accessibility.PhotosensitivityProcessing (1.0 - 1) <16C340C0-9879-3FC2-8FF3-014A05EAC06A> /System/Library/PrivateFrameworks/PhotosensitivityProcessing.framework/Versions/A/PhotosensitivityProcessing
+       0x248453000 -        0x2484d4fff  com.apple.ProDisplayLibrary (9.2.1 - 9.2.1) <181ACFAC-7212-3A9D-95AF-091CB1FFB978> /System/Library/PrivateFrameworks/ProDisplayLibrary.framework/Versions/A/ProDisplayLibrary
+       0x248f2b000 -        0x248f34ffb  com.apple.ReflectionInternal (1.0.0 - 102) <B8CECFDD-B977-38DB-B858-71CEC236A651> /System/Library/PrivateFrameworks/ReflectionInternal.framework/Versions/A/ReflectionInternal
+       0x249bc3000 -        0x249bd8ff7  com.apple.RuntimeInternal (1.0.0 - 102) <4C62BB76-FEED-3562-9B83-6B91AD6D7EF1> /System/Library/PrivateFrameworks/RuntimeInternal.framework/Versions/A/RuntimeInternal
+       0x258cd6000 -        0x258cd7fff  com.apple.VideoToolboxParavirtualizationSupport (40.3.2 - 40.3.2) <11749B78-DC74-3B8A-8890-61C8DD086080> /System/Library/PrivateFrameworks/VideoToolboxParavirtualizationSupport.framework/Versions/A/VideoToolboxParavirtualizationSupport
+       0x262834000 -        0x262840fff  libCoreEntitlements.dylib (60) <97BA470F-1660-3BA6-B136-7DCC9EBCFBB0> /usr/lib/libCoreEntitlements.dylib
+       0x2629d8000 -        0x2629dffff  libRosetta.dylib (342) <D8407F3E-5522-3C66-8A60-C29567136FD5> /usr/lib/libRosetta.dylib
+       0x262a1e000 -        0x262a28fff  libTLE.dylib (60) <9B5668CD-D7AB-32E9-9709-8F23F1242917> /usr/lib/libTLE.dylib
+       0x262c57000 -        0x262d67ff7  libcrypto.46.dylib (106) <3FDC0A45-F59E-3966-954B-6D5084BDF6A6> /usr/lib/libcrypto.46.dylib
+       0x2631a4000 -        0x2631dcfff  libssl.48.dylib (106) <4B29315F-CF5C-33F9-AAC3-D3D48011E359> /usr/lib/libssl.48.dylib
+       0x2633c8000 -        0x2633dffff  libswiftDistributed.dylib (6.0.3 - 6.0.3.1.5) <FE73CBEF-B2C1-3127-BB0E-6D8300D02875> /usr/lib/swift/libswiftDistributed.dylib
+       0x263400000 -        0x26340fff7  libswiftObservation.dylib (6.0.3 - 6.0.3.1.5) <D90BC6C5-3413-39EF-8590-9B8B8B4DFC47> /usr/lib/swift/libswiftObservation.dylib
+       0x26341f000 -        0x26342dfff  libswiftRegexBuilder.dylib (6.0.3 - 6.0.3.1.5) <20CB4264-87BE-3DE6-A0E7-228BCF61FC61> /usr/lib/swift/libswiftRegexBuilder.dylib
+       0x26347d000 -        0x263497fff  libswiftSystem.dylib (61) <280537C8-7A26-35CC-B20C-AE56C6BC406E> /usr/lib/swift/libswiftSystem.dylib
+       0x2634f6000 -        0x2634fafff  libswift_Builtin_float.dylib (6.0.3 - 6.0.3.1.5) <05F272FE-DCD9-3EE9-9BED-83448AEBE2C5> /usr/lib/swift/libswift_Builtin_float.dylib
+       0x2634fb000 -        0x26357dfff  libswift_Concurrency.dylib (6.0.3 - 6.0.3.1.5) <B71CFFCA-9AE0-33F0-9F6F-AEC0CC705CA3> /usr/lib/swift/libswift_Concurrency.dylib
+       0x2635bc000 -        0x263662ff7  libswift_RegexParser.dylib (6.0.3 - 6.0.3.1.5) <AEF7E67F-EB58-372A-AEC8-BC5C0B31E24D> /usr/lib/swift/libswift_RegexParser.dylib
+       0x263663000 -        0x263715fff  libswift_StringProcessing.dylib (6.0.3 - 6.0.3.1.5) <3E482EDC-F47B-3AA7-8047-B7F0FA5CF0F7> /usr/lib/swift/libswift_StringProcessing.dylib
+       0x263716000 -        0x263717fff  libswift_errno.dylib (234.60.42) <BE7F6428-0CFE-3F23-BC2A-F85F512979E9> /usr/lib/swift/libswift_errno.dylib
+       0x263718000 -        0x26371afff  libswift_math.dylib (234.60.42) <BEF97918-5E18-3196-9B1B-7042DF931CBD> /usr/lib/swift/libswift_math.dylib
+       0x26371b000 -        0x26371bfff  libswift_signal.dylib (234.60.42) <F1A52006-9AC2-3F24-91FF-7AE756976AAD> /usr/lib/swift/libswift_signal.dylib
+       0x26371c000 -        0x26371cfff  libswift_stdio.dylib (234.60.42) <E35F7E21-ACFF-3D2B-8B88-9EF16961ED77> /usr/lib/swift/libswift_stdio.dylib
+       0x26371d000 -        0x26371dfff  libswift_time.dylib (234.60.42) <FA91508A-A0A8-35D0-A74B-8D0DBA7FD66D> /usr/lib/swift/libswift_time.dylib
+       0x26371e000 -        0x26371efff  libswiftsys_time.dylib (234.60.42) <55561AF2-CC0D-36D5-882A-8A66AF7E53E7> /usr/lib/swift/libswiftsys_time.dylib
+       0x26371f000 -        0x26371ffff  libswiftunistd.dylib (234.60.42) <913CEEB0-2466-3AF1-8CC1-AA931F1257DE> /usr/lib/swift/libswiftunistd.dylib
+       0x263862000 -        0x263865fff  libsystem_darwindirectory.dylib (122) <E3036CCB-95CF-3BD6-AA4F-58543B923EA5> /usr/lib/system/libsystem_darwindirectory.dylib
+       0x263866000 -        0x26386cfff  libsystem_eligibility.dylib (160.60.1) <4C8AC363-F171-3A08-85F8-7542B9C79A87> /usr/lib/system/libsystem_eligibility.dylib
+       0x26386d000 -        0x263872fff  libsystem_sanitizers.dylib (17.1) <F0A7379E-6861-3B3F-BB56-1B08B1BEE98A> /usr/lib/system/libsystem_sanitizers.dylib
+       0x303b04000 -        0x303b4e3f3 +_base.cpython-313-darwin.so (0) <6FD29F8A-D2E7-3D74-B626-4ECA911D7838> /Users/*/_base.cpython-313-darwin.so
+       0x303b84000 -        0x303ba22c7 +libnghttp2.14.dylib (0) <DAE0B2A5-20CF-31C3-98CD-4CC29DBF85B7> /Users/*/libnghttp2.14.dylib
+       0x303bc8000 -        0x303bdf9af +_err.cpython-313-darwin.so (0) <51EAF635-E464-30E3-8536-560AE9606B1B> /Users/*/_err.cpython-313-darwin.so
+       0x31aa04000 -        0x31aa7ee87 +libLerc.4.dylib (0) <6A89E975-4F40-3E39-B54B-70CA0C4DBA5A> /Users/*/libLerc.4.dylib
+       0x31aaa0000 -        0x31aace4cb +crs.cpython-313-darwin.so (0) <743A66BE-5473-368C-BF30-9A562DCE587A> /Users/*/crs.cpython-313-darwin.so
+       0x354d04000 -        0x354d757ff +libtiff.6.dylib (0) <98A062E7-C0DA-3957-9D6E-98C521D6AC32> /Users/*/libtiff.6.dylib
+       0x354dac000 -        0x354dd0c6b +_env.cpython-313-darwin.so (0) <5E3B41EA-48D3-3513-8530-5399AAB0E856> /Users/*/_env.cpython-313-darwin.so
+       0x3c4e80000 -        0x3c4eca21f +libopenjp2.2.5.4.dylib (0) <22240B5D-7DA0-30A4-9518-7EC3B366EACE> /Users/*/libopenjp2.2.5.4.dylib
+       0x3c4f04000 -        0x3c4f5dcbf +libwebp.7.dylib (0) <A23DF728-17DD-3EC6-903C-20113A3FFE09> /Users/*/libwebp.7.dylib
+       0x3c4f9c000 -        0x3c50382db +libssl.3.dylib (0) <00E8287A-76FC-3844-964D-302845BB3DE0> /Users/*/libssl.3.dylib
+       0x3c50b8000 -        0x3c513f51f +libzstd.1.5.7.dylib (0) <9ECE2F62-ED7F-3E58-81DF-30AC9D5CBDD0> /Users/*/libzstd.1.5.7.dylib
+       0x3c5164000 -        0x3c51ebd9f +libjpeg.8.3.2.dylib (0) <4E9E8F00-70F5-384D-A2E5-C6285FCBCD51> /Users/*/libjpeg.8.3.2.dylib
+       0x3c5218000 -        0x3c52d0407 +libblosc.1.21.6.dylib (0) <15C4E158-E3E2-3F3D-B3E7-3F1E360D6562> /Users/*/libblosc.1.21.6.dylib
+       0x3c5304000 -        0x3c535acaf +libpcre2-8.0.dylib (0) <4ADF06CC-AFC0-38A8-92F0-A864AC6E6E3C> /Users/*/libpcre2-8.0.dylib
+       0x3c5374000 -        0x3c5397ffb +pyexpat.cpython-313-darwin.so (0) <879CA41D-B551-39CD-BA83-CDDC2CDFC33F> /Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/pyexpat.cpython-313-darwin.so
+       0x3c53d0000 -        0x3c550b68f +libnetcdf.22.dylib (0) <14904B91-8602-327B-B27D-351D818357BA> /Users/*/libnetcdf.22.dylib
+       0x3c7fbc000 -        0x3c7fd7ff3 +_nd_image.cpython-313-darwin.so (0) <09E4452C-412E-38EA-82D5-939C99E3714D> /Users/*/_nd_image.cpython-313-darwin.so
+       0x3e4e44000 -        0x3e4ee0bbb +libcurl.4.dylib (0) <359B61C5-BB90-3AB7-8A3C-FB044BA6FD08> /Users/*/libcurl.4.dylib
+       0x3e4f34000 -        0x3e4f5ca73 +_transform.cpython-313-darwin.so (0) <D13D0343-7A0A-32F9-897D-6E666588AE2E> /Users/*/_transform.cpython-313-darwin.so
+       0x3e4f8c000 -        0x3e508e57f +libsqlite3.3.53.1.dylib (0) <301CF6CE-E6C0-345F-8C4A-FD1BE5914396> /Users/*/libsqlite3.3.53.1.dylib
+       0x3e5204000 -        0x3e5223ff3 +_ni_label.cpython-313-darwin.so (0) <A858328D-36F6-3AC4-A6AF-E1B4B963F4C3> /Users/*/_ni_label.cpython-313-darwin.so
+       0x3e5294000 -        0x3e5319a07 +_io.cpython-313-darwin.so (0) <E85518A9-FC6B-34BE-96E8-60704D41DBD0> /Users/*/_io.cpython-313-darwin.so
+       0x3e5358000 -        0x3e53b1ef7 +_warp.cpython-313-darwin.so (0) <ECCD7CC2-D0CD-3B82-9FEB-CBA0205633E8> /Users/*/_warp.cpython-313-darwin.so
+       0x3e53e4000 -        0x3e5426e57 +_features.cpython-313-darwin.so (0) <51D93F8E-441A-38CE-9948-B28691A17963> /Users/*/_features.cpython-313-darwin.so
+       0x3e5454000 -        0x3e549296f +_vsiopener.cpython-313-darwin.so (0) <2E3AC911-AF58-3E3A-A79B-20C2C7180B83> /Users/*/_vsiopener.cpython-313-darwin.so
+       0x3ef708000 -        0x3efa9a037 +libhdf5.320.2.0.dylib (0) <EEA5A7B0-84D1-31C0-B9F1-12B9A8869C20> /Users/*/libhdf5.320.2.0.dylib
+       0x3efc84000 -        0x3effac583 +libproj.25.9.8.1.dylib (0) <FBF37716-A8EB-3AC6-B97D-D546160DE8BF> /Users/*/libproj.25.9.8.1.dylib
+       0x3f070c000 -        0x3f0a6514f +libcrypto.3.dylib (0) <E839E9A5-A944-3A6B-95C9-5EA8F0D9E076> /Users/*/libcrypto.3.dylib
+       0x3f0e78000 -        0x3f1df25af +libgdal.38.3.12.2.dylib (0) <1FD2B16D-9846-3A6D-A5BA-7263CE530BA6> /Users/*/libgdal.38.3.12.2.dylib

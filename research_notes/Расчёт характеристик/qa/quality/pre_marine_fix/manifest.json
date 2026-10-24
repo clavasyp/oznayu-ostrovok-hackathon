@@ -1,0 +1,42 @@
+{
+  "at": "2026-10-24T02:23:10.743387+00:00",
+  "purpose": "Before independent QA marine-beach/P03 correction. Regression evidence; not a held-out accuracy dataset.",
+  "files": [
+    {
+      "original": "research_notes/Расчёт характеристик/scripts/geo.py",
+      "frozen": "research_notes/Расчёт характеристик/qa/quality/pre_marine_fix/geo.py",
+      "sha256": "7dea9d6863a8fdaf9a5bb61efc831b66bfe9f79eb62fcfbde8bb5caefb28b679",
+      "bytes": 40900
+    },
+    {
+      "original": "research_notes/Расчёт характеристик/results/geo/sochi_beach_targets.jsonl",
+      "frozen": "research_notes/Расчёт характеристик/qa/quality/pre_marine_fix/sochi_beach_targets.jsonl",
+      "sha256": "fea98dbc14af762c6fd58a9268f95a49db7bacca080602d36a4f4a3c043c078e",
+      "bytes": 539969
+    },
+    {
+      "original": "research_notes/Расчёт характеристик/results/geo/sochi_routes.jsonl",
+      "frozen": "research_notes/Расчёт характеристик/qa/quality/pre_marine_fix/sochi_routes.jsonl",
+      "sha256": "1ac69f0ac886dd4a17dafba4b35fdcc89fd558363d356b5473b62d2aa0e74644",
+      "bytes": 5266949
+    },
+    {
+      "original": "research_notes/Расчёт характеристик/results/geo/sochi_poi_audit.jsonl",
+      "frozen": "research_notes/Расчёт характеристик/qa/quality/pre_marine_fix/sochi_poi_audit.jsonl",
+      "sha256": "6622dfa3c5fde8eda46c7f0fdf1a0ecb351b3b3ffb08fc852cf2298026aa66ed",
+      "bytes": 635140
+    },
+    {
+      "original": "research_notes/Расчёт характеристик/results/geo/sochi_facts.jsonl",
+      "frozen": "research_notes/Расчёт характеристик/qa/quality/pre_marine_fix/sochi_facts.jsonl",
+      "sha256": "a9c24c83edc88bf6a5307aba5837bd4a423abcc60b8bd6c66610dc3c545d419b",
+      "bytes": 8404936
+    },
+    {
+      "original": "research_notes/Расчёт характеристик/results/geo/sochi_run.json",
+      "frozen": "research_notes/Расчёт характеристик/qa/quality/pre_marine_fix/sochi_run.json",
+      "sha256": "77ba3f41abbebc95a1bf094ddbf35dbcd506d9a217d3f7b78541e372ff93b234",
+      "bytes": 3544
+    }
+  ]
+}

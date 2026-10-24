@@ -1,0 +1,16 @@
+{
+  "comparison": "Full old/new accepted building ID+geometry sets, all cohort hotels",
+  "old": "research_notes/Расчёт характеристик/facades/archive/address_repair_20261024T135705Z/results/facades/sochi_building_matches.jsonl",
+  "old_sha256": "e8a5c03f150c3ebcc552c0b2c2560b464df34dd97299222f68f979c1387c5a3e",
+  "new": "research_notes/Расчёт характеристик/results/facades/sochi_building_matches.jsonl",
+  "new_sha256": "a991d1e23149f2d6a1614f478d512e09951b87be21d83d880c5b866f1c45174e",
+  "all_affected_hotel_ids": [
+    "7725078",
+    "8085655"
+  ],
+  "published_repair_affected_hotel_ids": [
+    "7725078",
+    "8085655"
+  ],
+  "complete": true
+}

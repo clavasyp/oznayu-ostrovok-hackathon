@@ -1,0 +1,72 @@
+{
+  "at": "2026-10-24T14:26:45.766071+00:00",
+  "requested_cities": [
+    "sochi",
+    "moscow",
+    "spb",
+    "kazan",
+    "kaliningrad",
+    "minsk",
+    "istanbul",
+    "dubai"
+  ],
+  "cities": [
+    {
+      "city_id": "sochi",
+      "status": "PASSED_WITH_PHYSICAL_ACCURACY_UNMEASURED",
+      "N_hotels": 89,
+      "hotel_feature_pairs": 4806,
+      "pending": []
+    },
+    {
+      "city_id": "moscow",
+      "status": "PASSED_WITH_PHYSICAL_ACCURACY_UNMEASURED",
+      "N_hotels": 50,
+      "hotel_feature_pairs": 2700,
+      "pending": []
+    },
+    {
+      "city_id": "spb",
+      "status": "PASSED_WITH_PHYSICAL_ACCURACY_UNMEASURED",
+      "N_hotels": 50,
+      "hotel_feature_pairs": 2700,
+      "pending": []
+    },
+    {
+      "city_id": "kazan",
+      "status": "PASSED_WITH_PHYSICAL_ACCURACY_UNMEASURED",
+      "N_hotels": 50,
+      "hotel_feature_pairs": 2700,
+      "pending": []
+    },
+    {
+      "city_id": "kaliningrad",
+      "status": "PASSED_WITH_PHYSICAL_ACCURACY_UNMEASURED",
+      "N_hotels": 50,
+      "hotel_feature_pairs": 2700,
+      "pending": []
+    },
+    {
+      "city_id": "minsk",
+      "status": "PASSED_WITH_PHYSICAL_ACCURACY_UNMEASURED",
+      "N_hotels": 50,
+      "hotel_feature_pairs": 2700,
+      "pending": []
+    },
+    {
+      "city_id": "istanbul",
+      "status": "PASSED_WITH_PHYSICAL_ACCURACY_UNMEASURED",
+      "N_hotels": 50,
+      "hotel_feature_pairs": 2700,
+      "pending": []
+    },
+    {
+      "city_id": "dubai",
+      "status": "PASSED_WITH_PHYSICAL_ACCURACY_UNMEASURED",
+      "N_hotels": 50,
+      "hotel_feature_pairs": 2700,
+      "pending": []
+    }
+  ],
+  "status": "PASSED"
+}

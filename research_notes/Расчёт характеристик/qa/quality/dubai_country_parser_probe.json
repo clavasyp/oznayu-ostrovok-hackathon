@@ -1,0 +1,65 @@
+{
+  "kind": "Direct independent library probe; component semantics, not physical schedule truth",
+  "rows": [
+    {
+      "expression": "24/7",
+      "AE": {
+        "error": "Unknown ISO code `AE`"
+      },
+      "None": {
+        "open": true,
+        "closed": false
+      }
+    },
+    {
+      "expression": "Mo-Su 09:00-22:00",
+      "AE": {
+        "error": "Unknown ISO code `AE`"
+      },
+      "None": {
+        "open": false,
+        "closed": true
+      }
+    },
+    {
+      "expression": "Fr 20:00-04:00",
+      "AE": {
+        "error": "Unknown ISO code `AE`"
+      },
+      "None": {
+        "open": true,
+        "closed": false
+      }
+    },
+    {
+      "expression": "Mo-Su 22:00-05:00",
+      "AE": {
+        "error": "Unknown ISO code `AE`"
+      },
+      "None": {
+        "open": true,
+        "closed": false
+      }
+    },
+    {
+      "expression": "24/7; PH off",
+      "AE": {
+        "error": "Unknown ISO code `AE`"
+      },
+      "None": {
+        "open": true,
+        "closed": false
+      }
+    },
+    {
+      "expression": "Mo-Su 08:00-23:00; SH off",
+      "AE": {
+        "error": "Unknown ISO code `AE`"
+      },
+      "None": {
+        "open": false,
+        "closed": true
+      }
+    }
+  ]
+}

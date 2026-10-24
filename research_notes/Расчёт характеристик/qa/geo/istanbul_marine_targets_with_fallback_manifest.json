@@ -1,0 +1,19 @@
+{
+  "city_id": "istanbul",
+  "built_at": "2026-10-24T13:41:22.772155+00:00",
+  "selection_rule_version": "V9-marine-reference-target-1",
+  "input_selected_targets_sha256": "9c6a290291c238a7d7cda04135b540b6442082af97bbec1a871bd3da20fba856",
+  "input_classifications_sha256": "066893151d34bc2c1a18af6a07ec6dc6b77d226174f98071d65b14a9242d0de9",
+  "result_sha256": "9ace5170a9416e56f8ea4435147c8f2c77f0e0d77afa128e072ed113a0927c72",
+  "result_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/istanbul_marine_targets_with_fallback.jsonl",
+  "script_sha256": "a51c3ee416361da8e8a1c8a23016aee42e1cae40a16f79c889acec5e9cb7eabe",
+  "hotel_denominator": 50,
+  "walk_selected_preserved": 50,
+  "new_physical_reference_only_targets": 0,
+  "result_targets": 50,
+  "delta": [],
+  "network_requests": 0,
+  "seconds": 0.5752253749960801,
+  "no_canonical_artifacts_changed": true,
+  "limitation": "This supplemental target is not a legal walking route or hotel partner beach. Current OSM private/no/customers tags are excluded, missing admission/season policy remains unknown."
+}

@@ -1,0 +1,21 @@
+[
+  {
+    "source_id": "node/13908136902",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/411695065",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/1314564870",
+    "tags": {
+      "barrier": "fence",
+      "leisure": "dog_park"
+    }
+  }
+]

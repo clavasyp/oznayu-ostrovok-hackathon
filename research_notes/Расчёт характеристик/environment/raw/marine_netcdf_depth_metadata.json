@@ -1,0 +1,137 @@
+{
+  "url": "https://s3.waw3-1.cloudferro.com/mdl-native-14/native/GLOBAL_ANALYSISFORECAST_PHY_001_024/cmems_mod_glo_phy-thetao_anfc_0.083deg_PT6H-i_202406/2026/10/glo12_rg_6h-i_20261001-00h_3D-thetao_hcst_R20261014.nc",
+  "object_size": 865485053,
+  "depth_values_m": [
+    0.49402499198913574,
+    1.5413750410079956,
+    2.6456689834594727,
+    3.8194949626922607,
+    5.078224182128906,
+    6.440614223480225,
+    7.92956018447876,
+    9.572997093200684,
+    11.404999732971191,
+    13.467140197753906,
+    15.810070037841797,
+    18.495559692382812,
+    21.598819732666016,
+    25.211410522460938,
+    29.444730758666992,
+    34.43415069580078,
+    40.344051361083984,
+    47.37369155883789,
+    55.76428985595703,
+    65.80726623535156,
+    77.85385131835938,
+    92.3260726928711,
+    109.72930145263672,
+    130.66600036621094,
+    155.85069274902344,
+    186.12559509277344,
+    222.47520446777344,
+    266.0403137207031,
+    318.1274108886719,
+    380.2130126953125,
+    453.9377136230469,
+    541.0889282226562,
+    643.5667724609375,
+    763.3331298828125,
+    902.3392944335938,
+    1062.43994140625,
+    1245.291015625,
+    1452.2509765625,
+    1684.2840576171875,
+    1941.8929443359375,
+    2225.077880859375,
+    2533.3359375,
+    2865.702880859375,
+    3220.820068359375,
+    3597.031982421875,
+    3992.48388671875,
+    4405.22412109375,
+    4833.291015625,
+    5274.7841796875,
+    5727.9169921875
+  ],
+  "depth_attributes": {
+    "CLASS": "DIMENSION_SCALE",
+    "NAME": "depth",
+    "_Netcdf4Dimid": 1,
+    "valid_min": [
+      0.49402499198913574
+    ],
+    "valid_max": [
+      5727.9169921875
+    ],
+    "units": "m",
+    "positive": "down",
+    "unit_long": "Meters",
+    "long_name": "Depth",
+    "standard_name": "depth",
+    "axis": "Z",
+    "REFERENCE_LIST": [
+      "(<HDF5 object reference>, 1)"
+    ]
+  },
+  "thetao_attributes": {
+    "_FillValue": [
+      9.969209968386869e+36
+    ],
+    "long_name": "Temperature",
+    "standard_name": "sea_water_potential_temperature",
+    "units": "degrees_C",
+    "unit_long": "Degrees Celsius",
+    "valid_min": [
+      -10
+    ],
+    "valid_max": [
+      40
+    ],
+    "cell_methods": "area: mean",
+    "DIMENSION_LIST": [
+      [
+        "<HDF5 object reference>"
+      ],
+      [
+        "<HDF5 object reference>"
+      ],
+      [
+        "<HDF5 object reference>"
+      ],
+      [
+        "<HDF5 object reference>"
+      ]
+    ],
+    "_Netcdf4Dimid": 0
+  },
+  "requests": [
+    {
+      "range": [
+        0,
+        65535
+      ],
+      "bytes": 65536,
+      "url": "https://s3.waw3-1.cloudferro.com/mdl-native-14/native/GLOBAL_ANALYSISFORECAST_PHY_001_024/cmems_mod_glo_phy-thetao_anfc_0.083deg_PT6H-i_202406/2026/10/glo12_rg_6h-i_20261001-00h_3D-thetao_hcst_R20261014.nc",
+      "status": 206
+    },
+    {
+      "range": [
+        865468416,
+        865485052
+      ],
+      "bytes": 16637,
+      "url": "https://s3.waw3-1.cloudferro.com/mdl-native-14/native/GLOBAL_ANALYSISFORECAST_PHY_001_024/cmems_mod_glo_phy-thetao_anfc_0.083deg_PT6H-i_202406/2026/10/glo12_rg_6h-i_20261001-00h_3D-thetao_hcst_R20261014.nc",
+      "status": 206
+    },
+    {
+      "range": [
+        865402880,
+        865468415
+      ],
+      "bytes": 65536,
+      "url": "https://s3.waw3-1.cloudferro.com/mdl-native-14/native/GLOBAL_ANALYSISFORECAST_PHY_001_024/cmems_mod_glo_phy-thetao_anfc_0.083deg_PT6H-i_202406/2026/10/glo12_rg_6h-i_20261001-00h_3D-thetao_hcst_R20261014.nc",
+      "status": 206
+    }
+  ],
+  "downloaded_bytes": 147709
+}

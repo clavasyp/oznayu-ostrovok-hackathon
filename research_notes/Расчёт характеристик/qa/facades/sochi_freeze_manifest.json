@@ -1,0 +1,96 @@
+{
+  "frozen_at_utc": "2026-10-24T02:20:21.264560+00:00",
+  "files": [
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/facades.py",
+      "sha256": "7509c3ae212510319ff387b98c383a14435a54a4a31e0cd0689236320527099d",
+      "bytes": 35768
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/facades/README.md",
+      "sha256": "09a2f583a49ed7450ff20444ac18fc237405cfc6a1d6bc4937b3183079942bd7",
+      "bytes": 10267
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/facades/reference_cases.csv",
+      "sha256": "1607825d76902515057cb92114a10fcae665023fcf2f21238558877800c56efa",
+      "bytes": 2174
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/facades/external_match_evidence.json",
+      "sha256": "72e71188f252ccb7b422d13f857ca9615b6c68e3c90705119dea273f8345e9b2",
+      "bytes": 858
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/facades/test_scenes.py",
+      "sha256": "bfc627778cf8cf530ed18642e141688eb96c5499e3386a2cec1d8ea39b0607d2",
+      "bytes": 3268
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/facades/check_outputs.py",
+      "sha256": "c67953253025886ed64b344f6e4ddff9c580aeb132d0c8281bbac1e33c1669ca",
+      "bytes": 3457
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/facades/sochi_output_checks.json",
+      "sha256": "29db6f9dc3ae57b2770e246c5a37e0a91a33c340bd2c4a4f5abcf16722d90869",
+      "bytes": 1529
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/facades/synthetic_scene_checks.json",
+      "sha256": "599ba339e2de55e29d1ace9b4505010b58d6e9d74eb3f52534042acc3a27892f",
+      "bytes": 4640
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/sochi_fan_facts.jsonl.gz",
+      "sha256": "a4d1cd0b9392734cf9f4c770929a1d812fd245bab542cd02c9feca824b8d42c8",
+      "bytes": 5403653
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/sochi_target_components.jsonl",
+      "sha256": "49a38199d34e53a9766cdcad2f06739c7435ddcd7cbcfb9197148e064b0b976e",
+      "bytes": 275572
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/sochi_fan.jsonl",
+      "sha256": "f6bdc2029647c842d93926b518795b7136f44f8805e1089b7e8545989c1abec0",
+      "bytes": 34723139
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/sochi_building_facts.jsonl",
+      "sha256": "77107cea97809ef0791d17805601e866e081956aafc0c180db9d9effab2ada22",
+      "bytes": 132177
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/sochi_building_matches.jsonl",
+      "sha256": "e8a5c03f150c3ebcc552c0b2c2560b464df34dd97299222f68f979c1387c5a3e",
+      "bytes": 184889
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/sochi_summary.json",
+      "sha256": "359bc6166c2888912b0fe3473e3581a8c7060fde5a902b010d964524afef8bed",
+      "bytes": 2681
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/sochi_ota_comparisons.jsonl",
+      "sha256": "adfab76112f4a2e6d38a2b41b4768a12de13a9371cac9bce7668d1c50277f374",
+      "bytes": 15050
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/sochi_diagnostics.jsonl",
+      "sha256": "cb9decb193d8ff7f7a500c3d8687e247579fe47c5f266bccba0efb80aa9d3c2e",
+      "bytes": 519866
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/sochi_facts.jsonl",
+      "sha256": "e9a735a83537b3fb525e032e6c7b4f013e73d56397884408d13cbdf68d8312e7",
+      "bytes": 2292433
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/sochi_geometry_quality.jsonl",
+      "sha256": "9f0d922b5c9f674d37ad33f6dff6374b621f3879a542d885967d69c473b72846",
+      "bytes": 77387
+    }
+  ],
+  "phase": "Sochi complete. No other cities executed. Root may write intermediate report."
+}

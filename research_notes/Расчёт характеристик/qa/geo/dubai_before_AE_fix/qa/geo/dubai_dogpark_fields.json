@@ -1,0 +1,85 @@
+[
+  {
+    "source_id": "node/10679928342",
+    "tags": {
+      "leisure": "dog_park",
+      "name": "BBET Dog Park",
+      "wheelchair": "yes"
+    }
+  },
+  {
+    "source_id": "node/11198371727",
+    "tags": {
+      "access": "yes",
+      "addr:city": "Jumeirah Village Circle",
+      "addr:street": "شارع 3",
+      "leisure": "dog_park",
+      "name": "Eisbej Dog Park"
+    }
+  },
+  {
+    "source_id": "node/11505259673",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "node/11521157194",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "node/11566433693",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/795896088",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/930168196",
+    "tags": {
+      "leisure": "dog_park",
+      "wheelchair": "limited"
+    }
+  },
+  {
+    "source_id": "way/930169131",
+    "tags": {
+      "leisure": "dog_park",
+      "wheelchair": "yes"
+    }
+  },
+  {
+    "source_id": "way/932751987",
+    "tags": {
+      "leisure": "dog_park",
+      "wheelchair": "yes"
+    }
+  },
+  {
+    "source_id": "way/1243100061",
+    "tags": {
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/1417689054",
+    "tags": {
+      "access": "yes",
+      "leisure": "dog_park"
+    }
+  },
+  {
+    "source_id": "way/1528337950",
+    "tags": {
+      "leisure": "dog_park",
+      "name": "Downtown Dog Park"
+    }
+  }
+]

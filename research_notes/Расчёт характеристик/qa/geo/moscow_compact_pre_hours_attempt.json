@@ -1,0 +1,8 @@
+{
+  "attempt": "Moscowcompactbeforehoursfix",
+  "status": "intentionally terminated to apply established optional-next_change blocker repair before spending another long run",
+  "elapsed_seconds_observed_lower_bound": 57,
+  "process_id": 40553,
+  "exit_code": 143,
+  "note": "Not counted as a successful runtime; no city result files."
+}

@@ -1,0 +1,47 @@
+[
+  {
+    "source_file": "research_notes/Расчёт характеристик/scripts/run_geo_v9_other_city_compact.py",
+    "sha256": "ab27e8737b73edd6bcafeeb4d48d523aaf861e3eccbb02ecbd95dd06a506695a",
+    "archived_file": "research_notes/Расчёт характеристик/qa/geo/code_versions/ab27e8737b73edd6bcafeeb4d48d523aaf861e3eccbb02ecbd95dd06a506695a.py"
+  },
+  {
+    "source_file": "research_notes/Расчёт характеристик/scripts/geo_opening_point_cache.py",
+    "sha256": "a0b00092b42cde47da1dbae93ff4e4aa559274145b543b59ff129aa477aa169a",
+    "archived_file": "research_notes/Расчёт характеристик/qa/geo/code_versions/a0b00092b42cde47da1dbae93ff4e4aa559274145b543b59ff129aa477aa169a.py"
+  },
+  {
+    "source_file": "research_notes/Расчёт характеристик/scripts/geo_memory_containers.py",
+    "sha256": "101779dba50738cb3105e33e04282bda672242a5e1829ee492cdd58f50507110",
+    "archived_file": "research_notes/Расчёт характеристик/qa/geo/code_versions/101779dba50738cb3105e33e04282bda672242a5e1829ee492cdd58f50507110.py"
+  },
+  {
+    "source_file": "research_notes/Расчёт характеристик/scripts/geo.py",
+    "sha256": "e575c51e28cbc3905eadb4e4d628005b9fad99031301a741d0477c80e73473ad",
+    "archived_file": "research_notes/Расчёт характеристик/qa/geo/code_versions/e575c51e28cbc3905eadb4e4d628005b9fad99031301a741d0477c80e73473ad.py"
+  },
+  {
+    "source_file": "research_notes/Расчёт характеристик/scripts/common.py",
+    "sha256": "76696ba92b64aab7ceef9bf255872bbc943311c0cde886098dffe8773d6637eb",
+    "archived_file": "research_notes/Расчёт характеристик/qa/geo/code_versions/76696ba92b64aab7ceef9bf255872bbc943311c0cde886098dffe8773d6637eb.py"
+  },
+  {
+    "source_file": "research_notes/Расчёт характеристик/scripts/facades.py",
+    "sha256": "7509c3ae212510319ff387b98c383a14435a54a4a31e0cd0689236320527099d",
+    "archived_file": "research_notes/Расчёт характеристик/qa/geo/code_versions/7509c3ae212510319ff387b98c383a14435a54a4a31e0cd0689236320527099d.py"
+  },
+  {
+    "source_file": "research_notes/Расчёт характеристик/scripts/run_remaining_hardware_queue.py",
+    "sha256": "77c879a186f36e8ee0d740fde1b8d5e5514da263e86f9c50b6f1d349a3c459c5",
+    "archived_file": "research_notes/Расчёт характеристик/qa/geo/code_versions/77c879a186f36e8ee0d740fde1b8d5e5514da263e86f9c50b6f1d349a3c459c5.py"
+  },
+  {
+    "source_file": "research_notes/Расчёт характеристик/cohort/extract_v9_node_restrictions.py",
+    "sha256": "09361a62cabfde2a731497f09fee73a620a54e4f617d71f7e91ed71e364b0a55",
+    "archived_file": "research_notes/Расчёт характеристик/qa/geo/code_versions/09361a62cabfde2a731497f09fee73a620a54e4f617d71f7e91ed71e364b0a55.py"
+  },
+  {
+    "source_file": "research_notes/Расчёт характеристик/scripts/build_marine_reference_targets.py",
+    "sha256": "a51c3ee416361da8e8a1c8a23016aee42e1cae40a16f79c889acec5e9cb7eabe",
+    "archived_file": "research_notes/Расчёт характеристик/qa/geo/code_versions/a51c3ee416361da8e8a1c8a23016aee42e1cae40a16f79c889acec5e9cb7eabe.py"
+  }
+]

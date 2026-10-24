@@ -1,0 +1,55 @@
+{
+  "passed": true,
+  "cases": [
+    {
+      "city_id": "istanbul",
+      "hotel_id": "7540149",
+      "building_id": "way/288197582",
+      "archived_v1_exact_reproduces_stored": true,
+      "current_strict_gate_passed": true,
+      "version_metadata_differences_only": {
+        "normalized_address": {
+          "stored": null,
+          "current_v2": "mahmutbey tasocag yolu cad no 35 stambul"
+        },
+        "rule": {
+          "stored": "exact_core_street_and_full_house_no_corpus_relaxation",
+          "current_v2": "exact_full_house_suffix_corpus_and_core_street"
+        },
+        "normalized_house": {
+          "stored": null,
+          "current_v2": "35"
+        }
+      },
+      "archived_source_sha256": "7509c3ae212510319ff387b98c383a14435a54a4a31e0cd0689236320527099d",
+      "archived_source": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/7509c3ae212510319ff387b98c383a14435a54a4a31e0cd0689236320527099d.py",
+      "physical_match_accuracy_claimed": false
+    },
+    {
+      "city_id": "dubai",
+      "hotel_id": "6432238",
+      "building_id": "way/93638778",
+      "archived_v1_exact_reproduces_stored": true,
+      "current_strict_gate_passed": true,
+      "version_metadata_differences_only": {
+        "normalized_address": {
+          "stored": null,
+          "current_v2": "al sultana shoreline 3 palm jumeirah dubai dubai"
+        },
+        "rule": {
+          "stored": "exact_core_street_and_full_house_no_corpus_relaxation",
+          "current_v2": "exact_full_house_suffix_corpus_and_core_street"
+        },
+        "normalized_house": {
+          "stored": null,
+          "current_v2": "3"
+        }
+      },
+      "archived_source_sha256": "7509c3ae212510319ff387b98c383a14435a54a4a31e0cd0689236320527099d",
+      "archived_source": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/7509c3ae212510319ff387b98c383a14435a54a4a31e0cd0689236320527099d.py",
+      "physical_match_accuracy_claimed": false
+    }
+  ],
+  "source_SHA256_verified": true,
+  "note": "Old stored evidence is retained under its actual historical code. Current strict gate independently accepts the same complete raw street and house; only rule/normalization metadata were added."
+}

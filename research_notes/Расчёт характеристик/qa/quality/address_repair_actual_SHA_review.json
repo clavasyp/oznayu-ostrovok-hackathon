@@ -1,0 +1,294 @@
+{
+  "at": "2026-10-24T14:28:49.640371+00:00",
+  "passed": true,
+  "manifest_path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/building_axis_repair_manifest.json",
+  "manifest_sha256": "4012928b6beca67051e2865eec329b7788fd4251035d6276f9601dad70d4c03d",
+  "actual_data_checks": [
+    {
+      "city_id": "sochi",
+      "kind": "building_matches",
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/sochi_building_matches.jsonl",
+      "sha256": "a991d1e23149f2d6a1614f478d512e09951b87be21d83d880c5b866f1c45174e",
+      "passed": true
+    },
+    {
+      "city_id": "sochi",
+      "kind": "facts",
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/sochi_facts.jsonl",
+      "sha256": "0ac67a1055150ddfd699872723635cc052db3b9ef6a50c54207ea61bbe1aa113",
+      "passed": true
+    },
+    {
+      "city_id": "sochi",
+      "kind": "run",
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/sochi_run.json",
+      "sha256": "389505c9de6f37d72932a6bbfd9863789d7ce648839d8eaeb4ab7e289d131075",
+      "passed": true
+    },
+    {
+      "city_id": "sochi",
+      "kind": "repair_report",
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/sochi_N02N03_strict_join_repair_report.json",
+      "sha256": "214bb5d72ebdfe17173f48d169c7e55b86379ab7ea5bac66234be160236e70bb",
+      "passed": true
+    },
+    {
+      "city_id": "moscow",
+      "kind": "building_matches",
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/moscow_building_matches.jsonl",
+      "sha256": "152e39a9471cb7c95e0bf41b018a0ef6587388f625954428fdd25abcb775eff7",
+      "passed": true
+    },
+    {
+      "city_id": "moscow",
+      "kind": "facts",
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/moscow_facts.jsonl",
+      "sha256": "231cf82f83fa94cf8d2f90f2b8534ef8e360749241b4526fdba97e00b97d5775",
+      "passed": true
+    },
+    {
+      "city_id": "moscow",
+      "kind": "run",
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/moscow_run.json",
+      "sha256": "f4d8a7908fa633116c793ac509315392f24fe12f4b5f40237495d9b15369e103",
+      "passed": true
+    },
+    {
+      "city_id": "moscow",
+      "kind": "repair_report",
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/moscow_N02N03_join_diff_repair_report.json",
+      "sha256": "647de1a61b6e075b95c3d0d7267a5668853b247d36573cb03650900620bbda7f",
+      "passed": true
+    },
+    {
+      "city_id": "spb",
+      "kind": "building_matches",
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/spb_building_matches.jsonl",
+      "sha256": "35a24c54b8ef5d77aa417ad1a238aaa5380669c595353fda415ed0c5ce0b59af",
+      "passed": true
+    },
+    {
+      "city_id": "spb",
+      "kind": "facts",
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/spb_facts.jsonl",
+      "sha256": "d821664ab88ed2cf9b6af99a6e987d43e3f85028d65073dc864e523e52d19c40",
+      "passed": true
+    },
+    {
+      "city_id": "spb",
+      "kind": "run",
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/spb_run.json",
+      "sha256": "0ac968ce6f63198fa1565b98f0ecc642eb4fd614533d8c4cde661701990b602a",
+      "passed": true
+    },
+    {
+      "city_id": "spb",
+      "kind": "repair_report",
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/spb_N02N03_join_diff_repair_report.json",
+      "sha256": "ec84c3178c0e7ef16a07d466796fbe0c430db3266915254d49a6fa0c8fb843c2",
+      "passed": true
+    },
+    {
+      "city_id": "kazan",
+      "kind": "building_matches",
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/kazan_building_matches.jsonl",
+      "sha256": "e8ec72a6766d7a6553d490d75375fcd07ebb6774f59f4906e8114f12ede22a00",
+      "passed": true
+    },
+    {
+      "city_id": "kazan",
+      "kind": "facts",
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/kazan_facts.jsonl",
+      "sha256": "6d715394dca595253c1f8b5a7ce64bd7cd80dba32c7f5d0a2bd8b14bded3f2b4",
+      "passed": true
+    },
+    {
+      "city_id": "kazan",
+      "kind": "run",
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/kazan_run.json",
+      "sha256": "555bcdd99f7da932cf3bba2b940c2876d0fc8ec86d8b1b335f276a535bbcfcf7",
+      "passed": true
+    },
+    {
+      "city_id": "kazan",
+      "kind": "repair_report",
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/kazan_N02N03_join_diff_repair_report.json",
+      "sha256": "584c59c34f244598c138ecb3758802add813427f38693daaa0cb9e5a27490106",
+      "passed": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "kind": "building_matches",
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/kaliningrad_building_matches.jsonl",
+      "sha256": "2dfbe141f26db5ff27e7a86c9faf8465d104d74d8471683305ceb9c974ab568e",
+      "passed": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "kind": "facts",
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/kaliningrad_facts.jsonl",
+      "sha256": "ead325af49eb0cd650989d9af50ef41cb6a0a2a5b8c1d9f71c3bc70562178e2d",
+      "passed": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "kind": "run",
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/kaliningrad_run.json",
+      "sha256": "8f4072fb9b5b3a806d9e65b8afc6381732cba6dc67795896660aa22a93e2acde",
+      "passed": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "kind": "repair_report",
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/kaliningrad_N02N03_join_diff_repair_report.json",
+      "sha256": "822fa332e0a88878801c18f4c494bcf22895810576f91294cf144e3a3cf18a28",
+      "passed": true
+    }
+  ],
+  "actual_source_archive_checks": [
+    {
+      "city_id": "sochi",
+      "source_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/repair_building_axis_features.py",
+      "archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/15d4e99a6362be7c391a1e075265e85061995e9f4f074a31cfa3d35d633c70d9.py",
+      "sha256": "15d4e99a6362be7c391a1e075265e85061995e9f4f074a31cfa3d35d633c70d9",
+      "passed": true
+    },
+    {
+      "city_id": "sochi",
+      "source_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/geo.py",
+      "archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/e575c51e28cbc3905eadb4e4d628005b9fad99031301a741d0477c80e73473ad.py",
+      "sha256": "e575c51e28cbc3905eadb4e4d628005b9fad99031301a741d0477c80e73473ad",
+      "passed": true
+    },
+    {
+      "city_id": "sochi",
+      "source_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/common.py",
+      "archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/76696ba92b64aab7ceef9bf255872bbc943311c0cde886098dffe8773d6637eb.py",
+      "sha256": "76696ba92b64aab7ceef9bf255872bbc943311c0cde886098dffe8773d6637eb",
+      "passed": true
+    },
+    {
+      "city_id": "sochi",
+      "source_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/facades.py",
+      "archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/14b8c3ea8f4791400fa7cf0ebe5788992f2d16b03f2029de4ac85bf80c3108a6.py",
+      "sha256": "14b8c3ea8f4791400fa7cf0ebe5788992f2d16b03f2029de4ac85bf80c3108a6",
+      "passed": true
+    },
+    {
+      "city_id": "moscow",
+      "source_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/repair_building_axis_features_v2.py",
+      "archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/b4b54df6b58537c800f048ec77779f67f680a4a941feb6611fbfbee4ed9c2908.py",
+      "sha256": "b4b54df6b58537c800f048ec77779f67f680a4a941feb6611fbfbee4ed9c2908",
+      "passed": true
+    },
+    {
+      "city_id": "moscow",
+      "source_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/geo.py",
+      "archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/e575c51e28cbc3905eadb4e4d628005b9fad99031301a741d0477c80e73473ad.py",
+      "sha256": "e575c51e28cbc3905eadb4e4d628005b9fad99031301a741d0477c80e73473ad",
+      "passed": true
+    },
+    {
+      "city_id": "moscow",
+      "source_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/common.py",
+      "archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/76696ba92b64aab7ceef9bf255872bbc943311c0cde886098dffe8773d6637eb.py",
+      "sha256": "76696ba92b64aab7ceef9bf255872bbc943311c0cde886098dffe8773d6637eb",
+      "passed": true
+    },
+    {
+      "city_id": "moscow",
+      "source_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/facades.py",
+      "archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/14b8c3ea8f4791400fa7cf0ebe5788992f2d16b03f2029de4ac85bf80c3108a6.py",
+      "sha256": "14b8c3ea8f4791400fa7cf0ebe5788992f2d16b03f2029de4ac85bf80c3108a6",
+      "passed": true
+    },
+    {
+      "city_id": "spb",
+      "source_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/repair_building_axis_features_v3.py",
+      "archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/fde047576efaaea9bf4721b3e61629e42f20b6b0643111d7d3ba69239a278cda.py",
+      "sha256": "fde047576efaaea9bf4721b3e61629e42f20b6b0643111d7d3ba69239a278cda",
+      "passed": true
+    },
+    {
+      "city_id": "spb",
+      "source_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/geo.py",
+      "archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/e575c51e28cbc3905eadb4e4d628005b9fad99031301a741d0477c80e73473ad.py",
+      "sha256": "e575c51e28cbc3905eadb4e4d628005b9fad99031301a741d0477c80e73473ad",
+      "passed": true
+    },
+    {
+      "city_id": "spb",
+      "source_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/common.py",
+      "archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/76696ba92b64aab7ceef9bf255872bbc943311c0cde886098dffe8773d6637eb.py",
+      "sha256": "76696ba92b64aab7ceef9bf255872bbc943311c0cde886098dffe8773d6637eb",
+      "passed": true
+    },
+    {
+      "city_id": "spb",
+      "source_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/facades.py",
+      "archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/14b8c3ea8f4791400fa7cf0ebe5788992f2d16b03f2029de4ac85bf80c3108a6.py",
+      "sha256": "14b8c3ea8f4791400fa7cf0ebe5788992f2d16b03f2029de4ac85bf80c3108a6",
+      "passed": true
+    },
+    {
+      "city_id": "kazan",
+      "source_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/repair_building_axis_features_v3.py",
+      "archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/fde047576efaaea9bf4721b3e61629e42f20b6b0643111d7d3ba69239a278cda.py",
+      "sha256": "fde047576efaaea9bf4721b3e61629e42f20b6b0643111d7d3ba69239a278cda",
+      "passed": true
+    },
+    {
+      "city_id": "kazan",
+      "source_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/geo.py",
+      "archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/e575c51e28cbc3905eadb4e4d628005b9fad99031301a741d0477c80e73473ad.py",
+      "sha256": "e575c51e28cbc3905eadb4e4d628005b9fad99031301a741d0477c80e73473ad",
+      "passed": true
+    },
+    {
+      "city_id": "kazan",
+      "source_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/common.py",
+      "archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/76696ba92b64aab7ceef9bf255872bbc943311c0cde886098dffe8773d6637eb.py",
+      "sha256": "76696ba92b64aab7ceef9bf255872bbc943311c0cde886098dffe8773d6637eb",
+      "passed": true
+    },
+    {
+      "city_id": "kazan",
+      "source_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/facades.py",
+      "archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/14b8c3ea8f4791400fa7cf0ebe5788992f2d16b03f2029de4ac85bf80c3108a6.py",
+      "sha256": "14b8c3ea8f4791400fa7cf0ebe5788992f2d16b03f2029de4ac85bf80c3108a6",
+      "passed": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "source_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/repair_building_axis_features_v2.py",
+      "archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/b4b54df6b58537c800f048ec77779f67f680a4a941feb6611fbfbee4ed9c2908.py",
+      "sha256": "b4b54df6b58537c800f048ec77779f67f680a4a941feb6611fbfbee4ed9c2908",
+      "passed": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "source_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/geo.py",
+      "archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/e575c51e28cbc3905eadb4e4d628005b9fad99031301a741d0477c80e73473ad.py",
+      "sha256": "e575c51e28cbc3905eadb4e4d628005b9fad99031301a741d0477c80e73473ad",
+      "passed": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "source_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/common.py",
+      "archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/76696ba92b64aab7ceef9bf255872bbc943311c0cde886098dffe8773d6637eb.py",
+      "sha256": "76696ba92b64aab7ceef9bf255872bbc943311c0cde886098dffe8773d6637eb",
+      "passed": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "source_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/facades.py",
+      "archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/14b8c3ea8f4791400fa7cf0ebe5788992f2d16b03f2029de4ac85bf80c3108a6.py",
+      "sha256": "14b8c3ea8f4791400fa7cf0ebe5788992f2d16b03f2029de4ac85bf80c3108a6",
+      "passed": true
+    }
+  ],
+  "geo_core_unchanged": true,
+  "new_facades_core_verified": true,
+  "archive_checks_n": 20,
+  "data_checks_n": 20
+}

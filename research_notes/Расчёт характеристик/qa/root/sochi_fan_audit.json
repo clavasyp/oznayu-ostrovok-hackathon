@@ -1,0 +1,20 @@
+{
+  "status": "PASSED",
+  "rows": 109075,
+  "unique_fact_ids": 109075,
+  "feature_counts": {
+    "V01": 4363,
+    "V02": 4363,
+    "V03": 4363,
+    "V04": 4363,
+    "V05": 26178,
+    "V06": 4363,
+    "S01": 26178,
+    "S02": 26178,
+    "S03": 8726
+  },
+  "errors": [],
+  "gzip_bytes": 5403653,
+  "sha256": "a4d1cd0b9392734cf9f4c770929a1d812fd245bab542cd02c9feca824b8d42c8",
+  "scope": "All fan passports remain unknown for actual windows; geometric scenarios separate."
+}

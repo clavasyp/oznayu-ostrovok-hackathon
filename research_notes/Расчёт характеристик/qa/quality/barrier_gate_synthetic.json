@@ -1,0 +1,16 @@
+{
+  "at": "2026-10-24T02:25:59.582381+00:00",
+  "checks": {
+    "foot_no_blocks": true,
+    "foot_private_blocks": true,
+    "access_private_blocks": true,
+    "conditional_blocks": true,
+    "locked_gate_blocks": true,
+    "explicit_public_foot_override": true,
+    "bollard_alone_not_blocked": true,
+    "locked_bollard_not_pedestrian_ban": true,
+    "missing_gate_policy_unknown_not_ban": true
+  },
+  "passed": true,
+  "interpretation": "Synthetic access-control regression, not field route validation"
+}

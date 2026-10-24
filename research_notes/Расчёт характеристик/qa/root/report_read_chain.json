@@ -1,0 +1,67 @@
+{
+  "at": "2026-10-24T14:35:06.214196+00:00",
+  "status": "PASSED_WITH_EXPLICIT_DATA_LIMITATIONS",
+  "main": {
+    "fully_read_base": {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/root/main_report_fullread_base.md",
+      "sha256": "27f171be08358f2754f6b925215c078248927ad8ff0dfdbb2a47b0a840d642dc",
+      "lines": 360
+    },
+    "candidate": {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/root/main_report_final_candidate.md",
+      "sha256": "875a2876fa27bc0c1d6637601e7e859a8c9686ea44195924fbf020470072b99c",
+      "lines": 372
+    },
+    "all_added_lines_read": {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/root/main_report_final_candidate_additions.txt",
+      "sha256": "c71d3139d4eaeb2ff3ef2a18bb8b101e70e050753b55626657495e3b9f824386",
+      "lines": 104
+    }
+  },
+  "sochi": {
+    "fully_read_base": {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/checkpoints/sochi_accepted/Расчёт характеристик — Сочи.md",
+      "sha256": "7853c3b2209d52dd1481f1d035a5848485b173ce8ea427601112b79438a30a1d",
+      "lines": 325
+    },
+    "candidate": {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/root/sochi_report_final_candidate.md",
+      "sha256": "ba9fed738790c61384b956403bcbc70287b23d1946791ac44440af45107781c0",
+      "lines": 340
+    },
+    "all_added_lines_read": {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/root/sochi_report_final_candidate_additions.txt",
+      "sha256": "5bb0df262ecefc234daf1170ddb89100413862a5bc97ea6db30873bc8bf3708e",
+      "lines": 54
+    }
+  },
+  "found_and_communicated": [
+    "Sochi lead incorrectly claimed intersection of disjoint computed/observed and estimate feature-ID sets. Confirmed directly from coverage CSV; author independently corrected generator.",
+    "Future wording for the completed seven-city summary should become a current link."
+  ],
+  "final_delta_review_required": false,
+  "final_author_deltas": [
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/root/main_report_last_author_delta.diff",
+      "sha256": "fa608229c26d3132ce39a5c4fc79038c882c0ad4494307cbec0b908416277940"
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/root/sochi_report_last_author_delta.diff",
+      "sha256": "449e7a142ce5185f66475146eeb1a0bc1f3ad4ed0e8e1f44bfbc4653c41de8a7"
+    }
+  ],
+  "final_reports": [
+    {
+      "path": "/Users/turgov/Хакатон/reports/Расчёт характеристик на реальных отелях.md",
+      "sha256": "e5936594b5aad76bfdd18437cd38a8a62bc74d822efb49895144258e97affc60",
+      "bytes": 107264,
+      "lines": 370
+    },
+    {
+      "path": "/Users/turgov/Хакатон/reports/Расчёт характеристик — Сочи.md",
+      "sha256": "814ee039d2d29b437899a31bc33befdbe058c0c2692c67f18858e4078f91a049",
+      "bytes": 97428,
+      "lines": 340
+    }
+  ]
+}

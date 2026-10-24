@@ -1,0 +1,53 @@
+{
+  "python": "3.13.9 (v3.13.9:8183fa5e3f7, Oct 14 2025, 10:27:13) [Clang 16.0.0 (clang-1600.0.26.6)]",
+  "packages": {
+    "numpy": {
+      "distribution": "numpy",
+      "version": "2.5.4"
+    },
+    "scipy": {
+      "distribution": "scipy",
+      "version": "1.18.1"
+    },
+    "pandas": {
+      "distribution": "pandas",
+      "version": "3.1.0"
+    },
+    "shapely": {
+      "distribution": "shapely",
+      "version": "2.2.0"
+    },
+    "pyproj": {
+      "distribution": "pyproj",
+      "version": "3.8.0"
+    },
+    "rasterio": {
+      "distribution": "rasterio",
+      "version": "1.5.2"
+    },
+    "requests": {
+      "distribution": "requests",
+      "version": "2.34.2"
+    },
+    "pvlib": {
+      "distribution": "pvlib",
+      "version": "0.16.1"
+    },
+    "astral": {
+      "distribution": "astral",
+      "version": "3.2"
+    },
+    "h5py": {
+      "distribution": "h5py",
+      "version": "3.16.0"
+    },
+    "osmium": {
+      "distribution": "osmium",
+      "version": "4.3.2"
+    },
+    "opening_hours": {
+      "distribution": "opening_hours_py",
+      "version": "2.1.4"
+    }
+  }
+}

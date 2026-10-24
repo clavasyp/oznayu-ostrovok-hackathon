@@ -1,0 +1,236 @@
+{
+  "at": "2026-10-24T14:35:53.339198+00:00",
+  "report_sha256": "814ee039d2d29b437899a31bc33befdbe058c0c2692c67f18858e4078f91a049",
+  "files": [
+    {
+      "path": "/Users/turgov/Хакатон/docs/research/track_alignment.md",
+      "sha256": "c5c3c4f2e5778f402d6181cac271584e75340dab154dbdfad7d8c3535a9d1054",
+      "bytes": 9060
+    },
+    {
+      "path": "/Users/turgov/Хакатон/handoff_chatgpt_v9_compute.md",
+      "sha256": "a00271aff43e61a3d85855d9ec404b99c08872a518d2b8ccbd5c4e9dd2552cc1",
+      "bytes": 14183
+    },
+    {
+      "path": "/Users/turgov/Хакатон/reports/Расчёт характеристик на реальных отелях.md",
+      "sha256": "e5936594b5aad76bfdd18437cd38a8a62bc74d822efb49895144258e97affc60",
+      "bytes": 107264
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/checkpoints/sochi_accepted/Расчёт характеристик — Сочи.md",
+      "sha256": "7853c3b2209d52dd1481f1d035a5848485b173ce8ea427601112b79438a30a1d",
+      "bytes": 89860
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/cohort/build_cohort.py",
+      "sha256": "5667932176fdef9da8d65ddd82b53efbf68c86c83ca196cb4f88b78d8eb571c7",
+      "bytes": 6015
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/cohort/extract_sochi.py",
+      "sha256": "a08df650e33f9eb0a7a1fc925343da3fb2cf1edefa5fe8bb09e8b79bb4ac4793",
+      "bytes": 3308
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/cohort/hotels.jsonl",
+      "sha256": "c0f37fe6fa70f0ac9134608ee4b08537f0fd332a9fa78c8691047069d798afd1",
+      "bytes": 640606
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/cohort/manifest.json",
+      "sha256": "b68e89e7ee9a9d0215ecc97dfec127f6905d2eaeedbad0db786d4708ed9fbd2b",
+      "bytes": 1634
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/cohort/osm_sochi_extended_manifest.json",
+      "sha256": "ca93ae13f369f32cbbaaddd030474e5b25667841bad7ead5e9d218d7a9f93f41",
+      "bytes": 808
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/environment/README.md",
+      "sha256": "33346649b38b6a5cb5d38f116510447c1f0b41650113a9f3d2216ec4f107db0a",
+      "bytes": 19271
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/environment/marine_semantic_audit.json",
+      "sha256": "2ca16e28af2c2dda24ca266783c4018fb664de65e11343c3a688c1d1394f03a0",
+      "bytes": 1430
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/facades/README.md",
+      "sha256": "e27e3deee897dfa9441612b66ac86ac0346b52a0d4f524b0843278d044eb693c",
+      "bytes": 10665
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/facades/reference_cases.csv",
+      "sha256": "1607825d76902515057cb92114a10fcae665023fcf2f21238558877800c56efa",
+      "bytes": 2174
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/hotelier/prefill.jsonl",
+      "sha256": "7b61071865f8e91e0c814b7407ea7d85465afde9e2bb302a8038ef7bf5e95b06",
+      "bytes": 11771807
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/hotelier/questions_26.csv",
+      "sha256": "a28473b281a50f6c7cfcdb8e1965d303c8c73b74f6543c5e0a07ac510dcc8607",
+      "bytes": 19552
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/integrated/sochi_coverage.csv",
+      "sha256": "9a8558976ef628ace89e5bcae56af535a4fd3e0f2882283b35c53508ebbd9d84",
+      "bytes": 20589
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/integrated/sochi_facts.jsonl",
+      "sha256": "716e84a029d183e439f7c7c923626a6edf2d30b16ee6f4e72999d5de5ac38db9",
+      "bytes": 32503528
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/integrated/sochi_summary.json",
+      "sha256": "29b56de364f604811efd4d458cde062869511b5002207035c25944825b0752cf",
+      "bytes": 5636
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/environment/audit_cases.csv",
+      "sha256": "0df51fcc50513b5b2fde2b164b0ccc09bb946c51c98a5be7f13cb51b5136eb6b",
+      "bytes": 6232
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/facades/final8_review.json",
+      "sha256": "9d09aa340813d5e10ce6be3e9d69727ca362ab6f6fbdfbc0e1cad85f850efae5",
+      "bytes": 169217
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/reference_cases.csv",
+      "sha256": "6a6dde263cf4b8fd9d76628c693647ccf089eeed15501d03283ca77c7b586109",
+      "bytes": 13006
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/sochi_F01_node_repair_report.json",
+      "sha256": "d873252926227904e6e460482af5efb47453fe03dee85c85f655d22daf18f132",
+      "bytes": 7262
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/sochi_N02N03_strict_join_repair_report.json",
+      "sha256": "214bb5d72ebdfe17173f48d169c7e55b86379ab7ea5bac66234be160236e70bb",
+      "bytes": 12164
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/sochi_full_corrected_reselect_audit.json",
+      "sha256": "eae6101dcac345fa719e9529a4322e255d5bbe5434242fb360fb02813943aed9",
+      "bytes": 14929
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/quality/Q03_graph_denominator_scope.json",
+      "sha256": "d6cae270fddc4c484fcc7422d9de9cf2774530ca3c123bfabcd706df59d2da2a",
+      "bytes": 8696
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/quality/all8_review.json",
+      "sha256": "e9eacfe6f3bac0839f1b48346f6942f491c8cc3c0260e9da70cdc205126b0011",
+      "bytes": 41969
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/quality/barrier_route_audit.json",
+      "sha256": "bc88d62924a4b7ff02d27bcef8b294692869349b46ed5e2886c5d1ac61eb7299",
+      "bytes": 135148
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/quality/result_gates.json",
+      "sha256": "5beb5c78793a2d14ab0e3a1737bf0f10e06b24a7c3496434de72cefacf59e70b",
+      "bytes": 4375
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/writer/check_sochi_report.py",
+      "sha256": "5ae3a898e49c81055741c710199475dfd7b9719018b27c5b3a7238c37f7b63de",
+      "bytes": 5149
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/environment/sochi_summary.json",
+      "sha256": "75fee2a33161895b89688bfb7709aa74016433f784b712f92cfc6a720f7ed180",
+      "bytes": 1270
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/sochi_fan_facts.jsonl.gz",
+      "sha256": "87610d1a7325ccdcd80f2d4a4945102a4960570d0c7204123b258091ecf68bfc",
+      "bytes": 5411452
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/sochi_ota_comparisons.jsonl",
+      "sha256": "adfab76112f4a2e6d38a2b41b4768a12de13a9371cac9bce7668d1c50277f374",
+      "bytes": 15050
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/sochi_summary.json",
+      "sha256": "d39d7a421eae30117671e23ff445fdebc932bcc6a9dcd5a83b5f57ed0dd91e90",
+      "bytes": 2819
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/sochi_marine_targets_with_fallback.jsonl",
+      "sha256": "f9398ef2bef548b097631e71314da3e0c6b5afd8affd9df77265d1f86ea6f26d",
+      "bytes": 770598
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/sochi_run.json",
+      "sha256": "389505c9de6f37d72932a6bbfd9863789d7ce648839d8eaeb4ab7e289d131075",
+      "bytes": 27451
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/common.py",
+      "sha256": "76696ba92b64aab7ceef9bf255872bbc943311c0cde886098dffe8773d6637eb",
+      "bytes": 4464
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/environment.py",
+      "sha256": "efe1be14106f002c88f788713e6078717eb4744789930d32d25881ee549c8315",
+      "bytes": 39451
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/facades.py",
+      "sha256": "14b8c3ea8f4791400fa7cf0ebe5788992f2d16b03f2029de4ac85bf80c3108a6",
+      "bytes": 36400
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/geo.py",
+      "sha256": "e575c51e28cbc3905eadb4e4d628005b9fad99031301a741d0477c80e73473ad",
+      "bytes": 49992
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/hotelier.py",
+      "sha256": "4b67b11b0da19df87663d0ec6536fdb88fa240fa6c870a82050c2a385fdcfdd9",
+      "bytes": 9014
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/integrate.py",
+      "sha256": "439b82bee97e34f4024f98b5125fa9b03e96a91f25a50d0a1c1c5ac0895e5afe",
+      "bytes": 7201
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/write_sochi_report.py",
+      "sha256": "ea04fbd9c7b95e96e7abb59f43c1ad8103ed97b598134a196524327b2b6b33b5",
+      "bytes": 78045
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/validation/cases_summary.json",
+      "sha256": "bb38b15fe605c1d7148eca2f6661292ed4fe11da73299a0a900a73819df330f0",
+      "bytes": 1171
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/validation/numerical_all8_summary.json",
+      "sha256": "53941fa6363e925c308ada1505152be25d1a0e79f530622cfca0208cc45e6aae",
+      "bytes": 705
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/validation/sources/source_ledger.json",
+      "sha256": "0c07fc596ab57e78b09eaf808b1dd9850b837ebc59a5a0c6f428da65bbca6e25",
+      "bytes": 10081
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/validation/station_comparison.csv",
+      "sha256": "70bda43a2a22d99fb7c3777aaeecfe54527a34bdcd2655e0e3ffc94abfb0f7d6",
+      "bytes": 4497
+    }
+  ]
+}

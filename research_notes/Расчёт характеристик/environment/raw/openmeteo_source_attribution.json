@@ -1,0 +1,10 @@
+{
+  "provider": "Open-Meteo",
+  "source_tree_sha": "ae5caa86c8b8b5e9c6d5f0b8b48f69dc36487bb4",
+  "source_url": "https://github.com/open-meteo/open-meteo",
+  "license_url": "https://raw.githubusercontent.com/open-meteo/open-meteo/ae5caa86c8b8b5e9c6d5f0b8b48f69dc36487bb4/LICENSE",
+  "license_http_status": 200,
+  "license_sha256": "20b067f86de375aae6db0f283ab2e65de24d537733b89bd58432c101259d84cf",
+  "retrieved_at": "2026-10-24T02:26:54.740536+00:00",
+  "purpose": "Unmodified publicsourcecopiesforresearchauditonly; not linkedintoapplication; APIdataownCCBY4.0license separately applies."
+}

@@ -1,0 +1,12 @@
+{
+  "city_id": "spb",
+  "created_at": "2026-10-24T13:37:16.952034+00:00",
+  "file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/spb_prewarm_marine_candidate_targets.jsonl",
+  "sha256": "0f76719271efe28565e66e11c7fb71b51b0b4e4c70b26c300bf1d10c07a13a2c",
+  "rows": 50,
+  "qualified_polygons": 64,
+  "coastline_segments": 481,
+  "selection_protocol": "prewarm_nonfinal_candidates",
+  "no_network": true,
+  "seconds": 1.2767520829947898
+}

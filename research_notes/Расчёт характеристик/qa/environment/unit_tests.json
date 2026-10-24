@@ -1,0 +1,14 @@
+{
+  "at": "2026-10-24T13:49:19.609276+00:00",
+  "status": "passed",
+  "checks": [
+    "C01meancomplete30years",
+    "C02>=1mmboundary",
+    "C03>30Cboundary",
+    "missingdailyrejectsmonth",
+    "landdenominatorexcludeswater",
+    "marineAPItoCFgridindexroundtrip",
+    "marineCFcandidateindependentWorldCoverwatercheck",
+    "cachedtileedge_mosaic_not_false_missing"
+  ]
+}

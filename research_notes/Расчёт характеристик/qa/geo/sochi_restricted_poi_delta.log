@@ -1,0 +1,41 @@
+{
+  "method_version": "V9-Sochi-pure-node-POI-delta-1",
+  "canonical_files_unchanged": true,
+  "cases": [
+    {
+      "hotel_id": "10595288",
+      "hotel_name": "Отель 8Авеню 4* by Provence",
+      "feature_id": "F01",
+      "fact_ids": [
+        "4da6781ba6da7b0e5154a0ed",
+        "6a77655b0214e2ab9976efc4"
+      ],
+      "old_route_id": "73af7e2964512f95c601",
+      "old_target_id": "node/4920379521",
+      "old_length_estimate_m": 583.884354181755,
+      "old_graph_length_m": 540.4455418200587,
+      "omitted_blocked_node_ids": [
+        655271566
+      ],
+      "new_route_ok": true,
+      "new_route_id": "e0a0f137473c41e0b9d2",
+      "new_target_id": "node/4920379521",
+      "new_length_estimate_m": 501.7636126196188,
+      "new_graph_length_m": 453.5738279481805,
+      "new_hotel_connector_gap_m": 16.692901773062765,
+      "new_target_connector_gap_m": 31.49688289837552,
+      "distance_delta_m": -82.12074156213623,
+      "new_path_has_any_new_blocked_node": false
+    }
+  ],
+  "routes_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/sochi_restricted_poi_delta_routes.jsonl",
+  "routes_sha256": "6ce5eb263e19815203a8f8b4e7df33c6cfd5c19ae8775ed9e3674bf4849caff3",
+  "source_code_sha256": {
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/audit_sochi_restricted_poi_delta.py": "0f5ff7e144abbc8d3c10c55e8efb28ba951d1869e0b0779cb045effb655aa7f7",
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/geo.py": "e575c51e28cbc3905eadb4e4d628005b9fad99031301a741d0477c80e73473ad",
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/geo_memory_containers.py": "101779dba50738cb3105e33e04282bda672242a5e1829ee492cdd58f50507110"
+  },
+  "total_seconds": 5.523947207999299,
+  "network_requests": 0,
+  "decision": "Root must decide superseding checkpoint; this read-only audit does not update accepted facts."
+}

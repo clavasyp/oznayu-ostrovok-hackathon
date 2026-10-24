@@ -1,0 +1,84 @@
+{
+  "scope": "Read-only audit; no Sochi facts, graph, routes or acceptedcheckpoint overwritten",
+  "source_extended_extract_includes_barrier": true,
+  "pure_access_foot_locked_nodes_omitted_by_extended_keys": 20,
+  "new_nodes_classified_blocked_by_final_policy": 3,
+  "saved_routes_with_contact": 0,
+  "contacts": [],
+  "node_input_sha256": "bb5b1f32bdb985f9d8b02c77f95f0ebe082a8f6e17c3ceb4d5c2e744065f9030",
+  "audited_route_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/sochi_routes.jsonl",
+  "audited_route_sha256": "6b6eb77b88172b5346cb76831195478a240c52c322f299a3863b0b394e748924",
+  "limitation": "Only saved canonical W01/W02/W03+dog-component route node traces are covered; POI route geometries were not saved in that version and require independent reproduction.",
+  "final_geo_sha256": "e575c51e28cbc3905eadb4e4d628005b9fad99031301a741d0477c80e73473ad",
+  "new_blocked_nodes_appearing_in_any_extracted_highway_way": [
+    {
+      "way_id": "way/51349552",
+      "highway": "footway",
+      "allowed_by_way_policy": true,
+      "node_ids": [
+        655271566
+      ]
+    },
+    {
+      "way_id": "way/53084771",
+      "highway": "steps",
+      "allowed_by_way_policy": false,
+      "node_ids": [
+        672097545
+      ]
+    },
+    {
+      "way_id": "way/53084775",
+      "highway": "steps",
+      "allowed_by_way_policy": false,
+      "node_ids": [
+        672097545
+      ]
+    },
+    {
+      "way_id": "way/827824536",
+      "highway": "service",
+      "allowed_by_way_policy": false,
+      "node_ids": [
+        7728269191
+      ]
+    }
+  ],
+  "new_blocked_nodes_appearing_in_allowed_walk_ways": 1,
+  "blocked_node_records": [
+    {
+      "osm_type": "node",
+      "osm_id": 655271566,
+      "geometry_wkb": "0101000000438C7C0338DC4340189BB1C3F3C94540",
+      "tags": {
+        "access": "no"
+      },
+      "version": 6,
+      "timestamp": "2024-02-17 12:25:24+00:00",
+      "nodes": null
+    },
+    {
+      "osm_type": "node",
+      "osm_id": 672097545,
+      "geometry_wkb": "01010000000EDD47C906DF434064D0645AF6C84540",
+      "tags": {
+        "access": "customers"
+      },
+      "version": 4,
+      "timestamp": "2023-07-06 05:09:12+00:00",
+      "nodes": null
+    },
+    {
+      "osm_type": "node",
+      "osm_id": 7728269191,
+      "geometry_wkb": "0101000000F5375783E6F2434039BE518605BC4540",
+      "tags": {
+        "access": "no",
+        "was:barrier": "gate"
+      },
+      "version": 2,
+      "timestamp": "2025-09-02 10:52:59+00:00",
+      "nodes": null
+    }
+  ]
+}

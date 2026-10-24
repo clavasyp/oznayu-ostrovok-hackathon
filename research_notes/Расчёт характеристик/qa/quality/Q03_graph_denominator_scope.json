@@ -1,0 +1,266 @@
+{
+  "scope": "Saved mapped graph polyline, excluding unverified hotel/target connector gaps; not a whole physical journey lighting percentage. Existing hard_condition_eligible is false.",
+  "cases": [
+    {
+      "city": "moscow",
+      "hotel_id": "8464907",
+      "graph_length_m": 120.49580190953665,
+      "unknown_graph_percent": 0.0,
+      "known_lit_graph_percent": 100.0,
+      "excluded_connector_estimate_m": 47.63309857117316,
+      "hard_condition_eligible": false,
+      "route_id": "5410a36f913efc5d8ba1"
+    },
+    {
+      "city": "moscow",
+      "hotel_id": "8464907",
+      "graph_length_m": 120.49580190953665,
+      "unknown_graph_percent": 0.0,
+      "known_lit_graph_percent": 100.0,
+      "excluded_connector_estimate_m": 47.63309857117316,
+      "hard_condition_eligible": false,
+      "route_id": "5410a36f913efc5d8ba1"
+    },
+    {
+      "city": "moscow",
+      "hotel_id": "8660527",
+      "graph_length_m": 71.73299007564162,
+      "unknown_graph_percent": 0.0,
+      "known_lit_graph_percent": 100.0,
+      "excluded_connector_estimate_m": 30.853017846083397,
+      "hard_condition_eligible": false,
+      "route_id": "6babd10d1698e0cd3e88"
+    },
+    {
+      "city": "moscow",
+      "hotel_id": "8660527",
+      "graph_length_m": 71.73299007564162,
+      "unknown_graph_percent": 0.0,
+      "known_lit_graph_percent": 100.0,
+      "excluded_connector_estimate_m": 30.853017846083397,
+      "hard_condition_eligible": false,
+      "route_id": "6babd10d1698e0cd3e88"
+    },
+    {
+      "city": "moscow",
+      "hotel_id": "8692416",
+      "graph_length_m": 61.876436177782644,
+      "unknown_graph_percent": 0.0,
+      "known_lit_graph_percent": 100.0,
+      "excluded_connector_estimate_m": 12.57568966052206,
+      "hard_condition_eligible": false,
+      "route_id": "5d603b570d257e88410f"
+    },
+    {
+      "city": "moscow",
+      "hotel_id": "8692416",
+      "graph_length_m": 61.876436177782644,
+      "unknown_graph_percent": 0.0,
+      "known_lit_graph_percent": 100.0,
+      "excluded_connector_estimate_m": 12.57568966052206,
+      "hard_condition_eligible": false,
+      "route_id": "5d603b570d257e88410f"
+    },
+    {
+      "city": "moscow",
+      "hotel_id": "8736052",
+      "graph_length_m": 3.7335045097751896,
+      "unknown_graph_percent": 0.0,
+      "known_lit_graph_percent": 100.0,
+      "excluded_connector_estimate_m": 6.77330258541713,
+      "hard_condition_eligible": false,
+      "route_id": "3c8b8fa89074cdf0ec8d"
+    },
+    {
+      "city": "moscow",
+      "hotel_id": "8736052",
+      "graph_length_m": 3.7335045097751896,
+      "unknown_graph_percent": 0.0,
+      "known_lit_graph_percent": 100.0,
+      "excluded_connector_estimate_m": 6.77330258541713,
+      "hard_condition_eligible": false,
+      "route_id": "3c8b8fa89074cdf0ec8d"
+    },
+    {
+      "city": "moscow",
+      "hotel_id": "8755123",
+      "graph_length_m": 216.99345228215248,
+      "unknown_graph_percent": 0.0,
+      "known_lit_graph_percent": 100.0,
+      "excluded_connector_estimate_m": 19.95592952746304,
+      "hard_condition_eligible": false,
+      "route_id": "e2b0e55f2151c1cd4212"
+    },
+    {
+      "city": "moscow",
+      "hotel_id": "8755123",
+      "graph_length_m": 216.99345228215248,
+      "unknown_graph_percent": 0.0,
+      "known_lit_graph_percent": 100.0,
+      "excluded_connector_estimate_m": 19.95592952746304,
+      "hard_condition_eligible": false,
+      "route_id": "e2b0e55f2151c1cd4212"
+    },
+    {
+      "city": "kazan",
+      "hotel_id": "6702635",
+      "graph_length_m": 82.68781432249696,
+      "unknown_graph_percent": 0.0,
+      "known_lit_graph_percent": 100.0,
+      "excluded_connector_estimate_m": 28.26002814246126,
+      "hard_condition_eligible": false,
+      "route_id": "bd1119bbd8578d6f3964"
+    },
+    {
+      "city": "kazan",
+      "hotel_id": "6702635",
+      "graph_length_m": 82.68781432249696,
+      "unknown_graph_percent": 0.0,
+      "known_lit_graph_percent": 100.0,
+      "excluded_connector_estimate_m": 28.26002814246126,
+      "hard_condition_eligible": false,
+      "route_id": "bd1119bbd8578d6f3964"
+    },
+    {
+      "city": "kazan",
+      "hotel_id": "8743189",
+      "graph_length_m": 234.273130798435,
+      "unknown_graph_percent": 0.0,
+      "known_lit_graph_percent": 100.0,
+      "excluded_connector_estimate_m": 37.138192254997634,
+      "hard_condition_eligible": false,
+      "route_id": "1463ac34a351cc0b98c6"
+    },
+    {
+      "city": "kazan",
+      "hotel_id": "8743189",
+      "graph_length_m": 234.273130798435,
+      "unknown_graph_percent": 0.0,
+      "known_lit_graph_percent": 100.0,
+      "excluded_connector_estimate_m": 37.138192254997634,
+      "hard_condition_eligible": false,
+      "route_id": "1463ac34a351cc0b98c6"
+    },
+    {
+      "city": "kazan",
+      "hotel_id": "9287655",
+      "graph_length_m": 206.33319189887902,
+      "unknown_graph_percent": 0.0,
+      "known_lit_graph_percent": 100.0,
+      "excluded_connector_estimate_m": 32.82615300221495,
+      "hard_condition_eligible": false,
+      "route_id": "f646cb20b24ec4d59396"
+    },
+    {
+      "city": "kazan",
+      "hotel_id": "9287655",
+      "graph_length_m": 206.33319189887902,
+      "unknown_graph_percent": 0.0,
+      "known_lit_graph_percent": 100.0,
+      "excluded_connector_estimate_m": 32.82615300221495,
+      "hard_condition_eligible": false,
+      "route_id": "f646cb20b24ec4d59396"
+    },
+    {
+      "city": "minsk",
+      "hotel_id": "6312933",
+      "graph_length_m": 292.7441688090407,
+      "unknown_graph_percent": 0.0,
+      "known_lit_graph_percent": 100.0,
+      "excluded_connector_estimate_m": 12.084148854393604,
+      "hard_condition_eligible": false,
+      "route_id": "ffd437f04dee89435dc0"
+    },
+    {
+      "city": "minsk",
+      "hotel_id": "6312933",
+      "graph_length_m": 292.7441688090407,
+      "unknown_graph_percent": 0.0,
+      "known_lit_graph_percent": 100.0,
+      "excluded_connector_estimate_m": 12.084148854393604,
+      "hard_condition_eligible": false,
+      "route_id": "ffd437f04dee89435dc0"
+    },
+    {
+      "city": "minsk",
+      "hotel_id": "7024342",
+      "graph_length_m": 148.334207552729,
+      "unknown_graph_percent": 0.0,
+      "known_lit_graph_percent": 100.0,
+      "excluded_connector_estimate_m": 24.837421412512537,
+      "hard_condition_eligible": false,
+      "route_id": "feaf9c371026cca9103e"
+    },
+    {
+      "city": "minsk",
+      "hotel_id": "7024342",
+      "graph_length_m": 148.334207552729,
+      "unknown_graph_percent": 0.0,
+      "known_lit_graph_percent": 100.0,
+      "excluded_connector_estimate_m": 24.837421412512537,
+      "hard_condition_eligible": false,
+      "route_id": "feaf9c371026cca9103e"
+    },
+    {
+      "city": "minsk",
+      "hotel_id": "7697577",
+      "graph_length_m": 11.409472632958742,
+      "unknown_graph_percent": 0.0,
+      "known_lit_graph_percent": 100.00000000000001,
+      "excluded_connector_estimate_m": 12.634225540407769,
+      "hard_condition_eligible": false,
+      "route_id": "f6a9bde5aab423778372"
+    },
+    {
+      "city": "minsk",
+      "hotel_id": "7697577",
+      "graph_length_m": 11.409472632958742,
+      "unknown_graph_percent": 0.0,
+      "known_lit_graph_percent": 100.00000000000001,
+      "excluded_connector_estimate_m": 12.634225540407769,
+      "hard_condition_eligible": false,
+      "route_id": "f6a9bde5aab423778372"
+    },
+    {
+      "city": "minsk",
+      "hotel_id": "7718754",
+      "graph_length_m": 236.39975490650136,
+      "unknown_graph_percent": 0.0,
+      "known_lit_graph_percent": 100.0,
+      "excluded_connector_estimate_m": 18.04353191558631,
+      "hard_condition_eligible": false,
+      "route_id": "915d593c3cbc14fa3ab1"
+    },
+    {
+      "city": "minsk",
+      "hotel_id": "7718754",
+      "graph_length_m": 236.39975490650136,
+      "unknown_graph_percent": 0.0,
+      "known_lit_graph_percent": 100.0,
+      "excluded_connector_estimate_m": 18.04353191558631,
+      "hard_condition_eligible": false,
+      "route_id": "915d593c3cbc14fa3ab1"
+    },
+    {
+      "city": "dubai",
+      "hotel_id": "7438655",
+      "graph_length_m": 195.60672312579533,
+      "unknown_graph_percent": 0.0,
+      "known_lit_graph_percent": 100.0,
+      "excluded_connector_estimate_m": 28.92356533805913,
+      "hard_condition_eligible": false,
+      "route_id": "20adfabfd651bae2a0c2"
+    },
+    {
+      "city": "dubai",
+      "hotel_id": "7438655",
+      "graph_length_m": 195.60672312579533,
+      "unknown_graph_percent": 0.0,
+      "known_lit_graph_percent": 100.0,
+      "excluded_connector_estimate_m": 28.92356533805913,
+      "hard_condition_eligible": false,
+      "route_id": "20adfabfd651bae2a0c2"
+    }
+  ],
+  "not_new_physical_accuracy": true
+}

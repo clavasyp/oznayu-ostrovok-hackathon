@@ -1,0 +1,19 @@
+{
+  "run_at": "2026-10-24T02:14:45.713616+00:00",
+  "test_type": "Synthetic regression controls, not empirical accuracy",
+  "checks": {
+    "private_access_excluded": true,
+    "explicit_public_foot_override": true,
+    "motorway_excluded": true,
+    "cycleway_without_foot_excluded": true,
+    "conditional_access_not_silently_accepted": true,
+    "adjacent_steps_merged": true,
+    "lighting_unknown_preserved": true,
+    "open_at_local_02": true,
+    "closed_at_local_02": true,
+    "kitchen_hours_not_bar_hours": true,
+    "valid_false_stops_chain": true,
+    "unknown_requires_reason": true
+  },
+  "passed": true
+}

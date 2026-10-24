@@ -1,0 +1,123 @@
+{
+  "started_at": "2026-10-24T13:36:29.927668+00:00",
+  "stage": "complete",
+  "city_id": "dubai",
+  "completed": [
+    {
+      "event": "city_complete",
+      "city_id": "spb",
+      "at": "2026-10-24T13:38:43.497878+00:00",
+      "stage_seconds": {
+        "facades": 53.893716999999015,
+        "facades_qa": 3.200748000002932,
+        "node_supplement": 4.3359077500062995,
+        "geo": 70.71523424999032,
+        "geo_qa": 0.14462900000216905,
+        "marine_reference_targets": 1.2736371249920921
+      },
+      "geo_run_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/spb_run.json",
+      "walk_targets_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/spb_beach_targets.jsonl",
+      "walk_targets_sha256": "440a7b9ae6fd5a05c82e5b9f83daa204896bec4c44790990dc8b837eb0a52608",
+      "marine_reference_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/spb_marine_targets_with_fallback.jsonl",
+      "marine_reference_sha256": "306721ab21124d8ceab62c0992301cc491e06f9aef69d77e1da952d0ceaa2a87"
+    },
+    {
+      "event": "city_complete",
+      "city_id": "kazan",
+      "at": "2026-10-24T13:39:10.940435+00:00",
+      "stage_seconds": {
+        "facades": 10.928043749998324,
+        "facades_qa": 0.7700015830050688,
+        "node_supplement": 3.654503375000786,
+        "geo": 11.728701832995284,
+        "geo_qa": 0.08619070799613837,
+        "marine_reference_targets": 0.2702438330015866
+      },
+      "geo_run_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/kazan_run.json",
+      "walk_targets_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/kazan_beach_targets.jsonl",
+      "walk_targets_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "marine_reference_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/kazan_marine_targets_with_fallback.jsonl",
+      "marine_reference_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "event": "city_complete",
+      "city_id": "kaliningrad",
+      "at": "2026-10-24T13:39:30.574415+00:00",
+      "stage_seconds": {
+        "facades": 6.7163517080043675,
+        "facades_qa": 0.8534721670002909,
+        "node_supplement": 0.220249292004155,
+        "geo": 11.294663167005638,
+        "geo_qa": 0.13057145800848957,
+        "marine_reference_targets": 0.4128140840039123
+      },
+      "geo_run_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/kaliningrad_run.json",
+      "walk_targets_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/kaliningrad_beach_targets.jsonl",
+      "walk_targets_sha256": "69c7920171b1bf4384f5c42057d569613a5664b90486d67dda18dd4f50c6343f",
+      "marine_reference_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/kaliningrad_marine_targets_with_fallback.jsonl",
+      "marine_reference_sha256": "f0cfd73496253ebe38e2e27d2b8c259fa0fe67a0016dfa3d7f6ddb758f777db8"
+    },
+    {
+      "event": "city_complete",
+      "city_id": "minsk",
+      "at": "2026-10-24T13:40:03.132539+00:00",
+      "stage_seconds": {
+        "facades": 7.260448959001224,
+        "facades_qa": 0.6386844579974422,
+        "node_supplement": 2.394205457996577,
+        "geo": 21.785879125003703,
+        "geo_qa": 0.11158837500261143,
+        "marine_reference_targets": 0.3620903750124853
+      },
+      "geo_run_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/minsk_run.json",
+      "walk_targets_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/minsk_beach_targets.jsonl",
+      "walk_targets_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "marine_reference_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/minsk_marine_targets_with_fallback.jsonl",
+      "marine_reference_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "event": "city_complete",
+      "city_id": "istanbul",
+      "at": "2026-10-24T13:41:22.802185+00:00",
+      "stage_seconds": {
+        "facades": 31.999030916995252,
+        "facades_qa": 1.125279291998595,
+        "node_supplement": 2.781640957997297,
+        "geo": 42.71729712499655,
+        "geo_qa": 0.14284754201071337,
+        "marine_reference_targets": 0.8975767499941867
+      },
+      "geo_run_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/istanbul_run.json",
+      "walk_targets_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/istanbul_beach_targets.jsonl",
+      "walk_targets_sha256": "9c6a290291c238a7d7cda04135b540b6442082af97bbec1a871bd3da20fba856",
+      "marine_reference_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/istanbul_marine_targets_with_fallback.jsonl",
+      "marine_reference_sha256": "9ace5170a9416e56f8ea4435147c8f2c77f0e0d77afa128e072ed113a0927c72"
+    },
+    {
+      "event": "city_complete",
+      "city_id": "dubai",
+      "at": "2026-10-24T13:42:17.343322+00:00",
+      "stage_seconds": {
+        "facades": 17.220078750004177,
+        "facades_qa": 0.7188517910108203,
+        "node_supplement": 1.8394989999942482,
+        "geo": 33.96782966700266,
+        "geo_qa": 0.09056199999758974,
+        "marine_reference_targets": 0.6967522080085473
+      },
+      "geo_run_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/dubai_run.json",
+      "walk_targets_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/dubai_beach_targets.jsonl",
+      "walk_targets_sha256": "2a55f78a8845f8aa9b940ec96cb163c344b41cb1a49bacc164d1aab53714e3b7",
+      "marine_reference_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/dubai_marine_targets_with_fallback.jsonl",
+      "marine_reference_sha256": "9bdc0e9e6ae2b8772218a53abab19cbe2aa87438770bd1af6dba0acc2a82157e"
+    }
+  ],
+  "source_sha256": {
+    "scripts/facades.py": "7509c3ae212510319ff387b98c383a14435a54a4a31e0cd0689236320527099d",
+    "qa/facades/check_outputs.py": "c67953253025886ed64b344f6e4ddff9c580aeb132d0c8281bbac1e33c1669ca",
+    "scripts/geo.py": "e575c51e28cbc3905eadb4e4d628005b9fad99031301a741d0477c80e73473ad"
+  },
+  "execution_policy": "One heavy child process at a time; no Sochi and no Moscow facade recomputation.",
+  "updated_at": "2026-10-24T13:42:17.343980+00:00",
+  "completed_at": "2026-10-24T13:42:17.344463+00:00"
+}

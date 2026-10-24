@@ -1,0 +1,23 @@
+{
+  "requested_at": "2026-10-24T13:46:29.706689+00:00",
+  "finished_at": "2026-10-24T13:46:30.879654+00:00",
+  "url": "https://marine-api.open-meteo.com/v1/marine?latitude=25.041664%2C25.041664%2C25.125%2C25.208336%2C25.291664%2C25.375&longitude=54.958344%2C55.04167%2C55.125015%2C55.208344%2C55.29167%2C55.375015&start_date=2025-11-01&end_date=2025-11-30&hourly=sea_surface_temperature&models=meteofrance_currents&cell_selection=sea&timezone=UTC",
+  "http_status": 200,
+  "bytes": 105462,
+  "sha256": "6aa007009da6b5dc335f40021a250a9a8d21760a00db2d1c421483cc607af83f",
+  "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/environment/raw/marine_dubai_202511_cells_73910c18e3c33b300b.json",
+  "params": {
+    "latitude": "25.041664,25.041664,25.125,25.208336,25.291664,25.375",
+    "longitude": "54.958344,55.04167,55.125015,55.208344,55.29167,55.375015",
+    "start_date": "2025-11-01",
+    "end_date": "2025-11-30",
+    "hourly": "sea_surface_temperature",
+    "models": "meteofrance_currents",
+    "cell_selection": "sea",
+    "timezone": "UTC"
+  },
+  "n_locations": 6,
+  "conservative_weight_estimate": 12.857142857142858,
+  "license": "CC BY4.0; D22hackathonfreeAPI; productionpaidplan/selfhost required",
+  "elapsed_s": 1.173472958005732
+}

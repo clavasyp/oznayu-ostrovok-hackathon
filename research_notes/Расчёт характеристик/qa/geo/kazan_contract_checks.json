@@ -1,0 +1,35 @@
+{
+  "city_id": "kazan",
+  "checked_at": "2026-10-24T14:09:58.102614+00:00",
+  "facts_sha256": "6d715394dca595253c1f8b5a7ce64bd7cd80dba32c7f5d0a2bd8b14bded3f2b4",
+  "checks": {
+    "all_expected_hotel_feature_pairs": true,
+    "unique_fact_ids": true,
+    "unknown_has_reason": true,
+    "known_sources_recipe": true,
+    "every_recipe_trace_present": true,
+    "all_selected_route_ids_saved": true,
+    "DSM_only_explicit_estimate_extension": true,
+    "marine_not_inland_beach_substitution": true,
+    "zero_lighting_denominator_not_computed": true,
+    "lighting_percent_partition": true,
+    "route_subjects_for_route_measurements": true,
+    "no_fake_future_hours_validity": true,
+    "N02N03_building_scope": true,
+    "P03_canonical_not_filled_without_required_policy": true
+  },
+  "passed": true,
+  "hotel_denominator": 50,
+  "owned_feature_count": 29,
+  "hotel_feature_pairs": 1450,
+  "fact_rows": 2556,
+  "route_fact_rows": 600,
+  "unique_saved_selected_routes": 350,
+  "statuses": {
+    "computed": 428,
+    "unknown": 1330,
+    "not_applicable": 100,
+    "estimate": 698
+  },
+  "check_kind": "Contract/regression checks, not measured empirical accuracy"
+}

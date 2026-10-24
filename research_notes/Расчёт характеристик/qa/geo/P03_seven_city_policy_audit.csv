@@ -1,0 +1,8 @@
+city_id,mapped_candidates,public_access,explicit_animal_permission,explicit_leash_rule,explicit_season_hours_rule,public_access_and_leash_rule,full_policy_fields_before_entrance_gate,canonical_P03_eligible,finding
+moscow,828,27,4,0,7,0,0,0,"No public candidate has explicit leash rule, so complete policy set and verified entrance are unavailable. This audits actual fields, not extrapolation from Sochi."
+spb,99,14,2,0,0,0,0,0,"No public candidate has explicit leash rule, so complete policy set and verified entrance are unavailable. This audits actual fields, not extrapolation from Sochi."
+kazan,17,2,0,0,0,0,0,0,"No public candidate has explicit leash rule, so complete policy set and verified entrance are unavailable. This audits actual fields, not extrapolation from Sochi."
+kaliningrad,3,0,0,0,0,0,0,0,"No public candidate has explicit leash rule, so complete policy set and verified entrance are unavailable. This audits actual fields, not extrapolation from Sochi."
+minsk,74,4,1,0,1,0,0,0,"No public candidate has explicit leash rule, so complete policy set and verified entrance are unavailable. This audits actual fields, not extrapolation from Sochi."
+istanbul,32,4,4,1,1,0,0,0,"No public candidate has explicit leash rule, so complete policy set and verified entrance are unavailable. This audits actual fields, not extrapolation from Sochi."
+dubai,12,2,0,0,0,0,0,0,"No public candidate has explicit leash rule, so complete policy set and verified entrance are unavailable. This audits actual fields, not extrapolation from Sochi."

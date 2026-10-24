@@ -1,0 +1,5902 @@
+{
+  "node_barriers": 4040,
+  "route_barrier_contacts": 491,
+  "explicit_access_restriction_contacts": [
+    {
+      "hotel_id": "10439075",
+      "kind": "beach",
+      "route_id": "2837b1f07b8b9b569ae4",
+      "barrier_id": 3017607816,
+      "tags": {
+        "access": "permit",
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "10479044",
+      "kind": "stop",
+      "route_id": "38b4701bb6a5252ad165",
+      "barrier_id": 12050710006,
+      "tags": {
+        "access": "private",
+        "barrier": "lift_gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "10479044",
+      "kind": "stop",
+      "route_id": "38b4701bb6a5252ad165",
+      "barrier_id": 3777914287,
+      "tags": {
+        "access": "no",
+        "barrier": "gate",
+        "locked": "yes",
+        "motor_vehicle": "no",
+        "note": "fix me"
+      }
+    },
+    {
+      "hotel_id": "10479044",
+      "kind": "center",
+      "route_id": "bb9465c8a46c48fe8b89",
+      "barrier_id": 3777914287,
+      "tags": {
+        "access": "no",
+        "barrier": "gate",
+        "locked": "yes",
+        "motor_vehicle": "no",
+        "note": "fix me"
+      }
+    },
+    {
+      "hotel_id": "10479044",
+      "kind": "center",
+      "route_id": "bb9465c8a46c48fe8b89",
+      "barrier_id": 12050710006,
+      "tags": {
+        "access": "private",
+        "barrier": "lift_gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "10479044",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "6f0bcc0c2f8a36a609c4",
+      "barrier_id": 12050710006,
+      "tags": {
+        "access": "private",
+        "barrier": "lift_gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "10479044",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "6f0bcc0c2f8a36a609c4",
+      "barrier_id": 3777914287,
+      "tags": {
+        "access": "no",
+        "barrier": "gate",
+        "locked": "yes",
+        "motor_vehicle": "no",
+        "note": "fix me"
+      }
+    },
+    {
+      "hotel_id": "10575679",
+      "kind": "center",
+      "route_id": "7f45488f4c2278130dda",
+      "barrier_id": 7640321089,
+      "tags": {
+        "access": "no",
+        "barrier": "gate",
+        "wheelchair": "no"
+      }
+    },
+    {
+      "hotel_id": "10575679",
+      "kind": "center",
+      "route_id": "7f45488f4c2278130dda",
+      "barrier_id": 370744211,
+      "tags": {
+        "access": "customers",
+        "barrier": "toll_booth",
+        "currency:RUB": "yes",
+        "name": "Касса Нацпарка",
+        "payment:cash": "yes",
+        "payment:credit_cards": "yes"
+      }
+    },
+    {
+      "hotel_id": "10575679",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "cea1af5921d5a9df6c59",
+      "barrier_id": 4611398266,
+      "tags": {
+        "access": "customers",
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "10575679",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "cea1af5921d5a9df6c59",
+      "barrier_id": 10006396266,
+      "tags": {
+        "access": "customers",
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "10595288",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "d27ed169794791784756",
+      "barrier_id": 11275458245,
+      "tags": {
+        "access": "private",
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "10595288",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "d27ed169794791784756",
+      "barrier_id": 11275458244,
+      "tags": {
+        "access": "private",
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "10595288",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "d27ed169794791784756",
+      "barrier_id": 8953610797,
+      "tags": {
+        "access": "private",
+        "barrier": "block"
+      }
+    },
+    {
+      "hotel_id": "11201577",
+      "kind": "center",
+      "route_id": "202d09d759f908752556",
+      "barrier_id": 4464966921,
+      "tags": {
+        "access": "private",
+        "barrier": "gate",
+        "bicycle": "no",
+        "foot": "private",
+        "horse": "no",
+        "motor_vehicle": "no",
+        "motorcar": "no",
+        "motorcycle": "no"
+      }
+    },
+    {
+      "hotel_id": "11201577",
+      "kind": "center",
+      "route_id": "202d09d759f908752556",
+      "barrier_id": 4557213779,
+      "tags": {
+        "barrier": "turnstile",
+        "foot": "private"
+      }
+    },
+    {
+      "hotel_id": "11205863",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "87d4334cb951a26fd15d",
+      "barrier_id": 11275458244,
+      "tags": {
+        "access": "private",
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "11205863",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "87d4334cb951a26fd15d",
+      "barrier_id": 11275458245,
+      "tags": {
+        "access": "private",
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "11205863",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "87d4334cb951a26fd15d",
+      "barrier_id": 8953610797,
+      "tags": {
+        "access": "private",
+        "barrier": "block"
+      }
+    },
+    {
+      "hotel_id": "11303583",
+      "kind": "beach",
+      "route_id": "95912392e7557e26a621",
+      "barrier_id": 7675907486,
+      "tags": {
+        "access": "private",
+        "barrier": "lift_gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "11303583",
+      "kind": "center",
+      "route_id": "74f7586012041cdd8676",
+      "barrier_id": 7675907486,
+      "tags": {
+        "access": "private",
+        "barrier": "lift_gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "11303583",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "83260147e6efe10b12a2",
+      "barrier_id": 4557213779,
+      "tags": {
+        "barrier": "turnstile",
+        "foot": "private"
+      }
+    },
+    {
+      "hotel_id": "11313836",
+      "kind": "center",
+      "route_id": "ead5bd584fc1c5d7d6c6",
+      "barrier_id": 13518660424,
+      "tags": {
+        "access": "no",
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "13343374",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "c5165dcf6e4ce497e634",
+      "barrier_id": 11275458244,
+      "tags": {
+        "access": "private",
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "13343374",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "c5165dcf6e4ce497e634",
+      "barrier_id": 11275458245,
+      "tags": {
+        "access": "private",
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "13343374",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "c5165dcf6e4ce497e634",
+      "barrier_id": 8953610797,
+      "tags": {
+        "access": "private",
+        "barrier": "block"
+      }
+    },
+    {
+      "hotel_id": "13736470",
+      "kind": "stop",
+      "route_id": "d8dd3b8d8624fd47dcb8",
+      "barrier_id": 3737056595,
+      "tags": {
+        "access": "private",
+        "barrier": "lift_gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "13736470",
+      "kind": "center",
+      "route_id": "bbe2d16a885414834c44",
+      "barrier_id": 3737056594,
+      "tags": {
+        "access": "private",
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "13736470",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "7b6c15381e344449c96a",
+      "barrier_id": 3737056594,
+      "tags": {
+        "access": "private",
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "6316833",
+      "kind": "center",
+      "route_id": "3e75a7f906e829ff7b7e",
+      "barrier_id": 7640321089,
+      "tags": {
+        "access": "no",
+        "barrier": "gate",
+        "wheelchair": "no"
+      }
+    },
+    {
+      "hotel_id": "6316833",
+      "kind": "center",
+      "route_id": "3e75a7f906e829ff7b7e",
+      "barrier_id": 370744211,
+      "tags": {
+        "access": "customers",
+        "barrier": "toll_booth",
+        "currency:RUB": "yes",
+        "name": "Касса Нацпарка",
+        "payment:cash": "yes",
+        "payment:credit_cards": "yes"
+      }
+    },
+    {
+      "hotel_id": "6398405",
+      "kind": "beach",
+      "route_id": "bb7e477065a508b82815",
+      "barrier_id": 3017607816,
+      "tags": {
+        "access": "permit",
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "6416199",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "2f81da0a65ce0fff25e4",
+      "barrier_id": 4557213779,
+      "tags": {
+        "barrier": "turnstile",
+        "foot": "private"
+      }
+    },
+    {
+      "hotel_id": "6453529",
+      "kind": "center",
+      "route_id": "8faed89216ce655852b0",
+      "barrier_id": 808558395,
+      "tags": {
+        "access": "private",
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "6453529",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "6f2e7e756ba0ae3ab2e7",
+      "barrier_id": 808558395,
+      "tags": {
+        "access": "private",
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "6497279",
+      "kind": "center",
+      "route_id": "8c3ee387f525363300e7",
+      "barrier_id": 3017607816,
+      "tags": {
+        "access": "permit",
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "6511778",
+      "kind": "center",
+      "route_id": "f8e18224e140254e2ce7",
+      "barrier_id": 808558395,
+      "tags": {
+        "access": "private",
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "6511778",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "4472fa671725a2704e05",
+      "barrier_id": 808558395,
+      "tags": {
+        "access": "private",
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "6557901",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "010ca89b67967db53318",
+      "barrier_id": 13518660424,
+      "tags": {
+        "access": "no",
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "6850191",
+      "kind": "center",
+      "route_id": "0beaa187d9aeb2aeacc5",
+      "barrier_id": 7640321089,
+      "tags": {
+        "access": "no",
+        "barrier": "gate",
+        "wheelchair": "no"
+      }
+    },
+    {
+      "hotel_id": "6850191",
+      "kind": "center",
+      "route_id": "0beaa187d9aeb2aeacc5",
+      "barrier_id": 370744211,
+      "tags": {
+        "access": "customers",
+        "barrier": "toll_booth",
+        "currency:RUB": "yes",
+        "name": "Касса Нацпарка",
+        "payment:cash": "yes",
+        "payment:credit_cards": "yes"
+      }
+    },
+    {
+      "hotel_id": "7018069",
+      "kind": "center",
+      "route_id": "42c58335197c8a40309a",
+      "barrier_id": 808558395,
+      "tags": {
+        "access": "private",
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "7018069",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "b7ac954e0e237f35cc1e",
+      "barrier_id": 808558395,
+      "tags": {
+        "access": "private",
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "7725078",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "ef99e63aa3aae769288c",
+      "barrier_id": 4557213779,
+      "tags": {
+        "barrier": "turnstile",
+        "foot": "private"
+      }
+    },
+    {
+      "hotel_id": "8085655",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "4241651aad2c55653ec5",
+      "barrier_id": 4557213779,
+      "tags": {
+        "barrier": "turnstile",
+        "foot": "private"
+      }
+    },
+    {
+      "hotel_id": "8310146",
+      "kind": "beach",
+      "route_id": "2c0b678812ba53be732f",
+      "barrier_id": 3220071273,
+      "tags": {
+        "access": "private",
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "8660598",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "21d13835a2ddfff507e6",
+      "barrier_id": 11275458245,
+      "tags": {
+        "access": "private",
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "8660598",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "21d13835a2ddfff507e6",
+      "barrier_id": 11275458244,
+      "tags": {
+        "access": "private",
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "8660598",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "21d13835a2ddfff507e6",
+      "barrier_id": 8953610797,
+      "tags": {
+        "access": "private",
+        "barrier": "block"
+      }
+    },
+    {
+      "hotel_id": "8740393",
+      "kind": "stop",
+      "route_id": "c3c54ccba0f8cab4fd59",
+      "barrier_id": 614130608,
+      "tags": {
+        "barrier": "lift_gate",
+        "bicycle": "no",
+        "foot": "no"
+      }
+    },
+    {
+      "hotel_id": "8747640",
+      "kind": "center",
+      "route_id": "9519b45db9a1024f5f7b",
+      "barrier_id": 3017607816,
+      "tags": {
+        "access": "permit",
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "8756112",
+      "kind": "center",
+      "route_id": "9d1cafd5f84d14a1e98c",
+      "barrier_id": 3017607816,
+      "tags": {
+        "access": "permit",
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "9769189",
+      "kind": "center",
+      "route_id": "fc7a53f55c600d4d32b2",
+      "barrier_id": 3017607816,
+      "tags": {
+        "access": "permit",
+        "barrier": "lift_gate"
+      }
+    }
+  ],
+  "explicit_restriction_routes": 37,
+  "all_barrier_contacts": [
+    {
+      "hotel_id": "10012084",
+      "kind": "beach",
+      "route_id": "79634902a2e025943b77",
+      "barrier_id": 2715354345,
+      "tags": {
+        "barrier": "lift_gate",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "10012084",
+      "kind": "stop",
+      "route_id": "303d265bc288b6c9f2ff",
+      "barrier_id": 2715354345,
+      "tags": {
+        "barrier": "lift_gate",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "10012084",
+      "kind": "center",
+      "route_id": "8b29ab92701bdf334db3",
+      "barrier_id": 2715354345,
+      "tags": {
+        "barrier": "lift_gate",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "10210406",
+      "kind": "beach",
+      "route_id": "208055f2e23c8b3a0778",
+      "barrier_id": 5129364852,
+      "tags": {
+        "access": "yes",
+        "barrier": "lift_gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "horse": "no",
+        "motor_vehicle": "no",
+        "motorcar": "no"
+      }
+    },
+    {
+      "hotel_id": "10210406",
+      "kind": "center",
+      "route_id": "a38051d20d61a724e2b2",
+      "barrier_id": 1814289281,
+      "tags": {
+        "barrier": "toll_booth"
+      }
+    },
+    {
+      "hotel_id": "10210406",
+      "kind": "center",
+      "route_id": "a38051d20d61a724e2b2",
+      "barrier_id": 4200146313,
+      "tags": {
+        "access": "private",
+        "barrier": "gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "locked": "yes",
+        "motor_vehicle": "no",
+        "motorcar": "yes",
+        "motorcycle": "yes"
+      }
+    },
+    {
+      "hotel_id": "10210406",
+      "kind": "center",
+      "route_id": "a38051d20d61a724e2b2",
+      "barrier_id": 5844222475,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "10210406",
+      "kind": "center",
+      "route_id": "a38051d20d61a724e2b2",
+      "barrier_id": 5922230605,
+      "tags": {
+        "barrier": "swing_gate",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "10210406",
+      "kind": "center",
+      "route_id": "a38051d20d61a724e2b2",
+      "barrier_id": 4200146552,
+      "tags": {
+        "barrier": "gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "10439075",
+      "kind": "beach",
+      "route_id": "2837b1f07b8b9b569ae4",
+      "barrier_id": 3017607816,
+      "tags": {
+        "access": "permit",
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "10439075",
+      "kind": "beach",
+      "route_id": "2837b1f07b8b9b569ae4",
+      "barrier_id": 12986072010,
+      "tags": {
+        "barrier": "kerb",
+        "kerb": "lowered",
+        "tactile_paving": "yes"
+      }
+    },
+    {
+      "hotel_id": "10439075",
+      "kind": "beach",
+      "route_id": "2837b1f07b8b9b569ae4",
+      "barrier_id": 12986072006,
+      "tags": {
+        "barrier": "kerb",
+        "kerb": "lowered",
+        "tactile_paving": "yes"
+      }
+    },
+    {
+      "hotel_id": "10439075",
+      "kind": "center",
+      "route_id": "a1608babf8c44deda617",
+      "barrier_id": 1814289281,
+      "tags": {
+        "barrier": "toll_booth"
+      }
+    },
+    {
+      "hotel_id": "10439075",
+      "kind": "center",
+      "route_id": "a1608babf8c44deda617",
+      "barrier_id": 4200146313,
+      "tags": {
+        "access": "private",
+        "barrier": "gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "locked": "yes",
+        "motor_vehicle": "no",
+        "motorcar": "yes",
+        "motorcycle": "yes"
+      }
+    },
+    {
+      "hotel_id": "10439075",
+      "kind": "center",
+      "route_id": "a1608babf8c44deda617",
+      "barrier_id": 5844222475,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "10439075",
+      "kind": "center",
+      "route_id": "a1608babf8c44deda617",
+      "barrier_id": 5922230605,
+      "tags": {
+        "barrier": "swing_gate",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "10439075",
+      "kind": "center",
+      "route_id": "a1608babf8c44deda617",
+      "barrier_id": 4200146552,
+      "tags": {
+        "barrier": "gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "10441489",
+      "kind": "center",
+      "route_id": "fe77a98298aa3cf7b9ab",
+      "barrier_id": 6485569405,
+      "tags": {
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "10479044",
+      "kind": "beach",
+      "route_id": "86ad345ae886ffdf1c1e",
+      "barrier_id": 3702700745,
+      "tags": {
+        "barrier": "wicket_gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "10479044",
+      "kind": "stop",
+      "route_id": "38b4701bb6a5252ad165",
+      "barrier_id": 12050710006,
+      "tags": {
+        "access": "private",
+        "barrier": "lift_gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "10479044",
+      "kind": "stop",
+      "route_id": "38b4701bb6a5252ad165",
+      "barrier_id": 3777914287,
+      "tags": {
+        "access": "no",
+        "barrier": "gate",
+        "locked": "yes",
+        "motor_vehicle": "no",
+        "note": "fix me"
+      }
+    },
+    {
+      "hotel_id": "10479044",
+      "kind": "center",
+      "route_id": "bb9465c8a46c48fe8b89",
+      "barrier_id": 1814289281,
+      "tags": {
+        "barrier": "toll_booth"
+      }
+    },
+    {
+      "hotel_id": "10479044",
+      "kind": "center",
+      "route_id": "bb9465c8a46c48fe8b89",
+      "barrier_id": 4200146313,
+      "tags": {
+        "access": "private",
+        "barrier": "gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "locked": "yes",
+        "motor_vehicle": "no",
+        "motorcar": "yes",
+        "motorcycle": "yes"
+      }
+    },
+    {
+      "hotel_id": "10479044",
+      "kind": "center",
+      "route_id": "bb9465c8a46c48fe8b89",
+      "barrier_id": 5844222475,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "10479044",
+      "kind": "center",
+      "route_id": "bb9465c8a46c48fe8b89",
+      "barrier_id": 5922230605,
+      "tags": {
+        "barrier": "swing_gate",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "10479044",
+      "kind": "center",
+      "route_id": "bb9465c8a46c48fe8b89",
+      "barrier_id": 3777914287,
+      "tags": {
+        "access": "no",
+        "barrier": "gate",
+        "locked": "yes",
+        "motor_vehicle": "no",
+        "note": "fix me"
+      }
+    },
+    {
+      "hotel_id": "10479044",
+      "kind": "center",
+      "route_id": "bb9465c8a46c48fe8b89",
+      "barrier_id": 12050710006,
+      "tags": {
+        "access": "private",
+        "barrier": "lift_gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "10479044",
+      "kind": "center",
+      "route_id": "bb9465c8a46c48fe8b89",
+      "barrier_id": 4200146552,
+      "tags": {
+        "barrier": "gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "10479044",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "6f0bcc0c2f8a36a609c4",
+      "barrier_id": 12050710006,
+      "tags": {
+        "access": "private",
+        "barrier": "lift_gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "10479044",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "6f0bcc0c2f8a36a609c4",
+      "barrier_id": 3777914287,
+      "tags": {
+        "access": "no",
+        "barrier": "gate",
+        "locked": "yes",
+        "motor_vehicle": "no",
+        "note": "fix me"
+      }
+    },
+    {
+      "hotel_id": "10575679",
+      "kind": "beach",
+      "route_id": "085f795443828fea3b9d",
+      "barrier_id": 5129364852,
+      "tags": {
+        "access": "yes",
+        "barrier": "lift_gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "horse": "no",
+        "motor_vehicle": "no",
+        "motorcar": "no"
+      }
+    },
+    {
+      "hotel_id": "10575679",
+      "kind": "center",
+      "route_id": "7f45488f4c2278130dda",
+      "barrier_id": 7640321089,
+      "tags": {
+        "access": "no",
+        "barrier": "gate",
+        "wheelchair": "no"
+      }
+    },
+    {
+      "hotel_id": "10575679",
+      "kind": "center",
+      "route_id": "7f45488f4c2278130dda",
+      "barrier_id": 9146449508,
+      "tags": {
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "10575679",
+      "kind": "center",
+      "route_id": "7f45488f4c2278130dda",
+      "barrier_id": 12073439435,
+      "tags": {
+        "barrier": "lift_gate",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "10575679",
+      "kind": "center",
+      "route_id": "7f45488f4c2278130dda",
+      "barrier_id": 3058805070,
+      "tags": {
+        "barrier": "lift_gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "horse": "yes"
+      }
+    },
+    {
+      "hotel_id": "10575679",
+      "kind": "center",
+      "route_id": "7f45488f4c2278130dda",
+      "barrier_id": 720633648,
+      "tags": {
+        "access": "private",
+        "barrier": "lift_gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "horse": "yes"
+      }
+    },
+    {
+      "hotel_id": "10575679",
+      "kind": "center",
+      "route_id": "7f45488f4c2278130dda",
+      "barrier_id": 370744211,
+      "tags": {
+        "access": "customers",
+        "barrier": "toll_booth",
+        "currency:RUB": "yes",
+        "name": "Касса Нацпарка",
+        "payment:cash": "yes",
+        "payment:credit_cards": "yes"
+      }
+    },
+    {
+      "hotel_id": "10575679",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "cea1af5921d5a9df6c59",
+      "barrier_id": 9238620321,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "10575679",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "cea1af5921d5a9df6c59",
+      "barrier_id": 4611398266,
+      "tags": {
+        "access": "customers",
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "10575679",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "cea1af5921d5a9df6c59",
+      "barrier_id": 10006396266,
+      "tags": {
+        "access": "customers",
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "10575679",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "cea1af5921d5a9df6c59",
+      "barrier_id": 9005924454,
+      "tags": {
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "10595288",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "d27ed169794791784756",
+      "barrier_id": 11275458245,
+      "tags": {
+        "access": "private",
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "10595288",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "d27ed169794791784756",
+      "barrier_id": 11275458244,
+      "tags": {
+        "access": "private",
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "10595288",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "d27ed169794791784756",
+      "barrier_id": 8953610797,
+      "tags": {
+        "access": "private",
+        "barrier": "block"
+      }
+    },
+    {
+      "hotel_id": "11161657",
+      "kind": "center",
+      "route_id": "3989a1a5a5818bdca053",
+      "barrier_id": 1814289281,
+      "tags": {
+        "barrier": "toll_booth"
+      }
+    },
+    {
+      "hotel_id": "11161657",
+      "kind": "center",
+      "route_id": "3989a1a5a5818bdca053",
+      "barrier_id": 4200146313,
+      "tags": {
+        "access": "private",
+        "barrier": "gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "locked": "yes",
+        "motor_vehicle": "no",
+        "motorcar": "yes",
+        "motorcycle": "yes"
+      }
+    },
+    {
+      "hotel_id": "11161657",
+      "kind": "center",
+      "route_id": "3989a1a5a5818bdca053",
+      "barrier_id": 5844222475,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "11161657",
+      "kind": "center",
+      "route_id": "3989a1a5a5818bdca053",
+      "barrier_id": 5922230605,
+      "tags": {
+        "barrier": "swing_gate",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "11161657",
+      "kind": "center",
+      "route_id": "3989a1a5a5818bdca053",
+      "barrier_id": 4200146552,
+      "tags": {
+        "barrier": "gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "11181978",
+      "kind": "center",
+      "route_id": "0fc56e0915b5e6491109",
+      "barrier_id": 1814289281,
+      "tags": {
+        "barrier": "toll_booth"
+      }
+    },
+    {
+      "hotel_id": "11181978",
+      "kind": "center",
+      "route_id": "0fc56e0915b5e6491109",
+      "barrier_id": 4200146313,
+      "tags": {
+        "access": "private",
+        "barrier": "gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "locked": "yes",
+        "motor_vehicle": "no",
+        "motorcar": "yes",
+        "motorcycle": "yes"
+      }
+    },
+    {
+      "hotel_id": "11181978",
+      "kind": "center",
+      "route_id": "0fc56e0915b5e6491109",
+      "barrier_id": 5844222475,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "11181978",
+      "kind": "center",
+      "route_id": "0fc56e0915b5e6491109",
+      "barrier_id": 5922230605,
+      "tags": {
+        "barrier": "swing_gate",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "11181978",
+      "kind": "center",
+      "route_id": "0fc56e0915b5e6491109",
+      "barrier_id": 4200146552,
+      "tags": {
+        "barrier": "gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "11181978",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "27315946a5aa3d0d04ab",
+      "barrier_id": 7812435946,
+      "tags": {
+        "barrier": "lift_gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "horse": "no",
+        "motor_vehicle": "private"
+      }
+    },
+    {
+      "hotel_id": "11200750",
+      "kind": "center",
+      "route_id": "c47fd191321098561692",
+      "barrier_id": 1814289281,
+      "tags": {
+        "barrier": "toll_booth"
+      }
+    },
+    {
+      "hotel_id": "11200750",
+      "kind": "center",
+      "route_id": "c47fd191321098561692",
+      "barrier_id": 4200146313,
+      "tags": {
+        "access": "private",
+        "barrier": "gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "locked": "yes",
+        "motor_vehicle": "no",
+        "motorcar": "yes",
+        "motorcycle": "yes"
+      }
+    },
+    {
+      "hotel_id": "11200750",
+      "kind": "center",
+      "route_id": "c47fd191321098561692",
+      "barrier_id": 5844222475,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "11200750",
+      "kind": "center",
+      "route_id": "c47fd191321098561692",
+      "barrier_id": 5922230605,
+      "tags": {
+        "barrier": "swing_gate",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "11200750",
+      "kind": "center",
+      "route_id": "c47fd191321098561692",
+      "barrier_id": 4200146552,
+      "tags": {
+        "barrier": "gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "11200750",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "ce96deac2a9aaf486d49",
+      "barrier_id": 7812435946,
+      "tags": {
+        "barrier": "lift_gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "horse": "no",
+        "motor_vehicle": "private"
+      }
+    },
+    {
+      "hotel_id": "11201577",
+      "kind": "beach",
+      "route_id": "017e162578d5d0f51735",
+      "barrier_id": 4678960340,
+      "tags": {
+        "access": "private",
+        "barrier": "gate",
+        "bicycle": "yes",
+        "foot": "yes"
+      }
+    },
+    {
+      "hotel_id": "11201577",
+      "kind": "stop",
+      "route_id": "f676d869b36a94699784",
+      "barrier_id": 7592852305,
+      "tags": {
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "11201577",
+      "kind": "center",
+      "route_id": "202d09d759f908752556",
+      "barrier_id": 1814289281,
+      "tags": {
+        "barrier": "toll_booth"
+      }
+    },
+    {
+      "hotel_id": "11201577",
+      "kind": "center",
+      "route_id": "202d09d759f908752556",
+      "barrier_id": 4200146313,
+      "tags": {
+        "access": "private",
+        "barrier": "gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "locked": "yes",
+        "motor_vehicle": "no",
+        "motorcar": "yes",
+        "motorcycle": "yes"
+      }
+    },
+    {
+      "hotel_id": "11201577",
+      "kind": "center",
+      "route_id": "202d09d759f908752556",
+      "barrier_id": 4464966921,
+      "tags": {
+        "access": "private",
+        "barrier": "gate",
+        "bicycle": "no",
+        "foot": "private",
+        "horse": "no",
+        "motor_vehicle": "no",
+        "motorcar": "no",
+        "motorcycle": "no"
+      }
+    },
+    {
+      "hotel_id": "11201577",
+      "kind": "center",
+      "route_id": "202d09d759f908752556",
+      "barrier_id": 5844222475,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "11201577",
+      "kind": "center",
+      "route_id": "202d09d759f908752556",
+      "barrier_id": 5922230605,
+      "tags": {
+        "barrier": "swing_gate",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "11201577",
+      "kind": "center",
+      "route_id": "202d09d759f908752556",
+      "barrier_id": 7592852305,
+      "tags": {
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "11201577",
+      "kind": "center",
+      "route_id": "202d09d759f908752556",
+      "barrier_id": 4557213779,
+      "tags": {
+        "barrier": "turnstile",
+        "foot": "private"
+      }
+    },
+    {
+      "hotel_id": "11201577",
+      "kind": "center",
+      "route_id": "202d09d759f908752556",
+      "barrier_id": 4200146552,
+      "tags": {
+        "barrier": "gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "11202853",
+      "kind": "beach",
+      "route_id": "8404125839e3d832315a",
+      "barrier_id": 8044594899,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "11202853",
+      "kind": "stop",
+      "route_id": "825cea2c004a01b12276",
+      "barrier_id": 8044594899,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "11202853",
+      "kind": "center",
+      "route_id": "30fad3a1bcac5cc89dba",
+      "barrier_id": 1814289281,
+      "tags": {
+        "barrier": "toll_booth"
+      }
+    },
+    {
+      "hotel_id": "11202853",
+      "kind": "center",
+      "route_id": "30fad3a1bcac5cc89dba",
+      "barrier_id": 4200146313,
+      "tags": {
+        "access": "private",
+        "barrier": "gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "locked": "yes",
+        "motor_vehicle": "no",
+        "motorcar": "yes",
+        "motorcycle": "yes"
+      }
+    },
+    {
+      "hotel_id": "11202853",
+      "kind": "center",
+      "route_id": "30fad3a1bcac5cc89dba",
+      "barrier_id": 5844222475,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "11202853",
+      "kind": "center",
+      "route_id": "30fad3a1bcac5cc89dba",
+      "barrier_id": 5922230605,
+      "tags": {
+        "barrier": "swing_gate",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "11202853",
+      "kind": "center",
+      "route_id": "30fad3a1bcac5cc89dba",
+      "barrier_id": 8044594899,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "11202853",
+      "kind": "center",
+      "route_id": "30fad3a1bcac5cc89dba",
+      "barrier_id": 4200146552,
+      "tags": {
+        "barrier": "gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "11202853",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "3f904bf88aa55ed6464d",
+      "barrier_id": 8044594899,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "11205863",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "87d4334cb951a26fd15d",
+      "barrier_id": 11275458244,
+      "tags": {
+        "access": "private",
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "11205863",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "87d4334cb951a26fd15d",
+      "barrier_id": 11275458245,
+      "tags": {
+        "access": "private",
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "11205863",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "87d4334cb951a26fd15d",
+      "barrier_id": 8953610797,
+      "tags": {
+        "access": "private",
+        "barrier": "block"
+      }
+    },
+    {
+      "hotel_id": "11205863",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "87d4334cb951a26fd15d",
+      "barrier_id": 799231501,
+      "tags": {
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "11205863",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "87d4334cb951a26fd15d",
+      "barrier_id": 6485721037,
+      "tags": {
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "11205863",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "87d4334cb951a26fd15d",
+      "barrier_id": 6485569144,
+      "tags": {
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "11205863",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "87d4334cb951a26fd15d",
+      "barrier_id": 12625789433,
+      "tags": {
+        "barrier": "lift_gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "11255055",
+      "kind": "center",
+      "route_id": "f8d66bee6bee0bf2489d",
+      "barrier_id": 1814289281,
+      "tags": {
+        "barrier": "toll_booth"
+      }
+    },
+    {
+      "hotel_id": "11255055",
+      "kind": "center",
+      "route_id": "f8d66bee6bee0bf2489d",
+      "barrier_id": 4200146313,
+      "tags": {
+        "access": "private",
+        "barrier": "gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "locked": "yes",
+        "motor_vehicle": "no",
+        "motorcar": "yes",
+        "motorcycle": "yes"
+      }
+    },
+    {
+      "hotel_id": "11255055",
+      "kind": "center",
+      "route_id": "f8d66bee6bee0bf2489d",
+      "barrier_id": 5844222475,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "11255055",
+      "kind": "center",
+      "route_id": "f8d66bee6bee0bf2489d",
+      "barrier_id": 5922230605,
+      "tags": {
+        "barrier": "swing_gate",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "11255055",
+      "kind": "center",
+      "route_id": "f8d66bee6bee0bf2489d",
+      "barrier_id": 4200146552,
+      "tags": {
+        "barrier": "gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "11303583",
+      "kind": "beach",
+      "route_id": "95912392e7557e26a621",
+      "barrier_id": 7675907486,
+      "tags": {
+        "access": "private",
+        "barrier": "lift_gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "11303583",
+      "kind": "center",
+      "route_id": "74f7586012041cdd8676",
+      "barrier_id": 1814289281,
+      "tags": {
+        "barrier": "toll_booth"
+      }
+    },
+    {
+      "hotel_id": "11303583",
+      "kind": "center",
+      "route_id": "74f7586012041cdd8676",
+      "barrier_id": 4200146313,
+      "tags": {
+        "access": "private",
+        "barrier": "gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "locked": "yes",
+        "motor_vehicle": "no",
+        "motorcar": "yes",
+        "motorcycle": "yes"
+      }
+    },
+    {
+      "hotel_id": "11303583",
+      "kind": "center",
+      "route_id": "74f7586012041cdd8676",
+      "barrier_id": 5844222475,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "11303583",
+      "kind": "center",
+      "route_id": "74f7586012041cdd8676",
+      "barrier_id": 5922230605,
+      "tags": {
+        "barrier": "swing_gate",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "11303583",
+      "kind": "center",
+      "route_id": "74f7586012041cdd8676",
+      "barrier_id": 4200146552,
+      "tags": {
+        "barrier": "gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "11303583",
+      "kind": "center",
+      "route_id": "74f7586012041cdd8676",
+      "barrier_id": 7675907486,
+      "tags": {
+        "access": "private",
+        "barrier": "lift_gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "11303583",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "83260147e6efe10b12a2",
+      "barrier_id": 4557213779,
+      "tags": {
+        "barrier": "turnstile",
+        "foot": "private"
+      }
+    },
+    {
+      "hotel_id": "11303583",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "83260147e6efe10b12a2",
+      "barrier_id": 13255667796,
+      "tags": {
+        "barrier": "block"
+      }
+    },
+    {
+      "hotel_id": "11303583",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "83260147e6efe10b12a2",
+      "barrier_id": 2915768844,
+      "tags": {
+        "barrier": "block"
+      }
+    },
+    {
+      "hotel_id": "11303583",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "83260147e6efe10b12a2",
+      "barrier_id": 2915768847,
+      "tags": {
+        "barrier": "bollard",
+        "bollard": "fixed",
+        "material": "metal",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "11313836",
+      "kind": "beach",
+      "route_id": "178297e233f70fc6184e",
+      "barrier_id": 4455310298,
+      "tags": {
+        "barrier": "gate",
+        "foot": "yes"
+      }
+    },
+    {
+      "hotel_id": "11313836",
+      "kind": "beach",
+      "route_id": "178297e233f70fc6184e",
+      "barrier_id": 2411205099,
+      "tags": {
+        "barrier": "bollard",
+        "bicycle": "yes",
+        "foot": "yes"
+      }
+    },
+    {
+      "hotel_id": "11313836",
+      "kind": "stop",
+      "route_id": "bb8c6f928b75577accf9",
+      "barrier_id": 4454872837,
+      "tags": {
+        "access": "private",
+        "barrier": "swing_gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "motorcar": "yes",
+        "motorcycle": "yes",
+        "swing_gate:type": "single"
+      }
+    },
+    {
+      "hotel_id": "11313836",
+      "kind": "center",
+      "route_id": "ead5bd584fc1c5d7d6c6",
+      "barrier_id": 1814289281,
+      "tags": {
+        "barrier": "toll_booth"
+      }
+    },
+    {
+      "hotel_id": "11313836",
+      "kind": "center",
+      "route_id": "ead5bd584fc1c5d7d6c6",
+      "barrier_id": 4454872837,
+      "tags": {
+        "access": "private",
+        "barrier": "swing_gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "motorcar": "yes",
+        "motorcycle": "yes",
+        "swing_gate:type": "single"
+      }
+    },
+    {
+      "hotel_id": "11313836",
+      "kind": "center",
+      "route_id": "ead5bd584fc1c5d7d6c6",
+      "barrier_id": 13518660424,
+      "tags": {
+        "access": "no",
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "11313836",
+      "kind": "center",
+      "route_id": "ead5bd584fc1c5d7d6c6",
+      "barrier_id": 4200146313,
+      "tags": {
+        "access": "private",
+        "barrier": "gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "locked": "yes",
+        "motor_vehicle": "no",
+        "motorcar": "yes",
+        "motorcycle": "yes"
+      }
+    },
+    {
+      "hotel_id": "11313836",
+      "kind": "center",
+      "route_id": "ead5bd584fc1c5d7d6c6",
+      "barrier_id": 5844222475,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "11313836",
+      "kind": "center",
+      "route_id": "ead5bd584fc1c5d7d6c6",
+      "barrier_id": 5922230605,
+      "tags": {
+        "barrier": "swing_gate",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "11313836",
+      "kind": "center",
+      "route_id": "ead5bd584fc1c5d7d6c6",
+      "barrier_id": 1511671632,
+      "tags": {
+        "access": "no",
+        "barrier": "lift_gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "horse": "no",
+        "locked": "yes",
+        "motor_vehicle": "no",
+        "motorcar": "yes",
+        "motorcycle": "yes",
+        "swing_gate:type": "single"
+      }
+    },
+    {
+      "hotel_id": "11313836",
+      "kind": "center",
+      "route_id": "ead5bd584fc1c5d7d6c6",
+      "barrier_id": 13100429524,
+      "tags": {
+        "barrier": "lift_gate",
+        "lift_gate:type": "single",
+        "locked": "yes"
+      }
+    },
+    {
+      "hotel_id": "11313836",
+      "kind": "center",
+      "route_id": "ead5bd584fc1c5d7d6c6",
+      "barrier_id": 4200146552,
+      "tags": {
+        "barrier": "gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "11313836",
+      "kind": "center",
+      "route_id": "ead5bd584fc1c5d7d6c6",
+      "barrier_id": 7809227997,
+      "tags": {
+        "barrier": "lift_gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "horse": "no",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "13343374",
+      "kind": "beach",
+      "route_id": "6173790b73fe68ac95d0",
+      "barrier_id": 6485569144,
+      "tags": {
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "13343374",
+      "kind": "beach",
+      "route_id": "6173790b73fe68ac95d0",
+      "barrier_id": 2617928652,
+      "tags": {
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "13343374",
+      "kind": "beach",
+      "route_id": "6173790b73fe68ac95d0",
+      "barrier_id": 6506880325,
+      "tags": {
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "13343374",
+      "kind": "stop",
+      "route_id": "32e8101fd1f3647a9319",
+      "barrier_id": 799231392,
+      "tags": {
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "13343374",
+      "kind": "stop",
+      "route_id": "32e8101fd1f3647a9319",
+      "barrier_id": 12625766120,
+      "tags": {
+        "barrier": "lift_gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "13343374",
+      "kind": "stop",
+      "route_id": "32e8101fd1f3647a9319",
+      "barrier_id": 799231501,
+      "tags": {
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "13343374",
+      "kind": "center",
+      "route_id": "85adb23c9e9786c3bff4",
+      "barrier_id": 799231392,
+      "tags": {
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "13343374",
+      "kind": "center",
+      "route_id": "85adb23c9e9786c3bff4",
+      "barrier_id": 12625766120,
+      "tags": {
+        "barrier": "lift_gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "13343374",
+      "kind": "center",
+      "route_id": "85adb23c9e9786c3bff4",
+      "barrier_id": 799231501,
+      "tags": {
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "13343374",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "c5165dcf6e4ce497e634",
+      "barrier_id": 11275458244,
+      "tags": {
+        "access": "private",
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "13343374",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "c5165dcf6e4ce497e634",
+      "barrier_id": 11275458245,
+      "tags": {
+        "access": "private",
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "13343374",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "c5165dcf6e4ce497e634",
+      "barrier_id": 6485721037,
+      "tags": {
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "13343374",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "c5165dcf6e4ce497e634",
+      "barrier_id": 8953610797,
+      "tags": {
+        "access": "private",
+        "barrier": "block"
+      }
+    },
+    {
+      "hotel_id": "13343374",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "c5165dcf6e4ce497e634",
+      "barrier_id": 799231501,
+      "tags": {
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "13343374",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "c5165dcf6e4ce497e634",
+      "barrier_id": 12625789433,
+      "tags": {
+        "barrier": "lift_gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "13429040",
+      "kind": "beach",
+      "route_id": "ff8561c2c0e1d7028ded",
+      "barrier_id": 4449969471,
+      "tags": {
+        "barrier": "lift_gate",
+        "bicycle": "yes",
+        "foot": "yes"
+      }
+    },
+    {
+      "hotel_id": "13674260",
+      "kind": "beach",
+      "route_id": "b1417957c0c01b4e0500",
+      "barrier_id": 799351675,
+      "tags": {
+        "barrier": "lift_gate",
+        "bicycle": "yes",
+        "foot": "yes"
+      }
+    },
+    {
+      "hotel_id": "13674260",
+      "kind": "stop",
+      "route_id": "a3521b76d2aafd831ae8",
+      "barrier_id": 799351675,
+      "tags": {
+        "barrier": "lift_gate",
+        "bicycle": "yes",
+        "foot": "yes"
+      }
+    },
+    {
+      "hotel_id": "13674260",
+      "kind": "center",
+      "route_id": "e4c3c54918357e58d04a",
+      "barrier_id": 799351675,
+      "tags": {
+        "barrier": "lift_gate",
+        "bicycle": "yes",
+        "foot": "yes"
+      }
+    },
+    {
+      "hotel_id": "13674260",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "735adb0e096eab773a1f",
+      "barrier_id": 799351675,
+      "tags": {
+        "barrier": "lift_gate",
+        "bicycle": "yes",
+        "foot": "yes"
+      }
+    },
+    {
+      "hotel_id": "13714940",
+      "kind": "center",
+      "route_id": "0dcfb702fe8f862b467f",
+      "barrier_id": 1814289281,
+      "tags": {
+        "barrier": "toll_booth"
+      }
+    },
+    {
+      "hotel_id": "13714940",
+      "kind": "center",
+      "route_id": "0dcfb702fe8f862b467f",
+      "barrier_id": 4200146313,
+      "tags": {
+        "access": "private",
+        "barrier": "gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "locked": "yes",
+        "motor_vehicle": "no",
+        "motorcar": "yes",
+        "motorcycle": "yes"
+      }
+    },
+    {
+      "hotel_id": "13714940",
+      "kind": "center",
+      "route_id": "0dcfb702fe8f862b467f",
+      "barrier_id": 5844222475,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "13714940",
+      "kind": "center",
+      "route_id": "0dcfb702fe8f862b467f",
+      "barrier_id": 5922230605,
+      "tags": {
+        "barrier": "swing_gate",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "13714940",
+      "kind": "center",
+      "route_id": "0dcfb702fe8f862b467f",
+      "barrier_id": 4200146552,
+      "tags": {
+        "barrier": "gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "13736470",
+      "kind": "stop",
+      "route_id": "d8dd3b8d8624fd47dcb8",
+      "barrier_id": 3737056595,
+      "tags": {
+        "access": "private",
+        "barrier": "lift_gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "13736470",
+      "kind": "center",
+      "route_id": "bbe2d16a885414834c44",
+      "barrier_id": 1814289281,
+      "tags": {
+        "barrier": "toll_booth"
+      }
+    },
+    {
+      "hotel_id": "13736470",
+      "kind": "center",
+      "route_id": "bbe2d16a885414834c44",
+      "barrier_id": 3909234151,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "13736470",
+      "kind": "center",
+      "route_id": "bbe2d16a885414834c44",
+      "barrier_id": 4200146313,
+      "tags": {
+        "access": "private",
+        "barrier": "gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "locked": "yes",
+        "motor_vehicle": "no",
+        "motorcar": "yes",
+        "motorcycle": "yes"
+      }
+    },
+    {
+      "hotel_id": "13736470",
+      "kind": "center",
+      "route_id": "bbe2d16a885414834c44",
+      "barrier_id": 5844222475,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "13736470",
+      "kind": "center",
+      "route_id": "bbe2d16a885414834c44",
+      "barrier_id": 2915768844,
+      "tags": {
+        "barrier": "block"
+      }
+    },
+    {
+      "hotel_id": "13736470",
+      "kind": "center",
+      "route_id": "bbe2d16a885414834c44",
+      "barrier_id": 5922230605,
+      "tags": {
+        "barrier": "swing_gate",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "13736470",
+      "kind": "center",
+      "route_id": "bbe2d16a885414834c44",
+      "barrier_id": 2915768847,
+      "tags": {
+        "barrier": "bollard",
+        "bollard": "fixed",
+        "material": "metal",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "13736470",
+      "kind": "center",
+      "route_id": "bbe2d16a885414834c44",
+      "barrier_id": 3737056594,
+      "tags": {
+        "access": "private",
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "13736470",
+      "kind": "center",
+      "route_id": "bbe2d16a885414834c44",
+      "barrier_id": 13255667796,
+      "tags": {
+        "barrier": "block"
+      }
+    },
+    {
+      "hotel_id": "13736470",
+      "kind": "center",
+      "route_id": "bbe2d16a885414834c44",
+      "barrier_id": 4200146552,
+      "tags": {
+        "barrier": "gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "13736470",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "7b6c15381e344449c96a",
+      "barrier_id": 3737056594,
+      "tags": {
+        "access": "private",
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "6311444",
+      "kind": "beach",
+      "route_id": "8ae65c26e5f980a7df09",
+      "barrier_id": 4449969471,
+      "tags": {
+        "barrier": "lift_gate",
+        "bicycle": "yes",
+        "foot": "yes"
+      }
+    },
+    {
+      "hotel_id": "6316833",
+      "kind": "beach",
+      "route_id": "cd39f4a4cd48e9646b7f",
+      "barrier_id": 5129364852,
+      "tags": {
+        "access": "yes",
+        "barrier": "lift_gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "horse": "no",
+        "motor_vehicle": "no",
+        "motorcar": "no"
+      }
+    },
+    {
+      "hotel_id": "6316833",
+      "kind": "beach",
+      "route_id": "cd39f4a4cd48e9646b7f",
+      "barrier_id": 4080582598,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "6316833",
+      "kind": "stop",
+      "route_id": "0cbfcde06610a7aeb4f6",
+      "barrier_id": 4080582598,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "6316833",
+      "kind": "center",
+      "route_id": "3e75a7f906e829ff7b7e",
+      "barrier_id": 7640321089,
+      "tags": {
+        "access": "no",
+        "barrier": "gate",
+        "wheelchair": "no"
+      }
+    },
+    {
+      "hotel_id": "6316833",
+      "kind": "center",
+      "route_id": "3e75a7f906e829ff7b7e",
+      "barrier_id": 9146449508,
+      "tags": {
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "6316833",
+      "kind": "center",
+      "route_id": "3e75a7f906e829ff7b7e",
+      "barrier_id": 4080582598,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "6316833",
+      "kind": "center",
+      "route_id": "3e75a7f906e829ff7b7e",
+      "barrier_id": 12073439435,
+      "tags": {
+        "barrier": "lift_gate",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "6316833",
+      "kind": "center",
+      "route_id": "3e75a7f906e829ff7b7e",
+      "barrier_id": 3058805070,
+      "tags": {
+        "barrier": "lift_gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "horse": "yes"
+      }
+    },
+    {
+      "hotel_id": "6316833",
+      "kind": "center",
+      "route_id": "3e75a7f906e829ff7b7e",
+      "barrier_id": 720633648,
+      "tags": {
+        "access": "private",
+        "barrier": "lift_gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "horse": "yes"
+      }
+    },
+    {
+      "hotel_id": "6316833",
+      "kind": "center",
+      "route_id": "3e75a7f906e829ff7b7e",
+      "barrier_id": 370744211,
+      "tags": {
+        "access": "customers",
+        "barrier": "toll_booth",
+        "currency:RUB": "yes",
+        "name": "Касса Нацпарка",
+        "payment:cash": "yes",
+        "payment:credit_cards": "yes"
+      }
+    },
+    {
+      "hotel_id": "6316833",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "7e9df5f28afbf21797b7",
+      "barrier_id": 4080582598,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "6329566",
+      "kind": "beach",
+      "route_id": "26debf3e5f8fac4beed2",
+      "barrier_id": 13240530717,
+      "tags": {
+        "barrier": "lift_gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "6329566",
+      "kind": "stop",
+      "route_id": "65d9853d88e013e1f45c",
+      "barrier_id": 3790176807,
+      "tags": {
+        "barrier": "lift_gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "6329566",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "ce570774efc934d72943",
+      "barrier_id": 13760780754,
+      "tags": {
+        "barrier": "lift_gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "6398405",
+      "kind": "beach",
+      "route_id": "bb7e477065a508b82815",
+      "barrier_id": 3017607816,
+      "tags": {
+        "access": "permit",
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "6398405",
+      "kind": "beach",
+      "route_id": "bb7e477065a508b82815",
+      "barrier_id": 12986072010,
+      "tags": {
+        "barrier": "kerb",
+        "kerb": "lowered",
+        "tactile_paving": "yes"
+      }
+    },
+    {
+      "hotel_id": "6398405",
+      "kind": "beach",
+      "route_id": "bb7e477065a508b82815",
+      "barrier_id": 12986072006,
+      "tags": {
+        "barrier": "kerb",
+        "kerb": "lowered",
+        "tactile_paving": "yes"
+      }
+    },
+    {
+      "hotel_id": "6398405",
+      "kind": "center",
+      "route_id": "952eca77621972d6c36a",
+      "barrier_id": 1814289281,
+      "tags": {
+        "barrier": "toll_booth"
+      }
+    },
+    {
+      "hotel_id": "6398405",
+      "kind": "center",
+      "route_id": "952eca77621972d6c36a",
+      "barrier_id": 4200146313,
+      "tags": {
+        "access": "private",
+        "barrier": "gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "locked": "yes",
+        "motor_vehicle": "no",
+        "motorcar": "yes",
+        "motorcycle": "yes"
+      }
+    },
+    {
+      "hotel_id": "6398405",
+      "kind": "center",
+      "route_id": "952eca77621972d6c36a",
+      "barrier_id": 5844222475,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "6398405",
+      "kind": "center",
+      "route_id": "952eca77621972d6c36a",
+      "barrier_id": 5922230605,
+      "tags": {
+        "barrier": "swing_gate",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "6398405",
+      "kind": "center",
+      "route_id": "952eca77621972d6c36a",
+      "barrier_id": 4200146552,
+      "tags": {
+        "barrier": "gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "6398405",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "9af3ae7007ad1bdea23f",
+      "barrier_id": 7351671512,
+      "tags": {
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "6398405",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "9af3ae7007ad1bdea23f",
+      "barrier_id": 7351671509,
+      "tags": {
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "6415851",
+      "kind": "beach",
+      "route_id": "b02476b2694d427bcc85",
+      "barrier_id": 4455310298,
+      "tags": {
+        "barrier": "gate",
+        "foot": "yes"
+      }
+    },
+    {
+      "hotel_id": "6415851",
+      "kind": "center",
+      "route_id": "c72612f8b77b12ec11ee",
+      "barrier_id": 1814289281,
+      "tags": {
+        "barrier": "toll_booth"
+      }
+    },
+    {
+      "hotel_id": "6415851",
+      "kind": "center",
+      "route_id": "c72612f8b77b12ec11ee",
+      "barrier_id": 4200146313,
+      "tags": {
+        "access": "private",
+        "barrier": "gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "locked": "yes",
+        "motor_vehicle": "no",
+        "motorcar": "yes",
+        "motorcycle": "yes"
+      }
+    },
+    {
+      "hotel_id": "6415851",
+      "kind": "center",
+      "route_id": "c72612f8b77b12ec11ee",
+      "barrier_id": 5844222475,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "6415851",
+      "kind": "center",
+      "route_id": "c72612f8b77b12ec11ee",
+      "barrier_id": 5922230605,
+      "tags": {
+        "barrier": "swing_gate",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "6415851",
+      "kind": "center",
+      "route_id": "c72612f8b77b12ec11ee",
+      "barrier_id": 4200146552,
+      "tags": {
+        "barrier": "gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "6416199",
+      "kind": "center",
+      "route_id": "51f09408840c4c5a2f3a",
+      "barrier_id": 1814289281,
+      "tags": {
+        "barrier": "toll_booth"
+      }
+    },
+    {
+      "hotel_id": "6416199",
+      "kind": "center",
+      "route_id": "51f09408840c4c5a2f3a",
+      "barrier_id": 3909234151,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "6416199",
+      "kind": "center",
+      "route_id": "51f09408840c4c5a2f3a",
+      "barrier_id": 4200146313,
+      "tags": {
+        "access": "private",
+        "barrier": "gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "locked": "yes",
+        "motor_vehicle": "no",
+        "motorcar": "yes",
+        "motorcycle": "yes"
+      }
+    },
+    {
+      "hotel_id": "6416199",
+      "kind": "center",
+      "route_id": "51f09408840c4c5a2f3a",
+      "barrier_id": 5844222475,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "6416199",
+      "kind": "center",
+      "route_id": "51f09408840c4c5a2f3a",
+      "barrier_id": 2915768844,
+      "tags": {
+        "barrier": "block"
+      }
+    },
+    {
+      "hotel_id": "6416199",
+      "kind": "center",
+      "route_id": "51f09408840c4c5a2f3a",
+      "barrier_id": 5922230605,
+      "tags": {
+        "barrier": "swing_gate",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "6416199",
+      "kind": "center",
+      "route_id": "51f09408840c4c5a2f3a",
+      "barrier_id": 2915768847,
+      "tags": {
+        "barrier": "bollard",
+        "bollard": "fixed",
+        "material": "metal",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "6416199",
+      "kind": "center",
+      "route_id": "51f09408840c4c5a2f3a",
+      "barrier_id": 13255667796,
+      "tags": {
+        "barrier": "block"
+      }
+    },
+    {
+      "hotel_id": "6416199",
+      "kind": "center",
+      "route_id": "51f09408840c4c5a2f3a",
+      "barrier_id": 4200146552,
+      "tags": {
+        "barrier": "gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "6416199",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "2f81da0a65ce0fff25e4",
+      "barrier_id": 4557213779,
+      "tags": {
+        "barrier": "turnstile",
+        "foot": "private"
+      }
+    },
+    {
+      "hotel_id": "6443737",
+      "kind": "center",
+      "route_id": "29d22fea514b68ec1a54",
+      "barrier_id": 1814289281,
+      "tags": {
+        "barrier": "toll_booth"
+      }
+    },
+    {
+      "hotel_id": "6443737",
+      "kind": "center",
+      "route_id": "29d22fea514b68ec1a54",
+      "barrier_id": 13103868708,
+      "tags": {
+        "barrier": "lift_gate",
+        "vehicle": "destination"
+      }
+    },
+    {
+      "hotel_id": "6443737",
+      "kind": "center",
+      "route_id": "29d22fea514b68ec1a54",
+      "barrier_id": 7801728486,
+      "tags": {
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "6443737",
+      "kind": "center",
+      "route_id": "29d22fea514b68ec1a54",
+      "barrier_id": 4200146313,
+      "tags": {
+        "access": "private",
+        "barrier": "gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "locked": "yes",
+        "motor_vehicle": "no",
+        "motorcar": "yes",
+        "motorcycle": "yes"
+      }
+    },
+    {
+      "hotel_id": "6443737",
+      "kind": "center",
+      "route_id": "29d22fea514b68ec1a54",
+      "barrier_id": 5844222475,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "6443737",
+      "kind": "center",
+      "route_id": "29d22fea514b68ec1a54",
+      "barrier_id": 5922230605,
+      "tags": {
+        "barrier": "swing_gate",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "6443737",
+      "kind": "center",
+      "route_id": "29d22fea514b68ec1a54",
+      "barrier_id": 678339061,
+      "tags": {
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "6443737",
+      "kind": "center",
+      "route_id": "29d22fea514b68ec1a54",
+      "barrier_id": 4200146552,
+      "tags": {
+        "barrier": "gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "6453529",
+      "kind": "center",
+      "route_id": "8faed89216ce655852b0",
+      "barrier_id": 808558395,
+      "tags": {
+        "access": "private",
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "6453529",
+      "kind": "center",
+      "route_id": "8faed89216ce655852b0",
+      "barrier_id": 1077613515,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "6453529",
+      "kind": "center",
+      "route_id": "8faed89216ce655852b0",
+      "barrier_id": 1312989132,
+      "tags": {
+        "access": "private",
+        "barrier": "gate",
+        "bicycle": "yes",
+        "foot": "yes"
+      }
+    },
+    {
+      "hotel_id": "6453529",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "6f2e7e756ba0ae3ab2e7",
+      "barrier_id": 808558395,
+      "tags": {
+        "access": "private",
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "6453529",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "6f2e7e756ba0ae3ab2e7",
+      "barrier_id": 1077613515,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "6453529",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "6f2e7e756ba0ae3ab2e7",
+      "barrier_id": 1312989132,
+      "tags": {
+        "access": "private",
+        "barrier": "gate",
+        "bicycle": "yes",
+        "foot": "yes"
+      }
+    },
+    {
+      "hotel_id": "6460390",
+      "kind": "center",
+      "route_id": "87e3e2cd867c4a76da22",
+      "barrier_id": 1814289281,
+      "tags": {
+        "barrier": "toll_booth"
+      }
+    },
+    {
+      "hotel_id": "6460390",
+      "kind": "center",
+      "route_id": "87e3e2cd867c4a76da22",
+      "barrier_id": 4200146313,
+      "tags": {
+        "access": "private",
+        "barrier": "gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "locked": "yes",
+        "motor_vehicle": "no",
+        "motorcar": "yes",
+        "motorcycle": "yes"
+      }
+    },
+    {
+      "hotel_id": "6460390",
+      "kind": "center",
+      "route_id": "87e3e2cd867c4a76da22",
+      "barrier_id": 5844222475,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "6460390",
+      "kind": "center",
+      "route_id": "87e3e2cd867c4a76da22",
+      "barrier_id": 5922230605,
+      "tags": {
+        "barrier": "swing_gate",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "6460390",
+      "kind": "center",
+      "route_id": "87e3e2cd867c4a76da22",
+      "barrier_id": 4200146552,
+      "tags": {
+        "barrier": "gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "6496437",
+      "kind": "center",
+      "route_id": "50206c2eedf0f206ab54",
+      "barrier_id": 1814289281,
+      "tags": {
+        "barrier": "toll_booth"
+      }
+    },
+    {
+      "hotel_id": "6496437",
+      "kind": "center",
+      "route_id": "50206c2eedf0f206ab54",
+      "barrier_id": 4200146313,
+      "tags": {
+        "access": "private",
+        "barrier": "gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "locked": "yes",
+        "motor_vehicle": "no",
+        "motorcar": "yes",
+        "motorcycle": "yes"
+      }
+    },
+    {
+      "hotel_id": "6496437",
+      "kind": "center",
+      "route_id": "50206c2eedf0f206ab54",
+      "barrier_id": 5844222475,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "6496437",
+      "kind": "center",
+      "route_id": "50206c2eedf0f206ab54",
+      "barrier_id": 5922230605,
+      "tags": {
+        "barrier": "swing_gate",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "6496437",
+      "kind": "center",
+      "route_id": "50206c2eedf0f206ab54",
+      "barrier_id": 7315616179,
+      "tags": {
+        "barrier": "kerb",
+        "kerb": "flush",
+        "tactile_paving": "yes"
+      }
+    },
+    {
+      "hotel_id": "6496437",
+      "kind": "center",
+      "route_id": "50206c2eedf0f206ab54",
+      "barrier_id": 4200146552,
+      "tags": {
+        "barrier": "gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "6496747",
+      "kind": "center",
+      "route_id": "12be52c23f754b70e608",
+      "barrier_id": 1814289281,
+      "tags": {
+        "barrier": "toll_booth"
+      }
+    },
+    {
+      "hotel_id": "6496747",
+      "kind": "center",
+      "route_id": "12be52c23f754b70e608",
+      "barrier_id": 4200146313,
+      "tags": {
+        "access": "private",
+        "barrier": "gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "locked": "yes",
+        "motor_vehicle": "no",
+        "motorcar": "yes",
+        "motorcycle": "yes"
+      }
+    },
+    {
+      "hotel_id": "6496747",
+      "kind": "center",
+      "route_id": "12be52c23f754b70e608",
+      "barrier_id": 5844222475,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "6496747",
+      "kind": "center",
+      "route_id": "12be52c23f754b70e608",
+      "barrier_id": 5922230605,
+      "tags": {
+        "barrier": "swing_gate",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "6496747",
+      "kind": "center",
+      "route_id": "12be52c23f754b70e608",
+      "barrier_id": 4200146552,
+      "tags": {
+        "barrier": "gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "6497279",
+      "kind": "beach",
+      "route_id": "82747d4fdba7bc2a0ca3",
+      "barrier_id": 12986072006,
+      "tags": {
+        "barrier": "kerb",
+        "kerb": "lowered",
+        "tactile_paving": "yes"
+      }
+    },
+    {
+      "hotel_id": "6497279",
+      "kind": "beach",
+      "route_id": "82747d4fdba7bc2a0ca3",
+      "barrier_id": 3032408238,
+      "tags": {
+        "access": "private",
+        "barrier": "lift_gate",
+        "bicycle": "yes",
+        "foot": "yes"
+      }
+    },
+    {
+      "hotel_id": "6497279",
+      "kind": "stop",
+      "route_id": "ffa262eaa4dcfdfa16ee",
+      "barrier_id": 3032408238,
+      "tags": {
+        "access": "private",
+        "barrier": "lift_gate",
+        "bicycle": "yes",
+        "foot": "yes"
+      }
+    },
+    {
+      "hotel_id": "6497279",
+      "kind": "center",
+      "route_id": "8c3ee387f525363300e7",
+      "barrier_id": 1814289281,
+      "tags": {
+        "barrier": "toll_booth"
+      }
+    },
+    {
+      "hotel_id": "6497279",
+      "kind": "center",
+      "route_id": "8c3ee387f525363300e7",
+      "barrier_id": 3017607816,
+      "tags": {
+        "access": "permit",
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "6497279",
+      "kind": "center",
+      "route_id": "8c3ee387f525363300e7",
+      "barrier_id": 4200146313,
+      "tags": {
+        "access": "private",
+        "barrier": "gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "locked": "yes",
+        "motor_vehicle": "no",
+        "motorcar": "yes",
+        "motorcycle": "yes"
+      }
+    },
+    {
+      "hotel_id": "6497279",
+      "kind": "center",
+      "route_id": "8c3ee387f525363300e7",
+      "barrier_id": 5844222475,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "6497279",
+      "kind": "center",
+      "route_id": "8c3ee387f525363300e7",
+      "barrier_id": 5922230605,
+      "tags": {
+        "barrier": "swing_gate",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "6497279",
+      "kind": "center",
+      "route_id": "8c3ee387f525363300e7",
+      "barrier_id": 4200146552,
+      "tags": {
+        "barrier": "gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "6497279",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "b03bf0714ad27d64b1ac",
+      "barrier_id": 3032408238,
+      "tags": {
+        "access": "private",
+        "barrier": "lift_gate",
+        "bicycle": "yes",
+        "foot": "yes"
+      }
+    },
+    {
+      "hotel_id": "6511778",
+      "kind": "center",
+      "route_id": "f8e18224e140254e2ce7",
+      "barrier_id": 808558395,
+      "tags": {
+        "access": "private",
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "6511778",
+      "kind": "center",
+      "route_id": "f8e18224e140254e2ce7",
+      "barrier_id": 1077613515,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "6511778",
+      "kind": "center",
+      "route_id": "f8e18224e140254e2ce7",
+      "barrier_id": 1312989132,
+      "tags": {
+        "access": "private",
+        "barrier": "gate",
+        "bicycle": "yes",
+        "foot": "yes"
+      }
+    },
+    {
+      "hotel_id": "6511778",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "4472fa671725a2704e05",
+      "barrier_id": 808558395,
+      "tags": {
+        "access": "private",
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "6511778",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "4472fa671725a2704e05",
+      "barrier_id": 1077613515,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "6511778",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "4472fa671725a2704e05",
+      "barrier_id": 1312989132,
+      "tags": {
+        "access": "private",
+        "barrier": "gate",
+        "bicycle": "yes",
+        "foot": "yes"
+      }
+    },
+    {
+      "hotel_id": "6551265",
+      "kind": "center",
+      "route_id": "c25bb6cf5771894d1337",
+      "barrier_id": 1814289281,
+      "tags": {
+        "barrier": "toll_booth"
+      }
+    },
+    {
+      "hotel_id": "6551265",
+      "kind": "center",
+      "route_id": "c25bb6cf5771894d1337",
+      "barrier_id": 4200146313,
+      "tags": {
+        "access": "private",
+        "barrier": "gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "locked": "yes",
+        "motor_vehicle": "no",
+        "motorcar": "yes",
+        "motorcycle": "yes"
+      }
+    },
+    {
+      "hotel_id": "6551265",
+      "kind": "center",
+      "route_id": "c25bb6cf5771894d1337",
+      "barrier_id": 5844222475,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "6551265",
+      "kind": "center",
+      "route_id": "c25bb6cf5771894d1337",
+      "barrier_id": 5922230605,
+      "tags": {
+        "barrier": "swing_gate",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "6551265",
+      "kind": "center",
+      "route_id": "c25bb6cf5771894d1337",
+      "barrier_id": 4200146552,
+      "tags": {
+        "barrier": "gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "6551322",
+      "kind": "center",
+      "route_id": "2487c0c5ad94fa51086e",
+      "barrier_id": 1814289281,
+      "tags": {
+        "barrier": "toll_booth"
+      }
+    },
+    {
+      "hotel_id": "6551322",
+      "kind": "center",
+      "route_id": "2487c0c5ad94fa51086e",
+      "barrier_id": 4200146313,
+      "tags": {
+        "access": "private",
+        "barrier": "gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "locked": "yes",
+        "motor_vehicle": "no",
+        "motorcar": "yes",
+        "motorcycle": "yes"
+      }
+    },
+    {
+      "hotel_id": "6551322",
+      "kind": "center",
+      "route_id": "2487c0c5ad94fa51086e",
+      "barrier_id": 5844222475,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "6551322",
+      "kind": "center",
+      "route_id": "2487c0c5ad94fa51086e",
+      "barrier_id": 5922230605,
+      "tags": {
+        "barrier": "swing_gate",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "6551322",
+      "kind": "center",
+      "route_id": "2487c0c5ad94fa51086e",
+      "barrier_id": 5930624760,
+      "tags": {
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "6551322",
+      "kind": "center",
+      "route_id": "2487c0c5ad94fa51086e",
+      "barrier_id": 4200146552,
+      "tags": {
+        "barrier": "gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "6557901",
+      "kind": "center",
+      "route_id": "4c60c0d4d1ffbde46e46",
+      "barrier_id": 1814289281,
+      "tags": {
+        "barrier": "toll_booth"
+      }
+    },
+    {
+      "hotel_id": "6557901",
+      "kind": "center",
+      "route_id": "4c60c0d4d1ffbde46e46",
+      "barrier_id": 4200146313,
+      "tags": {
+        "access": "private",
+        "barrier": "gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "locked": "yes",
+        "motor_vehicle": "no",
+        "motorcar": "yes",
+        "motorcycle": "yes"
+      }
+    },
+    {
+      "hotel_id": "6557901",
+      "kind": "center",
+      "route_id": "4c60c0d4d1ffbde46e46",
+      "barrier_id": 5844222475,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "6557901",
+      "kind": "center",
+      "route_id": "4c60c0d4d1ffbde46e46",
+      "barrier_id": 5922230605,
+      "tags": {
+        "barrier": "swing_gate",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "6557901",
+      "kind": "center",
+      "route_id": "4c60c0d4d1ffbde46e46",
+      "barrier_id": 4200146552,
+      "tags": {
+        "barrier": "gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "6557901",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "010ca89b67967db53318",
+      "barrier_id": 13518660424,
+      "tags": {
+        "access": "no",
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "6557901",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "010ca89b67967db53318",
+      "barrier_id": 1398413323,
+      "tags": {
+        "access": "customers",
+        "barrier": "lift_gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "locked": "no",
+        "motor_vehicle": "yes",
+        "motorcar": "yes",
+        "motorcycle": "yes"
+      }
+    },
+    {
+      "hotel_id": "6557901",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "010ca89b67967db53318",
+      "barrier_id": 13100429524,
+      "tags": {
+        "barrier": "lift_gate",
+        "lift_gate:type": "single",
+        "locked": "yes"
+      }
+    },
+    {
+      "hotel_id": "6557901",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "010ca89b67967db53318",
+      "barrier_id": 7809227997,
+      "tags": {
+        "barrier": "lift_gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "horse": "no",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "6579389",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "0ac7571d0fab98a14533",
+      "barrier_id": 977661591,
+      "tags": {
+        "barrier": "lift_gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "6579389",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "0ac7571d0fab98a14533",
+      "barrier_id": 1603316395,
+      "tags": {
+        "access": "private",
+        "barrier": "lift_gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "6579389",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "0ac7571d0fab98a14533",
+      "barrier_id": 662590487,
+      "tags": {
+        "barrier": "lift_gate",
+        "locked": "no",
+        "motor_vehicle": "yes"
+      }
+    },
+    {
+      "hotel_id": "6601612",
+      "kind": "beach",
+      "route_id": "200b02a178bb3ac1f98c",
+      "barrier_id": 4207839327,
+      "tags": {
+        "barrier": "gate",
+        "bicycle": "yes",
+        "foot": "yes"
+      }
+    },
+    {
+      "hotel_id": "6601612",
+      "kind": "center",
+      "route_id": "710cb61bd5d2bcb11d47",
+      "barrier_id": 1814289281,
+      "tags": {
+        "barrier": "toll_booth"
+      }
+    },
+    {
+      "hotel_id": "6601612",
+      "kind": "center",
+      "route_id": "710cb61bd5d2bcb11d47",
+      "barrier_id": 4200146313,
+      "tags": {
+        "access": "private",
+        "barrier": "gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "locked": "yes",
+        "motor_vehicle": "no",
+        "motorcar": "yes",
+        "motorcycle": "yes"
+      }
+    },
+    {
+      "hotel_id": "6601612",
+      "kind": "center",
+      "route_id": "710cb61bd5d2bcb11d47",
+      "barrier_id": 5844222475,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "6601612",
+      "kind": "center",
+      "route_id": "710cb61bd5d2bcb11d47",
+      "barrier_id": 5922230605,
+      "tags": {
+        "barrier": "swing_gate",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "6601612",
+      "kind": "center",
+      "route_id": "710cb61bd5d2bcb11d47",
+      "barrier_id": 4200146552,
+      "tags": {
+        "barrier": "gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "6601612",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "83ba30b1f1ee316efa34",
+      "barrier_id": 1814289281,
+      "tags": {
+        "barrier": "toll_booth"
+      }
+    },
+    {
+      "hotel_id": "6601612",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "83ba30b1f1ee316efa34",
+      "barrier_id": 977661591,
+      "tags": {
+        "barrier": "lift_gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "6601612",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "83ba30b1f1ee316efa34",
+      "barrier_id": 4200146313,
+      "tags": {
+        "access": "private",
+        "barrier": "gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "locked": "yes",
+        "motor_vehicle": "no",
+        "motorcar": "yes",
+        "motorcycle": "yes"
+      }
+    },
+    {
+      "hotel_id": "6601612",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "83ba30b1f1ee316efa34",
+      "barrier_id": 5844222475,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "6601612",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "83ba30b1f1ee316efa34",
+      "barrier_id": 1603316395,
+      "tags": {
+        "access": "private",
+        "barrier": "lift_gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "6601612",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "83ba30b1f1ee316efa34",
+      "barrier_id": 5922230605,
+      "tags": {
+        "barrier": "swing_gate",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "6601612",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "83ba30b1f1ee316efa34",
+      "barrier_id": 662590487,
+      "tags": {
+        "barrier": "lift_gate",
+        "locked": "no",
+        "motor_vehicle": "yes"
+      }
+    },
+    {
+      "hotel_id": "6601612",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "83ba30b1f1ee316efa34",
+      "barrier_id": 4200146552,
+      "tags": {
+        "barrier": "gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "6850191",
+      "kind": "beach",
+      "route_id": "a4b4b755854b2ea5cbe9",
+      "barrier_id": 5129364852,
+      "tags": {
+        "access": "yes",
+        "barrier": "lift_gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "horse": "no",
+        "motor_vehicle": "no",
+        "motorcar": "no"
+      }
+    },
+    {
+      "hotel_id": "6850191",
+      "kind": "center",
+      "route_id": "0beaa187d9aeb2aeacc5",
+      "barrier_id": 7640321089,
+      "tags": {
+        "access": "no",
+        "barrier": "gate",
+        "wheelchair": "no"
+      }
+    },
+    {
+      "hotel_id": "6850191",
+      "kind": "center",
+      "route_id": "0beaa187d9aeb2aeacc5",
+      "barrier_id": 9146449508,
+      "tags": {
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "6850191",
+      "kind": "center",
+      "route_id": "0beaa187d9aeb2aeacc5",
+      "barrier_id": 12073439435,
+      "tags": {
+        "barrier": "lift_gate",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "6850191",
+      "kind": "center",
+      "route_id": "0beaa187d9aeb2aeacc5",
+      "barrier_id": 3058805070,
+      "tags": {
+        "barrier": "lift_gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "horse": "yes"
+      }
+    },
+    {
+      "hotel_id": "6850191",
+      "kind": "center",
+      "route_id": "0beaa187d9aeb2aeacc5",
+      "barrier_id": 720633648,
+      "tags": {
+        "access": "private",
+        "barrier": "lift_gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "horse": "yes"
+      }
+    },
+    {
+      "hotel_id": "6850191",
+      "kind": "center",
+      "route_id": "0beaa187d9aeb2aeacc5",
+      "barrier_id": 370744211,
+      "tags": {
+        "access": "customers",
+        "barrier": "toll_booth",
+        "currency:RUB": "yes",
+        "name": "Касса Нацпарка",
+        "payment:cash": "yes",
+        "payment:credit_cards": "yes"
+      }
+    },
+    {
+      "hotel_id": "6876682",
+      "kind": "center",
+      "route_id": "a6a059ab3b29f88b7975",
+      "barrier_id": 1077613515,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "6876682",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "982fb371c31f4bb67ab5",
+      "barrier_id": 1077613515,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "6878465",
+      "kind": "beach",
+      "route_id": "e50d5b3ea31892a2738c",
+      "barrier_id": 773881070,
+      "tags": {
+        "barrier": "lift_gate",
+        "locked": "no",
+        "motor_vehicle": "yes"
+      }
+    },
+    {
+      "hotel_id": "6878465",
+      "kind": "center",
+      "route_id": "be1df79b88e367d773d7",
+      "barrier_id": 1814289281,
+      "tags": {
+        "barrier": "toll_booth"
+      }
+    },
+    {
+      "hotel_id": "6878465",
+      "kind": "center",
+      "route_id": "be1df79b88e367d773d7",
+      "barrier_id": 4200146313,
+      "tags": {
+        "access": "private",
+        "barrier": "gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "locked": "yes",
+        "motor_vehicle": "no",
+        "motorcar": "yes",
+        "motorcycle": "yes"
+      }
+    },
+    {
+      "hotel_id": "6878465",
+      "kind": "center",
+      "route_id": "be1df79b88e367d773d7",
+      "barrier_id": 5844222475,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "6878465",
+      "kind": "center",
+      "route_id": "be1df79b88e367d773d7",
+      "barrier_id": 5922230605,
+      "tags": {
+        "barrier": "swing_gate",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "6878465",
+      "kind": "center",
+      "route_id": "be1df79b88e367d773d7",
+      "barrier_id": 4200146552,
+      "tags": {
+        "barrier": "gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "7018069",
+      "kind": "center",
+      "route_id": "42c58335197c8a40309a",
+      "barrier_id": 808558395,
+      "tags": {
+        "access": "private",
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "7018069",
+      "kind": "center",
+      "route_id": "42c58335197c8a40309a",
+      "barrier_id": 1077613515,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "7018069",
+      "kind": "center",
+      "route_id": "42c58335197c8a40309a",
+      "barrier_id": 1312989132,
+      "tags": {
+        "access": "private",
+        "barrier": "gate",
+        "bicycle": "yes",
+        "foot": "yes"
+      }
+    },
+    {
+      "hotel_id": "7018069",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "b7ac954e0e237f35cc1e",
+      "barrier_id": 808558395,
+      "tags": {
+        "access": "private",
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "7018069",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "b7ac954e0e237f35cc1e",
+      "barrier_id": 1077613515,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "7018069",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "b7ac954e0e237f35cc1e",
+      "barrier_id": 1312989132,
+      "tags": {
+        "access": "private",
+        "barrier": "gate",
+        "bicycle": "yes",
+        "foot": "yes"
+      }
+    },
+    {
+      "hotel_id": "7631439",
+      "kind": "beach",
+      "route_id": "23d8c773cdfdf140fbb9",
+      "barrier_id": 9238700057,
+      "tags": {
+        "barrier": "gate",
+        "locked": "yes"
+      }
+    },
+    {
+      "hotel_id": "7631439",
+      "kind": "beach",
+      "route_id": "23d8c773cdfdf140fbb9",
+      "barrier_id": 4200122005,
+      "tags": {
+        "access": "customers",
+        "barrier": "lift_gate",
+        "bicycle": "no",
+        "foot": "yes"
+      }
+    },
+    {
+      "hotel_id": "7631439",
+      "kind": "beach",
+      "route_id": "23d8c773cdfdf140fbb9",
+      "barrier_id": 1295821326,
+      "tags": {
+        "barrier": "chain",
+        "bicycle": "yes",
+        "foot": "yes"
+      }
+    },
+    {
+      "hotel_id": "7631439",
+      "kind": "stop",
+      "route_id": "66062f7c92cb2ba62a4d",
+      "barrier_id": 4200122005,
+      "tags": {
+        "access": "customers",
+        "barrier": "lift_gate",
+        "bicycle": "no",
+        "foot": "yes"
+      }
+    },
+    {
+      "hotel_id": "7631439",
+      "kind": "center",
+      "route_id": "f7dc33cc65b588fba70e",
+      "barrier_id": 1814289281,
+      "tags": {
+        "barrier": "toll_booth"
+      }
+    },
+    {
+      "hotel_id": "7631439",
+      "kind": "center",
+      "route_id": "f7dc33cc65b588fba70e",
+      "barrier_id": 4200146313,
+      "tags": {
+        "access": "private",
+        "barrier": "gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "locked": "yes",
+        "motor_vehicle": "no",
+        "motorcar": "yes",
+        "motorcycle": "yes"
+      }
+    },
+    {
+      "hotel_id": "7631439",
+      "kind": "center",
+      "route_id": "f7dc33cc65b588fba70e",
+      "barrier_id": 5844222475,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "7631439",
+      "kind": "center",
+      "route_id": "f7dc33cc65b588fba70e",
+      "barrier_id": 5922230605,
+      "tags": {
+        "barrier": "swing_gate",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "7631439",
+      "kind": "center",
+      "route_id": "f7dc33cc65b588fba70e",
+      "barrier_id": 4200122005,
+      "tags": {
+        "access": "customers",
+        "barrier": "lift_gate",
+        "bicycle": "no",
+        "foot": "yes"
+      }
+    },
+    {
+      "hotel_id": "7631439",
+      "kind": "center",
+      "route_id": "f7dc33cc65b588fba70e",
+      "barrier_id": 4200146552,
+      "tags": {
+        "barrier": "gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "7631439",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "c8018276f91de54268e5",
+      "barrier_id": 1814289281,
+      "tags": {
+        "barrier": "toll_booth"
+      }
+    },
+    {
+      "hotel_id": "7631439",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "c8018276f91de54268e5",
+      "barrier_id": 977661591,
+      "tags": {
+        "barrier": "lift_gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "7631439",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "c8018276f91de54268e5",
+      "barrier_id": 4200146313,
+      "tags": {
+        "access": "private",
+        "barrier": "gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "locked": "yes",
+        "motor_vehicle": "no",
+        "motorcar": "yes",
+        "motorcycle": "yes"
+      }
+    },
+    {
+      "hotel_id": "7631439",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "c8018276f91de54268e5",
+      "barrier_id": 5844222475,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "7631439",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "c8018276f91de54268e5",
+      "barrier_id": 1603316395,
+      "tags": {
+        "access": "private",
+        "barrier": "lift_gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "7631439",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "c8018276f91de54268e5",
+      "barrier_id": 5922230605,
+      "tags": {
+        "barrier": "swing_gate",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "7631439",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "c8018276f91de54268e5",
+      "barrier_id": 4200122005,
+      "tags": {
+        "access": "customers",
+        "barrier": "lift_gate",
+        "bicycle": "no",
+        "foot": "yes"
+      }
+    },
+    {
+      "hotel_id": "7631439",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "c8018276f91de54268e5",
+      "barrier_id": 662590487,
+      "tags": {
+        "barrier": "lift_gate",
+        "locked": "no",
+        "motor_vehicle": "yes"
+      }
+    },
+    {
+      "hotel_id": "7631439",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "c8018276f91de54268e5",
+      "barrier_id": 4200146552,
+      "tags": {
+        "barrier": "gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "7725078",
+      "kind": "stop",
+      "route_id": "7ea47bc5a537addae842",
+      "barrier_id": 13255667796,
+      "tags": {
+        "barrier": "block"
+      }
+    },
+    {
+      "hotel_id": "7725078",
+      "kind": "stop",
+      "route_id": "7ea47bc5a537addae842",
+      "barrier_id": 7563472228,
+      "tags": {
+        "barrier": "lift_gate",
+        "highway": "crossing"
+      }
+    },
+    {
+      "hotel_id": "7725078",
+      "kind": "stop",
+      "route_id": "7ea47bc5a537addae842",
+      "barrier_id": 2915768844,
+      "tags": {
+        "barrier": "block"
+      }
+    },
+    {
+      "hotel_id": "7725078",
+      "kind": "stop",
+      "route_id": "7ea47bc5a537addae842",
+      "barrier_id": 2915768847,
+      "tags": {
+        "barrier": "bollard",
+        "bollard": "fixed",
+        "material": "metal",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "7725078",
+      "kind": "center",
+      "route_id": "48c82692daad9ccd23f3",
+      "barrier_id": 1814289281,
+      "tags": {
+        "barrier": "toll_booth"
+      }
+    },
+    {
+      "hotel_id": "7725078",
+      "kind": "center",
+      "route_id": "48c82692daad9ccd23f3",
+      "barrier_id": 4200146313,
+      "tags": {
+        "access": "private",
+        "barrier": "gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "locked": "yes",
+        "motor_vehicle": "no",
+        "motorcar": "yes",
+        "motorcycle": "yes"
+      }
+    },
+    {
+      "hotel_id": "7725078",
+      "kind": "center",
+      "route_id": "48c82692daad9ccd23f3",
+      "barrier_id": 5844222475,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "7725078",
+      "kind": "center",
+      "route_id": "48c82692daad9ccd23f3",
+      "barrier_id": 5922230605,
+      "tags": {
+        "barrier": "swing_gate",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "7725078",
+      "kind": "center",
+      "route_id": "48c82692daad9ccd23f3",
+      "barrier_id": 4200146552,
+      "tags": {
+        "barrier": "gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "7725078",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "ef99e63aa3aae769288c",
+      "barrier_id": 7563472228,
+      "tags": {
+        "barrier": "lift_gate",
+        "highway": "crossing"
+      }
+    },
+    {
+      "hotel_id": "7725078",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "ef99e63aa3aae769288c",
+      "barrier_id": 2915768844,
+      "tags": {
+        "barrier": "block"
+      }
+    },
+    {
+      "hotel_id": "7725078",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "ef99e63aa3aae769288c",
+      "barrier_id": 2915768847,
+      "tags": {
+        "barrier": "bollard",
+        "bollard": "fixed",
+        "material": "metal",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "7725078",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "ef99e63aa3aae769288c",
+      "barrier_id": 4557213779,
+      "tags": {
+        "barrier": "turnstile",
+        "foot": "private"
+      }
+    },
+    {
+      "hotel_id": "7725078",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "ef99e63aa3aae769288c",
+      "barrier_id": 13255667796,
+      "tags": {
+        "barrier": "block"
+      }
+    },
+    {
+      "hotel_id": "7726257",
+      "kind": "center",
+      "route_id": "a9812b150d86ec2f426f",
+      "barrier_id": 1814289281,
+      "tags": {
+        "barrier": "toll_booth"
+      }
+    },
+    {
+      "hotel_id": "7726257",
+      "kind": "center",
+      "route_id": "a9812b150d86ec2f426f",
+      "barrier_id": 4200146313,
+      "tags": {
+        "access": "private",
+        "barrier": "gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "locked": "yes",
+        "motor_vehicle": "no",
+        "motorcar": "yes",
+        "motorcycle": "yes"
+      }
+    },
+    {
+      "hotel_id": "7726257",
+      "kind": "center",
+      "route_id": "a9812b150d86ec2f426f",
+      "barrier_id": 5844222475,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "7726257",
+      "kind": "center",
+      "route_id": "a9812b150d86ec2f426f",
+      "barrier_id": 5922230605,
+      "tags": {
+        "barrier": "swing_gate",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "7726257",
+      "kind": "center",
+      "route_id": "a9812b150d86ec2f426f",
+      "barrier_id": 4200146552,
+      "tags": {
+        "barrier": "gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "7807617",
+      "kind": "beach",
+      "route_id": "f1947143ba49b5391182",
+      "barrier_id": 663031150,
+      "tags": {
+        "barrier": "lift_gate",
+        "bicycle": "no",
+        "foot": "yes",
+        "motor_vehicle": "private"
+      }
+    },
+    {
+      "hotel_id": "7807617",
+      "kind": "stop",
+      "route_id": "ccf6d7c1c2e0dba4d827",
+      "barrier_id": 663031150,
+      "tags": {
+        "barrier": "lift_gate",
+        "bicycle": "no",
+        "foot": "yes",
+        "motor_vehicle": "private"
+      }
+    },
+    {
+      "hotel_id": "7807617",
+      "kind": "center",
+      "route_id": "ece11bdba48c4d552a55",
+      "barrier_id": 663031150,
+      "tags": {
+        "barrier": "lift_gate",
+        "bicycle": "no",
+        "foot": "yes",
+        "motor_vehicle": "private"
+      }
+    },
+    {
+      "hotel_id": "7807617",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "06d8540d8b03a64ad0b2",
+      "barrier_id": 10864306586,
+      "tags": {
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "7840047",
+      "kind": "beach",
+      "route_id": "8a0fa2e81cecd50cd499",
+      "barrier_id": 9743407645,
+      "tags": {
+        "barrier": "gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "7840047",
+      "kind": "center",
+      "route_id": "28df834cb586b7ca5c37",
+      "barrier_id": 1814289281,
+      "tags": {
+        "barrier": "toll_booth"
+      }
+    },
+    {
+      "hotel_id": "7840047",
+      "kind": "center",
+      "route_id": "28df834cb586b7ca5c37",
+      "barrier_id": 4200146313,
+      "tags": {
+        "access": "private",
+        "barrier": "gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "locked": "yes",
+        "motor_vehicle": "no",
+        "motorcar": "yes",
+        "motorcycle": "yes"
+      }
+    },
+    {
+      "hotel_id": "7840047",
+      "kind": "center",
+      "route_id": "28df834cb586b7ca5c37",
+      "barrier_id": 5844222475,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "7840047",
+      "kind": "center",
+      "route_id": "28df834cb586b7ca5c37",
+      "barrier_id": 5922230605,
+      "tags": {
+        "barrier": "swing_gate",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "7840047",
+      "kind": "center",
+      "route_id": "28df834cb586b7ca5c37",
+      "barrier_id": 4200146552,
+      "tags": {
+        "barrier": "gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "7851188",
+      "kind": "stop",
+      "route_id": "f5df219b78dd010baebc",
+      "barrier_id": 5129364852,
+      "tags": {
+        "access": "yes",
+        "barrier": "lift_gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "horse": "no",
+        "motor_vehicle": "no",
+        "motorcar": "no"
+      }
+    },
+    {
+      "hotel_id": "7851188",
+      "kind": "center",
+      "route_id": "aa83e47c6498a97f5439",
+      "barrier_id": 1814289281,
+      "tags": {
+        "barrier": "toll_booth"
+      }
+    },
+    {
+      "hotel_id": "7851188",
+      "kind": "center",
+      "route_id": "aa83e47c6498a97f5439",
+      "barrier_id": 4200146313,
+      "tags": {
+        "access": "private",
+        "barrier": "gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "locked": "yes",
+        "motor_vehicle": "no",
+        "motorcar": "yes",
+        "motorcycle": "yes"
+      }
+    },
+    {
+      "hotel_id": "7851188",
+      "kind": "center",
+      "route_id": "aa83e47c6498a97f5439",
+      "barrier_id": 5844222475,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "7851188",
+      "kind": "center",
+      "route_id": "aa83e47c6498a97f5439",
+      "barrier_id": 5922230605,
+      "tags": {
+        "barrier": "swing_gate",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "7851188",
+      "kind": "center",
+      "route_id": "aa83e47c6498a97f5439",
+      "barrier_id": 4200146552,
+      "tags": {
+        "barrier": "gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "7851188",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "e3eb203d4ea924cc161b",
+      "barrier_id": 7812435946,
+      "tags": {
+        "barrier": "lift_gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "horse": "no",
+        "motor_vehicle": "private"
+      }
+    },
+    {
+      "hotel_id": "7935886",
+      "kind": "beach",
+      "route_id": "b289e9b7f7f7aecdc2f0",
+      "barrier_id": 7315616179,
+      "tags": {
+        "barrier": "kerb",
+        "kerb": "flush",
+        "tactile_paving": "yes"
+      }
+    },
+    {
+      "hotel_id": "7935886",
+      "kind": "center",
+      "route_id": "e292fe7c85b23f3fca49",
+      "barrier_id": 1814289281,
+      "tags": {
+        "barrier": "toll_booth"
+      }
+    },
+    {
+      "hotel_id": "7935886",
+      "kind": "center",
+      "route_id": "e292fe7c85b23f3fca49",
+      "barrier_id": 4200146313,
+      "tags": {
+        "access": "private",
+        "barrier": "gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "locked": "yes",
+        "motor_vehicle": "no",
+        "motorcar": "yes",
+        "motorcycle": "yes"
+      }
+    },
+    {
+      "hotel_id": "7935886",
+      "kind": "center",
+      "route_id": "e292fe7c85b23f3fca49",
+      "barrier_id": 5844222475,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "7935886",
+      "kind": "center",
+      "route_id": "e292fe7c85b23f3fca49",
+      "barrier_id": 5922230605,
+      "tags": {
+        "barrier": "swing_gate",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "7935886",
+      "kind": "center",
+      "route_id": "e292fe7c85b23f3fca49",
+      "barrier_id": 4200146552,
+      "tags": {
+        "barrier": "gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "8085655",
+      "kind": "center",
+      "route_id": "7c0df4340f5656b648b5",
+      "barrier_id": 1814289281,
+      "tags": {
+        "barrier": "toll_booth"
+      }
+    },
+    {
+      "hotel_id": "8085655",
+      "kind": "center",
+      "route_id": "7c0df4340f5656b648b5",
+      "barrier_id": 4200146313,
+      "tags": {
+        "access": "private",
+        "barrier": "gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "locked": "yes",
+        "motor_vehicle": "no",
+        "motorcar": "yes",
+        "motorcycle": "yes"
+      }
+    },
+    {
+      "hotel_id": "8085655",
+      "kind": "center",
+      "route_id": "7c0df4340f5656b648b5",
+      "barrier_id": 5844222475,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "8085655",
+      "kind": "center",
+      "route_id": "7c0df4340f5656b648b5",
+      "barrier_id": 5922230605,
+      "tags": {
+        "barrier": "swing_gate",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "8085655",
+      "kind": "center",
+      "route_id": "7c0df4340f5656b648b5",
+      "barrier_id": 4200146552,
+      "tags": {
+        "barrier": "gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "8085655",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "4241651aad2c55653ec5",
+      "barrier_id": 7563472228,
+      "tags": {
+        "barrier": "lift_gate",
+        "highway": "crossing"
+      }
+    },
+    {
+      "hotel_id": "8085655",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "4241651aad2c55653ec5",
+      "barrier_id": 2915768844,
+      "tags": {
+        "barrier": "block"
+      }
+    },
+    {
+      "hotel_id": "8085655",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "4241651aad2c55653ec5",
+      "barrier_id": 2915768847,
+      "tags": {
+        "barrier": "bollard",
+        "bollard": "fixed",
+        "material": "metal",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "8085655",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "4241651aad2c55653ec5",
+      "barrier_id": 4557213779,
+      "tags": {
+        "barrier": "turnstile",
+        "foot": "private"
+      }
+    },
+    {
+      "hotel_id": "8085655",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "4241651aad2c55653ec5",
+      "barrier_id": 13255667796,
+      "tags": {
+        "barrier": "block"
+      }
+    },
+    {
+      "hotel_id": "8105660",
+      "kind": "stop",
+      "route_id": "1f7592ba5e832c6e3380",
+      "barrier_id": 13103868708,
+      "tags": {
+        "barrier": "lift_gate",
+        "vehicle": "destination"
+      }
+    },
+    {
+      "hotel_id": "8105660",
+      "kind": "stop",
+      "route_id": "1f7592ba5e832c6e3380",
+      "barrier_id": 678339061,
+      "tags": {
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "8105660",
+      "kind": "stop",
+      "route_id": "1f7592ba5e832c6e3380",
+      "barrier_id": 7801728486,
+      "tags": {
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "8105660",
+      "kind": "center",
+      "route_id": "db348b8846dc8bd10bd9",
+      "barrier_id": 1814289281,
+      "tags": {
+        "barrier": "toll_booth"
+      }
+    },
+    {
+      "hotel_id": "8105660",
+      "kind": "center",
+      "route_id": "db348b8846dc8bd10bd9",
+      "barrier_id": 13103868708,
+      "tags": {
+        "barrier": "lift_gate",
+        "vehicle": "destination"
+      }
+    },
+    {
+      "hotel_id": "8105660",
+      "kind": "center",
+      "route_id": "db348b8846dc8bd10bd9",
+      "barrier_id": 7801728486,
+      "tags": {
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "8105660",
+      "kind": "center",
+      "route_id": "db348b8846dc8bd10bd9",
+      "barrier_id": 4200146313,
+      "tags": {
+        "access": "private",
+        "barrier": "gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "locked": "yes",
+        "motor_vehicle": "no",
+        "motorcar": "yes",
+        "motorcycle": "yes"
+      }
+    },
+    {
+      "hotel_id": "8105660",
+      "kind": "center",
+      "route_id": "db348b8846dc8bd10bd9",
+      "barrier_id": 5844222475,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "8105660",
+      "kind": "center",
+      "route_id": "db348b8846dc8bd10bd9",
+      "barrier_id": 5922230605,
+      "tags": {
+        "barrier": "swing_gate",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "8105660",
+      "kind": "center",
+      "route_id": "db348b8846dc8bd10bd9",
+      "barrier_id": 678339061,
+      "tags": {
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "8105660",
+      "kind": "center",
+      "route_id": "db348b8846dc8bd10bd9",
+      "barrier_id": 4200146552,
+      "tags": {
+        "barrier": "gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "8105660",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "488624e2a39616a78a29",
+      "barrier_id": 13503327264,
+      "tags": {
+        "barrier": "bollard",
+        "bollard": "fixed",
+        "material": "metal"
+      }
+    },
+    {
+      "hotel_id": "8105660",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "488624e2a39616a78a29",
+      "barrier_id": 1398413323,
+      "tags": {
+        "access": "customers",
+        "barrier": "lift_gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "locked": "no",
+        "motor_vehicle": "yes",
+        "motorcar": "yes",
+        "motorcycle": "yes"
+      }
+    },
+    {
+      "hotel_id": "8310146",
+      "kind": "beach",
+      "route_id": "2c0b678812ba53be732f",
+      "barrier_id": 3220071273,
+      "tags": {
+        "access": "private",
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "8310146",
+      "kind": "beach",
+      "route_id": "2c0b678812ba53be732f",
+      "barrier_id": 9218221364,
+      "tags": {
+        "barrier": "lift_gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "motor_vehicle": "private"
+      }
+    },
+    {
+      "hotel_id": "8398222",
+      "kind": "center",
+      "route_id": "06a7544a86f7e02a8aa5",
+      "barrier_id": 1814289281,
+      "tags": {
+        "barrier": "toll_booth"
+      }
+    },
+    {
+      "hotel_id": "8398222",
+      "kind": "center",
+      "route_id": "06a7544a86f7e02a8aa5",
+      "barrier_id": 4200146313,
+      "tags": {
+        "access": "private",
+        "barrier": "gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "locked": "yes",
+        "motor_vehicle": "no",
+        "motorcar": "yes",
+        "motorcycle": "yes"
+      }
+    },
+    {
+      "hotel_id": "8398222",
+      "kind": "center",
+      "route_id": "06a7544a86f7e02a8aa5",
+      "barrier_id": 5844222475,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "8398222",
+      "kind": "center",
+      "route_id": "06a7544a86f7e02a8aa5",
+      "barrier_id": 5922230605,
+      "tags": {
+        "barrier": "swing_gate",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "8398222",
+      "kind": "center",
+      "route_id": "06a7544a86f7e02a8aa5",
+      "barrier_id": 4200146552,
+      "tags": {
+        "barrier": "gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "8417797",
+      "kind": "beach",
+      "route_id": "d3dfef7d4f2374c56f24",
+      "barrier_id": 6705125834,
+      "tags": {
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "8417797",
+      "kind": "beach",
+      "route_id": "d3dfef7d4f2374c56f24",
+      "barrier_id": 759966439,
+      "tags": {
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "8417797",
+      "kind": "center",
+      "route_id": "e633bd03672d29c36a37",
+      "barrier_id": 6705125834,
+      "tags": {
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "8417797",
+      "kind": "center",
+      "route_id": "e633bd03672d29c36a37",
+      "barrier_id": 759966439,
+      "tags": {
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "8417797",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "1543282da5a2dbacd222",
+      "barrier_id": 6705125834,
+      "tags": {
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "8417797",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "1543282da5a2dbacd222",
+      "barrier_id": 759966439,
+      "tags": {
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "8477232",
+      "kind": "center",
+      "route_id": "8e57d09ec38323d6f310",
+      "barrier_id": 1814289281,
+      "tags": {
+        "barrier": "toll_booth"
+      }
+    },
+    {
+      "hotel_id": "8477232",
+      "kind": "center",
+      "route_id": "8e57d09ec38323d6f310",
+      "barrier_id": 4200146313,
+      "tags": {
+        "access": "private",
+        "barrier": "gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "locked": "yes",
+        "motor_vehicle": "no",
+        "motorcar": "yes",
+        "motorcycle": "yes"
+      }
+    },
+    {
+      "hotel_id": "8477232",
+      "kind": "center",
+      "route_id": "8e57d09ec38323d6f310",
+      "barrier_id": 5844222475,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "8477232",
+      "kind": "center",
+      "route_id": "8e57d09ec38323d6f310",
+      "barrier_id": 5922230605,
+      "tags": {
+        "barrier": "swing_gate",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "8477232",
+      "kind": "center",
+      "route_id": "8e57d09ec38323d6f310",
+      "barrier_id": 4200146552,
+      "tags": {
+        "barrier": "gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "8478929",
+      "kind": "beach",
+      "route_id": "2a669c91c870cc51023d",
+      "barrier_id": 13103843758,
+      "tags": {
+        "barrier": "bollard",
+        "bollard": "fixed",
+        "foot": "yes",
+        "material": "metal",
+        "motor_vehicle": "no",
+        "motorcar": "no"
+      }
+    },
+    {
+      "hotel_id": "8478929",
+      "kind": "center",
+      "route_id": "e60aeb8e21fc0a62b284",
+      "barrier_id": 1814289281,
+      "tags": {
+        "barrier": "toll_booth"
+      }
+    },
+    {
+      "hotel_id": "8478929",
+      "kind": "center",
+      "route_id": "e60aeb8e21fc0a62b284",
+      "barrier_id": 4200146313,
+      "tags": {
+        "access": "private",
+        "barrier": "gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "locked": "yes",
+        "motor_vehicle": "no",
+        "motorcar": "yes",
+        "motorcycle": "yes"
+      }
+    },
+    {
+      "hotel_id": "8478929",
+      "kind": "center",
+      "route_id": "e60aeb8e21fc0a62b284",
+      "barrier_id": 5844222475,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "8478929",
+      "kind": "center",
+      "route_id": "e60aeb8e21fc0a62b284",
+      "barrier_id": 5922230605,
+      "tags": {
+        "barrier": "swing_gate",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "8478929",
+      "kind": "center",
+      "route_id": "e60aeb8e21fc0a62b284",
+      "barrier_id": 4200146552,
+      "tags": {
+        "barrier": "gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "8478929",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "09cf23707dc40f4badb6",
+      "barrier_id": 13103843758,
+      "tags": {
+        "barrier": "bollard",
+        "bollard": "fixed",
+        "foot": "yes",
+        "material": "metal",
+        "motor_vehicle": "no",
+        "motorcar": "no"
+      }
+    },
+    {
+      "hotel_id": "8509273",
+      "kind": "beach",
+      "route_id": "af36c41bc8400c38e7d7",
+      "barrier_id": 7315616179,
+      "tags": {
+        "barrier": "kerb",
+        "kerb": "flush",
+        "tactile_paving": "yes"
+      }
+    },
+    {
+      "hotel_id": "8509273",
+      "kind": "center",
+      "route_id": "c31188ddd85b81b4a041",
+      "barrier_id": 1814289281,
+      "tags": {
+        "barrier": "toll_booth"
+      }
+    },
+    {
+      "hotel_id": "8509273",
+      "kind": "center",
+      "route_id": "c31188ddd85b81b4a041",
+      "barrier_id": 4200146313,
+      "tags": {
+        "access": "private",
+        "barrier": "gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "locked": "yes",
+        "motor_vehicle": "no",
+        "motorcar": "yes",
+        "motorcycle": "yes"
+      }
+    },
+    {
+      "hotel_id": "8509273",
+      "kind": "center",
+      "route_id": "c31188ddd85b81b4a041",
+      "barrier_id": 5844222475,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "8509273",
+      "kind": "center",
+      "route_id": "c31188ddd85b81b4a041",
+      "barrier_id": 5922230605,
+      "tags": {
+        "barrier": "swing_gate",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "8509273",
+      "kind": "center",
+      "route_id": "c31188ddd85b81b4a041",
+      "barrier_id": 4200146552,
+      "tags": {
+        "barrier": "gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "8531041",
+      "kind": "beach",
+      "route_id": "d86628b11e8bb5dd1a42",
+      "barrier_id": 4449969471,
+      "tags": {
+        "barrier": "lift_gate",
+        "bicycle": "yes",
+        "foot": "yes"
+      }
+    },
+    {
+      "hotel_id": "8660598",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "21d13835a2ddfff507e6",
+      "barrier_id": 11275458245,
+      "tags": {
+        "access": "private",
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "8660598",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "21d13835a2ddfff507e6",
+      "barrier_id": 11275458244,
+      "tags": {
+        "access": "private",
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "8660598",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "21d13835a2ddfff507e6",
+      "barrier_id": 8953610797,
+      "tags": {
+        "access": "private",
+        "barrier": "block"
+      }
+    },
+    {
+      "hotel_id": "8684678",
+      "kind": "center",
+      "route_id": "4c979fd975578826d0e7",
+      "barrier_id": 2617743664,
+      "tags": {
+        "barrier": "lift_gate",
+        "bicycle": "yes",
+        "foot": "yes"
+      }
+    },
+    {
+      "hotel_id": "8684678",
+      "kind": "center",
+      "route_id": "4c979fd975578826d0e7",
+      "barrier_id": 2617743717,
+      "tags": {
+        "barrier": "lift_gate",
+        "bicycle": "yes",
+        "foot": "yes"
+      }
+    },
+    {
+      "hotel_id": "8684678",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "9edfe7768ad7a3c06c24",
+      "barrier_id": 4467793055,
+      "tags": {
+        "access": "no",
+        "barrier": "chain",
+        "foot": "yes",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "8686129",
+      "kind": "beach",
+      "route_id": "5aa8a92997f7bd113c57",
+      "barrier_id": 3847653720,
+      "tags": {
+        "barrier": "turnstile"
+      }
+    },
+    {
+      "hotel_id": "8686129",
+      "kind": "beach",
+      "route_id": "5aa8a92997f7bd113c57",
+      "barrier_id": 3825112418,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "8707953",
+      "kind": "beach",
+      "route_id": "f2fa2b4e2e2b6ecdccb2",
+      "barrier_id": 6705125834,
+      "tags": {
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "8707953",
+      "kind": "beach",
+      "route_id": "f2fa2b4e2e2b6ecdccb2",
+      "barrier_id": 759966439,
+      "tags": {
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "8707953",
+      "kind": "center",
+      "route_id": "0794c5b3eab9e790c4ae",
+      "barrier_id": 6705125834,
+      "tags": {
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "8707953",
+      "kind": "center",
+      "route_id": "0794c5b3eab9e790c4ae",
+      "barrier_id": 759966439,
+      "tags": {
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "8707953",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "f285414621258c11c67e",
+      "barrier_id": 6705125834,
+      "tags": {
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "8707953",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "f285414621258c11c67e",
+      "barrier_id": 759966439,
+      "tags": {
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "8733095",
+      "kind": "beach",
+      "route_id": "56ff6667e2c2df09de17",
+      "barrier_id": 7476879990,
+      "tags": {
+        "barrier": "block",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "8733095",
+      "kind": "beach",
+      "route_id": "56ff6667e2c2df09de17",
+      "barrier_id": 13729383430,
+      "tags": {
+        "barrier": "gate",
+        "wheelchair": "no"
+      }
+    },
+    {
+      "hotel_id": "8733095",
+      "kind": "center",
+      "route_id": "a38a93a243993548b39c",
+      "barrier_id": 13729383430,
+      "tags": {
+        "barrier": "gate",
+        "wheelchair": "no"
+      }
+    },
+    {
+      "hotel_id": "8734284",
+      "kind": "beach",
+      "route_id": "3ca7322678c464ed8fe0",
+      "barrier_id": 7315616179,
+      "tags": {
+        "barrier": "kerb",
+        "kerb": "flush",
+        "tactile_paving": "yes"
+      }
+    },
+    {
+      "hotel_id": "8734284",
+      "kind": "center",
+      "route_id": "d9fca545f7655e8a32fa",
+      "barrier_id": 1814289281,
+      "tags": {
+        "barrier": "toll_booth"
+      }
+    },
+    {
+      "hotel_id": "8734284",
+      "kind": "center",
+      "route_id": "d9fca545f7655e8a32fa",
+      "barrier_id": 4200146313,
+      "tags": {
+        "access": "private",
+        "barrier": "gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "locked": "yes",
+        "motor_vehicle": "no",
+        "motorcar": "yes",
+        "motorcycle": "yes"
+      }
+    },
+    {
+      "hotel_id": "8734284",
+      "kind": "center",
+      "route_id": "d9fca545f7655e8a32fa",
+      "barrier_id": 5844222475,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "8734284",
+      "kind": "center",
+      "route_id": "d9fca545f7655e8a32fa",
+      "barrier_id": 5922230605,
+      "tags": {
+        "barrier": "swing_gate",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "8734284",
+      "kind": "center",
+      "route_id": "d9fca545f7655e8a32fa",
+      "barrier_id": 4200146552,
+      "tags": {
+        "barrier": "gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "8740393",
+      "kind": "beach",
+      "route_id": "61314f897ac50540182b",
+      "barrier_id": 3655257011,
+      "tags": {
+        "barrier": "gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "8740393",
+      "kind": "beach",
+      "route_id": "61314f897ac50540182b",
+      "barrier_id": 3718585054,
+      "tags": {
+        "barrier": "gate",
+        "bicycle": "yes",
+        "foot": "yes"
+      }
+    },
+    {
+      "hotel_id": "8740393",
+      "kind": "stop",
+      "route_id": "c3c54ccba0f8cab4fd59",
+      "barrier_id": 614130608,
+      "tags": {
+        "barrier": "lift_gate",
+        "bicycle": "no",
+        "foot": "no"
+      }
+    },
+    {
+      "hotel_id": "8740393",
+      "kind": "stop",
+      "route_id": "c3c54ccba0f8cab4fd59",
+      "barrier_id": 3718585054,
+      "tags": {
+        "barrier": "gate",
+        "bicycle": "yes",
+        "foot": "yes"
+      }
+    },
+    {
+      "hotel_id": "8747640",
+      "kind": "center",
+      "route_id": "9519b45db9a1024f5f7b",
+      "barrier_id": 1814289281,
+      "tags": {
+        "barrier": "toll_booth"
+      }
+    },
+    {
+      "hotel_id": "8747640",
+      "kind": "center",
+      "route_id": "9519b45db9a1024f5f7b",
+      "barrier_id": 3017607816,
+      "tags": {
+        "access": "permit",
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "8747640",
+      "kind": "center",
+      "route_id": "9519b45db9a1024f5f7b",
+      "barrier_id": 4200146313,
+      "tags": {
+        "access": "private",
+        "barrier": "gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "locked": "yes",
+        "motor_vehicle": "no",
+        "motorcar": "yes",
+        "motorcycle": "yes"
+      }
+    },
+    {
+      "hotel_id": "8747640",
+      "kind": "center",
+      "route_id": "9519b45db9a1024f5f7b",
+      "barrier_id": 5844222475,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "8747640",
+      "kind": "center",
+      "route_id": "9519b45db9a1024f5f7b",
+      "barrier_id": 5922230605,
+      "tags": {
+        "barrier": "swing_gate",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "8747640",
+      "kind": "center",
+      "route_id": "9519b45db9a1024f5f7b",
+      "barrier_id": 3032408238,
+      "tags": {
+        "access": "private",
+        "barrier": "lift_gate",
+        "bicycle": "yes",
+        "foot": "yes"
+      }
+    },
+    {
+      "hotel_id": "8747640",
+      "kind": "center",
+      "route_id": "9519b45db9a1024f5f7b",
+      "barrier_id": 4200146552,
+      "tags": {
+        "barrier": "gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "8752976",
+      "kind": "center",
+      "route_id": "60887d7c4fa47b31015e",
+      "barrier_id": 1077613515,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "8752976",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "f5f1f66a973d9bc47e0f",
+      "barrier_id": 1077613515,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "8756112",
+      "kind": "beach",
+      "route_id": "461481a6c4d2f8ba7603",
+      "barrier_id": 8759764054,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "8756112",
+      "kind": "stop",
+      "route_id": "0b91df73dac8740c8029",
+      "barrier_id": 8759764054,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "8756112",
+      "kind": "center",
+      "route_id": "9d1cafd5f84d14a1e98c",
+      "barrier_id": 1814289281,
+      "tags": {
+        "barrier": "toll_booth"
+      }
+    },
+    {
+      "hotel_id": "8756112",
+      "kind": "center",
+      "route_id": "9d1cafd5f84d14a1e98c",
+      "barrier_id": 3017607816,
+      "tags": {
+        "access": "permit",
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "8756112",
+      "kind": "center",
+      "route_id": "9d1cafd5f84d14a1e98c",
+      "barrier_id": 4200146313,
+      "tags": {
+        "access": "private",
+        "barrier": "gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "locked": "yes",
+        "motor_vehicle": "no",
+        "motorcar": "yes",
+        "motorcycle": "yes"
+      }
+    },
+    {
+      "hotel_id": "8756112",
+      "kind": "center",
+      "route_id": "9d1cafd5f84d14a1e98c",
+      "barrier_id": 5844222475,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "8756112",
+      "kind": "center",
+      "route_id": "9d1cafd5f84d14a1e98c",
+      "barrier_id": 5922230605,
+      "tags": {
+        "barrier": "swing_gate",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "8756112",
+      "kind": "center",
+      "route_id": "9d1cafd5f84d14a1e98c",
+      "barrier_id": 3032408238,
+      "tags": {
+        "access": "private",
+        "barrier": "lift_gate",
+        "bicycle": "yes",
+        "foot": "yes"
+      }
+    },
+    {
+      "hotel_id": "8756112",
+      "kind": "center",
+      "route_id": "9d1cafd5f84d14a1e98c",
+      "barrier_id": 8759764054,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "8756112",
+      "kind": "center",
+      "route_id": "9d1cafd5f84d14a1e98c",
+      "barrier_id": 4200146552,
+      "tags": {
+        "barrier": "gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "8756112",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "f0ca85fe65db90f20284",
+      "barrier_id": 8759764054,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "8846754",
+      "kind": "center",
+      "route_id": "2bd34cdbb7f481f638ef",
+      "barrier_id": 1814289281,
+      "tags": {
+        "barrier": "toll_booth"
+      }
+    },
+    {
+      "hotel_id": "8846754",
+      "kind": "center",
+      "route_id": "2bd34cdbb7f481f638ef",
+      "barrier_id": 4200146313,
+      "tags": {
+        "access": "private",
+        "barrier": "gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "locked": "yes",
+        "motor_vehicle": "no",
+        "motorcar": "yes",
+        "motorcycle": "yes"
+      }
+    },
+    {
+      "hotel_id": "8846754",
+      "kind": "center",
+      "route_id": "2bd34cdbb7f481f638ef",
+      "barrier_id": 5844222475,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "8846754",
+      "kind": "center",
+      "route_id": "2bd34cdbb7f481f638ef",
+      "barrier_id": 5922230605,
+      "tags": {
+        "barrier": "swing_gate",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "8846754",
+      "kind": "center",
+      "route_id": "2bd34cdbb7f481f638ef",
+      "barrier_id": 4200146552,
+      "tags": {
+        "barrier": "gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "8853896",
+      "kind": "center",
+      "route_id": "19746d9336f8d6d45c1b",
+      "barrier_id": 1229511456,
+      "tags": {
+        "barrier": "gate",
+        "bicycle": "dismount",
+        "foot": "yes",
+        "vehicle": "permissive"
+      }
+    },
+    {
+      "hotel_id": "8869683",
+      "kind": "stop",
+      "route_id": "1f075025d9605cd5854c",
+      "barrier_id": 12610356664,
+      "tags": {
+        "barrier": "lift_gate",
+        "motor_vehicle": "private"
+      }
+    },
+    {
+      "hotel_id": "8869683",
+      "kind": "center",
+      "route_id": "5c846db4ae9e14a7516d",
+      "barrier_id": 12610356664,
+      "tags": {
+        "barrier": "lift_gate",
+        "motor_vehicle": "private"
+      }
+    },
+    {
+      "hotel_id": "8869683",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "08cfca33cdd32a07c860",
+      "barrier_id": 12610356664,
+      "tags": {
+        "barrier": "lift_gate",
+        "motor_vehicle": "private"
+      }
+    },
+    {
+      "hotel_id": "8877049",
+      "kind": "center",
+      "route_id": "0fafc30138d2dcd5ac1c",
+      "barrier_id": 1814289281,
+      "tags": {
+        "barrier": "toll_booth"
+      }
+    },
+    {
+      "hotel_id": "8877049",
+      "kind": "center",
+      "route_id": "0fafc30138d2dcd5ac1c",
+      "barrier_id": 4200146313,
+      "tags": {
+        "access": "private",
+        "barrier": "gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "locked": "yes",
+        "motor_vehicle": "no",
+        "motorcar": "yes",
+        "motorcycle": "yes"
+      }
+    },
+    {
+      "hotel_id": "8877049",
+      "kind": "center",
+      "route_id": "0fafc30138d2dcd5ac1c",
+      "barrier_id": 5844222475,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "8877049",
+      "kind": "center",
+      "route_id": "0fafc30138d2dcd5ac1c",
+      "barrier_id": 5922230605,
+      "tags": {
+        "barrier": "swing_gate",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "8877049",
+      "kind": "center",
+      "route_id": "0fafc30138d2dcd5ac1c",
+      "barrier_id": 4200146552,
+      "tags": {
+        "barrier": "gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "9742403",
+      "kind": "stop",
+      "route_id": "52cd59fc3147a4fd33cd",
+      "barrier_id": 2181596143,
+      "tags": {
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "9742403",
+      "kind": "mapped_dog_area_candidate",
+      "route_id": "8a372ea0461a6394fb2f",
+      "barrier_id": 2181596143,
+      "tags": {
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "9769189",
+      "kind": "center",
+      "route_id": "fc7a53f55c600d4d32b2",
+      "barrier_id": 1814289281,
+      "tags": {
+        "barrier": "toll_booth"
+      }
+    },
+    {
+      "hotel_id": "9769189",
+      "kind": "center",
+      "route_id": "fc7a53f55c600d4d32b2",
+      "barrier_id": 3017607816,
+      "tags": {
+        "access": "permit",
+        "barrier": "lift_gate"
+      }
+    },
+    {
+      "hotel_id": "9769189",
+      "kind": "center",
+      "route_id": "fc7a53f55c600d4d32b2",
+      "barrier_id": 4200146313,
+      "tags": {
+        "access": "private",
+        "barrier": "gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "locked": "yes",
+        "motor_vehicle": "no",
+        "motorcar": "yes",
+        "motorcycle": "yes"
+      }
+    },
+    {
+      "hotel_id": "9769189",
+      "kind": "center",
+      "route_id": "fc7a53f55c600d4d32b2",
+      "barrier_id": 5844222475,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "9769189",
+      "kind": "center",
+      "route_id": "fc7a53f55c600d4d32b2",
+      "barrier_id": 5922230605,
+      "tags": {
+        "barrier": "swing_gate",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "9769189",
+      "kind": "center",
+      "route_id": "fc7a53f55c600d4d32b2",
+      "barrier_id": 3032408238,
+      "tags": {
+        "access": "private",
+        "barrier": "lift_gate",
+        "bicycle": "yes",
+        "foot": "yes"
+      }
+    },
+    {
+      "hotel_id": "9769189",
+      "kind": "center",
+      "route_id": "fc7a53f55c600d4d32b2",
+      "barrier_id": 4200146552,
+      "tags": {
+        "barrier": "gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "9829023",
+      "kind": "beach",
+      "route_id": "506320079d35b7618f3b",
+      "barrier_id": 13103843758,
+      "tags": {
+        "barrier": "bollard",
+        "bollard": "fixed",
+        "foot": "yes",
+        "material": "metal",
+        "motor_vehicle": "no",
+        "motorcar": "no"
+      }
+    },
+    {
+      "hotel_id": "9829023",
+      "kind": "center",
+      "route_id": "592ff69390bfa5e2be85",
+      "barrier_id": 1814289281,
+      "tags": {
+        "barrier": "toll_booth"
+      }
+    },
+    {
+      "hotel_id": "9829023",
+      "kind": "center",
+      "route_id": "592ff69390bfa5e2be85",
+      "barrier_id": 4200146313,
+      "tags": {
+        "access": "private",
+        "barrier": "gate",
+        "bicycle": "yes",
+        "foot": "yes",
+        "locked": "yes",
+        "motor_vehicle": "no",
+        "motorcar": "yes",
+        "motorcycle": "yes"
+      }
+    },
+    {
+      "hotel_id": "9829023",
+      "kind": "center",
+      "route_id": "592ff69390bfa5e2be85",
+      "barrier_id": 5844222475,
+      "tags": {
+        "barrier": "gate"
+      }
+    },
+    {
+      "hotel_id": "9829023",
+      "kind": "center",
+      "route_id": "592ff69390bfa5e2be85",
+      "barrier_id": 5922230605,
+      "tags": {
+        "barrier": "swing_gate",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "9829023",
+      "kind": "center",
+      "route_id": "592ff69390bfa5e2be85",
+      "barrier_id": 4200146552,
+      "tags": {
+        "barrier": "gate",
+        "locked": "yes",
+        "motor_vehicle": "no"
+      }
+    },
+    {
+      "hotel_id": "9986868",
+      "kind": "beach",
+      "route_id": "0c96b8da63708225eb91",
+      "barrier_id": 7476879990,
+      "tags": {
+        "barrier": "block",
+        "motor_vehicle": "no"
+      }
+    }
+  ]
+}

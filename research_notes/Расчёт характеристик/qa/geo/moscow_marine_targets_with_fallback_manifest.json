@@ -1,0 +1,19 @@
+{
+  "city_id": "moscow",
+  "built_at": "2026-10-24T13:36:29.822283+00:00",
+  "selection_rule_version": "V9-marine-reference-target-1",
+  "input_selected_targets_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "input_classifications_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "result_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "result_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/moscow_marine_targets_with_fallback.jsonl",
+  "script_sha256": "a51c3ee416361da8e8a1c8a23016aee42e1cae40a16f79c889acec5e9cb7eabe",
+  "hotel_denominator": 50,
+  "walk_selected_preserved": 0,
+  "new_physical_reference_only_targets": 0,
+  "result_targets": 0,
+  "delta": [],
+  "network_requests": 0,
+  "seconds": 0.01502387500659097,
+  "no_canonical_artifacts_changed": true,
+  "limitation": "This supplemental target is not a legal walking route or hotel partner beach. Current OSM private/no/customers tags are excluded, missing admission/season policy remains unknown."
+}

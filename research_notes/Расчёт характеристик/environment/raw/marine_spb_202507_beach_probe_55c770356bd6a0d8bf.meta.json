@@ -1,0 +1,23 @@
+{
+  "requested_at": "2026-10-24T13:39:49.897862+00:00",
+  "finished_at": "2026-10-24T13:39:51.998456+00:00",
+  "url": "https://marine-api.open-meteo.com/v1/marine?latitude=59.98097075%2C59.885237550000014%2C59.89987025&longitude=30.200702262881414%2C29.939732339530426%2C30.210041938468386&start_date=2025-07-01&end_date=2025-07-31&hourly=sea_surface_temperature&models=meteofrance_currents&cell_selection=sea&timezone=UTC",
+  "http_status": 200,
+  "bytes": 54455,
+  "sha256": "7ff8a579bd7b8970e54be3541dcd850c787faa298ba4588e75b65751b314e013",
+  "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/environment/raw/marine_spb_202507_beach_probe_55c770356bd6a0d8bf.json",
+  "params": {
+    "latitude": "59.98097075,59.885237550000014,59.89987025",
+    "longitude": "30.200702262881414,29.939732339530426,30.210041938468386",
+    "start_date": "2025-07-01",
+    "end_date": "2025-07-31",
+    "hourly": "sea_surface_temperature",
+    "models": "meteofrance_currents",
+    "cell_selection": "sea",
+    "timezone": "UTC"
+  },
+  "n_locations": 3,
+  "conservative_weight_estimate": 6.642857142857143,
+  "license": "CC BY4.0; D22hackathonfreeAPI; productionpaidplan/selfhost required",
+  "elapsed_s": 2.1008140000049025
+}

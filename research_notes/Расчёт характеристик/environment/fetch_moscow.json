@@ -1,0 +1,59 @@
+{
+  "city_id": "moscow",
+  "at": "2026-10-24T13:15:58.451949+00:00",
+  "runtime_s": 168.42699933299446,
+  "hotel_count": 50,
+  "cells": [
+    [
+      55.5,
+      37.25
+    ],
+    [
+      55.5,
+      37.5
+    ],
+    [
+      55.5,
+      37.75
+    ],
+    [
+      55.75,
+      37.25
+    ],
+    [
+      55.75,
+      37.5
+    ],
+    [
+      55.75,
+      37.75
+    ],
+    [
+      56.0,
+      37.25
+    ],
+    [
+      56.0,
+      37.5
+    ],
+    [
+      56.0,
+      37.75
+    ]
+  ],
+  "counts": {
+    "http_200": 60
+  },
+  "new_conservative_weight_estimate": 1176.4285714285718,
+  "months": [
+    7,
+    11
+  ],
+  "period": [
+    1991,
+    2020
+  ],
+  "model": "ERA5 0.25 degree",
+  "timezone_policy": "fixed current local standard offset; no historical DST; explicitly retained",
+  "temperature_downscaling": false
+}

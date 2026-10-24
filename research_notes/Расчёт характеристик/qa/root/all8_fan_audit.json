@@ -1,0 +1,167 @@
+{
+  "at": "2026-10-24T14:10:42.667864+00:00",
+  "passed": true,
+  "cities": [
+    {
+      "city_id": "sochi",
+      "passports": 108825,
+      "unique_ids": 108825,
+      "features": {
+        "V01": 4353,
+        "V02": 4353,
+        "V03": 4353,
+        "V04": 4353,
+        "V05": 26118,
+        "V06": 4353,
+        "S01": 26118,
+        "S02": 26118,
+        "S03": 8706
+      },
+      "fan_cells": 4353,
+      "file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/sochi_fan_facts.jsonl.gz",
+      "sha256": "87610d1a7325ccdcd80f2d4a4945102a4960570d0c7204123b258091ecf68bfc",
+      "bytes": 5411452,
+      "passed": true
+    },
+    {
+      "city_id": "moscow",
+      "passports": 53525,
+      "unique_ids": 53525,
+      "features": {
+        "V01": 2141,
+        "V02": 2141,
+        "V03": 2141,
+        "V04": 2141,
+        "V05": 12846,
+        "V06": 2141,
+        "S01": 12846,
+        "S02": 12846,
+        "S03": 4282
+      },
+      "fan_cells": 2141,
+      "file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/moscow_fan_facts.jsonl.gz",
+      "sha256": "f24addc41fa64101d2c2de4db0ca1d13bcae8e83af4918c37f83df8216f364d7",
+      "bytes": 2642836,
+      "passed": true
+    },
+    {
+      "city_id": "spb",
+      "passports": 144775,
+      "unique_ids": 144775,
+      "features": {
+        "V01": 5791,
+        "V02": 5791,
+        "V03": 5791,
+        "V04": 5791,
+        "V05": 34746,
+        "V06": 5791,
+        "S01": 34746,
+        "S02": 34746,
+        "S03": 11582
+      },
+      "fan_cells": 5791,
+      "file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/spb_fan_facts.jsonl.gz",
+      "sha256": "23170a5c9086b5cd643039753aaace1521963f4a4328d35683aff26b40186b9f",
+      "bytes": 7186830,
+      "passed": true
+    },
+    {
+      "city_id": "kazan",
+      "passports": 57450,
+      "unique_ids": 57450,
+      "features": {
+        "V01": 2298,
+        "V02": 2298,
+        "V03": 2298,
+        "V04": 2298,
+        "V05": 13788,
+        "V06": 2298,
+        "S01": 13788,
+        "S02": 13788,
+        "S03": 4596
+      },
+      "fan_cells": 2298,
+      "file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/kazan_fan_facts.jsonl.gz",
+      "sha256": "5507c27b455c38bb69cab74f4a2710570911d3989616d39af7f743ff75700d0d",
+      "bytes": 2838062,
+      "passed": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "passports": 17550,
+      "unique_ids": 17550,
+      "features": {
+        "V01": 702,
+        "V02": 702,
+        "V03": 702,
+        "V04": 702,
+        "V05": 4212,
+        "V06": 702,
+        "S01": 4212,
+        "S02": 4212,
+        "S03": 1404
+      },
+      "fan_cells": 702,
+      "file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/kaliningrad_fan_facts.jsonl.gz",
+      "sha256": "da0c575582bd8d30f7a1529ec6cd4680134bee5c19a626c7171c356ca534640f",
+      "bytes": 872116,
+      "passed": true
+    },
+    {
+      "city_id": "minsk",
+      "passports": 0,
+      "unique_ids": 0,
+      "features": {},
+      "fan_cells": 0,
+      "file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/minsk_fan_facts.jsonl.gz",
+      "sha256": "6e436bda3b84721d06f687f714c0c299391d5b00cc8282ca7748fea2a1ded8dd",
+      "bytes": 47,
+      "passed": true
+    },
+    {
+      "city_id": "istanbul",
+      "passports": 150,
+      "unique_ids": 150,
+      "features": {
+        "V01": 6,
+        "V02": 6,
+        "V03": 6,
+        "V04": 6,
+        "V05": 36,
+        "V06": 6,
+        "S01": 36,
+        "S02": 36,
+        "S03": 12
+      },
+      "fan_cells": 6,
+      "file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/istanbul_fan_facts.jsonl.gz",
+      "sha256": "9454ce246b92034407c61d3a98b4ff9aa900ffb31f0bd7363d52dc74709bd889",
+      "bytes": 8714,
+      "passed": true
+    },
+    {
+      "city_id": "dubai",
+      "passports": 6750,
+      "unique_ids": 6750,
+      "features": {
+        "V01": 270,
+        "V02": 270,
+        "V03": 270,
+        "V04": 270,
+        "V05": 1620,
+        "V06": 270,
+        "S01": 1620,
+        "S02": 1620,
+        "S03": 540
+      },
+      "fan_cells": 270,
+      "file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/dubai_fan_facts.jsonl.gz",
+      "sha256": "80913c7e8149224efc3e62c2b490f434043cc355455d0df61bcc448bf6644ae7",
+      "bytes": 332276,
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "total_passports": 389025,
+  "scope": "All issued compressed fan passports checked. Structural reproducibility, not physical accuracy or evidence that an existing window is at a synthetic facade point."
+}

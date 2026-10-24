@@ -1,0 +1,63 @@
+{
+  "city_id": "kazan",
+  "version": "v9.2.facades",
+  "code_sha256": "14b8c3ea8f4791400fa7cf0ebe5788992f2d16b03f2029de4ac85bf80c3108a6",
+  "frozen_at_utc": "2026-10-24T14:10:19.767110+00:00",
+  "files": [
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/kazan_fan.jsonl",
+      "sha256": "e59dcad2bc7457422d810d124d68ad521bb4b4ebec90b7ffead703318ad843de",
+      "bytes": 18329171
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/kazan_geometry_quality.jsonl",
+      "sha256": "0072cf199f85059903c66748ca491f0b05b976155fde0943f71e89e512dfb735",
+      "bytes": 45152
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/kazan_summary.json",
+      "sha256": "b00b355c6f47b4216a9b70dd402ca102f5ada7bf42b3687f118fa9b2932f339b",
+      "bytes": 2804
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/kazan_ota_comparisons.jsonl",
+      "sha256": "4df9177ff8a169ab2263b4429a48c40d12119635a8ee04d03aa9d7835a0f5749",
+      "bytes": 699
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/kazan_building_facts.jsonl",
+      "sha256": "78aeb7e745aa74591ffd480b482a36c1b6d0a566709eb46af1e98793b452b430",
+      "bytes": 78167
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/kazan_diagnostics.jsonl",
+      "sha256": "780d6741a2f37489b2e29870f8e25ea058b2a2913b6483d6fbd31f56da3a4b65",
+      "bytes": 166813
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/kazan_building_matches.jsonl",
+      "sha256": "e8ec72a6766d7a6553d490d75375fcd07ebb6774f59f4906e8114f12ede22a00",
+      "bytes": 105132
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/kazan_target_components.jsonl",
+      "sha256": "7114b2e73cc597e2285f09d9de4b0e7358d1c187ebe1010b64e7aea496d0bec5",
+      "bytes": 163568
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/kazan_facts.jsonl",
+      "sha256": "949ef50b629cd9ce6171211a8c4f4766323b3821c5134997a03a483ef0748c22",
+      "bytes": 1273739
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/kazan_fan_facts.jsonl.gz",
+      "sha256": "5507c27b455c38bb69cab74f4a2710570911d3989616d39af7f743ff75700d0d",
+      "bytes": 2838062
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/facades/kazan_output_checks.json",
+      "sha256": "b2dcd153ab914765edb59b88a0301d70f7e483528d88dc3ba91d2161b861cf83",
+      "bytes": 1527
+    }
+  ]
+}

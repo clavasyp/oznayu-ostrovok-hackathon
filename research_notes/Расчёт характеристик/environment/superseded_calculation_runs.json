@@ -1,0 +1,29 @@
+{
+  "scope": "Known superseded accepted/interim calculator runs with retained runtime evidence; earlier development runs are not exhaustively instrumented.",
+  "runs": [
+    {
+      "city_id": "sochi",
+      "version": "v9.1 accepted intermediate",
+      "runtime_s": 13.808481832995312,
+      "family_runtime_s": {
+        "E": 7.1261276669974905,
+        "C": 4.936794708002708,
+        "B_and_other_gates": 1.6661282919958467
+      },
+      "source_summary": "checkpoints/sochi_v9_1_environment/results/environment/sochi_summary.json",
+      "result_sha256": "d711dd7e54be80be7c3168be8e49bcaaaef995dc809eac32e80ae1454371b262"
+    },
+    {
+      "city_id": "istanbul",
+      "version": "initial compute before native landpoint QA fix",
+      "runtime_s": 7.40769929200178,
+      "family_runtime_s": {
+        "E": 3.9348552500014193,
+        "C": 2.7275113340001553,
+        "B_and_other_gates": 0.7014624170114985
+      },
+      "result_sha256": "e93ec40c93aa5d420d4d570a07151c932ecd79f049dac28d0cbc158a6d48e0c0",
+      "evidence": "Observed exec session26168 final JSON; superseded by6c277421…"
+    }
+  ]
+}

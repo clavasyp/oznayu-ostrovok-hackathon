@@ -1,0 +1,78 @@
+{
+  "scope": "Geo owner final V9.3 implementation/measurement memo; 29 canonical feature IDs, all8 cities; no OTA HTTP.",
+  "hotel_denominator": 439,
+  "unique_hotel_feature_pairs": 12731,
+  "geo_fact_rows": 22417,
+  "cohort_file": "research_notes/Расчёт характеристик/cohort/hotels.jsonl",
+  "cohort_limitation": "Sochi89actualMID; cached evidence cannot yield requested100/allD28subzones (Dagomys lacks a valid entity). Other7 exactlyV5 50 each. No invented IDs/addresses/coordinates.",
+  "calculator_source_sha256": "e575c51e28cbc3905eadb4e4d628005b9fad99031301a741d0477c80e73473ad",
+  "seven_city_summary": "research_notes/Расчёт характеристик/qa/geo/seven_city_summary.json",
+  "seven_city_contract_checks": "14/14 for each city; source archives/native int node IDs/effective graph sources verified. Not empirical accuracy.",
+  "sochi_statuses": {
+    "computed": 739,
+    "unknown": 2514,
+    "estimate": 1306
+  },
+  "sochi_runtime": {
+    "original_full_calculation_seconds": 23.669603374990402,
+    "scope": "Original accepted run retained; not relabelled as repaired full-run timing.",
+    "corrected_graph_single_case_delta_seconds": 5.523947207999299,
+    "repair_publication_seconds": 0.5547828749986365,
+    "full_corrected_all89_reselection_seconds": 13.480215290997876,
+    "full_readonly_snap_and_reselection_seconds": 19.460728833000758
+  },
+  "sochi_final_repair_report": "research_notes/Расчёт характеристик/qa/geo/sochi_F01_node_repair_report.json",
+  "sochi_semantic_delta": "Exactlytwo seasonal F01 rows MID10595288: sameplayground node4920379521;583.884354181755→501.7636126196188m, route73af7e2964512f95c601→e0a0f137473c41e0b9d2. Pureaccess=no node655271566 excluded. Lower estimate reflects targetre-snap; entrances/connectors unverified.",
+  "sochi_trace_validation": {
+    "selected_routes": 652,
+    "all_traces_match_corrected_full_reselection_exactly": true,
+    "all_new_restricted_node_contacts": 0,
+    "all_origins_and_candidates_snap_audited": {
+      "hotel_origin": 89,
+      "all_POIs_including_unselected_candidates": 18378,
+      "all_transport_stops": 1318,
+      "all_marine_graph_contacts": 1916
+    },
+    "other_passports_byte_unchanged": 4557
+  },
+  "important_semantics": [
+    "N02 buildingfootprint→eligible busyroadaxis, peracceptedbuilding, nothotelpoint/window/noise dB; active-mapped rail N03 excludesdisused/construction.",
+    "N04 countsacceptedcached OSMtypes within300m only;zero isnotrealabsence.",
+    "Routinguses shared OSMnodes, explicitway/node restrictions and noautomaticgeometriccrossingjoins. Estimatesretainunverifiedhotel/targetconnectors.",
+    "W01qualifiesmappedmarine beach byexplicitcoastline adjacency≤25m, excludesprivate/no/customers; river/lake beachnevermarinefallback.",
+    "W04-D18-DSM isresearchsurfaceascentestimate, notcanonicalDTM. Bothgroundprofile recipesrejected; tilelicence/SHA/URLsretained.",
+    "W05known0stairsdoesnotprove stepfree; A01unknownwithoutallconstraints. Q03zero denominator unknown; missinglightingpartpreserved.",
+    "P03unknown: mapdog_park alone cannotreplaceconfirmedentrance/publicadmission/animal/leash/seasonpolicy. Separate routecomponentkept;7cityaudit no completepubliccandidate.",
+    "Futurehours evaluateexactlocalinstant; optionalnext_changeomitted. DubaiunsupportedAE calendarfallbackonlywithoutPH/SH, timezoneunchanged;PH/SHunknown.",
+    "T01–T03remainunknown: noacceptedcompletecurrentoperator/dateitinerary. GTFSinactivecalendarisnotnoactualtransport.",
+    "X/Q crime/crash/acoustic/mobilefeatures remainunknown withoutmandatorylicensedcompleteinputs, no proxy substitutions.",
+    "Marinephysicalreference fallback servesB02only, independentlyofwalkconnectivity. Nearestacceptednon-private/no/customerspolygon canbeveryfar; notaccessible/partnerbeach assertion."
+  ],
+  "validation_limits": {
+    "independent_geo_reference_cases": 10,
+    "full_feature_independent_gold": 0,
+    "current_independent_business_hours_components": 2,
+    "component_tp": 1,
+    "component_fp": 1,
+    "component_precision": 0.5,
+    "recall": null,
+    "purpose": "Selectedsourceconflictcases notheldoutrepresentativeaccuracy; OSMselftraces notgold. Syntheticcontracts/regressions areimplementationchecks."
+  },
+  "provenance": {
+    "code_versions": "research_notes/Расчёт характеристик/qa/geo/code_versions",
+    "V1_helpers_unchanged_during_seven_city_queue": true,
+    "Dubai_v2_captures_exactcode_beforeimport_andchecks_end": true,
+    "unsuccessful_Moscow_attempts_disclosed": true,
+    "established_second_Moscow_blocker": "Rust OpeningHours.next_change unboundedoptionaldiagnostic; earlierpersistentmemoryhypothesis superseded.",
+    "cached_PBF_raster_reused": true,
+    "geo_network_requests": 0
+  },
+  "files": {
+    "P03audit": "research_notes/Расчёт характеристик/qa/geo/P03_seven_city_policy_audit.json",
+    "AEexpectedtests": "research_notes/Расчёт характеристик/qa/geo/opening_point_cache_v2_checks.json",
+    "memoryequivalence": "research_notes/Расчёт характеристик/qa/geo/memory_container_equivalence.json",
+    "references": "research_notes/Расчёт характеристик/qa/geo/reference_cases.jsonl",
+    "hardwarequeue": "research_notes/Расчёт характеристик/qa/geo/hardware_queue_progress.json"
+  },
+  "no_newer_tasks_taken": true
+}

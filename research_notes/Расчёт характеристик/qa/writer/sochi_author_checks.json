@@ -1,0 +1,31 @@
+{
+  "at": "2026-10-24T14:35:53.368217+00:00",
+  "report": "/Users/turgov/Хакатон/reports/Расчёт характеристик — Сочи.md",
+  "sha256": "814ee039d2d29b437899a31bc33befdbe058c0c2692c67f18858e4078f91a049",
+  "bytes": 97428,
+  "lines": 340,
+  "words": 7620,
+  "checks": {
+    "54_coverage_rows_exact": true,
+    "26_prefill_rows_exact": true,
+    "21_example_passports_exist": true,
+    "21_maps": true,
+    "7_sections": true,
+    "7_decisions": true,
+    "local_links_exist": true,
+    "not_DRAFT_HOLD": true,
+    "address_repair_explicit": true,
+    "Q03_scope_explicit": true,
+    "marine_scope_preserved": true,
+    "root_integration_passed": true,
+    "final_quality_passed": true,
+    "accepted_original_unchanged": true
+  },
+  "coverage_errors": [],
+  "missing_links": [],
+  "source_freeze": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/writer/sochi_source_freeze.json",
+  "source_freeze_sha256": "5404888bff563366e24720f6c255d5091368e74835ec68595f006a81eed2c53f",
+  "author_full_review": true,
+  "status": "PASSED",
+  "root_review": "required"
+}

@@ -1,0 +1,206 @@
+{
+  "city_id": "sochi",
+  "hotels": 89,
+  "graph_nodes": 394464,
+  "graph_edges": 408751,
+  "load_seconds": 4.956040792007116,
+  "input_manifest": {
+    "built_at": "2026-10-24T02:11:41.889278+00:00",
+    "source_file": "/Users/turgov/Хакатон/research_notes/Аудит данных 8 городов/raw/russia_southern-fed-district.osm.pbf",
+    "source_date": "2026-10-22T20:21:33Z",
+    "bbox": [
+      39.15,
+      43.35,
+      40.5,
+      44.05
+    ],
+    "rows": 258134,
+    "geometry_errors_region": 0,
+    "seconds": 40.32629695899959,
+    "sha256": "a7f6613e969c41ecee2e4fa20fef4f9b40758f84b6552d008628f80ee1f18133",
+    "bytes": 154187579,
+    "license": "ODbL1.0",
+    "license_url": "https://www.openstreetmap.org/copyright",
+    "new_network_requests": 0,
+    "limitations": "First vertex candidate filter can miss large polygons crossing bbox with starting vertex outside; ordinary local roads/buildings within bbox covered; not complete official municipal inventory.",
+    "input_files": [
+      {
+        "snapshot_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/cohort/osm_sochi_extended.jsonl",
+        "sha256": "096c311507e0233200dbf5b458e53564a44ac7f10a7fb9644581257781b785f7"
+      },
+      {
+        "snapshot_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/cohort/osm_sochi_pure_restriction_nodes.jsonl",
+        "sha256": "bb5b1f32bdb985f9d8b02c77f95f0ebe082a8f6e17c3ceb4d5c2e744065f9030"
+      }
+    ],
+    "sha256_kind": "composite SHA256 of ordered input path+SHA manifests, not file hash",
+    "pure_node_supplement": {
+      "city_id": "sochi",
+      "source_file": "/Users/turgov/Хакатон/research_notes/Аудит данных 8 городов/raw/russia_southern-fed-district.osm.pbf",
+      "source_date": "2026-10-22T20:21:33Z",
+      "snapshot_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/cohort/osm_sochi_pure_restriction_nodes.jsonl",
+      "bbox": [
+        39.15,
+        43.35,
+        40.5,
+        44.05
+      ],
+      "records": 20,
+      "bytes": 5670,
+      "sha256": "bb5b1f32bdb985f9d8b02c77f95f0ebe082a8f6e17c3ceb4d5c2e744065f9030",
+      "seconds": 1.4807557919993997,
+      "built_at": "2026-10-24T13:16:26.308905+00:00",
+      "license": "ODbL1.0",
+      "license_url": "https://www.openstreetmap.org/copyright",
+      "new_http_requests": 0,
+      "method": "Node-only PBF filter barrier/access/foot/locked; exclude all nodes selected by V4KEYS. No geometry/identity inference."
+    },
+    "source_pbf_sha256": "242254bbd0c250e4fab8c1b70e77d6ff6ccfa6dde9498134e0019698cf6f2ee6"
+  },
+  "no_new_http_requests": true,
+  "blocked_pedestrian_nodes": 1963,
+  "blocked_node_policy": "explicit foot/access restrictions and unresolved conditional nodes; locked gates without explicit foot permission. Bollard alone is not blocked.",
+  "gtfs_calendar_checks": [],
+  "marine_beach_gate": {
+    "method_version": "marine-adjacency-v1",
+    "tolerance_m": 25,
+    "coastline_segments": 142,
+    "mapped_beaches": 174,
+    "accepted_geometry_count": 157,
+    "eligible_graph_contact_candidates": 1915,
+    "rejected_meaning": "marine_adjacency_unconfirmed, not proof that the beach is river/lake"
+  },
+  "center_target": {
+    "osm_node_id": 4758135895,
+    "coordinates": [
+      39.7230602,
+      43.5851489
+    ],
+    "selection_reference_coordinates": [
+      39.7231,
+      43.5855
+    ],
+    "reference_to_node_m": 39.14087564057043,
+    "selection_rule": "nearest node to reference center in largest connected mapped pedestrian network component",
+    "component_nodes": 361900,
+    "meaning": "An explicit chosen point near the center, not an implicit administrative center or hotel entrance."
+  },
+  "total_seconds": 13.382145791998482,
+  "family_seconds": {
+    "N": 0.16155162393988576,
+    "W_A_Q03": 5.8639621680631535,
+    "L_F_P_R04": 2.0520515439857263,
+    "T_R05_Q_X": 0.007576584015623666
+  },
+  "facts": 4559,
+  "unique_hotel_feature_pairs": 2581,
+  "statuses": {
+    "computed": 739,
+    "unknown": 2514,
+    "estimate": 1306
+  },
+  "result_bytes": 19198012,
+  "feature_counts": {
+    "N01": {
+      "unknown": 89
+    },
+    "N02": {
+      "computed": 68,
+      "unknown": 31
+    },
+    "N03": {
+      "computed": 68,
+      "unknown": 31
+    },
+    "N04": {
+      "computed": 89
+    },
+    "W01": {
+      "estimate": 172,
+      "unknown": 6
+    },
+    "W02": {
+      "estimate": 170,
+      "unknown": 8
+    },
+    "W03": {
+      "estimate": 164,
+      "unknown": 14
+    },
+    "W04": {
+      "estimate": 166,
+      "unknown": 12
+    },
+    "W05": {
+      "computed": 174,
+      "unknown": 4
+    },
+    "W06": {
+      "computed": 174,
+      "unknown": 4
+    },
+    "T01": {
+      "unknown": 178
+    },
+    "T02": {
+      "unknown": 178
+    },
+    "T03": {
+      "unknown": 178
+    },
+    "L01": {
+      "estimate": 164,
+      "unknown": 14
+    },
+    "L02": {
+      "unknown": 178
+    },
+    "L03": {
+      "estimate": 154,
+      "unknown": 24
+    },
+    "F01": {
+      "estimate": 168,
+      "unknown": 10
+    },
+    "F02": {
+      "unknown": 178
+    },
+    "P03": {
+      "unknown": 178
+    },
+    "P04": {
+      "estimate": 148,
+      "unknown": 30
+    },
+    "A01": {
+      "unknown": 178
+    },
+    "R04": {
+      "unknown": 178
+    },
+    "R05": {
+      "unknown": 89
+    },
+    "Q01": {
+      "unknown": 89
+    },
+    "Q02": {
+      "unknown": 89
+    },
+    "Q03": {
+      "computed": 166,
+      "unknown": 12
+    },
+    "X01": {
+      "unknown": 178
+    },
+    "X02": {
+      "unknown": 178
+    },
+    "X03": {
+      "unknown": 178
+    }
+  },
+  "graph_license": "ODbL1.0; attribution/share-alike obligations; source ages and extent retained"
+}

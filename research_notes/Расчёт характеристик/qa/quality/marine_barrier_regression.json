@@ -1,0 +1,728 @@
+{
+  "at": "2026-10-24T02:26:36.750834+00:00",
+  "passed": true,
+  "policy": "Known node restrictions apply to traversal as well as way restrictions.\n\nA bollard alone normally permits pedestrians. Missing barrier policy remains\nan uninspected gap; it is not converted into either permission or a ban.\n",
+  "explicit_restriction_baseline_routes": 37,
+  "explicit_restriction_baseline_contacts": 53,
+  "broader_node_policy_baseline_routes": 82,
+  "blocked_node_count": 1960,
+  "final_routes": 335,
+  "final_forbidden_node_contacts": 0,
+  "pre_policy_affected_route_ids": [
+    {
+      "route_id": "a38051d20d61a724e2b2",
+      "hotel_id": "10210406",
+      "blocked_nodes": [
+        4200146552
+      ]
+    },
+    {
+      "route_id": "2837b1f07b8b9b569ae4",
+      "hotel_id": "10439075",
+      "blocked_nodes": [
+        3017607816
+      ]
+    },
+    {
+      "route_id": "a1608babf8c44deda617",
+      "hotel_id": "10439075",
+      "blocked_nodes": [
+        4200146552
+      ]
+    },
+    {
+      "route_id": "38b4701bb6a5252ad165",
+      "hotel_id": "10479044",
+      "blocked_nodes": [
+        3777914287,
+        3779615041,
+        12050710006
+      ]
+    },
+    {
+      "route_id": "bb9465c8a46c48fe8b89",
+      "hotel_id": "10479044",
+      "blocked_nodes": [
+        3777914287,
+        3779615041,
+        4200146552,
+        12050710006
+      ]
+    },
+    {
+      "route_id": "6f0bcc0c2f8a36a609c4",
+      "hotel_id": "10479044",
+      "blocked_nodes": [
+        3777914287,
+        3779615041,
+        12050710006
+      ]
+    },
+    {
+      "route_id": "7f45488f4c2278130dda",
+      "hotel_id": "10575679",
+      "blocked_nodes": [
+        370744211,
+        7640321089
+      ]
+    },
+    {
+      "route_id": "cea1af5921d5a9df6c59",
+      "hotel_id": "10575679",
+      "blocked_nodes": [
+        4611398266,
+        10006396266
+      ]
+    },
+    {
+      "route_id": "d27ed169794791784756",
+      "hotel_id": "10595288",
+      "blocked_nodes": [
+        8953610797,
+        11275458244,
+        11275458245
+      ]
+    },
+    {
+      "route_id": "3989a1a5a5818bdca053",
+      "hotel_id": "11161657",
+      "blocked_nodes": [
+        4200146552
+      ]
+    },
+    {
+      "route_id": "0fc56e0915b5e6491109",
+      "hotel_id": "11181978",
+      "blocked_nodes": [
+        4200146552
+      ]
+    },
+    {
+      "route_id": "c47fd191321098561692",
+      "hotel_id": "11200750",
+      "blocked_nodes": [
+        4200146552
+      ]
+    },
+    {
+      "route_id": "202d09d759f908752556",
+      "hotel_id": "11201577",
+      "blocked_nodes": [
+        4200146552,
+        4464966921,
+        4557213775,
+        4557213779
+      ]
+    },
+    {
+      "route_id": "30fad3a1bcac5cc89dba",
+      "hotel_id": "11202853",
+      "blocked_nodes": [
+        4200146552
+      ]
+    },
+    {
+      "route_id": "87d4334cb951a26fd15d",
+      "hotel_id": "11205863",
+      "blocked_nodes": [
+        8953610797,
+        11275458244,
+        11275458245,
+        12625789433
+      ]
+    },
+    {
+      "route_id": "f8d66bee6bee0bf2489d",
+      "hotel_id": "11255055",
+      "blocked_nodes": [
+        4200146552
+      ]
+    },
+    {
+      "route_id": "95912392e7557e26a621",
+      "hotel_id": "11303583",
+      "blocked_nodes": [
+        7675907486
+      ]
+    },
+    {
+      "route_id": "74f7586012041cdd8676",
+      "hotel_id": "11303583",
+      "blocked_nodes": [
+        4200146552,
+        7675907486
+      ]
+    },
+    {
+      "route_id": "83260147e6efe10b12a2",
+      "hotel_id": "11303583",
+      "blocked_nodes": [
+        2699630728,
+        4557213775,
+        4557213779
+      ]
+    },
+    {
+      "route_id": "ead5bd584fc1c5d7d6c6",
+      "hotel_id": "11313836",
+      "blocked_nodes": [
+        4200146552,
+        13100429524,
+        13518660424
+      ]
+    },
+    {
+      "route_id": "32e8101fd1f3647a9319",
+      "hotel_id": "13343374",
+      "blocked_nodes": [
+        12625766120
+      ]
+    },
+    {
+      "route_id": "85adb23c9e9786c3bff4",
+      "hotel_id": "13343374",
+      "blocked_nodes": [
+        12625766120
+      ]
+    },
+    {
+      "route_id": "c5165dcf6e4ce497e634",
+      "hotel_id": "13343374",
+      "blocked_nodes": [
+        8953610797,
+        11275458244,
+        11275458245,
+        12625789433
+      ]
+    },
+    {
+      "route_id": "0dcfb702fe8f862b467f",
+      "hotel_id": "13714940",
+      "blocked_nodes": [
+        4200146552
+      ]
+    },
+    {
+      "route_id": "d8dd3b8d8624fd47dcb8",
+      "hotel_id": "13736470",
+      "blocked_nodes": [
+        3737056595
+      ]
+    },
+    {
+      "route_id": "bbe2d16a885414834c44",
+      "hotel_id": "13736470",
+      "blocked_nodes": [
+        3737056594,
+        4200146552
+      ]
+    },
+    {
+      "route_id": "7b6c15381e344449c96a",
+      "hotel_id": "13736470",
+      "blocked_nodes": [
+        3737056594
+      ]
+    },
+    {
+      "route_id": "3e75a7f906e829ff7b7e",
+      "hotel_id": "6316833",
+      "blocked_nodes": [
+        370744211,
+        7640321089
+      ]
+    },
+    {
+      "route_id": "26debf3e5f8fac4beed2",
+      "hotel_id": "6329566",
+      "blocked_nodes": [
+        13240530717
+      ]
+    },
+    {
+      "route_id": "bb7e477065a508b82815",
+      "hotel_id": "6398405",
+      "blocked_nodes": [
+        3017607816
+      ]
+    },
+    {
+      "route_id": "952eca77621972d6c36a",
+      "hotel_id": "6398405",
+      "blocked_nodes": [
+        4200146552
+      ]
+    },
+    {
+      "route_id": "c72612f8b77b12ec11ee",
+      "hotel_id": "6415851",
+      "blocked_nodes": [
+        4200146552
+      ]
+    },
+    {
+      "route_id": "51f09408840c4c5a2f3a",
+      "hotel_id": "6416199",
+      "blocked_nodes": [
+        4200146552
+      ]
+    },
+    {
+      "route_id": "2f81da0a65ce0fff25e4",
+      "hotel_id": "6416199",
+      "blocked_nodes": [
+        2699630728,
+        4557213775,
+        4557213779
+      ]
+    },
+    {
+      "route_id": "29d22fea514b68ec1a54",
+      "hotel_id": "6443737",
+      "blocked_nodes": [
+        4200146552
+      ]
+    },
+    {
+      "route_id": "8faed89216ce655852b0",
+      "hotel_id": "6453529",
+      "blocked_nodes": [
+        808558395
+      ]
+    },
+    {
+      "route_id": "6f2e7e756ba0ae3ab2e7",
+      "hotel_id": "6453529",
+      "blocked_nodes": [
+        808558395
+      ]
+    },
+    {
+      "route_id": "87e3e2cd867c4a76da22",
+      "hotel_id": "6460390",
+      "blocked_nodes": [
+        4200146552
+      ]
+    },
+    {
+      "route_id": "50206c2eedf0f206ab54",
+      "hotel_id": "6496437",
+      "blocked_nodes": [
+        4200146552
+      ]
+    },
+    {
+      "route_id": "12be52c23f754b70e608",
+      "hotel_id": "6496747",
+      "blocked_nodes": [
+        4200146552
+      ]
+    },
+    {
+      "route_id": "8c3ee387f525363300e7",
+      "hotel_id": "6497279",
+      "blocked_nodes": [
+        3017607816,
+        4200146552
+      ]
+    },
+    {
+      "route_id": "f8e18224e140254e2ce7",
+      "hotel_id": "6511778",
+      "blocked_nodes": [
+        808558395
+      ]
+    },
+    {
+      "route_id": "4472fa671725a2704e05",
+      "hotel_id": "6511778",
+      "blocked_nodes": [
+        808558395
+      ]
+    },
+    {
+      "route_id": "c25bb6cf5771894d1337",
+      "hotel_id": "6551265",
+      "blocked_nodes": [
+        4200146552
+      ]
+    },
+    {
+      "route_id": "2487c0c5ad94fa51086e",
+      "hotel_id": "6551322",
+      "blocked_nodes": [
+        4200146552
+      ]
+    },
+    {
+      "route_id": "4c60c0d4d1ffbde46e46",
+      "hotel_id": "6557901",
+      "blocked_nodes": [
+        4200146552
+      ]
+    },
+    {
+      "route_id": "010ca89b67967db53318",
+      "hotel_id": "6557901",
+      "blocked_nodes": [
+        13100429524,
+        13518660424
+      ]
+    },
+    {
+      "route_id": "0ac7571d0fab98a14533",
+      "hotel_id": "6579389",
+      "blocked_nodes": [
+        977661591
+      ]
+    },
+    {
+      "route_id": "710cb61bd5d2bcb11d47",
+      "hotel_id": "6601612",
+      "blocked_nodes": [
+        4200146552
+      ]
+    },
+    {
+      "route_id": "83ba30b1f1ee316efa34",
+      "hotel_id": "6601612",
+      "blocked_nodes": [
+        977661591,
+        4200146552
+      ]
+    },
+    {
+      "route_id": "0beaa187d9aeb2aeacc5",
+      "hotel_id": "6850191",
+      "blocked_nodes": [
+        370744211,
+        7640321089
+      ]
+    },
+    {
+      "route_id": "be1df79b88e367d773d7",
+      "hotel_id": "6878465",
+      "blocked_nodes": [
+        4200146552
+      ]
+    },
+    {
+      "route_id": "42c58335197c8a40309a",
+      "hotel_id": "7018069",
+      "blocked_nodes": [
+        808558395
+      ]
+    },
+    {
+      "route_id": "b7ac954e0e237f35cc1e",
+      "hotel_id": "7018069",
+      "blocked_nodes": [
+        808558395
+      ]
+    },
+    {
+      "route_id": "23d8c773cdfdf140fbb9",
+      "hotel_id": "7631439",
+      "blocked_nodes": [
+        9238700057
+      ]
+    },
+    {
+      "route_id": "f7dc33cc65b588fba70e",
+      "hotel_id": "7631439",
+      "blocked_nodes": [
+        4200146552
+      ]
+    },
+    {
+      "route_id": "c8018276f91de54268e5",
+      "hotel_id": "7631439",
+      "blocked_nodes": [
+        977661591,
+        4200146552
+      ]
+    },
+    {
+      "route_id": "48c82692daad9ccd23f3",
+      "hotel_id": "7725078",
+      "blocked_nodes": [
+        4200146552
+      ]
+    },
+    {
+      "route_id": "ef99e63aa3aae769288c",
+      "hotel_id": "7725078",
+      "blocked_nodes": [
+        2699630728,
+        4557213775,
+        4557213779
+      ]
+    },
+    {
+      "route_id": "a9812b150d86ec2f426f",
+      "hotel_id": "7726257",
+      "blocked_nodes": [
+        4200146552
+      ]
+    },
+    {
+      "route_id": "8a0fa2e81cecd50cd499",
+      "hotel_id": "7840047",
+      "blocked_nodes": [
+        9743407645
+      ]
+    },
+    {
+      "route_id": "28df834cb586b7ca5c37",
+      "hotel_id": "7840047",
+      "blocked_nodes": [
+        4200146552
+      ]
+    },
+    {
+      "route_id": "aa83e47c6498a97f5439",
+      "hotel_id": "7851188",
+      "blocked_nodes": [
+        4200146552
+      ]
+    },
+    {
+      "route_id": "e292fe7c85b23f3fca49",
+      "hotel_id": "7935886",
+      "blocked_nodes": [
+        4200146552
+      ]
+    },
+    {
+      "route_id": "7c0df4340f5656b648b5",
+      "hotel_id": "8085655",
+      "blocked_nodes": [
+        4200146552
+      ]
+    },
+    {
+      "route_id": "4241651aad2c55653ec5",
+      "hotel_id": "8085655",
+      "blocked_nodes": [
+        2699630728,
+        4557213775,
+        4557213779
+      ]
+    },
+    {
+      "route_id": "db348b8846dc8bd10bd9",
+      "hotel_id": "8105660",
+      "blocked_nodes": [
+        4200146552
+      ]
+    },
+    {
+      "route_id": "2c0b678812ba53be732f",
+      "hotel_id": "8310146",
+      "blocked_nodes": [
+        3220071273
+      ]
+    },
+    {
+      "route_id": "06a7544a86f7e02a8aa5",
+      "hotel_id": "8398222",
+      "blocked_nodes": [
+        4200146552
+      ]
+    },
+    {
+      "route_id": "8e57d09ec38323d6f310",
+      "hotel_id": "8477232",
+      "blocked_nodes": [
+        4200146552
+      ]
+    },
+    {
+      "route_id": "e60aeb8e21fc0a62b284",
+      "hotel_id": "8478929",
+      "blocked_nodes": [
+        4200146552
+      ]
+    },
+    {
+      "route_id": "c31188ddd85b81b4a041",
+      "hotel_id": "8509273",
+      "blocked_nodes": [
+        4200146552
+      ]
+    },
+    {
+      "route_id": "21d13835a2ddfff507e6",
+      "hotel_id": "8660598",
+      "blocked_nodes": [
+        8953610797,
+        11275458244,
+        11275458245
+      ]
+    },
+    {
+      "route_id": "d9fca545f7655e8a32fa",
+      "hotel_id": "8734284",
+      "blocked_nodes": [
+        4200146552
+      ]
+    },
+    {
+      "route_id": "61314f897ac50540182b",
+      "hotel_id": "8740393",
+      "blocked_nodes": [
+        3655257011
+      ]
+    },
+    {
+      "route_id": "c3c54ccba0f8cab4fd59",
+      "hotel_id": "8740393",
+      "blocked_nodes": [
+        614130608
+      ]
+    },
+    {
+      "route_id": "9519b45db9a1024f5f7b",
+      "hotel_id": "8747640",
+      "blocked_nodes": [
+        3017607816,
+        4200146552
+      ]
+    },
+    {
+      "route_id": "9d1cafd5f84d14a1e98c",
+      "hotel_id": "8756112",
+      "blocked_nodes": [
+        3017607816,
+        4200146552
+      ]
+    },
+    {
+      "route_id": "2bd34cdbb7f481f638ef",
+      "hotel_id": "8846754",
+      "blocked_nodes": [
+        4200146552
+      ]
+    },
+    {
+      "route_id": "0fafc30138d2dcd5ac1c",
+      "hotel_id": "8877049",
+      "blocked_nodes": [
+        4200146552
+      ]
+    },
+    {
+      "route_id": "fc7a53f55c600d4d32b2",
+      "hotel_id": "9769189",
+      "blocked_nodes": [
+        3017607816,
+        4200146552
+      ]
+    },
+    {
+      "route_id": "592ff69390bfa5e2be85",
+      "hotel_id": "9829023",
+      "blocked_nodes": [
+        4200146552
+      ]
+    }
+  ],
+  "final_bad_routes": [],
+  "marine_target_sha256": "7b2c2be935e6ea5c96b2cdd8cd90f52be7e578d7793328a9b65a511211e3bb7a",
+  "marine_target_hotels": 86,
+  "marine_unique_beaches": 33,
+  "all_targets_have_accepted_marine_classification": true,
+  "coverage_changes_vs_pre_barrier": {
+    "W01": {
+      "before": {
+        "estimate": 172,
+        "unknown": 6
+      },
+      "after": {
+        "estimate": 172,
+        "unknown": 6
+      }
+    },
+    "W02": {
+      "before": {
+        "estimate": 172,
+        "unknown": 6
+      },
+      "after": {
+        "estimate": 170,
+        "unknown": 8
+      }
+    },
+    "W03": {
+      "before": {
+        "estimate": 166,
+        "unknown": 12
+      },
+      "after": {
+        "estimate": 164,
+        "unknown": 14
+      }
+    },
+    "W04": {
+      "before": {
+        "estimate": 166,
+        "unknown": 12
+      },
+      "after": {
+        "estimate": 166,
+        "unknown": 12
+      }
+    },
+    "W05": {
+      "before": {
+        "computed": 174,
+        "unknown": 4
+      },
+      "after": {
+        "computed": 174,
+        "unknown": 4
+      }
+    },
+    "L01": {
+      "before": {
+        "estimate": 166,
+        "unknown": 12
+      },
+      "after": {
+        "estimate": 164,
+        "unknown": 14
+      }
+    },
+    "L03": {
+      "before": {
+        "estimate": 156,
+        "unknown": 22
+      },
+      "after": {
+        "estimate": 154,
+        "unknown": 24
+      }
+    },
+    "P03": {
+      "before": {
+        "unknown": 178
+      },
+      "after": {
+        "unknown": 178
+      }
+    },
+    "Q03": {
+      "before": {
+        "computed": 174,
+        "unknown": 4
+      },
+      "after": {
+        "computed": 166,
+        "unknown": 12
+      }
+    }
+  },
+  "regression_not_accuracy": true,
+  "after_semantics": "Final post-marine, node-access, zero-denominator and route-subject repair output; before refers to pre-barrier snapshot.",
+  "final_fact_file_sha256": "3b32471f7cd5a7a3f6a6048d5ec9a7c9b80c7c4f36675d4188fc2f544a93d01e"
+}

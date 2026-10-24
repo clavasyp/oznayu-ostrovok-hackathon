@@ -1,0 +1,175 @@
+{
+  "city_id": "minsk",
+  "at": "2026-10-24T14:26:45.228840+00:00",
+  "status": "PASSED_WITH_PHYSICAL_ACCURACY_UNMEASURED",
+  "N_hotels": 50,
+  "hotel_feature_pairs": 2700,
+  "fact_rows": 3950,
+  "checks": [
+    {
+      "name": "cohort_and54features_complete",
+      "passed": true,
+      "details": {
+        "N_hotels": 50,
+        "N_pairs": 2700
+      }
+    },
+    {
+      "name": "no_conflicting_fact_ids",
+      "passed": true,
+      "details": []
+    },
+    {
+      "name": "finite_values_and_valid_statuses",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "unknown_reason_null_value",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "known_value_sources_recipe",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "all_canonical_recipes_have_trace",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "valid_result_stops_recipe_chain",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "N02_N03_no_unmatched_point_proxy",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "accepted_buildings_have_address_support",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "H03_counting_convention_and_positive_scope",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "no_window_geometry_diagnostic_as_canonical_value",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "route_subjects_for_route_attributes",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "W04_explicit_DSM_extension",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Q03_defined_denominator_and_partition",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "climate_complete30years_explicit_model",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "green_landmask_historical_area_fraction",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "immutable_core_version_recorded",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "actual_overrides_versioned",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "composite_source_hash_reproducible",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "restriction_supplement_hash_and_original_PBF_version",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "published_route_lengths_match_exact_trace",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "actual_routes_within_restriction_supplement_extent",
+      "passed": true,
+      "details": []
+    },
+    {
+      "name": "saved_routes_avoid_explicit_node_prohibitions",
+      "passed": true,
+      "details": {
+        "routes": 400,
+        "forbidden_route_ids": [],
+        "blocked_nodes": 20565,
+        "independently_tag_checked_supplement_blocked_nodes": 1877
+      }
+    },
+    {
+      "name": "every_published_route_has_exact_trace",
+      "passed": true,
+      "details": []
+    },
+    {
+      "name": "inland_marine_features_not_applicable",
+      "passed": true,
+      "details": null
+    }
+  ],
+  "pending": [],
+  "input_files": [
+    {
+      "kind": "geo",
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/minsk_facts.jsonl",
+      "sha256": "128feac908c5205ef06f8c1ba70023aaf09b7922e91bc6bb2cbc88470bf8fc91",
+      "rows": 2550
+    },
+    {
+      "kind": "facades",
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/minsk_facts.jsonl",
+      "sha256": "b8eb3dc65062cd371d8e3376bf64547f58f7b64dc68aca4d32e9069bf7f83037",
+      "rows": 600
+    },
+    {
+      "kind": "environment",
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/environment/minsk_facts.jsonl",
+      "sha256": "91e09d449fe04faa95eb017a3f2bdfae911706e6424fb6267d8e82a214a9609e",
+      "rows": 800
+    },
+    {
+      "kind": "individual_buildings",
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/minsk_building_facts.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "kind": "geo_run",
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/minsk_run.json",
+      "sha256": "b3ba8470d3b37f34716d9112f8188c235a2dc311d969875135f33592e360d69f"
+    }
+  ],
+  "physical_gold_scope": "No independent full-feature physical gold is implied by these contract and provenance checks."
+}

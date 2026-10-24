@@ -1,0 +1,43 @@
+{
+  "built_at": "2026-10-24T02:10:08.598186+00:00",
+  "input_cohort_sha256": "056592b82eecde9c11faca8d27137a40145585aaad194db1018610bf156a0bab",
+  "input_cohort_id": "e9da4ead94d95c4cd3823ae1519bb229a6ec31ee72380852631f687e8a08db1c",
+  "city_counts": {
+    "dubai": 50,
+    "istanbul": 50,
+    "kaliningrad": 50,
+    "kazan": 50,
+    "minsk": 50,
+    "moscow": 50,
+    "sochi": 89,
+    "spb": 50
+  },
+  "sochi_origins": {
+    "cached_serp_supplement": 34,
+    "cached_full_page_supplement": 5,
+    "v5_accepted_50": 50
+  },
+  "sochi_subzones": {
+    "center": 25,
+    "adler": 30,
+    "sirius": 12,
+    "krasnaya_polyana": 4,
+    "lazarevskoe": 5,
+    "other_greater_sochi_golovinka": 1,
+    "khosta_matsesta": 6,
+    "loo_vardane": 6
+  },
+  "new_http_requests": 0,
+  "cache_next_files_inspected": 482,
+  "sample_attempt_records_inspected": 642,
+  "cohort_sha256": "c0f37fe6fa70f0ac9134608ee4b08537f0fd332a9fa78c8691047069d798afd1",
+  "blocked_subzones": [
+    "dagomys"
+  ],
+  "limitations": [
+    "SERP supplements have name/address/coordinates/masterId, but no full hotel/category snapshot. Their source pointer is the city cached card, not a made-up individual hotel URL.",
+    "D28 supplement is exhaustive over cached valid geographically matching records, not an operating-hotels census. Exact ~100 target cannot override no-new-OTA-request restriction.",
+    "Subzone tags use disclosed address/coordinate rules and are approximate geographic strata, not surveyed administrative boundaries.",
+    "No cached Dagomys entity satisfies hotel identity/address/coordinates checks; absence in cache is not absence of hotels."
+  ]
+}

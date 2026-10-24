@@ -1,0 +1,392 @@
+{
+  "version": "V9.3-Sochi-full-corrected-reselect-1",
+  "canonical_files_unchanged": true,
+  "old_snap_audit_pools_counts": {
+    "hotel_origin": 89,
+    "all_POIs_including_unselected_candidates": 18378,
+    "all_transport_stops": 1318,
+    "all_marine_graph_contacts": 1916
+  },
+  "new_blocked_nodes": [
+    655271566,
+    672097545,
+    7728269191
+  ],
+  "removed_nodes_present_in_original_graph": [
+    655271566
+  ],
+  "old_snap_affected_origins_or_candidates": [
+    {
+      "pool": "all_POIs_including_unselected_candidates",
+      "target_id": "node/4920379521",
+      "old_snap_node": 655271566,
+      "old_snap_distance_m": 26.745910588633592,
+      "tags": {
+        "access": "yes",
+        "leisure": "playground",
+        "opening_hours": "Mo-Su 09:00-21:00"
+      },
+      "point_projected": [
+        -193.55539180537758,
+        -842.8216343765095
+      ]
+    },
+    {
+      "pool": "all_marine_graph_contacts",
+      "target_id": "way/53012393#graph-node-655271566",
+      "old_snap_node": 655271566,
+      "old_snap_distance_m": 0.0,
+      "tags": {
+        "name": "Пляж \"Маяк\"",
+        "natural": "beach"
+      },
+      "point_projected": [
+        -213.28871265118607,
+        -860.8754367907258
+      ]
+    }
+  ],
+  "old_graph_and_snap_audit_seconds": 5.547335499999463,
+  "all_89_hotels_corrected_full_reselect_seconds": 13.480215290997876,
+  "corrected_full_run": {
+    "city_id": "sochi",
+    "hotels": 89,
+    "graph_nodes": 394464,
+    "graph_edges": 408751,
+    "load_seconds": 4.956040792007116,
+    "input_manifest": {
+      "built_at": "2026-10-24T02:11:41.889278+00:00",
+      "source_file": "/Users/turgov/Хакатон/research_notes/Аудит данных 8 городов/raw/russia_southern-fed-district.osm.pbf",
+      "source_date": "2026-10-22T20:21:33Z",
+      "bbox": [
+        39.15,
+        43.35,
+        40.5,
+        44.05
+      ],
+      "rows": 258134,
+      "geometry_errors_region": 0,
+      "seconds": 40.32629695899959,
+      "sha256": "a7f6613e969c41ecee2e4fa20fef4f9b40758f84b6552d008628f80ee1f18133",
+      "bytes": 154187579,
+      "license": "ODbL1.0",
+      "license_url": "https://www.openstreetmap.org/copyright",
+      "new_network_requests": 0,
+      "limitations": "First vertex candidate filter can miss large polygons crossing bbox with starting vertex outside; ordinary local roads/buildings within bbox covered; not complete official municipal inventory.",
+      "input_files": [
+        {
+          "snapshot_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/cohort/osm_sochi_extended.jsonl",
+          "sha256": "096c311507e0233200dbf5b458e53564a44ac7f10a7fb9644581257781b785f7"
+        },
+        {
+          "snapshot_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/cohort/osm_sochi_pure_restriction_nodes.jsonl",
+          "sha256": "bb5b1f32bdb985f9d8b02c77f95f0ebe082a8f6e17c3ceb4d5c2e744065f9030"
+        }
+      ],
+      "sha256_kind": "composite SHA256 of ordered input path+SHA manifests, not file hash",
+      "pure_node_supplement": {
+        "city_id": "sochi",
+        "source_file": "/Users/turgov/Хакатон/research_notes/Аудит данных 8 городов/raw/russia_southern-fed-district.osm.pbf",
+        "source_date": "2026-10-22T20:21:33Z",
+        "snapshot_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/cohort/osm_sochi_pure_restriction_nodes.jsonl",
+        "bbox": [
+          39.15,
+          43.35,
+          40.5,
+          44.05
+        ],
+        "records": 20,
+        "bytes": 5670,
+        "sha256": "bb5b1f32bdb985f9d8b02c77f95f0ebe082a8f6e17c3ceb4d5c2e744065f9030",
+        "seconds": 1.4807557919993997,
+        "built_at": "2026-10-24T13:16:26.308905+00:00",
+        "license": "ODbL1.0",
+        "license_url": "https://www.openstreetmap.org/copyright",
+        "new_http_requests": 0,
+        "method": "Node-only PBF filter barrier/access/foot/locked; exclude all nodes selected by V4KEYS. No geometry/identity inference."
+      },
+      "source_pbf_sha256": "242254bbd0c250e4fab8c1b70e77d6ff6ccfa6dde9498134e0019698cf6f2ee6"
+    },
+    "no_new_http_requests": true,
+    "blocked_pedestrian_nodes": 1963,
+    "blocked_node_policy": "explicit foot/access restrictions and unresolved conditional nodes; locked gates without explicit foot permission. Bollard alone is not blocked.",
+    "gtfs_calendar_checks": [],
+    "marine_beach_gate": {
+      "method_version": "marine-adjacency-v1",
+      "tolerance_m": 25,
+      "coastline_segments": 142,
+      "mapped_beaches": 174,
+      "accepted_geometry_count": 157,
+      "eligible_graph_contact_candidates": 1915,
+      "rejected_meaning": "marine_adjacency_unconfirmed, not proof that the beach is river/lake"
+    },
+    "center_target": {
+      "osm_node_id": 4758135895,
+      "coordinates": [
+        39.7230602,
+        43.5851489
+      ],
+      "selection_reference_coordinates": [
+        39.7231,
+        43.5855
+      ],
+      "reference_to_node_m": 39.14087564057043,
+      "selection_rule": "nearest node to reference center in largest connected mapped pedestrian network component",
+      "component_nodes": 361900,
+      "meaning": "An explicit chosen point near the center, not an implicit administrative center or hotel entrance."
+    },
+    "total_seconds": 13.382145791998482,
+    "family_seconds": {
+      "N": 0.16155162393988576,
+      "W_A_Q03": 5.8639621680631535,
+      "L_F_P_R04": 2.0520515439857263,
+      "T_R05_Q_X": 0.007576584015623666
+    },
+    "facts": 4559,
+    "unique_hotel_feature_pairs": 2581,
+    "statuses": {
+      "computed": 739,
+      "unknown": 2514,
+      "estimate": 1306
+    },
+    "result_bytes": 19198012,
+    "feature_counts": {
+      "N01": {
+        "unknown": 89
+      },
+      "N02": {
+        "computed": 68,
+        "unknown": 31
+      },
+      "N03": {
+        "computed": 68,
+        "unknown": 31
+      },
+      "N04": {
+        "computed": 89
+      },
+      "W01": {
+        "estimate": 172,
+        "unknown": 6
+      },
+      "W02": {
+        "estimate": 170,
+        "unknown": 8
+      },
+      "W03": {
+        "estimate": 164,
+        "unknown": 14
+      },
+      "W04": {
+        "estimate": 166,
+        "unknown": 12
+      },
+      "W05": {
+        "computed": 174,
+        "unknown": 4
+      },
+      "W06": {
+        "computed": 174,
+        "unknown": 4
+      },
+      "T01": {
+        "unknown": 178
+      },
+      "T02": {
+        "unknown": 178
+      },
+      "T03": {
+        "unknown": 178
+      },
+      "L01": {
+        "estimate": 164,
+        "unknown": 14
+      },
+      "L02": {
+        "unknown": 178
+      },
+      "L03": {
+        "estimate": 154,
+        "unknown": 24
+      },
+      "F01": {
+        "estimate": 168,
+        "unknown": 10
+      },
+      "F02": {
+        "unknown": 178
+      },
+      "P03": {
+        "unknown": 178
+      },
+      "P04": {
+        "estimate": 148,
+        "unknown": 30
+      },
+      "A01": {
+        "unknown": 178
+      },
+      "R04": {
+        "unknown": 178
+      },
+      "R05": {
+        "unknown": 89
+      },
+      "Q01": {
+        "unknown": 89
+      },
+      "Q02": {
+        "unknown": 89
+      },
+      "Q03": {
+        "computed": 166,
+        "unknown": 12
+      },
+      "X01": {
+        "unknown": 178
+      },
+      "X02": {
+        "unknown": 178
+      },
+      "X03": {
+        "unknown": 178
+      }
+    },
+    "graph_license": "ODbL1.0; attribution/share-alike obligations; source ages and extent retained"
+  },
+  "semantic_deltas_against_pre_repair_checkpoint": [
+    {
+      "hotel_id": "10595288",
+      "feature_id": "F01",
+      "params": {
+        "trip_start": "2027-07-15",
+        "trip_end": "2027-07-18",
+        "seasonal_route_revalidation": "not performed; snapshot projection only"
+      },
+      "old_fact_id": "6a77655b0214e2ab9976efc4",
+      "old_status": "estimate",
+      "new_status": "estimate",
+      "old_value": {
+        "distance_m": 583.884354181755,
+        "route_id": "73af7e2964512f95c601",
+        "poi_id": "node/4920379521",
+        "poi_name": null,
+        "access_tag": "yes",
+        "age_or_dog_restrictions": {
+          "access": "yes",
+          "opening_hours": "Mo-Su 09:00-21:00"
+        }
+      },
+      "new_value": {
+        "distance_m": 501.7636126196188,
+        "route_id": "e0a0f137473c41e0b9d2",
+        "poi_id": "node/4920379521",
+        "poi_name": null,
+        "access_tag": "yes",
+        "age_or_dog_restrictions": {
+          "access": "yes",
+          "opening_hours": "Mo-Su 09:00-21:00"
+        }
+      },
+      "old_unknown_reason": null,
+      "new_unknown_reason": null
+    },
+    {
+      "hotel_id": "10595288",
+      "feature_id": "F01",
+      "params": {
+        "trip_start": "2026-11-14",
+        "trip_end": "2026-11-17",
+        "seasonal_route_revalidation": "not performed; snapshot projection only"
+      },
+      "old_fact_id": "4da6781ba6da7b0e5154a0ed",
+      "old_status": "estimate",
+      "new_status": "estimate",
+      "old_value": {
+        "distance_m": 583.884354181755,
+        "route_id": "73af7e2964512f95c601",
+        "poi_id": "node/4920379521",
+        "poi_name": null,
+        "access_tag": "yes",
+        "age_or_dog_restrictions": {
+          "access": "yes",
+          "opening_hours": "Mo-Su 09:00-21:00"
+        }
+      },
+      "new_value": {
+        "distance_m": 501.7636126196188,
+        "route_id": "e0a0f137473c41e0b9d2",
+        "poi_id": "node/4920379521",
+        "poi_name": null,
+        "access_tag": "yes",
+        "age_or_dog_restrictions": {
+          "access": "yes",
+          "opening_hours": "Mo-Su 09:00-21:00"
+        }
+      },
+      "old_unknown_reason": null,
+      "new_unknown_reason": null
+    }
+  ],
+  "semantic_deltas_against_current_repaired_facts": [],
+  "corrected_selected_routes": 652,
+  "corrected_routes_with_blocked_node_contacts": [],
+  "comparison_scope": "All actual characteristic values, route/target IDs, distances, statuses and unknown reasons; skip nested dataset SHA/input-file provenance, optional next_change, graph-contact candidate-count diagnostics, and explicit F01 connector diagnostics absent from the original calculator output. Physical target classification and coastline distance remain compared.",
+  "network_requests": 0,
+  "total_seconds": 19.460728833000758,
+  "source_sha256": {
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/reselect_sochi_corrected_readonly.py": "b2e7a664d6783ef4ddacf261d7d103fd3fed251ef4fe1bdd1c0f852ba3dec95b",
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/geo.py": "e575c51e28cbc3905eadb4e4d628005b9fad99031301a741d0477c80e73473ad",
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/geo_memory_containers.py": "101779dba50738cb3105e33e04282bda672242a5e1829ee492cdd58f50507110",
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/geo_opening_point_cache.py": "a0b00092b42cde47da1dbae93ff4e4aa559274145b543b59ff129aa477aa169a"
+  },
+  "diagnostic_delta": {
+    "removed_marine_contact_candidate": "way/53012393#graph-node-655271566",
+    "beach_id": "way/53012393",
+    "old_graph_contacts": 24,
+    "corrected_graph_contacts": 23,
+    "meaning": "One unselected beach contact was removed; full re-selection confirms no W01 target/distance change for any of 89 hotels. Historical W01 passports retain the original graph candidate count."
+  },
+  "unfiltered_comparison_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/sochi_full_corrected_reselect_audit_including_provenance_differences.json",
+  "comparison_method_version": "V9.3-characteristic-versus-source-diagnostic-1",
+  "comparison_source_sha256": "d9f27c3f1f413848b9406f514c5baa5fc29b1667eb3cfd298531e9e374d8e7dd",
+  "code_version_archives": {
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/finalize_sochi_reselect_comparison.py": {
+      "sha256": "d9f27c3f1f413848b9406f514c5baa5fc29b1667eb3cfd298531e9e374d8e7dd",
+      "exact_archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/d9f27c3f1f413848b9406f514c5baa5fc29b1667eb3cfd298531e9e374d8e7dd.py"
+    },
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/reselect_sochi_corrected_readonly.py": {
+      "sha256": "b2e7a664d6783ef4ddacf261d7d103fd3fed251ef4fe1bdd1c0f852ba3dec95b",
+      "exact_archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/b2e7a664d6783ef4ddacf261d7d103fd3fed251ef4fe1bdd1c0f852ba3dec95b.py"
+    },
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/geo.py": {
+      "sha256": "e575c51e28cbc3905eadb4e4d628005b9fad99031301a741d0477c80e73473ad",
+      "exact_archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/e575c51e28cbc3905eadb4e4d628005b9fad99031301a741d0477c80e73473ad.py"
+    },
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/geo_memory_containers.py": {
+      "sha256": "101779dba50738cb3105e33e04282bda672242a5e1829ee492cdd58f50507110",
+      "exact_archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/101779dba50738cb3105e33e04282bda672242a5e1829ee492cdd58f50507110.py"
+    },
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/geo_opening_point_cache.py": {
+      "sha256": "a0b00092b42cde47da1dbae93ff4e4aa559274145b543b59ff129aa477aa169a",
+      "exact_archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/a0b00092b42cde47da1dbae93ff4e4aa559274145b543b59ff129aa477aa169a.py"
+    }
+  },
+  "passed": true,
+  "final_published_trace_equivalence": {
+    "current_index_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/sochi_all_selected_routes.jsonl",
+    "current_index_sha256": "28ff06bc66706e6fca6d77bcacb7d61faaa730654db8175cf1ed4f345173baac",
+    "corrected_full_reselection_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/sochi_corrected_readonly/results/geo/sochi_all_selected_routes.jsonl",
+    "corrected_full_reselection_sha256": "2fcba6bf64a6a7db12badc3b103aebb6aa38f6bfbf8cc4cacc3321ad06b1de1b",
+    "route_count": 652,
+    "compared": [
+      "exact route IDs",
+      "node_ids",
+      "edge_way_ids",
+      "graph_length_m",
+      "geometry"
+    ],
+    "differences": [],
+    "passed": true
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "at": "2026-10-24T13:02:05.057897+00:00",
+  "checks": 44,
+  "passed": 44,
+  "failed": [],
+  "interpretation": "Arithmetic and numerical reproducibility only. Does not measure physical accuracy, recall, or source completeness."
+}

@@ -1,0 +1,14 @@
+{
+  "at": "2026-10-24T02:23:33.978918+00:00",
+  "passed": true,
+  "checks": {
+    "contact_beach_accepted": true,
+    "coast_gap_25m_inclusive": true,
+    "coast_gap_over25m_unknown": true,
+    "inland_beach_not_marine": true,
+    "missing_coastline_is_unknown": true,
+    "coastline_source_version_retained": true,
+    "threshold_not_claimed_accuracy": true
+  },
+  "type": "Synthetic regression, not physical accuracy"
+}

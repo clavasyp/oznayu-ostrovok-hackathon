@@ -1,0 +1,34 @@
+{
+  "city_id": "kaliningrad",
+  "checked_at": "2026-10-24T14:04:53.148445+00:00",
+  "facts_sha256": "ead325af49eb0cd650989d9af50ef41cb6a0a2a5b8c1d9f71c3bc70562178e2d",
+  "checks": {
+    "all_expected_hotel_feature_pairs": true,
+    "unique_fact_ids": true,
+    "unknown_has_reason": true,
+    "known_sources_recipe": true,
+    "every_recipe_trace_present": true,
+    "all_selected_route_ids_saved": true,
+    "DSM_only_explicit_estimate_extension": true,
+    "marine_not_inland_beach_substitution": true,
+    "zero_lighting_denominator_not_computed": true,
+    "lighting_percent_partition": true,
+    "route_subjects_for_route_measurements": true,
+    "no_fake_future_hours_validity": true,
+    "N02N03_building_scope": true,
+    "P03_canonical_not_filled_without_required_policy": true
+  },
+  "passed": true,
+  "hotel_denominator": 50,
+  "owned_feature_count": 29,
+  "hotel_feature_pairs": 1450,
+  "fact_rows": 2554,
+  "route_fact_rows": 686,
+  "unique_saved_selected_routes": 392,
+  "statuses": {
+    "computed": 392,
+    "unknown": 1378,
+    "estimate": 784
+  },
+  "check_kind": "Contract/regression checks, not measured empirical accuracy"
+}

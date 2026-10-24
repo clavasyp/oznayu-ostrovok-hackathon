@@ -1,0 +1,20 @@
+{
+  "built_at": "2026-10-24T02:11:41.889278+00:00",
+  "source_file": "/Users/turgov/Хакатон/research_notes/Аудит данных 8 городов/raw/russia_southern-fed-district.osm.pbf",
+  "source_date": "2026-10-22T20:21:33Z",
+  "bbox": [
+    39.15,
+    43.35,
+    40.5,
+    44.05
+  ],
+  "rows": 258134,
+  "geometry_errors_region": 0,
+  "seconds": 40.32629695899959,
+  "sha256": "096c311507e0233200dbf5b458e53564a44ac7f10a7fb9644581257781b785f7",
+  "bytes": 154187579,
+  "license": "ODbL1.0",
+  "license_url": "https://www.openstreetmap.org/copyright",
+  "new_network_requests": 0,
+  "limitations": "First vertex candidate filter can miss large polygons crossing bbox with starting vertex outside; ordinary local roads/buildings within bbox covered; not complete official municipal inventory."
+}

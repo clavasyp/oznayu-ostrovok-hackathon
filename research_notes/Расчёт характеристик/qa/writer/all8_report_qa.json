@@ -1,0 +1,105 @@
+{
+  "at": "2026-10-24T14:35:47.689255+00:00",
+  "report": "/Users/turgov/Хакатон/reports/Расчёт характеристик на реальных отелях.md",
+  "sha256": "e5936594b5aad76bfdd18437cd38a8a62bc74d822efb49895144258e97affc60",
+  "bytes": 107264,
+  "status": "PASSED",
+  "input_snapshot_frozen": true,
+  "input_summary_sha256": "f2859f85a8b0498fdb1d85d83084f78e4e1dfd8691d6277d6d40dc2696b7c863",
+  "coverage_rows": 432,
+  "hotelier_rows": 26,
+  "scenario_count": 7,
+  "examples_per_scenario": [
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3
+  ],
+  "example_fact_ids": [
+    "a50039c06497635311ea0e84",
+    "038b35714acfc1044b8c2d76",
+    "efa0f32680684ef4576fd863",
+    "b088ffda92e2334b659a382f",
+    "00545a91e73924bfb56ac9c9",
+    "bf3de1ed29b6c4c00917dade",
+    "aeca0a2dfd3bb35370da1b02",
+    "ab455889672a49bfbe3af802",
+    "f0a97026e3451598554ff165",
+    "ee67b4a9c5e4bf065258b011",
+    "5c4e9fb26ac9cdeec80b05ea",
+    "287b0663177728925575546e",
+    "7d47115af53f57961bca50ce",
+    "93631c0e16c8769cd521c030",
+    "8d64bf0f639209cc18e4ce11",
+    "03ce358d629f31c7fc0ecda4",
+    "eb55728858aa228d902b6d7c",
+    "c8a222a57159fc03c5b480e9",
+    "06162fd1aac6779e3732022f",
+    "21b44ee772ea81a75b101e6d",
+    "cdaa346893144acceafff65b"
+  ],
+  "comparison_rows": 99,
+  "root_review": "required",
+  "input_files": [
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/integrated/all8_summary.json",
+      "sha256": "f2859f85a8b0498fdb1d85d83084f78e4e1dfd8691d6277d6d40dc2696b7c863"
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/integrated/all8_coverage.csv",
+      "sha256": "6a5a6e40e4c89696445907639501d01d3c65fea187574ed0b055daf7ddcf84dc"
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scale/summary.json",
+      "sha256": "9468a492e565848ce61924f7ab2b433d8947bf417ed83d0c66c7bd7da71c4b77"
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/validation/numerical_all8_summary.json",
+      "sha256": "53941fa6363e925c308ada1505152be25d1a0e79f530622cfca0208cc45e6aae"
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/validation/cases_summary.json",
+      "sha256": "bb38b15fe605c1d7148eca2f6661292ed4fe11da73299a0a900a73819df330f0"
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/hotelier/manifest.json",
+      "sha256": "73a8dbba15b5392f4dc04dbcf26548e74a9d3b1776ed148fe0a6b3a018482f9e"
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/root/all8_fan_audit.json",
+      "sha256": "10e4c34748ed8e8734cd3b644e7aa914dfa596aac74384bec9eaf11026f857ca"
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/quality/all8_review.json",
+      "sha256": "e9eacfe6f3bac0839f1b48346f6942f491c8cc3c0260e9da70cdc205126b0011"
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/environment/all8_network_metrics.json",
+      "sha256": "d0269faeed0680fbad1eb7e0a6b6fd81d5e5a10e1b222f0f76c1710599984860"
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/environment/coastal_wetcell_validation.json",
+      "sha256": "6411ec5d67900edcee9eb8840998eb998af019544eb73879f3b6420eddf7321d"
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/validation/kaliningrad_waterbody_scope.json",
+      "sha256": "339e8f38ef5a83c9da2eb8bb684c0eca34e85151f8ed52c824ad4b0a3555e884"
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/quality/Q03_graph_denominator_scope.json",
+      "sha256": "d6cae270fddc4c484fcc7422d9de9cf2774530ca3c123bfabcd706df59d2da2a"
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/sochi_F01_node_repair_report.json",
+      "sha256": "d873252926227904e6e460482af5efb47453fe03dee85c85f655d22daf18f132"
+    }
+  ],
+  "author_full_review": "PASSED",
+  "author_checks": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/writer/all8_author_checks.json",
+  "author_checks_sha256": "03ec41cddfc137beec836d7dad96cb82e9ad487b617f77ec7a10c4aeb659a6a2",
+  "source_freeze": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/writer/all8_source_freeze.json",
+  "source_freeze_sha256": "2822ddd97388f4ac0e27e460f2f4d6225168e3bffa5ee6c398b2cc0480565660"
+}

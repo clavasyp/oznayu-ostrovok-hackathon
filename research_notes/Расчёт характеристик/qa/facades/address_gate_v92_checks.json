@@ -1,0 +1,126 @@
+{
+  "passed": true,
+  "n": 17,
+  "version": "v9.2.facades",
+  "checks": [
+    {
+      "house": "1",
+      "address": "улица Бестужева, д.1 Б, Сочи",
+      "expected": false,
+      "actual": false,
+      "passed": true
+    },
+    {
+      "house": "1Б",
+      "address": "улица Бестужева, д.1 Б, Сочи",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "house": "2",
+      "address": "улица Карла Маркса, д.2 А, Сочи",
+      "expected": false,
+      "actual": false,
+      "passed": true
+    },
+    {
+      "house": "2А",
+      "address": "улица Карла Маркса, д.2 А, Сочи",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "house": "13",
+      "address": "улица Демьяна Бедного, д.13 А, Калининград",
+      "expected": false,
+      "actual": false,
+      "passed": true
+    },
+    {
+      "house": "13А",
+      "address": "улица Демьяна Бедного, д.13 А, Калининград",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "house": "19/21",
+      "address": "проспект Мира, зд.19/21, к.2",
+      "expected": false,
+      "actual": false,
+      "passed": true
+    },
+    {
+      "house": "19/21 к2",
+      "address": "проспект Мира, зд.19/21, к.2",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "house": "19/21 к.2",
+      "address": "проспект Мира, зд.19/21, корпус 2",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "house": "19/21 к2",
+      "address": "проспект Мира, зд.19/21, корпус 3",
+      "expected": false,
+      "actual": false,
+      "passed": true
+    },
+    {
+      "house": "19",
+      "address": "улица Луначарского, д.19, лит.А",
+      "expected": false,
+      "actual": false,
+      "passed": true
+    },
+    {
+      "house": "19А",
+      "address": "улица Луначарского, д.19, лит.А",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "house": "26А",
+      "address": "Улица Гаврилова 26 A, Казань",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "house": "73А",
+      "address": "ulitsa Bagrationa, 73 A, Kaliningrad, Russia",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "house": "219/28",
+      "address": "ул.Ленина, д.219/28",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "house": "219",
+      "address": "ул.Ленина, д.219/28",
+      "expected": false,
+      "actual": false,
+      "passed": true
+    },
+    {
+      "house": "8",
+      "address": "улица 8 Марта 13",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    }
+  ]
+}

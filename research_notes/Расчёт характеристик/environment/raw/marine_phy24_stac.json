@@ -1,0 +1,864 @@
+{
+  "id": "GLOBAL_ANALYSISFORECAST_PHY_001_024",
+  "type": "Collection",
+  "stac_version": "1.0.0",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/scientific/v1.0.0/schema.json"
+  ],
+  "title": "Global Ocean Physics Analysis and Forecast",
+  "description": "The Operational Mercator global ocean analysis and forecast system at 1/12 degree is providing 10 days of 3D global ocean forecasts updated daily. The time series is aggregated in time in order to reach a two full year’s time series sliding window.\n\nThis product includes daily and monthly mean files of temperature, salinity, currents, sea level, mixed layer depth and ice parameters from the top to the bottom over the global ocean. It also includes hourly mean surface fields for sea level height, temperature and currents. The global ocean output files are displayed with a 1/12 degree horizontal resolution with regular longitude/latitude equirectangular projection.\n\n50 vertical levels are ranging from 0 to 5500 meters.\n\nThis product also delivers a special dataset for surface current which also includes wave and tidal drift called SMOC (Surface merged Ocean Current).",
+  "license": "proprietary",
+  "providers": [
+    {
+      "name": "Mercator Ocean International",
+      "roles": [
+        "producer"
+      ]
+    },
+    {
+      "name": "Copernicus Marine Service",
+      "roles": [
+        "host",
+        "processor"
+      ],
+      "url": "https://marine.copernicus.eu"
+    }
+  ],
+  "keywords": [
+    "target-application#seaiceforecastingapplication",
+    "oceanographic-geographical-features",
+    "numerical-model",
+    "northward-sea-water-velocity",
+    "eastward-sea-water-velocity",
+    "sea-surface-wave-stokes-drift-x-velocity",
+    "sea-surface-wave-stokes-drift-y-velocity",
+    "ocean-mixed-layer-thickness-defined-by-sigma-theta",
+    "sea-water-pressure-at-sea-floor",
+    "sea-ice-speed",
+    "sea-surface-height-above-geoid",
+    "sea-ice-thickness",
+    "sea-ice-area-fraction",
+    "sea-water-potential-temperature-at-sea-floor",
+    "surface-snow-thickness",
+    "age-of-sea-ice",
+    "sea-water-salinity",
+    "eastward-sea-ice-velocity",
+    "northward-sea-ice-velocity",
+    "sea-water-potential-temperature",
+    "sea-ice-surface-temperature",
+    "sea-ice-albedo",
+    "model-level-number-at-sea-floor",
+    "upward-sea-water-velocity",
+    "cell-thickness",
+    "sea-floor-depth-below-geoid",
+    "invariant",
+    "forecast",
+    "near-real-time",
+    "marine-resources",
+    "coastal-marine-environment",
+    "marine-safety",
+    "weather-climate-and-seasonal-forecasting",
+    "global-ocean",
+    "level-4",
+    "sea-level",
+    "in-situ-ts-profiles",
+    "sea-ice-concentration-and/or-thickness",
+    "sst"
+  ],
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.stac.json",
+      "title": "Copernicus Marine Data Store",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.stac.json",
+      "title": "Copernicus Marine Data Store",
+      "type": "application/json"
+    },
+    {
+      "rel": "item",
+      "href": "cmems_mod_glo_phy_anfc_0.083deg_static_202211--ext--coords/dataset.stac.json",
+      "title": "Statics (coordinates)",
+      "type": "application/json"
+    },
+    {
+      "rel": "item",
+      "href": "cmems_mod_glo_phy_anfc_0.083deg_static_202211--ext--bathy/dataset.stac.json",
+      "title": "Statics (bathymetry)",
+      "type": "application/json"
+    },
+    {
+      "rel": "item",
+      "href": "cmems_mod_glo_phy_anfc_0.083deg_static_202211--ext--mdt/dataset.stac.json",
+      "title": "Statics (mean dynamic topography)",
+      "type": "application/json"
+    },
+    {
+      "rel": "item",
+      "href": "cmems_mod_glo_phy_anfc_merged-uv_PT1H-i_202211/dataset.stac.json",
+      "title": "Surface currents, hourly",
+      "type": "application/json"
+    },
+    {
+      "rel": "item",
+      "href": "cmems_mod_glo_phy_anfc_0.083deg_P1D-m_202406/dataset.stac.json",
+      "title": "Daily",
+      "type": "application/json"
+    },
+    {
+      "rel": "item",
+      "href": "cmems_mod_glo_phy_anfc_0.083deg_P1M-m_202406/dataset.stac.json",
+      "title": "Monthly",
+      "type": "application/json"
+    },
+    {
+      "rel": "item",
+      "href": "cmems_mod_glo_phy_anfc_0.083deg_PT1H-m_202406/dataset.stac.json",
+      "title": "Hourly",
+      "type": "application/json"
+    },
+    {
+      "rel": "item",
+      "href": "cmems_mod_glo_phy-so_anfc_0.083deg_P1D-m_202406/dataset.stac.json",
+      "title": "Salinity, daily",
+      "type": "application/json"
+    },
+    {
+      "rel": "item",
+      "href": "cmems_mod_glo_phy-so_anfc_0.083deg_PT6H-i_202406/dataset.stac.json",
+      "title": "Salinity, 6-hourly",
+      "type": "application/json"
+    },
+    {
+      "rel": "item",
+      "href": "cmems_mod_glo_phy-thetao_anfc_0.083deg_P1D-m_202406/dataset.stac.json",
+      "title": "Temperature, daily",
+      "type": "application/json"
+    },
+    {
+      "rel": "item",
+      "href": "cmems_mod_glo_phy-so_anfc_0.083deg_P1M-m_202406/dataset.stac.json",
+      "title": "Salinity, monthly",
+      "type": "application/json"
+    },
+    {
+      "rel": "item",
+      "href": "cmems_mod_glo_phy-thetao_anfc_0.083deg_P1M-m_202406/dataset.stac.json",
+      "title": "Temperature, monthly",
+      "type": "application/json"
+    },
+    {
+      "rel": "item",
+      "href": "cmems_mod_glo_phy-thetao_anfc_0.083deg_PT6H-i_202406/dataset.stac.json",
+      "title": "Temperature, 6-hourly",
+      "type": "application/json"
+    },
+    {
+      "rel": "item",
+      "href": "cmems_mod_glo_phy-wcur_anfc_0.083deg_P1D-m_202406/dataset.stac.json",
+      "title": "Vertical currents, daily",
+      "type": "application/json"
+    },
+    {
+      "rel": "item",
+      "href": "cmems_mod_glo_phy-cur_anfc_0.083deg_PT6H-i_202406/dataset.stac.json",
+      "title": "Currents, 6-hourly",
+      "type": "application/json"
+    },
+    {
+      "rel": "item",
+      "href": "cmems_mod_glo_phy-cur_anfc_0.083deg_P1D-m_202406/dataset.stac.json",
+      "title": "Currents, daily",
+      "type": "application/json"
+    },
+    {
+      "rel": "item",
+      "href": "cmems_mod_glo_phy-wcur_anfc_0.083deg_P1M-m_202406/dataset.stac.json",
+      "title": "Vertical currents, monthly",
+      "type": "application/json"
+    },
+    {
+      "rel": "item",
+      "href": "cmems_mod_glo_phy-cur_anfc_0.083deg_P1M-m_202406/dataset.stac.json",
+      "title": "Currents, monthly",
+      "type": "application/json"
+    },
+    {
+      "rel": "item",
+      "href": "cmems_mod_glo_phy_anfc_0.083deg-sst-anomaly_P1D-m_202411/dataset.stac.json",
+      "title": "Sea surface temperature anomaly, daily",
+      "type": "application/json"
+    },
+    {
+      "rel": "item",
+      "href": "cmems_mod_glo_phy_anfc_0.083deg-sst-anomaly_P1M-m_202411/dataset.stac.json",
+      "title": "Sea surface temperature anomaly, monthly",
+      "type": "application/json"
+    },
+    {
+      "rel": "item",
+      "href": "cmems_mod_glo_phy_anfc_merged-sl_PT1H-i_202411/dataset.stac.json",
+      "title": "Sea level, hourly",
+      "type": "application/json"
+    },
+    {
+      "rel": "item",
+      "href": "cmems_mod_glo_phy_anfc_0.083deg-climatology-uncertainty_P1M-m_202311/dataset.stac.json",
+      "title": "Climatology uncertainty, month of year",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://marine.copernicus.eu/user-corner/service-commitments-and-licence",
+      "title": "Copernicus Marine Service Commitments and Licence",
+      "type": "text/html"
+    },
+    {
+      "rel": "cite-as",
+      "href": "https://doi.org/10.48670/moi-00016",
+      "title": "10.48670/moi-00016",
+      "type": "text/html"
+    },
+    {
+      "rel": "alternative",
+      "href": "https://data.marine.copernicus.eu/product/GLOBAL_ANALYSISFORECAST_PHY_001_024",
+      "title": "Product page",
+      "type": "text/html"
+    },
+    {
+      "rel": "describedby",
+      "href": "https://documentation.marine.copernicus.eu/QUID/CMEMS-GLO-QUID-001-024.pdf",
+      "title": "Quality Information Document",
+      "type": "application/pdf",
+      "ref": "CMEMS-GLO-QUID-001-024",
+      "createdAt": "2016-10-19",
+      "updatedAt": "2024-07-26T14:42:36.703Z"
+    },
+    {
+      "rel": "describedby",
+      "href": "https://documentation.marine.copernicus.eu/PUM/CMEMS-GLO-PUM-001-024.pdf",
+      "title": "Product User Manual",
+      "type": "application/pdf",
+      "ref": "CMEMS-GLO-PUM-001-024",
+      "createdAt": "2023-11-30",
+      "updatedAt": "2024-07-26T16:01:37.019Z"
+    },
+    {
+      "rel": "describedby",
+      "href": "https://documentation.marine.copernicus.eu/SQO/CMEMS-GLO-SQO-001-024.pdf",
+      "title": "Synthesis Quality Overview",
+      "type": "application/pdf",
+      "ref": "CMEMS-GLO-SQO-001-024",
+      "createdAt": "2023-11-30",
+      "updatedAt": "2024-07-31T13:26:40.945Z"
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180,
+          -80,
+          179.9169921875,
+          90
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2019-01-01T00:00:00Z",
+          "2026-11-02T00:00:00Z"
+        ]
+      ]
+    }
+  },
+  "assets": {
+    "thumbnail": {
+      "href": "https://mdl-metadata.s3.waw3-1.cloudferro.com/metadata/thumbnails/GLOBAL_ANALYSISFORECAST_PHY_001_024.jpg",
+      "type": "image/jpeg",
+      "roles": [
+        "thumbnail"
+      ],
+      "title": "Global Ocean Physics Analysis and Forecast thumbnail"
+    }
+  },
+  "properties": {
+    "altId": "2ed3a04a-7dca-4eb0-b0e6-22365a3273a0",
+    "providerMetadata": {
+      "source": "cmems",
+      "type": "csw",
+      "url": "https://csw.marine.copernicus.eu/geonetwork/csw-MYOCEAN-CORE-PRODUCTS/eng/csw?service=CSW&version=2.0.2&request=GetRecordById&id=2ed3a04a-7dca-4eb0-b0e6-22365a3273a0&elementsetname=full&outputSchema=http://www.isotc211.org/2005/gmd"
+    },
+    "thumbnailMeta": {
+      "creationDate": "2023-06-18T05:53:19.797Z",
+      "layerId": "GLOBAL_ANALYSISFORECAST_PHY_001_024/cmems_mod_glo_phy-thetao_anfc_0.083deg_P1D-m_202211/thetao",
+      "time": 1604232000000,
+      "elevation": -0.49402499198913574,
+      "basemapId": "dark",
+      "overlays": {
+        "tags": []
+      },
+      "crs": "epsg:4326",
+      "valueMin": -5,
+      "valueMax": 29.5327205657959,
+      "valueClamp": true,
+      "logScale": false,
+      "style": "default",
+      "colormapId": "thermal",
+      "colormapInvert": false
+    },
+    "creationDate": "2016-10-14",
+    "modifiedDate": "2026-03-31",
+    "contacts": [
+      {
+        "name": "",
+        "organisationName": "GLO-MERCATOR-TOULOUSE-FR",
+        "responsiblePartyRole": "resourceProvider",
+        "email": ""
+      }
+    ],
+    "projection": "Equirectangular",
+    "assimilatedData": [
+      "Sea Level",
+      "In-Situ TS Profiles",
+      "Sea Ice Concentration and/or Thickness",
+      "SST"
+    ],
+    "formats": [
+      "NetCDF-3",
+      "NetCDF-4"
+    ],
+    "updateFrequencies": {
+      "daily": "08:00 UTC; 15th day of month at 12:00 UTC",
+      "monthly": null
+    },
+    "featureTypes": [
+      "Grid"
+    ],
+    "indicatorFamilies": [],
+    "geoExtent": {
+      "type": "envelope",
+      "coordinates": [
+        [
+          -180,
+          90
+        ],
+        [
+          180,
+          -90
+        ]
+      ]
+    },
+    "geoResolution": {
+      "row": {
+        "magnitude": 0.083,
+        "units": "degree"
+      },
+      "column": {
+        "magnitude": 0.083,
+        "units": "degree"
+      }
+    },
+    "tempExtentBegin": "2022-06-18",
+    "tempResolutions": [
+      "Hourly",
+      "Daily",
+      "Monthly"
+    ],
+    "vertExtentMin": -5500,
+    "vertExtentMax": 0,
+    "vertLevels": 50,
+    "rank": 1000,
+    "useCases": [
+      {
+        "title": "Advancing High Resolution modelling and forecasting of the Western Iberia Buoyant Plume (WIBP) to support coastal management",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/figure_1.jpg",
+        "href": "https://marine.copernicus.eu/services/use-cases/advancing-high-resolution-modelling-and-forecasting-western-iberia-buoyant-plume"
+      },
+      {
+        "title": "Assessing Nutrient Budgets and Ecosystem Impacts in Madeira’s Coastal Waters",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/2026-02/figure_1_v2.png",
+        "href": "https://marine.copernicus.eu/services/use-cases/assessing-nutrient-budgets-and-ecosystem-impacts-madeiras-coastal-waters"
+      },
+      {
+        "title": "Temperature-Driven Growth Risks in Mussel Farming: The MOLL-e MALONE Early Warning System for the Ría de Arousa",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/mockup-molle.png",
+        "href": "https://marine.copernicus.eu/services/use-cases/temperature-driven-growth-risks-mussel-farming-moll-e-malone-early-warning"
+      },
+      {
+        "title": "Pollution hazard on coral restoration sites around the Dutch Caribbean islands",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/2026-01/pollution0019.png",
+        "href": "https://marine.copernicus.eu/services/use-cases/pollution-hazard-coral-restoration-sites-around-dutch-caribbean-islands"
+      },
+      {
+        "title": "Forecasting Essential Ocean Variables and determination of oyster mortality index in Irish coastal waterbodies.",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/uc2_biodiver.png",
+        "href": "https://marine.copernicus.eu/services/use-cases/forecasting-essential-ocean-variables-and-determination-oyster-mortality-index"
+      },
+      {
+        "title": "Marine Protected Areas (MPAs) Modelling System",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/picture-2.png",
+        "href": "https://marine.copernicus.eu/services/use-cases/marine-protected-areas-mpas-modelling-system"
+      },
+      {
+        "title": "Enhancing hydrodynamic modelling and forecasting for aquaculture and fishery applications in the Region of Murcia",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/img1_copernicus.png",
+        "href": "https://marine.copernicus.eu/services/use-cases/enhancing-hydrodynamic-modelling-and-forecasting-aquaculture-and-fishery"
+      },
+      {
+        "title": "Ending uncertainty in marine weather forecasts to power safer, greener and more profitable maritime operations",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/uiux_fig1.png",
+        "href": "https://marine.copernicus.eu/services/use-cases/ending-uncertainty-marine-weather-forecasts-power-safer-greener-and-more"
+      },
+      {
+        "title": "Improve the Prediction Tools of the Galician Contingency Plan against Accidental Marine Pollution",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/uc1_whistlefigure.png",
+        "href": "https://marine.copernicus.eu/services/use-cases/improve-prediction-tools-galician-contingency-plan-against-accidental-marine"
+      },
+      {
+        "title": "Simulating the impact of policy measures on sediment runoff control in the Dutch Carribbean islands",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/Bonaire_SPM.png",
+        "href": "https://marine.copernicus.eu/services/use-cases/simulating-impact-policy-measures-sediment-runoff-control-dutch-carribbean"
+      },
+      {
+        "title": "Salinity-Driven Risks in Cockle Production: The MOLL-e MALONE Early Warning System for the Ría de Arousa",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/figureUC1.jpg",
+        "href": "https://marine.copernicus.eu/services/use-cases/salinity-driven-risks-cockle-production-moll-e-malone-early-warning-system-ria"
+      },
+      {
+        "title": "Marine Heatwaves Monitoring in Galway Bay, Ireland ",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/Figure%201%20v2.jpg",
+        "href": "https://marine.copernicus.eu/services/use-cases/marine-heatwaves-monitoring-galway-bay-ireland"
+      },
+      {
+        "title": "Targeting Sanitary Risks in Coastal Areas Critical for Tourism and Aquaculture in Madeira Island",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/2025-07/Imagem1.png",
+        "href": "https://marine.copernicus.eu/services/use-cases/targeting-sanitary-risks-coastal-areas-critical-tourism-and-aquaculture-madeira"
+      },
+      {
+        "title": "Sailrouting.com - Smart Routing Tool for Coastal Cruising Sailors",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/couverture%20facebook.png",
+        "href": "https://marine.copernicus.eu/services/use-cases/sailroutingcom-smart-routing-tool-coastal-cruising-sailors"
+      },
+      {
+        "title": "Bridging Data Gaps for Smarter Arctic and Antarctic Navigation",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/Picture1.jpg",
+        "href": "https://marine.copernicus.eu/services/use-cases/bridging-data-gaps-smarter-arctic-and-antarctic-navigation"
+      },
+      {
+        "title": "Cerulean Information Factory (CIF): a set of tools to support safety and the Green Transition for the Blue Economy",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/Picture3.png",
+        "href": "https://marine.copernicus.eu/services/use-cases/cerulean-information-factory-cif-set-tools-support-safety-and-green-transition"
+      },
+      {
+        "title": "Pacific Green Corridor: Optimised Ocean Routes for Sustainable Shipping",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/2025-03/route_img.png",
+        "href": "https://marine.copernicus.eu/services/use-cases/pacific-green-corridor-optimised-ocean-routes-sustainable-shipping"
+      },
+      {
+        "title": "Seasonal Water Quality Forecasts for Coastal Water Quality Services ",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/ClimForce_UC1_1.jpg",
+        "href": "https://marine.copernicus.eu/services/use-cases/seasonal-water-quality-forecasts-coastal-water-quality-services"
+      },
+      {
+        "title": "Operational Solutions for Maritime Spatial Planning: Integrating Renewable Energy and Aquaculture in Portugal",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/Fig_UC3.jpg",
+        "href": "https://marine.copernicus.eu/services/use-cases/operational-solutions-maritime-spatial-planning-integrating-renewable-energy-and"
+      },
+      {
+        "title": "Harnessing Predictable Tidal Energy in the Faroe Islands",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/Minesto-1.jpg",
+        "href": "https://marine.copernicus.eu/services/use-cases/harnessing-predictable-tidal-energy-faroe-islands"
+      },
+      {
+        "title": "Iberian Ocean Hindcast (IBv2.0): Exploring environmental impacts on small pelagic fish abundance & distribution",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/Imagem1.png",
+        "href": "https://marine.copernicus.eu/services/use-cases/iberian-ocean-hindcast-ibv20-exploring-environmental-impacts-small-pelagic-fish"
+      },
+      {
+        "title": "Oceanographic modelling for coastal management in the SE Bay of Biscay",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/no_imagen_1.jpg",
+        "href": "https://marine.copernicus.eu/services/use-cases/oceanographic-modelling-coastal-management-se-bay-biscay"
+      },
+      {
+        "title": "Low salinity warning system for oyster farming in Galway Bay, Ireland",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/NAUI%20warning%20system.png",
+        "href": "https://marine.copernicus.eu/services/use-cases/low-salinity-warning-system-oyster-farming-galway-bay-ireland"
+      },
+      {
+        "title": "The influence of offshore wind farms on hydrodynamic parameter trends in the southern North Sea ",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/Thumbnail.PNG",
+        "href": "https://marine.copernicus.eu/services/use-cases/influence-offshore-wind-farms-hydrodynamic-parameter-trends-southern-north-sea"
+      },
+      {
+        "title": "Surface currents for search and rescue in the SE Bay of Biscay",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/imagen_1.jpg",
+        "href": "https://marine.copernicus.eu/services/use-cases/surface-currents-search-and-rescue-se-bay-biscay"
+      },
+      {
+        "title": "Monitoring coastal waters of the Lisbon Area (Portugal) in support of EU directive implementation",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/1st_Image.png",
+        "href": "https://marine.copernicus.eu/services/use-cases/monitoring-coastal-waters-lisbon-area-portugal-support-eu-directive"
+      },
+      {
+        "title": "Mapping distribution of suitable habitats for oysters in Galway Bay ",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/BIODIVER-COAST_GalwayView.png",
+        "href": "https://marine.copernicus.eu/services/use-cases/mapping-distribution-suitable-habitats-oysters-galway-bay"
+      },
+      {
+        "title": "Trends in hydrodynamic parameters in the southern North Sea ",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/Thumbnail.PNG",
+        "href": "https://marine.copernicus.eu/services/use-cases/trends-hydrodynamic-parameters-southern-north-sea"
+      },
+      {
+        "title": "Ocean Plastic Alert & Tracking system : calculating drift using Copernicus Marine",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/OPAT-TheArch%20%282%29.png",
+        "href": "https://marine.copernicus.eu/services/use-cases/ocean-plastic-alert-tracking-system-calculating-drift-using-copernicus-marine"
+      },
+      {
+        "title": "Innovative Oil Spill Modeling for Support of Civil and Environmental Protection",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/CMCC_2023_sl_v2.png",
+        "href": "https://marine.copernicus.eu/services/use-cases/innovative-oil-spill-modeling-support-civil-and-environmental-protection"
+      },
+      {
+        "title": "SPOT – User-friendly oil spill model",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/wolfgang-hasselmann-COcQFPwPCCg-unsplash.jpg",
+        "href": "https://marine.copernicus.eu/services/use-cases/spot-user-friendly-oil-spill-model"
+      },
+      {
+        "title": "Rheticus Marine for Water and Food Security Planning and Investments in Indonesia ",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/CMEMS%20use%20case%20aquaculture_Indonesia_Immagine1.png",
+        "href": "https://marine.copernicus.eu/services/use-cases/rheticus-marine-water-and-food-security-planning-and-investments-indonesia"
+      },
+      {
+        "title": "Tracking Floating Plastics in Liberia and Gulf of Guinea with TrackMPD Model",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/CMEMS%20use%20case%20_plastic_liberia_Figure1.PNG",
+        "href": "https://marine.copernicus.eu/services/use-cases/tracking-floating-plastics-liberia-and-gulf-guinea-trackmpd-model"
+      },
+      {
+        "title": "Modelling Reveals New Insights on Phytoplankton Blooms in NW Iberian Upwelling",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/Graphical_abstract.png",
+        "href": "https://marine.copernicus.eu/services/use-cases/modelling-reveals-new-insights-phytoplankton-blooms-nw-iberian-upwelling"
+      },
+      {
+        "title": "Real time satellite detection and drift forecast of Sargassum algae in the Equatorial Atlantic",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/sargassum-CLS-ESA-primary-image.png",
+        "href": "https://marine.copernicus.eu/services/use-cases/real-time-satellite-detection-and-drift-forecast-sargassum-algae-equatorial"
+      },
+      {
+        "title": "A model to support sea turtle protection at sea",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/tortue.jpg",
+        "href": "https://marine.copernicus.eu/services/use-cases/model-support-sea-turtle-protection-sea"
+      },
+      {
+        "title": "COASTSERV: Downscaled CMEMS products for high-resolution coastal models",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/deltares.illustration_1.png",
+        "href": "https://marine.copernicus.eu/services/use-cases/coastserv-downscaled-cmems-products-high-resolution-coastal-models"
+      },
+      {
+        "title": "The Brazilian Sea Observatory - Coastal Service",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/cem.illustration_1.jpg",
+        "href": "https://marine.copernicus.eu/services/use-cases/brazilian-coastal-service"
+      },
+      {
+        "title": "SOSeas: Assessment tool for predicting the dynamic risk of drowning on beaches",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/illustration_1.png",
+        "href": "https://marine.copernicus.eu/services/use-cases/soseas-assessment-tool-predicting-dynamic-risk-drowning-beaches"
+      },
+      {
+        "title": "SHIPcAPP: Supporting shipping around Cape Farewell with high-resolution forecast Products",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/danish-meteorological-institute.illustration_1.png",
+        "href": "https://marine.copernicus.eu/services/use-cases/shipcapp-supporting-shipping-around-cape-farewell-high-resolution-forecast"
+      },
+      {
+        "title": "LAMBDA PROJECT – Land-Marine Boundary Development & Analysis",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/Capture%20d%E2%80%99%C3%A9cran%202021-06-07%20142300.png",
+        "href": "https://marine.copernicus.eu/services/use-cases/lambda-project-land-marine-boundary-development-analysis"
+      },
+      {
+        "title": "Copernicus Marine Service in support to French Hydrographic Office",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/shom.illustration_3.jpg",
+        "href": "https://marine.copernicus.eu/services/use-cases/copernicus-marine-service-support-french-hydrographic-office"
+      },
+      {
+        "title": "SASEMAR: Effective Emergency Response Needs the Most Accurate Data",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/OVERVIEW11.png",
+        "href": "https://marine.copernicus.eu/services/use-cases/sasemar-effective-emergency-response-needs-most-accurate-data"
+      },
+      {
+        "title": "Polar Code Service to optimize marine navigation in the Arctic Antarctic waters",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/iStock-157612419.jpg",
+        "href": "https://marine.copernicus.eu/services/use-cases/polar-code-service-optimize-marine-navigation-arctic-antarctic-waters"
+      },
+      {
+        "title": "IBISAR: One Year of Supporting Emergency Response at Sea",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/OVERVIEW1.png",
+        "href": "https://marine.copernicus.eu/services/use-cases/ibisar-one-year-supporting-emergency-response-sea"
+      },
+      {
+        "title": "UMITRON PULSE: high-resolution ocean data map for aquaculture farmers",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/UMITRON_PULSE_clear.jpg",
+        "href": "https://marine.copernicus.eu/services/use-cases/umitron-pulse-high-resolution-ocean-data-map-aquaculture-farmers"
+      },
+      {
+        "title": "I Clean My Sea: Crowd sourcing mobile application for detecting marine debris",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/Image3-v02.jpg",
+        "href": "https://marine.copernicus.eu/services/use-cases/i-clean-my-sea-crowd-sourcing-mobile-application-detecting-marine-debris"
+      },
+      {
+        "title": "Metocean risk estimation: a project for offshore operations",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/AS_893804127203328%401590110918354_xl.jpg",
+        "href": "https://marine.copernicus.eu/services/use-cases/metocean-risk-estimation-project-offshore-operations"
+      },
+      {
+        "title": "OPENCoastS: on-demand marine data forecast service for Coastal Management",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/picture1_overview.jpg",
+        "href": "https://marine.copernicus.eu/services/use-cases/opencoasts-demand-marine-data-forecast-service-coastal-management"
+      },
+      {
+        "title": "Support to coral reef protection: Coral Guardian",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/Evolution-CG.jpeg",
+        "href": "https://marine.copernicus.eu/services/use-cases/support-coral-reef-protection-coral-guardian"
+      },
+      {
+        "title": "Supporting NOAA OceanWatch Monitor",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/2024-08/recent_ssh.png",
+        "href": "https://marine.copernicus.eu/services/use-cases/supporting-noaa-oceanwatch-monitor"
+      },
+      {
+        "title": "VoyOpt® - Voyage Optimization",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/voyopt_illustration.png",
+        "href": "https://marine.copernicus.eu/services/use-cases/voyoptr-voyage-optimization"
+      },
+      {
+        "title": "Copernicus Marine for Maritime Spatial Planning: The PLASMAR Project",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/UC75-image2-ThinkstockPhotos-508377690.jpg",
+        "href": "https://marine.copernicus.eu/services/use-cases/copernicus-marine-maritime-spatial-planning-plasmar-project"
+      },
+      {
+        "title": "IBISAR web service in support to search and rescue operations",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/socib-balearic-islands-coastal-observing-and-forecasting-sys.illustration_1.png",
+        "href": "https://marine.copernicus.eu/services/use-cases/ibisar-web-service-support-search-and-rescue-operations"
+      },
+      {
+        "title": "Coastal marine safety in Costa Rica",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/mio-cimar.illustration_1.jpeg",
+        "href": "https://marine.copernicus.eu/services/use-cases/coastal-marine-safety-costa-rica"
+      },
+      {
+        "title": "Addressing marine pollution from oil spills with effective dispersion modelling",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/UC5-imag1-pixabay_oil-spill.jpg",
+        "href": "https://marine.copernicus.eu/services/use-cases/addressing-marine-pollution-oil-spills-effective-dispersion-modelling"
+      },
+      {
+        "title": "High resolution wind forecast to assess environmental risk",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/ThinkstockPhotos-511586462.jpg",
+        "href": "https://marine.copernicus.eu/services/use-cases/high-resolution-wind-forecast-assess-environmental-risk"
+      },
+      {
+        "title": "TIMEZERO, a Weather Routing module",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/ThinkstockPhotos-474610716.jpg",
+        "href": "https://marine.copernicus.eu/services/use-cases/timezero-weather-routing-module"
+      },
+      {
+        "title": "Optimal ship routing and control with OCEANiCS",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/UC13-image2-ThinkstockPhotos-529653893.jpg",
+        "href": "https://marine.copernicus.eu/services/use-cases/optimal-ship-routing-and-control-oceanics"
+      },
+      {
+        "title": "Estimating wave energy resources in the North Aegean Archipelago",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/ThinkstockPhotos-473603420.jpg",
+        "href": "https://marine.copernicus.eu/services/use-cases/estimating-wave-energy-resources-north-aegean-archipelago"
+      },
+      {
+        "title": "Wise-Marine: a platform in support to MSFD",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/a63e5f7f-50da-4335-af03-8c164ae150a4.jpeg",
+        "href": "https://marine.copernicus.eu/services/use-cases/wise-marine-platform-support-msfd"
+      },
+      {
+        "title": "CMEMS in support to Copernicus Maritime Surveillance Service",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/Image2.png",
+        "href": "https://marine.copernicus.eu/services/use-cases/cmems-support-copernicus-maritime-surveillance-service"
+      },
+      {
+        "title": "Ocean Noise Mapping in support to EU and international regulations",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/CaptureMap63_HR_1.png",
+        "href": "https://marine.copernicus.eu/services/use-cases/ocean-noise-mapping-support-eu-and-international-regulations"
+      },
+      {
+        "title": "Supporting fishing aquaculture sector in Chile",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/ROMS-CMEMSsite.png",
+        "href": "https://marine.copernicus.eu/services/use-cases/supporting-fishing-aquaculture-sector-chile"
+      },
+      {
+        "title": "Tailored Marine Weather Information Services",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/APSS_Sesimbra-01.png",
+        "href": "https://marine.copernicus.eu/services/use-cases/tailored-marine-weather-information-services"
+      },
+      {
+        "title": "Ocean Currents in support to gliders piloting",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/Imagen1.png",
+        "href": "https://marine.copernicus.eu/services/use-cases/ocean-currents-support-gliders-piloting"
+      },
+      {
+        "title": "Finding boat adrift during MiniTransat sailing race",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/ThinkstockPhotos-97429419.jpg",
+        "href": "https://marine.copernicus.eu/services/use-cases/finding-boat-adrift-during-minitransat-sailing-race"
+      },
+      {
+        "title": "Bluerise: Ocean Thermal Energy resource analysis",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/globe_03.jpg",
+        "href": "https://marine.copernicus.eu/services/use-cases/bluerise-ocean-thermal-energy-resource-analysis"
+      },
+      {
+        "title": "Web based drift scenario interface",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/Image1.jpg",
+        "href": "https://marine.copernicus.eu/services/use-cases/web-based-drift-scenario-interface"
+      },
+      {
+        "title": "Support to exploration activities for Deep Sea Mining",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/isq1.jpg",
+        "href": "https://marine.copernicus.eu/services/use-cases/support-exploration-activities-deep-sea-mining"
+      },
+      {
+        "title": "Support to Marine Seismic Ship Operations",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/CGG4.png",
+        "href": "https://marine.copernicus.eu/services/use-cases/support-marine-seismic-ship-operations"
+      },
+      {
+        "title": "Great Circle ship-routing application",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/ThinkstockPhotos-493540434.jpg",
+        "href": "https://marine.copernicus.eu/services/use-cases/great-circle-ship-routing-application"
+      },
+      {
+        "title": "Developing Africa's Capacity In Fishery Resource Management with MESA",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/UC74-image1-ThinkstockPhotos-175125392.jpg",
+        "href": "https://marine.copernicus.eu/services/use-cases/developing-africas-capacity-fishery-resource-management-mesa"
+      },
+      {
+        "title": "Ship routing to save fuel and reduce CO2 emissions",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/UC57-image1-ThinkstockPhotos-481541431.jpg",
+        "href": "https://marine.copernicus.eu/services/use-cases/ship-routing-save-fuel-and-reduce-co2-emissions"
+      },
+      {
+        "title": "Improving sonar communication between defence vessels",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/UC50-image1-ThinkstockPhotos-57564904.jpg",
+        "href": "https://marine.copernicus.eu/services/use-cases/improving-sonar-communication-between-defence-vessels"
+      },
+      {
+        "title": "Listening to the ocean's noise",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/UC49-image1-ThinkstockPhotos-92433441.jpg",
+        "href": "https://marine.copernicus.eu/services/use-cases/listening-oceans-noise"
+      },
+      {
+        "title": "Met-Ocean conditions for the Oil Gas industry and Ocean Energy sector",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/ma_onlinesolution%20%281%29.jpg",
+        "href": "https://marine.copernicus.eu/services/use-cases/met-ocean-conditions-oil-gas-industry-and-ocean-energy-sector"
+      },
+      {
+        "title": "Combating marine litter pollution",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/UC31-image1-.jpg",
+        "href": "https://marine.copernicus.eu/services/use-cases/combating-marine-litter-pollution"
+      },
+      {
+        "title": "Seawater Air Conditioning System Implementation",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/UC30-image1-ThinkstockPhotos-516596256.jpg",
+        "href": "https://marine.copernicus.eu/services/use-cases/seawater-air-conditioning-system-implementation"
+      },
+      {
+        "title": "Hydrodynamic downscaling for coastal studies",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/UC29-image1-.jpg",
+        "href": "https://marine.copernicus.eu/services/use-cases/hydrodynamic-downscaling-coastal-studies"
+      },
+      {
+        "title": "Seasonal Forecasting at Météo-France",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/UC26-image1-.jpg",
+        "href": "https://marine.copernicus.eu/services/use-cases/seasonal-forecasting-meteo-france"
+      },
+      {
+        "title": "Backtracking of MH370 trajectory from La Réunion",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/UC15-image1-ThinkstockPhotos-470831374.jpg",
+        "href": "https://marine.copernicus.eu/services/use-cases/backtracking-mh370-trajectory-la-reunion"
+      },
+      {
+        "title": "SailGrib ship-routing application",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/UC11-image1-ThinkstockPhotos-614014254.jpg",
+        "href": "https://marine.copernicus.eu/services/use-cases/sailgrib-ship-routing-application"
+      },
+      {
+        "title": "Flood prevention along the French Roussillon Mediterranean Coast",
+        "imageSrc": "https://marine.copernicus.eu/sites/default/files/media/image/use_case/UC1-imag1-models.png",
+        "href": "https://marine.copernicus.eu/services/use-cases/flood-prevention-along-french-roussillon-mediterranean-coast"
+      }
+    ],
+    "areas": [
+      "Global Ocean"
+    ],
+    "times": [
+      "Future",
+      "Present",
+      "Past"
+    ],
+    "sources": [
+      "Numerical models"
+    ],
+    "colors": [
+      "White Ocean",
+      "Blue Ocean"
+    ],
+    "communities": [
+      "Polar environment monitoring",
+      "Policy & governance",
+      "Education",
+      "Public health & recreation",
+      "Science & innovation",
+      "Extremes, hazards & safety",
+      "Coastal services",
+      "Natural resources & energy",
+      "Trade & marine navigation"
+    ],
+    "processingLevel": "Level 4",
+    "mainVariables": [
+      "Temperature",
+      "Salinity",
+      "Sea surface height",
+      "Velocity",
+      "Mixed layer thickness",
+      "Wave",
+      "Sea ice"
+    ],
+    "allVariables": [
+      "Age of sea ice",
+      "Cell thickness",
+      "Eastward sea ice velocity",
+      "Eastward sea water velocity",
+      "Model level number at sea floor",
+      "Northward sea ice velocity",
+      "Northward sea water velocity",
+      "Ocean mixed layer thickness defined by sigma theta",
+      "Sea floor depth below geoid",
+      "Sea ice albedo",
+      "Sea ice area fraction",
+      "Sea ice speed",
+      "Sea ice surface temperature",
+      "Sea ice thickness",
+      "Sea surface height above geoid",
+      "Sea surface wave stokes drift x velocity",
+      "Sea surface wave stokes drift y velocity",
+      "Sea water potential temperature",
+      "Sea water potential temperature at sea floor",
+      "Sea water pressure at sea floor",
+      "Sea water salinity",
+      "Surface snow thickness",
+      "Upward sea water velocity"
+    ],
+    "directives": [],
+    "isStaging": false,
+    "admp_updated": "2026-10-23T09:49:09.130053Z"
+  },
+  "sci:doi": "10.48670/moi-00016"
+}

@@ -1,0 +1,5058 @@
+{
+  "cases": 192,
+  "all_point_states_expressions_instants_exact": true,
+  "kitchen_and_selected_tag_key_separate": true,
+  "cache_key": [
+    "expression",
+    "date",
+    "city",
+    "timezone",
+    "country",
+    "kitchen",
+    "selected_tag_key"
+  ],
+  "original_comparison_scope": "Original accepted opening_state with native is_open/is_closed/parsing unchanged; only optional next_change returns None to avoid known diagnostic stall.",
+  "rows": [
+    {
+      "city_id": "sochi",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "24/7"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "open",
+        "expression": "24/7",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "24/7",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "sochi",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 09:00-22:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "closed",
+        "expression": "Mo-Su 09:00-22:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "closed",
+        "expression": "Mo-Su 09:00-22:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "sochi",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "Fr 20:00-04:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "open",
+        "expression": "Fr 20:00-04:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "Fr 20:00-04:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "sochi",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 22:00-05:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "open",
+        "expression": "Mo-Su 22:00-05:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "Mo-Su 22:00-05:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "sochi",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 08:00-12:00,14:00-22:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "closed",
+        "expression": "Mo-Su 08:00-12:00,14:00-22:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "closed",
+        "expression": "Mo-Su 08:00-12:00,14:00-22:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "sochi",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "24/7; PH off"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "open",
+        "expression": "24/7; PH off",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": true,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "24/7; PH off",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": true,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "sochi",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 08:00-23:00; SH off"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "closed",
+        "expression": "Mo-Su 08:00-23:00; SH off",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": true,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "closed",
+        "expression": "Mo-Su 08:00-23:00; SH off",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": true,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "sochi",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "notvalid("
+      },
+      "kitchen": false,
+      "old": {
+        "state": "unknown",
+        "expression": "notvalid(",
+        "reason": "parser_or_country_holiday_failure:Failed to parse expression:  --> 1:1\n  |\n1 | notvalid(\n  | ^---\n  |\n  = expected EOI, any_rule_separator, rules_modifier, always_open, small_range_selectors, we"
+      },
+      "new": {
+        "state": "unknown",
+        "expression": "notvalid(",
+        "reason": "parser_or_country_holiday_failure:Failed to parse expression:  --> 1:1\n  |\n1 | notvalid(\n  | ^---\n  |\n  = expected EOI, any_rule_separator, rules_modifier, always_open, small_range_selectors, we"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "sochi",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "24/7"
+      },
+      "kitchen": true,
+      "old": {
+        "state": "unknown",
+        "reason": "no_kitchen_service_hours",
+        "expression": null
+      },
+      "new": {
+        "state": "unknown",
+        "reason": "no_kitchen_service_hours",
+        "expression": null
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "sochi",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "24/7",
+        "opening_hours:kitchen": "Mo-Su 09:00-21:00"
+      },
+      "kitchen": true,
+      "old": {
+        "state": "closed",
+        "expression": "Mo-Su 09:00-21:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "closed",
+        "expression": "Mo-Su 09:00-21:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "sochi",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours:kitchen": "24/7",
+        "kitchen:opening_hours": "Mo-Su 09:00-21:00"
+      },
+      "kitchen": true,
+      "old": {
+        "state": "open",
+        "expression": "24/7",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "24/7",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "sochi",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {},
+      "kitchen": false,
+      "old": {
+        "state": "unknown",
+        "reason": "no_opening_hours",
+        "expression": null
+      },
+      "new": {
+        "state": "unknown",
+        "reason": "no_opening_hours",
+        "expression": null
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "sochi",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "24/7"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "open",
+        "expression": "24/7",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "24/7",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "sochi",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 09:00-22:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "closed",
+        "expression": "Mo-Su 09:00-22:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "closed",
+        "expression": "Mo-Su 09:00-22:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "sochi",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "Fr 20:00-04:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "open",
+        "expression": "Fr 20:00-04:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "Fr 20:00-04:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "sochi",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 22:00-05:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "open",
+        "expression": "Mo-Su 22:00-05:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "Mo-Su 22:00-05:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "sochi",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 08:00-12:00,14:00-22:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "closed",
+        "expression": "Mo-Su 08:00-12:00,14:00-22:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "closed",
+        "expression": "Mo-Su 08:00-12:00,14:00-22:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "sochi",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "24/7; PH off"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "open",
+        "expression": "24/7; PH off",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": true,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "24/7; PH off",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": true,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "sochi",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 08:00-23:00; SH off"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "closed",
+        "expression": "Mo-Su 08:00-23:00; SH off",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": true,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "closed",
+        "expression": "Mo-Su 08:00-23:00; SH off",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": true,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "sochi",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "notvalid("
+      },
+      "kitchen": false,
+      "old": {
+        "state": "unknown",
+        "expression": "notvalid(",
+        "reason": "parser_or_country_holiday_failure:Failed to parse expression:  --> 1:1\n  |\n1 | notvalid(\n  | ^---\n  |\n  = expected EOI, any_rule_separator, rules_modifier, always_open, small_range_selectors, we"
+      },
+      "new": {
+        "state": "unknown",
+        "expression": "notvalid(",
+        "reason": "parser_or_country_holiday_failure:Failed to parse expression:  --> 1:1\n  |\n1 | notvalid(\n  | ^---\n  |\n  = expected EOI, any_rule_separator, rules_modifier, always_open, small_range_selectors, we"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "sochi",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "24/7"
+      },
+      "kitchen": true,
+      "old": {
+        "state": "unknown",
+        "reason": "no_kitchen_service_hours",
+        "expression": null
+      },
+      "new": {
+        "state": "unknown",
+        "reason": "no_kitchen_service_hours",
+        "expression": null
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "sochi",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "24/7",
+        "opening_hours:kitchen": "Mo-Su 09:00-21:00"
+      },
+      "kitchen": true,
+      "old": {
+        "state": "closed",
+        "expression": "Mo-Su 09:00-21:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "closed",
+        "expression": "Mo-Su 09:00-21:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "sochi",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours:kitchen": "24/7",
+        "kitchen:opening_hours": "Mo-Su 09:00-21:00"
+      },
+      "kitchen": true,
+      "old": {
+        "state": "open",
+        "expression": "24/7",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "24/7",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "sochi",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {},
+      "kitchen": false,
+      "old": {
+        "state": "unknown",
+        "reason": "no_opening_hours",
+        "expression": null
+      },
+      "new": {
+        "state": "unknown",
+        "reason": "no_opening_hours",
+        "expression": null
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "moscow",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "24/7"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "open",
+        "expression": "24/7",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "24/7",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "moscow",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 09:00-22:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "closed",
+        "expression": "Mo-Su 09:00-22:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "closed",
+        "expression": "Mo-Su 09:00-22:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "moscow",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "Fr 20:00-04:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "open",
+        "expression": "Fr 20:00-04:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "Fr 20:00-04:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "moscow",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 22:00-05:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "open",
+        "expression": "Mo-Su 22:00-05:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "Mo-Su 22:00-05:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "moscow",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 08:00-12:00,14:00-22:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "closed",
+        "expression": "Mo-Su 08:00-12:00,14:00-22:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "closed",
+        "expression": "Mo-Su 08:00-12:00,14:00-22:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "moscow",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "24/7; PH off"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "open",
+        "expression": "24/7; PH off",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": true,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "24/7; PH off",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": true,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "moscow",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 08:00-23:00; SH off"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "closed",
+        "expression": "Mo-Su 08:00-23:00; SH off",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": true,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "closed",
+        "expression": "Mo-Su 08:00-23:00; SH off",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": true,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "moscow",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "notvalid("
+      },
+      "kitchen": false,
+      "old": {
+        "state": "unknown",
+        "expression": "notvalid(",
+        "reason": "parser_or_country_holiday_failure:Failed to parse expression:  --> 1:1\n  |\n1 | notvalid(\n  | ^---\n  |\n  = expected EOI, any_rule_separator, rules_modifier, always_open, small_range_selectors, we"
+      },
+      "new": {
+        "state": "unknown",
+        "expression": "notvalid(",
+        "reason": "parser_or_country_holiday_failure:Failed to parse expression:  --> 1:1\n  |\n1 | notvalid(\n  | ^---\n  |\n  = expected EOI, any_rule_separator, rules_modifier, always_open, small_range_selectors, we"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "moscow",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "24/7"
+      },
+      "kitchen": true,
+      "old": {
+        "state": "unknown",
+        "reason": "no_kitchen_service_hours",
+        "expression": null
+      },
+      "new": {
+        "state": "unknown",
+        "reason": "no_kitchen_service_hours",
+        "expression": null
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "moscow",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "24/7",
+        "opening_hours:kitchen": "Mo-Su 09:00-21:00"
+      },
+      "kitchen": true,
+      "old": {
+        "state": "closed",
+        "expression": "Mo-Su 09:00-21:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "closed",
+        "expression": "Mo-Su 09:00-21:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "moscow",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours:kitchen": "24/7",
+        "kitchen:opening_hours": "Mo-Su 09:00-21:00"
+      },
+      "kitchen": true,
+      "old": {
+        "state": "open",
+        "expression": "24/7",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "24/7",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "moscow",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {},
+      "kitchen": false,
+      "old": {
+        "state": "unknown",
+        "reason": "no_opening_hours",
+        "expression": null
+      },
+      "new": {
+        "state": "unknown",
+        "reason": "no_opening_hours",
+        "expression": null
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "moscow",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "24/7"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "open",
+        "expression": "24/7",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "24/7",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "moscow",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 09:00-22:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "closed",
+        "expression": "Mo-Su 09:00-22:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "closed",
+        "expression": "Mo-Su 09:00-22:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "moscow",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "Fr 20:00-04:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "open",
+        "expression": "Fr 20:00-04:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "Fr 20:00-04:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "moscow",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 22:00-05:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "open",
+        "expression": "Mo-Su 22:00-05:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "Mo-Su 22:00-05:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "moscow",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 08:00-12:00,14:00-22:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "closed",
+        "expression": "Mo-Su 08:00-12:00,14:00-22:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "closed",
+        "expression": "Mo-Su 08:00-12:00,14:00-22:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "moscow",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "24/7; PH off"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "open",
+        "expression": "24/7; PH off",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": true,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "24/7; PH off",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": true,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "moscow",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 08:00-23:00; SH off"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "closed",
+        "expression": "Mo-Su 08:00-23:00; SH off",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": true,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "closed",
+        "expression": "Mo-Su 08:00-23:00; SH off",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": true,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "moscow",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "notvalid("
+      },
+      "kitchen": false,
+      "old": {
+        "state": "unknown",
+        "expression": "notvalid(",
+        "reason": "parser_or_country_holiday_failure:Failed to parse expression:  --> 1:1\n  |\n1 | notvalid(\n  | ^---\n  |\n  = expected EOI, any_rule_separator, rules_modifier, always_open, small_range_selectors, we"
+      },
+      "new": {
+        "state": "unknown",
+        "expression": "notvalid(",
+        "reason": "parser_or_country_holiday_failure:Failed to parse expression:  --> 1:1\n  |\n1 | notvalid(\n  | ^---\n  |\n  = expected EOI, any_rule_separator, rules_modifier, always_open, small_range_selectors, we"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "moscow",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "24/7"
+      },
+      "kitchen": true,
+      "old": {
+        "state": "unknown",
+        "reason": "no_kitchen_service_hours",
+        "expression": null
+      },
+      "new": {
+        "state": "unknown",
+        "reason": "no_kitchen_service_hours",
+        "expression": null
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "moscow",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "24/7",
+        "opening_hours:kitchen": "Mo-Su 09:00-21:00"
+      },
+      "kitchen": true,
+      "old": {
+        "state": "closed",
+        "expression": "Mo-Su 09:00-21:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "closed",
+        "expression": "Mo-Su 09:00-21:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "moscow",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours:kitchen": "24/7",
+        "kitchen:opening_hours": "Mo-Su 09:00-21:00"
+      },
+      "kitchen": true,
+      "old": {
+        "state": "open",
+        "expression": "24/7",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "24/7",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "moscow",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {},
+      "kitchen": false,
+      "old": {
+        "state": "unknown",
+        "reason": "no_opening_hours",
+        "expression": null
+      },
+      "new": {
+        "state": "unknown",
+        "reason": "no_opening_hours",
+        "expression": null
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "spb",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "24/7"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "open",
+        "expression": "24/7",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "24/7",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "spb",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 09:00-22:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "closed",
+        "expression": "Mo-Su 09:00-22:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "closed",
+        "expression": "Mo-Su 09:00-22:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "spb",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "Fr 20:00-04:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "open",
+        "expression": "Fr 20:00-04:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "Fr 20:00-04:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "spb",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 22:00-05:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "open",
+        "expression": "Mo-Su 22:00-05:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "Mo-Su 22:00-05:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "spb",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 08:00-12:00,14:00-22:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "closed",
+        "expression": "Mo-Su 08:00-12:00,14:00-22:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "closed",
+        "expression": "Mo-Su 08:00-12:00,14:00-22:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "spb",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "24/7; PH off"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "open",
+        "expression": "24/7; PH off",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": true,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "24/7; PH off",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": true,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "spb",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 08:00-23:00; SH off"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "closed",
+        "expression": "Mo-Su 08:00-23:00; SH off",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": true,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "closed",
+        "expression": "Mo-Su 08:00-23:00; SH off",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": true,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "spb",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "notvalid("
+      },
+      "kitchen": false,
+      "old": {
+        "state": "unknown",
+        "expression": "notvalid(",
+        "reason": "parser_or_country_holiday_failure:Failed to parse expression:  --> 1:1\n  |\n1 | notvalid(\n  | ^---\n  |\n  = expected EOI, any_rule_separator, rules_modifier, always_open, small_range_selectors, we"
+      },
+      "new": {
+        "state": "unknown",
+        "expression": "notvalid(",
+        "reason": "parser_or_country_holiday_failure:Failed to parse expression:  --> 1:1\n  |\n1 | notvalid(\n  | ^---\n  |\n  = expected EOI, any_rule_separator, rules_modifier, always_open, small_range_selectors, we"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "spb",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "24/7"
+      },
+      "kitchen": true,
+      "old": {
+        "state": "unknown",
+        "reason": "no_kitchen_service_hours",
+        "expression": null
+      },
+      "new": {
+        "state": "unknown",
+        "reason": "no_kitchen_service_hours",
+        "expression": null
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "spb",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "24/7",
+        "opening_hours:kitchen": "Mo-Su 09:00-21:00"
+      },
+      "kitchen": true,
+      "old": {
+        "state": "closed",
+        "expression": "Mo-Su 09:00-21:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "closed",
+        "expression": "Mo-Su 09:00-21:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "spb",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours:kitchen": "24/7",
+        "kitchen:opening_hours": "Mo-Su 09:00-21:00"
+      },
+      "kitchen": true,
+      "old": {
+        "state": "open",
+        "expression": "24/7",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "24/7",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "spb",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {},
+      "kitchen": false,
+      "old": {
+        "state": "unknown",
+        "reason": "no_opening_hours",
+        "expression": null
+      },
+      "new": {
+        "state": "unknown",
+        "reason": "no_opening_hours",
+        "expression": null
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "spb",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "24/7"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "open",
+        "expression": "24/7",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "24/7",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "spb",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 09:00-22:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "closed",
+        "expression": "Mo-Su 09:00-22:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "closed",
+        "expression": "Mo-Su 09:00-22:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "spb",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "Fr 20:00-04:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "open",
+        "expression": "Fr 20:00-04:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "Fr 20:00-04:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "spb",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 22:00-05:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "open",
+        "expression": "Mo-Su 22:00-05:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "Mo-Su 22:00-05:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "spb",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 08:00-12:00,14:00-22:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "closed",
+        "expression": "Mo-Su 08:00-12:00,14:00-22:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "closed",
+        "expression": "Mo-Su 08:00-12:00,14:00-22:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "spb",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "24/7; PH off"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "open",
+        "expression": "24/7; PH off",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": true,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "24/7; PH off",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": true,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "spb",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 08:00-23:00; SH off"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "closed",
+        "expression": "Mo-Su 08:00-23:00; SH off",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": true,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "closed",
+        "expression": "Mo-Su 08:00-23:00; SH off",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": true,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "spb",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "notvalid("
+      },
+      "kitchen": false,
+      "old": {
+        "state": "unknown",
+        "expression": "notvalid(",
+        "reason": "parser_or_country_holiday_failure:Failed to parse expression:  --> 1:1\n  |\n1 | notvalid(\n  | ^---\n  |\n  = expected EOI, any_rule_separator, rules_modifier, always_open, small_range_selectors, we"
+      },
+      "new": {
+        "state": "unknown",
+        "expression": "notvalid(",
+        "reason": "parser_or_country_holiday_failure:Failed to parse expression:  --> 1:1\n  |\n1 | notvalid(\n  | ^---\n  |\n  = expected EOI, any_rule_separator, rules_modifier, always_open, small_range_selectors, we"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "spb",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "24/7"
+      },
+      "kitchen": true,
+      "old": {
+        "state": "unknown",
+        "reason": "no_kitchen_service_hours",
+        "expression": null
+      },
+      "new": {
+        "state": "unknown",
+        "reason": "no_kitchen_service_hours",
+        "expression": null
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "spb",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "24/7",
+        "opening_hours:kitchen": "Mo-Su 09:00-21:00"
+      },
+      "kitchen": true,
+      "old": {
+        "state": "closed",
+        "expression": "Mo-Su 09:00-21:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "closed",
+        "expression": "Mo-Su 09:00-21:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "spb",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours:kitchen": "24/7",
+        "kitchen:opening_hours": "Mo-Su 09:00-21:00"
+      },
+      "kitchen": true,
+      "old": {
+        "state": "open",
+        "expression": "24/7",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "24/7",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "spb",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {},
+      "kitchen": false,
+      "old": {
+        "state": "unknown",
+        "reason": "no_opening_hours",
+        "expression": null
+      },
+      "new": {
+        "state": "unknown",
+        "reason": "no_opening_hours",
+        "expression": null
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "kazan",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "24/7"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "open",
+        "expression": "24/7",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "24/7",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "kazan",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 09:00-22:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "closed",
+        "expression": "Mo-Su 09:00-22:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "closed",
+        "expression": "Mo-Su 09:00-22:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "kazan",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "Fr 20:00-04:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "open",
+        "expression": "Fr 20:00-04:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "Fr 20:00-04:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "kazan",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 22:00-05:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "open",
+        "expression": "Mo-Su 22:00-05:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "Mo-Su 22:00-05:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "kazan",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 08:00-12:00,14:00-22:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "closed",
+        "expression": "Mo-Su 08:00-12:00,14:00-22:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "closed",
+        "expression": "Mo-Su 08:00-12:00,14:00-22:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "kazan",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "24/7; PH off"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "open",
+        "expression": "24/7; PH off",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": true,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "24/7; PH off",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": true,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "kazan",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 08:00-23:00; SH off"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "closed",
+        "expression": "Mo-Su 08:00-23:00; SH off",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": true,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "closed",
+        "expression": "Mo-Su 08:00-23:00; SH off",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": true,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "kazan",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "notvalid("
+      },
+      "kitchen": false,
+      "old": {
+        "state": "unknown",
+        "expression": "notvalid(",
+        "reason": "parser_or_country_holiday_failure:Failed to parse expression:  --> 1:1\n  |\n1 | notvalid(\n  | ^---\n  |\n  = expected EOI, any_rule_separator, rules_modifier, always_open, small_range_selectors, we"
+      },
+      "new": {
+        "state": "unknown",
+        "expression": "notvalid(",
+        "reason": "parser_or_country_holiday_failure:Failed to parse expression:  --> 1:1\n  |\n1 | notvalid(\n  | ^---\n  |\n  = expected EOI, any_rule_separator, rules_modifier, always_open, small_range_selectors, we"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "kazan",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "24/7"
+      },
+      "kitchen": true,
+      "old": {
+        "state": "unknown",
+        "reason": "no_kitchen_service_hours",
+        "expression": null
+      },
+      "new": {
+        "state": "unknown",
+        "reason": "no_kitchen_service_hours",
+        "expression": null
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "kazan",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "24/7",
+        "opening_hours:kitchen": "Mo-Su 09:00-21:00"
+      },
+      "kitchen": true,
+      "old": {
+        "state": "closed",
+        "expression": "Mo-Su 09:00-21:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "closed",
+        "expression": "Mo-Su 09:00-21:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "kazan",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours:kitchen": "24/7",
+        "kitchen:opening_hours": "Mo-Su 09:00-21:00"
+      },
+      "kitchen": true,
+      "old": {
+        "state": "open",
+        "expression": "24/7",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "24/7",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "kazan",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {},
+      "kitchen": false,
+      "old": {
+        "state": "unknown",
+        "reason": "no_opening_hours",
+        "expression": null
+      },
+      "new": {
+        "state": "unknown",
+        "reason": "no_opening_hours",
+        "expression": null
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "kazan",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "24/7"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "open",
+        "expression": "24/7",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "24/7",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "kazan",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 09:00-22:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "closed",
+        "expression": "Mo-Su 09:00-22:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "closed",
+        "expression": "Mo-Su 09:00-22:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "kazan",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "Fr 20:00-04:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "open",
+        "expression": "Fr 20:00-04:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "Fr 20:00-04:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "kazan",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 22:00-05:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "open",
+        "expression": "Mo-Su 22:00-05:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "Mo-Su 22:00-05:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "kazan",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 08:00-12:00,14:00-22:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "closed",
+        "expression": "Mo-Su 08:00-12:00,14:00-22:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "closed",
+        "expression": "Mo-Su 08:00-12:00,14:00-22:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "kazan",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "24/7; PH off"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "open",
+        "expression": "24/7; PH off",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": true,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "24/7; PH off",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": true,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "kazan",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 08:00-23:00; SH off"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "closed",
+        "expression": "Mo-Su 08:00-23:00; SH off",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": true,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "closed",
+        "expression": "Mo-Su 08:00-23:00; SH off",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": true,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "kazan",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "notvalid("
+      },
+      "kitchen": false,
+      "old": {
+        "state": "unknown",
+        "expression": "notvalid(",
+        "reason": "parser_or_country_holiday_failure:Failed to parse expression:  --> 1:1\n  |\n1 | notvalid(\n  | ^---\n  |\n  = expected EOI, any_rule_separator, rules_modifier, always_open, small_range_selectors, we"
+      },
+      "new": {
+        "state": "unknown",
+        "expression": "notvalid(",
+        "reason": "parser_or_country_holiday_failure:Failed to parse expression:  --> 1:1\n  |\n1 | notvalid(\n  | ^---\n  |\n  = expected EOI, any_rule_separator, rules_modifier, always_open, small_range_selectors, we"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "kazan",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "24/7"
+      },
+      "kitchen": true,
+      "old": {
+        "state": "unknown",
+        "reason": "no_kitchen_service_hours",
+        "expression": null
+      },
+      "new": {
+        "state": "unknown",
+        "reason": "no_kitchen_service_hours",
+        "expression": null
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "kazan",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "24/7",
+        "opening_hours:kitchen": "Mo-Su 09:00-21:00"
+      },
+      "kitchen": true,
+      "old": {
+        "state": "closed",
+        "expression": "Mo-Su 09:00-21:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "closed",
+        "expression": "Mo-Su 09:00-21:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "kazan",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours:kitchen": "24/7",
+        "kitchen:opening_hours": "Mo-Su 09:00-21:00"
+      },
+      "kitchen": true,
+      "old": {
+        "state": "open",
+        "expression": "24/7",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "24/7",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "kazan",
+      "timezone": "Europe/Moscow",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {},
+      "kitchen": false,
+      "old": {
+        "state": "unknown",
+        "reason": "no_opening_hours",
+        "expression": null
+      },
+      "new": {
+        "state": "unknown",
+        "reason": "no_opening_hours",
+        "expression": null
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "timezone": "Europe/Kaliningrad",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "24/7"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "open",
+        "expression": "24/7",
+        "evaluated_local": "2026-11-14T02:00:00+02:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "24/7",
+        "evaluated_local": "2026-11-14T02:00:00+02:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "timezone": "Europe/Kaliningrad",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 09:00-22:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "closed",
+        "expression": "Mo-Su 09:00-22:00",
+        "evaluated_local": "2026-11-14T02:00:00+02:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "closed",
+        "expression": "Mo-Su 09:00-22:00",
+        "evaluated_local": "2026-11-14T02:00:00+02:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "timezone": "Europe/Kaliningrad",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "Fr 20:00-04:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "open",
+        "expression": "Fr 20:00-04:00",
+        "evaluated_local": "2026-11-14T02:00:00+02:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "Fr 20:00-04:00",
+        "evaluated_local": "2026-11-14T02:00:00+02:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "timezone": "Europe/Kaliningrad",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 22:00-05:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "open",
+        "expression": "Mo-Su 22:00-05:00",
+        "evaluated_local": "2026-11-14T02:00:00+02:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "Mo-Su 22:00-05:00",
+        "evaluated_local": "2026-11-14T02:00:00+02:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "timezone": "Europe/Kaliningrad",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 08:00-12:00,14:00-22:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "closed",
+        "expression": "Mo-Su 08:00-12:00,14:00-22:00",
+        "evaluated_local": "2026-11-14T02:00:00+02:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "closed",
+        "expression": "Mo-Su 08:00-12:00,14:00-22:00",
+        "evaluated_local": "2026-11-14T02:00:00+02:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "timezone": "Europe/Kaliningrad",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "24/7; PH off"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "open",
+        "expression": "24/7; PH off",
+        "evaluated_local": "2026-11-14T02:00:00+02:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": true,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "24/7; PH off",
+        "evaluated_local": "2026-11-14T02:00:00+02:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": true,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "timezone": "Europe/Kaliningrad",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 08:00-23:00; SH off"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "closed",
+        "expression": "Mo-Su 08:00-23:00; SH off",
+        "evaluated_local": "2026-11-14T02:00:00+02:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": true,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "closed",
+        "expression": "Mo-Su 08:00-23:00; SH off",
+        "evaluated_local": "2026-11-14T02:00:00+02:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": true,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "timezone": "Europe/Kaliningrad",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "notvalid("
+      },
+      "kitchen": false,
+      "old": {
+        "state": "unknown",
+        "expression": "notvalid(",
+        "reason": "parser_or_country_holiday_failure:Failed to parse expression:  --> 1:1\n  |\n1 | notvalid(\n  | ^---\n  |\n  = expected EOI, any_rule_separator, rules_modifier, always_open, small_range_selectors, we"
+      },
+      "new": {
+        "state": "unknown",
+        "expression": "notvalid(",
+        "reason": "parser_or_country_holiday_failure:Failed to parse expression:  --> 1:1\n  |\n1 | notvalid(\n  | ^---\n  |\n  = expected EOI, any_rule_separator, rules_modifier, always_open, small_range_selectors, we"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "timezone": "Europe/Kaliningrad",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "24/7"
+      },
+      "kitchen": true,
+      "old": {
+        "state": "unknown",
+        "reason": "no_kitchen_service_hours",
+        "expression": null
+      },
+      "new": {
+        "state": "unknown",
+        "reason": "no_kitchen_service_hours",
+        "expression": null
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "timezone": "Europe/Kaliningrad",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "24/7",
+        "opening_hours:kitchen": "Mo-Su 09:00-21:00"
+      },
+      "kitchen": true,
+      "old": {
+        "state": "closed",
+        "expression": "Mo-Su 09:00-21:00",
+        "evaluated_local": "2026-11-14T02:00:00+02:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "closed",
+        "expression": "Mo-Su 09:00-21:00",
+        "evaluated_local": "2026-11-14T02:00:00+02:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "timezone": "Europe/Kaliningrad",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours:kitchen": "24/7",
+        "kitchen:opening_hours": "Mo-Su 09:00-21:00"
+      },
+      "kitchen": true,
+      "old": {
+        "state": "open",
+        "expression": "24/7",
+        "evaluated_local": "2026-11-14T02:00:00+02:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "24/7",
+        "evaluated_local": "2026-11-14T02:00:00+02:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "timezone": "Europe/Kaliningrad",
+      "country": "RU",
+      "date": "2026-11-14T02:00:00",
+      "tags": {},
+      "kitchen": false,
+      "old": {
+        "state": "unknown",
+        "reason": "no_opening_hours",
+        "expression": null
+      },
+      "new": {
+        "state": "unknown",
+        "reason": "no_opening_hours",
+        "expression": null
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "timezone": "Europe/Kaliningrad",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "24/7"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "open",
+        "expression": "24/7",
+        "evaluated_local": "2027-07-17T02:00:00+02:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "24/7",
+        "evaluated_local": "2027-07-17T02:00:00+02:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "timezone": "Europe/Kaliningrad",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 09:00-22:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "closed",
+        "expression": "Mo-Su 09:00-22:00",
+        "evaluated_local": "2027-07-17T02:00:00+02:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "closed",
+        "expression": "Mo-Su 09:00-22:00",
+        "evaluated_local": "2027-07-17T02:00:00+02:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "timezone": "Europe/Kaliningrad",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "Fr 20:00-04:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "open",
+        "expression": "Fr 20:00-04:00",
+        "evaluated_local": "2027-07-17T02:00:00+02:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "Fr 20:00-04:00",
+        "evaluated_local": "2027-07-17T02:00:00+02:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "timezone": "Europe/Kaliningrad",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 22:00-05:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "open",
+        "expression": "Mo-Su 22:00-05:00",
+        "evaluated_local": "2027-07-17T02:00:00+02:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "Mo-Su 22:00-05:00",
+        "evaluated_local": "2027-07-17T02:00:00+02:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "timezone": "Europe/Kaliningrad",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 08:00-12:00,14:00-22:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "closed",
+        "expression": "Mo-Su 08:00-12:00,14:00-22:00",
+        "evaluated_local": "2027-07-17T02:00:00+02:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "closed",
+        "expression": "Mo-Su 08:00-12:00,14:00-22:00",
+        "evaluated_local": "2027-07-17T02:00:00+02:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "timezone": "Europe/Kaliningrad",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "24/7; PH off"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "open",
+        "expression": "24/7; PH off",
+        "evaluated_local": "2027-07-17T02:00:00+02:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": true,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "24/7; PH off",
+        "evaluated_local": "2027-07-17T02:00:00+02:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": true,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "timezone": "Europe/Kaliningrad",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 08:00-23:00; SH off"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "closed",
+        "expression": "Mo-Su 08:00-23:00; SH off",
+        "evaluated_local": "2027-07-17T02:00:00+02:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": true,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "closed",
+        "expression": "Mo-Su 08:00-23:00; SH off",
+        "evaluated_local": "2027-07-17T02:00:00+02:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": true,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "timezone": "Europe/Kaliningrad",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "notvalid("
+      },
+      "kitchen": false,
+      "old": {
+        "state": "unknown",
+        "expression": "notvalid(",
+        "reason": "parser_or_country_holiday_failure:Failed to parse expression:  --> 1:1\n  |\n1 | notvalid(\n  | ^---\n  |\n  = expected EOI, any_rule_separator, rules_modifier, always_open, small_range_selectors, we"
+      },
+      "new": {
+        "state": "unknown",
+        "expression": "notvalid(",
+        "reason": "parser_or_country_holiday_failure:Failed to parse expression:  --> 1:1\n  |\n1 | notvalid(\n  | ^---\n  |\n  = expected EOI, any_rule_separator, rules_modifier, always_open, small_range_selectors, we"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "timezone": "Europe/Kaliningrad",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "24/7"
+      },
+      "kitchen": true,
+      "old": {
+        "state": "unknown",
+        "reason": "no_kitchen_service_hours",
+        "expression": null
+      },
+      "new": {
+        "state": "unknown",
+        "reason": "no_kitchen_service_hours",
+        "expression": null
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "timezone": "Europe/Kaliningrad",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "24/7",
+        "opening_hours:kitchen": "Mo-Su 09:00-21:00"
+      },
+      "kitchen": true,
+      "old": {
+        "state": "closed",
+        "expression": "Mo-Su 09:00-21:00",
+        "evaluated_local": "2027-07-17T02:00:00+02:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "closed",
+        "expression": "Mo-Su 09:00-21:00",
+        "evaluated_local": "2027-07-17T02:00:00+02:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "timezone": "Europe/Kaliningrad",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours:kitchen": "24/7",
+        "kitchen:opening_hours": "Mo-Su 09:00-21:00"
+      },
+      "kitchen": true,
+      "old": {
+        "state": "open",
+        "expression": "24/7",
+        "evaluated_local": "2027-07-17T02:00:00+02:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "24/7",
+        "evaluated_local": "2027-07-17T02:00:00+02:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "timezone": "Europe/Kaliningrad",
+      "country": "RU",
+      "date": "2027-07-17T02:00:00",
+      "tags": {},
+      "kitchen": false,
+      "old": {
+        "state": "unknown",
+        "reason": "no_opening_hours",
+        "expression": null
+      },
+      "new": {
+        "state": "unknown",
+        "reason": "no_opening_hours",
+        "expression": null
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "minsk",
+      "timezone": "Europe/Minsk",
+      "country": "BY",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "24/7"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "open",
+        "expression": "24/7",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "24/7",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "minsk",
+      "timezone": "Europe/Minsk",
+      "country": "BY",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 09:00-22:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "closed",
+        "expression": "Mo-Su 09:00-22:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "closed",
+        "expression": "Mo-Su 09:00-22:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "minsk",
+      "timezone": "Europe/Minsk",
+      "country": "BY",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "Fr 20:00-04:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "open",
+        "expression": "Fr 20:00-04:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "Fr 20:00-04:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "minsk",
+      "timezone": "Europe/Minsk",
+      "country": "BY",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 22:00-05:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "open",
+        "expression": "Mo-Su 22:00-05:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "Mo-Su 22:00-05:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "minsk",
+      "timezone": "Europe/Minsk",
+      "country": "BY",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 08:00-12:00,14:00-22:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "closed",
+        "expression": "Mo-Su 08:00-12:00,14:00-22:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "closed",
+        "expression": "Mo-Su 08:00-12:00,14:00-22:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "minsk",
+      "timezone": "Europe/Minsk",
+      "country": "BY",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "24/7; PH off"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "open",
+        "expression": "24/7; PH off",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": true,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "24/7; PH off",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": true,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "minsk",
+      "timezone": "Europe/Minsk",
+      "country": "BY",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 08:00-23:00; SH off"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "closed",
+        "expression": "Mo-Su 08:00-23:00; SH off",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": true,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "closed",
+        "expression": "Mo-Su 08:00-23:00; SH off",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": true,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "minsk",
+      "timezone": "Europe/Minsk",
+      "country": "BY",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "notvalid("
+      },
+      "kitchen": false,
+      "old": {
+        "state": "unknown",
+        "expression": "notvalid(",
+        "reason": "parser_or_country_holiday_failure:Failed to parse expression:  --> 1:1\n  |\n1 | notvalid(\n  | ^---\n  |\n  = expected EOI, any_rule_separator, rules_modifier, always_open, small_range_selectors, we"
+      },
+      "new": {
+        "state": "unknown",
+        "expression": "notvalid(",
+        "reason": "parser_or_country_holiday_failure:Failed to parse expression:  --> 1:1\n  |\n1 | notvalid(\n  | ^---\n  |\n  = expected EOI, any_rule_separator, rules_modifier, always_open, small_range_selectors, we"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "minsk",
+      "timezone": "Europe/Minsk",
+      "country": "BY",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "24/7"
+      },
+      "kitchen": true,
+      "old": {
+        "state": "unknown",
+        "reason": "no_kitchen_service_hours",
+        "expression": null
+      },
+      "new": {
+        "state": "unknown",
+        "reason": "no_kitchen_service_hours",
+        "expression": null
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "minsk",
+      "timezone": "Europe/Minsk",
+      "country": "BY",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "24/7",
+        "opening_hours:kitchen": "Mo-Su 09:00-21:00"
+      },
+      "kitchen": true,
+      "old": {
+        "state": "closed",
+        "expression": "Mo-Su 09:00-21:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "closed",
+        "expression": "Mo-Su 09:00-21:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "minsk",
+      "timezone": "Europe/Minsk",
+      "country": "BY",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours:kitchen": "24/7",
+        "kitchen:opening_hours": "Mo-Su 09:00-21:00"
+      },
+      "kitchen": true,
+      "old": {
+        "state": "open",
+        "expression": "24/7",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "24/7",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "minsk",
+      "timezone": "Europe/Minsk",
+      "country": "BY",
+      "date": "2026-11-14T02:00:00",
+      "tags": {},
+      "kitchen": false,
+      "old": {
+        "state": "unknown",
+        "reason": "no_opening_hours",
+        "expression": null
+      },
+      "new": {
+        "state": "unknown",
+        "reason": "no_opening_hours",
+        "expression": null
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "minsk",
+      "timezone": "Europe/Minsk",
+      "country": "BY",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "24/7"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "open",
+        "expression": "24/7",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "24/7",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "minsk",
+      "timezone": "Europe/Minsk",
+      "country": "BY",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 09:00-22:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "closed",
+        "expression": "Mo-Su 09:00-22:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "closed",
+        "expression": "Mo-Su 09:00-22:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "minsk",
+      "timezone": "Europe/Minsk",
+      "country": "BY",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "Fr 20:00-04:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "open",
+        "expression": "Fr 20:00-04:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "Fr 20:00-04:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "minsk",
+      "timezone": "Europe/Minsk",
+      "country": "BY",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 22:00-05:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "open",
+        "expression": "Mo-Su 22:00-05:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "Mo-Su 22:00-05:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "minsk",
+      "timezone": "Europe/Minsk",
+      "country": "BY",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 08:00-12:00,14:00-22:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "closed",
+        "expression": "Mo-Su 08:00-12:00,14:00-22:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "closed",
+        "expression": "Mo-Su 08:00-12:00,14:00-22:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "minsk",
+      "timezone": "Europe/Minsk",
+      "country": "BY",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "24/7; PH off"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "open",
+        "expression": "24/7; PH off",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": true,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "24/7; PH off",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": true,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "minsk",
+      "timezone": "Europe/Minsk",
+      "country": "BY",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 08:00-23:00; SH off"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "closed",
+        "expression": "Mo-Su 08:00-23:00; SH off",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": true,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "closed",
+        "expression": "Mo-Su 08:00-23:00; SH off",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": true,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "minsk",
+      "timezone": "Europe/Minsk",
+      "country": "BY",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "notvalid("
+      },
+      "kitchen": false,
+      "old": {
+        "state": "unknown",
+        "expression": "notvalid(",
+        "reason": "parser_or_country_holiday_failure:Failed to parse expression:  --> 1:1\n  |\n1 | notvalid(\n  | ^---\n  |\n  = expected EOI, any_rule_separator, rules_modifier, always_open, small_range_selectors, we"
+      },
+      "new": {
+        "state": "unknown",
+        "expression": "notvalid(",
+        "reason": "parser_or_country_holiday_failure:Failed to parse expression:  --> 1:1\n  |\n1 | notvalid(\n  | ^---\n  |\n  = expected EOI, any_rule_separator, rules_modifier, always_open, small_range_selectors, we"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "minsk",
+      "timezone": "Europe/Minsk",
+      "country": "BY",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "24/7"
+      },
+      "kitchen": true,
+      "old": {
+        "state": "unknown",
+        "reason": "no_kitchen_service_hours",
+        "expression": null
+      },
+      "new": {
+        "state": "unknown",
+        "reason": "no_kitchen_service_hours",
+        "expression": null
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "minsk",
+      "timezone": "Europe/Minsk",
+      "country": "BY",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "24/7",
+        "opening_hours:kitchen": "Mo-Su 09:00-21:00"
+      },
+      "kitchen": true,
+      "old": {
+        "state": "closed",
+        "expression": "Mo-Su 09:00-21:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "closed",
+        "expression": "Mo-Su 09:00-21:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "minsk",
+      "timezone": "Europe/Minsk",
+      "country": "BY",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours:kitchen": "24/7",
+        "kitchen:opening_hours": "Mo-Su 09:00-21:00"
+      },
+      "kitchen": true,
+      "old": {
+        "state": "open",
+        "expression": "24/7",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "24/7",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "minsk",
+      "timezone": "Europe/Minsk",
+      "country": "BY",
+      "date": "2027-07-17T02:00:00",
+      "tags": {},
+      "kitchen": false,
+      "old": {
+        "state": "unknown",
+        "reason": "no_opening_hours",
+        "expression": null
+      },
+      "new": {
+        "state": "unknown",
+        "reason": "no_opening_hours",
+        "expression": null
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "istanbul",
+      "timezone": "Europe/Istanbul",
+      "country": "TR",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "24/7"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "open",
+        "expression": "24/7",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "24/7",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "istanbul",
+      "timezone": "Europe/Istanbul",
+      "country": "TR",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 09:00-22:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "closed",
+        "expression": "Mo-Su 09:00-22:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "closed",
+        "expression": "Mo-Su 09:00-22:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "istanbul",
+      "timezone": "Europe/Istanbul",
+      "country": "TR",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "Fr 20:00-04:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "open",
+        "expression": "Fr 20:00-04:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "Fr 20:00-04:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "istanbul",
+      "timezone": "Europe/Istanbul",
+      "country": "TR",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 22:00-05:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "open",
+        "expression": "Mo-Su 22:00-05:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "Mo-Su 22:00-05:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "istanbul",
+      "timezone": "Europe/Istanbul",
+      "country": "TR",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 08:00-12:00,14:00-22:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "closed",
+        "expression": "Mo-Su 08:00-12:00,14:00-22:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "closed",
+        "expression": "Mo-Su 08:00-12:00,14:00-22:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "istanbul",
+      "timezone": "Europe/Istanbul",
+      "country": "TR",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "24/7; PH off"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "open",
+        "expression": "24/7; PH off",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": true,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "24/7; PH off",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": true,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "istanbul",
+      "timezone": "Europe/Istanbul",
+      "country": "TR",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 08:00-23:00; SH off"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "closed",
+        "expression": "Mo-Su 08:00-23:00; SH off",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": true,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "closed",
+        "expression": "Mo-Su 08:00-23:00; SH off",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": true,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "istanbul",
+      "timezone": "Europe/Istanbul",
+      "country": "TR",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "notvalid("
+      },
+      "kitchen": false,
+      "old": {
+        "state": "unknown",
+        "expression": "notvalid(",
+        "reason": "parser_or_country_holiday_failure:Failed to parse expression:  --> 1:1\n  |\n1 | notvalid(\n  | ^---\n  |\n  = expected EOI, any_rule_separator, rules_modifier, always_open, small_range_selectors, we"
+      },
+      "new": {
+        "state": "unknown",
+        "expression": "notvalid(",
+        "reason": "parser_or_country_holiday_failure:Failed to parse expression:  --> 1:1\n  |\n1 | notvalid(\n  | ^---\n  |\n  = expected EOI, any_rule_separator, rules_modifier, always_open, small_range_selectors, we"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "istanbul",
+      "timezone": "Europe/Istanbul",
+      "country": "TR",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "24/7"
+      },
+      "kitchen": true,
+      "old": {
+        "state": "unknown",
+        "reason": "no_kitchen_service_hours",
+        "expression": null
+      },
+      "new": {
+        "state": "unknown",
+        "reason": "no_kitchen_service_hours",
+        "expression": null
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "istanbul",
+      "timezone": "Europe/Istanbul",
+      "country": "TR",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "24/7",
+        "opening_hours:kitchen": "Mo-Su 09:00-21:00"
+      },
+      "kitchen": true,
+      "old": {
+        "state": "closed",
+        "expression": "Mo-Su 09:00-21:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "closed",
+        "expression": "Mo-Su 09:00-21:00",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "istanbul",
+      "timezone": "Europe/Istanbul",
+      "country": "TR",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours:kitchen": "24/7",
+        "kitchen:opening_hours": "Mo-Su 09:00-21:00"
+      },
+      "kitchen": true,
+      "old": {
+        "state": "open",
+        "expression": "24/7",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "24/7",
+        "evaluated_local": "2026-11-14T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "istanbul",
+      "timezone": "Europe/Istanbul",
+      "country": "TR",
+      "date": "2026-11-14T02:00:00",
+      "tags": {},
+      "kitchen": false,
+      "old": {
+        "state": "unknown",
+        "reason": "no_opening_hours",
+        "expression": null
+      },
+      "new": {
+        "state": "unknown",
+        "reason": "no_opening_hours",
+        "expression": null
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "istanbul",
+      "timezone": "Europe/Istanbul",
+      "country": "TR",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "24/7"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "open",
+        "expression": "24/7",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "24/7",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "istanbul",
+      "timezone": "Europe/Istanbul",
+      "country": "TR",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 09:00-22:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "closed",
+        "expression": "Mo-Su 09:00-22:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "closed",
+        "expression": "Mo-Su 09:00-22:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "istanbul",
+      "timezone": "Europe/Istanbul",
+      "country": "TR",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "Fr 20:00-04:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "open",
+        "expression": "Fr 20:00-04:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "Fr 20:00-04:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "istanbul",
+      "timezone": "Europe/Istanbul",
+      "country": "TR",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 22:00-05:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "open",
+        "expression": "Mo-Su 22:00-05:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "Mo-Su 22:00-05:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "istanbul",
+      "timezone": "Europe/Istanbul",
+      "country": "TR",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 08:00-12:00,14:00-22:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "closed",
+        "expression": "Mo-Su 08:00-12:00,14:00-22:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "closed",
+        "expression": "Mo-Su 08:00-12:00,14:00-22:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "istanbul",
+      "timezone": "Europe/Istanbul",
+      "country": "TR",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "24/7; PH off"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "open",
+        "expression": "24/7; PH off",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": true,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "24/7; PH off",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": true,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "istanbul",
+      "timezone": "Europe/Istanbul",
+      "country": "TR",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 08:00-23:00; SH off"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "closed",
+        "expression": "Mo-Su 08:00-23:00; SH off",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": true,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "closed",
+        "expression": "Mo-Su 08:00-23:00; SH off",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": true,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "istanbul",
+      "timezone": "Europe/Istanbul",
+      "country": "TR",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "notvalid("
+      },
+      "kitchen": false,
+      "old": {
+        "state": "unknown",
+        "expression": "notvalid(",
+        "reason": "parser_or_country_holiday_failure:Failed to parse expression:  --> 1:1\n  |\n1 | notvalid(\n  | ^---\n  |\n  = expected EOI, any_rule_separator, rules_modifier, always_open, small_range_selectors, we"
+      },
+      "new": {
+        "state": "unknown",
+        "expression": "notvalid(",
+        "reason": "parser_or_country_holiday_failure:Failed to parse expression:  --> 1:1\n  |\n1 | notvalid(\n  | ^---\n  |\n  = expected EOI, any_rule_separator, rules_modifier, always_open, small_range_selectors, we"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "istanbul",
+      "timezone": "Europe/Istanbul",
+      "country": "TR",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "24/7"
+      },
+      "kitchen": true,
+      "old": {
+        "state": "unknown",
+        "reason": "no_kitchen_service_hours",
+        "expression": null
+      },
+      "new": {
+        "state": "unknown",
+        "reason": "no_kitchen_service_hours",
+        "expression": null
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "istanbul",
+      "timezone": "Europe/Istanbul",
+      "country": "TR",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "24/7",
+        "opening_hours:kitchen": "Mo-Su 09:00-21:00"
+      },
+      "kitchen": true,
+      "old": {
+        "state": "closed",
+        "expression": "Mo-Su 09:00-21:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "closed",
+        "expression": "Mo-Su 09:00-21:00",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "istanbul",
+      "timezone": "Europe/Istanbul",
+      "country": "TR",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours:kitchen": "24/7",
+        "kitchen:opening_hours": "Mo-Su 09:00-21:00"
+      },
+      "kitchen": true,
+      "old": {
+        "state": "open",
+        "expression": "24/7",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": "None"
+      },
+      "new": {
+        "state": "open",
+        "expression": "24/7",
+        "evaluated_local": "2027-07-17T02:00:00+03:00",
+        "reason": "OSM declared recurring schedule; future exceptions/physical operation require refresh",
+        "has_public_holiday_expression": false,
+        "next_change": null,
+        "next_change_reason": "Optional future-change search not required for the feature and omitted; requested-instant state was evaluated exactly.",
+        "evaluation_method_version": "V9-local-instant-hours-cache-1"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "istanbul",
+      "timezone": "Europe/Istanbul",
+      "country": "TR",
+      "date": "2027-07-17T02:00:00",
+      "tags": {},
+      "kitchen": false,
+      "old": {
+        "state": "unknown",
+        "reason": "no_opening_hours",
+        "expression": null
+      },
+      "new": {
+        "state": "unknown",
+        "reason": "no_opening_hours",
+        "expression": null
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "dubai",
+      "timezone": "Asia/Dubai",
+      "country": "AE",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "24/7"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "unknown",
+        "expression": "24/7",
+        "reason": "parser_or_country_holiday_failure:Unknown ISO code `AE`"
+      },
+      "new": {
+        "state": "unknown",
+        "expression": "24/7",
+        "reason": "parser_or_country_holiday_failure:Unknown ISO code `AE`"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "dubai",
+      "timezone": "Asia/Dubai",
+      "country": "AE",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 09:00-22:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "unknown",
+        "expression": "Mo-Su 09:00-22:00",
+        "reason": "parser_or_country_holiday_failure:Unknown ISO code `AE`"
+      },
+      "new": {
+        "state": "unknown",
+        "expression": "Mo-Su 09:00-22:00",
+        "reason": "parser_or_country_holiday_failure:Unknown ISO code `AE`"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "dubai",
+      "timezone": "Asia/Dubai",
+      "country": "AE",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "Fr 20:00-04:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "unknown",
+        "expression": "Fr 20:00-04:00",
+        "reason": "parser_or_country_holiday_failure:Unknown ISO code `AE`"
+      },
+      "new": {
+        "state": "unknown",
+        "expression": "Fr 20:00-04:00",
+        "reason": "parser_or_country_holiday_failure:Unknown ISO code `AE`"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "dubai",
+      "timezone": "Asia/Dubai",
+      "country": "AE",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 22:00-05:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "unknown",
+        "expression": "Mo-Su 22:00-05:00",
+        "reason": "parser_or_country_holiday_failure:Unknown ISO code `AE`"
+      },
+      "new": {
+        "state": "unknown",
+        "expression": "Mo-Su 22:00-05:00",
+        "reason": "parser_or_country_holiday_failure:Unknown ISO code `AE`"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "dubai",
+      "timezone": "Asia/Dubai",
+      "country": "AE",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 08:00-12:00,14:00-22:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "unknown",
+        "expression": "Mo-Su 08:00-12:00,14:00-22:00",
+        "reason": "parser_or_country_holiday_failure:Unknown ISO code `AE`"
+      },
+      "new": {
+        "state": "unknown",
+        "expression": "Mo-Su 08:00-12:00,14:00-22:00",
+        "reason": "parser_or_country_holiday_failure:Unknown ISO code `AE`"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "dubai",
+      "timezone": "Asia/Dubai",
+      "country": "AE",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "24/7; PH off"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "unknown",
+        "expression": "24/7; PH off",
+        "reason": "parser_or_country_holiday_failure:Unknown ISO code `AE`"
+      },
+      "new": {
+        "state": "unknown",
+        "expression": "24/7; PH off",
+        "reason": "parser_or_country_holiday_failure:Unknown ISO code `AE`"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "dubai",
+      "timezone": "Asia/Dubai",
+      "country": "AE",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 08:00-23:00; SH off"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "unknown",
+        "expression": "Mo-Su 08:00-23:00; SH off",
+        "reason": "parser_or_country_holiday_failure:Unknown ISO code `AE`"
+      },
+      "new": {
+        "state": "unknown",
+        "expression": "Mo-Su 08:00-23:00; SH off",
+        "reason": "parser_or_country_holiday_failure:Unknown ISO code `AE`"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "dubai",
+      "timezone": "Asia/Dubai",
+      "country": "AE",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "notvalid("
+      },
+      "kitchen": false,
+      "old": {
+        "state": "unknown",
+        "expression": "notvalid(",
+        "reason": "parser_or_country_holiday_failure:Failed to parse expression:  --> 1:1\n  |\n1 | notvalid(\n  | ^---\n  |\n  = expected EOI, any_rule_separator, rules_modifier, always_open, small_range_selectors, we"
+      },
+      "new": {
+        "state": "unknown",
+        "expression": "notvalid(",
+        "reason": "parser_or_country_holiday_failure:Failed to parse expression:  --> 1:1\n  |\n1 | notvalid(\n  | ^---\n  |\n  = expected EOI, any_rule_separator, rules_modifier, always_open, small_range_selectors, we"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "dubai",
+      "timezone": "Asia/Dubai",
+      "country": "AE",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "24/7"
+      },
+      "kitchen": true,
+      "old": {
+        "state": "unknown",
+        "reason": "no_kitchen_service_hours",
+        "expression": null
+      },
+      "new": {
+        "state": "unknown",
+        "reason": "no_kitchen_service_hours",
+        "expression": null
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "dubai",
+      "timezone": "Asia/Dubai",
+      "country": "AE",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours": "24/7",
+        "opening_hours:kitchen": "Mo-Su 09:00-21:00"
+      },
+      "kitchen": true,
+      "old": {
+        "state": "unknown",
+        "expression": "Mo-Su 09:00-21:00",
+        "reason": "parser_or_country_holiday_failure:Unknown ISO code `AE`"
+      },
+      "new": {
+        "state": "unknown",
+        "expression": "Mo-Su 09:00-21:00",
+        "reason": "parser_or_country_holiday_failure:Unknown ISO code `AE`"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "dubai",
+      "timezone": "Asia/Dubai",
+      "country": "AE",
+      "date": "2026-11-14T02:00:00",
+      "tags": {
+        "opening_hours:kitchen": "24/7",
+        "kitchen:opening_hours": "Mo-Su 09:00-21:00"
+      },
+      "kitchen": true,
+      "old": {
+        "state": "unknown",
+        "expression": "24/7",
+        "reason": "parser_or_country_holiday_failure:Unknown ISO code `AE`"
+      },
+      "new": {
+        "state": "unknown",
+        "expression": "24/7",
+        "reason": "parser_or_country_holiday_failure:Unknown ISO code `AE`"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "dubai",
+      "timezone": "Asia/Dubai",
+      "country": "AE",
+      "date": "2026-11-14T02:00:00",
+      "tags": {},
+      "kitchen": false,
+      "old": {
+        "state": "unknown",
+        "reason": "no_opening_hours",
+        "expression": null
+      },
+      "new": {
+        "state": "unknown",
+        "reason": "no_opening_hours",
+        "expression": null
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "dubai",
+      "timezone": "Asia/Dubai",
+      "country": "AE",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "24/7"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "unknown",
+        "expression": "24/7",
+        "reason": "parser_or_country_holiday_failure:Unknown ISO code `AE`"
+      },
+      "new": {
+        "state": "unknown",
+        "expression": "24/7",
+        "reason": "parser_or_country_holiday_failure:Unknown ISO code `AE`"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "dubai",
+      "timezone": "Asia/Dubai",
+      "country": "AE",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 09:00-22:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "unknown",
+        "expression": "Mo-Su 09:00-22:00",
+        "reason": "parser_or_country_holiday_failure:Unknown ISO code `AE`"
+      },
+      "new": {
+        "state": "unknown",
+        "expression": "Mo-Su 09:00-22:00",
+        "reason": "parser_or_country_holiday_failure:Unknown ISO code `AE`"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "dubai",
+      "timezone": "Asia/Dubai",
+      "country": "AE",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "Fr 20:00-04:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "unknown",
+        "expression": "Fr 20:00-04:00",
+        "reason": "parser_or_country_holiday_failure:Unknown ISO code `AE`"
+      },
+      "new": {
+        "state": "unknown",
+        "expression": "Fr 20:00-04:00",
+        "reason": "parser_or_country_holiday_failure:Unknown ISO code `AE`"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "dubai",
+      "timezone": "Asia/Dubai",
+      "country": "AE",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 22:00-05:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "unknown",
+        "expression": "Mo-Su 22:00-05:00",
+        "reason": "parser_or_country_holiday_failure:Unknown ISO code `AE`"
+      },
+      "new": {
+        "state": "unknown",
+        "expression": "Mo-Su 22:00-05:00",
+        "reason": "parser_or_country_holiday_failure:Unknown ISO code `AE`"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "dubai",
+      "timezone": "Asia/Dubai",
+      "country": "AE",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 08:00-12:00,14:00-22:00"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "unknown",
+        "expression": "Mo-Su 08:00-12:00,14:00-22:00",
+        "reason": "parser_or_country_holiday_failure:Unknown ISO code `AE`"
+      },
+      "new": {
+        "state": "unknown",
+        "expression": "Mo-Su 08:00-12:00,14:00-22:00",
+        "reason": "parser_or_country_holiday_failure:Unknown ISO code `AE`"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "dubai",
+      "timezone": "Asia/Dubai",
+      "country": "AE",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "24/7; PH off"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "unknown",
+        "expression": "24/7; PH off",
+        "reason": "parser_or_country_holiday_failure:Unknown ISO code `AE`"
+      },
+      "new": {
+        "state": "unknown",
+        "expression": "24/7; PH off",
+        "reason": "parser_or_country_holiday_failure:Unknown ISO code `AE`"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "dubai",
+      "timezone": "Asia/Dubai",
+      "country": "AE",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "Mo-Su 08:00-23:00; SH off"
+      },
+      "kitchen": false,
+      "old": {
+        "state": "unknown",
+        "expression": "Mo-Su 08:00-23:00; SH off",
+        "reason": "parser_or_country_holiday_failure:Unknown ISO code `AE`"
+      },
+      "new": {
+        "state": "unknown",
+        "expression": "Mo-Su 08:00-23:00; SH off",
+        "reason": "parser_or_country_holiday_failure:Unknown ISO code `AE`"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "dubai",
+      "timezone": "Asia/Dubai",
+      "country": "AE",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "notvalid("
+      },
+      "kitchen": false,
+      "old": {
+        "state": "unknown",
+        "expression": "notvalid(",
+        "reason": "parser_or_country_holiday_failure:Failed to parse expression:  --> 1:1\n  |\n1 | notvalid(\n  | ^---\n  |\n  = expected EOI, any_rule_separator, rules_modifier, always_open, small_range_selectors, we"
+      },
+      "new": {
+        "state": "unknown",
+        "expression": "notvalid(",
+        "reason": "parser_or_country_holiday_failure:Failed to parse expression:  --> 1:1\n  |\n1 | notvalid(\n  | ^---\n  |\n  = expected EOI, any_rule_separator, rules_modifier, always_open, small_range_selectors, we"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "dubai",
+      "timezone": "Asia/Dubai",
+      "country": "AE",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "24/7"
+      },
+      "kitchen": true,
+      "old": {
+        "state": "unknown",
+        "reason": "no_kitchen_service_hours",
+        "expression": null
+      },
+      "new": {
+        "state": "unknown",
+        "reason": "no_kitchen_service_hours",
+        "expression": null
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "dubai",
+      "timezone": "Asia/Dubai",
+      "country": "AE",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours": "24/7",
+        "opening_hours:kitchen": "Mo-Su 09:00-21:00"
+      },
+      "kitchen": true,
+      "old": {
+        "state": "unknown",
+        "expression": "Mo-Su 09:00-21:00",
+        "reason": "parser_or_country_holiday_failure:Unknown ISO code `AE`"
+      },
+      "new": {
+        "state": "unknown",
+        "expression": "Mo-Su 09:00-21:00",
+        "reason": "parser_or_country_holiday_failure:Unknown ISO code `AE`"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "dubai",
+      "timezone": "Asia/Dubai",
+      "country": "AE",
+      "date": "2027-07-17T02:00:00",
+      "tags": {
+        "opening_hours:kitchen": "24/7",
+        "kitchen:opening_hours": "Mo-Su 09:00-21:00"
+      },
+      "kitchen": true,
+      "old": {
+        "state": "unknown",
+        "expression": "24/7",
+        "reason": "parser_or_country_holiday_failure:Unknown ISO code `AE`"
+      },
+      "new": {
+        "state": "unknown",
+        "expression": "24/7",
+        "reason": "parser_or_country_holiday_failure:Unknown ISO code `AE`"
+      },
+      "point_state_expression_instant_exact": true
+    },
+    {
+      "city_id": "dubai",
+      "timezone": "Asia/Dubai",
+      "country": "AE",
+      "date": "2027-07-17T02:00:00",
+      "tags": {},
+      "kitchen": false,
+      "old": {
+        "state": "unknown",
+        "reason": "no_opening_hours",
+        "expression": null
+      },
+      "new": {
+        "state": "unknown",
+        "reason": "no_opening_hours",
+        "expression": null
+      },
+      "point_state_expression_instant_exact": true
+    }
+  ],
+  "passed": true
+}

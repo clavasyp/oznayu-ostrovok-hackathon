@@ -1,0 +1,1508 @@
+
+
+<!DOCTYPE html>
+<html lang="ru">
+
+<script type="text/javascript" data-skip-moving="true">(function(w, d) {var v = w.frameCacheVars = {'CACHE_MODE':'HTMLCACHE','storageBlocks':[],'dynamicBlocks':[],'AUTO_UPDATE':true,'AUTO_UPDATE_TTL':'120','version':'2'};var inv = false;if (v.AUTO_UPDATE === false){if (v.AUTO_UPDATE_TTL && v.AUTO_UPDATE_TTL > 0){var lm = Date.parse(d.lastModified);if (!isNaN(lm)){var td = new Date().getTime();if ((lm + v.AUTO_UPDATE_TTL * 1000) >= td){w.frameRequestStart = false;w.preventAutoUpdate = true;return;}inv = true;}}else{w.frameRequestStart = false;w.preventAutoUpdate = true;return;}}var r = w.XMLHttpRequest ? new XMLHttpRequest() : (w.ActiveXObject ? new w.ActiveXObject("Microsoft.XMLHTTP") : null);if (!r) { return; }w.frameRequestStart = true;var m = v.CACHE_MODE; var l = w.location; var x = new Date().getTime();var q = "?bxrand=" + x + (l.search.length > 0 ? "&" + l.search.substring(1) : "");var u = l.protocol + "//" + l.host + l.pathname + q;r.open("GET", u, true);r.setRequestHeader("BX-ACTION-TYPE", "get_dynamic");r.setRequestHeader("X-Bitrix-Composite", "get_dynamic");r.setRequestHeader("BX-CACHE-MODE", m);r.setRequestHeader("BX-CACHE-BLOCKS", v.dynamicBlocks ? JSON.stringify(v.dynamicBlocks) : "");if (inv){r.setRequestHeader("BX-INVALIDATE-CACHE", "Y");}try { r.setRequestHeader("BX-REF", d.referrer || "");} catch(e) {}if (m === "APPCACHE"){r.setRequestHeader("BX-APPCACHE-PARAMS", JSON.stringify(v.PARAMS));r.setRequestHeader("BX-APPCACHE-URL", v.PAGE_URL ? v.PAGE_URL : "");}r.onreadystatechange = function() {if (r.readyState != 4) { return; }var a = r.getResponseHeader("BX-RAND");var b = w.BX && w.BX.frameCache ? w.BX.frameCache : false;if (a != x || !((r.status >= 200 && r.status < 300) || r.status === 304 || r.status === 1223 || r.status === 0)){var f = {error:true, reason:a!=x?"bad_rand":"bad_status", url:u, xhr:r, status:r.status};if (w.BX && w.BX.ready && b){BX.ready(function() {setTimeout(function(){BX.onCustomEvent("onFrameDataRequestFail", [f]);}, 0);});}w.frameRequestFail = f;return;}if (b){b.onFrameDataReceived(r.responseText);if (!w.frameUpdateInvoked){b.update(false);}w.frameUpdateInvoked = true;}else{w.frameDataString = r.responseText;}};r.send();var p = w.performance;if (p && p.addEventListener && p.getEntries && p.setResourceTimingBufferSize){var e = 'resourcetimingbufferfull';var h = function() {if (w.BX && w.BX.frameCache && w.BX.frameCache.frameDataInserted){p.removeEventListener(e, h);}else {p.setResourceTimingBufferSize(p.getEntries().length + 50);}};p.addEventListener(e, h);}})(window, document);</script>
+<script type="text/javascript" data-skip-moving="true">(function(w, d, n) {var cl = "bx-core";var ht = d.documentElement;var htc = ht ? ht.className : undefined;if (htc === undefined || htc.indexOf(cl) !== -1){return;}var ua = n.userAgent;if (/(iPad;)|(iPhone;)/i.test(ua)){cl += " bx-ios";}else if (/Windows/i.test(ua)){cl += ' bx-win';}else if (/Macintosh/i.test(ua)){cl += " bx-mac";}else if (/Linux/i.test(ua) && !/Android/i.test(ua)){cl += " bx-linux";}else if (/Android/i.test(ua)){cl += " bx-android";}cl += (/(ipad|iphone|android|mobile|touch)/i.test(ua) ? " bx-touch" : " bx-no-touch");cl += w.devicePixelRatio && w.devicePixelRatio >= 2? " bx-retina": " bx-no-retina";var ieVersion = -1;if (/AppleWebKit/.test(ua)){cl += " bx-chrome";}else if (/Opera/.test(ua)){cl += " bx-opera";}else if (/Firefox/.test(ua)){cl += " bx-firefox";}ht.className = htc ? htc + " " + cl : cl;})(window, document, navigator);</script>
+
+
+<link href="/bitrix/cache/css/ms/main/page_f7205bbe72bfcebe1c7add6099c9d23f/page_f7205bbe72bfcebe1c7add6099c9d23f_v1.css?17914665983807" type="text/css"  rel="stylesheet" />
+
+<script type="text/javascript" data-skip-moving="true">function hceLoadFont(a,b,c,d){function e(){if(!window.FontFace)return!1;var a=new FontFace("t",'url("data:application/font-woff2,") format("woff2")',{}),b=a.load();try{b.then(null,function(){})}catch(c){}return"loading"===a.status}var f=navigator.userAgent,g=!window.addEventListener||f.match(/(Android (2|3|4.0|4.1|4.2|4.3))|(Opera (Mini|Mobi))/)&&!f.match(/Chrome/);if(!g){var h={};try{h=localStorage||{}}catch(i){}var j="x-font-"+a,k=j+"url",l=j+"css",m=h[k],n=h[l],o=document.createElement("style");if(o.rel="stylesheet",document.head.appendChild(o),!n||m!==b&&m!==c){var p=c&&e()?c:b,q=new XMLHttpRequest;q.open("GET",p),q.onload=function(){q.status>=200&&q.status<400&&(h[k]=p,h[l]=q.responseText,d||(o.textContent=q.responseText))},q.send()}else o.textContent=n}}</script>
+<script type="text/javascript" data-skip-moving="true">hceLoadFont('Opinion Pro', '/local/templates/main/static/fonts/opinion_pro--woff2.min.css')</script>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width" />
+<meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE" />
+<link rel="shortcut icon" type="image/x-icon" href="/local/templates/main/static/img/favicon.ico" />
+<meta name="yandex-verification" content="cf602fe4f1021f32" />
+<script src="https://smartcaptcha.cloud.yandex.ru/captcha.js?render=onload&hl=ru" data-skip-moving="true" defer></script>
+
+<script type="text/javascript" data-skip-moving="true">
+	var globurl_main_clear = 'lavicon.ru',
+    glob_lang = 'ru',
+    glob_static_cache_version = '1.2.9',
+    glob_gaId = '',
+    glob_ymId = '';
+</script>
+
+<link rel="stylesheet" type="text/css" href="/local/templates/main/static/app-styles.css?v=1.0.16" data-skip-moving="true">
+
+<style>
+	</style>
+
+<title>
+    LAVICON HOTEL FREGAT — официальный сайт отеля 4 звезды у моря в Курортном городке Адлера</title>
+<meta name="description" content="LAVICON HOTEL FREGAT — современный 15‑этажный отель 4 звезды в центре Курортного городка Адлера, на улице Ленина, 219, в нескольких минутах пешком от моря. Комфортабельные номера с балконом и без, открытый бассейн, хвойный парк, детская комната, конференц‑залы и ресторан «шведская линия» для семейного отдыха и деловых поездок у моря." />
+
+<body class="hce-loading bg-loading ">
+
+   <script type="text/javascript" data-skip-moving="true">
+;
+(function(window, document) {
+    'use strict';
+
+    var inline_icons = '/local/templates/main/static/img/app-sprite-icons.svg',
+        colored_icons = '/local/templates/main/static/img/app-sprite-colored-icons.svg',
+        revision = glob_static_cache_version;
+
+    if (!document.createElementNS || !document.createElementNS('http://www.w3.org/2000/svg', 'svg').createSVGRect)
+        return true;
+
+    var isLocalStorage = 'localStorage' in window && window['localStorage'] !== null,
+        request,
+        request_colored,
+        inlineIconsData,
+        coloredIconsData,
+        insertLineIT = function() {
+            document.body.insertAdjacentHTML('afterbegin', inlineIconsData);
+        },
+        insertLine = function() {
+            if (document.body) insertLineIT();
+            else document.addEventListener('DOMContentLoaded', insertLineIT);
+        },
+        insertColoredIT = function() {
+            document.body.insertAdjacentHTML('afterbegin', coloredIconsData);
+        },
+        insertColored = function() {
+            if (document.body) insertColoredIT();
+            else document.addEventListener('DOMContentLoaded', insertColoredIT);
+        };
+
+    if (isLocalStorage && localStorage.getItem('iconsSVGrev') == revision) {
+        inlineIconsData = localStorage.getItem('inlineIconsSVGdata');
+        coloredIconsData = localStorage.getItem('coloredIconsSVGdata');
+        if (inlineIconsData && coloredIconsData) // 
+        {
+            insertLine();
+            insertColored();
+            return true;
+        }
+    }
+    try {
+        request = new XMLHttpRequest();
+        request.open('GET', inline_icons + '?v=' + glob_static_cache_version, true);
+
+        request.onload = function() {
+            if (request.status >= 200 && request.status < 400) {
+
+                inlineIconsData = request.responseText;
+
+                insertLine();
+                if (isLocalStorage) {
+                    localStorage.setItem('inlineIconsSVGdata', inlineIconsData);
+                    localStorage.setItem('iconsSVGrev', revision);
+                }
+            }
+        }
+        request.send();
+
+
+        request_colored = new XMLHttpRequest();
+        request_colored.open('GET', colored_icons + '?v=' + glob_static_cache_version, true);
+
+        request_colored.onload = function() {
+            if (request_colored.status >= 200 && request_colored.status < 400) {
+
+                coloredIconsData = request_colored.responseText;
+
+                insertColored();
+                if (isLocalStorage) {
+                    localStorage.setItem('coloredIconsSVGdata', coloredIconsData);
+                    localStorage.setItem('iconsSVGrev', revision);
+                }
+            }
+        }
+        request_colored.send();
+    } catch (e) {}
+
+}(window, document));
+</script>
+
+<svg aria-hidden="true" preserveAspectRatio="none" focusable="false" style="width:0;height:0;position:absolute;">
+    <defs>
+        <linearGradient id="svg_green_gradient">
+            <stop offset="0%" stop-color="#048726"></stop>
+            <stop offset="100%" stop-color="#0cb037"></stop>
+        </linearGradient>
+    </defs>
+</svg>
+   
+<header class="header">
+   <a href="/" class="header__logo" uk-scrollspy="cls:hce-fade-left-xs; delay:800">
+      <svg class="header__logo-icon icon">
+         <use xlink:href="#logo__vertical"></use>
+      </svg>
+      <svg class="header__logo-icon icon header_logo_xs">
+         <use xlink:href="#logo__short--extra"></use>
+      </svg>
+   </a>
+   <div class="header__nav">
+      <a href="https://en.lavicon.ru/fregat-hotel/" class="header__nav-item header__locale">
+         <span class="header__locale-label">English version</span>
+         <span class="header__locale-label--xs">EN</span>
+      </a>
+   </div>
+
+   <div class="header__mobile-menu">
+      <div class="header__mobile-menu-target">
+         <span class="header__mobile-menu-line"></span>
+         <span class="header__mobile-menu-line"></span>
+      </div>
+   </div>
+</header>
+
+   <section class="site-header-content">
+         </section>
+   <div class="site-main-content" id="main-content">
+
+<section class="section-header">
+	<div class="header-slider slider_mosaic">
+		
+<section class="header-block full_height_wrapper">
+  <div class="header-block__images full_height" uk-slider>
+    <ul class="header-block__slider uk-slider-items uk-child-width-1-1@s uk-grid-match">
+              <li  class="header-video-wrapper" data-src="/upload/resize_cache/iblock/fea/600_500_2/vn0on09hsc15r77hiw634q0vfph8ukxo.png" style="background-size: cover;
+   background-position: center;" uk-img>
+                      <div class="header-block__image uk-cover-container">
+              <video autoplay loop muted playsinline uk-cover class="header-video uk-cover u2k-animation-fade">
+                <source src="/upload/iblock/bc8/sbc4pud0u0l6egci82j2cpan5xe46ac3.mp4" type="video/mp4">
+              </video>
+            </div>
+                    <div class="header-title full_height_wrapper section-container" uk-scrollspy="cls:hce-fade-bottom-xxs; target: .header-title__wrapper > *; delay:600">
+            <div class="header-title__wrapper">
+                              <h1 class="header-title__text">LAVICON ОТЕЛЬ ФРЕГАТ, АДЛЕР 4*</h1>
+                <p class="header-title__description"></p>
+                          </div>
+          </div>
+        </li>
+          </ul>
+    <span class="slide-prev" href="#" uk-slidenav-previous uk-slider-item="previous" style="cursor: pointer;">
+      <svg class="icon ">
+        <use xlink:href="#common__arrow-long-left"></use>
+      </svg>
+    </span>
+    <span class="slide-next" href="#" uk-slidenav-next uk-slider-item="next" style="cursor: pointer;">
+      <svg class="icon">
+        <use xlink:href="#common__arrow-long-right"></use>
+      </svg>
+    </span>
+  </div>
+  <div class="search-form-wrapper" uk-scrollspy="cls:hce-fade-bottom-xs; target: .header_form; delay:2000">
+    <div id="block-search">
+    <div id="tl-search-form" class="tl-container">
+    </div>
+    </div>
+<style>
+    #block-search {
+        position: relative;
+        width: 100%;
+        max-width: 1350px;
+    }
+
+    #tl-search-form {
+        width: 100%;
+        position: absolute;
+        top: -200px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 9999;
+    }
+
+    .advantages {
+        font-family: 'Opinion Pro', sans-serif;
+        width: 100%;
+        max-width: 880px;
+        transition: all .8s ease;
+        position: absolute;
+        z-index: 10;
+        top: -550px;
+        background: rgba(56, 47, 45, 0.7);
+        border: 1px solid #FFFFFF;
+        padding: 40px 35px 25px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .advantages.hide-out {
+        box-sizing: border-box;
+        opacity: 0;
+        pointer-events: none;
+        z-index: -10;
+    }
+
+    .advantages-header {
+        font-style: normal;
+        font-size: 20px;
+        line-height: 20px;
+        font-weight: 350;
+        letter-spacing: 0.07em;
+        color: #FFFFFF;
+        text-transform: uppercase;
+        margin-bottom: 30px;
+    }
+
+    .advantages-content {
+        display: flex;
+
+    }
+
+    .advantages-column {
+        flex: 1 1 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .advantages-item {
+        display: flex;
+        align-items: center;
+        padding: 10px 0;
+    }
+
+    .advantages-item__icon {
+        display: flex;
+        width: 24px;
+        margin-right: 15px;
+    }
+
+    .advantages-item__text {
+        font-style: normal;
+        font-size: 16px;
+        color: #EDEFEC;
+    }
+
+    @media screen and (max-width: 941px) {
+        .advantages {
+            display: none;
+        }
+    }
+
+    @media screen and (min-width: 768px) and (max-width: 941px) {
+        #tl-search-form {
+            top: -270px;
+        }
+
+        .header-title.full_height_wrapper {
+            top: 30%;
+        }
+    }
+
+    @media screen and (max-width: 767px) {
+        #tl-search-form {
+            top: -105px;
+        }
+    }
+
+    @media screen and (max-width: 401px) {
+        #tl-search-form {
+            top: -190px;
+        }
+    }
+</style>
+<script type="text/javascript" data-skip-moving="true">
+
+    
+
+    (function(w) {
+        var q = [
+            ['setContext', 'TL-INT-lavicon-hotelcommerce.61579', 'ru'],
+            ['embed', 'search-form', {
+                container: 'tl-search-form'
+            }]
+        ];
+        var h=["ru-ibe.tlintegration.ru","ibe.tlintegration.ru","ibe.tlintegration.com"];
+        var t = w.travelline = (w.travelline || {}),
+            ti = t.integration = (t.integration || {});
+        ti.__cq = ti.__cq? ti.__cq.concat(q) : q;
+        if (!ti.__loader) {
+            ti.__loader = true;
+            var d=w.document,c=d.getElementsByTagName("head")[0]||d.getElementsByTagName("body")[0];
+            function e(s,f) {return function() {w.TL||(c.removeChild(s),f())}}
+            (function l(h) {
+                if (0===h.length) return; var s=d.createElement("script");
+                s.type="text/javascript";s.async=!0;s.src="https://"+h[0]+"/integration/loader.js";
+                s.onerror=s.onload=e(s,function(){l(h.slice(1,h.length))});c.appendChild(s)
+            })(h);
+        }
+    })(window);
+</script>
+  </div>
+</section>
+
+
+<section class="property-navigation-wrapper" uk-sticky="media: 992" uk-scrollspy="cls:hce-fade-in;">
+    <div class="property-navigation section-container" style="padding: 0">
+        <a class="property-navigation__logo" href="/" title="" uk-scrollspy="cls:hce-fade-left-xs; delay:200">
+            <svg class="icon">
+                <use xlink:href="#logo__short--extra"></use>
+            </svg>
+        </a>
+        <nav class="property-navigation__menu">
+            
+<ul class="property-navigation__menu-list">
+      <li class="property-navigation__menu-item">
+              <a itemprop="url" class="property-navigation__menu-link is-active" title="Об отеле" href="/fregat-hotel/">
+          <span itemprop="name">Об отеле</span>
+        </a>
+          </li>
+
+      <li class="property-navigation__menu-item">
+              <a itemprop="url" class="property-navigation__menu-link" title="Услуги" href="/fregat-hotel/services/">
+          <span itemprop="name">Услуги</span>
+        </a>
+          </li>
+
+      <li class="property-navigation__menu-item">
+              <a itemprop="url" class="property-navigation__menu-link" title="Номера" href="/fregat-hotel/rooms/">
+          <span itemprop="name">Номера</span>
+        </a>
+          </li>
+
+      <li class="property-navigation__menu-item">
+              <a itemprop="url" class="property-navigation__menu-link" title="Акции" href="/fregat-hotel/specials/">
+          <span itemprop="name">Акции</span>
+        </a>
+          </li>
+
+      <li class="property-navigation__menu-item">
+              <a itemprop="url" class="property-navigation__menu-link" title="Новости" href="/fregat-hotel/news/">
+          <span itemprop="name">Новости</span>
+        </a>
+          </li>
+
+      <li class="property-navigation__menu-item">
+              <a itemprop="url" class="property-navigation__menu-link" title="Контакты" href="/fregat-hotel/contacts/">
+          <span itemprop="name">Контакты</span>
+        </a>
+          </li>
+
+  </ul>
+        </nav>
+        <div class="search-form-wrapper">
+            <div class="search-form">
+                <div class="search-form__item form_button ">
+                                        <a class="property-navigation__booking-button" href="/fregat-hotel/booking/">Бронирование</a>
+                                    </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+</section>
+
+<section class="section-wrapper" style="background: #382f2e" uk-scrollspy="cls:hce-fade-bottom;">
+	<div class="section-containe">
+		<div class="tabs-slider">
+   <div class="tabs-slider__navigation">
+      <div class="section-title">
+         <h3 class="section-title__main light_title">Комфортабельные номера</h3>
+         <div class="section-title__sub primary_title">Изысканный сервис</div>
+      </div>
+      <div class="tabs-slider__navigation-wrapper scroll-pane">
+         <ul class="tabs-slider__navigation-list" uk-switcher="connect: #home-rooms; animation: uk-animation-fade, uk-animation-fade;">
+                           <li class="tabs-slider__navigation-item uk-active">
+                  <div class="tabs-slider__navigation-image-wrapper">
+                     <img class="tabs-slider__navigation-image" data-src="/upload/resize_cache/iblock/8c8/600_450_2/8uun6nbdui2xl9sppbv4vnqvo1sq9amf.JPG" uk-img uk-cover>
+                  </div>
+                  <div class="tabs-slider__navigation-content">
+                     <div class="tabs-slider__navigation-content-title-wrapper">
+                        <h4 class="tabs-slider__navigation-content-title">Cтандарт с балконом</h4>
+                                                   <span class="tabs-slider__navigation-room-sq">
+                              21 м<sup>2</sup>                           </span>
+                                             </div>
+                     <div class="tabs-slider__navigation-content-description">Двухместный номер с балконом  — сочетает удобство и живописные виды.</div>
+                     <div class="section-features section_features_inline">
+                        <div class="section-features__content tabs-slider__navigation-meta">
+                                                         <div class="section-features__item">
+                                 <p class="section-features__label-xs primary_item_off">С балконом</p>
+                              </div>
+                                                   </div>
+                     </div>
+                  </div>
+               </li>
+                           <li class="tabs-slider__navigation-item">
+                  <div class="tabs-slider__navigation-image-wrapper">
+                     <img class="tabs-slider__navigation-image" data-src="/upload/resize_cache/iblock/50b/600_450_2/1bj88ixu3r28s3f31hme39vstuj3v4pf.JPG" uk-img uk-cover>
+                  </div>
+                  <div class="tabs-slider__navigation-content">
+                     <div class="tabs-slider__navigation-content-title-wrapper">
+                        <h4 class="tabs-slider__navigation-content-title">Стандарт улучшенный</h4>
+                                                   <span class="tabs-slider__navigation-room-sq">
+                              22 м<sup>2</sup>                           </span>
+                                             </div>
+                     <div class="tabs-slider__navigation-content-description">Функциональный двухместный номер.</div>
+                     <div class="section-features section_features_inline">
+                        <div class="section-features__content tabs-slider__navigation-meta">
+                                                         <div class="section-features__item">
+                                 <p class="section-features__label-xs primary_item_off">Без балкона</p>
+                              </div>
+                                                   </div>
+                     </div>
+                  </div>
+               </li>
+                           <li class="tabs-slider__navigation-item">
+                  <div class="tabs-slider__navigation-image-wrapper">
+                     <img class="tabs-slider__navigation-image" data-src="/upload/resize_cache/iblock/1a9/600_450_2/i33j4wuia0i476xnc25vrad8uq2k5j1k.jpg" uk-img uk-cover>
+                  </div>
+                  <div class="tabs-slider__navigation-content">
+                     <div class="tabs-slider__navigation-content-title-wrapper">
+                        <h4 class="tabs-slider__navigation-content-title">Полулюкс</h4>
+                                                   <span class="tabs-slider__navigation-room-sq">
+                              48 м<sup>2</sup>                           </span>
+                                             </div>
+                     <div class="tabs-slider__navigation-content-description">Просторный двухкомнатный номер с террасой —  вместимость 4 человека..</div>
+                     <div class="section-features section_features_inline">
+                        <div class="section-features__content tabs-slider__navigation-meta">
+                                                         <div class="section-features__item">
+                                 <p class="section-features__label-xs primary_item_off">С балконом</p>
+                              </div>
+                                                   </div>
+                     </div>
+                  </div>
+               </li>
+                     </ul>
+      </div>
+   </div>
+   <div class="tabs-slider__elements uk-switcher" id="home-rooms" uk-scrollspy="cls:hce-fade-bottom-xs; target: .tabs-slider__element-content > *, .tabs-slider__element-content > * > *; delay: 300 ">
+               <div class="tabs-slider__element image_element">
+            <div class="tabs-slider__element-block" uk-cover>
+               <img class="tabs-slider__element-image-scale disable-preloader" data-src="/upload/resize_cache/iblock/8c8/970_650_2/8uun6nbdui2xl9sppbv4vnqvo1sq9amf.JPG" data-srcset="
+                     /upload/resize_cache/iblock/8c8/970_650_2/8uun6nbdui2xl9sppbv4vnqvo1sq9amf.JPG 520w,
+                     /upload/resize_cache/iblock/8c8/760_580_2/8uun6nbdui2xl9sppbv4vnqvo1sq9amf.JPG 992w,
+                     /upload/resize_cache/iblock/8c8/950_650_2/8uun6nbdui2xl9sppbv4vnqvo1sq9amf.JPG" data-sizes="(max-width: 520px) 750px, (max-width: 650px) 1110px, 100vw" uk-img="target: !.tabs-slider__elements" uk-scrollspy="cls: uk-animation-kenburns uk-animation-reverse; hidden: false">
+            </div>
+            <div class="tabs-slider__element-images button_glass" uk-lightbox>
+               <svg class="tabs-slider__element-images-icon icon">
+                  <use xlink:href="#common__camera"></use>
+               </svg>
+               <span class="tabs-slider__element-images-label">
+                  Фотогалерея               </span>
+                                 <a href="/upload/resize_cache/webp/iblock/8c8/8uun6nbdui2xl9sppbv4vnqvo1sq9amf.webp" class="abs-block"></a>
+                                 <a href="/upload/resize_cache/webp/iblock/8c8/8uun6nbdui2xl9sppbv4vnqvo1sq9amf.webp" class="uk-hidden"></a>
+                                 <a href="/upload/resize_cache/webp/iblock/8c8/8uun6nbdui2xl9sppbv4vnqvo1sq9amf.webp" class="uk-hidden"></a>
+                           </div>
+            <div class="tabs-slider__element-content">
+               <div class="tabs-slider__element-content-heading">
+                  <h2 class="tabs-slider__element-title">
+                     Cтандарт с балконом                  </h2>
+                  <div class="tabs-slider__element-description">
+                     Двухместный номер с балконом  — сочетает удобство и живописные виды.                  </div>
+               </div>
+            </div>
+
+            <a href="/fregat-hotel/rooms/?active-item=standard-balcony" class="abs-block"></a>
+            <div class="row-tabs-navigation">
+               <a href="#" class="arrow-navigation" uk-switcher-item="previous">
+                  <svg class="icon icon_strong">
+                     <use xlink:href="#common__arrow-short-left"></use>
+                  </svg>
+               </a>
+               <a href="#" class="arrow-navigation navigation_right" uk-switcher-item="next">
+                  <svg class="icon icon_strong">
+                     <use xlink:href="#common__arrow-short-right"></use>
+                  </svg>
+               </a>
+            </div>
+         </div>
+               <div class="tabs-slider__element image_element">
+            <div class="tabs-slider__element-block" uk-cover>
+               <img class="tabs-slider__element-image-scale disable-preloader" data-src="/upload/resize_cache/iblock/50b/970_650_2/1bj88ixu3r28s3f31hme39vstuj3v4pf.JPG" data-srcset="
+                     /upload/resize_cache/iblock/50b/970_650_2/1bj88ixu3r28s3f31hme39vstuj3v4pf.JPG 520w,
+                     /upload/resize_cache/iblock/50b/760_580_2/1bj88ixu3r28s3f31hme39vstuj3v4pf.JPG 992w,
+                     /upload/resize_cache/iblock/50b/950_650_2/1bj88ixu3r28s3f31hme39vstuj3v4pf.JPG" data-sizes="(max-width: 520px) 750px, (max-width: 650px) 1110px, 100vw" uk-img="target: !.tabs-slider__elements" uk-scrollspy="cls: uk-animation-kenburns uk-animation-reverse; hidden: false">
+            </div>
+            <div class="tabs-slider__element-images button_glass" uk-lightbox>
+               <svg class="tabs-slider__element-images-icon icon">
+                  <use xlink:href="#common__camera"></use>
+               </svg>
+               <span class="tabs-slider__element-images-label">
+                  Фотогалерея               </span>
+                                 <a href="/upload/resize_cache/webp/iblock/50b/1bj88ixu3r28s3f31hme39vstuj3v4pf.webp" class="abs-block"></a>
+                                 <a href="/upload/resize_cache/webp/iblock/50b/1bj88ixu3r28s3f31hme39vstuj3v4pf.webp" class="uk-hidden"></a>
+                                 <a href="/upload/resize_cache/webp/iblock/50b/1bj88ixu3r28s3f31hme39vstuj3v4pf.webp" class="uk-hidden"></a>
+                                 <a href="/upload/resize_cache/webp/iblock/50b/1bj88ixu3r28s3f31hme39vstuj3v4pf.webp" class="uk-hidden"></a>
+                                 <a href="/upload/resize_cache/webp/iblock/50b/1bj88ixu3r28s3f31hme39vstuj3v4pf.webp" class="uk-hidden"></a>
+                           </div>
+            <div class="tabs-slider__element-content">
+               <div class="tabs-slider__element-content-heading">
+                  <h2 class="tabs-slider__element-title">
+                     Стандарт улучшенный                  </h2>
+                  <div class="tabs-slider__element-description">
+                     Функциональный двухместный номер.                  </div>
+               </div>
+            </div>
+
+            <a href="/fregat-hotel/rooms/?active-item=standard" class="abs-block"></a>
+            <div class="row-tabs-navigation">
+               <a href="#" class="arrow-navigation" uk-switcher-item="previous">
+                  <svg class="icon icon_strong">
+                     <use xlink:href="#common__arrow-short-left"></use>
+                  </svg>
+               </a>
+               <a href="#" class="arrow-navigation navigation_right" uk-switcher-item="next">
+                  <svg class="icon icon_strong">
+                     <use xlink:href="#common__arrow-short-right"></use>
+                  </svg>
+               </a>
+            </div>
+         </div>
+               <div class="tabs-slider__element image_element">
+            <div class="tabs-slider__element-block" uk-cover>
+               <img class="tabs-slider__element-image-scale disable-preloader" data-src="/upload/resize_cache/iblock/1a9/970_650_2/i33j4wuia0i476xnc25vrad8uq2k5j1k.jpg" data-srcset="
+                     /upload/resize_cache/iblock/1a9/970_650_2/i33j4wuia0i476xnc25vrad8uq2k5j1k.jpg 520w,
+                     /upload/resize_cache/iblock/1a9/760_580_2/i33j4wuia0i476xnc25vrad8uq2k5j1k.jpg 992w,
+                     /upload/resize_cache/iblock/1a9/950_650_2/i33j4wuia0i476xnc25vrad8uq2k5j1k.jpg" data-sizes="(max-width: 520px) 750px, (max-width: 650px) 1110px, 100vw" uk-img="target: !.tabs-slider__elements" uk-scrollspy="cls: uk-animation-kenburns uk-animation-reverse; hidden: false">
+            </div>
+            <div class="tabs-slider__element-images button_glass" uk-lightbox>
+               <svg class="tabs-slider__element-images-icon icon">
+                  <use xlink:href="#common__camera"></use>
+               </svg>
+               <span class="tabs-slider__element-images-label">
+                  Фотогалерея               </span>
+                                 <a href="/upload/resize_cache/webp/iblock/1a9/i33j4wuia0i476xnc25vrad8uq2k5j1k.webp" class="abs-block"></a>
+                                 <a href="/upload/resize_cache/webp/iblock/1a9/i33j4wuia0i476xnc25vrad8uq2k5j1k.webp" class="uk-hidden"></a>
+                                 <a href="/upload/resize_cache/webp/iblock/1a9/i33j4wuia0i476xnc25vrad8uq2k5j1k.webp" class="uk-hidden"></a>
+                                 <a href="/upload/resize_cache/webp/iblock/1a9/i33j4wuia0i476xnc25vrad8uq2k5j1k.webp" class="uk-hidden"></a>
+                                 <a href="/upload/resize_cache/webp/iblock/1a9/i33j4wuia0i476xnc25vrad8uq2k5j1k.webp" class="uk-hidden"></a>
+                                 <a href="/upload/resize_cache/webp/iblock/1a9/i33j4wuia0i476xnc25vrad8uq2k5j1k.webp" class="uk-hidden"></a>
+                                 <a href="/upload/resize_cache/webp/iblock/1a9/i33j4wuia0i476xnc25vrad8uq2k5j1k.webp" class="uk-hidden"></a>
+                           </div>
+            <div class="tabs-slider__element-content">
+               <div class="tabs-slider__element-content-heading">
+                  <h2 class="tabs-slider__element-title">
+                     Полулюкс                  </h2>
+                  <div class="tabs-slider__element-description">
+                     Просторный двухкомнатный номер с террасой —  вместимость 4 человека..                  </div>
+               </div>
+            </div>
+
+            <a href="/fregat-hotel/rooms/?active-item=junior_suite" class="abs-block"></a>
+            <div class="row-tabs-navigation">
+               <a href="#" class="arrow-navigation" uk-switcher-item="previous">
+                  <svg class="icon icon_strong">
+                     <use xlink:href="#common__arrow-short-left"></use>
+                  </svg>
+               </a>
+               <a href="#" class="arrow-navigation navigation_right" uk-switcher-item="next">
+                  <svg class="icon icon_strong">
+                     <use xlink:href="#common__arrow-short-right"></use>
+                  </svg>
+               </a>
+            </div>
+         </div>
+         </div>
+</div>
+
+<style>
+   @media screen and (min-width: 992px) {
+   .tabs-slider__element-content-heading {
+     display: none;
+   }
+</style>
+
+	</div>
+</section>
+
+<section class="section-wrapper section_padding section-container section-wrapper-container">
+	<div class="home-about">
+		<div class="home-about__content-wrapper content-wrapper">
+			<div class="home-about__content readmore-js-section readmore-js-expanded">
+				<h3>LAVICON ОТЕЛЬ ФРЕГАТ, АДЛЕР 4*</h3>
+				<p><p>
+	Современный 15‑этажный отель 4 звезды LAVICON ОТЕЛЬ ФРЕГАТ находится в центре Курортного городка Адлера, в нескольких минутах пешком от пляжа. Это обновлённый формат хорошо знакомого гостям пансионата «Фрегат», рядом с набережной, кафе, прогулочными зонами и развлечениями.​
+</p></p>
+				<div class="section-features section_features_accent">
+					<div class="section-features__content">
+						
+    <div class="section-features__item">
+                    <svg class="section-features__icon icon">
+                <use xlink:href="#property__sw-pool"></use>
+            </svg>
+                <p class="section-features__label">
+            Бассейн под открытым небом                    </p>
+            </div>
+    <div class="section-features__item">
+                    <svg class="section-features__icon icon">
+                <use xlink:href="#property__children-club"></use>
+            </svg>
+                <p class="section-features__label">
+            Детская комната                    </p>
+            </div>
+    <div class="section-features__item">
+                    <svg class="section-features__icon icon">
+                <use xlink:href="#property__conferences"></use>
+            </svg>
+                <p class="section-features__label">
+            Конференц-залы                    </p>
+            </div>
+    <div class="section-features__item">
+                    <svg class="section-features__icon icon">
+                <use xlink:href="#property__buffet"></use>
+            </svg>
+                <p class="section-features__label">
+            Шведская линия                    </p>
+            </div>
+    <div class="section-features__item">
+                    <svg class="section-features__icon icon">
+                <use xlink:href="#property__beach"></use>
+            </svg>
+                <p class="section-features__label">
+            200 метров до моря                    </p>
+            </div>
+    <div class="section-features__item">
+                    <svg class="section-features__icon icon">
+                <use xlink:href="#property__river"></use>
+            </svg>
+                <p class="section-features__label">
+            Собственный хвойный парк                    </p>
+            </div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="home-about__gallery-wrapper">
+			<div class="home-about__gallery" uk-scrollspy="cls:hce-fade-bottom-xxs; target:.home-about__gallery-item, .home-about__gallery-logo;  delay:120" uk-lightbox>
+									<div class="home-about__gallery-item image-sq-block">
+						<div class="image-sq-block__image" data-src="/upload/resize_cache/uf/e9b/600_500_2/0dz4xh94dya22pwtj71484dvccjpwpw4.jpg" uk-img></div>
+						<div class="image-sq-block__image" data-src="/upload/resize_cache/uf/e9b/600_500_2/0dz4xh94dya22pwtj71484dvccjpwpw4.jpg" uk-img></div>
+						<a href="/upload/resize_cache/webp/uf/e9b/0dz4xh94dya22pwtj71484dvccjpwpw4.webp" class="abs-block"></a>
+					</div>
+									<div class="home-about__gallery-item image-sq-block">
+						<div class="image-sq-block__image" data-src="/upload/resize_cache/uf/fa6/600_500_2/40a1tccl88c2ogbnoftow1o44rhmqe22.jpg" uk-img></div>
+						<div class="image-sq-block__image" data-src="/upload/resize_cache/uf/fa6/600_500_2/40a1tccl88c2ogbnoftow1o44rhmqe22.jpg" uk-img></div>
+						<a href="/upload/resize_cache/webp/uf/fa6/40a1tccl88c2ogbnoftow1o44rhmqe22.webp" class="abs-block"></a>
+					</div>
+									<div class="home-about__gallery-item image-sq-block">
+						<div class="image-sq-block__image" data-src="/upload/resize_cache/uf/1c8/600_500_2/ilqhg144kmk13mbsrufplplilectpbnj.jpg" uk-img></div>
+						<div class="image-sq-block__image" data-src="/upload/resize_cache/uf/1c8/600_500_2/ilqhg144kmk13mbsrufplplilectpbnj.jpg" uk-img></div>
+						<a href="/upload/resize_cache/webp/uf/1c8/ilqhg144kmk13mbsrufplplilectpbnj.webp" class="abs-block"></a>
+					</div>
+									<div class="home-about__gallery-item image-sq-block">
+						<div class="image-sq-block__image" data-src="/upload/resize_cache/uf/000/600_500_2/2vvqq002ear1cmypqclvm7qv6ml9qcq8.jpg" uk-img></div>
+						<div class="image-sq-block__image" data-src="/upload/resize_cache/uf/000/600_500_2/2vvqq002ear1cmypqclvm7qv6ml9qcq8.jpg" uk-img></div>
+						<a href="/upload/resize_cache/webp/uf/000/2vvqq002ear1cmypqclvm7qv6ml9qcq8.webp" class="abs-block"></a>
+					</div>
+								<div class="home-about__gallery-logo-wrapper">
+					<div class="home-about__gallery-logo">
+						<svg class="home-about__gallery-logo-icon icon">
+							<use xlink:href="#logo_short"></use>
+						</svg>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="section-wrapper section_padding_top">
+	<div class="section-container section_container_boxed">
+		<div class="section-title center_content" uk-scrollspy="cls:hce-fade-bottom;">
+			<h2 class="section-title__h">
+				Специальные предложения			</h2>
+			<p class="section-title__description">
+							</p>
+		</div>
+	</div>
+	<div class="section-container section_container_boxed uk-margin-medium-top">
+		<div class="nav-card-slider accent_block_slider" uk-scrollspy="cls:hce-fade-bottom;" style="margin-bottom: -5rem;">
+		
+<div class="nav-card-slider accent_block_slider" uk-scrollspy="cls:hce-fade-bottom;">
+   <div id="centered_card_slider" uk-slider="finite: true">
+      <ul class="uk-slider-items uk-child-width-1-1 uk-child-width-1-3@m">
+                     <li class="nav-card-slider__item">
+               <div class="nav-card-slider__image">
+                  <img data-src="/upload/resize_cache/iblock/f3c/900_500_2/u7cmxj1wnin16v0o4apvkn02cppqu3xk.jpg" uk-img class="clear-img">
+                                 </div>
+               <div class="nav-card-slider__content">
+                  <h3 class="nav-card-slider__title">Новогодние праздники в LAVICON отель фрегат</h3>
+                  <p class="nav-card-slider__description"></p>
+                  <div class="nav-card-slider__labels">
+                                                                        <div class="nav-card-slider__labels-item">
+                              LAVICON ОТЕЛЬ ФРЕГАТ, АДЛЕР 4*                           </div>
+                                                               </div>
+               </div>
+               <a href="#modal-element-3317" uk-toggle="target:#modal-element-3317" onClick="setUrlParam('active-item','3317')" id="item__3317" class="abs-block"></a>
+            </li>
+                     <li class="nav-card-slider__item">
+               <div class="nav-card-slider__image">
+                  <img data-src="/upload/resize_cache/iblock/6e1/900_500_2/43rx7rs5g1ko4z17it233e4k0mlcowtm.jpg" uk-img class="clear-img">
+                                 </div>
+               <div class="nav-card-slider__content">
+                  <h3 class="nav-card-slider__title">4-я ночь в подарок в LAVICON отель фрегат</h3>
+                  <p class="nav-card-slider__description"></p>
+                  <div class="nav-card-slider__labels">
+                                                                        <div class="nav-card-slider__labels-item">
+                              LAVICON ОТЕЛЬ ФРЕГАТ, АДЛЕР 4*                           </div>
+                                                               </div>
+               </div>
+               <a href="#modal-element-3320" uk-toggle="target:#modal-element-3320" onClick="setUrlParam('active-item','3320')" id="item__3320" class="abs-block"></a>
+            </li>
+                     <li class="nav-card-slider__item">
+               <div class="nav-card-slider__image">
+                  <img data-src="/upload/resize_cache/iblock/4ba/900_500_2/5nud87mzh65iyzs6rc2o2evxy6f6oox4.jpg" uk-img class="clear-img">
+                                 </div>
+               <div class="nav-card-slider__content">
+                  <h3 class="nav-card-slider__title">Серебряный сезон — скидка 20% в LAVICON отель фрегат, Адлер 4*</h3>
+                  <p class="nav-card-slider__description"></p>
+                  <div class="nav-card-slider__labels">
+                                                                        <div class="nav-card-slider__labels-item">
+                              LAVICON ОТЕЛЬ ФРЕГАТ, АДЛЕР 4*                           </div>
+                                                               </div>
+               </div>
+               <a href="#modal-element-3331" uk-toggle="target:#modal-element-3331" onClick="setUrlParam('active-item','3331')" id="item__3331" class="abs-block"></a>
+            </li>
+                     <li class="nav-card-slider__item">
+               <div class="nav-card-slider__image">
+                  <img data-src="/upload/resize_cache/iblock/13f/900_500_2/y42aqt20vwk8r03aqfx2x7pu0ewk7k8x.jpg" uk-img class="clear-img">
+                                 </div>
+               <div class="nav-card-slider__content">
+                  <h3 class="nav-card-slider__title">СВОи люди - скидка 30%</h3>
+                  <p class="nav-card-slider__description"></p>
+                  <div class="nav-card-slider__labels">
+                                                                        <div class="nav-card-slider__labels-item">
+                              LAVICON ОТЕЛЬ ФРЕГАТ, АДЛЕР 4*                           </div>
+                                                               </div>
+               </div>
+               <a href="#modal-element-3325" uk-toggle="target:#modal-element-3325" onClick="setUrlParam('active-item','3325')" id="item__3325" class="abs-block"></a>
+            </li>
+                     <li class="nav-card-slider__item">
+               <div class="nav-card-slider__image">
+                  <img data-src="/upload/resize_cache/iblock/148/900_500_2/wrkdapor42w8hze4prejknplq1mx7rlq.jpg" uk-img class="clear-img">
+                                 </div>
+               <div class="nav-card-slider__content">
+                  <h3 class="nav-card-slider__title">Дети до 11 лет — бесплатно в LAVICON отель фрегат</h3>
+                  <p class="nav-card-slider__description"></p>
+                  <div class="nav-card-slider__labels">
+                                                                        <div class="nav-card-slider__labels-item">
+                              LAVICON ОТЕЛЬ ФРЕГАТ, АДЛЕР 4*                           </div>
+                                                               </div>
+               </div>
+               <a href="#modal-element-3319" uk-toggle="target:#modal-element-3319" onClick="setUrlParam('active-item','3319')" id="item__3319" class="abs-block"></a>
+            </li>
+                     <li class="nav-card-slider__item">
+               <div class="nav-card-slider__image">
+                  <img data-src="/upload/resize_cache/iblock/2bb/900_500_2/8lr50w4rf3pe1klu05ezocwjwk6aruor.jpg" uk-img class="clear-img">
+                                 </div>
+               <div class="nav-card-slider__content">
+                  <h3 class="nav-card-slider__title">Love is… в LAVICON</h3>
+                  <p class="nav-card-slider__description">Апгрейд номера просто потому что вы - молодожены</p>
+                  <div class="nav-card-slider__labels">
+                                                                        <div class="nav-card-slider__labels-item">
+                              LAVICON ОТЕЛЬ ФРЕГАТ, АДЛЕР 4*                           </div>
+                                                               </div>
+               </div>
+               <a href="#modal-element-3016" uk-toggle="target:#modal-element-3016" onClick="setUrlParam('active-item','3016')" id="item__3016" class="abs-block"></a>
+            </li>
+                     <li class="nav-card-slider__item">
+               <div class="nav-card-slider__image">
+                  <img data-src="/upload/resize_cache/iblock/9b0/900_500_2/6tpwyb2grxv8i76nqrjs020gv2yldp1q.png" uk-img class="clear-img">
+                                 </div>
+               <div class="nav-card-slider__content">
+                  <h3 class="nav-card-slider__title">«Аэрофлот Бонус»</h3>
+                  <p class="nav-card-slider__description"></p>
+                  <div class="nav-card-slider__labels">
+                                                                        <div class="nav-card-slider__labels-item">
+                              LAVICON ОТЕЛЬ ФРЕГАТ, АДЛЕР 4*                           </div>
+                                                               </div>
+               </div>
+               <a href="#modal-element-2265" uk-toggle="target:#modal-element-2265" onClick="setUrlParam('active-item','2265')" id="item__2265" class="abs-block"></a>
+            </li>
+               </ul>
+      <a class="nav-card-slider__navigation navigation_left button_glass" href="#" uk-slidenav-previous uk-slider-item="previous">
+         <svg class="icon icon_strong">
+            <use xlink:href="#common__arrow-short-left"></use>
+         </svg>
+      </a>
+      <a class="nav-card-slider__navigation navigation_right button_glass" href="#" uk-slidenav-next uk-slider-item="next">
+         <svg class="icon icon_strong">
+            <use xlink:href="#common__arrow-short-right"></use>
+         </svg>
+      </a>
+   </div>
+         
+<div id="modal-element-3317" class="" uk-modal>
+	<div class="uk-modal-dialog medium-modal">
+		<button class="uk-modal-close-outside" type="button" uk-close></button>
+					<div uk-slideshow>
+				<div class="uk-position-relative uk-visible-toggle uk-light">
+					<ul class="uk-slideshow-items" uk-lightbox>
+													<li>
+								<img data-src="/upload/resize_cache/iblock/f3c/1100_600_2/u7cmxj1wnin16v0o4apvkn02cppqu3xk.jpg" uk-img uk-cover>
+								<a href="/upload/resize_cache/webp/iblock/f3c/u7cmxj1wnin16v0o4apvkn02cppqu3xk.webp" class="abs-block"></a>
+							</li>
+											</ul>
+					<div class="uk-position-bottom-center uk-position-small">
+						<ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin uk-position-relative"></ul>
+					</div>
+					<a class="slide-prev" href="#" uk-slideshow-item="previous">
+						<svg class="icon ">
+							<use xlink:href="#common__arrow-long-left"></use>
+						</svg>
+					</a>
+					<a class="slide-next" href="#" uk-slideshow-item="next">
+						<svg class="icon ">
+							<use xlink:href="#common__arrow-long-right"></use>
+						</svg>
+					</a>
+				</div>
+			</div>
+				<div class="modal-text modal-content">
+							<div class="h1 uk-margin-small-bottom">Новогодние праздники в LAVICON отель фрегат</div>
+						<div>
+				<p>
+	 Проведите новогодние праздники в LAVICON отель фрегат, Адлер 4.<br>
+ <br>
+	 Выберите подходящий тариф:<br>
+</p>
+<ul>
+	<li>От 9 000 ₽ - тариф с завтраком;</li>
+	<li>
+	От 16 000 ₽ - тариф с завтраком и ужином.</li>
+</ul>
+ 31.12.2026 в стоимость включён праздничный ужин.<br>
+ <br>
+ Во все остальные дни питание по выбранному тарифу проходит в формате «Шведский стол» с подачей игристого.<br>
+<ul>
+	<li>
+	Период проживания: с 31.12.2026 по 10.01.2027.</li>
+</ul>
+ При бронировании на указанный период необходима предоплата в размере стоимости первых суток проживания.<br>
+ <br>
+ Бронирование доступно на официальном сайте <a href="https://lavicon.ru/">lavicon.ru</a>, на стойке приема и размещения и по телефону +7 (862) 295-04-08.<br>
+ <br>
+ <a href="https://lavicon.ru/booking/?hotel_id=61579&be-offer=977424"><span style="color: #0076a4;"><b>ЗАБРОНИРОВАТЬ</b></span></a>
+<p>
+</p>			</div>
+			
+			
+					</div>
+	</div>
+</div>
+      </li>
+         
+<div id="modal-element-3320" class="" uk-modal>
+	<div class="uk-modal-dialog medium-modal">
+		<button class="uk-modal-close-outside" type="button" uk-close></button>
+					<div uk-slideshow>
+				<div class="uk-position-relative uk-visible-toggle uk-light">
+					<ul class="uk-slideshow-items" uk-lightbox>
+													<li>
+								<img data-src="/upload/resize_cache/iblock/6e1/1100_600_2/43rx7rs5g1ko4z17it233e4k0mlcowtm.jpg" uk-img uk-cover>
+								<a href="/upload/resize_cache/webp/iblock/6e1/43rx7rs5g1ko4z17it233e4k0mlcowtm.webp" class="abs-block"></a>
+							</li>
+											</ul>
+					<div class="uk-position-bottom-center uk-position-small">
+						<ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin uk-position-relative"></ul>
+					</div>
+					<a class="slide-prev" href="#" uk-slideshow-item="previous">
+						<svg class="icon ">
+							<use xlink:href="#common__arrow-long-left"></use>
+						</svg>
+					</a>
+					<a class="slide-next" href="#" uk-slideshow-item="next">
+						<svg class="icon ">
+							<use xlink:href="#common__arrow-long-right"></use>
+						</svg>
+					</a>
+				</div>
+			</div>
+				<div class="modal-text modal-content">
+							<div class="h1 uk-margin-small-bottom">4-я ночь в подарок в LAVICON отель фрегат</div>
+						<div>
+				<p>
+	Планируйте отдых в LAVICON отель фрегат, Адлер 4* и получайте каждую 4-ю ночь в подарок.
+</p>
+<p>
+</p>
+<p>
+	 Условия акции:<br>
+</p>
+<ul>
+	<li>период действия акции: с 05.10.2026 по 30.11.2026;</li>
+	<li>период проживания: с 07.10.2026 по 28.12.2026;</li>
+	<li>действует на все категории номеров;</li>
+	<li>каждая 4-я ночь — в подарок;</li>
+	<li>действует по тарифу с завтраком и по тарифу без питания;</li>
+	<li>100% предоплата первых суток проживания.</li>
+</ul>
+<p>
+</p>
+<p>
+</p>
+<p>
+ <i>*Акция не суммируется с картами лояльности и другими предложениями отеля.</i>
+</p>
+<p>
+</p>
+<p>
+	 Бронирование доступно на официальном сайте <a href="http://lavicon.ru/">lavicon.ru</a>, на стойке приёма и размещения и по телефону +7 (862) 295-04-08.
+</p>			</div>
+			
+			
+					</div>
+	</div>
+</div>
+      </li>
+         
+<div id="modal-element-3331" class="" uk-modal>
+	<div class="uk-modal-dialog medium-modal">
+		<button class="uk-modal-close-outside" type="button" uk-close></button>
+					<div uk-slideshow>
+				<div class="uk-position-relative uk-visible-toggle uk-light">
+					<ul class="uk-slideshow-items" uk-lightbox>
+													<li>
+								<img data-src="/upload/resize_cache/iblock/4ba/1100_600_2/5nud87mzh65iyzs6rc2o2evxy6f6oox4.jpg" uk-img uk-cover>
+								<a href="/upload/resize_cache/webp/iblock/4ba/5nud87mzh65iyzs6rc2o2evxy6f6oox4.webp" class="abs-block"></a>
+							</li>
+											</ul>
+					<div class="uk-position-bottom-center uk-position-small">
+						<ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin uk-position-relative"></ul>
+					</div>
+					<a class="slide-prev" href="#" uk-slideshow-item="previous">
+						<svg class="icon ">
+							<use xlink:href="#common__arrow-long-left"></use>
+						</svg>
+					</a>
+					<a class="slide-next" href="#" uk-slideshow-item="next">
+						<svg class="icon ">
+							<use xlink:href="#common__arrow-long-right"></use>
+						</svg>
+					</a>
+				</div>
+			</div>
+				<div class="modal-text modal-content">
+							<div class="h1 uk-margin-small-bottom">Серебряный сезон — скидка 20% в LAVICON отель фрегат, Адлер 4*</div>
+						<div>
+				<p>
+	Время выбирать себя, открывать новые места и наслаждаться отдыхом.
+</p>
+<p>
+</p>
+<p>
+	 Планируйте отдых в LAVICON отель фрегат, Адлер 4* и получайте скидку 20% на проживание.
+</p>
+<p>
+</p>
+<p>
+ <strong>Условия акции:</strong>
+</p>
+<p>
+</p>
+<ul>
+	<li>скидка <strong>20%</strong>;</li>
+	<li>период действия и даты проживания по&nbsp;акции: с 21.10.2026 по 27.12.2026;</li>
+	<li>для гостей в возрасте <strong>60 лет и старше</strong>;</li>
+	<li>100% оплата первых суток проживания при бронировании.</li>
+</ul>
+<p>
+</p>
+<p>
+</p>
+<p>
+ <i>*Акция не суммируется с картами лояльности и другими предложениями отеля.</i>
+</p>
+<p>
+</p>
+<p>
+	 Бронирование доступно на официальном сайте lavicon.ru, на стойке приёма и размещения и по телефону <strong>+7 (862) 295-04-08</strong>.
+</p>			</div>
+			
+			
+					</div>
+	</div>
+</div>
+      </li>
+         
+<div id="modal-element-3325" class="" uk-modal>
+	<div class="uk-modal-dialog medium-modal">
+		<button class="uk-modal-close-outside" type="button" uk-close></button>
+					<div uk-slideshow>
+				<div class="uk-position-relative uk-visible-toggle uk-light">
+					<ul class="uk-slideshow-items" uk-lightbox>
+													<li>
+								<img data-src="/upload/resize_cache/iblock/13f/1100_600_2/y42aqt20vwk8r03aqfx2x7pu0ewk7k8x.jpg" uk-img uk-cover>
+								<a href="/upload/resize_cache/webp/iblock/13f/y42aqt20vwk8r03aqfx2x7pu0ewk7k8x.webp" class="abs-block"></a>
+							</li>
+											</ul>
+					<div class="uk-position-bottom-center uk-position-small">
+						<ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin uk-position-relative"></ul>
+					</div>
+					<a class="slide-prev" href="#" uk-slideshow-item="previous">
+						<svg class="icon ">
+							<use xlink:href="#common__arrow-long-left"></use>
+						</svg>
+					</a>
+					<a class="slide-next" href="#" uk-slideshow-item="next">
+						<svg class="icon ">
+							<use xlink:href="#common__arrow-long-right"></use>
+						</svg>
+					</a>
+				</div>
+			</div>
+				<div class="modal-text modal-content">
+							<div class="h1 uk-margin-small-bottom">СВОи люди - скидка 30%</div>
+						<div>
+				<p>
+	 СВОи люди - скидка 30% в LAVICON отель, фрегат Адлер 4*.<br>
+ <br>
+	 Условия акции:<br>
+</p>
+<ul>
+	<li>скидка <strong>30%</strong> на все категории номеров;</li>
+	<li>период действия и даты проживания по акции: с 19.10.2026 по 28.12.2027;</li>
+	<li>100% оплата первых суток проживания при бронировании;</li>
+	<li>для<strong> </strong>кого<strong>:</strong> участники СВО, их супруги и дети, а также семьи погибших и пропавших без вести;</li>
+	<li>подтверждение<strong>:</strong> справка с Госуслуг при бронировании (действительна 30 дней).</li>
+</ul>
+ <br>
+ <i>*Акция не суммируется с картами лояльности и другими предложениями отеля.</i><br>
+ <br>
+ Бронирование доступно на стойке приёма и размещения и по телефону +7 (862) 295-04-08.
+<p>
+</p>			</div>
+			
+			
+					</div>
+	</div>
+</div>
+      </li>
+         
+<div id="modal-element-3319" class="" uk-modal>
+	<div class="uk-modal-dialog medium-modal">
+		<button class="uk-modal-close-outside" type="button" uk-close></button>
+					<div uk-slideshow>
+				<div class="uk-position-relative uk-visible-toggle uk-light">
+					<ul class="uk-slideshow-items" uk-lightbox>
+													<li>
+								<img data-src="/upload/resize_cache/iblock/148/1100_600_2/wrkdapor42w8hze4prejknplq1mx7rlq.jpg" uk-img uk-cover>
+								<a href="/upload/resize_cache/webp/iblock/148/wrkdapor42w8hze4prejknplq1mx7rlq.webp" class="abs-block"></a>
+							</li>
+											</ul>
+					<div class="uk-position-bottom-center uk-position-small">
+						<ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin uk-position-relative"></ul>
+					</div>
+					<a class="slide-prev" href="#" uk-slideshow-item="previous">
+						<svg class="icon ">
+							<use xlink:href="#common__arrow-long-left"></use>
+						</svg>
+					</a>
+					<a class="slide-next" href="#" uk-slideshow-item="next">
+						<svg class="icon ">
+							<use xlink:href="#common__arrow-long-right"></use>
+						</svg>
+					</a>
+				</div>
+			</div>
+				<div class="modal-text modal-content">
+							<div class="h1 uk-margin-small-bottom">Дети до 11 лет — бесплатно в LAVICON отель фрегат</div>
+						<div>
+				<p>
+	Планируйте семейный отдых в LAVICON отель фрегат, Адлер 4* — дети до 11 лет проживают бесплатно.
+</p>
+<p>
+	 Условия акции:<br>
+</p>
+<p>
+</p>
+<ul>
+	<li>период действия акции: с 02.10.2026 по 15.11.2026;</li>
+	<li>период проживания: с 23.10.2026 по 29.11.2026;</li>
+	<li>действует на все категории номеров;</li>
+	<li>действует по тарифу с завтраком и по тарифу без питания;</li>
+	<li>100% предоплата первых суток проживания.</li>
+</ul>
+<p>
+</p>
+<p>
+ <i>*Акция не суммируется с картами лояльности и другими предложениями отеля.</i>
+</p>
+<p>
+</p>
+<p>
+	 Бронирование доступно на официальном сайте <a href="http://lavicon.ru/">lavicon.ru</a>, на стойке приёма и размещения и по телефону +7 (862) 295-04-08.<br>
+	<br>
+	<a href="https://lavicon.ru/booking/?hotel_id=61579&be-offer=978138"><span style="color: #0072bc;">ЗАБРОНИРОВАТЬ</span></a>
+</p>			</div>
+			
+			
+					</div>
+	</div>
+</div>
+      </li>
+         
+<div id="modal-element-3016" class="" uk-modal>
+	<div class="uk-modal-dialog medium-modal">
+		<button class="uk-modal-close-outside" type="button" uk-close></button>
+					<div uk-slideshow>
+				<div class="uk-position-relative uk-visible-toggle uk-light">
+					<ul class="uk-slideshow-items" uk-lightbox>
+													<li>
+								<img data-src="/upload/resize_cache/iblock/2bb/1100_600_2/8lr50w4rf3pe1klu05ezocwjwk6aruor.jpg" uk-img uk-cover>
+								<a href="/upload/resize_cache/webp/iblock/2bb/8lr50w4rf3pe1klu05ezocwjwk6aruor.webp" class="abs-block"></a>
+							</li>
+											</ul>
+					<div class="uk-position-bottom-center uk-position-small">
+						<ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin uk-position-relative"></ul>
+					</div>
+					<a class="slide-prev" href="#" uk-slideshow-item="previous">
+						<svg class="icon ">
+							<use xlink:href="#common__arrow-long-left"></use>
+						</svg>
+					</a>
+					<a class="slide-next" href="#" uk-slideshow-item="next">
+						<svg class="icon ">
+							<use xlink:href="#common__arrow-long-right"></use>
+						</svg>
+					</a>
+				</div>
+			</div>
+				<div class="modal-text modal-content">
+							<div class="h1 uk-margin-small-bottom">Love is… в LAVICON</div>
+						<div>
+				Апгрейд номера просто потому что вы - молодожены.<br>
+<ul>
+	<li>Скидка 10%;</li>
+	<li>Срок действия акции и период проживания до 31.12.2026;</li>
+	<li>Поздний выезд либо ранний заезд;</li>
+	<li>Тариф без питания;</li>
+	<li>Действует 30 дней после даты регистрации брака.</li>
+</ul>
+ <br>
+ Бронирование доступно&nbsp;по телефону <a href="https://wa.me/79604985900">+7 (861) 205-72-72</a>.<br>
+ <br>
+ <i>
+*Акция не суммируется с другими предложениями отеля и картами лояльности</i><br>
+ <br>
+ <br>
+ <span style="color: #0000ff;"><a href="https://lavicon.ru/fregat-hotel/"><span style="color: #0000ff;">▫️LAVICON отель Фрегат, Адлер 4*</span></a></span><br>
+ Адлер, ул. Ленина, д. 219/12<br>
+ <br>
+ <br>			</div>
+			
+			
+					</div>
+	</div>
+</div>
+      </li>
+         
+<div id="modal-element-2265" class="" uk-modal>
+	<div class="uk-modal-dialog medium-modal">
+		<button class="uk-modal-close-outside" type="button" uk-close></button>
+					<div uk-slideshow>
+				<div class="uk-position-relative uk-visible-toggle uk-light">
+					<ul class="uk-slideshow-items" uk-lightbox>
+													<li>
+								<img data-src="/upload/resize_cache/iblock/9b0/1100_600_2/6tpwyb2grxv8i76nqrjs020gv2yldp1q.png" uk-img uk-cover>
+								<a href="/upload/resize_cache/webp/iblock/9b0/6tpwyb2grxv8i76nqrjs020gv2yldp1q.webp" class="abs-block"></a>
+							</li>
+											</ul>
+					<div class="uk-position-bottom-center uk-position-small">
+						<ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin uk-position-relative"></ul>
+					</div>
+					<a class="slide-prev" href="#" uk-slideshow-item="previous">
+						<svg class="icon ">
+							<use xlink:href="#common__arrow-long-left"></use>
+						</svg>
+					</a>
+					<a class="slide-next" href="#" uk-slideshow-item="next">
+						<svg class="icon ">
+							<use xlink:href="#common__arrow-long-right"></use>
+						</svg>
+					</a>
+				</div>
+			</div>
+				<div class="modal-text modal-content">
+							<div class="h1 uk-margin-small-bottom">«Аэрофлот Бонус»</div>
+						<div>
+				Программа «Аэрофлот Бонус» в LAVICON<br>
+ <br>
+ Участвующие отели:
+<ul>
+	<li>LAVICON ОТЕЛЬ ФРЕГАТ, АДЛЕР 4*</li>
+	<ul>
+	</ul>
+	<p>
+		 Начисление миль:
+	</p>
+	<ul>
+		<li> Как участвовать: забронируйте проживание через официальный сайт, по телефону или email;</li>
+		<li> Как получить мили: при заселении предъявите карту «Аэрофлот Бонус» или сообщите её номер на стойке регистрации;</li>
+		<li> Курс: 1 миля за каждые 40 рублей стоимости проживания;</li>
+		<li> Срок начисления: в течение 20 дней после выезда. </li>
+	</ul>
+	<p>
+		 Ограничения по начислению:
+	</p>
+	<ul>
+		<li>Мили начисляются на карту одного участника при совместном проживании; </li>
+		<li>Не начисляются за дополнительные услуги. </li>
+	</ul>
+	<p>
+		 Списание миль:
+	</p>
+	<ul>
+		<li> Подготовка: получите ПИН‑код в личном кабинете программы;</li>
+		<li> На стойке регистрации: предъявите карту/номер карты и назовите ПИН‑код;</li>
+		<li> Лимит: не более 50 % от стоимости проживания. </li>
+	</ul>
+	<p>
+	</p>
+	<p>
+		 Ограничения по списанию:
+	</p>
+	<ul>
+		<li>Только на стойке регистрации отелей LAVICON; </li>
+		<li>Списать может только один участник при проживании нескольких человек; </li>
+		<li>Недоступно для корпоративных программ и размещений от юрлиц; </li>
+		<li>Нельзя списать за дополнительные услуги. </li>
+	</ul>
+	<p>
+	</p>
+	<p>
+		 Контакты: 8 /861/ 205‑72‑72&nbsp;
+	</p>
+	<p>
+ <a target="_blank" href="https://www.aeroflot.ru/partners/partners/522411"><span style="color: #00bff3;">Подробнее о программе</span></a>
+	</p>
+	<p>
+ <i>*программа&nbsp;«Аэрофлот Бонус»&nbsp;действует только на бронирования совершенные на официальном сайте&nbsp;или через&nbsp;email и колл-центр&nbsp;</i>
+	</p>
+</ul>			</div>
+			
+			
+					</div>
+	</div>
+</div>
+      </li>
+   </div>
+		</div>
+	</div>
+	<div class="video-block-full-height">
+		<div class="video-block-wrapper smooth_heading" uk-lightbox="target: .home-gallery-block" uk-parallax="bgy: 100">
+												<video class="video-block main-bg-video" preload="none" poster="/upload/uf/327/dkr5s0rht81ld6aqrd78oepg22gpn0ks.webp">
+					</video>
+										<div class="video-block__overlay"></div>
+									</div>
+	</div>
+</section>
+
+
+						<footer class="footer">
+    <div class="footer-top">
+        <div class="footer-content section-container">
+            <div class="footer-content__top">
+                <div class="footer-content__top-block" style="flex: 1;">
+                    <div class="footer-properties">
+        <div class="footer-properties__item">
+        <a href="/fregat-hotel/" class="footer-nav__item-link" style="text-transform: uppercase; white-space: nowrap;">
+            LAVICON ОТЕЛЬ ФРЕГАТ, АДЛЕР 4*        </a>
+    </div>
+        <div class="footer-properties__item">
+        <a href="/sochi-hotel/" class="footer-nav__item-link" style="text-transform: uppercase; white-space: nowrap;">
+            LAVICON АПАРТ, СОЧИ 4*        </a>
+    </div>
+        <div class="footer-properties__item">
+        <a href="/dom-gordona/" class="footer-nav__item-link" style="text-transform: uppercase; white-space: nowrap;">
+            LAVICON ДОМ ГОРДОНА        </a>
+    </div>
+        <div class="footer-properties__item">
+        <a href="/adler-hotel/" class="footer-nav__item-link" style="text-transform: uppercase; white-space: nowrap;">
+            LAVICON КЛУБНАЯ РЕЗИДЕНЦИЯ 4*        </a>
+    </div>
+        <div class="footer-properties__item">
+        <a href="/dagomys-hotel/" class="footer-nav__item-link" style="text-transform: uppercase; white-space: nowrap;">
+            LAVICON БУТИК ОТЕЛЬ, ДАГОМЫС 4*        </a>
+    </div>
+        <div class="footer-properties__item">
+        <a href="/nebug-hotel-3/" class="footer-nav__item-link" style="text-transform: uppercase; white-space: nowrap;">
+            LAVICON АПАРТ, НЕБУГ 3*        </a>
+    </div>
+        <div class="footer-properties__item">
+        <a href="/agoy-park/" class="footer-nav__item-link" style="text-transform: uppercase; white-space: nowrap;">
+            AGOYPARK by LAVICON        </a>
+    </div>
+        </div>                </div>
+                <div class="footer-content__top-block">
+                    <div class="footer-content__top-connect">
+                        <span class="footer-content__top-connect-text">
+                            </span>
+                    </div>
+                    <div style="display: flex; align-items: center;">
+                                                <a class="footer-content__top-connect-link" href="https://t.me/lavicon_hotel" target="_blank">
+                            <svg class="footer-content__top-connect__icon icon">
+                                <use xlink:href="#socials__telegram"></use>
+                            </svg>
+                        </a>
+                        <a class="footer-content__top-connect-link" href="https://vk.com/lavicon.hotel" target="_blank">
+                            <svg class="footer-content__top-connect__icon icon">
+                                <use xlink:href="#socials__vk"></use>
+                            </svg>
+                        </a>
+                                                <!-- 101Hotel_partner_widget start -->
+                        <a target="_blank"  id="hotels101_partner_widget_233" style="text-decoration: blink;" href="https://101hotels.com/main/cities/adler/pansionat_fregat.html">
+                            <img width="95" height="101" src="https://101hotels.com/images/banner/101hotels_recommend7.png" alt="LAVICON отель фрегат - 101hotels.com рекомендует">
+                        </a>
+                                                <!-- 101Hotel_partner_widget finish -->
+                         
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-middle">
+        <div class="section-container">
+            <div class="footer__upper">
+                <div class="footer__content">
+                    <div class="footer__navigation">
+                        <nav class="footer-nav">
+                            <ul class="footer-nav__list">
+                                
+   <li class="footer-nav__item">
+      <a title="" href="/fregat-hotel/" class="footer-nav__item-link">
+         Об отеле      </a>
+   </li>
+
+   <li class="footer-nav__item">
+      <a title="" href="/fregat-hotel/services/" class="footer-nav__item-link">
+         Услуги      </a>
+   </li>
+
+   <li class="footer-nav__item">
+      <a title="" href="/fregat-hotel/rooms/" class="footer-nav__item-link">
+         Номера      </a>
+   </li>
+
+   <li class="footer-nav__item">
+      <a title="" href="/fregat-hotel/specials/" class="footer-nav__item-link">
+         Акции      </a>
+   </li>
+
+   <li class="footer-nav__item">
+      <a title="" href="/fregat-hotel/news/" class="footer-nav__item-link">
+         Новости      </a>
+   </li>
+
+   <li class="footer-nav__item">
+      <a title="" href="/fregat-hotel/contacts/" class="footer-nav__item-link">
+         Контакты      </a>
+   </li>
+
+   <li class="footer-nav__item">
+      <a title="" href="/fregat-hotel/legal_information/" class="footer-nav__item-link">
+         Правовая информация      </a>
+   </li>
+                            </ul>
+                        </nav>
+                        <a href="/" class="footer__logo-link">
+                            <svg class="footer__logo icon">
+                                <use xlink:href="#logo_short--extra"></use>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="footer-content__bottom">
+                        <p class="footer-content__bottom-text">«Lavicon Hotel Collection» ©
+                            2026                                                    </p>
+                        <p class="footer-content__bottom-text"><a class="footer-content__bottom-link" href="https://hotelcommerce.ru" target="_blank">
+                                Разработано Hotel commerce</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>												
+		</div>
+
+	
+<script src="/local/templates/main/static/app-scripts.js?v=1.1.5" async data-skip-moving="true"></script>
+
+
+    <a href="tel:+78612057272" class="pulse">
+        <svg class="icon">
+            <use xlink:href="#common__call"></use>
+        </svg>
+    </a>
+
+<script data-skip-moving="true" src="https://www.google.com/recaptcha/api.js?hl=ru" async defer data-skip-moving="true"></script>
+
+<!-- Yandex.Metrika counter -->
+<noscript>
+    <div><img src="https://mc.yandex.ru/watch/49845070" style="position:absolute; left:-9999px;" alt="" /></div>
+</noscript>
+<!-- /Yandex.Metrika counter -->
+
+<!-- Top.Mail.Ru counter --> 
+<script data-skip-moving="true" type="text/javascript"> var _tmr = window._tmr || (window._tmr = []); _tmr.push({id: "3259792", type: "pageView", start: (new Date()).getTime(), pid: "USER_ID"}); (function (d, w, id) { if (d.getElementById(id)) return; var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true; ts.id = id; ts.src = "https://top-fwz1.mail.ru/js/code.js"; var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);}; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "tmr-code"); </script> <noscript><div><img src="https://top-fwz1.mail.ru/counter?id=3259792;js=na" style="position:absolute;left:-9999px;" alt="Top.Mail.Ru" /></div></noscript> 
+<!-- /Top.Mail.Ru counter -->
+
+<script data-skip-moving="true" type="text/javascript">!function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src='https://vk.com/js/api/openapi.js?169',t.onload=function(){VK.Retargeting.Init("VK-RTRG-1493075-i5SqY"),VK.Retargeting.Hit()},document.head.appendChild(t)}();</script>
+<noscript><img src="https://vk.com/rtrg?p=VK-RTRG-1493075-i5SqY" style="position:fixed; left:-999px;" alt=""/></noscript>
+
+ 
+
+    <!-- Roistat Counter Start -->
+<script data-skip-moving="true" type="text/javascript">
+    (function(w, d, s, h, id) { w.roistatProjectId = id; w.roistatHost = h; var p = d.location.protocol == "https:" ? "https://" : "http://"; var u = /^.roistat_visit=[^;]+(.)?$/.test(d.cookie) ?  "/dist/module.js" :  "/api/site/1.0/"+id+"/init?referrer="+encodeURIComponent(d.location.href); var js = d.createElement(s); js.charset="UTF-8"; js.async = 1;  js.src = p+h+u; var js2 = d.getElementsByTagName(s)[0];  js2.parentNode.insertBefore(js, js2); })(window, document, 'script', 'cloud.roistat.com',  'ad0655cb11f4bc3dbd8cbd9c2e235b8b'); 
+</script>
+<!-- Roistat Counter End -->
+
+<style>
+    .altumcode-wrapper, .altumcode-custom-html-content, .altumcode-image-content {
+        padding: 0!important;
+    }
+    .altumcode-custom-html-wrapper {
+        max-width: 100%!important;
+        max-height: 90%!important;
+        margin: auto!important;
+    }
+
+    .altumcode-custom-html-wrapper .altumcode-close {
+        margin: 0!important;
+        width: 2.5rem!important;
+        height: 2.5rem!important;
+        position: absolute!important;
+        right: 20px!important;
+        top: 20px!important;
+        background-color: white!important;
+        opacity: 1!important;
+        border: 1px solid!important;
+    }
+
+    .altumcode-site { 
+        position: fixed!important;
+        left: -9999px;
+    }
+
+    .popup_wrapper {
+        width: 100%; max-width: 40rem;  position: relative; display: flex;
+    }
+</style>
+
+	<script>
+                            (function() {
+                                var script   = document.createElement('script'), generated_id = 233;
+                                script.type  = 'text/javascript';
+                                script.async = true;
+                                script.src   = 'https://101hotels.com/widget/generator/' + generated_id + '/9044/t-12';
+                                var node = document.getElementsByTagName('head')[0];
+                                node.appendChild(script);
+                            }());
+                        </script>
+<script type="text/javascript">(function(window,document,n,project_ids){window.GudokData=n;if(typeof project_ids !== "object"){project_ids = [project_ids]};window[n] = {};window[n]["projects"]=project_ids;config_load(project_ids.join(','));function config_load(cId){var a=document.getElementsByTagName("script")[0],s=document.createElement("script"),i=function(){a.parentNode.insertBefore(s,a)},cMrs='';s.async=true;if(document.location.search&&document.location.search.indexOf('?gudok_check=')===0)cMrs+=document.location.search.replace('?','&');s.src="//mod.gudok.tel/script.js?sid="+cId+cMrs;if(window.opera == "[object Opera]"){document.addEventListener("DOMContentLoaded", i, false)}else{i()}}})(window, document, "gd", "njlkur4hoq");</script>
+
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js', 'ym');
+
+    ym(49845070, 'init', {webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+</body>
+
+</html>
+<!--4af54b852dbddf79926fa7a5377ce6dd-->

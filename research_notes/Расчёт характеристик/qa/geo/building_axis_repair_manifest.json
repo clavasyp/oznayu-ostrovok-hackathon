@@ -1,0 +1,335 @@
+{
+  "version": "V9-N02N03-final-address-repair-manifest-1",
+  "created_at": "2026-10-24T14:11:52.666182+00:00",
+  "cities": [
+    {
+      "city_id": "sochi",
+      "repair_report": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/sochi_N02N03_strict_join_repair_report.json",
+      "repair_report_sha256": "214bb5d72ebdfe17173f48d169c7e55b86379ab7ea5bac66234be160236e70bb",
+      "affected_hotel_ids": [
+        "7725078",
+        "8085655"
+      ],
+      "building_matches_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/sochi_building_matches.jsonl",
+      "building_matches_sha256": "a991d1e23149f2d6a1614f478d512e09951b87be21d83d880c5b866f1c45174e",
+      "facts_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/sochi_facts.jsonl",
+      "facts_sha256": "0ac67a1055150ddfd699872723635cc052db3b9ef6a50c54207ea61bbe1aa113",
+      "run_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/sochi_run.json",
+      "run_sha256": "389505c9de6f37d72932a6bbfd9863789d7ce648839d8eaeb4ab7e289d131075",
+      "repair_seconds": 1.114520499992068,
+      "code_versions": {
+        "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/repair_building_axis_features.py": {
+          "sha256": "15d4e99a6362be7c391a1e075265e85061995e9f4f074a31cfa3d35d633c70d9",
+          "exact_archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/15d4e99a6362be7c391a1e075265e85061995e9f4f074a31cfa3d35d633c70d9.py"
+        },
+        "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/geo.py": {
+          "sha256": "e575c51e28cbc3905eadb4e4d628005b9fad99031301a741d0477c80e73473ad",
+          "exact_archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/e575c51e28cbc3905eadb4e4d628005b9fad99031301a741d0477c80e73473ad.py"
+        },
+        "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/common.py": {
+          "sha256": "76696ba92b64aab7ceef9bf255872bbc943311c0cde886098dffe8773d6637eb",
+          "exact_archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/76696ba92b64aab7ceef9bf255872bbc943311c0cde886098dffe8773d6637eb.py"
+        },
+        "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/facades.py": {
+          "sha256": "14b8c3ea8f4791400fa7cf0ebe5788992f2d16b03f2029de4ac85bf80c3108a6",
+          "exact_archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/14b8c3ea8f4791400fa7cf0ebe5788992f2d16b03f2029de4ac85bf80c3108a6.py"
+        }
+      },
+      "unrelated_passport_lines_byte_identical": true,
+      "route_and_other_geo_file_sha_checks": {
+        "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/sochi_beach_targets.jsonl": true,
+        "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/sochi_all_selected_routes.jsonl": true,
+        "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/sochi_beach_classifications.jsonl": true,
+        "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/sochi_marine_targets_with_fallback.jsonl": true,
+        "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/sochi_blocked_nodes.jsonl": true,
+        "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/sochi_routes.jsonl": true,
+        "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/sochi_poi_audit.jsonl": true
+      },
+      "checkpoint": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/checkpoints/sochi_before_N02N03_strict_join_repair"
+    },
+    {
+      "city_id": "moscow",
+      "repair_report": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/moscow_N02N03_join_diff_repair_report.json",
+      "repair_report_sha256": "647de1a61b6e075b95c3d0d7267a5668853b247d36573cb03650900620bbda7f",
+      "affected_hotel_ids": [
+        "6878127",
+        "9771294"
+      ],
+      "building_matches_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/moscow_building_matches.jsonl",
+      "building_matches_sha256": "152e39a9471cb7c95e0bf41b018a0ef6587388f625954428fdd25abcb775eff7",
+      "facts_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/moscow_facts.jsonl",
+      "facts_sha256": "231cf82f83fa94cf8d2f90f2b8534ef8e360749241b4526fdba97e00b97d5775",
+      "run_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/moscow_run.json",
+      "run_sha256": "f4d8a7908fa633116c793ac509315392f24fe12f4b5f40237495d9b15369e103",
+      "repair_seconds": 9.502098249999108,
+      "code_versions": {
+        "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/repair_building_axis_features_v2.py": {
+          "sha256": "b4b54df6b58537c800f048ec77779f67f680a4a941feb6611fbfbee4ed9c2908",
+          "exact_archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/b4b54df6b58537c800f048ec77779f67f680a4a941feb6611fbfbee4ed9c2908.py"
+        },
+        "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/geo.py": {
+          "sha256": "e575c51e28cbc3905eadb4e4d628005b9fad99031301a741d0477c80e73473ad",
+          "exact_archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/e575c51e28cbc3905eadb4e4d628005b9fad99031301a741d0477c80e73473ad.py"
+        },
+        "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/common.py": {
+          "sha256": "76696ba92b64aab7ceef9bf255872bbc943311c0cde886098dffe8773d6637eb",
+          "exact_archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/76696ba92b64aab7ceef9bf255872bbc943311c0cde886098dffe8773d6637eb.py"
+        },
+        "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/facades.py": {
+          "sha256": "14b8c3ea8f4791400fa7cf0ebe5788992f2d16b03f2029de4ac85bf80c3108a6",
+          "exact_archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/14b8c3ea8f4791400fa7cf0ebe5788992f2d16b03f2029de4ac85bf80c3108a6.py"
+        }
+      },
+      "unrelated_passport_lines_byte_identical": true,
+      "route_and_other_geo_file_sha_checks": {
+        "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/moscow_routes.jsonl": true,
+        "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/moscow_poi_audit.jsonl": true,
+        "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/moscow_blocked_nodes.jsonl": true,
+        "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/moscow_all_selected_routes.jsonl": true,
+        "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/moscow_beach_targets.jsonl": true,
+        "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/moscow_beach_classifications.jsonl": true,
+        "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/moscow_marine_targets_with_fallback.jsonl": true
+      },
+      "checkpoint": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/checkpoints/moscow_before_N02N03_join_diff_152e39a9471c"
+    },
+    {
+      "city_id": "spb",
+      "repair_report": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/spb_N02N03_join_diff_repair_report.json",
+      "repair_report_sha256": "ec84c3178c0e7ef16a07d466796fbe0c430db3266915254d49a6fa0c8fb843c2",
+      "affected_hotel_ids": [
+        "7059592"
+      ],
+      "building_matches_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/spb_building_matches.jsonl",
+      "building_matches_sha256": "35a24c54b8ef5d77aa417ad1a238aaa5380669c595353fda415ed0c5ce0b59af",
+      "facts_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/spb_facts.jsonl",
+      "facts_sha256": "d821664ab88ed2cf9b6af99a6e987d43e3f85028d65073dc864e523e52d19c40",
+      "run_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/spb_run.json",
+      "run_sha256": "0ac968ce6f63198fa1565b98f0ecc642eb4fd614533d8c4cde661701990b602a",
+      "repair_seconds": 5.259715000007418,
+      "code_versions": {
+        "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/repair_building_axis_features_v3.py": {
+          "sha256": "fde047576efaaea9bf4721b3e61629e42f20b6b0643111d7d3ba69239a278cda",
+          "exact_archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/fde047576efaaea9bf4721b3e61629e42f20b6b0643111d7d3ba69239a278cda.py"
+        },
+        "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/geo.py": {
+          "sha256": "e575c51e28cbc3905eadb4e4d628005b9fad99031301a741d0477c80e73473ad",
+          "exact_archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/e575c51e28cbc3905eadb4e4d628005b9fad99031301a741d0477c80e73473ad.py"
+        },
+        "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/common.py": {
+          "sha256": "76696ba92b64aab7ceef9bf255872bbc943311c0cde886098dffe8773d6637eb",
+          "exact_archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/76696ba92b64aab7ceef9bf255872bbc943311c0cde886098dffe8773d6637eb.py"
+        },
+        "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/facades.py": {
+          "sha256": "14b8c3ea8f4791400fa7cf0ebe5788992f2d16b03f2029de4ac85bf80c3108a6",
+          "exact_archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/14b8c3ea8f4791400fa7cf0ebe5788992f2d16b03f2029de4ac85bf80c3108a6.py"
+        }
+      },
+      "unrelated_passport_lines_byte_identical": true,
+      "route_and_other_geo_file_sha_checks": {
+        "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/spb_routes.jsonl": true,
+        "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/spb_marine_targets_with_fallback.jsonl": true,
+        "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/spb_blocked_nodes.jsonl": true,
+        "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/spb_beach_targets.jsonl": true,
+        "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/spb_all_selected_routes.jsonl": true,
+        "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/spb_poi_audit.jsonl": true,
+        "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/spb_beach_classifications.jsonl": true
+      },
+      "checkpoint": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/checkpoints/spb_before_N02N03_join_diff_35a24c54b8ef"
+    },
+    {
+      "city_id": "kazan",
+      "repair_report": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/kazan_N02N03_join_diff_repair_report.json",
+      "repair_report_sha256": "584c59c34f244598c138ecb3758802add813427f38693daaa0cb9e5a27490106",
+      "affected_hotel_ids": [
+        "10000424",
+        "10578721",
+        "10624272",
+        "6525746",
+        "6553077",
+        "6603336",
+        "6629550",
+        "6676686",
+        "6703160",
+        "6783438",
+        "7056833",
+        "7068529",
+        "7785037",
+        "7855394",
+        "8100824",
+        "8476743",
+        "8493229",
+        "8502922",
+        "8601881",
+        "8736968",
+        "8752463",
+        "8754999",
+        "8850847",
+        "8851352",
+        "9287655"
+      ],
+      "building_matches_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/kazan_building_matches.jsonl",
+      "building_matches_sha256": "e8ec72a6766d7a6553d490d75375fcd07ebb6774f59f4906e8114f12ede22a00",
+      "facts_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/kazan_facts.jsonl",
+      "facts_sha256": "6d715394dca595253c1f8b5a7ce64bd7cd80dba32c7f5d0a2bd8b14bded3f2b4",
+      "run_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/kazan_run.json",
+      "run_sha256": "555bcdd99f7da932cf3bba2b940c2876d0fc8ec86d8b1b335f276a535bbcfcf7",
+      "repair_seconds": 1.2301797499967506,
+      "code_versions": {
+        "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/repair_building_axis_features_v3.py": {
+          "sha256": "fde047576efaaea9bf4721b3e61629e42f20b6b0643111d7d3ba69239a278cda",
+          "exact_archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/fde047576efaaea9bf4721b3e61629e42f20b6b0643111d7d3ba69239a278cda.py"
+        },
+        "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/geo.py": {
+          "sha256": "e575c51e28cbc3905eadb4e4d628005b9fad99031301a741d0477c80e73473ad",
+          "exact_archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/e575c51e28cbc3905eadb4e4d628005b9fad99031301a741d0477c80e73473ad.py"
+        },
+        "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/common.py": {
+          "sha256": "76696ba92b64aab7ceef9bf255872bbc943311c0cde886098dffe8773d6637eb",
+          "exact_archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/76696ba92b64aab7ceef9bf255872bbc943311c0cde886098dffe8773d6637eb.py"
+        },
+        "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/facades.py": {
+          "sha256": "14b8c3ea8f4791400fa7cf0ebe5788992f2d16b03f2029de4ac85bf80c3108a6",
+          "exact_archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/14b8c3ea8f4791400fa7cf0ebe5788992f2d16b03f2029de4ac85bf80c3108a6.py"
+        }
+      },
+      "unrelated_passport_lines_byte_identical": true,
+      "route_and_other_geo_file_sha_checks": {
+        "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/kazan_beach_targets.jsonl": true,
+        "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/kazan_poi_audit.jsonl": true,
+        "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/kazan_marine_targets_with_fallback.jsonl": true,
+        "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/kazan_beach_classifications.jsonl": true,
+        "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/kazan_blocked_nodes.jsonl": true,
+        "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/kazan_all_selected_routes.jsonl": true,
+        "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/kazan_routes.jsonl": true
+      },
+      "checkpoint": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/checkpoints/kazan_before_N02N03_join_diff_e8ec72a6766d"
+    },
+    {
+      "city_id": "kaliningrad",
+      "repair_report": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/kaliningrad_N02N03_join_diff_repair_report.json",
+      "repair_report_sha256": "822fa332e0a88878801c18f4c494bcf22895810576f91294cf144e3a3cf18a28",
+      "affected_hotel_ids": [
+        "13647475",
+        "6433023",
+        "6495862",
+        "6584253",
+        "6622308",
+        "6659688",
+        "6815752",
+        "6840526",
+        "7057327",
+        "7719161",
+        "7783969",
+        "7891109",
+        "8746742"
+      ],
+      "building_matches_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/kaliningrad_building_matches.jsonl",
+      "building_matches_sha256": "2dfbe141f26db5ff27e7a86c9faf8465d104d74d8471683305ceb9c974ab568e",
+      "facts_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/kaliningrad_facts.jsonl",
+      "facts_sha256": "ead325af49eb0cd650989d9af50ef41cb6a0a2a5b8c1d9f71c3bc70562178e2d",
+      "run_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/kaliningrad_run.json",
+      "run_sha256": "8f4072fb9b5b3a806d9e65b8afc6381732cba6dc67795896660aa22a93e2acde",
+      "repair_seconds": 1.0173805410013301,
+      "code_versions": {
+        "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/repair_building_axis_features_v2.py": {
+          "sha256": "b4b54df6b58537c800f048ec77779f67f680a4a941feb6611fbfbee4ed9c2908",
+          "exact_archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/b4b54df6b58537c800f048ec77779f67f680a4a941feb6611fbfbee4ed9c2908.py"
+        },
+        "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/geo.py": {
+          "sha256": "e575c51e28cbc3905eadb4e4d628005b9fad99031301a741d0477c80e73473ad",
+          "exact_archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/e575c51e28cbc3905eadb4e4d628005b9fad99031301a741d0477c80e73473ad.py"
+        },
+        "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/common.py": {
+          "sha256": "76696ba92b64aab7ceef9bf255872bbc943311c0cde886098dffe8773d6637eb",
+          "exact_archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/76696ba92b64aab7ceef9bf255872bbc943311c0cde886098dffe8773d6637eb.py"
+        },
+        "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/facades.py": {
+          "sha256": "14b8c3ea8f4791400fa7cf0ebe5788992f2d16b03f2029de4ac85bf80c3108a6",
+          "exact_archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/14b8c3ea8f4791400fa7cf0ebe5788992f2d16b03f2029de4ac85bf80c3108a6.py"
+        }
+      },
+      "unrelated_passport_lines_byte_identical": true,
+      "route_and_other_geo_file_sha_checks": {
+        "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/kaliningrad_routes.jsonl": true,
+        "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/kaliningrad_poi_audit.jsonl": true,
+        "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/kaliningrad_marine_targets_with_fallback.jsonl": true,
+        "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/kaliningrad_all_selected_routes.jsonl": true,
+        "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/kaliningrad_blocked_nodes.jsonl": true,
+        "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/kaliningrad_beach_classifications.jsonl": true,
+        "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/kaliningrad_beach_targets.jsonl": true
+      },
+      "checkpoint": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/checkpoints/kaliningrad_before_N02N03_join_diff_2dfbe141f26d"
+    }
+  ],
+  "full_subject_audit": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/all8_building_axis_join_coverage.json",
+  "full_subject_audit_sha256": "0cdf3bd6bed36d955f6e963759e3806e6507315622839c195d1e68f9279bb1ef",
+  "all_439_hotel_known_N02N03_subject_sets_match_final_buildings": true,
+  "affected_hotels": 43,
+  "final_building_relations": 176,
+  "all_other_feature_lines_and_geo_routes_unchanged": true,
+  "environment_fact_immutability_baseline": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/quality/history/all8_review_before_address_repair.json",
+  "environment_fact_immutability_baseline_sha256": "5f3b3c341fcd2295e2a963f15d7a6ee2db5024bf9bd907da47fcd62cfc0746a0",
+  "environment_facts_checks": [
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/environment/sochi_facts.jsonl",
+      "sha256": "449aad67294cf8a9519a36ca1ee16bafe47a69e74f4b85f1054008a1afe7e750",
+      "bytes": 21206341,
+      "current_sha256": "449aad67294cf8a9519a36ca1ee16bafe47a69e74f4b85f1054008a1afe7e750",
+      "unchanged": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/environment/moscow_facts.jsonl",
+      "sha256": "85d0f7cbc0a523ffcb400023f7dc8d44e96aca80b7c94ecfc2cad4720af46448",
+      "bytes": 11912361,
+      "current_sha256": "85d0f7cbc0a523ffcb400023f7dc8d44e96aca80b7c94ecfc2cad4720af46448",
+      "unchanged": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/environment/spb_facts.jsonl",
+      "sha256": "2fbe4c848a2619672092993bf452930a56520bfcefb831084db9da80e65534fa",
+      "bytes": 11458676,
+      "current_sha256": "2fbe4c848a2619672092993bf452930a56520bfcefb831084db9da80e65534fa",
+      "unchanged": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/environment/kazan_facts.jsonl",
+      "sha256": "ae1ba28bcecfda2ccd0accc8862cd11f02102debebe31670097216fed8048852",
+      "bytes": 10781725,
+      "current_sha256": "ae1ba28bcecfda2ccd0accc8862cd11f02102debebe31670097216fed8048852",
+      "unchanged": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/environment/kaliningrad_facts.jsonl",
+      "sha256": "1bb01169fdf698191ac56598a6533409d79157303816ec42499d1e6873be0025",
+      "bytes": 11337377,
+      "current_sha256": "1bb01169fdf698191ac56598a6533409d79157303816ec42499d1e6873be0025",
+      "unchanged": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/environment/minsk_facts.jsonl",
+      "sha256": "91e09d449fe04faa95eb017a3f2bdfae911706e6424fb6267d8e82a214a9609e",
+      "bytes": 10949703,
+      "current_sha256": "91e09d449fe04faa95eb017a3f2bdfae911706e6424fb6267d8e82a214a9609e",
+      "unchanged": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/environment/istanbul_facts.jsonl",
+      "sha256": "6c27742127d3541c387e0069eb033e70a08b4a8007b12107d10b1801387bfcc9",
+      "bytes": 11507948,
+      "current_sha256": "6c27742127d3541c387e0069eb033e70a08b4a8007b12107d10b1801387bfcc9",
+      "unchanged": true
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/environment/dubai_facts.jsonl",
+      "sha256": "82a18c98d7b0db9457631224dc7c4f9af4af2dc35f0a65bab88c2adc7c45f8c2",
+      "bytes": 11522638,
+      "current_sha256": "82a18c98d7b0db9457631224dc7c4f9af4af2dc35f0a65bab88c2adc7c45f8c2",
+      "unchanged": true
+    }
+  ],
+  "all8_environment_facts_unchanged": true,
+  "accepted_geo_source_sha256": "e575c51e28cbc3905eadb4e4d628005b9fad99031301a741d0477c80e73473ad",
+  "full_graph_or_geo_run_for_join_repairs": false,
+  "network_requests": 0,
+  "new_fact_rows_total": 22415
+}

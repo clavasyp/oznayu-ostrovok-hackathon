@@ -1,0 +1,23 @@
+{
+  "requested_at": "2026-10-24T13:41:33.181301+00:00",
+  "finished_at": "2026-10-24T13:41:35.872114+00:00",
+  "url": "https://marine-api.open-meteo.com/v1/marine?latitude=54.708336&longitude=20.291672&start_date=2023-11-01&end_date=2023-11-30&hourly=sea_surface_temperature&models=meteofrance_currents&cell_selection=sea&timezone=UTC",
+  "http_status": 200,
+  "bytes": 16844,
+  "sha256": "e950df93bf90280f135d665e5900c3081fac53ed0a137bf0320262d4f6715db5",
+  "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/environment/raw/marine_kaliningrad_202311_cells_a8170b5b59421b97f6.json",
+  "params": {
+    "latitude": "54.708336",
+    "longitude": "20.291672",
+    "start_date": "2023-11-01",
+    "end_date": "2023-11-30",
+    "hourly": "sea_surface_temperature",
+    "models": "meteofrance_currents",
+    "cell_selection": "sea",
+    "timezone": "UTC"
+  },
+  "n_locations": 1,
+  "conservative_weight_estimate": 2.142857142857143,
+  "license": "CC BY4.0; D22hackathonfreeAPI; productionpaidplan/selfhost required",
+  "elapsed_s": 2.6910522910038708
+}

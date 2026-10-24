@@ -1,0 +1,12 @@
+{
+  "at": "2026-10-24T13:00:19.060580+00:00",
+  "checks": {
+    "zero_denominator_unknown": true,
+    "zero_diagnostic_retained": true,
+    "route_subject": true,
+    "subject_changes_identity": true,
+    "no_accepted_recipe_on_undefined_fraction": true
+  },
+  "passed": true,
+  "interpretation": "Synthetic contract regression; not physical route validation"
+}

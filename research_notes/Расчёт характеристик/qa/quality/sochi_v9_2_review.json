@@ -1,0 +1,56 @@
+{
+  "at": "2026-10-24T13:40:12.185021+00:00",
+  "scope": "Independent review of explicit v9.2 B02-only superseding delta; separate from the ongoing all-eight-city route trace audit.",
+  "technical_status": "PASSED_FOR_B02_DELTA_WITH_PHYSICAL_ACCURACY_UNMEASURED",
+  "checks": {
+    "only_B02_semantics_changed": true,
+    "172_prior_known_B02_values_unchanged": true,
+    "exactly3_fallback_targets": true,
+    "fallback_no_route_or_entrance_or_access_claim": true,
+    "supplement_hash_matches_mapping": true,
+    "old_walkfile_unchanged": true,
+    "89_B02_estimate_both_months": true,
+    "exactly3_archive_sources_per_B02_estimate": true,
+    "core_facades_and_geo_facts_immutable": true
+  },
+  "report_sha256": "e77df140925d0b8433446f5bc40b443ee9ec0460cfb3a7c8493f33f94ec7978c",
+  "report_sha_matches_root_review": true,
+  "environment_result_sha256": "449aad67294cf8a9519a36ca1ee16bafe47a69e74f4b85f1054008a1afe7e750",
+  "supplemental_target_sha256": "f9398ef2bef548b097631e71314da3e0c6b5afd8affd9df77265d1f86ea6f26d",
+  "fallback_cases": [
+    {
+      "hotel_id": "6530761",
+      "beach_id": "relation/5660908",
+      "selection_distance_m": 871.0256353836589,
+      "meaning": "Marine physical context only; no walking route, public entrance, hotel affiliation or bathing suitability confirmed."
+    },
+    {
+      "hotel_id": "6601758",
+      "beach_id": "way/240616876",
+      "selection_distance_m": 1435.37228576594,
+      "meaning": "Marine physical context only; no walking route, public entrance, hotel affiliation or bathing suitability confirmed."
+    },
+    {
+      "hotel_id": "8406441",
+      "beach_id": "way/704216464",
+      "selection_distance_m": 34348.80495090073,
+      "meaning": "Marine physical context only; no walking route, public entrance, hotel affiliation or bathing suitability confirmed."
+    }
+  ],
+  "immutable_original_checks": {
+    "scripts/geo.py": true,
+    "scripts/facades.py": true,
+    "results/geo/sochi_facts.jsonl": true
+  },
+  "labelled_case_summary": {
+    "audit_rows": 34,
+    "distinct_contexts": 30,
+    "independent_full_feature_gold": 0,
+    "human_verified": 0,
+    "numerical_reproducibility_checks": 44,
+    "numerical_passed": 44,
+    "interpretation": "Audit counts and same-input arithmetic do not measure physical precision, recall or route-distance error."
+  },
+  "remaining_all8_QA_item": "Sochi all-selected route reconstruction including POI routes is pending; current old trace does not cover317published route IDs. This does not change or invalidate the B02-only delta.",
+  "no_calculator_or_output_edits": true
+}

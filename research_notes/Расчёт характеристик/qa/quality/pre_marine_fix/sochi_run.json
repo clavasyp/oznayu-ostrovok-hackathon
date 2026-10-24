@@ -1,0 +1,163 @@
+{
+  "city_id": "sochi",
+  "hotels": 89,
+  "graph_nodes": 395684,
+  "graph_edges": 410902,
+  "load_seconds": 4.721989083001972,
+  "input_manifest": {
+    "built_at": "2026-10-24T02:11:41.889278+00:00",
+    "source_file": "/Users/turgov/Хакатон/research_notes/Аудит данных 8 городов/raw/russia_southern-fed-district.osm.pbf",
+    "source_date": "2026-10-22T20:21:33Z",
+    "bbox": [
+      39.15,
+      43.35,
+      40.5,
+      44.05
+    ],
+    "rows": 258134,
+    "geometry_errors_region": 0,
+    "seconds": 40.32629695899959,
+    "sha256": "096c311507e0233200dbf5b458e53564a44ac7f10a7fb9644581257781b785f7",
+    "bytes": 154187579,
+    "license": "ODbL1.0",
+    "license_url": "https://www.openstreetmap.org/copyright",
+    "new_network_requests": 0,
+    "limitations": "First vertex candidate filter can miss large polygons crossing bbox with starting vertex outside; ordinary local roads/buildings within bbox covered; not complete official municipal inventory."
+  },
+  "no_new_http_requests": true,
+  "gtfs_calendar_checks": [],
+  "center_target": {
+    "osm_node_id": 4758135895,
+    "coordinates": [
+      39.7230602,
+      43.5851489
+    ],
+    "selection_reference_coordinates": [
+      39.7231,
+      43.5855
+    ],
+    "reference_to_node_m": 39.14087564057043,
+    "selection_rule": "nearest node to reference center in largest connected mapped pedestrian network component",
+    "component_nodes": 370920,
+    "meaning": "An explicit chosen point near the center, not an implicit administrative center or hotel entrance."
+  },
+  "total_seconds": 17.785819083001115,
+  "family_seconds": {
+    "N": 0.24594545403670054,
+    "W_A_Q03": 5.643675368031836,
+    "L_F_P_R04": 6.856934499970521,
+    "T_R05_Q_X": 0.008156045048963279
+  },
+  "facts": 4559,
+  "unique_hotel_feature_pairs": 2581,
+  "statuses": {
+    "computed": 747,
+    "unknown": 2328,
+    "estimate": 1484
+  },
+  "result_bytes": 14846994,
+  "feature_counts": {
+    "N01": {
+      "unknown": 89
+    },
+    "N02": {
+      "computed": 68,
+      "unknown": 31
+    },
+    "N03": {
+      "computed": 68,
+      "unknown": 31
+    },
+    "N04": {
+      "computed": 89
+    },
+    "W01": {
+      "estimate": 172,
+      "unknown": 6
+    },
+    "W02": {
+      "estimate": 172,
+      "unknown": 6
+    },
+    "W03": {
+      "estimate": 166,
+      "unknown": 12
+    },
+    "W04": {
+      "estimate": 166,
+      "unknown": 12
+    },
+    "W05": {
+      "computed": 174,
+      "unknown": 4
+    },
+    "W06": {
+      "computed": 174,
+      "unknown": 4
+    },
+    "T01": {
+      "unknown": 178
+    },
+    "T02": {
+      "unknown": 178
+    },
+    "T03": {
+      "unknown": 178
+    },
+    "L01": {
+      "estimate": 166,
+      "unknown": 12
+    },
+    "L02": {
+      "unknown": 178
+    },
+    "L03": {
+      "estimate": 156,
+      "unknown": 22
+    },
+    "F01": {
+      "estimate": 170,
+      "unknown": 8
+    },
+    "F02": {
+      "unknown": 178
+    },
+    "P03": {
+      "estimate": 166,
+      "unknown": 12
+    },
+    "P04": {
+      "estimate": 150,
+      "unknown": 28
+    },
+    "A01": {
+      "unknown": 178
+    },
+    "R04": {
+      "unknown": 178
+    },
+    "R05": {
+      "unknown": 89
+    },
+    "Q01": {
+      "unknown": 89
+    },
+    "Q02": {
+      "unknown": 89
+    },
+    "Q03": {
+      "computed": 174,
+      "unknown": 4
+    },
+    "X01": {
+      "unknown": 178
+    },
+    "X02": {
+      "unknown": 178
+    },
+    "X03": {
+      "unknown": 178
+    }
+  },
+  "graph_license": "ODbL1.0; attribution/share-alike obligations; source ages and extent retained"
+}

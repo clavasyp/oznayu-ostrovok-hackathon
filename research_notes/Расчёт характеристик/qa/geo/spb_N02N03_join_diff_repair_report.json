@@ -1,0 +1,189 @@
+{
+  "version": "V9-N02N03-building-join-diff-repair-3-streamhash",
+  "city_id": "spb",
+  "prepared_at": "2026-10-24T14:07:23.010310+00:00",
+  "published": true,
+  "affected_hotel_ids": [
+    "7059592"
+  ],
+  "previous_building_match_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/facades/archive/address_repair_20261024T135705Z/results/facades/spb_building_matches.jsonl",
+  "previous_building_match_sha256": "8c64ddea52092e80bcff4a63b4ef7d1e63cd461689c8ad1bc808b6faf4dfefca",
+  "affected_selection_rule": "All cohort hotels whose accepted building ID+geometry sets differ between previous and FINAL snapshots; not a hardcoded hotel list.",
+  "final_building_match_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/spb_building_matches.jsonl",
+  "final_building_match_sha256": "35a24c54b8ef5d77aa417ad1a238aaa5380669c595353fda415ed0c5ce0b59af",
+  "new_match_count_by_hotel": {
+    "7059592": 1
+  },
+  "old_facts": 2550,
+  "new_facts": 2550,
+  "changes": [
+    {
+      "hotel_id": "7059592",
+      "feature_id": "N02",
+      "removed_subjects": [
+        {
+          "subject_id": "hotel:7059592",
+          "fact_id": "cc5317d112dfb3bdd4096b8d",
+          "value": null,
+          "status": "unknown"
+        }
+      ],
+      "new_subjects": [
+        {
+          "subject_id": "way/98664685",
+          "fact_id": "4b9694930ddeb7c1fa8c7d8d",
+          "value": {
+            "distance_m": 77.25490809128253,
+            "target_id": "way/266888531",
+            "target_class": "primary",
+            "target_name": "площадь Стачек",
+            "building_id": "way/98664685"
+          },
+          "status": "computed",
+          "unknown_reason": null
+        }
+      ],
+      "retained_subject_ids": []
+    },
+    {
+      "hotel_id": "7059592",
+      "feature_id": "N03",
+      "removed_subjects": [
+        {
+          "subject_id": "hotel:7059592",
+          "fact_id": "02eae46d725a46c3408cb64b",
+          "value": null,
+          "status": "unknown"
+        }
+      ],
+      "new_subjects": [
+        {
+          "subject_id": "way/98664685",
+          "fact_id": "8511ccdf0f44fc17e93079cc",
+          "value": {
+            "distance_m": 85.08880007549213,
+            "target_id": "way/154572565",
+            "target_class": "tram",
+            "target_name": null,
+            "building_id": "way/98664685"
+          },
+          "status": "computed",
+          "unknown_reason": null
+        }
+      ],
+      "retained_subject_ids": []
+    }
+  ],
+  "recomputed_surviving_subjects": [
+    {
+      "hotel_id": "7059592",
+      "feature_id": "N02",
+      "subject_id": "way/98664685",
+      "retained_existing_subject": false,
+      "same_value_as_existing_subject": false,
+      "geometry_changed_in_final_join": true,
+      "old_value": null,
+      "new_value": {
+        "distance_m": 77.25490809128253,
+        "target_id": "way/266888531",
+        "target_class": "primary",
+        "target_name": "площадь Стачек",
+        "building_id": "way/98664685"
+      }
+    },
+    {
+      "hotel_id": "7059592",
+      "feature_id": "N03",
+      "subject_id": "way/98664685",
+      "retained_existing_subject": false,
+      "same_value_as_existing_subject": false,
+      "geometry_changed_in_final_join": true,
+      "old_value": null,
+      "new_value": {
+        "distance_m": 85.08880007549213,
+        "target_id": "way/154572565",
+        "target_class": "tram",
+        "target_name": null,
+        "building_id": "way/98664685"
+      }
+    }
+  ],
+  "input_records_streamed": 1409126,
+  "axis_geometry_counts": {
+    "N02": 15481,
+    "N03": 6931
+  },
+  "axis_load_seconds": 4.781581916991854,
+  "source_hashing_method": "Streaming SHA256 of large cached extracts; same digest, avoids reading an entire city extract into RAM.",
+  "effective_axis_input_manifest": {
+    "city": "saint_petersburg",
+    "region": "russia/northwestern-fed-district",
+    "source_pbf": "russia_northwestern-fed-district.osm.pbf",
+    "source_date": "2026-10-22T20:21:33Z",
+    "finished_utc": "2026-10-23T16:43:56+00:00",
+    "rows": 1405049,
+    "geometry_failures_region": 0,
+    "seconds": 101.87621624999883,
+    "sha256": "97ed37927324b229879579ef4e5173d4d2feee737e0ca49b9eb9b8ec4f6aaedb",
+    "edge_note": "Geometry candidate uses first vertex within 0.015-degree padded bbox; very large polygons crossing with all first vertices outside could be missed. Full bbox hotel filter subsequently uses representative centroid.",
+    "sha256_kind": "composite SHA256 of ordered road/rail input path+SHA manifests, not file hash",
+    "input_files": [
+      {
+        "snapshot_file": "/Users/turgov/Хакатон/research_notes/Аудит данных 8 городов/raw/osm_saint_petersburg.jsonl",
+        "sha256": "8487516e30977ff6b8ec189dcfc630200e7c3f5ca06c0ea5f0a50a07503bc643"
+      },
+      {
+        "snapshot_file": "/Users/turgov/Хакатон/research_notes/Аудит данных 8 городов/raw/osm_saint_petersburg_closed_roads.jsonl",
+        "sha256": "bf0b9f5c2ba6bd1031cd5d43d100f706d0e85fec60cf1272a39e6ee8464f7191"
+      }
+    ],
+    "scope": "N02/N03 axis layers only. No pedestrian graph/node supplement is required for footprint-to-axis distance."
+  },
+  "full_geo_run_or_graph_executed": false,
+  "source_code_versions": {
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/repair_building_axis_features_v3.py": {
+      "sha256": "fde047576efaaea9bf4721b3e61629e42f20b6b0643111d7d3ba69239a278cda",
+      "exact_archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/fde047576efaaea9bf4721b3e61629e42f20b6b0643111d7d3ba69239a278cda.py"
+    },
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/geo.py": {
+      "sha256": "e575c51e28cbc3905eadb4e4d628005b9fad99031301a741d0477c80e73473ad",
+      "exact_archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/e575c51e28cbc3905eadb4e4d628005b9fad99031301a741d0477c80e73473ad.py"
+    },
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/common.py": {
+      "sha256": "76696ba92b64aab7ceef9bf255872bbc943311c0cde886098dffe8773d6637eb",
+      "exact_archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/76696ba92b64aab7ceef9bf255872bbc943311c0cde886098dffe8773d6637eb.py"
+    },
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/facades.py": {
+      "sha256": "14b8c3ea8f4791400fa7cf0ebe5788992f2d16b03f2029de4ac85bf80c3108a6",
+      "exact_archive_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/code_versions/14b8c3ea8f4791400fa7cf0ebe5788992f2d16b03f2029de4ac85bf80c3108a6.py"
+    }
+  },
+  "draft_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/spb_N02N03_join_diff_repair_draft.jsonl",
+  "old_geo_file_sha256": {
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/spb_run.json": "8cdcd053b4acf26b5843242af23d5cb0719ce25063185abe7579d0c213ba6561",
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/spb_routes.jsonl": "251baf29a5c1c564ba733e60424e449997fbf8ad9b0dd29ee94ee80d42a7524e",
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/spb_marine_targets_with_fallback.jsonl": "306721ab21124d8ceab62c0992301cc491e06f9aef69d77e1da952d0ceaa2a87",
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/spb_blocked_nodes.jsonl": "8a0379fce283f0ca485d520f005a2d76e35a94dc7afa1ac3119a8a0c93bbcf38",
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/spb_facts.jsonl": "b3ad3da47d3f5328703d1c047f9cf27b2be53401f04c1d6b55093e2208528762",
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/spb_beach_targets.jsonl": "440a7b9ae6fd5a05c82e5b9f83daa204896bec4c44790990dc8b837eb0a52608",
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/spb_all_selected_routes.jsonl": "6ed730ca6822174e6534c909a7a3baf8c2faa57c581d44051c9f7abf190e0ddb",
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/spb_poi_audit.jsonl": "172647d7e1463bd5b4c50af500904c0a9f5ae2184e6d5c3a16476b634c483d1d",
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/spb_beach_classifications.jsonl": "b818b553b6f4a360a85424b2d28821465c5397eadd33d1d7d1a3395d6694c9c4"
+  },
+  "network_requests": 0,
+  "checkpoint": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/checkpoints/spb_before_N02N03_join_diff_35a24c54b8ef",
+  "unrelated_passport_lines_byte_identical": true,
+  "all_other_geo_files_byte_identical": {
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/spb_routes.jsonl": true,
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/spb_marine_targets_with_fallback.jsonl": true,
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/spb_blocked_nodes.jsonl": true,
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/spb_beach_targets.jsonl": true,
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/spb_all_selected_routes.jsonl": true,
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/spb_poi_audit.jsonl": true,
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/spb_beach_classifications.jsonl": true
+  },
+  "facts_sha256": "d821664ab88ed2cf9b6af99a6e987d43e3f85028d65073dc864e523e52d19c40",
+  "repair_seconds": 5.259715000007418,
+  "run_sha256": "0ac968ce6f63198fa1565b98f0ecc642eb4fd614533d8c4cde661701990b602a",
+  "passed": true
+}

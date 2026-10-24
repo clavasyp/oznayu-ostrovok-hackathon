@@ -1,0 +1,94 @@
+{
+  "method_version": "V9-Sochi-pure-node-POI-delta-1",
+  "canonical_files_unchanged": true,
+  "cases": [
+    {
+      "hotel_id": "10595288",
+      "hotel_name": "Отель 8Авеню 4* by Provence",
+      "feature_id": "F01",
+      "fact_ids": [
+        "4da6781ba6da7b0e5154a0ed",
+        "6a77655b0214e2ab9976efc4"
+      ],
+      "old_route_id": "73af7e2964512f95c601",
+      "old_target_id": "node/4920379521",
+      "old_length_estimate_m": 583.884354181755,
+      "old_graph_length_m": 540.4455418200587,
+      "omitted_blocked_node_ids": [
+        655271566
+      ],
+      "new_route_ok": true,
+      "new_route_id": "e0a0f137473c41e0b9d2",
+      "new_target_id": "node/4920379521",
+      "new_length_estimate_m": 501.7636126196188,
+      "new_graph_length_m": 453.5738279481805,
+      "new_hotel_connector_gap_m": 16.692901773062765,
+      "new_target_connector_gap_m": 31.49688289837552,
+      "distance_delta_m": -82.12074156213623,
+      "new_path_has_any_new_blocked_node": false
+    }
+  ],
+  "effective_input_manifest": {
+    "built_at": "2026-10-24T02:11:41.889278+00:00",
+    "source_file": "/Users/turgov/Хакатон/research_notes/Аудит данных 8 городов/raw/russia_southern-fed-district.osm.pbf",
+    "source_date": "2026-10-22T20:21:33Z",
+    "bbox": [
+      39.15,
+      43.35,
+      40.5,
+      44.05
+    ],
+    "rows": 258134,
+    "geometry_errors_region": 0,
+    "seconds": 40.32629695899959,
+    "sha256": "a7f6613e969c41ecee2e4fa20fef4f9b40758f84b6552d008628f80ee1f18133",
+    "bytes": 154187579,
+    "license": "ODbL1.0",
+    "license_url": "https://www.openstreetmap.org/copyright",
+    "new_network_requests": 0,
+    "limitations": "First vertex candidate filter can miss large polygons crossing bbox with starting vertex outside; ordinary local roads/buildings within bbox covered; not complete official municipal inventory.",
+    "sha256_kind": "composite SHA256 of ordered input path+SHA manifests, not file hash",
+    "input_files": [
+      {
+        "snapshot_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/cohort/osm_sochi_extended.jsonl",
+        "sha256": "096c311507e0233200dbf5b458e53564a44ac7f10a7fb9644581257781b785f7"
+      },
+      {
+        "snapshot_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/cohort/osm_sochi_pure_restriction_nodes.jsonl",
+        "sha256": "bb5b1f32bdb985f9d8b02c77f95f0ebe082a8f6e17c3ceb4d5c2e744065f9030"
+      }
+    ],
+    "pure_node_supplement": {
+      "city_id": "sochi",
+      "source_file": "/Users/turgov/Хакатон/research_notes/Аудит данных 8 городов/raw/russia_southern-fed-district.osm.pbf",
+      "source_date": "2026-10-22T20:21:33Z",
+      "snapshot_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/cohort/osm_sochi_pure_restriction_nodes.jsonl",
+      "bbox": [
+        39.15,
+        43.35,
+        40.5,
+        44.05
+      ],
+      "records": 20,
+      "bytes": 5670,
+      "sha256": "bb5b1f32bdb985f9d8b02c77f95f0ebe082a8f6e17c3ceb4d5c2e744065f9030",
+      "seconds": 1.4807557919993997,
+      "built_at": "2026-10-24T13:16:26.308905+00:00",
+      "license": "ODbL1.0",
+      "license_url": "https://www.openstreetmap.org/copyright",
+      "new_http_requests": 0,
+      "method": "Node-only PBF filter barrier/access/foot/locked; exclude all nodes selected by V4KEYS. No geometry/identity inference."
+    },
+    "source_pbf_sha256": "242254bbd0c250e4fab8c1b70e77d6ff6ccfa6dde9498134e0019698cf6f2ee6"
+  },
+  "routes_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/sochi_restricted_poi_delta_routes.jsonl",
+  "routes_sha256": "6ce5eb263e19815203a8f8b4e7df33c6cfd5c19ae8775ed9e3674bf4849caff3",
+  "source_code_sha256": {
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/audit_sochi_restricted_poi_delta.py": "0f5ff7e144abbc8d3c10c55e8efb28ba951d1869e0b0779cb045effb655aa7f7",
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/geo.py": "e575c51e28cbc3905eadb4e4d628005b9fad99031301a741d0477c80e73473ad",
+    "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/geo_memory_containers.py": "101779dba50738cb3105e33e04282bda672242a5e1829ee492cdd58f50507110"
+  },
+  "total_seconds": 5.523947207999299,
+  "network_requests": 0,
+  "decision": "Root must decide superseding checkpoint; this read-only audit does not update accepted facts."
+}

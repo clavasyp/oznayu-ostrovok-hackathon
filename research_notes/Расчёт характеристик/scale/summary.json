@@ -1,0 +1,379 @@
+{
+  "at": "2026-10-24T14:11:20.850682+00:00",
+  "cities": [
+    {
+      "city_id": "sochi",
+      "hotels": 89,
+      "calculator_process_elapsed_sum_s": 67.75120445797802,
+      "facades_s": 28.144737916998565,
+      "geo_s": 23.669603374990402,
+      "geo_core_s": 23.669603374990402,
+      "restriction_node_prepare_s": null,
+      "geo_correction_compute_s": 5.523947207999299,
+      "geo_correction_publish_s": 0.5547828749986365,
+      "geo_correction_validation_s": 19.460728833000758,
+      "geo_building_join_repair_s": 1.114520499992068,
+      "environment_s": 15.936863165989053,
+      "era5_fetch_s": 93.64649033299793,
+      "marine_fetch_s": 71.04611212397867,
+      "physical_result_bytes": 97656236,
+      "facades_result_bytes": 43568768,
+      "geo_result_bytes": 32879488,
+      "environment_result_bytes": 21207980,
+      "main_fact_rows": 7148,
+      "fan_cells": 4353,
+      "fan_passports": 108825,
+      "fan_gzip_bytes": 5411452,
+      "matched_hotels": 58,
+      "matched_buildings": 66
+    },
+    {
+      "city_id": "moscow",
+      "hotels": 50,
+      "calculator_process_elapsed_sum_s": 200.39570687399828,
+      "facades_s": 49.61501458300336,
+      "geo_s": 142.69010533299297,
+      "geo_core_s": 135.00689020800928,
+      "restriction_node_prepare_s": 5.527337624997017,
+      "geo_correction_compute_s": 0,
+      "geo_correction_publish_s": 0,
+      "geo_correction_validation_s": 0,
+      "geo_building_join_repair_s": 9.502098249999108,
+      "environment_s": 8.09058695800195,
+      "era5_fetch_s": 168.42699933299446,
+      "marine_fetch_s": null,
+      "physical_result_bytes": 66066440,
+      "facades_result_bytes": 21577722,
+      "geo_result_bytes": 32575062,
+      "environment_result_bytes": 11913656,
+      "main_fact_rows": 3950,
+      "fan_cells": 2141,
+      "fan_passports": 53525,
+      "fan_gzip_bytes": 2642836,
+      "matched_hotels": 19,
+      "matched_buildings": 19
+    },
+    {
+      "city_id": "spb",
+      "hotels": 50,
+      "calculator_process_elapsed_sum_s": 134.74108379200334,
+      "facades_s": 55.04835062500206,
+      "geo_s": 70.22746449999977,
+      "geo_core_s": 67.92807274998631,
+      "restriction_node_prepare_s": 4.248331624999992,
+      "geo_correction_compute_s": 0,
+      "geo_correction_publish_s": 0,
+      "geo_correction_validation_s": 0,
+      "geo_building_join_repair_s": 5.259715000007418,
+      "environment_s": 9.46526866700151,
+      "era5_fetch_s": 64.71296658400388,
+      "marine_fetch_s": 22.013052916008746,
+      "physical_result_bytes": 103529771,
+      "facades_result_bytes": 55939577,
+      "geo_result_bytes": 36130250,
+      "environment_result_bytes": 11459944,
+      "main_fact_rows": 4000,
+      "fan_cells": 5791,
+      "fan_passports": 144775,
+      "fan_gzip_bytes": 7186830,
+      "matched_hotels": 25,
+      "matched_buildings": 25
+    },
+    {
+      "city_id": "kazan",
+      "hotels": 50,
+      "calculator_process_elapsed_sum_s": 36.76221399998758,
+      "facades_s": 16.202361082992866,
+      "geo_s": 11.473548249996384,
+      "geo_core_s": 10.962922457998502,
+      "restriction_node_prepare_s": 3.5724553749896586,
+      "geo_correction_compute_s": 0,
+      "geo_correction_publish_s": 0,
+      "geo_correction_validation_s": 0,
+      "geo_building_join_repair_s": 1.2301797499967506,
+      "environment_s": 9.08630466699833,
+      "era5_fetch_s": 60.345544750001864,
+      "marine_fetch_s": null,
+      "physical_result_bytes": 50284750,
+      "facades_result_bytes": 23003307,
+      "geo_result_bytes": 16498425,
+      "environment_result_bytes": 10783018,
+      "main_fact_rows": 3961,
+      "fan_cells": 2298,
+      "fan_passports": 57450,
+      "fan_gzip_bytes": 2838062,
+      "matched_hotels": 37,
+      "matched_buildings": 40
+    },
+    {
+      "city_id": "kaliningrad",
+      "hotels": 50,
+      "calculator_process_elapsed_sum_s": 26.596613458998036,
+      "facades_s": 6.333624124992639,
+      "geo_s": 11.030977792004705,
+      "geo_core_s": 10.810962458999711,
+      "restriction_node_prepare_s": 0.1418660410126904,
+      "geo_correction_compute_s": 0,
+      "geo_correction_publish_s": 0,
+      "geo_correction_validation_s": 0,
+      "geo_building_join_repair_s": 1.0173805410013301,
+      "environment_s": 9.232011542000691,
+      "era5_fetch_s": 61.935660167000606,
+      "marine_fetch_s": 9.424877500001458,
+      "physical_result_bytes": 35887356,
+      "facades_result_bytes": 8161006,
+      "geo_result_bytes": 16387695,
+      "environment_result_bytes": 11338655,
+      "main_fact_rows": 4006,
+      "fan_cells": 702,
+      "fan_passports": 17550,
+      "fan_gzip_bytes": 872116,
+      "matched_hotels": 22,
+      "matched_buildings": 24
+    },
+    {
+      "city_id": "minsk",
+      "hotels": 50,
+      "calculator_process_elapsed_sum_s": 36.97382675099652,
+      "facades_s": 6.365762500005076,
+      "geo_s": 21.49895620899042,
+      "geo_core_s": 20.935285041996394,
+      "restriction_node_prepare_s": 2.307053750002524,
+      "geo_correction_compute_s": 0,
+      "geo_correction_publish_s": 0,
+      "geo_correction_validation_s": 0,
+      "geo_building_join_repair_s": 0,
+      "environment_s": 9.109108042001026,
+      "era5_fetch_s": 75.99502533400664,
+      "marine_fetch_s": null,
+      "physical_result_bytes": 35720156,
+      "facades_result_bytes": 1659184,
+      "geo_result_bytes": 23109978,
+      "environment_result_bytes": 10950994,
+      "main_fact_rows": 3950,
+      "fan_cells": 0,
+      "fan_passports": 0,
+      "fan_gzip_bytes": 47,
+      "matched_hotels": 0,
+      "matched_buildings": 0
+    },
+    {
+      "city_id": "istanbul",
+      "hotels": 50,
+      "calculator_process_elapsed_sum_s": 79.96795766701689,
+      "facades_s": 30.165270708006574,
+      "geo_s": 42.42324487499718,
+      "geo_core_s": 41.41335975000402,
+      "restriction_node_prepare_s": 2.7014832500135526,
+      "geo_correction_compute_s": 0,
+      "geo_correction_publish_s": 0,
+      "geo_correction_validation_s": 0,
+      "geo_building_join_repair_s": 0,
+      "environment_s": 7.379442084013135,
+      "era5_fetch_s": 62.305590333999135,
+      "marine_fetch_s": 59.322551374993054,
+      "physical_result_bytes": 33836351,
+      "facades_result_bytes": 2186246,
+      "geo_result_bytes": 20140881,
+      "environment_result_bytes": 11509224,
+      "main_fact_rows": 4000,
+      "fan_cells": 6,
+      "fan_passports": 150,
+      "fan_gzip_bytes": 8714,
+      "matched_hotels": 1,
+      "matched_buildings": 1
+    },
+    {
+      "city_id": "dubai",
+      "hotels": 50,
+      "calculator_process_elapsed_sum_s": 54.70305320802436,
+      "facades_s": 15.976433458010433,
+      "geo_s": 31.74012025000411,
+      "geo_core_s": 30.907193874998484,
+      "restriction_node_prepare_s": 1.7602980000083335,
+      "geo_correction_compute_s": 0,
+      "geo_correction_publish_s": 0,
+      "geo_correction_validation_s": 0,
+      "geo_building_join_repair_s": 0,
+      "environment_s": 6.986499500009813,
+      "era5_fetch_s": 60.776079333008965,
+      "marine_fetch_s": 34.71844129200326,
+      "physical_result_bytes": 33245905,
+      "facades_result_bytes": 4111722,
+      "geo_result_bytes": 17610277,
+      "environment_result_bytes": 11523906,
+      "main_fact_rows": 4000,
+      "fan_cells": 270,
+      "fan_passports": 6750,
+      "fan_gzip_bytes": 332276,
+      "matched_hotels": 1,
+      "matched_buildings": 1
+    }
+  ],
+  "city_count": 8,
+  "family_rows": 136,
+  "physical_result_bytes": 456226965,
+  "fan_passports": 389025,
+  "process_elapsed_sum_s": 637.891660209003,
+  "input_files": [
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/sochi_summary.json",
+      "sha256": "d39d7a421eae30117671e23ff445fdebc932bcc6a9dcd5a83b5f57ed0dd91e90"
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/sochi_run.json",
+      "sha256": "389505c9de6f37d72932a6bbfd9863789d7ce648839d8eaeb4ab7e289d131075"
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/environment/sochi_summary.json",
+      "sha256": "75fee2a33161895b89688bfb7709aa74016433f784b712f92cfc6a720f7ed180"
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/moscow_summary.json",
+      "sha256": "6bc000b6480fb47d3f13699cb37b7fd3278670b1114990ec685f7eb0e84d0588"
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/moscow_run.json",
+      "sha256": "f4d8a7908fa633116c793ac509315392f24fe12f4b5f40237495d9b15369e103"
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/environment/moscow_summary.json",
+      "sha256": "ef58c596ecfe467c474ecbf992e366c3348b2b38c5f8ad4e89cbff2d9d3f4d68"
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/spb_summary.json",
+      "sha256": "682822730600ce1427a44bea5376cae0775c9cd9e155f04812526a6fadf2d43b"
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/spb_run.json",
+      "sha256": "0ac968ce6f63198fa1565b98f0ecc642eb4fd614533d8c4cde661701990b602a"
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/environment/spb_summary.json",
+      "sha256": "02f375cf102312c11d94c3106425398d03ef8b26ada9f3de055f9044a2df0bd2"
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/kazan_summary.json",
+      "sha256": "b00b355c6f47b4216a9b70dd402ca102f5ada7bf42b3687f118fa9b2932f339b"
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/kazan_run.json",
+      "sha256": "555bcdd99f7da932cf3bba2b940c2876d0fc8ec86d8b1b335f276a535bbcfcf7"
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/environment/kazan_summary.json",
+      "sha256": "8fa67e10224928c4f9489f7e4901689621bd0e3355f9129e304e29b388fbedc8"
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/kaliningrad_summary.json",
+      "sha256": "aec01a69a335f0067762826288b7aa71a9df8787c5c7be9bf6165c911e146255"
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/kaliningrad_run.json",
+      "sha256": "8f4072fb9b5b3a806d9e65b8afc6381732cba6dc67795896660aa22a93e2acde"
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/environment/kaliningrad_summary.json",
+      "sha256": "c39c73e25b65284e2b5f3a949bb574b59ef0172596160e6a839ef457240ff96c"
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/minsk_summary.json",
+      "sha256": "8898f09eb35e337ca9a85de4e811c221e935ac6cb15400690dc1e65701e452a0"
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/minsk_run.json",
+      "sha256": "b3ba8470d3b37f34716d9112f8188c235a2dc311d969875135f33592e360d69f"
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/environment/minsk_summary.json",
+      "sha256": "45e3f540b49c7a807b9131324c89bf78ea5d7616be17cca7ac3f6a08fae11e95"
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/istanbul_summary.json",
+      "sha256": "8d71de7635a336c4d63271afdca7b3e9d149e938ded1c690b548f093014f88c9"
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/istanbul_run.json",
+      "sha256": "719a426b8c9d1c7f4132961e6d6e70d00578c9efccbcc3d643b79a8d05b1d702"
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/environment/istanbul_summary.json",
+      "sha256": "538be671f982a4ff84b4c8939f48009263651146d2c6b828734b2824c0a57c05"
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/dubai_summary.json",
+      "sha256": "7d3e0f951e50bb560af3b42d6a5dd54263a51b0794090e1688d4d876ca347f4e"
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/dubai_run.json",
+      "sha256": "3dfaa69ffea5710ec7d925db4cedb11c1334a0e79ea41bc3a809f43bf9b258f1"
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/environment/dubai_summary.json",
+      "sha256": "7cae811d0826becbad2c06f45a070bf1e6ebd883a1bae2933920e47833f4e34a"
+    }
+  ],
+  "integrated_source_sha256": "980c22194eeea656fcf20923745be70aa3026969967b81a5d270a1b8825f3244",
+  "interrupted_attempt_manifests": [
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/moscow_compact_pre_hours_attempt.json",
+      "sha256": "ca9a5968505bf17e5c8686cbca3269599afea3fb3771e34b94d979a2d6560f43",
+      "record": {
+        "attempt": "Moscowcompactbeforehoursfix",
+        "status": "intentionally terminated to apply established optional-next_change blocker repair before spending another long run",
+        "elapsed_seconds_observed_lower_bound": 57,
+        "process_id": 40553,
+        "exit_code": 143,
+        "note": "Not counted as a successful runtime; no city result files."
+      }
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/moscow_gc_disabled_attempt.json",
+      "sha256": "1cab8901bd203599a89db4cce221e03f046c1e99ad436e0ed0c8e8bf9a625db6",
+      "record": {
+        "attempt": "Moscowgcdisabled",
+        "status": "terminated without outputs; native profile found repeated Rust OpeningHours.next_change after graph construction",
+        "elapsed_seconds_observed_lower_bound": 553,
+        "process_id": 40090,
+        "exit_code": 143,
+        "calculator_sha256": "e575c51e28cbc3905eadb4e4d628005b9fad99031301a741d0477c80e73473ad",
+        "runner_sha256": "6a0e6b9e6cc58e9bc30e3457b9fd792e7a977da3d95667568f306a863eb18be4",
+        "profile_file": "research_notes/Расчёт характеристик/qa/geo/moscow_gc_disabled_profile.txt",
+        "restart_change": "Representation-only source node triples/sharededgeattrs/internedtext, exact fixture 19controls passed",
+        "replacement_runner_sha256": "e71875e0441890ef507542fb42b3f906ac1176a147e35606abf8e6eb888574a2",
+        "backend_sha256": "101779dba50738cb3105e33e04282bda672242a5e1829ee492cdd58f50507110",
+        "initial_hypothesis": "Persistent memory/compression thrash; superseded as primary cause by native call-stack evidence.",
+        "established_profile_blocker": "Rust OpeningHours.next_change TimeDomainIterator future calendar enumeration, unnecessary for requested-instant feature."
+      }
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/moscow_initial_attempt.json",
+      "sha256": "4176ca2eb57dc3d4ea5dd30e25a793b0d97e0b67bf80b4c6940a01239d18f4d4",
+      "record": {
+        "attempt": "Moscowinitial",
+        "status": "terminated before any result files, due full-generation cyclic GC/swap thrash",
+        "elapsed_seconds_at_termination_observed": 286,
+        "process_id": 39552,
+        "exit_code": 143,
+        "physical_footprint_sample_gb": 5.1,
+        "native_memory_gb": 8,
+        "profile_source": "macOSsample1s,Python dict_traverse was dominant",
+        "profile_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/moscow_initial_memory_profile.txt",
+        "restart_change": "gc.disable in own wrapper; CPython reference counting remains active; calculator semantics/SHA unchanged",
+        "initial_executed_runner_snapshot": "qa/geo/runner_source_moscow_v1.py",
+        "initial_executed_runner_sha256": "78c287bb4abd2a4931f5722a2c945de039eef95d99aff271a3760a5bdc1c923a",
+        "restarted_runner_sha256": "6a0e6b9e6cc58e9bc30e3457b9fd792e7a977da3d95667568f306a863eb18be4",
+        "note": "First attempt is not part of final successful city runtime and is disclosed separately."
+      }
+    }
+  ],
+  "limitations": [
+    "Input rasters/PBF/API cache not included in result bytes.",
+    "Integrated views duplicate logical results and are not included in physical result bytes.",
+    "Group timings include multiple families and must not be summed across family rows.",
+    "First source extraction, network fetch, human review and total end-to-end time are separate.",
+    "Historical Sochi core elapsed time is preserved; later correction/publication/reselection phases are separate columns, not hidden inside its original total.",
+    "Targeted N02/N03 building-join repairs have their own geo_building_join_repair_s column; they do not rebuild the graph and are not added to historical geo process totals.",
+    "This is a local-machine measurement; Docker <=10min remains unmeasured."
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "city_id": "kazan",
+  "at": "2026-10-24T13:18:03.546070+00:00",
+  "runtime_s": 60.345544750001864,
+  "hotel_count": 50,
+  "cells": [
+    [
+      55.75,
+      49.0
+    ],
+    [
+      55.75,
+      49.25
+    ],
+    [
+      56.0,
+      49.25
+    ]
+  ],
+  "counts": {
+    "http_200": 60
+  },
+  "new_conservative_weight_estimate": 392.1428571428574,
+  "months": [
+    7,
+    11
+  ],
+  "period": [
+    1991,
+    2020
+  ],
+  "model": "ERA5 0.25 degree",
+  "timezone_policy": "fixed current local standard offset; no historical DST; explicitly retained",
+  "temperature_downscaling": false
+}

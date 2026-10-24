@@ -1,0 +1,242 @@
+{
+  "ERA5": {
+    "primary_HTTP_requests": 480,
+    "primary_HTTP_statuses": {
+      "200": 480
+    },
+    "manual_probe_HTTP_requests": 2,
+    "manual_probe_statuses": {
+      "400": 1,
+      "200": 1
+    },
+    "all_HTTP_requests_including_probes": 482,
+    "all_HTTP_statuses": {
+      "200": 481,
+      "400": 1
+    },
+    "same_URL_repeated_primary_requests": 0,
+    "transport_retry_attempts_observed": 0,
+    "parameter_correction_error_probes": 1,
+    "HTTP200_semantically_empty_probes": 0,
+    "primary_response_decoded_payload_bytes": 2363491,
+    "probe_response_decoded_payload_bytes": 6151,
+    "conservative_weighted_primary_calls_estimate": 4182.857142857143,
+    "first_primary_request_at": "2026-10-24T02:12:05.994828+00:00",
+    "last_primary_response_at": "2026-10-24T13:22:24.620411+00:00",
+    "manual_probe_timestamp_precision": "UTCdate2026-10-24only; exacttimestampsnotretainedforeachprobe",
+    "conservative_weighted_successful_probe_calls_estimate": 10.714285714285714,
+    "conservative_weighted_successful_total_estimate": 4193.571428571428
+  },
+  "Marine": {
+    "primary_HTTP_requests": 51,
+    "primary_HTTP_statuses": {
+      "200": 51
+    },
+    "manual_probe_HTTP_requests": 5,
+    "manual_probe_statuses": {
+      "400": 1,
+      "200": 4
+    },
+    "all_HTTP_requests_including_probes": 56,
+    "all_HTTP_statuses": {
+      "200": 55,
+      "400": 1
+    },
+    "same_URL_repeated_primary_requests": 0,
+    "transport_retry_attempts_observed": 0,
+    "parameter_correction_error_probes": 1,
+    "HTTP200_semantically_empty_probes": 1,
+    "primary_response_decoded_payload_bytes": 6085008,
+    "probe_response_decoded_payload_bytes": 72691,
+    "conservative_weighted_primary_calls_estimate": 742.8571428571429,
+    "first_primary_request_at": "2026-10-24T02:16:27.536533+00:00",
+    "last_primary_response_at": "2026-10-24T13:46:30.879654+00:00",
+    "manual_probe_timestamp_precision": "UTCdate2026-10-24only; exacttimestampsnotretainedforeachprobe",
+    "conservative_weighted_successful_probe_calls_estimate": 8.857142857142858,
+    "conservative_weighted_successful_total_estimate": 751.7142857142858
+  },
+  "cache": {
+    "retained_primary_response_payload_files": 531,
+    "retained_primary_response_payload_bytes": 8448499,
+    "retained_primary_response_meta_bytes": 715937,
+    "all_environment_raw_files_bytes": 11200028,
+    "unique_reused_referenced_WorldCover_tiles": 9,
+    "reused_WorldCover_input_bytes": 463585656,
+    "reused_WorldCover_input_files": [
+      {
+        "path": "/Users/turgov/Хакатон/research_notes/Аудит данных 8 городов/raw/raster_tiles/ESA_WorldCover_10m_2021_v200_N24E054_Map.tif",
+        "bytes": 22587750,
+        "sha256": "0bf16fdd0eeb8edbe93bd0baf59986e81e15cde8d5448e1f969405aa6ea513f3"
+      },
+      {
+        "path": "/Users/turgov/Хакатон/research_notes/Аудит данных 8 городов/raw/raster_tiles/ESA_WorldCover_10m_2021_v200_N39E027_Map.tif",
+        "bytes": 75565146,
+        "sha256": "6a27dcbc962e87a39fff839594b1a70c2e7ac1e8b5228c6031a32b1334f49831"
+      },
+      {
+        "path": "/Users/turgov/Хакатон/research_notes/Аудит данных 8 городов/raw/raster_tiles/ESA_WorldCover_10m_2021_v200_N42E039_Map.tif",
+        "bytes": 40890688,
+        "sha256": "bd44df9c68cb1b7777618b4636d73004bfbdba37266f3cb62f93e27c36143a3e"
+      },
+      {
+        "path": "/Users/turgov/Хакатон/research_notes/Аудит данных 8 городов/raw/raster_tiles/ESA_WorldCover_10m_2021_v200_N51E027_Map.tif",
+        "bytes": 73065461,
+        "sha256": "5a2c1aa75d65de69ec1face191cc86f451e83863ddfcc36fded9f434a5c5a04c"
+      },
+      {
+        "path": "/Users/turgov/Хакатон/research_notes/Аудит данных 8 городов/raw/raster_tiles/ESA_WorldCover_10m_2021_v200_N54E018_Map.tif",
+        "bytes": 21472387,
+        "sha256": "559dffa0b8ad326e0d621dba6246144e7edf8c285b1a9c7561bcdf9dac887b51"
+      },
+      {
+        "path": "/Users/turgov/Хакатон/research_notes/Аудит данных 8 городов/raw/raster_tiles/ESA_WorldCover_10m_2021_v200_N54E036_Map.tif",
+        "bytes": 85551822,
+        "sha256": "699724bdd4650a17adcea20df35459b217937f9263a2a1ad554fc5506c280bd2"
+      },
+      {
+        "path": "/Users/turgov/Хакатон/research_notes/Аудит данных 8 городов/raw/raster_tiles/ESA_WorldCover_10m_2021_v200_N54E048_Map.tif",
+        "bytes": 62741713,
+        "sha256": "a0b002aff9df48879180c44563447debaa9a80db35818430bd0827fcc8cdffca"
+      },
+      {
+        "path": "/Users/turgov/Хакатон/research_notes/Аудит данных 8 городов/raw/raster_tiles/ESA_WorldCover_10m_2021_v200_N57E030_Map.tif",
+        "bytes": 48275095,
+        "sha256": "631812c6f26d2eb82dadb810093ecc7b56dfc90fd1c801b3cb75f6dcfc732f1b"
+      },
+      {
+        "path": "/Users/turgov/Хакатон/research_notes/Аудит данных 8 городов/raw/raster_tiles/ESA_WorldCover_10m_2021_v200_N60E030_Map.tif",
+        "bytes": 33435594,
+        "sha256": "d87e4624609e66473230d6f5c06c459cc5e4355bb044881f4f891a470bd4cd53"
+      }
+    ],
+    "all8_final_fact_bytes": 100676769,
+    "wire_transfer_bytes": null,
+    "byte_definition": "requests.content decodedbody/cachebytes, not compressedwiretraffic. Reusedrastersnotnewnetwork.",
+    "environment_source_dir_bytes_excluding_runtime": 12274282,
+    "total_environment_source_and_referenced_raster_bytes": 475859938,
+    "total_definition": "Whole environment/ directory including source snapshots, source/provenance/README/ledger/mapping metadata, excluding installed runtime; plus unique referenced cached WorldCover inputs. No double counting raw primary files."
+  },
+  "stages": {
+    "sochi": {
+      "climate_fetch_s": 93.64649033299793,
+      "marine_fetch_measured_cumulative_s": 71.04611212397867,
+      "calculator_s": 15.936863165989053,
+      "family_calc_s": {
+        "E": 7.552779207995627,
+        "C": 5.91290054100682,
+        "B_and_other_gates": 2.386725624994142
+      },
+      "result_bytes": 21206341
+    },
+    "moscow": {
+      "climate_fetch_s": 168.42699933299446,
+      "marine_fetch_measured_cumulative_s": null,
+      "calculator_s": 8.09058695800195,
+      "family_calc_s": {
+        "E": 5.179395541999838,
+        "C": 2.8668591669993475,
+        "B_and_other_gates": 0.0022359589929692447
+      },
+      "result_bytes": 11912361
+    },
+    "spb": {
+      "climate_fetch_s": 64.71296658400388,
+      "marine_fetch_measured_cumulative_s": 22.013052916008746,
+      "calculator_s": 9.46526866700151,
+      "family_calc_s": {
+        "E": 5.916500249993987,
+        "C": 2.835161708004307,
+        "B_and_other_gates": 0.6654647079994902
+      },
+      "result_bytes": 11458676
+    },
+    "kazan": {
+      "climate_fetch_s": 60.345544750001864,
+      "marine_fetch_measured_cumulative_s": null,
+      "calculator_s": 9.08630466699833,
+      "family_calc_s": {
+        "E": 5.930942249993677,
+        "C": 3.1035315000044648,
+        "B_and_other_gates": 0.008543250005459413
+      },
+      "result_bytes": 10781725
+    },
+    "kaliningrad": {
+      "climate_fetch_s": 61.935660167000606,
+      "marine_fetch_measured_cumulative_s": 9.424877500001458,
+      "calculator_s": 9.232011542000691,
+      "family_calc_s": {
+        "E": 5.260289040990756,
+        "C": 3.3651816670026165,
+        "B_and_other_gates": 0.5601470830006292
+      },
+      "result_bytes": 11337377
+    },
+    "minsk": {
+      "climate_fetch_s": 75.99502533400664,
+      "marine_fetch_measured_cumulative_s": null,
+      "calculator_s": 9.109108042001026,
+      "family_calc_s": {
+        "E": 5.959483583006659,
+        "C": 3.078500208997866,
+        "B_and_other_gates": 0.02635454200208187
+      },
+      "result_bytes": 10949703
+    },
+    "istanbul": {
+      "climate_fetch_s": 62.305590333999135,
+      "marine_fetch_measured_cumulative_s": 59.322551374993054,
+      "calculator_s": 7.379442084013135,
+      "family_calc_s": {
+        "E": 3.966754666995257,
+        "C": 2.6928750419901917,
+        "B_and_other_gates": 0.6743846659956034
+      },
+      "result_bytes": 11507948
+    },
+    "dubai": {
+      "climate_fetch_s": 60.776079333008965,
+      "marine_fetch_measured_cumulative_s": 34.71844129200326,
+      "calculator_s": 6.986499500009813,
+      "family_calc_s": {
+        "E": 3.362937375000911,
+        "C": 2.769559833002859,
+        "B_and_other_gates": 0.8093979999976
+      },
+      "result_bytes": 11522638
+    }
+  },
+  "quota_note": "Weightedvalues are conservativeestimates, notobservedbilledquota. Manual400maynotconsumequota; errorcorrectionprobesreportedseparately. NoHTTP429ortransportretryobservedinrecordedrun.",
+  "HTTP_count_scope": "Actual ERA5/Marine APIrequests only, including7recordedmanualprobes. Exploratorywebsearch/docs/sourcecode/CFmetadataHTTP anddependencyresolvertrafficnotclaimedascompletelyinstrumentedtotal.",
+  "native_CF_control_response_payload_bytes": 213245,
+  "new_ostrovok_HTTP_requests": 0,
+  "known_superseded_calculator_runs": {
+    "scope": "Known superseded accepted/interim calculator runs with retained runtime evidence; earlier development runs are not exhaustively instrumented.",
+    "runs": [
+      {
+        "city_id": "sochi",
+        "version": "v9.1 accepted intermediate",
+        "runtime_s": 13.808481832995312,
+        "family_runtime_s": {
+          "E": 7.1261276669974905,
+          "C": 4.936794708002708,
+          "B_and_other_gates": 1.6661282919958467
+        },
+        "source_summary": "checkpoints/sochi_v9_1_environment/results/environment/sochi_summary.json",
+        "result_sha256": "d711dd7e54be80be7c3168be8e49bcaaaef995dc809eac32e80ae1454371b262"
+      },
+      {
+        "city_id": "istanbul",
+        "version": "initial compute before native landpoint QA fix",
+        "runtime_s": 7.40769929200178,
+        "family_runtime_s": {
+          "E": 3.9348552500014193,
+          "C": 2.7275113340001553,
+          "B_and_other_gates": 0.7014624170114985
+        },
+        "result_sha256": "e93ec40c93aa5d420d4d570a07151c932ecd79f049dac28d0cbc158a6d48e0c0",
+        "evidence": "Observed exec session26168 final JSON; superseded by6c277421…"
+      }
+    ]
+  }
+}

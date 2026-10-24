@@ -1,0 +1,243 @@
+{
+  "old_result_sha256": "d711dd7e54be80be7c3168be8e49bcaaaef995dc809eac32e80ae1454371b262",
+  "new_result_sha256": "449aad67294cf8a9519a36ca1ee16bafe47a69e74f4b85f1054008a1afe7e750",
+  "changes": [
+    {
+      "hotel_id": "6530761",
+      "feature_id": "B02",
+      "month": 7,
+      "old_status": "unknown",
+      "new_status": "estimate",
+      "old_value": null,
+      "new_value": {
+        "mean_C": 26.25483870967742,
+        "stddev_across_years_C": 1.2355672155273556,
+        "annual_monthly_means_C": {
+          "2023": 25.118548387096773,
+          "2024": 27.97258064516129,
+          "2025": 25.673387096774192
+        },
+        "n_years": 3,
+        "native_6hour_completeness": {
+          "2023": {
+            "valid_native_steps": 124,
+            "expected_native_steps": 124
+          },
+          "2024": {
+            "valid_native_steps": 124,
+            "expected_native_steps": 124
+          },
+          "2025": {
+            "valid_native_steps": 124,
+            "expected_native_steps": 124
+          }
+        }
+      },
+      "selection": {
+        "beach_id": "relation/5660908",
+        "selection_method": "nearest_marine_polygon_fallback",
+        "selection_distance_m": 871.0256353836589,
+        "grid_latitude": 43.75,
+        "grid_longitude": 39.41666793823242
+      }
+    },
+    {
+      "hotel_id": "6530761",
+      "feature_id": "B02",
+      "month": 11,
+      "old_status": "unknown",
+      "new_status": "estimate",
+      "old_value": null,
+      "new_value": {
+        "mean_C": 17.022222222222222,
+        "stddev_across_years_C": 0.6856266845866505,
+        "annual_monthly_means_C": {
+          "2023": 16.813333333333333,
+          "2024": 17.946666666666665,
+          "2025": 16.30666666666667
+        },
+        "n_years": 3,
+        "native_6hour_completeness": {
+          "2023": {
+            "valid_native_steps": 120,
+            "expected_native_steps": 120
+          },
+          "2024": {
+            "valid_native_steps": 120,
+            "expected_native_steps": 120
+          },
+          "2025": {
+            "valid_native_steps": 120,
+            "expected_native_steps": 120
+          }
+        }
+      },
+      "selection": {
+        "beach_id": "relation/5660908",
+        "selection_method": "nearest_marine_polygon_fallback",
+        "selection_distance_m": 871.0256353836589,
+        "grid_latitude": 43.75,
+        "grid_longitude": 39.41666793823242
+      }
+    },
+    {
+      "hotel_id": "6601758",
+      "feature_id": "B02",
+      "month": 7,
+      "old_status": "unknown",
+      "new_status": "estimate",
+      "old_value": null,
+      "new_value": {
+        "mean_C": 26.276612903225807,
+        "stddev_across_years_C": 1.0643034978256296,
+        "annual_monthly_means_C": {
+          "2023": 25.13951612903226,
+          "2024": 27.699193548387097,
+          "2025": 25.991129032258065
+        },
+        "n_years": 3,
+        "native_6hour_completeness": {
+          "2023": {
+            "valid_native_steps": 124,
+            "expected_native_steps": 124
+          },
+          "2024": {
+            "valid_native_steps": 124,
+            "expected_native_steps": 124
+          },
+          "2025": {
+            "valid_native_steps": 124,
+            "expected_native_steps": 124
+          }
+        }
+      },
+      "selection": {
+        "beach_id": "way/240616876",
+        "selection_method": "nearest_marine_polygon_fallback",
+        "selection_distance_m": 1435.37228576594,
+        "grid_latitude": 43.33333206176758,
+        "grid_longitude": 39.91666793823242
+      }
+    },
+    {
+      "hotel_id": "6601758",
+      "feature_id": "B02",
+      "month": 11,
+      "old_status": "unknown",
+      "new_status": "estimate",
+      "old_value": null,
+      "new_value": {
+        "mean_C": 16.961111111111112,
+        "stddev_across_years_C": 0.42547486180113053,
+        "annual_monthly_means_C": {
+          "2023": 17.0275,
+          "2024": 17.445833333333333,
+          "2025": 16.41
+        },
+        "n_years": 3,
+        "native_6hour_completeness": {
+          "2023": {
+            "valid_native_steps": 120,
+            "expected_native_steps": 120
+          },
+          "2024": {
+            "valid_native_steps": 120,
+            "expected_native_steps": 120
+          },
+          "2025": {
+            "valid_native_steps": 120,
+            "expected_native_steps": 120
+          }
+        }
+      },
+      "selection": {
+        "beach_id": "way/240616876",
+        "selection_method": "nearest_marine_polygon_fallback",
+        "selection_distance_m": 1435.37228576594,
+        "grid_latitude": 43.33333206176758,
+        "grid_longitude": 39.91666793823242
+      }
+    },
+    {
+      "hotel_id": "8406441",
+      "feature_id": "B02",
+      "month": 7,
+      "old_status": "unknown",
+      "new_status": "estimate",
+      "old_value": null,
+      "new_value": {
+        "mean_C": 26.32768817204301,
+        "stddev_across_years_C": 1.1265818903631897,
+        "annual_monthly_means_C": {
+          "2023": 25.240322580645163,
+          "2024": 27.87983870967742,
+          "2025": 25.862903225806452
+        },
+        "n_years": 3,
+        "native_6hour_completeness": {
+          "2023": {
+            "valid_native_steps": 124,
+            "expected_native_steps": 124
+          },
+          "2024": {
+            "valid_native_steps": 124,
+            "expected_native_steps": 124
+          },
+          "2025": {
+            "valid_native_steps": 124,
+            "expected_native_steps": 124
+          }
+        }
+      },
+      "selection": {
+        "beach_id": "way/704216464",
+        "selection_method": "nearest_marine_polygon_fallback",
+        "selection_distance_m": 34348.80495090073,
+        "grid_latitude": 43.41666793823242,
+        "grid_longitude": 39.83333206176758
+      }
+    },
+    {
+      "hotel_id": "8406441",
+      "feature_id": "B02",
+      "month": 11,
+      "old_status": "unknown",
+      "new_status": "estimate",
+      "old_value": null,
+      "new_value": {
+        "mean_C": 17.0125,
+        "stddev_across_years_C": 0.5817745044895595,
+        "annual_monthly_means_C": {
+          "2023": 16.955833333333334,
+          "2024": 17.751666666666665,
+          "2025": 16.330000000000002
+        },
+        "n_years": 3,
+        "native_6hour_completeness": {
+          "2023": {
+            "valid_native_steps": 120,
+            "expected_native_steps": 120
+          },
+          "2024": {
+            "valid_native_steps": 120,
+            "expected_native_steps": 120
+          },
+          "2025": {
+            "valid_native_steps": 120,
+            "expected_native_steps": 120
+          }
+        }
+      },
+      "selection": {
+        "beach_id": "way/704216464",
+        "selection_method": "nearest_marine_polygon_fallback",
+        "selection_distance_m": 34348.80495090073,
+        "grid_latitude": 43.41666793823242,
+        "grid_longitude": 39.83333206176758
+      }
+    }
+  ],
+  "previously_known_numeric_values_changed": [],
+  "new_B02_known_hotels": 89,
+  "source_target_sha256": "f9398ef2bef548b097631e71314da3e0c6b5afd8affd9df77265d1f86ea6f26d"
+}

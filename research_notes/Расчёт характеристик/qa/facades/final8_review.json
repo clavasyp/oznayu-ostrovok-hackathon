@@ -1,0 +1,5386 @@
+{
+  "reviewed_at": "2026-10-24T13:57:05.620533+00:00",
+  "phase": "FINAL corrected five city outputs passed; remaining three unchanged",
+  "all_accepted_relations": 176,
+  "archive": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/facades/archive/address_repair_20261024T135705Z",
+  "passed": true,
+  "new_http_requests": 0,
+  "new_core_sha256": "14b8c3ea8f4791400fa7cf0ebe5788992f2d16b03f2029de4ac85bf80c3108a6",
+  "additional_candidate_gate_audit": [
+    {
+      "city_id": "moscow",
+      "hotel_id": "6878127",
+      "building_id": "way/42423204",
+      "distance_m": 0.0,
+      "address": "Волгоградский проспект, д. 113к5, Москва",
+      "source_house": "113 к5",
+      "source_street": "Волгоградский проспект"
+    },
+    {
+      "city_id": "moscow",
+      "hotel_id": "9771294",
+      "building_id": "way/49205871",
+      "distance_m": 0.0,
+      "address": "Россия, г. Москва, ул. 800-летия Москвы, д.11, к.4, Москва",
+      "source_house": "11 к4",
+      "source_street": "улица 800-летия Москвы"
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "7059592",
+      "building_id": "way/98664685",
+      "distance_m": 0.0,
+      "address": "Perekopskaya 5 Kv 12,Perekopskaya, Saint Petersburg, 190020, Санкт-Петербург",
+      "source_house": "5",
+      "source_street": "Перекопская улица"
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "10000424",
+      "building_id": "way/367846128",
+      "distance_m": 0.0,
+      "address": "420012, Kazan, st. Butlerova, 29, Казань",
+      "source_house": "29",
+      "source_street": "улица Бутлерова"
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "10000424",
+      "building_id": "way/104277474",
+      "distance_m": 7.703424659567414,
+      "address": "420012, Kazan, st. Butlerova, 29, Казань",
+      "source_house": "29",
+      "source_street": "улица Бутлерова"
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "10578721",
+      "building_id": "way/197053416",
+      "distance_m": 0.0,
+      "address": "улица Медиков, д.11, Казань",
+      "source_house": "11",
+      "source_street": "улица Медиков"
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "10624272",
+      "building_id": "way/374576035",
+      "distance_m": 0.0,
+      "address": "улица Мазита Гафури, 7Б, Казань",
+      "source_house": "7Б",
+      "source_street": "улица Мазита Гафури"
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "6525746",
+      "building_id": "way/103455140",
+      "distance_m": 0.0,
+      "address": "ul. Pushkina, 52, Kazan, Respublika Tatarstan, Russia, 420000, Казань",
+      "source_house": "52",
+      "source_street": "улица Пушкина"
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "6553077",
+      "building_id": "relation/14716917",
+      "distance_m": 6.490605593008256,
+      "address": "420043, Kazan, st. Kalinina, 60, Казань",
+      "source_house": "60",
+      "source_street": "улица Калинина"
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "6603336",
+      "building_id": "way/105336442",
+      "distance_m": 0.0,
+      "address": "Russia, Kazan, st. Pushkina, 25, Казань",
+      "source_house": "25",
+      "source_street": "улица Пушкина"
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "6629550",
+      "building_id": "way/194689308",
+      "distance_m": 0.0,
+      "address": "улица Кул Гали, д. 38, Казань",
+      "source_house": "38",
+      "source_street": "улица Кул Гали"
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "6676686",
+      "building_id": "way/91641068",
+      "distance_m": 0.0,
+      "address": "ул. Саид-Галеева ,д.3, Казань",
+      "source_house": "3",
+      "source_street": "улица Саид-Галеева"
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "6703160",
+      "building_id": "way/111260731",
+      "distance_m": 3.4173927227677714,
+      "address": "ул. Патриса Лумумбы, д.57, Казань",
+      "source_house": "57",
+      "source_street": "улица Патриса Лумумбы"
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "6783438",
+      "building_id": "way/173009387",
+      "distance_m": 8.016040667896236,
+      "address": "Ulitsa Obnovleniya 15, Kazan, 420140, Казань",
+      "source_house": "15",
+      "source_street": "улица Обновления"
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "7056833",
+      "building_id": "way/191522627",
+      "distance_m": 0.5392910289639221,
+      "address": "420000, Kazan, Khadi Taktasha street, 119, Казань",
+      "source_house": "119",
+      "source_street": "улица Хади Такташа"
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "7068529",
+      "building_id": "way/314367843",
+      "distance_m": 0.27288234333467354,
+      "address": "Ulitsa Mazita Gafuri 2A, Kazan, Russia, Kazan, 420108, Казань",
+      "source_house": "2А",
+      "source_street": "улица Мазита Гафури"
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "7785037",
+      "building_id": "way/158241686",
+      "distance_m": 0.0,
+      "address": "ул. Волкова, д. 52, Казань",
+      "source_house": "52",
+      "source_street": "улица Волкова"
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "7855394",
+      "building_id": "way/103965768",
+      "distance_m": 0.0,
+      "address": "Казань, ул. Академика Кирпичникова, д.11, Казань",
+      "source_house": "11",
+      "source_street": "улица Академика Кирпичникова"
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "8100824",
+      "building_id": "way/247787105",
+      "distance_m": 0.0,
+      "address": "Улица Большая Красная 8, Казань",
+      "source_house": "8",
+      "source_street": "Большая Красная улица"
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "8476743",
+      "building_id": "way/230438765",
+      "distance_m": 16.49983161315227,
+      "address": "Залесная 110, Казань",
+      "source_house": "110",
+      "source_street": "Залесная улица"
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "8493229",
+      "building_id": "way/717956893",
+      "distance_m": 6.833843829942486,
+      "address": "Ulitsa Novo-davlikeevskaya 19, Kazan, Russia, 420055, Казань",
+      "source_house": "19",
+      "source_street": "Ново-Давликеевская улица"
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "8502922",
+      "building_id": "way/71169711",
+      "distance_m": 0.0,
+      "address": "ул. Поселок Воровского 3, Казань",
+      "source_house": "3",
+      "source_street": "улица Воровского"
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "8601881",
+      "building_id": "way/96614820",
+      "distance_m": 0.0,
+      "address": "улица Роторная, 11, Казань",
+      "source_house": "11",
+      "source_street": "Роторная улица"
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "8736968",
+      "building_id": "relation/16241091",
+      "distance_m": 0.0,
+      "address": "ulitsa Pravo-Bulachnaya, 47, Kazan, Russia, Казань",
+      "source_house": "47",
+      "source_street": "Право-Булачная улица"
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "8752463",
+      "building_id": "way/685941192",
+      "distance_m": 0.0,
+      "address": "улица Пушкина, д.26, Казань",
+      "source_house": "26",
+      "source_street": "улица Пушкина"
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "8752463",
+      "building_id": "way/182148885",
+      "distance_m": 23.80381987471258,
+      "address": "улица Пушкина, д.26, Казань",
+      "source_house": "26",
+      "source_street": "улица Пушкина"
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "8754999",
+      "building_id": "way/83289901",
+      "distance_m": 0.0,
+      "address": "Prospekt Husaina Yamasheva 67, Kazan, Russia, Казань",
+      "source_house": "67",
+      "source_street": "проспект Ямашева"
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "8850847",
+      "building_id": "way/1377310402",
+      "distance_m": 0.0,
+      "address": "улица Каспийская, д.91А, Казань",
+      "source_house": "91А",
+      "source_street": "Каспийская улица"
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "8851352",
+      "building_id": "way/83053439",
+      "distance_m": 0.0,
+      "address": "ulitsa Absalyamova, 39, Kazan, Russia, Казань",
+      "source_house": "39",
+      "source_street": "улица Абсалямова"
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "9287655",
+      "building_id": "way/273244398",
+      "distance_m": 0.0,
+      "address": "Россия, Республика Татарстан, г. Казань, улица Баумана, д. 15, Казань",
+      "source_house": "15",
+      "source_street": "улица Баумана"
+    }
+  ],
+  "candidate_audit_scope": "Old cached candidate footprints within40m in other6 cities; no scene rerun or new network.",
+  "repair_deltas": {
+    "sochi": {
+      "old_matches_path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/facades/archive/address_repair_20261024T135705Z/results/facades/sochi_building_matches.jsonl",
+      "new_matches_path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/sochi_building_matches.jsonl",
+      "new_matches_sha256": "a991d1e23149f2d6a1614f478d512e09951b87be21d83d880c5b866f1c45174e",
+      "removed": [
+        [
+          "7725078",
+          "way/808856239"
+        ],
+        [
+          "8085655",
+          "way/80180198"
+        ]
+      ],
+      "added": [],
+      "affected_hotel_ids": [
+        "7725078",
+        "8085655"
+      ],
+      "old_summary": {
+        "city_id": "sochi",
+        "hotel_count": 89,
+        "matched_hotels": 58,
+        "matched_buildings": 68,
+        "fan_cells": 4363,
+        "full_passport_fan_facts": 109075,
+        "fan_facts_gzip_bytes": 5403653,
+        "dates": [
+          "2026-11-14",
+          "2026-11-15",
+          "2026-11-16",
+          "2027-07-15",
+          "2027-07-16",
+          "2027-07-17"
+        ],
+        "scene_source": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/cohort/osm_sochi_extended.jsonl",
+        "scene_source_sha256": "096c311507e0233200dbf5b458e53564a44ac7f10a7fb9644581257781b785f7",
+        "scene_inventory": {
+          "buildings": 140845,
+          "levels": 46992,
+          "metric_height": 668
+        },
+        "canonical_feature_coverage": {
+          "V01": {
+            "unknown": 89
+          },
+          "V02": {
+            "unknown": 89
+          },
+          "V03": {
+            "unknown": 89
+          },
+          "V04": {
+            "unknown": 89
+          },
+          "V05": {
+            "unknown": 89
+          },
+          "V06": {
+            "unknown": 89
+          },
+          "S01": {
+            "unknown": 89
+          },
+          "S02": {
+            "unknown": 89
+          },
+          "S03": {
+            "unknown": 89
+          },
+          "H01": {
+            "unknown": 89
+          },
+          "H02": {
+            "unknown": 89
+          },
+          "H03": {
+            "observed": 44,
+            "unknown": 45
+          }
+        },
+        "standalone_building_fact_counts": {
+          "H03:observed": 58
+        },
+        "runtime_seconds": {
+          "load": 5.861363292002352,
+          "matching": 1.4724290410085814,
+          "facades_history_solar": 22.04488970899547,
+          "total": 29.378682167007355
+        },
+        "output_bytes": {
+          "sochi_target_components.jsonl": 275572,
+          "sochi_fan.jsonl": 34723139,
+          "sochi_building_facts.jsonl": 132177,
+          "sochi_building_matches.jsonl": 184889,
+          "sochi_ota_comparisons.jsonl": 15050,
+          "sochi_diagnostics.jsonl": 519866,
+          "sochi_facts.jsonl": 2292433,
+          "sochi_geometry_quality.jsonl": 77387
+        },
+        "software": {
+          "pvlib": "0.16.1",
+          "algorithm": "NREL SPA pvlib.solarposition.spa_python",
+          "solar_time_step_minutes": 5
+        },
+        "rights": {
+          "OSM": "ODbL1.0 accepted with attribution",
+          "GloBFP": "not used: conditional upstream commercial rights",
+          "GLO30": "not used as ground DTM; DSM semantic veto",
+          "OTA": "cached only no new requests"
+        },
+        "actual_existing_windows_verified": 0,
+        "no_network_requests": true,
+        "limitations": [
+          "No existing physical windows verified; all V/S canonical facts unknown, geometric bounds are distinct components",
+          "No current legal heritage registry join",
+          "Construction-completion event not proven by raw start_date",
+          "Fan does not map categories to sides/floors; ask hotelier",
+          "Building match research quality; all-building census absent; exact address may identify a residential building rather than every hotel unit"
+        ]
+      },
+      "new_summary": {
+        "city_id": "sochi",
+        "hotel_count": 89,
+        "matched_hotels": 58,
+        "matched_buildings": 66,
+        "fan_cells": 4353,
+        "full_passport_fan_facts": 108825,
+        "fan_facts_gzip_bytes": 5411452,
+        "dates": [
+          "2026-11-14",
+          "2026-11-15",
+          "2026-11-16",
+          "2027-07-15",
+          "2027-07-16",
+          "2027-07-17"
+        ],
+        "scene_source": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/cohort/osm_sochi_extended.jsonl",
+        "scene_source_sha256": "096c311507e0233200dbf5b458e53564a44ac7f10a7fb9644581257781b785f7",
+        "scene_inventory": {
+          "buildings": 140845,
+          "levels": 46992,
+          "metric_height": 668
+        },
+        "canonical_feature_coverage": {
+          "V01": {
+            "unknown": 89
+          },
+          "V02": {
+            "unknown": 89
+          },
+          "V03": {
+            "unknown": 89
+          },
+          "V04": {
+            "unknown": 89
+          },
+          "V05": {
+            "unknown": 89
+          },
+          "V06": {
+            "unknown": 89
+          },
+          "S01": {
+            "unknown": 89
+          },
+          "S02": {
+            "unknown": 89
+          },
+          "S03": {
+            "unknown": 89
+          },
+          "H01": {
+            "unknown": 89
+          },
+          "H02": {
+            "unknown": 89
+          },
+          "H03": {
+            "observed": 46,
+            "unknown": 43
+          }
+        },
+        "standalone_building_fact_counts": {
+          "H03:observed": 58
+        },
+        "runtime_seconds": {
+          "load": 5.513604624997242,
+          "matching": 1.273569833007059,
+          "facades_history_solar": 21.357563291996485,
+          "total": 28.144737916998565
+        },
+        "output_bytes": {
+          "sochi_target_components.jsonl": 275572,
+          "sochi_fan.jsonl": 34644793,
+          "sochi_building_facts.jsonl": 137822,
+          "sochi_building_matches.jsonl": 186013,
+          "sochi_ota_comparisons.jsonl": 15050,
+          "sochi_diagnostics.jsonl": 525025,
+          "sochi_facts.jsonl": 2295071,
+          "sochi_geometry_quality.jsonl": 75151
+        },
+        "software": {
+          "facades_version": "v9.2.facades",
+          "source_algorithm_sha256": "14b8c3ea8f4791400fa7cf0ebe5788992f2d16b03f2029de4ac85bf80c3108a6",
+          "pvlib": "0.16.1",
+          "algorithm": "NREL SPA pvlib.solarposition.spa_python",
+          "solar_time_step_minutes": 5
+        },
+        "rights": {
+          "OSM": "ODbL1.0 accepted with attribution",
+          "GloBFP": "not used: conditional upstream commercial rights",
+          "GLO30": "not used as ground DTM; DSM semantic veto",
+          "OTA": "cached only no new requests"
+        },
+        "actual_existing_windows_verified": 0,
+        "no_network_requests": true,
+        "limitations": [
+          "No existing physical windows verified; all V/S canonical facts unknown, geometric bounds are distinct components",
+          "No current legal heritage registry join",
+          "Construction-completion event not proven by raw start_date",
+          "Fan does not map categories to sides/floors; ask hotelier",
+          "Building match research quality; all-building census absent; exact address may identify a residential building rather than every hotel unit"
+        ]
+      }
+    },
+    "kaliningrad": {
+      "old_matches_path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/facades/archive/address_repair_20261024T135705Z/results/facades/kaliningrad_building_matches.jsonl",
+      "new_matches_path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/kaliningrad_building_matches.jsonl",
+      "new_matches_sha256": "2dfbe141f26db5ff27e7a86c9faf8465d104d74d8471683305ceb9c974ab568e",
+      "removed": [
+        [
+          "13647475",
+          "way/39386693"
+        ],
+        [
+          "7719161",
+          "way/134871120"
+        ]
+      ],
+      "added": [
+        [
+          "6433023",
+          "way/193281686"
+        ],
+        [
+          "6495862",
+          "way/134875794"
+        ],
+        [
+          "6584253",
+          "way/390659065"
+        ],
+        [
+          "6622308",
+          "way/135511280"
+        ],
+        [
+          "6659688",
+          "way/175185576"
+        ],
+        [
+          "6815752",
+          "way/103168130"
+        ],
+        [
+          "6840526",
+          "way/136288878"
+        ],
+        [
+          "7057327",
+          "way/134875910"
+        ],
+        [
+          "7783969",
+          "way/190580815"
+        ],
+        [
+          "7891109",
+          "way/138947876"
+        ],
+        [
+          "8746742",
+          "way/390659065"
+        ]
+      ],
+      "affected_hotel_ids": [
+        "13647475",
+        "6433023",
+        "6495862",
+        "6584253",
+        "6622308",
+        "6659688",
+        "6815752",
+        "6840526",
+        "7057327",
+        "7719161",
+        "7783969",
+        "7891109",
+        "8746742"
+      ],
+      "old_summary": {
+        "city_id": "kaliningrad",
+        "hotel_count": 50,
+        "matched_hotels": 12,
+        "matched_buildings": 15,
+        "fan_cells": 715,
+        "full_passport_fan_facts": 17875,
+        "fan_facts_gzip_bytes": 883606,
+        "dates": [
+          "2026-11-14",
+          "2026-11-15",
+          "2026-11-16",
+          "2027-07-15",
+          "2027-07-16",
+          "2027-07-17"
+        ],
+        "scene_source": "/Users/turgov/Хакатон/research_notes/Аудит данных 8 городов/raw/osm_kaliningrad.jsonl",
+        "scene_source_sha256": "92ccd619cc28d65896482886ed524f8a57d7659aa29bd9537a043edca746e473",
+        "scene_inventory": {
+          "buildings": 55219,
+          "levels": 29756,
+          "metric_height": 339
+        },
+        "canonical_feature_coverage": {
+          "V01": {
+            "unknown": 50
+          },
+          "V02": {
+            "unknown": 50
+          },
+          "V03": {
+            "unknown": 50
+          },
+          "V04": {
+            "unknown": 50
+          },
+          "V05": {
+            "unknown": 50
+          },
+          "V06": {
+            "unknown": 50
+          },
+          "S01": {
+            "unknown": 50
+          },
+          "S02": {
+            "unknown": 50
+          },
+          "S03": {
+            "unknown": 50
+          },
+          "H01": {
+            "unknown": 50
+          },
+          "H02": {
+            "unknown": 50
+          },
+          "H03": {
+            "unknown": 48,
+            "observed": 2
+          }
+        },
+        "standalone_building_fact_counts": {
+          "H03:observed": 6
+        },
+        "runtime_seconds": {
+          "load": 2.337546167007531,
+          "matching": 0.5933568329928676,
+          "facades_history_solar": 3.001371749996906,
+          "total": 5.932274874998257
+        },
+        "output_bytes": {
+          "kaliningrad_diagnostics.jsonl": 151220,
+          "kaliningrad_building_matches.jsonl": 40581,
+          "kaliningrad_facts.jsonl": 1293159,
+          "kaliningrad_ota_comparisons.jsonl": 5700,
+          "kaliningrad_building_facts.jsonl": 14117,
+          "kaliningrad_target_components.jsonl": 171575,
+          "kaliningrad_geometry_quality.jsonl": 16845,
+          "kaliningrad_fan.jsonl": 5670936
+        },
+        "software": {
+          "pvlib": "0.16.1",
+          "algorithm": "NREL SPA pvlib.solarposition.spa_python",
+          "solar_time_step_minutes": 5
+        },
+        "rights": {
+          "OSM": "ODbL1.0 accepted with attribution",
+          "GloBFP": "not used: conditional upstream commercial rights",
+          "GLO30": "not used as ground DTM; DSM semantic veto",
+          "OTA": "cached only no new requests"
+        },
+        "actual_existing_windows_verified": 0,
+        "no_network_requests": true,
+        "limitations": [
+          "No existing physical windows verified; all V/S canonical facts unknown, geometric bounds are distinct components",
+          "No current legal heritage registry join",
+          "Construction-completion event not proven by raw start_date",
+          "Fan does not map categories to sides/floors; ask hotelier",
+          "Building match research quality; all-building census absent; exact address may identify a residential building rather than every hotel unit"
+        ]
+      },
+      "new_summary": {
+        "city_id": "kaliningrad",
+        "hotel_count": 50,
+        "matched_hotels": 22,
+        "matched_buildings": 24,
+        "fan_cells": 702,
+        "full_passport_fan_facts": 17550,
+        "fan_facts_gzip_bytes": 872116,
+        "dates": [
+          "2026-11-14",
+          "2026-11-15",
+          "2026-11-16",
+          "2027-07-15",
+          "2027-07-16",
+          "2027-07-17"
+        ],
+        "scene_source": "/Users/turgov/Хакатон/research_notes/Аудит данных 8 городов/raw/osm_kaliningrad.jsonl",
+        "scene_source_sha256": "92ccd619cc28d65896482886ed524f8a57d7659aa29bd9537a043edca746e473",
+        "scene_inventory": {
+          "buildings": 55219,
+          "levels": 29756,
+          "metric_height": 339
+        },
+        "canonical_feature_coverage": {
+          "V01": {
+            "unknown": 50
+          },
+          "V02": {
+            "unknown": 50
+          },
+          "V03": {
+            "unknown": 50
+          },
+          "V04": {
+            "unknown": 50
+          },
+          "V05": {
+            "unknown": 50
+          },
+          "V06": {
+            "unknown": 50
+          },
+          "S01": {
+            "unknown": 50
+          },
+          "S02": {
+            "unknown": 50
+          },
+          "S03": {
+            "unknown": 50
+          },
+          "H01": {
+            "unknown": 50
+          },
+          "H02": {
+            "unknown": 50
+          },
+          "H03": {
+            "unknown": 45,
+            "observed": 5
+          }
+        },
+        "standalone_building_fact_counts": {
+          "H03:observed": 7
+        },
+        "runtime_seconds": {
+          "load": 2.3498479160043644,
+          "matching": 0.6028794589947211,
+          "facades_history_solar": 3.3808966249926016,
+          "total": 6.333624124992639
+        },
+        "output_bytes": {
+          "kaliningrad_diagnostics.jsonl": 156110,
+          "kaliningrad_building_matches.jsonl": 63821,
+          "kaliningrad_facts.jsonl": 1280521,
+          "kaliningrad_ota_comparisons.jsonl": 5667,
+          "kaliningrad_building_facts.jsonl": 17002,
+          "kaliningrad_target_components.jsonl": 171575,
+          "kaliningrad_geometry_quality.jsonl": 26886,
+          "kaliningrad_fan.jsonl": 5564449
+        },
+        "software": {
+          "facades_version": "v9.2.facades",
+          "source_algorithm_sha256": "14b8c3ea8f4791400fa7cf0ebe5788992f2d16b03f2029de4ac85bf80c3108a6",
+          "pvlib": "0.16.1",
+          "algorithm": "NREL SPA pvlib.solarposition.spa_python",
+          "solar_time_step_minutes": 5
+        },
+        "rights": {
+          "OSM": "ODbL1.0 accepted with attribution",
+          "GloBFP": "not used: conditional upstream commercial rights",
+          "GLO30": "not used as ground DTM; DSM semantic veto",
+          "OTA": "cached only no new requests"
+        },
+        "actual_existing_windows_verified": 0,
+        "no_network_requests": true,
+        "limitations": [
+          "No existing physical windows verified; all V/S canonical facts unknown, geometric bounds are distinct components",
+          "No current legal heritage registry join",
+          "Construction-completion event not proven by raw start_date",
+          "Fan does not map categories to sides/floors; ask hotelier",
+          "Building match research quality; all-building census absent; exact address may identify a residential building rather than every hotel unit"
+        ]
+      }
+    },
+    "moscow": {
+      "old_matches_path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/facades/archive/address_repair_20261024T135705Z/results/facades/moscow_building_matches.jsonl",
+      "new_matches_path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/moscow_building_matches.jsonl",
+      "new_matches_sha256": "152e39a9471cb7c95e0bf41b018a0ef6587388f625954428fdd25abcb775eff7",
+      "removed": [],
+      "added": [
+        [
+          "6878127",
+          "way/42423204"
+        ],
+        [
+          "9771294",
+          "way/49205871"
+        ]
+      ],
+      "affected_hotel_ids": [
+        "6878127",
+        "9771294"
+      ],
+      "old_summary": {
+        "city_id": "moscow",
+        "hotel_count": 50,
+        "matched_hotels": 17,
+        "matched_buildings": 17,
+        "fan_cells": 2023,
+        "full_passport_fan_facts": 50575,
+        "fan_facts_gzip_bytes": 2488544,
+        "dates": [
+          "2026-11-14",
+          "2026-11-15",
+          "2026-11-16",
+          "2027-07-15",
+          "2027-07-16",
+          "2027-07-17"
+        ],
+        "scene_source": "/Users/turgov/Хакатон/research_notes/Аудит данных 8 городов/raw/osm_moscow.jsonl",
+        "scene_source_sha256": "418563d59c2d336d77b3d91376ac34feafbdd66d2bf81b104999dbbf10d6bc51",
+        "scene_inventory": {
+          "buildings": 842509,
+          "levels": 206602,
+          "metric_height": 21458
+        },
+        "canonical_feature_coverage": {
+          "V01": {
+            "unknown": 50
+          },
+          "V02": {
+            "unknown": 50
+          },
+          "V03": {
+            "unknown": 50
+          },
+          "V04": {
+            "unknown": 50
+          },
+          "V05": {
+            "unknown": 50
+          },
+          "V06": {
+            "unknown": 50
+          },
+          "S01": {
+            "unknown": 50
+          },
+          "S02": {
+            "unknown": 50
+          },
+          "S03": {
+            "unknown": 50
+          },
+          "H01": {
+            "unknown": 50
+          },
+          "H02": {
+            "unknown": 50
+          },
+          "H03": {
+            "unknown": 36,
+            "observed": 14
+          }
+        },
+        "standalone_building_fact_counts": {
+          "H03:observed": 14
+        },
+        "runtime_seconds": {
+          "load": 41.32012512499932,
+          "matching": 0.7589464580087224,
+          "facades_history_solar": 10.231651207999676,
+          "total": 52.31072654100717
+        },
+        "output_bytes": {
+          "moscow_geometry_quality.jsonl": 19324,
+          "moscow_target_components.jsonl": 171606,
+          "moscow_facts.jsonl": 1269529,
+          "moscow_diagnostics.jsonl": 176749,
+          "moscow_building_matches.jsonl": 48318,
+          "moscow_fan.jsonl": 16253126,
+          "moscow_building_facts.jsonl": 31702,
+          "moscow_ota_comparisons.jsonl": 3477
+        },
+        "software": {
+          "pvlib": "0.16.1",
+          "algorithm": "NREL SPA pvlib.solarposition.spa_python",
+          "solar_time_step_minutes": 5
+        },
+        "rights": {
+          "OSM": "ODbL1.0 accepted with attribution",
+          "GloBFP": "not used: conditional upstream commercial rights",
+          "GLO30": "not used as ground DTM; DSM semantic veto",
+          "OTA": "cached only no new requests"
+        },
+        "actual_existing_windows_verified": 0,
+        "no_network_requests": true,
+        "limitations": [
+          "No existing physical windows verified; all V/S canonical facts unknown, geometric bounds are distinct components",
+          "No current legal heritage registry join",
+          "Construction-completion event not proven by raw start_date",
+          "Fan does not map categories to sides/floors; ask hotelier",
+          "Building match research quality; all-building census absent; exact address may identify a residential building rather than every hotel unit"
+        ]
+      },
+      "new_summary": {
+        "city_id": "moscow",
+        "hotel_count": 50,
+        "matched_hotels": 19,
+        "matched_buildings": 19,
+        "fan_cells": 2141,
+        "full_passport_fan_facts": 53525,
+        "fan_facts_gzip_bytes": 2642836,
+        "dates": [
+          "2026-11-14",
+          "2026-11-15",
+          "2026-11-16",
+          "2027-07-15",
+          "2027-07-16",
+          "2027-07-17"
+        ],
+        "scene_source": "/Users/turgov/Хакатон/research_notes/Аудит данных 8 городов/raw/osm_moscow.jsonl",
+        "scene_source_sha256": "418563d59c2d336d77b3d91376ac34feafbdd66d2bf81b104999dbbf10d6bc51",
+        "scene_inventory": {
+          "buildings": 842509,
+          "levels": 206602,
+          "metric_height": 21458
+        },
+        "canonical_feature_coverage": {
+          "V01": {
+            "unknown": 50
+          },
+          "V02": {
+            "unknown": 50
+          },
+          "V03": {
+            "unknown": 50
+          },
+          "V04": {
+            "unknown": 50
+          },
+          "V05": {
+            "unknown": 50
+          },
+          "V06": {
+            "unknown": 50
+          },
+          "S01": {
+            "unknown": 50
+          },
+          "S02": {
+            "unknown": 50
+          },
+          "S03": {
+            "unknown": 50
+          },
+          "H01": {
+            "unknown": 50
+          },
+          "H02": {
+            "unknown": 50
+          },
+          "H03": {
+            "unknown": 34,
+            "observed": 16
+          }
+        },
+        "standalone_building_fact_counts": {
+          "H03:observed": 16
+        },
+        "runtime_seconds": {
+          "load": 38.96615895800642,
+          "matching": 0.6592172079981538,
+          "facades_history_solar": 9.989638333994662,
+          "total": 49.61501458300336
+        },
+        "output_bytes": {
+          "moscow_geometry_quality.jsonl": 21601,
+          "moscow_target_components.jsonl": 171606,
+          "moscow_facts.jsonl": 1274758,
+          "moscow_diagnostics.jsonl": 179255,
+          "moscow_building_matches.jsonl": 55666,
+          "moscow_fan.jsonl": 17187648,
+          "moscow_building_facts.jsonl": 38059,
+          "moscow_ota_comparisons.jsonl": 3477
+        },
+        "software": {
+          "facades_version": "v9.2.facades",
+          "source_algorithm_sha256": "14b8c3ea8f4791400fa7cf0ebe5788992f2d16b03f2029de4ac85bf80c3108a6",
+          "pvlib": "0.16.1",
+          "algorithm": "NREL SPA pvlib.solarposition.spa_python",
+          "solar_time_step_minutes": 5
+        },
+        "rights": {
+          "OSM": "ODbL1.0 accepted with attribution",
+          "GloBFP": "not used: conditional upstream commercial rights",
+          "GLO30": "not used as ground DTM; DSM semantic veto",
+          "OTA": "cached only no new requests"
+        },
+        "actual_existing_windows_verified": 0,
+        "no_network_requests": true,
+        "limitations": [
+          "No existing physical windows verified; all V/S canonical facts unknown, geometric bounds are distinct components",
+          "No current legal heritage registry join",
+          "Construction-completion event not proven by raw start_date",
+          "Fan does not map categories to sides/floors; ask hotelier",
+          "Building match research quality; all-building census absent; exact address may identify a residential building rather than every hotel unit"
+        ]
+      }
+    },
+    "spb": {
+      "old_matches_path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/facades/archive/address_repair_20261024T135705Z/results/facades/spb_building_matches.jsonl",
+      "new_matches_path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/spb_building_matches.jsonl",
+      "new_matches_sha256": "35a24c54b8ef5d77aa417ad1a238aaa5380669c595353fda415ed0c5ce0b59af",
+      "removed": [],
+      "added": [
+        [
+          "7059592",
+          "way/98664685"
+        ]
+      ],
+      "affected_hotel_ids": [
+        "7059592"
+      ],
+      "old_summary": {
+        "city_id": "spb",
+        "hotel_count": 50,
+        "matched_hotels": 24,
+        "matched_buildings": 24,
+        "fan_cells": 5701,
+        "full_passport_fan_facts": 142525,
+        "fan_facts_gzip_bytes": 7041957,
+        "dates": [
+          "2026-11-14",
+          "2026-11-15",
+          "2026-11-16",
+          "2027-07-15",
+          "2027-07-16",
+          "2027-07-17"
+        ],
+        "scene_source": "/Users/turgov/Хакатон/research_notes/Аудит данных 8 городов/raw/osm_saint_petersburg.jsonl",
+        "scene_source_sha256": "8487516e30977ff6b8ec189dcfc630200e7c3f5ca06c0ea5f0a50a07503bc643",
+        "scene_inventory": {
+          "buildings": 454717,
+          "levels": 119082,
+          "metric_height": 13269
+        },
+        "canonical_feature_coverage": {
+          "V01": {
+            "unknown": 50
+          },
+          "V02": {
+            "unknown": 50
+          },
+          "V03": {
+            "unknown": 50
+          },
+          "V04": {
+            "unknown": 50
+          },
+          "V05": {
+            "unknown": 50
+          },
+          "V06": {
+            "unknown": 50
+          },
+          "S01": {
+            "unknown": 50
+          },
+          "S02": {
+            "unknown": 50
+          },
+          "S03": {
+            "unknown": 50
+          },
+          "H01": {
+            "unknown": 50
+          },
+          "H02": {
+            "unknown": 50
+          },
+          "H03": {
+            "unknown": 27,
+            "observed": 23
+          }
+        },
+        "standalone_building_fact_counts": {
+          "H03:observed": 23
+        },
+        "runtime_seconds": {
+          "load": 20.607934916988597,
+          "matching": 1.1045727919990895,
+          "facades_history_solar": 30.655522166009177,
+          "total": 52.36803004199464
+        },
+        "output_bytes": {
+          "spb_target_components.jsonl": 173206,
+          "spb_building_matches.jsonl": 88356,
+          "spb_building_facts.jsonl": 52357,
+          "spb_facts.jsonl": 1268198,
+          "spb_diagnostics.jsonl": 224019,
+          "spb_ota_comparisons.jsonl": 6516,
+          "spb_geometry_quality.jsonl": 27668,
+          "spb_fan.jsonl": 46171370
+        },
+        "software": {
+          "pvlib": "0.16.1",
+          "algorithm": "NREL SPA pvlib.solarposition.spa_python",
+          "solar_time_step_minutes": 5
+        },
+        "rights": {
+          "OSM": "ODbL1.0 accepted with attribution",
+          "GloBFP": "not used: conditional upstream commercial rights",
+          "GLO30": "not used as ground DTM; DSM semantic veto",
+          "OTA": "cached only no new requests"
+        },
+        "actual_existing_windows_verified": 0,
+        "no_network_requests": true,
+        "limitations": [
+          "No existing physical windows verified; all V/S canonical facts unknown, geometric bounds are distinct components",
+          "No current legal heritage registry join",
+          "Construction-completion event not proven by raw start_date",
+          "Fan does not map categories to sides/floors; ask hotelier",
+          "Building match research quality; all-building census absent; exact address may identify a residential building rather than every hotel unit"
+        ]
+      },
+      "new_summary": {
+        "city_id": "spb",
+        "hotel_count": 50,
+        "matched_hotels": 25,
+        "matched_buildings": 25,
+        "fan_cells": 5791,
+        "full_passport_fan_facts": 144775,
+        "fan_facts_gzip_bytes": 7186830,
+        "dates": [
+          "2026-11-14",
+          "2026-11-15",
+          "2026-11-16",
+          "2027-07-15",
+          "2027-07-16",
+          "2027-07-17"
+        ],
+        "scene_source": "/Users/turgov/Хакатон/research_notes/Аудит данных 8 городов/raw/osm_saint_petersburg.jsonl",
+        "scene_source_sha256": "8487516e30977ff6b8ec189dcfc630200e7c3f5ca06c0ea5f0a50a07503bc643",
+        "scene_inventory": {
+          "buildings": 454717,
+          "levels": 119082,
+          "metric_height": 13269
+        },
+        "canonical_feature_coverage": {
+          "V01": {
+            "unknown": 50
+          },
+          "V02": {
+            "unknown": 50
+          },
+          "V03": {
+            "unknown": 50
+          },
+          "V04": {
+            "unknown": 50
+          },
+          "V05": {
+            "unknown": 50
+          },
+          "V06": {
+            "unknown": 50
+          },
+          "S01": {
+            "unknown": 50
+          },
+          "S02": {
+            "unknown": 50
+          },
+          "S03": {
+            "unknown": 50
+          },
+          "H01": {
+            "unknown": 50
+          },
+          "H02": {
+            "unknown": 50
+          },
+          "H03": {
+            "unknown": 26,
+            "observed": 24
+          }
+        },
+        "standalone_building_fact_counts": {
+          "H03:observed": 24
+        },
+        "runtime_seconds": {
+          "load": 22.17938091700489,
+          "matching": 1.1297257909900509,
+          "facades_history_solar": 31.73924370900204,
+          "total": 55.04835062500206
+        },
+        "output_bytes": {
+          "spb_target_components.jsonl": 173206,
+          "spb_building_matches.jsonl": 93531,
+          "spb_building_facts.jsonl": 57032,
+          "spb_facts.jsonl": 1274557,
+          "spb_diagnostics.jsonl": 226755,
+          "spb_ota_comparisons.jsonl": 6516,
+          "spb_geometry_quality.jsonl": 28810,
+          "spb_fan.jsonl": 46889540
+        },
+        "software": {
+          "facades_version": "v9.2.facades",
+          "source_algorithm_sha256": "14b8c3ea8f4791400fa7cf0ebe5788992f2d16b03f2029de4ac85bf80c3108a6",
+          "pvlib": "0.16.1",
+          "algorithm": "NREL SPA pvlib.solarposition.spa_python",
+          "solar_time_step_minutes": 5
+        },
+        "rights": {
+          "OSM": "ODbL1.0 accepted with attribution",
+          "GloBFP": "not used: conditional upstream commercial rights",
+          "GLO30": "not used as ground DTM; DSM semantic veto",
+          "OTA": "cached only no new requests"
+        },
+        "actual_existing_windows_verified": 0,
+        "no_network_requests": true,
+        "limitations": [
+          "No existing physical windows verified; all V/S canonical facts unknown, geometric bounds are distinct components",
+          "No current legal heritage registry join",
+          "Construction-completion event not proven by raw start_date",
+          "Fan does not map categories to sides/floors; ask hotelier",
+          "Building match research quality; all-building census absent; exact address may identify a residential building rather than every hotel unit"
+        ]
+      }
+    },
+    "kazan": {
+      "old_matches_path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/facades/archive/address_repair_20261024T135705Z/results/facades/kazan_building_matches.jsonl",
+      "new_matches_path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/kazan_building_matches.jsonl",
+      "new_matches_sha256": "e8ec72a6766d7a6553d490d75375fcd07ebb6774f59f4906e8114f12ede22a00",
+      "removed": [],
+      "added": [
+        [
+          "10000424",
+          "way/104277474"
+        ],
+        [
+          "10000424",
+          "way/367846128"
+        ],
+        [
+          "10578721",
+          "way/197053416"
+        ],
+        [
+          "10624272",
+          "way/374576035"
+        ],
+        [
+          "6525746",
+          "way/103455140"
+        ],
+        [
+          "6553077",
+          "relation/14716917"
+        ],
+        [
+          "6603336",
+          "way/105336442"
+        ],
+        [
+          "6629550",
+          "way/194689308"
+        ],
+        [
+          "6676686",
+          "way/91641068"
+        ],
+        [
+          "6703160",
+          "way/111260731"
+        ],
+        [
+          "6783438",
+          "way/173009387"
+        ],
+        [
+          "7056833",
+          "way/191522627"
+        ],
+        [
+          "7068529",
+          "way/314367843"
+        ],
+        [
+          "7785037",
+          "way/158241686"
+        ],
+        [
+          "7855394",
+          "way/103965768"
+        ],
+        [
+          "8100824",
+          "way/247787105"
+        ],
+        [
+          "8476743",
+          "way/230438765"
+        ],
+        [
+          "8493229",
+          "way/717956893"
+        ],
+        [
+          "8502922",
+          "way/71169711"
+        ],
+        [
+          "8601881",
+          "way/96614820"
+        ],
+        [
+          "8736968",
+          "relation/16241091"
+        ],
+        [
+          "8752463",
+          "way/182148885"
+        ],
+        [
+          "8752463",
+          "way/685941192"
+        ],
+        [
+          "8754999",
+          "way/83289901"
+        ],
+        [
+          "8850847",
+          "way/1377310402"
+        ],
+        [
+          "8851352",
+          "way/83053439"
+        ],
+        [
+          "9287655",
+          "way/273244398"
+        ]
+      ],
+      "affected_hotel_ids": [
+        "10000424",
+        "10578721",
+        "10624272",
+        "6525746",
+        "6553077",
+        "6603336",
+        "6629550",
+        "6676686",
+        "6703160",
+        "6783438",
+        "7056833",
+        "7068529",
+        "7785037",
+        "7855394",
+        "8100824",
+        "8476743",
+        "8493229",
+        "8502922",
+        "8601881",
+        "8736968",
+        "8752463",
+        "8754999",
+        "8850847",
+        "8851352",
+        "9287655"
+      ],
+      "old_summary": {
+        "city_id": "kazan",
+        "hotel_count": 50,
+        "matched_hotels": 12,
+        "matched_buildings": 13,
+        "fan_cells": 503,
+        "full_passport_fan_facts": 12575,
+        "fan_facts_gzip_bytes": 620678,
+        "dates": [
+          "2026-11-14",
+          "2026-11-15",
+          "2026-11-16",
+          "2027-07-15",
+          "2027-07-16",
+          "2027-07-17"
+        ],
+        "scene_source": "/Users/turgov/Хакатон/research_notes/Аудит данных 8 городов/raw/osm_kazan.jsonl",
+        "scene_source_sha256": "6c19221f846d499b3c4886b50b8f4433492227bb0be792c18cc4ebef1ca4ec44",
+        "scene_inventory": {
+          "buildings": 171507,
+          "levels": 45818,
+          "metric_height": 170
+        },
+        "canonical_feature_coverage": {
+          "V01": {
+            "unknown": 50
+          },
+          "V02": {
+            "unknown": 50
+          },
+          "V03": {
+            "unknown": 50
+          },
+          "V04": {
+            "unknown": 50
+          },
+          "V05": {
+            "unknown": 50
+          },
+          "V06": {
+            "unknown": 50
+          },
+          "S01": {
+            "unknown": 50
+          },
+          "S02": {
+            "unknown": 50
+          },
+          "S03": {
+            "unknown": 50
+          },
+          "H01": {
+            "unknown": 50
+          },
+          "H02": {
+            "unknown": 50
+          },
+          "H03": {
+            "unknown": 41,
+            "observed": 9
+          }
+        },
+        "standalone_building_fact_counts": {
+          "H03:observed": 10
+        },
+        "runtime_seconds": {
+          "load": 6.745081500004744,
+          "matching": 0.7307381669961615,
+          "facades_history_solar": 2.4910258750023786,
+          "total": 9.966845707996981
+        },
+        "output_bytes": {
+          "kazan_fan.jsonl": 4043925,
+          "kazan_geometry_quality.jsonl": 14638,
+          "kazan_ota_comparisons.jsonl": 699,
+          "kazan_building_facts.jsonl": 23126,
+          "kazan_diagnostics.jsonl": 156826,
+          "kazan_building_matches.jsonl": 33834,
+          "kazan_target_components.jsonl": 163568,
+          "kazan_facts.jsonl": 1275095
+        },
+        "software": {
+          "pvlib": "0.16.1",
+          "algorithm": "NREL SPA pvlib.solarposition.spa_python",
+          "solar_time_step_minutes": 5
+        },
+        "rights": {
+          "OSM": "ODbL1.0 accepted with attribution",
+          "GloBFP": "not used: conditional upstream commercial rights",
+          "GLO30": "not used as ground DTM; DSM semantic veto",
+          "OTA": "cached only no new requests"
+        },
+        "actual_existing_windows_verified": 0,
+        "no_network_requests": true,
+        "limitations": [
+          "No existing physical windows verified; all V/S canonical facts unknown, geometric bounds are distinct components",
+          "No current legal heritage registry join",
+          "Construction-completion event not proven by raw start_date",
+          "Fan does not map categories to sides/floors; ask hotelier",
+          "Building match research quality; all-building census absent; exact address may identify a residential building rather than every hotel unit"
+        ]
+      },
+      "new_summary": {
+        "city_id": "kazan",
+        "hotel_count": 50,
+        "matched_hotels": 37,
+        "matched_buildings": 40,
+        "fan_cells": 2298,
+        "full_passport_fan_facts": 57450,
+        "fan_facts_gzip_bytes": 2838062,
+        "dates": [
+          "2026-11-14",
+          "2026-11-15",
+          "2026-11-16",
+          "2027-07-15",
+          "2027-07-16",
+          "2027-07-17"
+        ],
+        "scene_source": "/Users/turgov/Хакатон/research_notes/Аудит данных 8 городов/raw/osm_kazan.jsonl",
+        "scene_source_sha256": "6c19221f846d499b3c4886b50b8f4433492227bb0be792c18cc4ebef1ca4ec44",
+        "scene_inventory": {
+          "buildings": 171507,
+          "levels": 45818,
+          "metric_height": 170
+        },
+        "canonical_feature_coverage": {
+          "V01": {
+            "unknown": 50
+          },
+          "V02": {
+            "unknown": 50
+          },
+          "V03": {
+            "unknown": 50
+          },
+          "V04": {
+            "unknown": 50
+          },
+          "V05": {
+            "unknown": 50
+          },
+          "V06": {
+            "unknown": 50
+          },
+          "S01": {
+            "unknown": 50
+          },
+          "S02": {
+            "unknown": 50
+          },
+          "S03": {
+            "unknown": 50
+          },
+          "H01": {
+            "unknown": 50
+          },
+          "H02": {
+            "unknown": 50
+          },
+          "H03": {
+            "unknown": 22,
+            "observed": 28
+          }
+        },
+        "standalone_building_fact_counts": {
+          "H03:observed": 33
+        },
+        "runtime_seconds": {
+          "load": 6.6878306250000605,
+          "matching": 0.7380052910011727,
+          "facades_history_solar": 8.77652504199068,
+          "total": 16.202361082992866
+        },
+        "output_bytes": {
+          "kazan_fan.jsonl": 18329171,
+          "kazan_geometry_quality.jsonl": 45152,
+          "kazan_ota_comparisons.jsonl": 699,
+          "kazan_building_facts.jsonl": 78167,
+          "kazan_diagnostics.jsonl": 166813,
+          "kazan_building_matches.jsonl": 105132,
+          "kazan_target_components.jsonl": 163568,
+          "kazan_facts.jsonl": 1273739
+        },
+        "software": {
+          "facades_version": "v9.2.facades",
+          "source_algorithm_sha256": "14b8c3ea8f4791400fa7cf0ebe5788992f2d16b03f2029de4ac85bf80c3108a6",
+          "pvlib": "0.16.1",
+          "algorithm": "NREL SPA pvlib.solarposition.spa_python",
+          "solar_time_step_minutes": 5
+        },
+        "rights": {
+          "OSM": "ODbL1.0 accepted with attribution",
+          "GloBFP": "not used: conditional upstream commercial rights",
+          "GLO30": "not used as ground DTM; DSM semantic veto",
+          "OTA": "cached only no new requests"
+        },
+        "actual_existing_windows_verified": 0,
+        "no_network_requests": true,
+        "limitations": [
+          "No existing physical windows verified; all V/S canonical facts unknown, geometric bounds are distinct components",
+          "No current legal heritage registry join",
+          "Construction-completion event not proven by raw start_date",
+          "Fan does not map categories to sides/floors; ask hotelier",
+          "Building match research quality; all-building census absent; exact address may identify a residential building rather than every hotel unit"
+        ]
+      }
+    }
+  },
+  "reviewed_at_final": "2026-10-24T14:09:14.194619+00:00",
+  "original_accepted_relation_rows": 139,
+  "initial_accepted_relations_denominator_note": "139 refers to actual pre-repair files preserved in the backup, not current rows.",
+  "partial_phase_formula": "139 - 4 removed + 11 Kaliningrad additions = 146",
+  "final_phase_formula": "139 - 4 removed + 41 added = 176",
+  "final_current_relation_rows": 176,
+  "final_distinct_osm_building_ids": 175,
+  "old_core_sha256": "7509c3ae212510319ff387b98c383a14435a54a4a31e0cd0689236320527099d",
+  "new_version": "v9.2.facades",
+  "affected_cities": [
+    "sochi",
+    "kaliningrad",
+    "moscow",
+    "spb",
+    "kazan"
+  ],
+  "unchanged_cities": [
+    "minsk",
+    "istanbul",
+    "dubai"
+  ],
+  "all_current_relation_scope_audit": [
+    {
+      "city_id": "sochi",
+      "hotel_id": "10012084",
+      "building_id": "way/74466391",
+      "source_id_version": 9,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "10439075",
+      "building_id": "way/147588879",
+      "source_id_version": 6,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "10575679",
+      "building_id": "way/90395695",
+      "source_id_version": 2,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "10595288",
+      "building_id": "way/51414276",
+      "source_id_version": 6,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "10595288",
+      "building_id": "way/51414278",
+      "source_id_version": 6,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "11161657",
+      "building_id": "way/53290634",
+      "source_id_version": 3,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "11181978",
+      "building_id": "way/55356585",
+      "source_id_version": 7,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "11200750",
+      "building_id": "way/55356580",
+      "source_id_version": 3,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "11202853",
+      "building_id": "way/53301283",
+      "source_id_version": 10,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "11202853",
+      "building_id": "way/53284168",
+      "source_id_version": 6,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "11255055",
+      "building_id": "way/53729803",
+      "source_id_version": 4,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "11303583",
+      "building_id": "way/167403299",
+      "source_id_version": 6,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "11313836",
+      "building_id": "way/53742331",
+      "source_id_version": 9,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "13124554",
+      "building_id": "way/238327764",
+      "source_id_version": 5,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "13124554",
+      "building_id": "way/238786661",
+      "source_id_version": 2,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "13124554",
+      "building_id": "way/238786664",
+      "source_id_version": 5,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "13124554",
+      "building_id": "way/238786662",
+      "source_id_version": 2,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "13343374",
+      "building_id": "way/51105575",
+      "source_id_version": 8,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "13429040",
+      "building_id": "way/51764154",
+      "source_id_version": 7,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "13674260",
+      "building_id": "way/51571822",
+      "source_id_version": 9,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "13714940",
+      "building_id": "way/53289663",
+      "source_id_version": 3,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "13736470",
+      "building_id": "way/207598815",
+      "source_id_version": 12,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "13736470",
+      "building_id": "way/260633951",
+      "source_id_version": 5,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "13736470",
+      "building_id": "way/260633950",
+      "source_id_version": 7,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "13736470",
+      "building_id": "way/374404842",
+      "source_id_version": 6,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "6329566",
+      "building_id": "way/53357937",
+      "source_id_version": 4,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "6398405",
+      "building_id": "way/98219997",
+      "source_id_version": 3,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "6416199",
+      "building_id": "way/80186747",
+      "source_id_version": 9,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "6453529",
+      "building_id": "way/109061659",
+      "source_id_version": 8,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "6460390",
+      "building_id": "way/131715080",
+      "source_id_version": 2,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "6496437",
+      "building_id": "way/149546331",
+      "source_id_version": 5,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "6496747",
+      "building_id": "way/53284176",
+      "source_id_version": 3,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "6497279",
+      "building_id": "relation/12821037",
+      "source_id_version": 3,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "6511778",
+      "building_id": "way/115306225",
+      "source_id_version": 5,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "6551322",
+      "building_id": "way/54238274",
+      "source_id_version": 4,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "6601612",
+      "building_id": "way/52017864",
+      "source_id_version": 4,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "6601758",
+      "building_id": "way/147593043",
+      "source_id_version": 2,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "7018069",
+      "building_id": "way/96677821",
+      "source_id_version": 12,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "7631439",
+      "building_id": "relation/17698774",
+      "source_id_version": 1,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "7725078",
+      "building_id": "way/53292016",
+      "source_id_version": 6,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "7726257",
+      "building_id": "way/708992263",
+      "source_id_version": 3,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "7840047",
+      "building_id": "way/80191318",
+      "source_id_version": 5,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "7935886",
+      "building_id": "way/562690844",
+      "source_id_version": 2,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "7942708",
+      "building_id": "way/52038433",
+      "source_id_version": 5,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "8085655",
+      "building_id": "way/80180160",
+      "source_id_version": 6,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "8105660",
+      "building_id": "way/53742307",
+      "source_id_version": 4,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "8398222",
+      "building_id": "way/55374240",
+      "source_id_version": 3,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "8477232",
+      "building_id": "way/52020012",
+      "source_id_version": 4,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "8478929",
+      "building_id": "way/81148610",
+      "source_id_version": 3,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "8531041",
+      "building_id": "way/52526296",
+      "source_id_version": 7,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "8543887",
+      "building_id": "way/728895767",
+      "source_id_version": 2,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "8685572",
+      "building_id": "way/52452699",
+      "source_id_version": 4,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "8705437",
+      "building_id": "way/51764060",
+      "source_id_version": 6,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "8707953",
+      "building_id": "way/727336120",
+      "source_id_version": 3,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "8726190",
+      "building_id": "way/51106901",
+      "source_id_version": 16,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "8733095",
+      "building_id": "way/202867328",
+      "source_id_version": 7,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "8747640",
+      "building_id": "way/98649214",
+      "source_id_version": 3,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "8756112",
+      "building_id": "way/98649229",
+      "source_id_version": 4,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "8846754",
+      "building_id": "way/81153172",
+      "source_id_version": 4,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "8869683",
+      "building_id": "way/91225860",
+      "source_id_version": 2,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "8877049",
+      "building_id": "way/708922832",
+      "source_id_version": 3,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "9024570",
+      "building_id": "way/52454945",
+      "source_id_version": 4,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "9769189",
+      "building_id": "way/207637704",
+      "source_id_version": 7,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "9829023",
+      "building_id": "way/155104619",
+      "source_id_version": 5,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "9986868",
+      "building_id": "way/190714781",
+      "source_id_version": 15,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "9995282",
+      "building_id": "way/51849058",
+      "source_id_version": 7,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "moscow",
+      "hotel_id": "6429629",
+      "building_id": "way/40813025",
+      "source_id_version": 11,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "moscow",
+      "hotel_id": "6458292",
+      "building_id": "relation/15812142",
+      "source_id_version": 3,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "moscow",
+      "hotel_id": "6481764",
+      "building_id": "way/32276105",
+      "source_id_version": 13,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "moscow",
+      "hotel_id": "6535528",
+      "building_id": "way/52909897",
+      "source_id_version": 10,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "moscow",
+      "hotel_id": "6546443",
+      "building_id": "way/665282696",
+      "source_id_version": 2,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "moscow",
+      "hotel_id": "6762797",
+      "building_id": "way/155713604",
+      "source_id_version": 9,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "moscow",
+      "hotel_id": "6878127",
+      "building_id": "way/42423204",
+      "source_id_version": 10,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "moscow",
+      "hotel_id": "6957864",
+      "building_id": "way/198662411",
+      "source_id_version": 7,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "moscow",
+      "hotel_id": "8126782",
+      "building_id": "way/389556105",
+      "source_id_version": 4,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "moscow",
+      "hotel_id": "8464907",
+      "building_id": "relation/1393269",
+      "source_id_version": 7,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "moscow",
+      "hotel_id": "8475208",
+      "building_id": "way/38938874",
+      "source_id_version": 10,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "moscow",
+      "hotel_id": "8584710",
+      "building_id": "way/406428488",
+      "source_id_version": 5,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "moscow",
+      "hotel_id": "8684850",
+      "building_id": "way/156930124",
+      "source_id_version": 3,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "moscow",
+      "hotel_id": "8736052",
+      "building_id": "relation/19206805",
+      "source_id_version": 1,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "moscow",
+      "hotel_id": "8742604",
+      "building_id": "relation/4788410",
+      "source_id_version": 3,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "moscow",
+      "hotel_id": "8744278",
+      "building_id": "way/37131004",
+      "source_id_version": 9,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "moscow",
+      "hotel_id": "8744391",
+      "building_id": "relation/10899399",
+      "source_id_version": 17,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "moscow",
+      "hotel_id": "8854269",
+      "building_id": "way/58742209",
+      "source_id_version": 6,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "moscow",
+      "hotel_id": "9771294",
+      "building_id": "way/49205871",
+      "source_id_version": 11,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "6389487",
+      "building_id": "way/97427741",
+      "source_id_version": 6,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "6517577",
+      "building_id": "relation/1413802",
+      "source_id_version": 5,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "6526880",
+      "building_id": "relation/18083348",
+      "source_id_version": 2,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "6561592",
+      "building_id": "way/62847204",
+      "source_id_version": 6,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "6752870",
+      "building_id": "way/96148903",
+      "source_id_version": 8,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "7059592",
+      "building_id": "way/98664685",
+      "source_id_version": 7,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "7376418",
+      "building_id": "relation/4575977",
+      "source_id_version": 8,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "7467805",
+      "building_id": "way/60788904",
+      "source_id_version": 9,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "7935820",
+      "building_id": "relation/1394323",
+      "source_id_version": 6,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "8038274",
+      "building_id": "relation/1082852",
+      "source_id_version": 3,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "8161726",
+      "building_id": "relation/1028080",
+      "source_id_version": 4,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "8165461",
+      "building_id": "relation/1043548",
+      "source_id_version": 5,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "8292462",
+      "building_id": "relation/946836",
+      "source_id_version": 3,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "8311345",
+      "building_id": "way/23357088",
+      "source_id_version": 11,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "8454971",
+      "building_id": "relation/16127870",
+      "source_id_version": 2,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "8481864",
+      "building_id": "way/100687081",
+      "source_id_version": 20,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "8553862",
+      "building_id": "relation/1587820",
+      "source_id_version": 4,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "8660031",
+      "building_id": "way/45192906",
+      "source_id_version": 12,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "8660892",
+      "building_id": "relation/955107",
+      "source_id_version": 5,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "8661034",
+      "building_id": "relation/1598169",
+      "source_id_version": 3,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "8733326",
+      "building_id": "relation/1878250",
+      "source_id_version": 5,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "8748739",
+      "building_id": "way/130662472",
+      "source_id_version": 6,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "8763311",
+      "building_id": "way/30700363",
+      "source_id_version": 18,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "9990973",
+      "building_id": "relation/660807",
+      "source_id_version": 4,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "9991015",
+      "building_id": "relation/1524834",
+      "source_id_version": 3,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "10000424",
+      "building_id": "way/367846128",
+      "source_id_version": 12,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "10000424",
+      "building_id": "way/104277474",
+      "source_id_version": 12,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "10578721",
+      "building_id": "way/197053416",
+      "source_id_version": 3,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "10624272",
+      "building_id": "way/374576035",
+      "source_id_version": 4,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "6525746",
+      "building_id": "way/103455140",
+      "source_id_version": 11,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "6553077",
+      "building_id": "relation/14716917",
+      "source_id_version": 1,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "6603336",
+      "building_id": "way/105336442",
+      "source_id_version": 9,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "6629550",
+      "building_id": "way/194689308",
+      "source_id_version": 7,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "6676686",
+      "building_id": "way/91641068",
+      "source_id_version": 13,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "6702635",
+      "building_id": "way/91641101",
+      "source_id_version": 7,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "6702635",
+      "building_id": "way/360475286",
+      "source_id_version": 6,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "6703160",
+      "building_id": "way/111260731",
+      "source_id_version": 7,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "6783438",
+      "building_id": "way/173009387",
+      "source_id_version": 3,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "7026565",
+      "building_id": "way/104639166",
+      "source_id_version": 13,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "7056833",
+      "building_id": "way/191522627",
+      "source_id_version": 10,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "7068529",
+      "building_id": "way/314367843",
+      "source_id_version": 4,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "7716336",
+      "building_id": "way/96705174",
+      "source_id_version": 11,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "7775286",
+      "building_id": "way/71169787",
+      "source_id_version": 13,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "7785037",
+      "building_id": "way/158241686",
+      "source_id_version": 7,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "7855394",
+      "building_id": "way/103965768",
+      "source_id_version": 9,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "7882957",
+      "building_id": "way/321420899",
+      "source_id_version": 6,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "7964924",
+      "building_id": "way/97465709",
+      "source_id_version": 9,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "8053001",
+      "building_id": "way/110175759",
+      "source_id_version": 5,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "8100824",
+      "building_id": "way/247787105",
+      "source_id_version": 11,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "8136552",
+      "building_id": "way/253055353",
+      "source_id_version": 6,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "8474966",
+      "building_id": "way/226337042",
+      "source_id_version": 8,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "8476743",
+      "building_id": "way/230438765",
+      "source_id_version": 2,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "8493229",
+      "building_id": "way/717956893",
+      "source_id_version": 1,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "8502922",
+      "building_id": "way/71169711",
+      "source_id_version": 9,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "8601881",
+      "building_id": "way/96614820",
+      "source_id_version": 9,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "8736968",
+      "building_id": "relation/16241091",
+      "source_id_version": 2,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "8743189",
+      "building_id": "way/104636677",
+      "source_id_version": 10,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "8752463",
+      "building_id": "way/685941192",
+      "source_id_version": 4,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "8752463",
+      "building_id": "way/182148885",
+      "source_id_version": 4,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "8754999",
+      "building_id": "way/83289901",
+      "source_id_version": 5,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "8755065",
+      "building_id": "way/157683900",
+      "source_id_version": 5,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "8848719",
+      "building_id": "way/244599019",
+      "source_id_version": 7,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "8850847",
+      "building_id": "way/1377310402",
+      "source_id_version": 1,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "8851352",
+      "building_id": "way/83053439",
+      "source_id_version": 9,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "9287655",
+      "building_id": "way/273244398",
+      "source_id_version": 5,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "hotel_id": "10126086",
+      "building_id": "way/90446012",
+      "source_id_version": 3,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "hotel_id": "6433023",
+      "building_id": "way/193281686",
+      "source_id_version": 2,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "hotel_id": "6495862",
+      "building_id": "way/134875794",
+      "source_id_version": 2,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "hotel_id": "6584253",
+      "building_id": "way/390659065",
+      "source_id_version": 2,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "hotel_id": "6622308",
+      "building_id": "way/135511280",
+      "source_id_version": 3,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "hotel_id": "6659688",
+      "building_id": "way/175185576",
+      "source_id_version": 3,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "hotel_id": "6815752",
+      "building_id": "way/103168130",
+      "source_id_version": 4,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "hotel_id": "6840526",
+      "building_id": "way/136288878",
+      "source_id_version": 3,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "hotel_id": "6840588",
+      "building_id": "way/135510988",
+      "source_id_version": 3,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "hotel_id": "7057327",
+      "building_id": "way/134875910",
+      "source_id_version": 2,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "hotel_id": "7467345",
+      "building_id": "way/134873563",
+      "source_id_version": 2,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "hotel_id": "7719161",
+      "building_id": "way/134871260",
+      "source_id_version": 5,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "hotel_id": "7783969",
+      "building_id": "way/190580815",
+      "source_id_version": 2,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "hotel_id": "7891109",
+      "building_id": "way/138947876",
+      "source_id_version": 4,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "hotel_id": "7939785",
+      "building_id": "way/253136228",
+      "source_id_version": 10,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "hotel_id": "7939785",
+      "building_id": "way/1562586433",
+      "source_id_version": 1,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "hotel_id": "8660347",
+      "building_id": "way/225689995",
+      "source_id_version": 6,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "hotel_id": "8723110",
+      "building_id": "way/84100001",
+      "source_id_version": 6,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "hotel_id": "8743386",
+      "building_id": "way/101820195",
+      "source_id_version": 23,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "hotel_id": "8746742",
+      "building_id": "way/390659065",
+      "source_id_version": 2,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "hotel_id": "8850047",
+      "building_id": "way/90677082",
+      "source_id_version": 3,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "hotel_id": "9085021",
+      "building_id": "way/133848302",
+      "source_id_version": 4,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "hotel_id": "9085021",
+      "building_id": "way/133847963",
+      "source_id_version": 3,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "hotel_id": "9992358",
+      "building_id": "way/832612089",
+      "source_id_version": 1,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "istanbul",
+      "hotel_id": "7540149",
+      "building_id": "way/288197582",
+      "source_id_version": 6,
+      "full_house_gate_passed": true
+    },
+    {
+      "city_id": "dubai",
+      "hotel_id": "6432238",
+      "building_id": "way/93638778",
+      "source_id_version": 8,
+      "full_house_gate_passed": true
+    }
+  ],
+  "city_summary": [
+    {
+      "city_id": "sochi",
+      "N": 89,
+      "relations_old": 68,
+      "relations_new": 66,
+      "matched_hotels_old": 58,
+      "matched_hotels_new": 58,
+      "H03_main_observed_old": 44,
+      "H03_main_observed_new": 46,
+      "fan_cells_old": 4363,
+      "fan_cells_new": 4353,
+      "fan_passports_old": 109075,
+      "fan_passports_new": 108825,
+      "comparison_n": 16,
+      "comparison_types": {
+        "no_independent_construction_completion_event": 8,
+        "construction_event_not_verified_start_date_is_candidate": 1,
+        "different_building_scope_or_counting_convention_not_comparable": 2,
+        "category_claim_vs_unmapped_window_fan_not_comparable": 4,
+        "raw_numbers_agree_not_verified_counting_convention": 1
+      },
+      "main_facts_sha256": "175f210c7e13b7c536eec03906aaee92897f6cfd60ac9a04e2ddc27cd6f0821f",
+      "matches_sha256": "a991d1e23149f2d6a1614f478d512e09951b87be21d83d880c5b866f1c45174e",
+      "fan_gzip_sha256": "87610d1a7325ccdcd80f2d4a4945102a4960570d0c7204123b258091ecf68bfc",
+      "observed_code_version": "v9.2.facades",
+      "runtime_s": 28.144737916998565
+    },
+    {
+      "city_id": "moscow",
+      "N": 50,
+      "relations_old": 17,
+      "relations_new": 19,
+      "matched_hotels_old": 17,
+      "matched_hotels_new": 19,
+      "H03_main_observed_old": 14,
+      "H03_main_observed_new": 16,
+      "fan_cells_old": 2023,
+      "fan_cells_new": 2141,
+      "fan_passports_old": 50575,
+      "fan_passports_new": 53525,
+      "comparison_n": 5,
+      "comparison_types": {
+        "no_building_match_or_levels": 2,
+        "different_building_scope_or_counting_convention_not_comparable": 1,
+        "no_independent_construction_completion_event": 2
+      },
+      "main_facts_sha256": "1e9875d3c81ae7157230e616b4dab701947cd96d78d9e0b60ff74c7122ce986e",
+      "matches_sha256": "152e39a9471cb7c95e0bf41b018a0ef6587388f625954428fdd25abcb775eff7",
+      "fan_gzip_sha256": "f24addc41fa64101d2c2de4db0ca1d13bcae8e83af4918c37f83df8216f364d7",
+      "observed_code_version": "v9.2.facades",
+      "runtime_s": 49.61501458300336
+    },
+    {
+      "city_id": "spb",
+      "N": 50,
+      "relations_old": 24,
+      "relations_new": 25,
+      "matched_hotels_old": 24,
+      "matched_hotels_new": 25,
+      "H03_main_observed_old": 23,
+      "H03_main_observed_new": 24,
+      "fan_cells_old": 5701,
+      "fan_cells_new": 5791,
+      "fan_passports_old": 142525,
+      "fan_passports_new": 144775,
+      "comparison_n": 9,
+      "comparison_types": {
+        "different_building_scope_or_counting_convention_not_comparable": 2,
+        "no_independent_construction_completion_event": 4,
+        "no_building_match_or_levels": 2,
+        "construction_event_not_verified_start_date_is_candidate": 1
+      },
+      "main_facts_sha256": "253f0b6f1d277d0a3096e8c6e4f7308461dee54e60a44e9907661a9db762ec1e",
+      "matches_sha256": "35a24c54b8ef5d77aa417ad1a238aaa5380669c595353fda415ed0c5ce0b59af",
+      "fan_gzip_sha256": "23170a5c9086b5cd643039753aaace1521963f4a4328d35683aff26b40186b9f",
+      "observed_code_version": "v9.2.facades",
+      "runtime_s": 55.04835062500206
+    },
+    {
+      "city_id": "kazan",
+      "N": 50,
+      "relations_old": 13,
+      "relations_new": 40,
+      "matched_hotels_old": 12,
+      "matched_hotels_new": 37,
+      "H03_main_observed_old": 9,
+      "H03_main_observed_new": 28,
+      "fan_cells_old": 503,
+      "fan_cells_new": 2298,
+      "fan_passports_old": 12575,
+      "fan_passports_new": 57450,
+      "comparison_n": 1,
+      "comparison_types": {
+        "different_building_scope_or_counting_convention_not_comparable": 1
+      },
+      "main_facts_sha256": "949ef50b629cd9ce6171211a8c4f4766323b3821c5134997a03a483ef0748c22",
+      "matches_sha256": "e8ec72a6766d7a6553d490d75375fcd07ebb6774f59f4906e8114f12ede22a00",
+      "fan_gzip_sha256": "5507c27b455c38bb69cab74f4a2710570911d3989616d39af7f743ff75700d0d",
+      "observed_code_version": "v9.2.facades",
+      "runtime_s": 16.202361082992866
+    },
+    {
+      "city_id": "kaliningrad",
+      "N": 50,
+      "relations_old": 15,
+      "relations_new": 24,
+      "matched_hotels_old": 12,
+      "matched_hotels_new": 22,
+      "H03_main_observed_old": 2,
+      "H03_main_observed_new": 5,
+      "fan_cells_old": 715,
+      "fan_cells_new": 702,
+      "fan_passports_old": 17875,
+      "fan_passports_new": 17550,
+      "comparison_n": 8,
+      "comparison_types": {
+        "no_independent_construction_completion_event": 5,
+        "no_building_match_or_levels": 1,
+        "construction_event_not_verified_start_date_is_candidate": 1,
+        "different_building_scope_or_counting_convention_not_comparable": 1
+      },
+      "main_facts_sha256": "f4daaaf30e93a5b64e539f38767dca31e7dbea0fcfb70a64de72b35250a7ff54",
+      "matches_sha256": "2dfbe141f26db5ff27e7a86c9faf8465d104d74d8471683305ceb9c974ab568e",
+      "fan_gzip_sha256": "da0c575582bd8d30f7a1529ec6cd4680134bee5c19a626c7171c356ca534640f",
+      "observed_code_version": "v9.2.facades",
+      "runtime_s": 6.333624124992639
+    },
+    {
+      "city_id": "minsk",
+      "N": 50,
+      "relations_old": 0,
+      "relations_new": 0,
+      "matched_hotels_old": 0,
+      "matched_hotels_new": 0,
+      "H03_main_observed_old": 0,
+      "H03_main_observed_new": 0,
+      "fan_cells_old": 0,
+      "fan_cells_new": 0,
+      "fan_passports_old": 0,
+      "fan_passports_new": 0,
+      "comparison_n": 3,
+      "comparison_types": {
+        "no_independent_construction_completion_event": 3
+      },
+      "main_facts_sha256": "b8eb3dc65062cd371d8e3376bf64547f58f7b64dc68aca4d32e9069bf7f83037",
+      "matches_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "fan_gzip_sha256": "6e436bda3b84721d06f687f714c0c299391d5b00cc8282ca7748fea2a1ded8dd",
+      "observed_code_version": "v9.1",
+      "runtime_s": 6.365762500005076
+    },
+    {
+      "city_id": "istanbul",
+      "N": 50,
+      "relations_old": 1,
+      "relations_new": 1,
+      "matched_hotels_old": 1,
+      "matched_hotels_new": 1,
+      "H03_main_observed_old": 0,
+      "H03_main_observed_new": 0,
+      "fan_cells_old": 6,
+      "fan_cells_new": 6,
+      "fan_passports_old": 150,
+      "fan_passports_new": 150,
+      "comparison_n": 18,
+      "comparison_types": {
+        "no_building_match_or_levels": 10,
+        "no_independent_construction_completion_event": 3,
+        "category_claim_vs_unmapped_window_fan_not_comparable": 4,
+        "different_building_scope_or_counting_convention_not_comparable": 1
+      },
+      "main_facts_sha256": "d35d8517ae95d22acdb3ebadbb5f585d648fdffa5379d40da60e55139397d05c",
+      "matches_sha256": "e4b4664fd414b4cc745a04e384320b6f9720d9b83db2b3e1755c0dc9e98e544f",
+      "fan_gzip_sha256": "9454ce246b92034407c61d3a98b4ff9aa900ffb31f0bd7363d52dc74709bd889",
+      "observed_code_version": "v9.1",
+      "runtime_s": 30.165270708006574
+    },
+    {
+      "city_id": "dubai",
+      "N": 50,
+      "relations_old": 1,
+      "relations_new": 1,
+      "matched_hotels_old": 1,
+      "matched_hotels_new": 1,
+      "H03_main_observed_old": 1,
+      "H03_main_observed_new": 1,
+      "fan_cells_old": 270,
+      "fan_cells_new": 270,
+      "fan_passports_old": 6750,
+      "fan_passports_new": 6750,
+      "comparison_n": 39,
+      "comparison_types": {
+        "no_building_match_or_levels": 16,
+        "no_independent_construction_completion_event": 15,
+        "category_claim_vs_unmapped_window_fan_not_comparable": 8
+      },
+      "main_facts_sha256": "4ba5d5d067ce9c25d1ec7353da5d5fee39adf8732e0a3e647d89a3d1bd2d03ba",
+      "matches_sha256": "682347278e9202286c8320fa2e3c68a4979bb35ac6b5113f6cb887a9fdc905fe",
+      "fan_gzip_sha256": "80913c7e8149224efc3e62c2b490f434043cc355455d0df61bcc448bf6644ae7",
+      "observed_code_version": "v9.1",
+      "runtime_s": 15.976433458010433
+    }
+  ],
+  "totals": {
+    "relation_rows": 176,
+    "matched_hotels": 163,
+    "main_H03_observed": 120,
+    "building_H03_observed_including_main_duplicates": 139,
+    "fan_cells": 15561,
+    "fan_fact_passports": 389025,
+    "comparison_rows": 99
+  },
+  "comparison_types": {
+    "no_independent_construction_completion_event": 40,
+    "construction_event_not_verified_start_date_is_candidate": 3,
+    "different_building_scope_or_counting_convention_not_comparable": 8,
+    "category_claim_vs_unmapped_window_fan_not_comparable": 16,
+    "raw_numbers_agree_not_verified_counting_convention": 1,
+    "no_building_match_or_levels": 31
+  },
+  "comparison_feature_counts": {
+    "H01": 43,
+    "H03": 40,
+    "V01": 16
+  },
+  "H03_semantic_buckets": {
+    "raw_numeric_difference_or_multiple_scope_only": 6,
+    "raw_numeric_agreement_only": 1,
+    "independent_level_value_missing": 33
+  },
+  "H01_semantic_buckets": {
+    "no_independent_event_candidate": 40,
+    "raw_year_difference_or_multiple_unverified_events": 2,
+    "raw_year_agreement_unverified_completion": 1
+  },
+  "V01_category_name_records": 114,
+  "material_findings_current_unresolved": [],
+  "non_blocking_notes": [
+    {
+      "city_id": "sochi",
+      "hotel_id": "6460390",
+      "feature_id": "H03",
+      "issue": "Classification wording suggests scope/counting difference but mapped building has no level value. Actual result is missing independent level field, no proven contradiction.",
+      "severity": "non_blocking_summary_wording"
+    },
+    {
+      "city_id": "istanbul",
+      "hotel_id": "7540149",
+      "feature_id": "H03",
+      "issue": "Classification wording suggests scope/counting difference but mapped building has no level value. Actual result is missing independent level field, no proven contradiction.",
+      "severity": "non_blocking_summary_wording"
+    }
+  ],
+  "physical_gold_from_facade_branch": 0,
+  "proved_OTA_contradictions_from_facade_branch": 0,
+  "semantics": [
+    "H03 source building count under OSM convention is not hotel floor count or category floor placement.",
+    "H01 raw start_date is not verified construction completion; no candidate year emitted as canonical H01.",
+    "H02 legal heritage status is unknown; OSM heritage tags never replace current legal registry.",
+    "All V/S canonical results remain unknown; components and uncalibrated operator claims do not establish a physical window fact.",
+    "16 hotel-level V01 comparisons contain114 exact category-name records; explicit partial views remain partial and not a guarantee."
+  ],
+  "backup_manifest_path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/facades/archive/address_repair_20261024T135705Z/backup_manifest.json",
+  "backup_files_verified": 61,
+  "pre_repair_audit_rows": [
+    {
+      "city_id": "sochi",
+      "hotel_id": "10012084",
+      "building_id": "way/74466391",
+      "source_house": "18",
+      "ota_address": "улица Конституции СССР, д.18, Сочи",
+      "normalized_house": "18",
+      "normalized_address": "ulitsa konstitutsii sssr d 18 sochi",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "10439075",
+      "building_id": "way/147588879",
+      "source_house": "70",
+      "ota_address": "улица Ружейная, д. 70, Сириус",
+      "normalized_house": "70",
+      "normalized_address": "ulitsa ruzheinaya d 70 sirius",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "10575679",
+      "building_id": "way/90395695",
+      "source_house": "56А",
+      "ota_address": "Российская Федерация, Краснодарский край, г. Сочи, пгт Красная Поляна, ул. Заповедная, д. 56А, помещение 1",
+      "normalized_house": "56a",
+      "normalized_address": "rossiiskaya federatsiya krasnodarskii krai g sochi pgt krasnaya polyana ul zapovednaya d 56a pomeshchenie 1",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "10595288",
+      "building_id": "way/51414276",
+      "source_house": "8А",
+      "ota_address": "улица Орджоникидзе, д. 8А, Сочи",
+      "normalized_house": "8a",
+      "normalized_address": "ulitsa ordzhonikidze d 8a sochi",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "10595288",
+      "building_id": "way/51414278",
+      "source_house": "8А",
+      "ota_address": "улица Орджоникидзе, д. 8А, Сочи",
+      "normalized_house": "8a",
+      "normalized_address": "ulitsa ordzhonikidze d 8a sochi",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "11161657",
+      "building_id": "way/53290634",
+      "source_house": "34",
+      "ota_address": "улица Богдана Хмельницкого, д. 34, Сочи",
+      "normalized_house": "34",
+      "normalized_address": "ulitsa bogdana khmelnitskogo d 34 sochi",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "11181978",
+      "building_id": "way/55356585",
+      "source_house": "104А",
+      "ota_address": "улица Просвещения, 104А, Сочи",
+      "normalized_house": "104a",
+      "normalized_address": "ulitsa prosveshcheniya 104a sochi",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "11200750",
+      "building_id": "way/55356580",
+      "source_house": "104Б",
+      "ota_address": "улица Просвещения, д. 104Б, Сочи",
+      "normalized_house": "104b",
+      "normalized_address": "ulitsa prosveshcheniya d 104b sochi",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "11202853",
+      "building_id": "way/53301283",
+      "source_house": "8",
+      "ota_address": "переулок Богдана Хмельницкого, д.8, Сочи",
+      "normalized_house": "8",
+      "normalized_address": "pereulok bogdana khmelnitskogo d 8 sochi",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "11202853",
+      "building_id": "way/53284168",
+      "source_house": "8",
+      "ota_address": "переулок Богдана Хмельницкого, д.8, Сочи",
+      "normalized_house": "8",
+      "normalized_address": "pereulok bogdana khmelnitskogo d 8 sochi",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "11255055",
+      "building_id": "way/53729803",
+      "source_house": "34/2",
+      "ota_address": "ул.Чкалова 34/2, Сочи",
+      "normalized_house": "34/2",
+      "normalized_address": "ul chkalova 34/2 sochi",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "11303583",
+      "building_id": "way/167403299",
+      "source_house": "6/9",
+      "ota_address": "улица Демократическая, д.6/9, Сочи",
+      "normalized_house": "6/9",
+      "normalized_address": "ulitsa demokraticheskaya d 6/9 sochi",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "11313836",
+      "building_id": "way/53742331",
+      "source_house": "219/28",
+      "ota_address": "Краснодарский Край, г.о. город-курорт Сочи, г Сочи, р-н Адлерский, ул Ленина, д. 219/28",
+      "normalized_house": "219/28",
+      "normalized_address": "krasnodarskii krai g o gorod kurort sochi g sochi r n adlerskii ul lenina d 219/28",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "13124554",
+      "building_id": "way/238327764",
+      "source_house": "10",
+      "ota_address": "улица Северная, 10, Сочи",
+      "normalized_house": "10",
+      "normalized_address": "ulitsa severnaya 10 sochi",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "13124554",
+      "building_id": "way/238786661",
+      "source_house": "10",
+      "ota_address": "улица Северная, 10, Сочи",
+      "normalized_house": "10",
+      "normalized_address": "ulitsa severnaya 10 sochi",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "13124554",
+      "building_id": "way/238786664",
+      "source_house": "10",
+      "ota_address": "улица Северная, 10, Сочи",
+      "normalized_house": "10",
+      "normalized_address": "ulitsa severnaya 10 sochi",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "13124554",
+      "building_id": "way/238786662",
+      "source_house": "10",
+      "ota_address": "улица Северная, 10, Сочи",
+      "normalized_house": "10",
+      "normalized_address": "ulitsa severnaya 10 sochi",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "13343374",
+      "building_id": "way/51105575",
+      "source_house": "31А",
+      "ota_address": "Первомайская улица, 31А, Сочи",
+      "normalized_house": "31a",
+      "normalized_address": "pervomaiskaya ulitsa 31a sochi",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "13429040",
+      "building_id": "way/51764154",
+      "source_house": "101/1",
+      "ota_address": "Виноградная улица, 101/1, Сочи",
+      "normalized_house": "101/1",
+      "normalized_address": "vinogradnaya ulitsa 101/1 sochi",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "13674260",
+      "building_id": "way/51571822",
+      "source_house": "5",
+      "ota_address": "г Сочи, р-н Хостинский, ул Учительская, д. 5, Сочи",
+      "normalized_house": "5",
+      "normalized_address": "g sochi r n khostinskii ul uchitelskaya d 5 sochi",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "13714940",
+      "building_id": "way/53289663",
+      "source_house": "12/1",
+      "ota_address": "улица Богдана Хмельницкого, д.12/1, Сочи",
+      "normalized_house": "12/1",
+      "normalized_address": "ulitsa bogdana khmelnitskogo d 12/1 sochi",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "13736470",
+      "building_id": "way/207598815",
+      "source_house": "50",
+      "ota_address": "354349, Краснодарский Край, ф.т. Сириус, пгт. Сириус, ул 65 лет Победы, д. 50",
+      "normalized_house": "50",
+      "normalized_address": "354349 krasnodarskii krai f t sirius pgt sirius ul 65 let pobedy d 50",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "13736470",
+      "building_id": "way/260633951",
+      "source_house": "50",
+      "ota_address": "354349, Краснодарский Край, ф.т. Сириус, пгт. Сириус, ул 65 лет Победы, д. 50",
+      "normalized_house": "50",
+      "normalized_address": "354349 krasnodarskii krai f t sirius pgt sirius ul 65 let pobedy d 50",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "13736470",
+      "building_id": "way/260633950",
+      "source_house": "50",
+      "ota_address": "354349, Краснодарский Край, ф.т. Сириус, пгт. Сириус, ул 65 лет Победы, д. 50",
+      "normalized_house": "50",
+      "normalized_address": "354349 krasnodarskii krai f t sirius pgt sirius ul 65 let pobedy d 50",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "13736470",
+      "building_id": "way/374404842",
+      "source_house": "50",
+      "ota_address": "354349, Краснодарский Край, ф.т. Сириус, пгт. Сириус, ул 65 лет Победы, д. 50",
+      "normalized_house": "50",
+      "normalized_address": "354349 krasnodarskii krai f t sirius pgt sirius ul 65 let pobedy d 50",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "6329566",
+      "building_id": "way/53357937",
+      "source_house": "8",
+      "ota_address": "354002, Russia, Sochi, Ulitsa Lysaya Gora 8, Сочи",
+      "normalized_house": "8",
+      "normalized_address": "354002 russia sochi ulitsa lysaya gora 8 sochi",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "6398405",
+      "building_id": "way/98219997",
+      "source_house": "10",
+      "ota_address": "Kamyshovaya Ulitsa 10, Sirius, 353821, Сириус",
+      "normalized_house": "10",
+      "normalized_address": "kamyshovaya ulitsa 10 sirius 353821 sirius",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "6416199",
+      "building_id": "way/80186747",
+      "source_house": "17/13",
+      "ota_address": "Российская Федерация, Краснодарский край, ф.т. Сириус, пгт. Сириус, ул Цветочная, д. 17/13",
+      "normalized_house": "17/13",
+      "normalized_address": "rossiiskaya federatsiya krasnodarskii krai f t sirius pgt sirius ul tsvetochnaya d 17/13",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "6453529",
+      "building_id": "way/109061659",
+      "source_house": "210/2",
+      "ota_address": "к/п Лазаревское, Ул. Победы д.210/2, Сочи",
+      "normalized_house": "210/2",
+      "normalized_address": "k/p lazarevskoe ul pobedy d 210/2 sochi",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "6460390",
+      "building_id": "way/131715080",
+      "source_house": "56",
+      "ota_address": "улица Богдана Хмельницкого, д. 56, Сочи",
+      "normalized_house": "56",
+      "normalized_address": "ulitsa bogdana khmelnitskogo d 56 sochi",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "6496437",
+      "building_id": "way/149546331",
+      "source_house": "70",
+      "ota_address": "улица Просвещения, д.70, Сочи",
+      "normalized_house": "70",
+      "normalized_address": "ulitsa prosveshcheniya d 70 sochi",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "6496747",
+      "building_id": "way/53284176",
+      "source_house": "22/1",
+      "ota_address": "Российская Федерация, Краснодарский край, г.Сочи, Адлерский район, ул. Гвардейская, д. 22/1",
+      "normalized_house": "22/1",
+      "normalized_address": "rossiiskaya federatsiya krasnodarskii krai g sochi adlerskii raion ul gvardeiskaya d 22/1",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "6497279",
+      "building_id": "relation/12821037",
+      "source_house": "21",
+      "ota_address": "Олимпийский проспект, д.21, Сириус",
+      "normalized_house": "21",
+      "normalized_address": "olimpiiskii prospekt d 21 sirius",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "6511778",
+      "building_id": "way/115306225",
+      "source_house": "5Б",
+      "ota_address": "улица Мирная 5Б, Сочи",
+      "normalized_house": "5b",
+      "normalized_address": "ulitsa mirnaya 5b sochi",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "6551322",
+      "building_id": "way/54238274",
+      "source_house": "9Б",
+      "ota_address": "улица Белорусская, д.9Б, Сочи",
+      "normalized_house": "9b",
+      "normalized_address": "ulitsa belorusskaya d 9b sochi",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "6601612",
+      "building_id": "way/52017864",
+      "source_house": "14",
+      "ota_address": "Краснодарский край, г. Сочи, Хостинский район, ул. Железнодорожная, дом 14",
+      "normalized_house": "14",
+      "normalized_address": "krasnodarskii krai g sochi khostinskii raion ul zheleznodorozhnaya dom 14",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "6601758",
+      "building_id": "way/147593043",
+      "source_house": "41",
+      "ota_address": "Апрельская ул., д. 41, Сириус",
+      "normalized_house": "41",
+      "normalized_address": "aprelskaya ul d 41 sirius",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "7018069",
+      "building_id": "way/96677821",
+      "source_house": "247",
+      "ota_address": "Российская Федерация, Краснодарский край, г. Сочи, Лазаревский район, п. Лазаревское, ул. Победы, д. 247",
+      "normalized_house": "247",
+      "normalized_address": "rossiiskaya federatsiya krasnodarskii krai g sochi lazarevskii raion p lazarevskoe ul pobedy d 247",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "7631439",
+      "building_id": "relation/17698774",
+      "source_house": "4А",
+      "ota_address": "Краснодарский край, г.Сочи, Хостинский район, ул.Ялтинская, д.4-а",
+      "normalized_house": "4a",
+      "normalized_address": "krasnodarskii krai g sochi khostinskii raion ul yaltinskaya d 4a",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "7725078",
+      "building_id": "way/53292016",
+      "source_house": "1Б",
+      "ota_address": "улица Бестужева, д.1 Б, Сочи",
+      "normalized_house": "1b",
+      "normalized_address": "ulitsa bestuzheva d 1b sochi",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "7725078",
+      "building_id": "way/808856239",
+      "source_house": "1",
+      "ota_address": "улица Бестужева, д.1 Б, Сочи",
+      "normalized_house": "1",
+      "normalized_address": "ulitsa bestuzheva d 1b sochi",
+      "review": "reject_wrong_parent_house"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "7726257",
+      "building_id": "way/708992263",
+      "source_house": "50",
+      "ota_address": "улица Павлика Морозова, д.50, Адлер",
+      "normalized_house": "50",
+      "normalized_address": "ulitsa pavlika morozova d 50 adler",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "7840047",
+      "building_id": "way/80191318",
+      "source_house": "19А",
+      "ota_address": "ул. Луначарского, д. 19, лит. А, Сириус",
+      "normalized_house": "19a",
+      "normalized_address": "ul lunacharskogo d 19a sirius",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "7935886",
+      "building_id": "way/562690844",
+      "source_house": "13",
+      "ota_address": "8 Marta Street 13, 354340 Adler, Russia, Sochi, 354340, Сочи",
+      "normalized_house": "13",
+      "normalized_address": "8 marta street 13 354340 adler russia sochi 354340 sochi",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "7942708",
+      "building_id": "way/52038433",
+      "source_house": "184/2",
+      "ota_address": "улица Виноградная, д.184/2, Сочи",
+      "normalized_house": "184/2",
+      "normalized_address": "ulitsa vinogradnaya d 184/2 sochi",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "8085655",
+      "building_id": "way/80180160",
+      "source_house": "2А",
+      "ota_address": "улица Карла Маркса, д.2 А, Сочи",
+      "normalized_house": "2a",
+      "normalized_address": "ulitsa karla marksa d 2a sochi",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "8085655",
+      "building_id": "way/80180198",
+      "source_house": "2",
+      "ota_address": "улица Карла Маркса, д.2 А, Сочи",
+      "normalized_house": "2",
+      "normalized_address": "ulitsa karla marksa d 2a sochi",
+      "review": "reject_wrong_parent_house"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "8105660",
+      "building_id": "way/53742307",
+      "source_house": "219Д",
+      "ota_address": "улица Ленина, д.219 Д, Сочи",
+      "normalized_house": "219d",
+      "normalized_address": "ulitsa lenina d 219d sochi",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "8398222",
+      "building_id": "way/55374240",
+      "source_house": "215",
+      "ota_address": "354341, Russia, Sochi, Ulitsa Lenina 215, Сочи",
+      "normalized_house": "215",
+      "normalized_address": "354341 russia sochi ulitsa lenina 215 sochi",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "8477232",
+      "building_id": "way/52020012",
+      "source_house": "1",
+      "ota_address": "Russia, Sochi, Khosta, Ulitsa Iskry, 1, Сочи",
+      "normalized_house": "1",
+      "normalized_address": "russia sochi khosta ulitsa iskry 1 sochi",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "8478929",
+      "building_id": "way/81148610",
+      "source_house": "87",
+      "ota_address": "Ulitsa Prosveshcheniya 87, Adler, Sochi 354364 Russia, Сочи",
+      "normalized_house": "87",
+      "normalized_address": "ulitsa prosveshcheniya 87 adler sochi 354364 russia sochi",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "8531041",
+      "building_id": "way/52526296",
+      "source_house": "38/2",
+      "ota_address": "Sochi, Ulitsa Politekhnicheskaya 38/2, Сочи",
+      "normalized_house": "38/2",
+      "normalized_address": "sochi ulitsa politekhnicheskaya 38/2 sochi",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "8543887",
+      "building_id": "way/728895767",
+      "source_house": "165Д",
+      "ota_address": "ул. Декабристов, д. 165, лит. Д, Сочи",
+      "normalized_house": "165d",
+      "normalized_address": "ul dekabristov d 165d sochi",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "8685572",
+      "building_id": "way/52452699",
+      "source_house": "73",
+      "ota_address": "улица Плеханова, д. 73, Сочи",
+      "normalized_house": "73",
+      "normalized_address": "ulitsa plekhanova d 73 sochi",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "8705437",
+      "building_id": "way/51764060",
+      "source_house": "7А",
+      "ota_address": "7A Ulitsa Tsyurupy; Sochi, Сочи",
+      "normalized_house": "7a",
+      "normalized_address": "7a ulitsa tsyurupy sochi sochi",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "8707953",
+      "building_id": "way/727336120",
+      "source_house": "18",
+      "ota_address": "Вардане ул. Молодежная д.18, Сочи",
+      "normalized_house": "18",
+      "normalized_address": "vardane ul molodezhnaya d 18 sochi",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "8726190",
+      "building_id": "way/51106901",
+      "source_house": "6",
+      "ota_address": "улица Несебрская, дом 6, Сочи",
+      "normalized_house": "6",
+      "normalized_address": "ulitsa nesebrskaya dom 6 sochi",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "8733095",
+      "building_id": "way/202867328",
+      "source_house": "7Г",
+      "ota_address": "ulitsa Tuapsinskaya; 7 G; Sochi, Sochi, Sochi, Сочи",
+      "normalized_house": "7g",
+      "normalized_address": "ulitsa tuapsinskaya 7g sochi sochi sochi sochi",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "8747640",
+      "building_id": "way/98649214",
+      "source_house": "33",
+      "ota_address": "33 Obshchinnaya ulitsa, 354349 Adler, Russia, Sirius, Сириус",
+      "normalized_house": "33",
+      "normalized_address": "33 obshchinnaya ulitsa 354349 adler russia sirius sirius",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "8756112",
+      "building_id": "way/98649229",
+      "source_house": "42",
+      "ota_address": "Obschinnaya Ulitsa; 42, Sirius, 354383, Сириус",
+      "normalized_house": "42",
+      "normalized_address": "obschinnaya ulitsa 42 sirius 354383 sirius",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "8846754",
+      "building_id": "way/81153172",
+      "source_house": "38",
+      "ota_address": "ulitsa Chkalova; 38; Sochi, Sochi, Сочи",
+      "normalized_house": "38",
+      "normalized_address": "ulitsa chkalova 38 sochi sochi sochi",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "8869683",
+      "building_id": "way/91225860",
+      "source_house": "18/16",
+      "ota_address": "354053, Краснодарский Край, г.о. город-курорт Сочи, г Сочи, ул Волжская, д. 18/16",
+      "normalized_house": "18/16",
+      "normalized_address": "354053 krasnodarskii krai g o gorod kurort sochi g sochi ul volzhskaya d 18/16",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "8877049",
+      "building_id": "way/708922832",
+      "source_house": "23",
+      "ota_address": "улица Кирова, д.23, Сочи",
+      "normalized_house": "23",
+      "normalized_address": "ulitsa kirova d 23 sochi",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "9024570",
+      "building_id": "way/52454945",
+      "source_house": "49/25",
+      "ota_address": "Краснодарский край, г.Сочи, Центральный р-н, ул.Санаторная, д.49/25",
+      "normalized_house": "49/25",
+      "normalized_address": "krasnodarskii krai g sochi tsentralnyi r n ul sanatornaya d 49/25",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "9769189",
+      "building_id": "way/207637704",
+      "source_house": "67",
+      "ota_address": "улица 65 лет Победы, д. 67, Сириус",
+      "normalized_house": "67",
+      "normalized_address": "ulitsa 65 let pobedy d 67 sirius",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "9829023",
+      "building_id": "way/155104619",
+      "source_house": "219/5",
+      "ota_address": "улица Ленина, д.219/5, Сочи",
+      "normalized_house": "219/5",
+      "normalized_address": "ulitsa lenina d 219/5 sochi",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "9986868",
+      "building_id": "way/190714781",
+      "source_house": "56 с1",
+      "ota_address": "улица Горького, д. 56с1, Сочи",
+      "normalized_house": "56s1",
+      "normalized_address": "ulitsa gorkogo d 56s1 sochi",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "9995282",
+      "building_id": "way/51849058",
+      "source_house": "6",
+      "ota_address": "улица Черноморская, д. 6, Сочи",
+      "normalized_house": "6",
+      "normalized_address": "ulitsa chernomorskaya d 6 sochi",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "moscow",
+      "hotel_id": "6429629",
+      "building_id": "way/40813025",
+      "source_house": "23",
+      "ota_address": "Донская Улица 23, Москва",
+      "normalized_house": "23",
+      "normalized_address": "donskaya ulitsa 23 moskva",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "moscow",
+      "hotel_id": "6458292",
+      "building_id": "relation/15812142",
+      "source_house": "4",
+      "ota_address": "Ulitsa Bolshaya Dorogomilovskaya 4; Moscow, Moscow, Moscow, Москва",
+      "normalized_house": "4",
+      "normalized_address": "ulitsa bolshaya dorogomilovskaya 4 moscow moscow moscow moskva",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "moscow",
+      "hotel_id": "6481764",
+      "building_id": "way/32276105",
+      "source_house": "20",
+      "ota_address": "Ulitsa Energeticheskaya 20 Apartment 152,Ulitsa Energeticheskaya, Moscow, 111116, Москва",
+      "normalized_house": "20",
+      "normalized_address": "ulitsa energeticheskaya 20 apartment 152 ulitsa energeticheskaya moscow 111116 moskva",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "moscow",
+      "hotel_id": "6535528",
+      "building_id": "way/52909897",
+      "source_house": "11",
+      "ota_address": "Ермолаевский пер., д. 11, Москва",
+      "normalized_house": "11",
+      "normalized_address": "ermolaevskii per d 11 moskva",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "moscow",
+      "hotel_id": "6546443",
+      "building_id": "way/665282696",
+      "source_house": "8",
+      "ota_address": "Bryanskaya Ulitsa 8, Moscow, Russia, Moscow, Moscow, 121059, Москва",
+      "normalized_house": "8",
+      "normalized_address": "bryanskaya ulitsa 8 moscow russia moscow moscow 121059 moskva",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "moscow",
+      "hotel_id": "6762797",
+      "building_id": "way/155713604",
+      "source_house": "10",
+      "ota_address": "Smolenskaya 10, Moscow Moscow, Москва",
+      "normalized_house": "10",
+      "normalized_address": "smolenskaya 10 moscow moscow moskva",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "moscow",
+      "hotel_id": "6957864",
+      "building_id": "way/198662411",
+      "source_house": "119А",
+      "ota_address": "119571, г Москва, вн.тер.г. муниципальный округ Обручевский, пр-кт Ленинский, д. 119А, помещ. 39Н/9",
+      "normalized_house": "119a",
+      "normalized_address": "119571g moskva vn ter g munitsipalnyi okrug obruchevskii pr kt leninskii d 119a pomeshch 39n/9",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "moscow",
+      "hotel_id": "8126782",
+      "building_id": "way/389556105",
+      "source_house": "39Б",
+      "ota_address": "115409, г Москва, вн.тер.г. муниципальный округ Москворечье-Сабурово, ш Каширское, д. 39Б",
+      "normalized_house": "39b",
+      "normalized_address": "115409g moskva vn ter g munitsipalnyi okrug moskvoreche saburovo sh kashirskoe d 39b",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "moscow",
+      "hotel_id": "8464907",
+      "building_id": "relation/1393269",
+      "source_house": "20/1",
+      "ota_address": "ulitsa 1-ya Tverskaya-Yamskaya, 20/1, Moscow, Moscow, 125047, Москва",
+      "normalized_house": "20/1",
+      "normalized_address": "ulitsa 1 ya tverskaya yamskaya 20/1 moscow moscow 125047 moskva",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "moscow",
+      "hotel_id": "8475208",
+      "building_id": "way/38938874",
+      "source_house": "1",
+      "ota_address": "Trekhgorny Val 1, Moskva, Russia, 123022, Москва",
+      "normalized_house": "1",
+      "normalized_address": "trekhgorny val 1 moskva russia 123022 moskva",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "moscow",
+      "hotel_id": "8584710",
+      "building_id": "way/406428488",
+      "source_house": "9",
+      "ota_address": "Russia, Moscow, Ulitsa Gasheka, 9, Москва",
+      "normalized_house": "9",
+      "normalized_address": "russia moscow ulitsa gasheka 9 moskva",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "moscow",
+      "hotel_id": "8684850",
+      "building_id": "way/156930124",
+      "source_house": "45",
+      "ota_address": "Churilkovo village, Zelenaya street nr. 45, 142034, Domodedovo, Russia, Moscow, 142034, Москва",
+      "normalized_house": "45",
+      "normalized_address": "churilkovo village zelenaya street nr 45 142034 domodedovo russia moscow 142034 moskva",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "moscow",
+      "hotel_id": "8736052",
+      "building_id": "relation/19206805",
+      "source_house": "4",
+      "ota_address": "Страстной бульвар, 4, Москва",
+      "normalized_house": "4",
+      "normalized_address": "strastnoi bulvar 4 moskva",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "moscow",
+      "hotel_id": "8742604",
+      "building_id": "relation/4788410",
+      "source_house": "27",
+      "ota_address": "125047, г Москва, вн.тер.г. муниципальный округ Тверской, ул Александра Невского, д. 27, помещ. 1/1",
+      "normalized_house": "27",
+      "normalized_address": "125047g moskva vn ter g munitsipalnyi okrug tverskoi ul aleksandra nevskogo d 27 pomeshch 1/1",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "moscow",
+      "hotel_id": "8744278",
+      "building_id": "way/37131004",
+      "source_house": "35",
+      "ota_address": "ulitsa Dolgorukovskaya, 35, Moscow, Russia, Москва",
+      "normalized_house": "35",
+      "normalized_address": "ulitsa dolgorukovskaya 35 moscow russia moskva",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "moscow",
+      "hotel_id": "8744391",
+      "building_id": "relation/10899399",
+      "source_house": "8",
+      "ota_address": "121099, г Москва, вн.тер.г. муниципальный округ Арбат, ул Смоленская, д. 8",
+      "normalized_house": "8",
+      "normalized_address": "121099g moskva vn ter g munitsipalnyi okrug arbat ul smolenskaya d 8",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "moscow",
+      "hotel_id": "8854269",
+      "building_id": "way/58742209",
+      "source_house": "1",
+      "ota_address": "улица Таёжная, д. 1, Москва",
+      "normalized_house": "1",
+      "normalized_address": "ulitsa taezhnaya d 1 moskva",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "6389487",
+      "building_id": "way/97427741",
+      "source_house": "4",
+      "ota_address": "улицв Чайковского, д.4, Санкт-Петербург",
+      "normalized_house": "4",
+      "normalized_address": "ulitsv chaikovskogo d 4 sankt peterburg",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "6517577",
+      "building_id": "relation/1413802",
+      "source_house": "60",
+      "ota_address": "Улица Некрасова 60, Санкт-Петербург",
+      "normalized_house": "60",
+      "normalized_address": "ulitsa nekrasova 60 sankt peterburg",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "6526880",
+      "building_id": "relation/18083348",
+      "source_house": "88",
+      "ota_address": "Невский проспект, 88, Санкт-Петербург",
+      "normalized_house": "88",
+      "normalized_address": "nevskii prospekt 88 sankt peterburg",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "6561592",
+      "building_id": "way/62847204",
+      "source_house": "28",
+      "ota_address": "Можайская ул., д.28, Санкт-Петербург",
+      "normalized_house": "28",
+      "normalized_address": "mozhaiskaya ul d 28 sankt peterburg",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "6752870",
+      "building_id": "way/96148903",
+      "source_house": "44",
+      "ota_address": "Mokhovaya 44 Tsentralny District Saint Petersburg , 191028, Санкт-Петербург",
+      "normalized_house": "44",
+      "normalized_address": "mokhovaya 44 tsentralny district saint petersburg 191028 sankt peterburg",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "7376418",
+      "building_id": "relation/4575977",
+      "source_house": "147",
+      "ota_address": "Невский проспект, дом 147, Санкт-Петербург",
+      "normalized_house": "147",
+      "normalized_address": "nevskii prospekt dom 147 sankt peterburg",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "7467805",
+      "building_id": "way/60788904",
+      "source_house": "21",
+      "ota_address": "Введенская ул., д. 21, Санкт-Петербург",
+      "normalized_house": "21",
+      "normalized_address": "vvedenskaya ul d 21 sankt peterburg",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "7935820",
+      "building_id": "relation/1394323",
+      "source_house": "19",
+      "ota_address": "191036, Vosstaniya Street 19, Saint Petersburg, Russia, Санкт-Петербург",
+      "normalized_house": "19",
+      "normalized_address": "191036 vosstaniya street 19 saint petersburg russia sankt peterburg",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "8038274",
+      "building_id": "relation/1082852",
+      "source_house": "41",
+      "ota_address": "проспект Вознесенский, д. 41, Санкт-Петербург",
+      "normalized_house": "41",
+      "normalized_address": "prospekt voznesenskii d 41 sankt peterburg",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "8161726",
+      "building_id": "relation/1028080",
+      "source_house": "6",
+      "ota_address": "Kazanskaya Ulitsa 6; Saint Petersburg, Saint Petersburg, Saint Petersburg, 195213, Санкт-Петербург",
+      "normalized_house": "6",
+      "normalized_address": "kazanskaya ulitsa 6 saint petersburg saint petersburg saint petersburg 195213 sankt peterburg",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "8165461",
+      "building_id": "relation/1043548",
+      "source_house": "34",
+      "ota_address": "Гороховая Улица 34, Санкт-Петербург",
+      "normalized_house": "34",
+      "normalized_address": "gorokhovaya ulitsa 34 sankt peterburg",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "8292462",
+      "building_id": "relation/946836",
+      "source_house": "10",
+      "ota_address": "Улица Коломенская, д.10, Санкт-Петербург",
+      "normalized_house": "10",
+      "normalized_address": "ulitsa kolomenskaya d 10 sankt peterburg",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "8311345",
+      "building_id": "way/23357088",
+      "source_house": "40 к1",
+      "ota_address": "Индустриальный проспект, 40к1, Санкт-Петербург",
+      "normalized_house": "40k1",
+      "normalized_address": "industrialnyi prospekt 40k1 sankt peterburg",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "8454971",
+      "building_id": "relation/16127870",
+      "source_house": "10",
+      "ota_address": "улица Гончарная, д.10, Санкт-Петербург",
+      "normalized_house": "10",
+      "normalized_address": "ulitsa goncharnaya d 10 sankt peterburg",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "8481864",
+      "building_id": "way/100687081",
+      "source_house": "32",
+      "ota_address": "набережная реки Мойки, д.32, Санкт-Петербург",
+      "normalized_house": "32",
+      "normalized_address": "naberezhnaya reki moiki d 32 sankt peterburg",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "8553862",
+      "building_id": "relation/1587820",
+      "source_house": "60",
+      "ota_address": "Литейный проспект 60, Санкт-Петербург",
+      "normalized_house": "60",
+      "normalized_address": "liteinyi prospekt 60 sankt peterburg",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "8660031",
+      "building_id": "way/45192906",
+      "source_house": "9",
+      "ota_address": "Ulitsa Gavanskaya, 9, Saint Petersburg, Санкт-Петербург",
+      "normalized_house": "9",
+      "normalized_address": "ulitsa gavanskaya 9 saint petersburg sankt peterburg",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "8660892",
+      "building_id": "relation/955107",
+      "source_house": "8",
+      "ota_address": "улица Марата, д.8 , Санкт-Петербург",
+      "normalized_house": "8",
+      "normalized_address": "ulitsa marata d 8 sankt peterburg",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "8661034",
+      "building_id": "relation/1598169",
+      "source_house": "12",
+      "ota_address": "191036, Russia, Saint Petersburg, 1-ya Sovetskaya street, 12, Санкт-Петербург",
+      "normalized_house": "12",
+      "normalized_address": "191036 russia saint petersburg 1 ya sovetskaya street 12 sankt peterburg",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "8733326",
+      "building_id": "relation/1878250",
+      "source_house": "34",
+      "ota_address": "улица Большая Морская, д.34, Санкт-Петербург",
+      "normalized_house": "34",
+      "normalized_address": "ulitsa bolshaya morskaya d 34 sankt peterburg",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "8748739",
+      "building_id": "way/130662472",
+      "source_house": "8",
+      "ota_address": "Сапёрный переулок, д.8, Санкт-Петербург",
+      "normalized_house": "8",
+      "normalized_address": "sapernyi pereulok d 8 sankt peterburg",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "8763311",
+      "building_id": "way/30700363",
+      "source_house": "65 к4",
+      "ota_address": "pr. Kosmonavtov, 65к4, Apt 99, Санкт-Петербург",
+      "normalized_house": "65k4",
+      "normalized_address": "pr kosmonavtov 65k4 apt 99 sankt peterburg",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "9990973",
+      "building_id": "relation/660807",
+      "source_house": "7",
+      "ota_address": "проспект Владимирский, д.7, Санкт-Петербург",
+      "normalized_house": "7",
+      "normalized_address": "prospekt vladimirskii d 7 sankt peterburg",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "9991015",
+      "building_id": "relation/1524834",
+      "source_house": "7",
+      "ota_address": "Мучной переулок, 7, Санкт-Петербург",
+      "normalized_house": "7",
+      "normalized_address": "muchnoi pereulok 7 sankt peterburg",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "6702635",
+      "building_id": "way/91641101",
+      "source_house": "7/10",
+      "ota_address": "420111, Республика Татарстан, г.о. город Казань, г Казань, ул Баумана, д. 7/10",
+      "normalized_house": "7/10",
+      "normalized_address": "420111 respublika tatarstan g o gorod kazan g kazan ul baumana d 7/10",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "6702635",
+      "building_id": "way/360475286",
+      "source_house": "7/10",
+      "ota_address": "420111, Республика Татарстан, г.о. город Казань, г Казань, ул Баумана, д. 7/10",
+      "normalized_house": "7/10",
+      "normalized_address": "420111 respublika tatarstan g o gorod kazan g kazan ul baumana d 7/10",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "7026565",
+      "building_id": "way/104639166",
+      "source_house": "67",
+      "ota_address": "420107, Республика Татарстан, г.о. город Казань, г Казань, ул Островского, д. 67, помещ. 1501",
+      "normalized_house": "67",
+      "normalized_address": "420107 respublika tatarstan g o gorod kazan g kazan ul ostrovskogo d 67 pomeshch 1501",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "7716336",
+      "building_id": "way/96705174",
+      "source_house": "30",
+      "ota_address": "420021, Республика Татарстан, г.о. город Казань, г Казань, ул Салиха Сайдашева, д. 30, помещ. 102",
+      "normalized_house": "30",
+      "normalized_address": "420021 respublika tatarstan g o gorod kazan g kazan ul salikha saidasheva d 30 pomeshch 102",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "7775286",
+      "building_id": "way/71169787",
+      "source_house": "17",
+      "ota_address": "420057, РФ, РТ, г.Казань, проспект Ибрагимова, 17",
+      "normalized_house": "17",
+      "normalized_address": "420057 rf rt g kazan prospekt ibragimova 17",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "7882957",
+      "building_id": "way/321420899",
+      "source_house": "63А",
+      "ota_address": "420021, Республика Татарстан, г.о. город Казань, г Казань, ул Нариманова, д. 63А",
+      "normalized_house": "63a",
+      "normalized_address": "420021 respublika tatarstan g o gorod kazan g kazan ul narimanova d 63a",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "7964924",
+      "building_id": "way/97465709",
+      "source_house": "18",
+      "ota_address": "420061, Республика Татарстан, г.о. город Казань, г Казань, ул Николая Ершова, зд. 18, помещ. 2004",
+      "normalized_house": "18",
+      "normalized_address": "420061 respublika tatarstan g o gorod kazan g kazan ul nikolaya ershova zd 18 pomeshch 2004",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "8053001",
+      "building_id": "way/110175759",
+      "source_house": "26А",
+      "ota_address": "Улица Гаврилова 26 A, Казань",
+      "normalized_house": "26a",
+      "normalized_address": "ulitsa gavrilova 26a kazan",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "8136552",
+      "building_id": "way/253055353",
+      "source_house": "28",
+      "ota_address": "Казань, ул. Тази Гиззата, 28 пом. 1000",
+      "normalized_house": "28",
+      "normalized_address": "kazan ul tazi gizzata 28 pom 1000",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "8474966",
+      "building_id": "way/226337042",
+      "source_house": "23Б",
+      "ota_address": "420029, Республика Татарстан, г.о. город Казань, г Казань, ул Сибирский Тракт, д. 23Б, помещ. 3",
+      "normalized_house": "23b",
+      "normalized_address": "420029 respublika tatarstan g o gorod kazan g kazan ul sibirskii trakt d 23b pomeshch 3",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "8743189",
+      "building_id": "way/104636677",
+      "source_house": "40Б",
+      "ota_address": "420107, Республика Татарстан, г.о. город Казань, г Казань, ул Петербургская, д. 40Б, помещ. 1005",
+      "normalized_house": "40b",
+      "normalized_address": "420107 respublika tatarstan g o gorod kazan g kazan ul peterburgskaya d 40b pomeshch 1005",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "8755065",
+      "building_id": "way/157683900",
+      "source_house": "7",
+      "ota_address": "420021, Республика Татарстан, г.о. город Казань, г Казань, ул Михаила Худякова, д. 7",
+      "normalized_house": "7",
+      "normalized_address": "420021 respublika tatarstan g o gorod kazan g kazan ul mikhaila khudyakova d 7",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "8848719",
+      "building_id": "way/244599019",
+      "source_house": "27Б",
+      "ota_address": "420030, Республика Татарстан, г.о. город Казань, г Казань, ул Кызыл Армейская, д. 27б",
+      "normalized_house": "27b",
+      "normalized_address": "420030 respublika tatarstan g o gorod kazan g kazan ul kyzyl armeiskaya d 27b",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "kaliningrad",
+      "hotel_id": "10126086",
+      "building_id": "way/90446012",
+      "source_house": "60",
+      "ota_address": "236010, Калининградская Область, г.о. город Калининград, г Калининград, ул Красносельская, д. 60, помещ. 1",
+      "normalized_house": "60",
+      "normalized_address": "236010 kaliningradskaya oblast g o gorod kaliningrad g kaliningrad ul krasnoselskaya d 60 pomeshch 1",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "kaliningrad",
+      "hotel_id": "13647475",
+      "building_id": "way/39386693",
+      "source_house": "19/21",
+      "ota_address": "236022, Калининградская Область, г.о. город Калининград, г Калининград, пр-кт Мира, зд. 19/21, к. 2",
+      "normalized_house": "19/21",
+      "normalized_address": "236022 kaliningradskaya oblast g o gorod kaliningrad g kaliningrad pr kt mira zd 19/21 k 2",
+      "review": "quarantine_unverified_corpus"
+    },
+    {
+      "city_id": "kaliningrad",
+      "hotel_id": "6840588",
+      "building_id": "way/135510988",
+      "source_house": "57",
+      "ota_address": "Russia, Kaliningrad, Vozdushnaya ulitsa 57, 236011, Калининград",
+      "normalized_house": "57",
+      "normalized_address": "russia kaliningrad vozdushnaya ulitsa 57 236011 kaliningrad",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "kaliningrad",
+      "hotel_id": "7467345",
+      "building_id": "way/134873563",
+      "source_house": "21",
+      "ota_address": "Калининградская обл, городской округ \"Город Калининград\", ул Павлова, дом 21",
+      "normalized_house": "21",
+      "normalized_address": "kaliningradskaya obl gorodskoi okrug gorod kaliningrad ul pavlova dom 21",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "kaliningrad",
+      "hotel_id": "7719161",
+      "building_id": "way/134871260",
+      "source_house": "13А",
+      "ota_address": "улица Демьяна Бедного, д.13 А, Калининград",
+      "normalized_house": "13a",
+      "normalized_address": "ulitsa demyana bednogo d 13a kaliningrad",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "kaliningrad",
+      "hotel_id": "7719161",
+      "building_id": "way/134871120",
+      "source_house": "13",
+      "ota_address": "улица Демьяна Бедного, д.13 А, Калининград",
+      "normalized_house": "13",
+      "normalized_address": "ulitsa demyana bednogo d 13a kaliningrad",
+      "review": "reject_wrong_parent_house"
+    },
+    {
+      "city_id": "kaliningrad",
+      "hotel_id": "7939785",
+      "building_id": "way/253136228",
+      "source_house": "35А",
+      "ota_address": "238311, Калининградская Область, м.о. Гурьевский, п Большое Исаково, ул Калининградская, д. 35а",
+      "normalized_house": "35a",
+      "normalized_address": "238311 kaliningradskaya oblast m o gurevskii p bolshoe isakovo ul kaliningradskaya d 35a",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "kaliningrad",
+      "hotel_id": "7939785",
+      "building_id": "way/1562586433",
+      "source_house": "35А",
+      "ota_address": "238311, Калининградская Область, м.о. Гурьевский, п Большое Исаково, ул Калининградская, д. 35а",
+      "normalized_house": "35a",
+      "normalized_address": "238311 kaliningradskaya oblast m o gurevskii p bolshoe isakovo ul kaliningradskaya d 35a",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "kaliningrad",
+      "hotel_id": "8660347",
+      "building_id": "way/225689995",
+      "source_house": "36",
+      "ota_address": "236006, Калининградская Область, г.о. город Калининград, г Калининград, ул Маршала Баграмяна, д. 36, помещ. 2",
+      "normalized_house": "36",
+      "normalized_address": "236006 kaliningradskaya oblast g o gorod kaliningrad g kaliningrad ul marshala bagramyana d 36 pomeshch 2",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "kaliningrad",
+      "hotel_id": "8723110",
+      "building_id": "way/84100001",
+      "source_house": "1",
+      "ota_address": "ulitsa Partizana Zheleznyaka 1, 236038 Kaliningrad, Russia, 236038, Калининград",
+      "normalized_house": "1",
+      "normalized_address": "ulitsa partizana zheleznyaka 1 236038 kaliningrad russia 236038 kaliningrad",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "kaliningrad",
+      "hotel_id": "8743386",
+      "building_id": "way/101820195",
+      "source_house": "30",
+      "ota_address": "236022, Калининградская Область, г.о. город Калининград, г Калининград, ул Театральная, д. 30",
+      "normalized_house": "30",
+      "normalized_address": "236022 kaliningradskaya oblast g o gorod kaliningrad g kaliningrad ul teatralnaya d 30",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "kaliningrad",
+      "hotel_id": "8850047",
+      "building_id": "way/90677082",
+      "source_house": "73А",
+      "ota_address": "ulitsa Bagrationa, 73 A, Kaliningrad, Russia, Калининград",
+      "normalized_house": "73a",
+      "normalized_address": "ulitsa bagrationa 73a kaliningrad russia kaliningrad",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "kaliningrad",
+      "hotel_id": "9085021",
+      "building_id": "way/133848302",
+      "source_house": "145",
+      "ota_address": "236011, Калининградская Область, г.о. город Калининград, г Калининград, ул Аллея смелых, д. 145, помещ. 7",
+      "normalized_house": "145",
+      "normalized_address": "236011 kaliningradskaya oblast g o gorod kaliningrad g kaliningrad ul alleya smelykh d 145 pomeshch 7",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "kaliningrad",
+      "hotel_id": "9085021",
+      "building_id": "way/133847963",
+      "source_house": "145",
+      "ota_address": "236011, Калининградская Область, г.о. город Калининград, г Калининград, ул Аллея смелых, д. 145, помещ. 7",
+      "normalized_house": "145",
+      "normalized_address": "236011 kaliningradskaya oblast g o gorod kaliningrad g kaliningrad ul alleya smelykh d 145 pomeshch 7",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "kaliningrad",
+      "hotel_id": "9992358",
+      "building_id": "way/832612089",
+      "source_house": "12",
+      "ota_address": "Калининградская область, г Калининград, ул Северная, д 12",
+      "normalized_house": "12",
+      "normalized_address": "kaliningradskaya oblast g kaliningrad ul severnaya d 12",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "istanbul",
+      "hotel_id": "7540149",
+      "building_id": "way/288197582",
+      "source_house": "35",
+      "ota_address": "Mahmutbey, Taşocağı Yolu Cad. No:35, Стамбул",
+      "normalized_house": "35",
+      "normalized_address": "mahmutbey tasocag yolu cad no 35 stambul",
+      "review": "accepted_unchanged"
+    },
+    {
+      "city_id": "dubai",
+      "hotel_id": "6432238",
+      "building_id": "way/93638778",
+      "source_house": "3",
+      "ota_address": "Al Sultana, Shoreline 3, Palm Jumeirah, Dubai, Дубай",
+      "normalized_house": "3",
+      "normalized_address": "al sultana shoreline 3 palm jumeirah dubai dubai",
+      "review": "accepted_unchanged"
+    }
+  ],
+  "pre_repair_gate_regression_audit": [
+    {
+      "city_id": "sochi",
+      "hotel_id": "10012084",
+      "building_id": "way/74466391",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "10439075",
+      "building_id": "way/147588879",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "10575679",
+      "building_id": "way/90395695",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "10595288",
+      "building_id": "way/51414276",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "10595288",
+      "building_id": "way/51414278",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "11161657",
+      "building_id": "way/53290634",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "11181978",
+      "building_id": "way/55356585",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "11200750",
+      "building_id": "way/55356580",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "11202853",
+      "building_id": "way/53301283",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "11202853",
+      "building_id": "way/53284168",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "11255055",
+      "building_id": "way/53729803",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "11303583",
+      "building_id": "way/167403299",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "11313836",
+      "building_id": "way/53742331",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "13124554",
+      "building_id": "way/238327764",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "13124554",
+      "building_id": "way/238786661",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "13124554",
+      "building_id": "way/238786664",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "13124554",
+      "building_id": "way/238786662",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "13343374",
+      "building_id": "way/51105575",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "13429040",
+      "building_id": "way/51764154",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "13674260",
+      "building_id": "way/51571822",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "13714940",
+      "building_id": "way/53289663",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "13736470",
+      "building_id": "way/207598815",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "13736470",
+      "building_id": "way/260633951",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "13736470",
+      "building_id": "way/260633950",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "13736470",
+      "building_id": "way/374404842",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "6329566",
+      "building_id": "way/53357937",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "6398405",
+      "building_id": "way/98219997",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "6416199",
+      "building_id": "way/80186747",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "6453529",
+      "building_id": "way/109061659",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "6460390",
+      "building_id": "way/131715080",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "6496437",
+      "building_id": "way/149546331",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "6496747",
+      "building_id": "way/53284176",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "6497279",
+      "building_id": "relation/12821037",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "6511778",
+      "building_id": "way/115306225",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "6551322",
+      "building_id": "way/54238274",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "6601612",
+      "building_id": "way/52017864",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "6601758",
+      "building_id": "way/147593043",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "7018069",
+      "building_id": "way/96677821",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "7631439",
+      "building_id": "relation/17698774",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "7725078",
+      "building_id": "way/53292016",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "7725078",
+      "building_id": "way/808856239",
+      "after_gate_accepted": false
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "7726257",
+      "building_id": "way/708992263",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "7840047",
+      "building_id": "way/80191318",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "7935886",
+      "building_id": "way/562690844",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "7942708",
+      "building_id": "way/52038433",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "8085655",
+      "building_id": "way/80180160",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "8085655",
+      "building_id": "way/80180198",
+      "after_gate_accepted": false
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "8105660",
+      "building_id": "way/53742307",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "8398222",
+      "building_id": "way/55374240",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "8477232",
+      "building_id": "way/52020012",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "8478929",
+      "building_id": "way/81148610",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "8531041",
+      "building_id": "way/52526296",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "8543887",
+      "building_id": "way/728895767",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "8685572",
+      "building_id": "way/52452699",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "8705437",
+      "building_id": "way/51764060",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "8707953",
+      "building_id": "way/727336120",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "8726190",
+      "building_id": "way/51106901",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "8733095",
+      "building_id": "way/202867328",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "8747640",
+      "building_id": "way/98649214",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "8756112",
+      "building_id": "way/98649229",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "8846754",
+      "building_id": "way/81153172",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "8869683",
+      "building_id": "way/91225860",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "8877049",
+      "building_id": "way/708922832",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "9024570",
+      "building_id": "way/52454945",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "9769189",
+      "building_id": "way/207637704",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "9829023",
+      "building_id": "way/155104619",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "9986868",
+      "building_id": "way/190714781",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "9995282",
+      "building_id": "way/51849058",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "moscow",
+      "hotel_id": "6429629",
+      "building_id": "way/40813025",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "moscow",
+      "hotel_id": "6458292",
+      "building_id": "relation/15812142",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "moscow",
+      "hotel_id": "6481764",
+      "building_id": "way/32276105",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "moscow",
+      "hotel_id": "6535528",
+      "building_id": "way/52909897",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "moscow",
+      "hotel_id": "6546443",
+      "building_id": "way/665282696",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "moscow",
+      "hotel_id": "6762797",
+      "building_id": "way/155713604",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "moscow",
+      "hotel_id": "6957864",
+      "building_id": "way/198662411",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "moscow",
+      "hotel_id": "8126782",
+      "building_id": "way/389556105",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "moscow",
+      "hotel_id": "8464907",
+      "building_id": "relation/1393269",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "moscow",
+      "hotel_id": "8475208",
+      "building_id": "way/38938874",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "moscow",
+      "hotel_id": "8584710",
+      "building_id": "way/406428488",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "moscow",
+      "hotel_id": "8684850",
+      "building_id": "way/156930124",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "moscow",
+      "hotel_id": "8736052",
+      "building_id": "relation/19206805",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "moscow",
+      "hotel_id": "8742604",
+      "building_id": "relation/4788410",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "moscow",
+      "hotel_id": "8744278",
+      "building_id": "way/37131004",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "moscow",
+      "hotel_id": "8744391",
+      "building_id": "relation/10899399",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "moscow",
+      "hotel_id": "8854269",
+      "building_id": "way/58742209",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "6389487",
+      "building_id": "way/97427741",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "6517577",
+      "building_id": "relation/1413802",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "6526880",
+      "building_id": "relation/18083348",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "6561592",
+      "building_id": "way/62847204",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "6752870",
+      "building_id": "way/96148903",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "7376418",
+      "building_id": "relation/4575977",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "7467805",
+      "building_id": "way/60788904",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "7935820",
+      "building_id": "relation/1394323",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "8038274",
+      "building_id": "relation/1082852",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "8161726",
+      "building_id": "relation/1028080",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "8165461",
+      "building_id": "relation/1043548",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "8292462",
+      "building_id": "relation/946836",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "8311345",
+      "building_id": "way/23357088",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "8454971",
+      "building_id": "relation/16127870",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "8481864",
+      "building_id": "way/100687081",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "8553862",
+      "building_id": "relation/1587820",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "8660031",
+      "building_id": "way/45192906",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "8660892",
+      "building_id": "relation/955107",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "8661034",
+      "building_id": "relation/1598169",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "8733326",
+      "building_id": "relation/1878250",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "8748739",
+      "building_id": "way/130662472",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "8763311",
+      "building_id": "way/30700363",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "9990973",
+      "building_id": "relation/660807",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "spb",
+      "hotel_id": "9991015",
+      "building_id": "relation/1524834",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "6702635",
+      "building_id": "way/91641101",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "6702635",
+      "building_id": "way/360475286",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "7026565",
+      "building_id": "way/104639166",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "7716336",
+      "building_id": "way/96705174",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "7775286",
+      "building_id": "way/71169787",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "7882957",
+      "building_id": "way/321420899",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "7964924",
+      "building_id": "way/97465709",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "8053001",
+      "building_id": "way/110175759",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "8136552",
+      "building_id": "way/253055353",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "8474966",
+      "building_id": "way/226337042",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "8743189",
+      "building_id": "way/104636677",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "8755065",
+      "building_id": "way/157683900",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "kazan",
+      "hotel_id": "8848719",
+      "building_id": "way/244599019",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "hotel_id": "10126086",
+      "building_id": "way/90446012",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "hotel_id": "13647475",
+      "building_id": "way/39386693",
+      "after_gate_accepted": false
+    },
+    {
+      "city_id": "kaliningrad",
+      "hotel_id": "6840588",
+      "building_id": "way/135510988",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "hotel_id": "7467345",
+      "building_id": "way/134873563",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "hotel_id": "7719161",
+      "building_id": "way/134871260",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "hotel_id": "7719161",
+      "building_id": "way/134871120",
+      "after_gate_accepted": false
+    },
+    {
+      "city_id": "kaliningrad",
+      "hotel_id": "7939785",
+      "building_id": "way/253136228",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "hotel_id": "7939785",
+      "building_id": "way/1562586433",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "hotel_id": "8660347",
+      "building_id": "way/225689995",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "hotel_id": "8723110",
+      "building_id": "way/84100001",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "hotel_id": "8743386",
+      "building_id": "way/101820195",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "hotel_id": "8850047",
+      "building_id": "way/90677082",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "hotel_id": "9085021",
+      "building_id": "way/133848302",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "hotel_id": "9085021",
+      "building_id": "way/133847963",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "kaliningrad",
+      "hotel_id": "9992358",
+      "building_id": "way/832612089",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "istanbul",
+      "hotel_id": "7540149",
+      "building_id": "way/288197582",
+      "after_gate_accepted": true
+    },
+    {
+      "city_id": "dubai",
+      "hotel_id": "6432238",
+      "building_id": "way/93638778",
+      "after_gate_accepted": true
+    }
+  ],
+  "findings_resolved": [
+    {
+      "city_id": "sochi",
+      "hotel_id": "7725078",
+      "building_id": "way/808856239",
+      "source_house": "1",
+      "ota_address": "улица Бестужева, д.1 Б, Сочи",
+      "normalized_house": "1",
+      "normalized_address": "ulitsa bestuzheva d 1b sochi",
+      "review": "reject_wrong_parent_house"
+    },
+    {
+      "city_id": "sochi",
+      "hotel_id": "8085655",
+      "building_id": "way/80180198",
+      "source_house": "2",
+      "ota_address": "улица Карла Маркса, д.2 А, Сочи",
+      "normalized_house": "2",
+      "normalized_address": "ulitsa karla marksa d 2a sochi",
+      "review": "reject_wrong_parent_house"
+    },
+    {
+      "city_id": "kaliningrad",
+      "hotel_id": "13647475",
+      "building_id": "way/39386693",
+      "source_house": "19/21",
+      "ota_address": "236022, Калининградская Область, г.о. город Калининград, г Калининград, пр-кт Мира, зд. 19/21, к. 2",
+      "normalized_house": "19/21",
+      "normalized_address": "236022 kaliningradskaya oblast g o gorod kaliningrad g kaliningrad pr kt mira zd 19/21 k 2",
+      "review": "quarantine_unverified_corpus"
+    },
+    {
+      "city_id": "kaliningrad",
+      "hotel_id": "7719161",
+      "building_id": "way/134871120",
+      "source_house": "13",
+      "ota_address": "улица Демьяна Бедного, д.13 А, Калининград",
+      "normalized_house": "13",
+      "normalized_address": "ulitsa demyana bednogo d 13a kaliningrad",
+      "review": "reject_wrong_parent_house"
+    }
+  ],
+  "note_on_denominators": "Pre-repair139; interim146 afterSochi/Kal; final176. Rows are hotel→building relations, not unique buildings. All5 phone/site-supported relations included.",
+  "tests": {
+    "address_regressions": 17,
+    "synthetic_and_independent_astronomy": 26,
+    "affected_city_output_checks": 80,
+    "current_relation_address_geometry_identity_checks": 176,
+    "OTA_comparison_replay_rows": 99,
+    "ground_truth_physical_accuracy": "not_measured"
+  }
+}

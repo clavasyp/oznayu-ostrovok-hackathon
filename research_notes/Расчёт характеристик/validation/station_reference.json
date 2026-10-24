@@ -1,0 +1,51 @@
+{
+  "station_id": "37099",
+  "source_file": "research_notes/Расчёт характеристик/validation/sources/sotchi_station.csv",
+  "period": "1991-2020",
+  "station_header": {
+    "lat": 43.583333333333336,
+    "lon": 39.766666666666666,
+    "height_m": 142
+  },
+  "values": {
+    "2": {
+      "calculation": "Count",
+      "july": 6.0,
+      "november": 10.0,
+      "all_months": [
+        14.0,
+        11.0,
+        13.0,
+        10.0,
+        9.0,
+        7.0,
+        6.0,
+        6.0,
+        8.0,
+        10.0,
+        10.0,
+        13.0
+      ]
+    },
+    "5": {
+      "calculation": "MEAN",
+      "july": 23.7,
+      "november": 11.4,
+      "all_months": [
+        6.3,
+        6.5,
+        8.6,
+        12.3,
+        16.6,
+        20.9,
+        23.7,
+        24.3,
+        20.5,
+        16.2,
+        11.4,
+        8.2
+      ]
+    }
+  },
+  "comparison_scope": "station observation normal vs reanalysis cell: representativeness difference, not identical spatial support or standalone calculator error"
+}

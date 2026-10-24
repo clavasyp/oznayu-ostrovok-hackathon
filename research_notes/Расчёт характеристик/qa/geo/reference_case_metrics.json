@@ -1,0 +1,15 @@
+{
+  "annotation": "Разметка Codex",
+  "cases": 10,
+  "full_feature_independent_gold": 0,
+  "current_declared_hours_component_cases": 2,
+  "current_hours_component_TP": 1,
+  "current_hours_component_FP": 1,
+  "component_positive_precision": 0.5,
+  "component_positive_precision_scope": "Two deliberately selected different-provider current-schedule cases, not representative fullfeature accuracy; future dates/route distances not gold.",
+  "component_recall": null,
+  "component_recall_reason": "No complete negative/positive panel; recall unmeasured.",
+  "full_feature_distance_error_m": null,
+  "repair_cases_are_not_heldout": true,
+  "remaining_cases_are_gaps_or_recipe_agreement_only": 8
+}

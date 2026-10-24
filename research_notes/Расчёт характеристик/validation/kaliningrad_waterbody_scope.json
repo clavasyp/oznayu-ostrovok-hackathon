@@ -1,0 +1,21 @@
+{
+  "at": "2026-10-24T13:47:00.640368+00:00",
+  "audit_kind": "geographic scope clarification, not an independent full-feature gold label",
+  "target_osm_id": "way/423147709",
+  "target_reference_lon_lat": [
+    20.299940924704487,
+    54.64399125
+  ],
+  "interpretation": "Coordinates indicate the Kaliningrad/Vistula Lagoon shore; do not label this cached target as an open Baltic Sea resort beach. The OSM coastline gate alone does not classify open coast versus marine lagoon.",
+  "primary_context_sources": [
+    {
+      "url": "https://39.mchs.gov.ru/glavnoe-upravlenie/harakteristika-subekta",
+      "supports": "Kaliningrad Gulf is separated from the Baltic Sea by the Baltic Spit; the Pregolya enters the gulf."
+    },
+    {
+      "url": "https://atlantic.ocean.ru/index.php/interesnoe-v-nauke/item/277-vozmozhnost-peretoka-vod-v-sisteme-kaliningradskij-zaliv-reka-pregolya-kurshskij-zaliv",
+      "supports": "IO RAS describes Kaliningrad and Curonian Gulfs as two coastal lagoons."
+    }
+  ],
+  "scope_limit": "Primary pages establish regional waterbody context, not survey the precise beach, prove admission/bathing suitability, or validate thetao. Coordinate-to-waterbody association is a Codex inference for review."
+}

@@ -1,0 +1,43 @@
+{
+  "city_id": "sochi",
+  "at": "2026-10-24T02:13:39.641335+00:00",
+  "runtime_s": 93.64649033299793,
+  "hotel_count": 89,
+  "cells": [
+    [
+      43.5,
+      39.75
+    ],
+    [
+      43.5,
+      40.0
+    ],
+    [
+      43.75,
+      39.5
+    ],
+    [
+      43.75,
+      40.25
+    ],
+    [
+      44.0,
+      39.25
+    ]
+  ],
+  "counts": {
+    "http_200": 60
+  },
+  "new_conservative_weight_estimate": 653.5714285714281,
+  "months": [
+    7,
+    11
+  ],
+  "period": [
+    1991,
+    2020
+  ],
+  "model": "ERA5 0.25 degree",
+  "timezone_policy": "fixed current local standard offset; no historical DST; explicitly retained",
+  "temperature_downscaling": false
+}

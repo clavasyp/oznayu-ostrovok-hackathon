@@ -1,0 +1,17 @@
+{
+  "at": "2026-10-24T13:30:10.500146+00:00",
+  "status": "passed",
+  "version": "v9.2_marine_context",
+  "rows": 1513,
+  "unique_fact_ids": 1513,
+  "source_files_hash_checked": 73,
+  "native_wet_cells": 12,
+  "native_water_classes": {
+    "80": 178
+  },
+  "audit_cases_linked": 8,
+  "gold_eligible": 0,
+  "frozen_marine_targets_sha256": "f9398ef2bef548b097631e71314da3e0c6b5afd8affd9df77265d1f86ea6f26d",
+  "result_sha256": "449aad67294cf8a9519a36ca1ee16bafe47a69e74f4b85f1054008a1afe7e750",
+  "errors": []
+}

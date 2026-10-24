@@ -1,0 +1,175 @@
+{
+  "city_id": "moscow",
+  "at": "2026-10-24T14:26:44.154891+00:00",
+  "status": "PASSED_WITH_PHYSICAL_ACCURACY_UNMEASURED",
+  "N_hotels": 50,
+  "hotel_feature_pairs": 2700,
+  "fact_rows": 3950,
+  "checks": [
+    {
+      "name": "cohort_and54features_complete",
+      "passed": true,
+      "details": {
+        "N_hotels": 50,
+        "N_pairs": 2700
+      }
+    },
+    {
+      "name": "no_conflicting_fact_ids",
+      "passed": true,
+      "details": []
+    },
+    {
+      "name": "finite_values_and_valid_statuses",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "unknown_reason_null_value",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "known_value_sources_recipe",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "all_canonical_recipes_have_trace",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "valid_result_stops_recipe_chain",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "N02_N03_no_unmatched_point_proxy",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "accepted_buildings_have_address_support",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "H03_counting_convention_and_positive_scope",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "no_window_geometry_diagnostic_as_canonical_value",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "route_subjects_for_route_attributes",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "W04_explicit_DSM_extension",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Q03_defined_denominator_and_partition",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "climate_complete30years_explicit_model",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "green_landmask_historical_area_fraction",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "immutable_core_version_recorded",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "actual_overrides_versioned",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "composite_source_hash_reproducible",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "restriction_supplement_hash_and_original_PBF_version",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "published_route_lengths_match_exact_trace",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "actual_routes_within_restriction_supplement_extent",
+      "passed": true,
+      "details": []
+    },
+    {
+      "name": "saved_routes_avoid_explicit_node_prohibitions",
+      "passed": true,
+      "details": {
+        "routes": 350,
+        "forbidden_route_ids": [],
+        "blocked_nodes": 39275,
+        "independently_tag_checked_supplement_blocked_nodes": 19416
+      }
+    },
+    {
+      "name": "every_published_route_has_exact_trace",
+      "passed": true,
+      "details": []
+    },
+    {
+      "name": "inland_marine_features_not_applicable",
+      "passed": true,
+      "details": null
+    }
+  ],
+  "pending": [],
+  "input_files": [
+    {
+      "kind": "geo",
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/moscow_facts.jsonl",
+      "sha256": "231cf82f83fa94cf8d2f90f2b8534ef8e360749241b4526fdba97e00b97d5775",
+      "rows": 2550
+    },
+    {
+      "kind": "facades",
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/moscow_facts.jsonl",
+      "sha256": "1e9875d3c81ae7157230e616b4dab701947cd96d78d9e0b60ff74c7122ce986e",
+      "rows": 600
+    },
+    {
+      "kind": "environment",
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/environment/moscow_facts.jsonl",
+      "sha256": "85d0f7cbc0a523ffcb400023f7dc8d44e96aca80b7c94ecfc2cad4720af46448",
+      "rows": 800
+    },
+    {
+      "kind": "individual_buildings",
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/moscow_building_facts.jsonl",
+      "sha256": "dbbb6958ed3dcd613a59a0c57aa1f5ed72c853651749bcd3e6c793bcbc4cc2fd"
+    },
+    {
+      "kind": "geo_run",
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/moscow_run.json",
+      "sha256": "f4d8a7908fa633116c793ac509315392f24fe12f4b5f40237495d9b15369e103"
+    }
+  ],
+  "physical_gold_scope": "No independent full-feature physical gold is implied by these contract and provenance checks."
+}

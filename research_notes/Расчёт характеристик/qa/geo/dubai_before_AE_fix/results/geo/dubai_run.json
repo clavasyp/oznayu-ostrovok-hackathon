@@ -1,0 +1,293 @@
+{
+  "city_id": "dubai",
+  "hotels": 50,
+  "graph_nodes": 1372621,
+  "graph_edges": 1491965,
+  "load_seconds": 20.40313641600369,
+  "input_manifest": {
+    "city": "dubai",
+    "region": "gcc-states",
+    "source_pbf": "gcc-states.osm.pbf",
+    "source_date": "2026-10-22T20:21:33Z",
+    "finished_utc": "2026-10-23T16:45:27+00:00",
+    "rows": 714811,
+    "geometry_failures_region": 0,
+    "seconds": 43.78160458300408,
+    "sha256": "c1fe9a8aaea44ffe694344554fe8f99d0393bb1c14c297fad2351f54eae25fcc",
+    "edge_note": "Geometry candidate uses first vertex within 0.015-degree padded bbox; very large polygons crossing with all first vertices outside could be missed. Full bbox hotel filter subsequently uses representative centroid.",
+    "sha256_kind": "composite SHA256 of ordered input path+SHA manifests, not file hash",
+    "original_main_sha256": "dd13a1ccbb470a8578b495deb11380d764b3c3545c4278c1dc0b1c7689af3a51",
+    "input_files": [
+      {
+        "snapshot_file": "/Users/turgov/Хакатон/research_notes/Аудит данных 8 городов/raw/osm_dubai.jsonl",
+        "sha256": "dd13a1ccbb470a8578b495deb11380d764b3c3545c4278c1dc0b1c7689af3a51"
+      },
+      {
+        "snapshot_file": "/Users/turgov/Хакатон/research_notes/Аудит данных 8 городов/raw/osm_dubai_closed_roads.jsonl",
+        "sha256": "fe6f037151c4b5d579b30b4c5414952912974e9d9cd7f7380eb01920d4df8539"
+      },
+      {
+        "snapshot_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/cohort/osm_dubai_pure_restriction_nodes.jsonl",
+        "sha256": "58210a367b11b860bb12219010b2db46cea661cd1430bbe793fa732d793f8da7"
+      }
+    ],
+    "node_supplement_manifest": {
+      "city_id": "dubai",
+      "source_file": "/Users/turgov/Хакатон/research_notes/Аудит данных 8 городов/raw/gcc-states.osm.pbf",
+      "source_date": "2026-10-22T20:21:33Z",
+      "snapshot_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/cohort/osm_dubai_pure_restriction_nodes.jsonl",
+      "bbox": [
+        54.835,
+        24.735,
+        55.665,
+        25.415
+      ],
+      "records": 19750,
+      "bytes": 4409428,
+      "sha256": "58210a367b11b860bb12219010b2db46cea661cd1430bbe793fa732d793f8da7",
+      "seconds": 1.7602980000083335,
+      "built_at": "2026-10-24T13:41:42.575442+00:00",
+      "license": "ODbL1.0",
+      "license_url": "https://www.openstreetmap.org/copyright",
+      "new_http_requests": 0,
+      "method": "Node-only PBF filter barrier/access/foot/locked; exclude all nodes selected by V4KEYS. No geometry/identity inference.",
+      "source_pbf_sha256": "64c9211d9ef54d2ea7bbea772469a749eaf5643b6c0ed42eb277265056f5afe8",
+      "source_pbf_sha256_verification": "Streamed actual cached PBF before this city run; no network."
+    }
+  },
+  "no_new_http_requests": true,
+  "blocked_pedestrian_nodes": 1706,
+  "blocked_node_policy": "explicit foot/access restrictions and unresolved conditional nodes; locked gates without explicit foot permission. Bollard alone is not blocked.",
+  "gtfs_calendar_checks": [
+    {
+      "file": "/Users/turgov/Хакатон/research_notes/Аудит данных 8 городов/raw/gtfs_dubai_3359.zip",
+      "date": "20261114",
+      "active_services": 0,
+      "calendar_rows": 18,
+      "exception_rows": 0,
+      "calendar_min": "20250829",
+      "calendar_max": "20251231",
+      "license_entitlement_and_operator_completeness": "not asserted by ZIP presence"
+    },
+    {
+      "file": "/Users/turgov/Хакатон/research_notes/Аудит данных 8 городов/raw/gtfs_dubai_3359.zip",
+      "date": "20270717",
+      "active_services": 0,
+      "calendar_rows": 18,
+      "exception_rows": 0,
+      "calendar_min": "20250829",
+      "calendar_max": "20251231",
+      "license_entitlement_and_operator_completeness": "not asserted by ZIP presence"
+    },
+    {
+      "file": "/Users/turgov/Хакатон/research_notes/Аудит данных 8 городов/raw/gtfs_dubai_904_mirror.zip",
+      "date": "20261114",
+      "active_services": 0,
+      "calendar_rows": 43,
+      "exception_rows": 0,
+      "calendar_min": "20210909",
+      "calendar_max": "20211231",
+      "license_entitlement_and_operator_completeness": "not asserted by ZIP presence"
+    },
+    {
+      "file": "/Users/turgov/Хакатон/research_notes/Аудит данных 8 городов/raw/gtfs_dubai_904_mirror.zip",
+      "date": "20270717",
+      "active_services": 0,
+      "calendar_rows": 43,
+      "exception_rows": 0,
+      "calendar_min": "20210909",
+      "calendar_max": "20211231",
+      "license_entitlement_and_operator_completeness": "not asserted by ZIP presence"
+    },
+    {
+      "file": "/Users/turgov/Хакатон/research_notes/Аудит данных 8 городов/raw/gtfs_dubai_904.zip",
+      "error": "File is not a zip file"
+    }
+  ],
+  "marine_beach_gate": {
+    "method_version": "marine-adjacency-v1",
+    "tolerance_m": 25,
+    "coastline_segments": 512,
+    "mapped_beaches": 217,
+    "accepted_geometry_count": 183,
+    "eligible_graph_contact_candidates": 7564,
+    "rejected_meaning": "marine_adjacency_unconfirmed, not proof that the beach is river/lake"
+  },
+  "center_target": {
+    "osm_node_id": 12964021500,
+    "coordinates": [
+      55.2698927,
+      25.204766399999997
+    ],
+    "selection_reference_coordinates": [
+      55.2708,
+      25.2048
+    ],
+    "reference_to_node_m": 91.51534451024503,
+    "selection_rule": "nearest node to reference center in largest connected mapped pedestrian network component",
+    "component_nodes": 937839,
+    "meaning": "An explicit chosen point near the center, not an implicit administrative center or hotel entrance."
+  },
+  "total_seconds": 32.90888704100507,
+  "family_seconds": {
+    "N": 0.3563469980144873,
+    "W_A_Q03": 8.147524454005179,
+    "L_F_P_R04": 3.337844368914375,
+    "T_R05_Q_X": 0.0057254990097135305
+  },
+  "facts": 2550,
+  "unique_hotel_feature_pairs": 1450,
+  "statuses": {
+    "computed": 340,
+    "unknown": 1740,
+    "estimate": 470
+  },
+  "result_bytes": 13386952,
+  "feature_counts": {
+    "N01": {
+      "unknown": 50
+    },
+    "N02": {
+      "unknown": 49,
+      "computed": 1
+    },
+    "N03": {
+      "unknown": 49,
+      "computed": 1
+    },
+    "N04": {
+      "computed": 50
+    },
+    "W01": {
+      "unknown": 6,
+      "estimate": 94
+    },
+    "W02": {
+      "unknown": 4,
+      "estimate": 96
+    },
+    "W03": {
+      "unknown": 8,
+      "estimate": 92
+    },
+    "W04": {
+      "unknown": 4,
+      "estimate": 96
+    },
+    "W05": {
+      "unknown": 4,
+      "computed": 96
+    },
+    "W06": {
+      "unknown": 4,
+      "computed": 96
+    },
+    "T01": {
+      "unknown": 100
+    },
+    "T02": {
+      "unknown": 100
+    },
+    "T03": {
+      "unknown": 100
+    },
+    "L01": {
+      "unknown": 100
+    },
+    "L02": {
+      "unknown": 100
+    },
+    "L03": {
+      "unknown": 100
+    },
+    "F01": {
+      "unknown": 8,
+      "estimate": 92
+    },
+    "F02": {
+      "unknown": 100
+    },
+    "P03": {
+      "unknown": 100
+    },
+    "P04": {
+      "unknown": 100
+    },
+    "A01": {
+      "unknown": 100
+    },
+    "R04": {
+      "unknown": 100
+    },
+    "R05": {
+      "unknown": 50
+    },
+    "Q01": {
+      "unknown": 50
+    },
+    "Q02": {
+      "unknown": 50
+    },
+    "Q03": {
+      "unknown": 4,
+      "computed": 96
+    },
+    "X01": {
+      "unknown": 100
+    },
+    "X02": {
+      "unknown": 100
+    },
+    "X03": {
+      "unknown": 100
+    }
+  },
+  "graph_license": "ODbL1.0; attribution/share-alike obligations; source ages and extent retained",
+  "accepted_calculator_sha256": "e575c51e28cbc3905eadb4e4d628005b9fad99031301a741d0477c80e73473ad",
+  "runner_sha256": "ab27e8737b73edd6bcafeeb4d48d523aaf861e3eccbb02ecbd95dd06a506695a",
+  "cyclic_gc_during_graph_compute": "disabled; reference counting active; single-city process exit frees resources",
+  "memory_representation": {
+    "version": "V9-representation-only-1",
+    "source_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/scripts/geo_memory_containers.py",
+    "sha256": "101779dba50738cb3105e33e04282bda672242a5e1829ee492cdd58f50507110",
+    "exact_equivalence_test": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/geo/memory_container_equivalence.json",
+    "note": "Same accepted Graph.__init__, math.dist and routing methods; compact source node triples/shared edge metadata/interned text; no coordinate or source-selection changes."
+  },
+  "extra_node_input": {
+    "city_id": "dubai",
+    "source_file": "/Users/turgov/Хакатон/research_notes/Аудит данных 8 городов/raw/gcc-states.osm.pbf",
+    "source_date": "2026-10-22T20:21:33Z",
+    "snapshot_file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/cohort/osm_dubai_pure_restriction_nodes.jsonl",
+    "bbox": [
+      54.835,
+      24.735,
+      55.665,
+      25.415
+    ],
+    "records": 19750,
+    "bytes": 4409428,
+    "sha256": "58210a367b11b860bb12219010b2db46cea661cd1430bbe793fa732d793f8da7",
+    "seconds": 1.7602980000083335,
+    "built_at": "2026-10-24T13:41:42.575442+00:00",
+    "license": "ODbL1.0",
+    "license_url": "https://www.openstreetmap.org/copyright",
+    "new_http_requests": 0,
+    "method": "Node-only PBF filter barrier/access/foot/locked; exclude all nodes selected by V4KEYS. No geometry/identity inference.",
+    "source_pbf_sha256": "64c9211d9ef54d2ea7bbea772469a749eaf5643b6c0ed42eb277265056f5afe8",
+    "source_pbf_sha256_verification": "Streamed actual cached PBF before this city run; no network."
+  },
+  "extra_node_input_reason": "Original V4 feature keys omit pure barrier/access/foot/locked nodes; recover known restrictions before route computation; no hypothetical access assumed.",
+  "all_selected_routes": {
+    "file": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/dubai_all_selected_routes.jsonl",
+    "sha256": "6ebdc6d3853e0334ade6a5d30279254ffff27d012d9774a5eec40e717a43c32b",
+    "routes": 233,
+    "capture_method_version": "V9-exact-returned-route-capture-1"
+  },
+  "hours_evaluation_extension": {
+    "version": "V9-local-instant-hours-cache-1",
+    "sha256": "a0b00092b42cde47da1dbae93ff4e4aa559274145b543b59ff129aa477aa169a",
+    "scope": "Same requested-instant is_open/is_closed, country calendar and timezone. Optional unbounded next_change search omitted with explicit null/reason; no feature-state inference changed."
+  },
+  "pipeline_seconds_including_capture_and_auxiliary_serialization": 33.69922012501047,
+  "node_input_prepare_seconds": 1.7602980000083335
+}

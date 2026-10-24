@@ -1,0 +1,63 @@
+{
+  "city_id": "kaliningrad",
+  "version": "v9.2.facades",
+  "code_sha256": "14b8c3ea8f4791400fa7cf0ebe5788992f2d16b03f2029de4ac85bf80c3108a6",
+  "frozen_at_utc": "2026-10-24T14:10:19.642295+00:00",
+  "files": [
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/kaliningrad_diagnostics.jsonl",
+      "sha256": "e3a866cd3dfa922062e4385b709c4d46f6949104bd029cb10aa06ad23bf1af2a",
+      "bytes": 156110
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/kaliningrad_fan_facts.jsonl.gz",
+      "sha256": "da0c575582bd8d30f7a1529ec6cd4680134bee5c19a626c7171c356ca534640f",
+      "bytes": 872116
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/kaliningrad_building_matches.jsonl",
+      "sha256": "2dfbe141f26db5ff27e7a86c9faf8465d104d74d8471683305ceb9c974ab568e",
+      "bytes": 63821
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/kaliningrad_facts.jsonl",
+      "sha256": "f4daaaf30e93a5b64e539f38767dca31e7dbea0fcfb70a64de72b35250a7ff54",
+      "bytes": 1280521
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/kaliningrad_ota_comparisons.jsonl",
+      "sha256": "e1f7f88569d540388e33637799d11bf23f7f923f20525be4c4bc28351807fcef",
+      "bytes": 5667
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/kaliningrad_building_facts.jsonl",
+      "sha256": "4a3af233576f2f2a3412ed33135cc8297e4cbb569580994672be9ebcf165a0d5",
+      "bytes": 17002
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/kaliningrad_target_components.jsonl",
+      "sha256": "182ae18e83bd0cd2d2533bfefc33b46242cabf4de8ed720d6850207572f2eff2",
+      "bytes": 171575
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/kaliningrad_geometry_quality.jsonl",
+      "sha256": "9f1e373c75700e4a5fc2fb38a6a7a8c45b79c4292930d1b72cb15307374080da",
+      "bytes": 26886
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/kaliningrad_fan.jsonl",
+      "sha256": "b84467db8f85964ea6f4b15b55e9eff4218a6116bfc69efd8deab3fcb3d14274",
+      "bytes": 5564449
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/facades/kaliningrad_summary.json",
+      "sha256": "aec01a69a335f0067762826288b7aa71a9df8787c5c7be9bf6165c911e146255",
+      "bytes": 2859
+    },
+    {
+      "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/qa/facades/kaliningrad_output_checks.json",
+      "sha256": "98ab873d322e10640f71fcb71debda8d1b950ef44775d5868ea58235d0b037ba",
+      "bytes": 1533
+    }
+  ]
+}

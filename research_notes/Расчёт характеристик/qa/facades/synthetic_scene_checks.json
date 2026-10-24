@@ -1,0 +1,169 @@
+{
+  "checks": [
+    {
+      "name": "four_metric_facades",
+      "passed": true
+    },
+    {
+      "name": "outward_normals",
+      "passed": true
+    },
+    {
+      "name": "cardinal_azimuths",
+      "passed": true
+    },
+    {
+      "name": "robust_wall_false",
+      "passed": true,
+      "result": {
+        "visible": false,
+        "reason": "obstacle_above_entire_ray_interval",
+        "blocker": "wall",
+        "distance_m": 10.0
+      }
+    },
+    {
+      "name": "low_wall_true_in_complete_scene",
+      "passed": true,
+      "result": {
+        "visible": true,
+        "reason": "clear_in_supplied_complete_scene",
+        "uncertain_obstacles": [],
+        "distance_m": 10.0
+      }
+    },
+    {
+      "name": "unknown_wall_not_transparent",
+      "passed": true,
+      "result": {
+        "visible": null,
+        "reason": "uncertain_obstacle_height",
+        "uncertain_obstacles": [
+          "wall"
+        ],
+        "distance_m": 10.0
+      }
+    },
+    {
+      "name": "height_interval_unknown",
+      "passed": true,
+      "result": {
+        "visible": null,
+        "reason": "uncertain_obstacle_height",
+        "uncertain_obstacles": [
+          "wall"
+        ],
+        "distance_m": 10.0
+      }
+    },
+    {
+      "name": "higher_floor_clear",
+      "passed": true,
+      "result": {
+        "visible": true,
+        "reason": "clear_in_supplied_complete_scene",
+        "uncertain_obstacles": [],
+        "distance_m": 10.0
+      }
+    },
+    {
+      "name": "origin_inside_other_obstacle_not_transparent",
+      "passed": true,
+      "result": {
+        "visible": false,
+        "reason": "obstacle_above_entire_ray_interval",
+        "blocker": "wall",
+        "distance_m": 5.0
+      }
+    },
+    {
+      "name": "invalid_fractional_levels_not_floors",
+      "passed": true
+    },
+    {
+      "name": "no_height_no_fabricated_count",
+      "passed": true
+    },
+    {
+      "name": "orientation_bounds_nonnegative_2026-11-14_0",
+      "passed": true
+    },
+    {
+      "name": "orientation_bounds_nonnegative_2026-11-14_90",
+      "passed": true
+    },
+    {
+      "name": "orientation_bounds_nonnegative_2026-11-14_180",
+      "passed": true
+    },
+    {
+      "name": "orientation_bounds_nonnegative_2026-11-14_270",
+      "passed": true
+    },
+    {
+      "name": "pvlib_astral_agreement_2026-11-14_96",
+      "passed": true,
+      "azimuth_difference_deg": 0.007545402752782593,
+      "elevation_difference_deg": 0.009078651432804286,
+      "scope": "astronomy implementation agreement; not ground-truth window sunshine"
+    },
+    {
+      "name": "pvlib_astral_agreement_2026-11-14_144",
+      "passed": true,
+      "azimuth_difference_deg": 0.011273290879813658,
+      "elevation_difference_deg": 0.0025826482867152833,
+      "scope": "astronomy implementation agreement; not ground-truth window sunshine"
+    },
+    {
+      "name": "pvlib_astral_agreement_2026-11-14_192",
+      "passed": true,
+      "azimuth_difference_deg": 0.007924043122045532,
+      "elevation_difference_deg": 0.0035162447483196857,
+      "scope": "astronomy implementation agreement; not ground-truth window sunshine"
+    },
+    {
+      "name": "winter_north_plane_orientation_zero",
+      "passed": true
+    },
+    {
+      "name": "orientation_bounds_nonnegative_2027-07-15_0",
+      "passed": true
+    },
+    {
+      "name": "orientation_bounds_nonnegative_2027-07-15_90",
+      "passed": true
+    },
+    {
+      "name": "orientation_bounds_nonnegative_2027-07-15_180",
+      "passed": true
+    },
+    {
+      "name": "orientation_bounds_nonnegative_2027-07-15_270",
+      "passed": true
+    },
+    {
+      "name": "pvlib_astral_agreement_2027-07-15_96",
+      "passed": true,
+      "azimuth_difference_deg": 8.430333525666356e-05,
+      "elevation_difference_deg": 0.0023271237736572914,
+      "scope": "astronomy implementation agreement; not ground-truth window sunshine"
+    },
+    {
+      "name": "pvlib_astral_agreement_2027-07-15_144",
+      "passed": true,
+      "azimuth_difference_deg": 0.0004933817085941428,
+      "elevation_difference_deg": 0.001067487722806959,
+      "scope": "astronomy implementation agreement; not ground-truth window sunshine"
+    },
+    {
+      "name": "pvlib_astral_agreement_2027-07-15_192",
+      "passed": true,
+      "azimuth_difference_deg": 0.00023334763147886406,
+      "elevation_difference_deg": 0.0017716839781343197,
+      "scope": "astronomy implementation agreement; not ground-truth window sunshine"
+    }
+  ],
+  "passed": true,
+  "n": 26,
+  "scope": "Synthetic algorithm checks and independent astronomical implementation agreement, not real-world hotel accuracy."
+}

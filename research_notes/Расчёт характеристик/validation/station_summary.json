@@ -1,0 +1,19 @@
+{
+  "summary": {
+    "C01": {
+      "cases": 4,
+      "unique_station_month_reference_values": 2,
+      "mean_absolute_station_cell_difference": 1.4232204301075262,
+      "maximum_absolute_station_cell_difference": 2.2778888888888886,
+      "unit": "°C"
+    },
+    "C02": {
+      "cases": 4,
+      "unique_station_month_reference_values": 2,
+      "mean_absolute_station_cell_difference": 3.641666666666667,
+      "maximum_absolute_station_cell_difference": 8.366666666666667,
+      "unit": "days/month"
+    }
+  },
+  "limitation": "Four cell-month cases per feature share one station and two monthly references. Not four independent station samples; not pure model error and not field validation of hotel climate."
+}

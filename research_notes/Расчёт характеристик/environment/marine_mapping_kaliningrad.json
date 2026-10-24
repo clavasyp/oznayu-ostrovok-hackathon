@@ -1,0 +1,84 @@
+{
+  "city_id": "kaliningrad",
+  "beaches": {
+    "way/423147709": {
+      "beach_id": "way/423147709",
+      "beach_name": null,
+      "requested_beach_latitude": 54.64399125,
+      "requested_beach_longitude": 20.299940924704487,
+      "model_latitude": 54.708336,
+      "model_longitude": 20.291672,
+      "beach_to_cell_m": 7182.534831157427,
+      "probe_valid_hours": 744,
+      "probe_expected_hours": 744,
+      "eligible": true,
+      "source": {
+        "provider": "OpenStreetMap",
+        "url": "https://www.openstreetmap.org/way/423147709",
+        "version": 2,
+        "observed_at": "2020-08-29 19:48:12+00:00",
+        "date_kind": "OSM edit, not physical inspection",
+        "license": "ODbL1.0",
+        "license_url": "https://www.openstreetmap.org/copyright",
+        "dataset_version": "2026-10-22T20:21:33Z",
+        "dataset_sha256": "a505049d33e2f6ac5adcecbd6ebbe7a94dee5de68a36f0c1c54ac81c3a94f10e"
+      },
+      "probe_source": {
+        "requested_at": "2026-10-24T13:41:31.138354+00:00",
+        "finished_at": "2026-10-24T13:41:31.838930+00:00",
+        "url": "https://marine-api.open-meteo.com/v1/marine?latitude=54.64399125&longitude=20.299940924704487&start_date=2025-07-01&end_date=2025-07-31&hourly=sea_surface_temperature&models=meteofrance_currents&cell_selection=sea&timezone=UTC",
+        "http_status": 200,
+        "bytes": 18140,
+        "sha256": "3fee0cbeb3a7aced6d7ad35127dbed58c26d4a139c88283bc45d47aa3db2147a",
+        "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/environment/raw/marine_kaliningrad_202507_beach_probe_5f03dfa83aa81e1fc8.json",
+        "params": {
+          "latitude": "54.64399125",
+          "longitude": "20.299940924704487",
+          "start_date": "2025-07-01",
+          "end_date": "2025-07-31",
+          "hourly": "sea_surface_temperature",
+          "models": "meteofrance_currents",
+          "cell_selection": "sea",
+          "timezone": "UTC"
+        },
+        "n_locations": 1,
+        "conservative_weight_estimate": 2.2142857142857144,
+        "license": "CC BY4.0; D22hackathonfreeAPI; productionpaidplan/selfhost required",
+        "elapsed_s": 0.7006644169887295
+      },
+      "confirmed_public_entrance": false,
+      "selection": "OSMselectedbeachpolygonrepresentativepoint→OpenMeteoseacell; not a verifiedbeachentrance",
+      "native_cf_latitude": 54.66666793823242,
+      "native_cf_longitude": 20.25,
+      "native_latitude_index": 1616,
+      "native_longitude_index": 2403,
+      "api_reported_latitude": 54.708336,
+      "api_reported_longitude": 20.291672,
+      "api_to_native_offset_deg": 0.041666666666666664,
+      "native_coordinate_worldcover2021_class": 80,
+      "wet_cell_evidence": "OpenMeteo finite native6h values; pinnedimporter buildssea mask fromthetao non_fill; independentWorldCover2021class80 where available",
+      "support_limitation": "APIreportedcoordinatesoffsethalfgridfromnativeCFcoordinates; documentedsourceaudit, exactAPIdeploymentcommitnotexposed",
+      "beach_to_native_cf_m": 4094.08604837475
+    }
+  },
+  "unique_wet_cells": [
+    [
+      54.708336,
+      20.291672
+    ]
+  ],
+  "cache_only": false,
+  "runtime_s": 9.424877500001458,
+  "runtime_total_measured_s": 9.424877500001458,
+  "source_beach_targets_path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/results/geo/kaliningrad_marine_targets_with_fallback.jsonl",
+  "source_beach_targets_sha256": "f0cfd73496253ebe38e2e27d2b8c259fa0fe67a0016dfa3d7f6ddb758f777db8",
+  "source_beach_targets_n": 50,
+  "selection_protocols": [
+    "v9.2_marine_context"
+  ],
+  "period": [
+    2023,
+    2025
+  ],
+  "scope": "OpenMeteoarchivedCMEMSGLO12potentialthetaoatNetCDFdepth0.49402499198913574m;3yearsnotclimatenorm;modelversionhomogeneitynotguaranteed"
+}
