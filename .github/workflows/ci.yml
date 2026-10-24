@@ -1,0 +1,71 @@
+# Проверки на каждый PR и на main: стиль, тесты и запуск ровно как у жюри.
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  lint-test:
+    name: Стиль и тесты
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10.3.2
+        with:
+          version: "0.13.5"
+          python-version: "3.13"
+          enable-cache: true
+      - name: uv.lock совпадает с pyproject.toml
+        run: uv lock --check
+      - name: Зависимости (все группы — тесты расчётов тоже)
+        run: uv sync --locked --all-extras
+      - run: uv run ruff check .
+      - run: uv run ruff format --check .
+      - run: uv run pytest -q
+
+  compose:
+    name: docker compose up --build → /health
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+      - name: Запуск как у жюри
+        run: |
+          cp .env.example .env
+          start=$(date +%s)
+          docker compose up --build -d
+          i=0
+          until curl -fsS http://localhost:8080/health; do
+            i=$((i + 1))
+            if [ "$i" -gt 120 ]; then echo "нет ответа /health за 10 минут"; exit 1; fi
+            sleep 5
+          done
+          echo
+          echo "От сборки до /health ok: $(( $(date +%s) - start )) с"
+      - name: Маршруты
+        run: |
+          curl -fsS http://localhost:8080/health | grep -q '"status":"ok"'
+          curl -fsS http://localhost:8080/ -o /dev/null
+          curl -fsS http://localhost:8080/api/cities -o /dev/null
+          docker compose ps -a
+          test "$(docker compose ps -a --format '{{.Service}} {{.ExitCode}}' | grep '^init ')" = "init 0"
+      - name: Повторный запуск (миграции и пакеты не ломаются)
+        run: |
+          docker compose run --rm init
+      - name: Логи
+        if: always()
+        run: docker compose logs --no-color
+      - name: Стоп
+        if: always()
+        run: docker compose down -v

@@ -6,7 +6,73 @@ Ostrovok Hackathon 2026, трек «О!дин шаг до идеального �
 
 Города: Москва и Большой Сочи — полная глубина; ещё 6 городов — автоматический слой.
 
-> Быстрый старт, переменные окружения, данные и ссылка на видео появятся здесь к сдаче (29.10, 10:00 МСК).
+> Видео — ссылка появится здесь к сдаче (29.10, 10:00 МСК).
+
+## Быстрый старт
+
+```bash
+git clone https://github.com/ostrovok-hackathon-2026/vaibovovka.git
+cd vaibovovka
+cp .env.example .env
+docker compose up --build
+```
+
+Открыть http://localhost:8080. Миграции и загрузка данных идут сами (сервис `init`), других команд не нужно. Нужны Docker с Compose v2 и интернет для первой сборки: Docker Hub, GHCR, PyPI, npm.
+
+## Что поднимается
+
+| Сервис | Что делает | Когда готов |
+|---|---|---|
+| `db` | PostgreSQL 16 + PostGIS 3.6 (`postgis/postgis:16-3.6`), данные в томе `pgdata` | `pg_isready` по TCP |
+| `init` | Миграции Alembic и загрузка пакетов городов из `packs/`; уже загруженный пакет повторно не грузится | завершился с кодом 0 |
+| `app` | API и интерфейс на порту 8080 | `/health` → `{"status":"ok"}` |
+
+Образ приложения один на `init` и `app`, сборка в три стадии (`Dockerfile`): интерфейс (Node 24) → зависимости Python строго по `uv.lock` → итоговый образ без инструментов сборки, процесс не от root. Версии образов зафиксированы. Все сервисы — `linux/amd64`, на Apple Silicon Docker Desktop запускает их через эмуляцию.
+
+## Маршруты
+
+| Путь | Что |
+|---|---|
+| `/` | Интерфейс. Пока он не собран — страница со ссылками на API |
+| `/health` | Готовность: `{"status":"ok"}`; пока идёт запуск — 503 и фаза |
+| `/live`, `/ready` | Процесс жив; то же, что `/health` |
+| `/docs` | Все маршруты API (OpenAPI) |
+| `/api/...` | Города и покрытие, отели и факты, поиск, вопросы отельеру, противоречия |
+
+Входа нет: кабинет отельера и админка открыты, тестовые учётные данные не нужны.
+
+## Переменные окружения
+
+Все — в `.env.example`. Без `.env` compose берёт те же значения по умолчанию. Секреты — только в `.env`, он не попадает ни в git, ни в образ.
+
+| Переменная | По умолчанию | Что |
+|---|---|---|
+| `DATA_MODE` | `fixtures` | `fixtures` — заглушки из настоящих фактов v9, без базы; `db` — база после `init` |
+| `POSTGRES_USER`, `POSTGRES_PASSWORD`, `POSTGRES_DB` | `oznayu` | База; адрес для `init` и `app` compose собирает из них |
+| `LLM_PROVIDER` | `anthropic` | LLM-шлюз: `anthropic` — основной, OpenAI-совместимый — запасной |
+| `LLM_MODEL` | `claude-opus-5-5` | Модель |
+| `LLM_API_KEY` | пусто | Ключ LLM |
+| `LLM_BASE_URL` | пусто | Адрес OpenAI-совместимого API |
+| `DATABASE_URL`, `PACKS_DIR` | см. `.env.example` | Только для запуска вне Docker |
+
+## Данные и сидирование
+
+Сидирование автоматическое. При каждом запуске `init` применяет миграции и грузит пакеты городов из `packs/` (формат — `packs/FORMAT.md`), сверяя хеши из `manifest.json`. Вручную — `make seed` или `docker compose run --rm init`. Тяжёлые расчёты делаются заранее: в пакетах только результаты, поэтому запуск укладывается в минуты.
+
+Пока пакетов нет, API отдаёт заглушки из настоящих фактов v9 (`app/fixtures/`, `DATA_MODE=fixtures`).
+
+## Команды
+
+| Команда | Что |
+|---|---|
+| `make up` | собрать, поднять и дождаться `/health` |
+| `make down` | остановить; база сохраняется |
+| `make seed` | миграции и загрузка пакетов заново |
+| `make logs`, `make ps` | логи и состояние сервисов |
+| `make clean` | остановить и удалить базу |
+| `make dev` | стек с автоперезагрузкой кода, база на 127.0.0.1:55432 |
+| `make db` | только база — для `uv run` на своей машине |
+| `make test`, `make lint`, `make fmt` | тесты; стиль и `uv.lock`; поправить стиль |
 
 ## Структура
 
@@ -25,13 +91,20 @@ Ostrovok Hackathon 2026, трек «О!дин шаг до идеального �
 ## Разработка
 
 ```bash
-uv lock                                              # один раз: зафиксировать версии (uv.lock в репозиторий)
-uv sync --extra api --extra llm --group dev          # окружение приложения
-uv sync --extra api --extra builder --group dev      # + сборка пакетов городов (Сева, Лера, лид)
-uv run uvicorn app.main:app --port 8080              # API на заглушках из фактов v9
-uv run pytest                                        # тесты
-uv run ruff check . && uv run ruff format --check .  # стиль
+uv sync --extra api --extra llm                          # окружение приложения; группа dev ставится сама
+uv sync --all-extras                                     # + сборка пакетов городов (Сева, Лера, лид)
+uv run --env-file .env uvicorn app.main:app --port 8080  # API на заглушках из фактов v9, без базы
+make db                                                  # база на 127.0.0.1:55432, адрес — DATABASE_URL в .env
+uv run --env-file .env python -m pipeline.init           # миграции и пакеты в эту базу
+make test && make lint
 ```
+
+Версии зафиксированы в `uv.lock`. После правки `pyproject.toml` — `uv lock` и закоммитить lock-файл. CI проверяет это сам.
+
+**CI** (`.github/workflows/ci.yml`) на каждый PR и в `main`:
+- `uv lock --check`, ruff и pytest;
+- `docker compose up --build` ровно как у жюри, с замером времени до `/health`;
+- проверка `/` и `/api/cities`, повторный запуск `init`.
 
 Контракты (факт, плагин, запрос, API, пакет города) — `docs/design/contracts.md`.
 

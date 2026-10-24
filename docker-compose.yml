@@ -1,0 +1,67 @@
+# Запуск у жюри: cp .env.example .env && docker compose up --build → http://localhost:8080
+# Порядок: db (PostGIS) → init (миграции + пакеты городов, завершается) → app (API + интерфейс, /health).
+# Значения берутся из .env, а без него — значения по умолчанию ниже, поэтому запуск работает и без .env.
+# Новую переменную приложения добавить в x-app.environment.
+
+name: oznayu
+
+# Образ собирает только сервис app, init берёт тот же (два build одного образа конфликтуют).
+x-app: &app
+  image: oznayu-app:local
+  platform: linux/amd64
+  environment:
+    DATA_MODE: ${DATA_MODE:-fixtures}
+    DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-oznayu}:${POSTGRES_PASSWORD:-oznayu}@db:5432/${POSTGRES_DB:-oznayu}
+    LLM_PROVIDER: ${LLM_PROVIDER:-anthropic}
+    LLM_MODEL: ${LLM_MODEL:-claude-opus-5-5}
+    LLM_API_KEY: ${LLM_API_KEY:-}
+    LLM_BASE_URL: ${LLM_BASE_URL:-}
+
+services:
+  db:
+    image: postgis/postgis:16-3.6
+    platform: linux/amd64
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-oznayu}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-oznayu}
+      POSTGRES_DB: ${POSTGRES_DB:-oznayu}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      # По TCP: пока идёт первичная инициализация, база слушает только сокет и для init ещё не готова.
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -U \"$${POSTGRES_USER}\" -d \"$${POSTGRES_DB}\""]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 30s
+    restart: unless-stopped
+
+  init:
+    <<: *app
+    command: ["python", "-m", "pipeline.init"]
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: "no"
+
+  app:
+    <<: *app
+    build:
+      context: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+      init:
+        condition: service_completed_successfully
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8080/health', timeout=3)"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 20s
+    restart: unless-stopped
+
+volumes:
+  pgdata:

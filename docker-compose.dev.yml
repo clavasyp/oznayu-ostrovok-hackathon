@@ -1,0 +1,27 @@
+# Разработка: make dev (полный стек с автоперезагрузкой) или make db (только база для uv run).
+# Подключается явно через -f и у жюри не применяется. Для личных настроек — свой
+# docker-compose.override.yml: он в .gitignore.
+
+x-code: &code
+  - ./app:/app/app:ro
+  - ./core:/app/core:ro
+  - ./agents:/app/agents:ro
+  - ./connectors:/app/connectors:ro
+  - ./calculators:/app/calculators:ro
+  - ./pipeline:/app/pipeline:ro
+  - ./migrations:/app/migrations:ro
+  - ./packs:/app/packs:ro
+
+services:
+  db:
+    ports:
+      - "127.0.0.1:55432:5432" # не 5432, чтобы не мешать своему Postgres
+
+  init:
+    volumes: *code
+
+  app:
+    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8080", "--reload",
+              "--reload-dir", "app", "--reload-dir", "core", "--reload-dir", "agents",
+              "--reload-dir", "connectors", "--reload-dir", "calculators", "--reload-dir", "pipeline"]
+    volumes: *code
