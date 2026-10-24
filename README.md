@@ -22,6 +22,19 @@ Ostrovok Hackathon 2026, трек «О!дин шаг до идеального �
 | `ui/` | Интерфейс | Андрей |
 | `tests/` | Тесты, метрики | Лера, все |
 
+## Разработка
+
+```bash
+uv lock                                              # один раз: зафиксировать версии (uv.lock в репозиторий)
+uv sync --extra api --extra llm --group dev          # окружение приложения
+uv sync --extra api --extra builder --group dev      # + сборка пакетов городов (Сева, Лера, лид)
+uv run uvicorn app.main:app --port 8080              # API на заглушках из фактов v9
+uv run pytest                                        # тесты
+uv run ruff check . && uv run ruff format --check .  # стиль
+```
+
+Контракты (факт, плагин, запрос, API, пакет города) — `docs/design/contracts.md`.
+
 ## Как работаем
 
 - Ветка `имя/задача`, маленькие PR в `main`, ревью лида. Напрямую в `main` не пушим.

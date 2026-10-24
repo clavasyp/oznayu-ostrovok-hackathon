@@ -1,0 +1,212 @@
+[
+ {
+  "hotel_id": "13736470",
+  "city_id": "sochi",
+  "name": "Radisson Collection Парадиз СПА, Сочи",
+  "address": "ул.65 лет Победы 50, Адлер",
+  "latitude": 43.3946418762207,
+  "longitude": 39.976051330566406,
+  "hotel_kind": "RESORT",
+  "hotel_url": "https://ostrovok.ru/hotel/russia/adler/mid8037537/radisson_blu_paradise_resort_spa_5/"
+ },
+ {
+  "hotel_id": "10012084",
+  "city_id": "sochi",
+  "name": "Архитектор Apart Hotel by Provence",
+  "address": "улица Конституции СССР, д.18, Сочи",
+  "latitude": 43.590584,
+  "longitude": 39.71963,
+  "hotel_kind": "HOTEL",
+  "hotel_url": "https://ostrovok.ru/hotel/russia/sochi/"
+ },
+ {
+  "hotel_id": "9986868",
+  "city_id": "sochi",
+  "name": "Cosmos Сочи Отель",
+  "address": "улица Горького, д. 56с1, Сочи",
+  "latitude": 43.5906,
+  "longitude": 39.72745,
+  "hotel_kind": "HOTEL",
+  "hotel_url": "https://ostrovok.ru/hotel/russia/sochi/"
+ },
+ {
+  "hotel_id": "8869683",
+  "city_id": "sochi",
+  "name": "Курортный Отель COOCOOROOZA",
+  "address": "улица Волжская, 18/16, Сочи",
+  "latitude": 43.624839782714844,
+  "longitude": 39.69620132446289,
+  "hotel_kind": "HOTEL",
+  "hotel_url": "https://ostrovok.ru/hotel/russia/sochi/mid8869683/coocoorooza_pansionat/"
+ },
+ {
+  "hotel_id": "6443737",
+  "city_id": "sochi",
+  "name": "LAVICON Отель Фрегат, Адлер",
+  "address": "ул. Ленина, д. 219, помещ. 1815-1817, Сочи",
+  "latitude": 43.47251510620117,
+  "longitude": 39.894657135009766,
+  "hotel_kind": "HOTEL",
+  "hotel_url": "https://ostrovok.ru/hotel/russia/sochi/mid6443737/pansionat_fregat/"
+ },
+ {
+  "hotel_id": "11313836",
+  "city_id": "sochi",
+  "name": "Санаторий «Адлеркурорт» корпус «Коралл»",
+  "address": "354367,г.Сочи, ул.Ленина, д.219, Сочи",
+  "latitude": 43.46590042114258,
+  "longitude": 39.89699935913086,
+  "hotel_kind": "HOTEL",
+  "hotel_url": "https://ostrovok.ru/hotel/russia/sochi/mid6522256/korall_adlerkurort_hotel/"
+ },
+ {
+  "hotel_id": "6497279",
+  "city_id": "sochi",
+  "name": "Гостиничный комплекс Богатырь",
+  "address": "Олимпийский проспект, д.21, Сириус",
+  "latitude": 43.40364,
+  "longitude": 39.963497,
+  "hotel_kind": "HOTEL",
+  "hotel_url": "https://ostrovok.ru/hotel/russia/adler/"
+ },
+ {
+  "hotel_id": "7631439",
+  "city_id": "sochi",
+  "name": "Отель Пансионат Аквамарин",
+  "address": "ул. Ялтинская, д. 4А, Сочи",
+  "latitude": 43.508201599121094,
+  "longitude": 39.869747161865234,
+  "hotel_kind": "HOTEL",
+  "hotel_url": "https://ostrovok.ru/hotel/russia/sochi/mid7631439/pansionat_akvamarin/"
+ },
+ {
+  "hotel_id": "8740393",
+  "city_id": "sochi",
+  "name": "Комплекс Аквалоо",
+  "address": "улица Декабристов, дом 78Б, Сочи",
+  "latitude": 43.676448822021484,
+  "longitude": 39.60409927368164,
+  "hotel_kind": "RESORT",
+  "hotel_url": "https://ostrovok.ru/hotel/russia/sochi/mid8740393/akvaloo_sanatorium/"
+ },
+ {
+  "hotel_id": "10575679",
+  "city_id": "sochi",
+  "name": "Эко-отель Бергамо",
+  "address": "Адлерский район, улица Заповедная, д. 56А, Красная Поляна",
+  "latitude": 43.68522644042969,
+  "longitude": 40.202152252197266,
+  "hotel_kind": "HOTEL",
+  "hotel_url": "https://ostrovok.ru/hotel/russia/krasnaya_polyana/mid10575679/rp_bergamo_hotel/"
+ },
+ {
+  "hotel_id": "11201577",
+  "city_id": "sochi",
+  "name": "Mantera Resort & Congress, Сочи",
+  "address": "ул. Голубая, д. 1а, Сириус",
+  "latitude": 43.409676,
+  "longitude": 39.938362,
+  "hotel_kind": "HOTEL",
+  "hotel_url": "https://ostrovok.ru/hotel/russia/adler/"
+ },
+ {
+  "hotel_id": "8736052",
+  "city_id": "moscow",
+  "name": "Мини-отель «Прованс» — хостел",
+  "address": "Страстной бульвар, 4, Москва",
+  "latitude": 55.765499114990234,
+  "longitude": 37.608028411865234,
+  "hotel_kind": "LIVING_QUARTERS",
+  "hotel_url": "https://ostrovok.ru/hotel/russia/moscow/mid8736052/mini_hotel_provans_na_tverskoj/"
+ },
+ {
+  "hotel_id": "6458292",
+  "city_id": "moscow",
+  "name": "Bolshaya Dorogomilovskaya Guest House",
+  "address": "Ulitsa Bolshaya Dorogomilovskaya 4; Moscow, Moscow, Moscow, Москва",
+  "latitude": 55.746036529541016,
+  "longitude": 37.57028579711914,
+  "hotel_kind": "GUESTHOUSE",
+  "hotel_url": "https://ostrovok.ru/hotel/russia/moscow/mid6458292/bolshaya_dorogomilovskaya_guest_house/"
+ },
+ {
+  "hotel_id": "6429629",
+  "city_id": "moscow",
+  "name": "Domumetro на Шаболовской",
+  "address": "Донская Улица 23, Москва",
+  "latitude": 55.72195053100586,
+  "longitude": 37.60704040527344,
+  "hotel_kind": "APARTMENT",
+  "hotel_url": "https://ostrovok.ru/hotel/russia/moscow/mid6429629/domumetro_shabolovskaya_/"
+ },
+ {
+  "hotel_id": "6481764",
+  "city_id": "moscow",
+  "name": "Hotel Aviamotornyy",
+  "address": "Ulitsa Energeticheskaya 20 Apartment 152,Ulitsa Energeticheskaya, Moscow, 111116, Москва",
+  "latitude": 55.756980895996094,
+  "longitude": 37.71383285522461,
+  "hotel_kind": "HOTEL",
+  "hotel_url": "https://ostrovok.ru/hotel/russia/moscow/mid6481764/gostevoi_dom_zvezda_aviamotrnaia/"
+ },
+ {
+  "hotel_id": "6535528",
+  "city_id": "moscow",
+  "name": "На Патриарших",
+  "address": "Ермолаевский пер., д. 11, Москва",
+  "latitude": 55.76487731933594,
+  "longitude": 37.59055709838867,
+  "hotel_kind": "GUESTHOUSE",
+  "hotel_url": "https://ostrovok.ru/hotel/russia/moscow/mid6535528/guest_house_on_patriarch_/"
+ },
+ {
+  "hotel_id": "6546443",
+  "city_id": "moscow",
+  "name": "Hostel Like Home",
+  "address": "Bryanskaya Ulitsa 8, Moscow, Russia, Moscow, Moscow, 121059, Москва",
+  "latitude": 55.74461364746094,
+  "longitude": 37.560943603515625,
+  "hotel_kind": "HOSTEL",
+  "hotel_url": "https://ostrovok.ru/hotel/russia/moscow/mid6546443/khostel_like_home_/"
+ },
+ {
+  "hotel_id": "6762797",
+  "city_id": "moscow",
+  "name": "Hostel Akvarium",
+  "address": "Smolenskaya 10, Moscow Moscow, Москва",
+  "latitude": 55.74601364135742,
+  "longitude": 37.57806396484375,
+  "hotel_kind": "HOSTEL",
+  "hotel_url": "https://ostrovok.ru/hotel/russia/moscow/mid6762797/hostel_ponayekhali/"
+ },
+ {
+  "hotel_id": "6878127",
+  "city_id": "moscow",
+  "name": "Отель Гостиница Минима Кузьминки",
+  "address": "Волгоградский проспект, д. 113к5, Москва",
+  "latitude": 55.708473205566406,
+  "longitude": 37.762298583984375,
+  "hotel_kind": "HOTEL",
+  "hotel_url": "https://ostrovok.ru/hotel/russia/moscow/mid6878127/hotel_minima_kuzminki/"
+ },
+ {
+  "hotel_id": "6957864",
+  "city_id": "moscow",
+  "name": "Богородское",
+  "address": "пр-кт Ленинский, д 119А, Москва",
+  "latitude": 55.64992904663086,
+  "longitude": 37.48930740356445,
+  "hotel_kind": "HOTEL",
+  "hotel_url": "https://ostrovok.ru/hotel/russia/moscow/mid6957864/hotel_bogorodskoe/"
+ },
+ {
+  "hotel_id": "8464907",
+  "city_id": "moscow",
+  "name": "Apartments Tverskaya-Yamskaya 20/1",
+  "address": "ulitsa 1-ya Tverskaya-Yamskaya, 20/1, Moscow, Moscow, 125047, Москва",
+  "latitude": 55.77362060546875,
+  "longitude": 37.59051513671875,
+  "hotel_kind": "APARTMENT",
+  "hotel_url": "https://ostrovok.ru/hotel/russia/moscow/mid8464907/minigostinitsa_na_tverskoj/"
+ }
+]
