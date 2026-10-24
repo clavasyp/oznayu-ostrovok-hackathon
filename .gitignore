@@ -11,8 +11,9 @@ venv/
 node_modules/
 ui/dist/
 
-# Секреты
+# Секреты и личные настройки запуска
 .env
+docker-compose.override.yml
 
 # Сырые и тяжёлые данные — на общем диске, не в git
 data/raw/
