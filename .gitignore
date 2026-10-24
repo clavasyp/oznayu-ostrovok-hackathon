@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Node
+node_modules/
+ui/dist/
+
+# Секреты
+.env
+
+# Сырые и тяжёлые данные — на общем диске, не в git
+data/raw/
+*.osm.pbf
+*.tif
+*.nc
+
+# Системное
+.DS_Store
+.idea/
+.vscode/
