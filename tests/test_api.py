@@ -33,10 +33,13 @@ def test_health_503_before_ready():
 
 
 def test_search_track_example_is_honest(client):
-    resp = client.post("/api/search", json={"text": "тихий номер с видом на закат недалеко от моря"})
+    resp = client.post(
+        "/api/search", json={"text": "тихий номер с видом на закат недалеко от моря"}
+    )
     body = resp.json()
     assert body["stub"] and body["notes"]
-    # Вид на закат (V05) пока нигде не посчитан → «Нужно уточнить», а не «Подходит» и не «Не подходит».
+    # Вид на закат (V05) пока нигде не посчитан →
+    # «Нужно уточнить», а не «Подходит» и не «Не подходит».
     assert {r["status"] for r in body["results"]} == {"needs_check"}
 
 
@@ -48,7 +51,13 @@ def test_computed_fact_can_close_hard_condition(client):
 
 
 def test_estimate_does_not_close_hard_condition(client):
-    cond = {"feature_id": "W01", "op": "lte", "value": 100000, "field": "distance_m", "binding": "hotel"}
+    cond = {
+        "feature_id": "W01",
+        "op": "lte",
+        "value": 100000,
+        "field": "distance_m",
+        "binding": "hotel",
+    }
     r = result_for(client.post("/api/search", json={"ast": ast(cond)}), RADISSON)
     assert r["status"] == "needs_check"
     assert "D18" in r["hard"][0]["reason"]

@@ -16,7 +16,9 @@ from app.stub_store import StubStore
 from core.facts import Fact, Status
 from core.verdict import GUEST_LABELS, GuestStatus, Verdict, guest_status
 
-EXAMPLE_AST = Path(__file__).resolve().parents[1] / "agents" / "schemas" / "examples" / "track_query.json"
+EXAMPLE_AST = (
+    Path(__file__).resolve().parents[1] / "agents" / "schemas" / "examples" / "track_query.json"
+)
 DEFAULT_FIELDS = (
     "distance_m",
     "count",
@@ -66,7 +68,9 @@ def _params_match(fact: Fact, params: dict[str, Any]) -> bool:
 
 def check(store: StubStore, hotel_id: str, c: Condition, hard: bool) -> dict[str, Any]:
     facts = [
-        f for f in store.by_hotel.get(hotel_id, {}).get(c.feature_id, []) if _params_match(f, c.params)
+        f
+        for f in store.by_hotel.get(hotel_id, {}).get(c.feature_id, [])
+        if _params_match(f, c.params)
     ]
     out: dict[str, Any] = {"feature_id": c.feature_id, "text_span": c.text_span, "fact_ids": []}
     if not facts:
@@ -85,7 +89,11 @@ def check(store: StubStore, hotel_id: str, c: Condition, hard: bool) -> dict[str
             if known
             else (facts[0].unknown_reason or "неизвестно")
         )
-        return out | {"verdict": Verdict.unknown, "reason": reason, "fact_ids": [f.fact_id for f in facts]}
+        return out | {
+            "verdict": Verdict.unknown,
+            "reason": reason,
+            "fact_ids": [f.fact_id for f in facts],
+        }
     results = [_compare(c.op, _number(f, c.field), c.value) for f in usable]
     out["fact_ids"] = [f.fact_id for f in usable]
     out["statuses"] = sorted({f.status for f in usable})

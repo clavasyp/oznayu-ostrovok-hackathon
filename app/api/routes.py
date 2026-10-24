@@ -100,7 +100,11 @@ def search(body: SearchRequest, request: Request) -> dict[str, Any]:
 
 @router.get("/hotelier/{hotel_id}/questions")
 def hotelier_questions(hotel_id: str, request: Request) -> dict[str, Any]:
-    return {"stub": True, "hotel_id": hotel_id, "questions": store(request).questions.get(hotel_id, [])}
+    return {
+        "stub": True,
+        "hotel_id": hotel_id,
+        "questions": store(request).questions.get(hotel_id, []),
+    }
 
 
 @router.post("/hotelier/{hotel_id}/answers", status_code=202)

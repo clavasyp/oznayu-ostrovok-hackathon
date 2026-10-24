@@ -56,7 +56,9 @@ def create_app() -> FastAPI:
     app.state.health = AppState()
     # Для разработки интерфейса на отдельном dev-сервере (Vite по умолчанию на 5173).
     origins = os.environ.get("CORS_ORIGINS", "http://localhost:5173").split(",")
-    app.add_middleware(CORSMiddleware, allow_origins=origins, allow_methods=["*"], allow_headers=["*"])
+    app.add_middleware(
+        CORSMiddleware, allow_origins=origins, allow_methods=["*"], allow_headers=["*"]
+    )
 
     @app.get("/health")
     def health() -> JSONResponse:

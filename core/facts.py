@@ -1,6 +1,7 @@
 """Контракт 1: факт с паспортом — формат обмена между калькуляторами, коннекторами, базой и API.
 
-Имена полей — как в фактах расчёта v9 (`research_notes/Расчёт характеристик/integrated/*_facts.jsonl`),
+Имена полей — как в фактах расчёта v9
+(`research_notes/Расчёт характеристик/integrated/*_facts.jsonl`),
 чтобы готовые результаты грузились без адаптера. Лишние поля v9 (диагностика) сохраняются как есть.
 Правила: D5 (да / нет / неизвестно), D8 (LLM не источник фактов), D18 (оценки не в обязательных
 условиях), D26 (данные Островка), D33 (`curated` — только после проверки человеком).
@@ -24,7 +25,9 @@ class Status(StrEnum):
     ostrovok_content = "ostrovok_content"  # опубликовано на странице Островка (D26)
     curated = "curated"  # обработано командой с ИИ и проверено человеком (D33)
     hotelier = "hotelier"  # ответ отельера
-    simulated_hotelier = "simulated_hotelier"  # ответ имитатора: показ, в реальное покрытие не входит
+    simulated_hotelier = (
+        "simulated_hotelier"  # ответ имитатора: показ, в реальное покрытие не входит
+    )
     unknown = "unknown"  # неизвестно, причина в unknown_reason
     not_applicable = "not_applicable"  # признак неприменим (например, моря нет)
 
@@ -58,12 +61,17 @@ class SubjectLevel(StrEnum):
 class Confidence(BaseModel):
     model_config = ConfigDict(extra="allow")
 
-    level: Literal["high", "medium", "low", "unknown"] | None = None  # v9: unknown у неизвестных фактов
+    level: Literal["high", "medium", "low", "unknown"] | None = (
+        None  # v9: unknown у неизвестных фактов
+    )
     reason: str | None = None
 
 
 class Source(BaseModel):
-    """Происхождение: провайдер, версия набора, хеш, лицензия, ссылка. Доп. поля — как у источника."""
+    """Происхождение: провайдер, версия набора, хеш, лицензия, ссылка.
+
+    Дополнительные поля — как у источника.
+    """
 
     model_config = ConfigDict(extra="allow")
 

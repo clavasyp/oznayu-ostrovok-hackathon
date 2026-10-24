@@ -1,4 +1,7 @@
-"""Загрузка пакетов городов в базу (сервис `init`, D6). Повторный запуск с тем же пакетом ничего не делает."""
+"""Загрузка пакетов городов в базу (сервис `init`, D6).
+
+Повторный запуск с тем же пакетом ничего не делает.
+"""
 
 from __future__ import annotations
 
@@ -99,7 +102,11 @@ def load_pack(conn: Connection, pack_dir: Path) -> str:
         )
         .on_conflict_do_update(
             index_elements=["id"],
-            set_={"name": manifest.city_name, "timezone": manifest.timezone, "depth": manifest.depth},
+            set_={
+                "name": manifest.city_name,
+                "timezone": manifest.timezone,
+                "depth": manifest.depth,
+            },
         )
     )
     counts = {}
@@ -116,7 +123,11 @@ def load_pack(conn: Connection, pack_dir: Path) -> str:
             counts[kind] = counts.get(kind, 0) + n
     conn.execute(
         insert(PackLoad)
-        .values(city_id=manifest.city_id, pack_version=manifest.pack_version, manifest_sha256=manifest_sha)
+        .values(
+            city_id=manifest.city_id,
+            pack_version=manifest.pack_version,
+            manifest_sha256=manifest_sha,
+        )
         .on_conflict_do_update(
             index_elements=["city_id"],
             set_={"pack_version": manifest.pack_version, "manifest_sha256": manifest_sha},

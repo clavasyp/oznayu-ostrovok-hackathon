@@ -1,6 +1,7 @@
 """E03 — доля растительности в радиусе 300 м по ESA WorldCover 2021 (пример контракта плагина).
 
-Перенос `green_fraction` из расчётов v9 (research_notes/Расчёт характеристик/scripts/environment.py):
+Перенос `green_fraction` из расчётов v9
+(research_notes/Расчёт характеристик/scripts/environment.py):
 пересечение пикселей с кругом 300 м в азимутальной проекции вокруг отеля; знаменатель — суша
 (без воды 80 и пропусков 0). Если покрытие растром < 99% — факт `unknown` с причиной.
 Владелец дальше — Лера (calculators/env*).
@@ -135,7 +136,9 @@ class VegetationShare:
                     algorithm_version=self.version,
                     confidence=Confidence(
                         level="medium",
-                        reason="Исторический покров 2021 года, не текущая зелень и не доступный парк.",
+                        reason=(
+                            "Исторический покров 2021 года, не текущая зелень и не доступный парк."
+                        ),
                     ),
                     calculated_at=datetime.now(UTC),
                     recipe_attempts=attempts,

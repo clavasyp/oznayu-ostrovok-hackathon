@@ -151,7 +151,9 @@ class Conflict(Base):
     subject_id: Mapped[str] = mapped_column(Text)
     fact_a: Mapped[str] = mapped_column(Text)
     fact_b: Mapped[str] = mapped_column(Text)
-    state: Mapped[str] = mapped_column(Text, default="detected")  # detected | awaiting_evidence | resolved | reopened
+    state: Mapped[str] = mapped_column(
+        Text, default="detected"
+    )  # detected | awaiting_evidence | resolved | reopened
     resolution_rule: Mapped[str | None] = mapped_column(Text)
     resolved_fact: Mapped[str | None] = mapped_column(Text)
     question_id: Mapped[int | None] = mapped_column(BigInteger)
@@ -194,7 +196,9 @@ class CurationItem(Base):
     proposal: Mapped[dict[str, Any]] = mapped_column(JSONB)
     proposed_by: Mapped[str] = mapped_column(Text)  # "llm:<model>" | "script:<name>" | "codex"
     evidence: Mapped[list[Any]] = mapped_column(JSONB, default=list)
-    state: Mapped[str] = mapped_column(Text, default="proposed")  # proposed | accepted | corrected | rejected | unsure
+    state: Mapped[str] = mapped_column(
+        Text, default="proposed"
+    )  # proposed | accepted | corrected | rejected | unsure
     reviewer: Mapped[str | None] = mapped_column(Text)
     reviewed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
     review_minutes: Mapped[float | None] = mapped_column(Float)

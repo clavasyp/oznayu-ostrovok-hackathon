@@ -18,7 +18,14 @@ from pydantic import BaseModel, ConfigDict, Field
 
 FORMAT_VERSION = "1"
 FileKind = Literal[
-    "hotels", "room_types", "buildings", "hotel_buildings", "facts", "questions", "coverage", "other"
+    "hotels",
+    "room_types",
+    "buildings",
+    "hotel_buildings",
+    "facts",
+    "questions",
+    "coverage",
+    "other",
 ]
 
 

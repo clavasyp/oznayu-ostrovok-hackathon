@@ -8,13 +8,17 @@ from core.plugins import CALCULATORS, CityContext, Subject
 
 def test_postgres_ddl_compiles():
     statements = []
-    engine = create_mock_engine("postgresql+psycopg://", lambda sql, *a, **k: statements.append(sql))
+    engine = create_mock_engine(
+        "postgresql+psycopg://", lambda sql, *a, **k: statements.append(sql)
+    )
     Base.metadata.create_all(engine, checkfirst=False)
     ddl = "\n".join(str(s.compile(dialect=engine.dialect)) for s in statements)
     for table in ("fact", "hotel", "curation_item", "unmatched_atom", "pack_load"):
         assert f"CREATE TABLE {table}" in ddl
     assert "geometry(POINT,4326)" in ddl
-    assert "algorithm_version" in str(CreateTable(FactRow.__table__).compile(dialect=engine.dialect))
+    assert "algorithm_version" in str(
+        CreateTable(FactRow.__table__).compile(dialect=engine.dialect)
+    )
 
 
 def test_e03_calculator_on_synthetic_worldcover(tmp_path):
@@ -47,7 +51,9 @@ def test_e03_calculator_on_synthetic_worldcover(tmp_path):
         ds.write(data, 1)
 
     calc = CALCULATORS["env.vegetation_share"]
-    subject = Subject(hotel_id="1", subject_level="hotel", subject_id="hotel:1", latitude=lat, longitude=lon)
+    subject = Subject(
+        hotel_id="1", subject_level="hotel", subject_id="hotel:1", latitude=lat, longitude=lon
+    )
     ctx = CityContext(city_id="sochi", timezone="Europe/Moscow", data_dir=tmp_path)
     (fact,) = calc.run([subject], ctx)
     assert fact.status == "computed"
@@ -56,4 +62,6 @@ def test_e03_calculator_on_synthetic_worldcover(tmp_path):
 
     missing = CityContext(city_id="sochi", timezone="Europe/Moscow", data_dir=tmp_path / "none")
     (unknown,) = calc.run([subject], missing)
-    assert unknown.status == "unknown" and unknown.unknown_reason.startswith("worldcover_tile_missing")
+    assert unknown.status == "unknown" and unknown.unknown_reason.startswith(
+        "worldcover_tile_missing"
+    )

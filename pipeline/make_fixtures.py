@@ -66,9 +66,7 @@ def main() -> None:
         for f in facts
         if f["city_id"] == "moscow" and f["status"] in ("computed", "observed", "estimate")
     )
-    moscow = DEMO_MOSCOW + [
-        h for h, _ in good.most_common() if h not in DEMO_MOSCOW
-    ][:MOSCOW_EXTRA]
+    moscow = DEMO_MOSCOW + [h for h, _ in good.most_common() if h not in DEMO_MOSCOW][:MOSCOW_EXTRA]
     demo = set(DEMO_SOCHI) | set(moscow)
 
     with gzip.open(OUT / "facts.jsonl.gz", "wt", encoding="utf-8") as out:
@@ -80,7 +78,16 @@ def main() -> None:
                 out.write(json.dumps(f, ensure_ascii=False) + "\n")
                 n += 1
 
-    keep = ("hotel_id", "city_id", "name", "address", "latitude", "longitude", "hotel_kind", "hotel_url")
+    keep = (
+        "hotel_id",
+        "city_id",
+        "name",
+        "address",
+        "latitude",
+        "longitude",
+        "hotel_kind",
+        "hotel_url",
+    )
     demo_hotels = [{k: hotels[h].get(k) for k in keep} for h in DEMO_SOCHI + moscow if h in hotels]
     (OUT / "hotels.json").write_text(json.dumps(demo_hotels, ensure_ascii=False, indent=1), "utf-8")
 
@@ -123,7 +130,9 @@ def main() -> None:
             if r["hotel_id"] in demo:
                 r.pop("snapshot", None)
                 conflicts.append(r)
-    (OUT / "conflicts.json").write_text(json.dumps(conflicts, ensure_ascii=False, indent=1), "utf-8")
+    (OUT / "conflicts.json").write_text(
+        json.dumps(conflicts, ensure_ascii=False, indent=1), "utf-8"
+    )
 
     print(f"fixtures: отелей {len(demo_hotels)}, фактов {n}, сравнений {len(conflicts)}")
 

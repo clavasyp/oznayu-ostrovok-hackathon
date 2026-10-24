@@ -35,7 +35,11 @@ def test_every_v9_fact_fits_contract():
 def test_all_v9_fixture_facts_fit_contract():
     store = StubStore.load()
     assert len(store.facts) > 1000
-    assert {f.status for f in store.facts.values()} >= {Status.computed, Status.estimate, Status.unknown}
+    assert {f.status for f in store.facts.values()} >= {
+        Status.computed,
+        Status.estimate,
+        Status.unknown,
+    }
 
 
 def test_unknown_needs_reason():
@@ -85,4 +89,6 @@ def test_query_ast_example_and_schema_file_in_sync():
 
 def test_query_ast_rejects_unknown_fields():
     with pytest.raises(ValueError):
-        QueryAST.model_validate({"raw_text": "x", "hard": [{"feature_id": "W01", "op": "lte", "x": 1}]})
+        QueryAST.model_validate(
+            {"raw_text": "x", "hard": [{"feature_id": "W01", "op": "lte", "x": 1}]}
+        )
