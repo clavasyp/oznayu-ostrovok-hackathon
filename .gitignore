@@ -17,6 +17,7 @@ docker-compose.override.yml
 
 # Сырые и тяжёлые данные — на общем диске, не в git
 data/raw/
+data/ostrovok_catalog/snapshot_*/
 *.osm.pbf
 *.tif
 *.nc
