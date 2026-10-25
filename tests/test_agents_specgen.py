@@ -1,11 +1,16 @@
+from collections.abc import Sequence
+
 import pytest
 
 from agents.llm import Gateway
 from agents.llm.fake import FakeLLM
-from agents.specgen import check, draft_spec, from_yaml, to_yaml
+from agents.specgen import check, draft_spec, from_yaml, to_yaml, trial_run
 from agents.specgen.draft import VEGETATION, rules_draft
 from agents.specgen.registry import WORLDCOVER_CLASSES, listing
+from app.stub_store import StubStore
 from core import plugins
+from core.facts import Fact, Source, Status, make_fact_id
+from core.plugins import CityContext, Subject
 
 OFFLINE = Gateway([])
 BUILT_UP = "Доля застройки в 300 м"
@@ -119,6 +124,65 @@ def test_model_path_only_known_calculators_and_layers():
     d = draft_spec("ширина входа", gateway=Gateway([FakeLLM([no])]))
     assert d.spec is None and "уже есть A02" in d.notes[0]
     assert draft_spec("ширина входа", gateway=OFFLINE).notes  # без ключа — честная пометка
+
+
+class FakeLandcover:
+    """Калькулятор-заглушка с контрактом core/plugins (у Леры будет настоящий)."""
+
+    id = "env.landcover_share"
+    version = "landcover-test@1"
+    feature_ids = ("built_up_share_300m",)
+
+    def __init__(self, fail=False):
+        self.fail = fail
+        self.ctx = None
+
+    def run(self, subjects: Sequence[Subject], ctx: CityContext) -> list[Fact]:
+        if self.fail:
+            raise RuntimeError("растр не открылся")
+        self.ctx = ctx
+        out = []
+        for i, s in enumerate(subjects):
+            known = i % 4 != 0
+            out.append(
+                Fact(
+                    fact_id=make_fact_id(s.hotel_id, s.subject_id, "x", ctx.params, self.version),
+                    hotel_id=s.hotel_id,
+                    city_id=ctx.city_id,
+                    subject_level="hotel",
+                    subject_id=s.subject_id,
+                    feature_id="built_up_share_300m",
+                    value=12.5 if known else None,
+                    unit="%",
+                    status=Status.computed if known else Status.unknown,
+                    unknown_reason=None if known else "worldcover_tile_missing:N42E039.tif",
+                    sources=[Source(provider="ESA WorldCover")],
+                )
+            )
+        return out
+
+
+def test_trial_run_coverage(monkeypatch):
+    calc = FakeLandcover()
+    monkeypatch.setitem(plugins.CALCULATORS, calc.id, calc)
+    spec = rules_draft(BUILT_UP)
+    assert check(spec).trial_ready
+    result = trial_run(spec, StubStore.load(), "sochi", n=8)
+    assert result["ran"] and result["saved"] is False and result["hotels"] == 8
+    assert result["statuses"] == {"computed": 6, "unknown": 2} and result["coverage"] == 0.75
+    assert result["unknown_reasons"] == {"worldcover_tile_missing": 2}
+    assert calc.ctx.params["classes"] == [50]  # параметры рецепта дошли до калькулятора
+
+    monkeypatch.setitem(plugins.CALCULATORS, calc.id, FakeLandcover(fail=True))
+    failed = trial_run(spec, StubStore.load(), "sochi", n=3)
+    assert not failed["ran"] and "упал" in failed["reason"]
+
+
+def test_trial_refuses_broken_or_unregistered(no_landcover):
+    result = trial_run(rules_draft(BUILT_UP), StubStore.load(), "sochi")
+    assert not result["ran"] and "не зарегистрирован" in result["reason"]
+    broken = trial_run(_broken(id="e03"), StubStore.load(), "sochi")
+    assert not broken["ran"] and broken["problems"]
 
 
 def test_listing_names_layers_and_calculators(no_landcover):
