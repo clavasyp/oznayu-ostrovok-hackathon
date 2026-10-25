@@ -80,10 +80,15 @@ def marker_requiredness(norm: str, pos: int, *, sentence: bool = True) -> str | 
     start, end = clause_bounds(norm, pos)
     if found := _markers(norm[start:end]):
         return found
+    s_start, s_end = clause_bounds(norm, pos, _SENTENCE_END)
+    # «Обязательно: тихо, без ковролина» — слово перед двоеточием относится ко всему списку
+    # после него, до конца предложения.
+    colon = norm.rfind(":", s_start, pos)
+    if colon >= 0 and (found := _markers(norm[s_start:colon])):
+        return found
     if not sentence:
         return None
-    start, end = clause_bounds(norm, pos, _SENTENCE_END)
-    return _markers(norm[start:end])
+    return _markers(norm[s_start:s_end])
 
 
 def normalize(text: str) -> str:

@@ -311,3 +311,14 @@ def test_comparison_before_number_is_part_of_the_rule(text, op, meters):
     ast = parse_query(text, today=TODAY, mode="rules").ast
     assert [(c.feature_id, c.op, c.value) for c in ast.hard] == [("W01", op, meters)]
     assert not ast.unparsed_spans and not ast.out_of_catalog  # «не дальше» не висит отдельно
+
+
+def test_marker_before_colon_covers_the_list():
+    ast = parse_query("Обязательно: тихо, без ковролина.", today=TODAY, mode="rules").ast
+    (rest,) = [o for o in ast.out_of_catalog if is_leftover(o)]
+    assert rest.text_span == "без ковролина" and rest.requiredness == "required"
+    # Маркер после двоеточия «заголовок» не задевает: пояснение гостя остаётся просто непонятым.
+    text = "Мама ходит с тростью: от улицы до номера обязательно без ступеней."
+    ast = parse_query(text, today=TODAY, mode="rules").ast
+    assert [s.text for s in ast.unparsed_spans] == ["Мама ходит с тростью"]
+    assert not [o for o in ast.out_of_catalog if is_leftover(o)]

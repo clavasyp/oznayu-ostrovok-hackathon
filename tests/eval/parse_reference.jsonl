@@ -43,3 +43,4 @@
 {"id": "neg-5", "source": "review8", "city_id": "sochi", "text": "Обязательно рядом с аптекой, кондиционер не обязательно.", "hard": [["L01"]], "soft": [["S04"]]}
 {"id": "cmp-1", "source": "review8b", "city_id": "sochi", "text": "Обязательно не дальше 500 м от моря.", "hard": [["W01"]], "soft": []}
 {"id": "cmp-2", "source": "review8b", "city_id": "sochi", "text": "Обязательно не дальше 10 минут пешком до моря.", "hard": [["W01"]], "soft": []}
+{"id": "colon-1", "source": "review8b", "city_id": "sochi", "text": "Обязательно: тихо, без ковролина.", "hard": [["N05", "N02", "N04"], ["ooc"]], "soft": []}
