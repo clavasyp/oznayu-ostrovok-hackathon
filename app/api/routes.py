@@ -4,6 +4,7 @@
 
 from __future__ import annotations
 
+from datetime import UTC, datetime
 from typing import Any
 
 from fastapi import APIRouter, HTTPException, Request
@@ -12,6 +13,7 @@ from pydantic import BaseModel
 from agents.query_ast import QueryAST
 from core import search as engine
 from core.facts import Fact
+from core.hotelier import AnswerError, AnswerIn, build_answer
 from core.reasons import reason_text
 from core.store import Store
 from core.verdict import BOOKED_LABEL, BOOKING_IMITATION_NOTE, GUEST_LABELS
@@ -122,17 +124,71 @@ def hotelier_questions(hotel_id: str, request: Request) -> dict[str, Any]:
     return {"stub": s.stub, "hotel_id": hotel_id, "questions": s.questions(hotel_id)}
 
 
-@router.post("/hotelier/{hotel_id}/answers", status_code=202)
-def hotelier_answer(hotel_id: str, body: dict[str, Any]) -> dict[str, Any]:
+@router.post("/hotelier/{hotel_id}/questions/{question_id}/ask")
+def hotelier_ask(hotel_id: str, question_id: int, request: Request) -> dict[str, Any]:
+    """Вопрос отправлен отелю (кабинет отельера: «спросили»)."""
+    s = store(request)
+    if s.question(hotel_id, question_id, None) is None:
+        raise HTTPException(404, f"нет вопроса {question_id} у отеля {hotel_id}")
+    s.set_question_state(question_id, "asked", datetime.now(UTC))
+    return {"stub": s.stub, "question": s.question(hotel_id, question_id, None)}
+
+
+def _hotel_view(s: Store, ast: QueryAST, hotel_id: str) -> dict[str, Any] | None:
+    found = engine.search(s, ast.model_copy(update={"city_id": None}), only=[hotel_id])
+    if not found:
+        return None
+    r = found[0]
+    return {k: r[k] for k in ("status", "status_label", "hard", "best_category")}
+
+
+@router.post("/hotelier/{hotel_id}/answers")
+def hotelier_answer(hotel_id: str, body: AnswerIn, request: Request) -> dict[str, Any]:
+    """Ответ отеля → факты с паспортом → поиск сразу видит новое (core.hotelier).
+
+    С `ast` в теле ответ показывает статус отеля по этому запросу до и после — так видно,
+    как ответ меняет выдачу.
+    """
+    s = store(request)
+    q = s.question(hotel_id, body.question_id, body.feature_id)
+    if q is None:
+        raise HTTPException(404, f"нет такого вопроса у отеля {hotel_id}")
+    existing = s.facts_for(q["feature_id"], [hotel_id]).get(hotel_id, [])
+    try:
+        result = build_answer(q, body, existing, datetime.now(UTC))
+    except AnswerError as e:
+        raise HTTPException(422, str(e)) from e
+    before = _hotel_view(s, body.ast, hotel_id) if body.ast else None
+    try:
+        s.apply_answer(result)
+    except AnswerError as e:
+        raise HTTPException(422, str(e)) from e
+    after = _hotel_view(s, body.ast, hotel_id) if body.ast else None
+    notes = []
+    if result.state == "answered_unparsed":
+        notes.append("Текст сохранён без полей: его разберёт агент-отельер, факт появится после.")
+    if body.is_simulated:
+        notes.append("Ответ имитатора: факт помечен simulated_hotelier и показывается с пометкой.")
     return {
-        "stub": True,
-        "accepted": False,
-        "reason": "Разбор ответа по полям — агент-отельер (Данил). Пока ответ не сохраняется.",
-        "echo": body,
+        "stub": s.stub,
+        "state": result.state,
+        "question": s.question(hotel_id, result.question_id, None),
+        "facts": [fact_json(f) for f in result.facts],
+        "superseded": result.superseded,
+        "conflicts": [{"fact_a": a.fact_id, "fact_b": b.fact_id} for a, b in result.conflicts],
+        "placements_saved": result.placements is not None,
+        "before": before,
+        "after": after,
+        "notes": notes,
     }
 
 
 @router.get("/conflicts")
 def conflicts(request: Request, city_id: str | None = None) -> dict[str, Any]:
+    """Сверка с карточкой Островка (`conflicts`) и противоречия между фактами (`fact_conflicts`)."""
     s = store(request)
-    return {"stub": s.stub, "conflicts": s.conflicts(city_id)}
+    return {
+        "stub": s.stub,
+        "conflicts": s.conflicts(city_id),
+        "fact_conflicts": s.fact_conflicts(city_id),
+    }
