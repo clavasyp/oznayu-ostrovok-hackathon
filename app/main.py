@@ -54,7 +54,9 @@ class SPAStaticFiles(StaticFiles):
         try:
             return await super().get_response(path, scope)
         except HTTPException as exc:
-            if exc.status_code != 404 or path == "api" or path.startswith("api/"):
+            # Под Windows путь приходит с «\»: api\no-such-route — это тоже /api.
+            api = path.replace("\\", "/")
+            if exc.status_code != 404 or api == "api" or api.startswith("api/"):
                 raise
             return await super().get_response("index.html", scope)
 
