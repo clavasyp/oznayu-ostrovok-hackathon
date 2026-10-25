@@ -1,12 +1,14 @@
 from collections.abc import Sequence
 
 import pytest
+from fastapi.testclient import TestClient
 
 from agents.llm import Gateway
 from agents.llm.fake import FakeLLM
 from agents.specgen import check, draft_spec, from_yaml, to_yaml, trial_run
 from agents.specgen.draft import VEGETATION, rules_draft
 from agents.specgen.registry import WORLDCOVER_CLASSES, listing
+from app.main import create_app
 from app.stub_store import StubStore
 from core import plugins
 from core.facts import Fact, Source, Status, make_fact_id
@@ -183,6 +185,17 @@ def test_trial_refuses_broken_or_unregistered(no_landcover):
     assert not result["ran"] and "не зарегистрирован" in result["reason"]
     broken = trial_run(_broken(id="e03"), StubStore.load(), "sochi")
     assert not broken["ran"] and broken["problems"]
+
+
+def test_api_draft_and_trial(no_landcover):
+    with TestClient(create_app()) as c:
+        body = c.post("/api/specs/draft", json={"text": BUILT_UP, "use_llm": False}).json()
+        assert body["status"] == "draft" and body["saved"] is False
+        assert body["spec"]["id"] == "built_up_share_300m" and body["yaml"].startswith("id:")
+        trial = c.post("/api/specs/trial", json={"yaml": body["yaml"], "city_id": "moscow"})
+        assert trial.status_code == 200 and trial.json()["ran"] is False
+        assert c.post("/api/specs/trial", json={"yaml": "id: [oops"}).status_code == 422
+        assert c.post("/api/specs/trial", json={}).status_code == 422
 
 
 def test_listing_names_layers_and_calculators(no_landcover):
