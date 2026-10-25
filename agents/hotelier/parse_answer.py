@@ -244,10 +244,12 @@ def rules_parse(feature: Feature, answer: str) -> AnswerCompact:
             for spec in feature.fields.values():
                 if spec.unit == "RUB" and re.search(keywords(spec.name), clause):
                     put(spec.name, "0", "руб", start, end)
-        for m in _NUMBER.finditer(clause):
+        numbers = list(_NUMBER.finditer(clause))
+        spans = [m.span("n") for m in numbers]
+        for i, m in enumerate(numbers):
             if re.match(r"\d{1,2}[:.]\d{2}", clause[m.start() :]):
                 continue  # время, а не число
-            candidates = _number_fields(feature, clause, m.group("u") or "")
+            candidates = _number_fields(feature, _part(clause, spans, i), m.group("u") or "")
             if len(candidates) == 1:
                 put(candidates[0], m.group("n"), m.group("u") or "", start, end)
     quantifier = "unknown"
@@ -264,8 +266,28 @@ def rules_parse(feature: Feature, answer: str) -> AnswerCompact:
     )
 
 
+_PART_BREAK = re.compile(r",(?!\d)|\s(?:и|а|но)\s")  # запятая в «0,6» — не граница
+
+
+def _part(clause: str, spans: list[tuple[int, int]], i: int) -> str:
+    """Кусок фразы вокруг i-го числа: режем только между числами.
+
+    В «скорость 100, отдача 50» слово «отдача» — подпись к 50, а не к 100; в «ширина дверей
+    в номер и санузел: 700 мм» число одно, и фраза остаётся целой.
+    """
+    start, end = 0, len(clause)
+    a, b = spans[i]
+    for m in _PART_BREAK.finditer(clause):
+        if i and spans[i - 1][1] <= m.start() and m.end() <= a:
+            start = m.end()  # последняя граница после предыдущего числа
+        elif i + 1 < len(spans) and b <= m.start() and m.end() <= spans[i + 1][0]:
+            end = m.start()  # первая граница перед следующим числом
+            break
+    return clause[start:end]
+
+
 def _number_fields(feature: Feature, clause: str, unit: str) -> list[str]:
-    """Поля, куда может пойти число: по единице, а при нескольких — по ключевому слову."""
+    """Поля, куда может пойти число: по единице, а при нескольких — по слову рядом с числом."""
     walk = load_catalog().walk_speed_m_per_min
     fits = []
     for spec in feature.fields.values():
