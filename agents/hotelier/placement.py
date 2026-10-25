@@ -80,9 +80,15 @@ def rules_parse(answer: str) -> PlacementCompact:
         guarantee = "all_guaranteed"
     else:
         guarantee = "unknown"
+    # «Полный список» — только со слов отельера; найденный вариант ещё не значит, что других нет.
+    complete = items and re.search(
+        r"других\s+(?:вариантов|номеров|сторон)(?:\s+\w+){0,3}\s+нет|все\s+номера"
+        r"|во\s+всех\s+номерах|только\s+так",
+        norm,
+    )
     return PlacementCompact(
         placements=items,
-        completeness="complete" if items else "unknown",
+        completeness="complete" if complete else "unknown",
         guarantee=guarantee,
         unclear=[],
     )

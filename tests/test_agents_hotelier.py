@@ -243,3 +243,10 @@ def test_agent_failure_keeps_text_not_500(client, monkeypatch):
     body = resp.json()
     assert resp.status_code == 200 and body["state"] == "answered_unparsed"
     assert body["facts"] == [] and "не разобрал" in body["notes"][0]
+
+
+def test_placement_completeness_only_from_hotelier_words():
+    found, _, _ = parse_placement("Окна на юго-запад, с 3 по 8 этаж.", gateway=OFFLINE)
+    assert found.placements and found.completeness == "unknown"  # один вариант — ещё не «все»
+    full = simulate_placement(RADISSON, "13736470:3502302001O")["answer_text"]
+    assert parse_placement(full, gateway=OFFLINE)[0].completeness == "complete"

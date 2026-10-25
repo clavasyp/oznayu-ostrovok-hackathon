@@ -184,6 +184,8 @@ def simulate_placement(hotel_id: str, room_type_id: str) -> dict[str, Any]:
             lo, hi = p["floors"]
             parts.append(f"окна выходят {side}, с {lo} по {hi} этаж ({p['building']})")
         text = f"В категории «{cat['name']}» " + "; ".join(parts) + "."
+        if cat.get("completeness") == "complete":
+            text += " Других вариантов в этой категории нет."
         text += {
             "all_guaranteed": " Это гарантируем при бронировании.",
             "on_request": " Конкретный вариант — по запросу, гарантировать заранее не можем.",
