@@ -215,7 +215,7 @@ def test_varies_is_not_a_hotel_fact():
     q = {"feature_id": "M02", "parsed_fields": list(CAT.get("M02").fields)}
     out = answer_from_text(q, "Да, балкон есть, но это зависит от номера.", gateway=OFFLINE)
     assert out.body == {} and out.report["answer_state"] == "varies"
-    assert "от чего это зависит" in out.report["followup"]
+    assert "в каких номерах" in out.report["followup"]  # причина названа — о ней и спрашиваем
     reply = {
         "answer_state": "varies",
         "quantifier": "unknown",
@@ -266,3 +266,17 @@ def test_prefill_drops_service_tags():
     assert "«Размещение с домашними животными», «двуспальная кровать»" in text
     assert "pets-allowed" not in text and "fridge" not in text and "PRIOR" not in text
     assert prefill_text([{"quote": "pets-allowed"}]) is None
+
+
+@pytest.mark.parametrize(
+    ("text", "asks"),
+    [
+        ("По-разному, зависит от сезона.", "от сезона"),
+        ("Зависит от дат заезда.", "от дат"),
+        ("Это зависит от номера.", "в каких номерах"),
+        ("Бывает по-разному.", "от чего это зависит"),  # причина не названа — спрашиваем её
+    ],
+)
+def test_varies_followup_uses_named_reason(text, asks):
+    parsed = parse_answer("M02", text, gateway=OFFLINE)
+    assert parsed.answer_state == "varies" and asks in parsed.followup
