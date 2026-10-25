@@ -204,5 +204,7 @@ def test_placement_parse_and_mapping():
 
 
 def test_questions_copy_matches_v9():
+    # По строкам, а не байтам: в git копия с LF, оригинал v9 — с CRLF.
     v9 = Path("research_notes/Расчёт характеристик/hotelier/questions_26.csv")
-    assert QUESTIONS_CSV.read_bytes() == v9.read_bytes()
+    copy = QUESTIONS_CSV.read_text("utf-8").splitlines()
+    assert copy == v9.read_text("utf-8").splitlines()
