@@ -151,7 +151,13 @@ def _label(item: dict[str, Any], catalog: Catalog) -> str:
         label = f"{label} ({field_label(field_name).split(',')[0]})"  # «можно с животным (масса)»
     if item.get("op") == "OR" and item.get("text_span"):
         label = item["text_span"]
-    return f"не {label}" if item.get("negated") else label
+    if item.get("negated"):
+        # Слова гостя («без собак»), а не «не можно с животным».
+        span = (item.get("text_span") or "").strip()
+        if span and re.match(r"(?:не|без|нет|никаких)\b", span.lower()):
+            return span
+        return f"не {span}" if span else f"не {label}"
+    return label
 
 
 def _condition_claim(
