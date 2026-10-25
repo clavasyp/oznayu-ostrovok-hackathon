@@ -475,6 +475,7 @@
     - Материалы v9 в репозитории полные. Локальные кэши v9 (1,16 ГБ) в репозиторий не кладём из-за размера — как и раньше.
     - **Убрано:**
       - локально — временная копия ветки PR №8 и 7 влитых веток; база для тестов остановлена;
-      - на GitHub — влитые ветки PR №1–7. Вернуть любую можно кнопкой «Restore branch» в её PR. Последние коммиты: `bootstrap-contracts` aa278b7, `docker-compose-ci` 02f7a3f, `ostrovok-snapshot` c4ab3c2, `docs-2gis-maps` 15aff0d, `data-in-db` a49cd81, `placements-reasons` 7f39f1d, `hotelier-loop` e1943c5.
+      - на GitHub влитые ветки PR №1–7 **остались**: их удаление автоматически заблокировано в сессии Claude. Удалить их может пользователь кнопкой «Delete branch» в каждом PR или разрешить это Claude. Последние коммиты: `bootstrap-contracts` aa278b7, `docker-compose-ci` 02f7a3f, `ostrovok-snapshot` c4ab3c2, `docs-2gis-maps` 15aff0d, `data-in-db` a49cd81, `placements-reasons` 7f39f1d, `hotelier-loop` e1943c5.
     - **Синхронизация документов и отчётов v11** — отдельный PR из ветки `lead/docs-sync`.
     - **Кто правит PR №8** (вопрос пользователя): правки вносит Данил в свою ветку; лиду ничего менять не нужно. После его пуша — перепроверка и слово пользователя «сливай». Часть лида (движок) — в `lead/search-logic`, PR после слияния Данила.
+    - PR с документами: https://github.com/ostrovok-hackathon-2026/vaibovovka/pull/9 (ветка `lead/docs-sync`).
