@@ -25,6 +25,9 @@ from core.db import (
     HotelBuilding,
     OtaComparison,
     PackLoad,
+    Placement,
+    PlacementSet,
+    PlacementWindow,
     Question,
     RoomType,
 )
@@ -78,6 +81,9 @@ def building_row(raw: dict[str, Any]) -> dict[str, Any]:
 ROW_BUILDERS = {
     "hotels": (Hotel, hotel_row),
     "room_types": (RoomType, lambda r: r),
+    "placement_sets": (PlacementSet, lambda r: r),
+    "placements": (Placement, lambda r: r),
+    "placement_windows": (PlacementWindow, lambda r: r),
     "buildings": (Building, building_row),
     "hotel_buildings": (HotelBuilding, lambda r: r),
     "facts": (FactRow, fact_row),
@@ -89,6 +95,9 @@ ROW_BUILDERS = {
 LOAD_ORDER = [
     "hotels",
     "room_types",
+    "placement_sets",
+    "placements",
+    "placement_windows",
     "buildings",
     "hotel_buildings",
     "facts",
@@ -118,6 +127,15 @@ def clear_city(conn: Connection, city_id: str) -> None:
     conn.execute(delete(OtaComparison).where(OtaComparison.city_id == city_id))
     conn.execute(delete(CityCoverage).where(CityCoverage.city_id == city_id))
     conn.execute(delete(HotelBuilding).where(HotelBuilding.hotel_id.in_(hotels)))
+    room_types = select(RoomType.id).where(RoomType.hotel_id.in_(hotels)).scalar_subquery()
+    placements = select(Placement.id).where(Placement.room_type_id.in_(room_types))
+    conn.execute(
+        delete(PlacementWindow).where(
+            PlacementWindow.placement_id.in_(placements.scalar_subquery())
+        )
+    )
+    conn.execute(delete(Placement).where(Placement.room_type_id.in_(room_types)))
+    conn.execute(delete(PlacementSet).where(PlacementSet.room_type_id.in_(room_types)))
     conn.execute(delete(RoomType).where(RoomType.hotel_id.in_(hotels)))
     conn.execute(delete(Building).where(Building.city_id == city_id))
 
@@ -171,7 +189,10 @@ def load_pack(conn: Connection, pack_dir: Path) -> str:
             for batch in _batches(rows):
                 stmt = insert(model).values(batch)
                 updatable = {c: stmt.excluded[c] for c in batch[0] if c not in pk}
-                conn.execute(stmt.on_conflict_do_update(index_elements=pk, set_=updatable))
+                if updatable:
+                    conn.execute(stmt.on_conflict_do_update(index_elements=pk, set_=updatable))
+                else:  # строка — только ключ (например, окно размещения без азимута)
+                    conn.execute(stmt.on_conflict_do_nothing(index_elements=pk))
                 n += len(batch)
                 if kind == "hotels":
                     hotel_ids.extend(r["id"] for r in batch)
