@@ -30,7 +30,8 @@ NOTE_LLM_INVALID = "Запрос разобран правилами: ответ
 NOTE_UNPARSED = "Часть запроса не разобрана — она показана отдельно и не считается выполненной."
 
 CACHE_SIZE = 256
-_cache: OrderedDict[tuple, QueryAST] = OrderedDict()
+# Кэш ответов модели: AST и пометки. Наружу — копии: вызывающий код может менять свой AST.
+_cache: OrderedDict[tuple, tuple[QueryAST, list[str]]] = OrderedDict()
 
 
 @dataclass
@@ -83,7 +84,8 @@ def parse_query(
     key = (normalize(text).strip(), city_id, catalog.version, today.isoformat())
     if key in _cache:
         _cache.move_to_end(key)
-        return ParseOutcome(_cache[key])
+        cached, notes = _cache[key]
+        return ParseOutcome(cached.model_copy(deep=True), list(notes))
     try:
         done = gw.complete(
             task="parse_query",
@@ -100,8 +102,9 @@ def parse_query(
     if errs:
         log.warning("llm ast problems: %s", errs)
         return offline(NOTE_LLM_INVALID, errs)
-    _cache[key] = ast
+    rest = ast.unparsed_spans or any(is_leftover(o) for o in ast.out_of_catalog)
+    notes = [NOTE_UNPARSED] if rest else []
+    _cache[key] = (ast.model_copy(deep=True), list(notes))
     if len(_cache) > CACHE_SIZE:
         _cache.popitem(last=False)
-    notes = [NOTE_UNPARSED] if ast.unparsed_spans else []
     return ParseOutcome(ast, notes, llm=done.result)

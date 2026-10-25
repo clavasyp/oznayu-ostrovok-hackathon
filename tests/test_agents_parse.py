@@ -282,3 +282,17 @@ def test_required_leftover_keeps_hotel_below_fits():
             "/api/search", json={"text": "обязательно без ковролина", "city_id": "sochi"}
         ).json()
     assert {r["status"] for r in body["results"]} == {"needs_check"}
+
+
+def test_cache_keeps_notes_and_returns_copies():
+    text = "Мама ходит с тростью, нужен лифт"
+    reply = compact(
+        atom("a1", "нужен лифт", "A03", field="lift_id", op="ne", value="none"),
+    ).model_dump()
+    fake = FakeLLM([reply])
+    first = parse_query(text, today=TODAY, gateway=Gateway([fake]))
+    first.ast.hard.clear()  # вызывающий код поменял свой AST — кэш не должен это увидеть
+    again = parse_query(text, today=TODAY, gateway=Gateway([fake]))
+    assert len(fake.calls) == 1  # второй раз — из кэша
+    assert [c.feature_id for c in again.ast.hard] == ["A03"]
+    assert again.notes == first.notes and again.notes  # «Мама ходит с тростью» не разобрано
