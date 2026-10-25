@@ -19,6 +19,9 @@ api = [
     "geoalchemy2>=0.16",
     "pydantic-settings>=2.6",
     "opening-hours-py==2.1.4",
+    # Спецификации характеристик в YAML (app/api/specs.py, agents/specgen). Раньше приходил
+    # только через uvicorn[standard] — без явной зависимости приложение могло не подняться.
+    "pyyaml>=6.0",
 ]
 # Сборка пакетов городов (вне запуска жюри). Версии — как в расчётах v9 (requirements-v9.lock.txt).
 builder = [

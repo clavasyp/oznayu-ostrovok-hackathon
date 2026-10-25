@@ -515,6 +515,7 @@ api = [
     { name = "opening-hours-py" },
     { name = "psycopg", extra = ["binary"] },
     { name = "pydantic-settings" },
+    { name = "pyyaml" },
     { name = "sqlalchemy" },
     { name = "uvicorn", extra = ["standard"] },
 ]
@@ -561,6 +562,7 @@ requires-dist = [
     { name = "pydantic", specifier = ">=2.9" },
     { name = "pydantic-settings", marker = "extra == 'api'", specifier = ">=2.6" },
     { name = "pyproj", marker = "extra == 'builder'", specifier = "==3.8.0" },
+    { name = "pyyaml", marker = "extra == 'api'", specifier = ">=6.0" },
     { name = "rasterio", marker = "extra == 'builder'", specifier = "==1.5.2" },
     { name = "requests", marker = "extra == 'builder'", specifier = "==2.34.2" },
     { name = "scipy", marker = "extra == 'builder'", specifier = "==1.18.1" },
