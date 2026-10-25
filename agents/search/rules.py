@@ -387,6 +387,12 @@ def landmark_distance(ctx: Ctx) -> Iterator[Hit]:
         yield Hit(
             m.start(), m.end(), [Atom("W03", "distance_m", "lte", meters, "m", params)], "desired"
         )
+    # С числом: «не дальше 1 км от центра», «до набережной не больше 10 минут».
+    for m, op in measured(ctx, r"(?P<t>набережн\w*|центр\w*)"):
+        center = m.group("t").startswith("центр")
+        params = {"target_kind": "center"} if center else {"target": "набережная"}
+        atom = Atom("W03", "distance_m", op, number(m.group("n")), m.group("unit"), params)
+        yield Hit(m.start(), m.end(), [atom], "required")
 
 
 @rule
@@ -419,6 +425,11 @@ def stop_distance(ctx: Ctx) -> Iterator[Hit]:
         params = {"target_kind": "stop"}
         atom = Atom("W02", "distance_m", "lte", str(NEAR_STOP_M), "m", params)
         yield Hit(m.start(), m.end(), [atom], "desired")
+    # С числом: «не дальше 300 метров до остановки», «до метро не больше 5 минут».
+    for m, op in measured(ctx, r"(?:остановк\w*|метро|станци\w*)"):
+        params = {"target_kind": "stop"}
+        atom = Atom("W02", "distance_m", op, number(m.group("n")), m.group("unit"), params)
+        yield Hit(m.start(), m.end(), [atom], "required")
 
 
 @rule

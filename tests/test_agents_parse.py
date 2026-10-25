@@ -322,3 +322,18 @@ def test_marker_before_colon_covers_the_list():
     ast = parse_query(text, today=TODAY, mode="rules").ast
     assert [s.text for s in ast.unparsed_spans] == ["Мама ходит с тростью"]
     assert not [o for o in ast.out_of_catalog if is_leftover(o)]
+
+
+@pytest.mark.parametrize(
+    ("text", "expected"),
+    [
+        ("обязательно не дальше 300 метров до остановки", ("W02", "lte", 300, "stop")),
+        ("нужен номер не дальше 1 км от центра", ("W03", "lte", 1000, "center")),
+        ("до метро не больше 5 минут пешком", ("W02", "lte", 400, "stop")),
+    ],
+)
+def test_measured_distance_to_stop_and_center(text, expected):
+    ast = parse_query(text, today=TODAY, mode="rules").ast
+    (c,) = ast.hard
+    assert (c.feature_id, c.op, c.value, c.params["target_kind"]) == expected
+    assert not ast.unparsed_spans and not ast.out_of_catalog

@@ -44,3 +44,6 @@
 {"id": "cmp-1", "source": "review8b", "city_id": "sochi", "text": "Обязательно не дальше 500 м от моря.", "hard": [["W01"]], "soft": []}
 {"id": "cmp-2", "source": "review8b", "city_id": "sochi", "text": "Обязательно не дальше 10 минут пешком до моря.", "hard": [["W01"]], "soft": []}
 {"id": "colon-1", "source": "review8b", "city_id": "sochi", "text": "Обязательно: тихо, без ковролина.", "hard": [["N05", "N02", "N04"], ["ooc"]], "soft": []}
+{"id": "cov-1", "source": "review8b", "city_id": "moscow", "text": "Обязательно не дальше 300 метров до остановки.", "hard": [["W02"]], "soft": []}
+{"id": "cov-2", "source": "review8b", "city_id": "moscow", "text": "Нужен номер не дальше 1 км от центра.", "hard": [["W03"]], "soft": []}
+{"id": "cov-3", "source": "review8b", "city_id": "sochi", "text": "До пляжа обязательно не дольше 10 минут пешком.", "hard": [["W01"]], "soft": []}
