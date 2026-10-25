@@ -19,6 +19,7 @@ from datetime import date
 
 from agents.catalog import Catalog
 from agents.search.compact import CompactAST, CompactAtom, CompactClarify, OrGroup, Param
+from agents.search.negation import negate
 from agents.search.text import marker_requiredness, normalize
 
 # --- Пороги политики (не измерения): меняются здесь и видны в разборе ---
@@ -827,7 +828,6 @@ TAIL_BEFORE = re.compile(
     r"(?P<w>\b(?:рядом|поблизости|недалеко|неподалеку|близко|возле|около))\s+(?:(?:с|со|от|к|до)\s+)?$"
 )
 TAIL_AFTER = re.compile(r"^\s+(?:рядом|поблизости|недалеко|неподалеку|близко)\b")
-FLIP = {"lte": "gt", "gt": "lte", "gte": "lt", "lt": "gte", "eq": "ne", "ne": "eq"}
 
 
 def _negate(atom: Atom, catalog: Catalog) -> Atom | None:
@@ -835,16 +835,10 @@ def _negate(atom: Atom, catalog: Catalog) -> Atom | None:
     feature = catalog.get(atom.feature_id)
     if feature is None or atom.mapping != "exact":
         return None
-    spec = feature.field_spec(atom.field or None)
-    if atom.op == "in":
-        values = {v.strip() for v in atom.value.split(",")}
-        rest = [v for v in (spec.values if spec else ()) if v not in values]
-        return replace(atom, value=",".join(rest)) if rest else None
-    if atom.op == "eq" and atom.value in ("true", "false"):
-        return replace(atom, value="false" if atom.value == "true" else "true")
-    if atom.op in FLIP:
-        return replace(atom, op=FLIP[atom.op])
-    return None
+    flipped = negate(feature, atom.field, atom.op, atom.value)
+    if flipped is None:
+        return None
+    return replace(atom, op=flipped[0], value=flipped[1])
 
 
 def _apply_comparison(ctx: Ctx, h: Hit) -> Hit:

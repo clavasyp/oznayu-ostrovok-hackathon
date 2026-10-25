@@ -337,3 +337,43 @@ def test_measured_distance_to_stop_and_center(text, expected):
     (c,) = ast.hard
     assert (c.feature_id, c.op, c.value, c.params["target_kind"]) == expected
     assert not ast.unparsed_spans and not ast.out_of_catalog
+
+
+def test_soft_negation_from_model_flips_or_asks():
+    raw = "лучше не рядом с баром, не песчаный пляж, без лишнего"
+    c = compact(
+        atom(
+            "a1",
+            "не рядом с баром",
+            "N04",
+            field="count",
+            op="gte",
+            value="3",
+            requiredness="desired",
+        ),  # fmt: skip
+        atom(
+            "a2",
+            "не песчаный пляж",
+            "B01",
+            field="surface",
+            op="eq",
+            value="sand",
+            requiredness="desired",
+        ),  # fmt: skip
+        atom(
+            "a3",
+            "без лишнего",
+            "W05",
+            field="known_step_sections",
+            op="exists",
+            requiredness="desired",
+        ),  # fmt: skip
+        negated_atoms=["a1", "a2", "a3"],
+    )
+    ast = to_full_ast(c, raw, CAT, parsed_by="llm")
+    assert [(s.feature_id, s.op, s.value) for s in ast.soft] == [
+        ("N04", "lt", 3),
+        ("B01", "ne", "sand"),
+    ]
+    (ask,) = ast.clarify  # «exists» не перевернуть — уточнение, а не прямое условие
+    assert ask.about == "без лишнего"
