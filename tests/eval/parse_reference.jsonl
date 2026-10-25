@@ -47,3 +47,6 @@
 {"id": "cov-1", "source": "review8b", "city_id": "moscow", "text": "Обязательно не дальше 300 метров до остановки.", "hard": [["W02"]], "soft": []}
 {"id": "cov-2", "source": "review8b", "city_id": "moscow", "text": "Нужен номер не дальше 1 км от центра.", "hard": [["W03"]], "soft": []}
 {"id": "cov-3", "source": "review8b", "city_id": "sochi", "text": "До пляжа обязательно не дольше 10 минут пешком.", "hard": [["W01"]], "soft": []}
+{"id": "road-1", "source": "review15", "city_id": "sochi", "text": "Обязательно подальше от дороги.", "hard": [["N02"]], "soft": []}
+{"id": "road-2", "source": "review15", "city_id": "sochi", "text": "Подальше от трассы обязательно.", "hard": [["N02"]], "soft": []}
+{"id": "road-3", "source": "review15", "city_id": "sochi", "text": "Обязательно далеко от дороги.", "hard": [["N02"]], "soft": []}
