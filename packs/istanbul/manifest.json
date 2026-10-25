@@ -1,0 +1,91 @@
+{
+  "format_version": "1",
+  "city_id": "istanbul",
+  "city_name": "Стамбул",
+  "timezone": "Europe/Istanbul",
+  "depth": "automatic",
+  "pack_version": "v9-211f8c6d03",
+  "built_at": "2026-10-24T13:46:03.195604Z",
+  "code_version": "v9-packs.1",
+  "catalog_version": "v9",
+  "sources": [
+    {
+      "id": "42f50d841bbb",
+      "provider": "Copernicus DEM GLO-30",
+      "license": "Copernicus DEM Licence, free worldwide GLO30 use subject to required attribution/notices"
+    },
+    {
+      "id": "d788fa2b07cc",
+      "provider": "ESA WorldCover",
+      "license": "CC BY 4.0"
+    },
+    {
+      "id": "9f7fdcbb7209",
+      "provider": "Open-Meteo Historical Weather API",
+      "license": "CC BY 4.0"
+    },
+    {
+      "id": "71e7c7dab4c5",
+      "provider": "Open-MeteoMarineAPI",
+      "license": "CC BY4.0"
+    },
+    {
+      "id": "203edff38d90",
+      "provider": "OpenStreetMap",
+      "license": "ODbL-1.0"
+    },
+    {
+      "id": "86896b6b5e3e",
+      "provider": "OpenStreetMap",
+      "release": "2026-10-22T20:21:33Z",
+      "license": "ODbL1.0"
+    },
+    {
+      "id": "ostrovok",
+      "provider": "ostrovok.ru (страницы отелей, разрешение организаторов)",
+      "url": "https://ostrovok.ru"
+    },
+    {
+      "id": "7e9f69c9baf2",
+      "provider": "ostrovok_cached_v5"
+    }
+  ],
+  "files": [
+    {
+      "path": "data/hotels.jsonl.gz",
+      "kind": "hotels",
+      "rows": 50,
+      "bytes": 4614,
+      "sha256": "479cb7b37c14b27cea6247c250a69a9841cd848cb35f2a353a4a00c984f3805e"
+    },
+    {
+      "path": "data/facts.jsonl.gz",
+      "kind": "facts",
+      "rows": 4000,
+      "bytes": 2181285,
+      "sha256": "7ef590b68c90db20bc028c370fd96ca4ff1abfc7ab9f750641c203a463487632"
+    },
+    {
+      "path": "data/questions.jsonl.gz",
+      "kind": "questions",
+      "rows": 1300,
+      "bytes": 138112,
+      "sha256": "e2c177293ddd6bc286faac4ad3112b28ba4b4f1e1bcd12ffc21791d913b48799"
+    },
+    {
+      "path": "data/coverage.jsonl.gz",
+      "kind": "coverage",
+      "rows": 54,
+      "bytes": 2782,
+      "sha256": "61cf198f75a4eba11792fa82246256bce03681b80408d3cfa6b5aa6e2e8f7847"
+    },
+    {
+      "path": "data/ota_comparisons.jsonl.gz",
+      "kind": "ota_comparisons",
+      "rows": 18,
+      "bytes": 1651,
+      "sha256": "ce9e2f7b1f44177c58008100d044cbebe1d165af7e6c5e0f23e46d9d4fee6127"
+    }
+  ],
+  "notes": "Сборка v9-packs.1 из research_notes/Расчёт характеристик (Codex v9). Диагностика v9 (component_diagnostics, audit_files, components) не включена."
+}

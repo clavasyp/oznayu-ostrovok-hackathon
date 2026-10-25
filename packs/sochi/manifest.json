@@ -1,0 +1,91 @@
+{
+  "format_version": "1",
+  "city_id": "sochi",
+  "city_name": "Большой Сочи",
+  "timezone": "Europe/Moscow",
+  "depth": "full",
+  "pack_version": "v9-211f8c6d03",
+  "built_at": "2026-10-24T13:59:16.108365Z",
+  "code_version": "v9-packs.1",
+  "catalog_version": "v9",
+  "sources": [
+    {
+      "id": "42f50d841bbb",
+      "provider": "Copernicus DEM GLO-30",
+      "license": "Copernicus DEM Licence, free worldwide GLO30 use subject to required attribution/notices"
+    },
+    {
+      "id": "d788fa2b07cc",
+      "provider": "ESA WorldCover",
+      "license": "CC BY 4.0"
+    },
+    {
+      "id": "9f7fdcbb7209",
+      "provider": "Open-Meteo Historical Weather API",
+      "license": "CC BY 4.0"
+    },
+    {
+      "id": "71e7c7dab4c5",
+      "provider": "Open-MeteoMarineAPI",
+      "license": "CC BY4.0"
+    },
+    {
+      "id": "203edff38d90",
+      "provider": "OpenStreetMap",
+      "license": "ODbL-1.0"
+    },
+    {
+      "id": "86896b6b5e3e",
+      "provider": "OpenStreetMap",
+      "release": "2026-10-22T20:21:33Z",
+      "license": "ODbL1.0"
+    },
+    {
+      "id": "ostrovok",
+      "provider": "ostrovok.ru (страницы отелей, разрешение организаторов)",
+      "url": "https://ostrovok.ru"
+    },
+    {
+      "id": "7e9f69c9baf2",
+      "provider": "ostrovok_cached_v5"
+    }
+  ],
+  "files": [
+    {
+      "path": "data/hotels.jsonl.gz",
+      "kind": "hotels",
+      "rows": 89,
+      "bytes": 7316,
+      "sha256": "dc587e73783a0ea1fc7a6dfb892e9644883e07c7eb0400ae4a9d8e62a7c362fd"
+    },
+    {
+      "path": "data/facts.jsonl.gz",
+      "kind": "facts",
+      "rows": 7148,
+      "bytes": 3157432,
+      "sha256": "f1e65e069abf78051a75071f5449a581b4ee75b0e73d4532cb1623d8effcf838"
+    },
+    {
+      "path": "data/questions.jsonl.gz",
+      "kind": "questions",
+      "rows": 2314,
+      "bytes": 166131,
+      "sha256": "2d934e29aebf8eb79bb7cd19cba7a54db516e950fa43fb787d980891d03282a2"
+    },
+    {
+      "path": "data/coverage.jsonl.gz",
+      "kind": "coverage",
+      "rows": 54,
+      "bytes": 2839,
+      "sha256": "9fc097f8b2936dbf2bf5a9bb8258ab9af63503f7fc99bd39042da93885a60422"
+    },
+    {
+      "path": "data/ota_comparisons.jsonl.gz",
+      "kind": "ota_comparisons",
+      "rows": 16,
+      "bytes": 1914,
+      "sha256": "d4dc858117e0d95206759970e3ed1d131c8f4f8f490c118d052550e273035a81"
+    }
+  ],
+  "notes": "Сборка v9-packs.1 из research_notes/Расчёт характеристик (Codex v9). Диагностика v9 (component_diagnostics, audit_files, components) не включена."
+}

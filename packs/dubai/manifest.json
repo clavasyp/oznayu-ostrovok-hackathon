@@ -1,0 +1,91 @@
+{
+  "format_version": "1",
+  "city_id": "dubai",
+  "city_name": "Дубай",
+  "timezone": "Asia/Dubai",
+  "depth": "automatic",
+  "pack_version": "v9-211f8c6d03",
+  "built_at": "2026-10-24T13:46:49.316143Z",
+  "code_version": "v9-packs.1",
+  "catalog_version": "v9",
+  "sources": [
+    {
+      "id": "42f50d841bbb",
+      "provider": "Copernicus DEM GLO-30",
+      "license": "Copernicus DEM Licence, free worldwide GLO30 use subject to required attribution/notices"
+    },
+    {
+      "id": "d788fa2b07cc",
+      "provider": "ESA WorldCover",
+      "license": "CC BY 4.0"
+    },
+    {
+      "id": "9f7fdcbb7209",
+      "provider": "Open-Meteo Historical Weather API",
+      "license": "CC BY 4.0"
+    },
+    {
+      "id": "71e7c7dab4c5",
+      "provider": "Open-MeteoMarineAPI",
+      "license": "CC BY4.0"
+    },
+    {
+      "id": "203edff38d90",
+      "provider": "OpenStreetMap",
+      "license": "ODbL-1.0"
+    },
+    {
+      "id": "86896b6b5e3e",
+      "provider": "OpenStreetMap",
+      "release": "2026-10-22T20:21:33Z",
+      "license": "ODbL1.0"
+    },
+    {
+      "id": "ostrovok",
+      "provider": "ostrovok.ru (страницы отелей, разрешение организаторов)",
+      "url": "https://ostrovok.ru"
+    },
+    {
+      "id": "7e9f69c9baf2",
+      "provider": "ostrovok_cached_v5"
+    }
+  ],
+  "files": [
+    {
+      "path": "data/hotels.jsonl.gz",
+      "kind": "hotels",
+      "rows": 50,
+      "bytes": 4513,
+      "sha256": "8bda33b4de069b31ec3e1fb88279a931d83b153d29498391731f1824d031e6d1"
+    },
+    {
+      "path": "data/facts.jsonl.gz",
+      "kind": "facts",
+      "rows": 4000,
+      "bytes": 1777417,
+      "sha256": "39086ace275f572871244dbf3bbb3fcb059a88b55f3ec3c286d5136cad8a077e"
+    },
+    {
+      "path": "data/questions.jsonl.gz",
+      "kind": "questions",
+      "rows": 1300,
+      "bytes": 160286,
+      "sha256": "cc344cf4851702894fe76320af81168ab813a8e4e871b378df22a922ee3b4fbc"
+    },
+    {
+      "path": "data/coverage.jsonl.gz",
+      "kind": "coverage",
+      "rows": 54,
+      "bytes": 2817,
+      "sha256": "08369bdce1079951e34e0163fa2a5a0dfe5cd6b3f18a163f1836659fa410a3db"
+    },
+    {
+      "path": "data/ota_comparisons.jsonl.gz",
+      "kind": "ota_comparisons",
+      "rows": 39,
+      "bytes": 3067,
+      "sha256": "4fd769543fb5e4c8d035c1cf282c3008114c11cc27c91bc0c5a4927efc755272"
+    }
+  ],
+  "notes": "Сборка v9-packs.1 из research_notes/Расчёт характеристик (Codex v9). Диагностика v9 (component_diagnostics, audit_files, components) не включена."
+}

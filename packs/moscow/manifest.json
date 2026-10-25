@@ -1,0 +1,86 @@
+{
+  "format_version": "1",
+  "city_id": "moscow",
+  "city_name": "Москва",
+  "timezone": "Europe/Moscow",
+  "depth": "full",
+  "pack_version": "v9-211f8c6d03",
+  "built_at": "2026-10-24T14:05:37.530650Z",
+  "code_version": "v9-packs.1",
+  "catalog_version": "v9",
+  "sources": [
+    {
+      "id": "42f50d841bbb",
+      "provider": "Copernicus DEM GLO-30",
+      "license": "Copernicus DEM Licence, free worldwide GLO30 use subject to required attribution/notices"
+    },
+    {
+      "id": "d788fa2b07cc",
+      "provider": "ESA WorldCover",
+      "license": "CC BY 4.0"
+    },
+    {
+      "id": "9f7fdcbb7209",
+      "provider": "Open-Meteo Historical Weather API",
+      "license": "CC BY 4.0"
+    },
+    {
+      "id": "203edff38d90",
+      "provider": "OpenStreetMap",
+      "license": "ODbL-1.0"
+    },
+    {
+      "id": "86896b6b5e3e",
+      "provider": "OpenStreetMap",
+      "release": "2026-10-22T20:21:33Z",
+      "license": "ODbL1.0"
+    },
+    {
+      "id": "ostrovok",
+      "provider": "ostrovok.ru (страницы отелей, разрешение организаторов)",
+      "url": "https://ostrovok.ru"
+    },
+    {
+      "id": "7e9f69c9baf2",
+      "provider": "ostrovok_cached_v5"
+    }
+  ],
+  "files": [
+    {
+      "path": "data/hotels.jsonl.gz",
+      "kind": "hotels",
+      "rows": 50,
+      "bytes": 4938,
+      "sha256": "ccb83f3074ed1abe6aea01f694c64bdc7106e3e78e9bdba61589eaf3d6a46e76"
+    },
+    {
+      "path": "data/facts.jsonl.gz",
+      "kind": "facts",
+      "rows": 3950,
+      "bytes": 1665708,
+      "sha256": "529ef849b9cd860ff6b25e684a04e66db723639824935f55bd66ffd2ba29fe04"
+    },
+    {
+      "path": "data/questions.jsonl.gz",
+      "kind": "questions",
+      "rows": 1300,
+      "bytes": 95045,
+      "sha256": "8805d19d023875775f500fb40d00b42a3d7e9c08d7073dc3fb1570d505ace5b6"
+    },
+    {
+      "path": "data/coverage.jsonl.gz",
+      "kind": "coverage",
+      "rows": 54,
+      "bytes": 2791,
+      "sha256": "9648539819f24f5ef01115bab6c571e9bced1abf22912362dd6cbe9e8919032a"
+    },
+    {
+      "path": "data/ota_comparisons.jsonl.gz",
+      "kind": "ota_comparisons",
+      "rows": 5,
+      "bytes": 689,
+      "sha256": "59d39cb1b931ff4a6714afb803321cdc1faee36ec925d36087663123a2e240b0"
+    }
+  ],
+  "notes": "Сборка v9-packs.1 из research_notes/Расчёт характеристик (Codex v9). Диагностика v9 (component_diagnostics, audit_files, components) не включена."
+}
