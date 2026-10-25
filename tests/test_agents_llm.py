@@ -159,3 +159,8 @@ def test_anthropic_refusal_and_truncation():
         _anthropic(_message(text="[1, 2]"))[0].complete_json(
             task="t", system="s", user="u", schema={"type": "object"}, max_tokens=10
         )
+
+
+def test_one_retry_by_default():
+    assert LLMSettings.from_env({}).max_retries == 1
+    assert LLMSettings.from_env({"LLM_MAX_RETRIES": "0"}).max_retries == 0

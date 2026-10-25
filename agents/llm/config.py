@@ -38,7 +38,8 @@ class LLMSettings:
     # Разбор запроса — короткая структурная задача: начинаем с low, замер против medium — в eval.
     effort: Effort = "low"
     timeout_s: float = 20.0
-    max_retries: int = 2
+    # Одна повторная попытка: медиана ответа ~5 с, худший случай — таймаут × (1 + повторы).
+    max_retries: int = 1
     # Серверный запасной путь Anthropic при отказе модели (beta server-side-fallback).
     anthropic_fallbacks: bool = True
 
@@ -50,7 +51,7 @@ class LLMSettings:
             fallback=_provider(env, "LLM_FALLBACK_") if env.get("LLM_FALLBACK_PROVIDER") else None,
             effort=_choice(env.get("LLM_EFFORT") or "low", EFFORTS, "LLM_EFFORT"),
             timeout_s=float(env.get("LLM_TIMEOUT_S") or 20),
-            max_retries=int(env.get("LLM_MAX_RETRIES") or 2),
+            max_retries=int(env.get("LLM_MAX_RETRIES") or 1),
             anthropic_fallbacks=env.get("LLM_ANTHROPIC_FALLBACKS", "default") != "off",
         )
 
