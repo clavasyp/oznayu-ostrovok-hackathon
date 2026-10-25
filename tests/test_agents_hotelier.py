@@ -250,3 +250,19 @@ def test_placement_completeness_only_from_hotelier_words():
     assert found.placements and found.completeness == "unknown"  # один вариант — ещё не «все»
     full = simulate_placement(RADISSON, "13736470:3502302001O")["answer_text"]
     assert parse_placement(full, gateway=OFFLINE)[0].completeness == "complete"
+
+
+def test_prefill_drops_service_tags():
+    from agents.hotelier.questions import prefill_text
+
+    claims = [
+        {"quote": "pets-allowed", "subject_type": "room_group"},
+        {"quote": "PRIOR_AGREEMENT_CHECK_IN", "subject_type": "hotel"},
+        {"quote": '"fridge"', "subject_type": "room_group"},
+        {"quote": "Размещение с домашними животными", "subject_type": "hotel"},
+        {"quote": '"двуспальная кровать"', "subject_type": "room_group"},
+    ]
+    text = prefill_text(claims)
+    assert "«Размещение с домашними животными», «двуспальная кровать»" in text
+    assert "pets-allowed" not in text and "fridge" not in text and "PRIOR" not in text
+    assert prefill_text([{"quote": "pets-allowed"}]) is None

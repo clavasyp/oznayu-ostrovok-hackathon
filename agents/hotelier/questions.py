@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import csv
 import hashlib
+import re
 from functools import lru_cache
 from pathlib import Path
 from typing import Any
@@ -29,14 +30,20 @@ def question_texts() -> dict[str, dict[str, str]]:
         return {r["feature_id"]: r for r in csv.DictReader(f)}
 
 
+# Служебные метки страницы Островка: «pets-allowed», «PRIOR_AGREEMENT_CHECK_IN», JSON. Отельеру
+# показываем только то, что на странице написано словами.
+_SERVICE_TAG = re.compile(r"^(?:[a-z0-9]+(?:[-_][a-z0-9]+)*|[A-Z0-9]+(?:_[A-Z0-9]+)*)$")
+
+
 def prefill_text(claims: list[dict[str, Any]]) -> str | None:
     """«На Островке указано: …» — по заявлениям уровня отеля, затем категорий, без повторов."""
     quotes: list[str] = []
     for c in sorted(claims, key=lambda c: c.get("subject_type") != "hotel"):
-        quote = " ".join(str(c.get("quote") or "").split())
-        if not quote or quote.startswith("{") or quote in quotes:
+        quote = " ".join(str(c.get("quote") or "").split()).strip('"«»')
+        if not quote or quote.startswith(("{", "[")) or _SERVICE_TAG.match(quote):
             continue
-        quotes.append(quote)
+        if quote not in quotes:
+            quotes.append(quote)
     if not quotes:
         return None
     date = next((str(c.get("fetched_at", ""))[:10] for c in claims if c.get("fetched_at")), "")
