@@ -283,16 +283,26 @@ def _quiet_outside() -> list[Atom]:
     ]
 
 
+_FEW_BARS = r"(?<!не\s)(?:поменьше|меньше|мало|немного|минимум|без|подальше\s+от)"
+_MANY_BARS = r"(?<!не\s)(?:много|побольше|куча)"
+
+
 @rule
 def bars(ctx: Ctx) -> Iterator[Hit]:
+    bar = r"\bбар(?:ы|ов|ам|ами|ах)?"
     pattern = (
-        r"(?:(?P<neg>поменьше|меньше|без|подальше\s+от)\s+)?(?:"
-        r"\bбар(?:ы|ов|ам|ами|ах)?\s+(?:\w+\s+)?(?:рядом|недалеко|поблизости)(?:\s+нравятся)?"
-        r"|(?:рядом|недалеко|близость|поблизости)\s+(?:[кс]\s+)?\bбар(?:ы|ов|ам|ами|ах)?\b)"
+        rf"(?:(?P<pre>{_FEW_BARS}|{_MANY_BARS})\s+)?(?:"
+        rf"{bar}\s+(?:\w+\s+)?(?:рядом|недалеко|поблизости)(?:\s+нравятся)?"
+        rf"|(?:рядом|недалеко|близость|поблизости)\s+(?:(?P<mid>{_FEW_BARS}|{_MANY_BARS})\s+)?"
+        rf"(?:[кс]\s+)?{bar}\b)"
+        rf"(?:\s+(?:было|будет|бы)?\s*(?P<post>{_FEW_BARS}|{_MANY_BARS})\b)?"
     )
     for m in finditer(pattern, ctx):
-        # «Поменьше баров рядом» — меньше; «бары рядом нравятся» — больше.
-        op, value = ("lte", QUIET_BARS_MAX) if m.group("neg") else ("gte", BARS_LIKED_MIN)
+        # «Мало / поменьше баров рядом», «чтобы баров было мало» — меньше; «бары рядом
+        # нравятся», «рядом много баров» — больше. Без слова о количестве — бары нужны.
+        word = m.group("pre") or m.group("mid") or m.group("post") or ""
+        few = re.fullmatch(_FEW_BARS, word) is not None
+        op, value = ("lte", QUIET_BARS_MAX) if few else ("gte", BARS_LIKED_MIN)
         atom = Atom("N04", "count", op, str(value), importance="low")
         yield Hit(m.start(), m.end(), [atom], "desired")
 
