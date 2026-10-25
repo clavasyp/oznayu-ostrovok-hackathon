@@ -1,6 +1,9 @@
 import pytest
 
-from agents.address.normalize import osm_addresses, parse_address, skeleton
+from agents.address.llm import STREET_TYPE_VALUES, normalize
+from agents.address.normalize import STREET_TYPES, osm_addresses, parse_address, skeleton
+from agents.llm import Gateway
+from agents.llm.fake import FakeLLM
 
 
 @pytest.mark.parametrize(
@@ -73,3 +76,28 @@ def test_osm_tags_and_second_address():
     }
     assert [a.house_key for a in osm_addresses(tags)] == ["52/16с3", "1"]
     assert osm_addresses({"building": "yes"}) == []
+
+
+def test_llm_only_for_incomplete_and_checked_against_raw():
+    raw = "Mokhovaya street (near the Hermitage), house forty four"
+    good = {"street_type": "улица", "street": "Моховая", "house": "", "corpus": "",
+            "structure": "", "possession": "false"}  # fmt: skip
+    addr, by, _ = normalize(raw, use_llm=True, gateway=Gateway([FakeLLM([good])]))
+    assert by == "rules" and not addr.complete  # дома нет — модель не придумала, разбор правил
+
+    raw = "Mokhovaya 44, Tsentralny"
+    fake = FakeLLM([])
+    addr, by, _ = normalize(raw, use_llm=True, gateway=Gateway([fake]))
+    assert by == "rules" and addr.house_key == "44" and fake.calls == []  # правил хватило
+
+    raw = "Здание на Моховой, сорок четыре"
+    lie = {**good, "house": "44"}  # цифр «44» в строке нет — отклоняем
+    addr, by, notes = normalize(raw, use_llm=True, gateway=Gateway([FakeLLM([lie])]))
+    assert by == "rules" and any("цифр" in n for n in notes)
+
+    raw = "Моховая, сорок четвёртый дом (44)"  # скобки правила отбрасывают — дома не видят
+    ok = {**good, "house": "44"}
+    addr, by, _ = normalize(raw, use_llm=True, gateway=Gateway([FakeLLM([ok])]))
+    assert by == "llm" and addr.raw == raw
+    assert (addr.street_type, addr.street_key, addr.house_key) == ("улица", "mohovaia", "44")
+    assert STREET_TYPE_VALUES <= set(STREET_TYPES.values())
