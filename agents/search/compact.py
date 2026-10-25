@@ -30,6 +30,7 @@ from agents.query_ast import (
     SoftCondition,
     Span,
 )
+from agents.search.negation import negate
 from agents.search.text import covered_gaps, find_span, marker_requiredness, normalize
 
 CITY_IDS = ("sochi", "moscow", "spb", "kazan", "kaliningrad", "minsk", "istanbul", "dubai")
@@ -133,6 +134,14 @@ def to_full_ast(
         if feature.fields and field is not None and field not in feature.fields:
             ooc.append(_out(atom, span, "unsupported_param", [feature.id]))
             continue
+        if atom.atom_id in compact.negated_atoms and atom.requiredness != "required":
+            # Графа logic у мягких условий нет: отрицание переворачивает само условие.
+            # Не выразить — уточнение, но не прямое условие вместо обратного.
+            flipped = negate(feature, field, atom.op, atom.value)
+            if flipped is None:
+                clarify.append(_ask(atom, catalog, negated=True))
+                continue
+            atom = atom.model_copy(update={"op": flipped[0], "value": flipped[1]})
         try:
             value = _value(atom, feature, field, catalog)
         except ValueError:
@@ -149,9 +158,6 @@ def to_full_ast(
             "provenance": atom.provenance,
             "mapping": atom.mapping,
         }
-        if atom.atom_id in compact.negated_atoms and atom.requiredness != "required":
-            if isinstance(value, bool):
-                cond["value"] = not value
         if atom.requiredness == "required" and atom.mapping == "exact":
             hard.append(Condition(**cond))
         else:
@@ -269,9 +275,15 @@ def _out(
     )
 
 
-def _ask(atom: CompactAtom, catalog: Catalog) -> Clarification:
+def _ask(atom: CompactAtom, catalog: Catalog, *, negated: bool = False) -> Clarification:
     feature = catalog.get(atom.feature_id)
     what = feature.short if feature else atom.text
+    if negated:
+        return Clarification(
+            question=f"«{atom.text}» — что именно не подходит: {what}?",
+            about=atom.text,
+            options=["да, этого не нужно", "неважно"],
+        )
     return Clarification(question=f"Учитывать «{what}»?", about=atom.text, options=["да", "нет"])
 
 

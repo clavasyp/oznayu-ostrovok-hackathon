@@ -1,13 +1,13 @@
 {
  "summary": {
   "mode": "rules",
-  "cases": 43,
+  "cases": 49,
   "parsed_by": {
-   "rules": 43,
+   "rules": 49,
    "llm": 0
   },
   "hard": {
-   "tp": 55,
+   "tp": 62,
    "fn": 0,
    "fp": 0,
    "precision": 1.0,
@@ -20,7 +20,7 @@
    "precision": 1.0,
    "recall": 0.954
   },
-  "exact_hard_cases": 43,
+  "exact_hard_cases": 49,
   "lost_required": 0,
   "required_leftovers": 1,
   "downgraded_required": 0,
@@ -39,7 +39,7 @@
    "parsed_by": "rules",
    "notes": [],
    "problems": [],
-   "ms": 13,
+   "ms": 15,
    "usage": {},
    "hard": {
     "tp": 2,
@@ -122,7 +122,7 @@
     "Часть запроса не разобрана — она показана отдельно и не считается выполненной."
    ],
    "problems": [],
-   "ms": 0,
+   "ms": 1,
    "usage": {},
    "hard": {
     "tp": 1,
@@ -341,7 +341,7 @@
    "parsed_by": "rules",
    "notes": [],
    "problems": [],
-   "ms": 0,
+   "ms": 1,
    "usage": {},
    "hard": {
     "tp": 1,
@@ -395,7 +395,7 @@
    "parsed_by": "rules",
    "notes": [],
    "problems": [],
-   "ms": 0,
+   "ms": 1,
    "usage": {},
    "hard": {
     "tp": 1,
@@ -451,7 +451,7 @@
     "Часть запроса не разобрана — она показана отдельно и не считается выполненной."
    ],
    "problems": [],
-   "ms": 0,
+   "ms": 1,
    "usage": {},
    "hard": {
     "tp": 1,
@@ -604,7 +604,7 @@
     "Часть запроса не разобрана — она показана отдельно и не считается выполненной."
    ],
    "problems": [],
-   "ms": 0,
+   "ms": 1,
    "usage": {},
    "hard": {
     "tp": 1,
@@ -984,7 +984,7 @@
    "parsed_by": "rules",
    "notes": [],
    "problems": [],
-   "ms": 0,
+   "ms": 1,
    "usage": {},
    "hard": {
     "tp": 1,
@@ -1191,7 +1191,7 @@
    "parsed_by": "rules",
    "notes": [],
    "problems": [],
-   "ms": 2,
+   "ms": 0,
    "usage": {},
    "hard": {
     "tp": 2,
@@ -1288,6 +1288,170 @@
    },
    "soft": {
     "tp": 1,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "required_leftovers": 0,
+   "downgraded_required": 0,
+   "unparsed": [],
+   "exact_hard": true
+  },
+  {
+   "id": "cmp-1",
+   "parsed_by": "rules",
+   "notes": [],
+   "problems": [],
+   "ms": 0,
+   "usage": {},
+   "hard": {
+    "tp": 1,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 0,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "required_leftovers": 0,
+   "downgraded_required": 0,
+   "unparsed": [],
+   "exact_hard": true
+  },
+  {
+   "id": "cmp-2",
+   "parsed_by": "rules",
+   "notes": [],
+   "problems": [],
+   "ms": 0,
+   "usage": {},
+   "hard": {
+    "tp": 1,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 0,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "required_leftovers": 0,
+   "downgraded_required": 0,
+   "unparsed": [],
+   "exact_hard": true
+  },
+  {
+   "id": "colon-1",
+   "parsed_by": "rules",
+   "notes": [
+    "Часть запроса не разобрана — она показана отдельно и не считается выполненной."
+   ],
+   "problems": [],
+   "ms": 2,
+   "usage": {},
+   "hard": {
+    "tp": 2,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 0,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "required_leftovers": 0,
+   "downgraded_required": 0,
+   "unparsed": [],
+   "exact_hard": true
+  },
+  {
+   "id": "cov-1",
+   "parsed_by": "rules",
+   "notes": [],
+   "problems": [],
+   "ms": 0,
+   "usage": {},
+   "hard": {
+    "tp": 1,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 0,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "required_leftovers": 0,
+   "downgraded_required": 0,
+   "unparsed": [],
+   "exact_hard": true
+  },
+  {
+   "id": "cov-2",
+   "parsed_by": "rules",
+   "notes": [],
+   "problems": [],
+   "ms": 0,
+   "usage": {},
+   "hard": {
+    "tp": 1,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 0,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "required_leftovers": 0,
+   "downgraded_required": 0,
+   "unparsed": [],
+   "exact_hard": true
+  },
+  {
+   "id": "cov-3",
+   "parsed_by": "rules",
+   "notes": [],
+   "problems": [],
+   "ms": 0,
+   "usage": {},
+   "hard": {
+    "tp": 1,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 0,
     "fn": 0,
     "fp": 0,
     "missed": []

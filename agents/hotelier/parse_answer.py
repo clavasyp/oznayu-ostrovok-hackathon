@@ -344,7 +344,7 @@ def validate(feature: Feature, answer: str, compact: AnswerCompact) -> ParsedAns
                 continue
         out.accepted[fa.name] = Accepted(value, span.text, span.start, span.end)
 
-    out.followup = _followup(feature, out, compact.unclear)
+    out.followup = _followup(feature, out, compact.unclear, f"{answer} {compact.conditions}")
     return out
 
 
@@ -352,13 +352,28 @@ def _negative(name: str, value: object) -> bool:
     return value is False or (name in PRESENCE and value == PRESENCE[name][1]) or value == "none"
 
 
-def _followup(feature: Feature, parsed: ParsedAnswer, unclear: list[str]) -> str | None:
+# От чего зависит, если отельер это назвал: тогда спрашиваем, как именно, а не «от чего».
+_VARIES_BY = [
+    (r"сезон", "Уточните, пожалуйста, как это зависит от сезона: в какие месяцы как?"),
+    (r"дат|дня\b|дней\b|выходн", "Уточните, пожалуйста, как это зависит от дат: в какие дни как?"),
+    (r"номер|категори", "Уточните, пожалуйста: в каких номерах или категориях как?"),
+    (r"загрузк|наличи", "Уточните, пожалуйста: можно ли закрепить это при бронировании?"),
+]
+
+
+def _followup(
+    feature: Feature, parsed: ParsedAnswer, unclear: list[str], text: str = ""
+) -> str | None:
     if parsed.answer_state in ("refused", "not_applicable"):
         return None
     if parsed.answer_state in ("unknown", "contradictory"):
         what = label(feature.default_field) if feature.default_field else feature.short
         return f"Спасибо! Когда будет точная информация, подскажите, пожалуйста: {what}."
     if parsed.answer_state == "varies":
+        norm = normalize(text)
+        for pattern, question in _VARIES_BY:
+            if re.search(rf"завис\w*\s+от\s+(?:\w+\s+)?{pattern}|{pattern}\w*\s+по-разному", norm):
+                return question
         return "Уточните, пожалуйста: от чего это зависит — от номера, категории или дат?"
     if parsed.quantifier == "some":
         return "Уточните, пожалуйста: в каких именно категориях или номерах это так?"
