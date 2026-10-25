@@ -1,0 +1,17 @@
+{
+  "hotel_id": "11313836",
+  "name": "Санаторий «Адлеркурорт» корпус «Коралл»",
+  "note": "Закрытый профиль имитатора отельера: эталонная правда для показа, НЕ факты. Поля — parsed_fields вопросов v9. Ответы уходят с is_simulated. Сценарий «Семья» (Сочи).",
+  "seed": 5,
+  "style": "plain",
+  "answers": {
+    "F03": {"fields": {"cot_dimensions": "present", "child_age": 3, "fee": 0}},
+    "F05": {"fields": {"pool_id": "present", "minimum_age": 3, "depth_m": 0.6}},
+    "M01": {"fields": {"bed_configuration": "double_or_twin", "split_possible": true}},
+    "S04": {"fields": {"hvac_type": "split", "individual_control": true}},
+    "A03": {"fields": {"lift_id": "present", "door_width_mm": 900}},
+    "L04": {"fields": {"front_desk_hours": "24/7"}},
+    "P01": {"fields": {"species": "none"}}
+  },
+  "categories": []
+}
