@@ -41,3 +41,5 @@
 {"id": "neg-3", "source": "review8", "city_id": "sochi", "text": "Обязательно без пересадок из аэропорта и вход без ступеней. Балкон не нужен.", "hard": [["T01"], ["A02"]], "soft": []}
 {"id": "neg-4", "source": "review8", "city_id": "sochi", "text": "С собакой 10 кг, обязательно без ковролина.", "hard": [["P01"], ["ooc"]], "soft": []}
 {"id": "neg-5", "source": "review8", "city_id": "sochi", "text": "Обязательно рядом с аптекой, кондиционер не обязательно.", "hard": [["L01"]], "soft": [["S04"]]}
+{"id": "cmp-1", "source": "review8b", "city_id": "sochi", "text": "Обязательно не дальше 500 м от моря.", "hard": [["W01"]], "soft": []}
+{"id": "cmp-2", "source": "review8b", "city_id": "sochi", "text": "Обязательно не дальше 10 минут пешком до моря.", "hard": [["W01"]], "soft": []}

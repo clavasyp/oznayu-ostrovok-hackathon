@@ -296,3 +296,18 @@ def test_cache_keeps_notes_and_returns_copies():
     assert len(fake.calls) == 1  # второй раз — из кэша
     assert [c.feature_id for c in again.ast.hard] == ["A03"]
     assert again.notes == first.notes and again.notes  # «Мама ходит с тростью» не разобрано
+
+
+@pytest.mark.parametrize(
+    ("text", "op", "meters"),
+    [
+        ("обязательно не дальше 500 м от моря", "lte", 500),
+        ("обязательно не дальше 10 минут пешком до моря", "lte", 800),
+        ("до пляжа обязательно не дольше 10 минут пешком", "lte", 800),
+        ("обязательно не ближе 300 м от моря", "gte", 300),
+    ],
+)
+def test_comparison_before_number_is_part_of_the_rule(text, op, meters):
+    ast = parse_query(text, today=TODAY, mode="rules").ast
+    assert [(c.feature_id, c.op, c.value) for c in ast.hard] == [("W01", op, meters)]
+    assert not ast.unparsed_spans and not ast.out_of_catalog  # «не дальше» не висит отдельно

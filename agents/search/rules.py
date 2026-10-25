@@ -329,21 +329,40 @@ def construction(ctx: Ctx) -> Iterator[Hit]:
 
 # --- Пешком и транспорт ---
 
+# Сравнение перед числом входит в совпадение правила и задаёт оператор:
+# «не дальше 500 м» → lte, «не ближе 200 м» → gte. Иначе «не дальше» висело бы непонятым.
+CMP_LTE = r"не\s+(?:больше|более|дальше|дольше)|максимум|в\s+пределах|до"
+CMP_GTE = r"не\s+(?:ближе|меньше|менее|короче)|минимум|хотя\s+бы|от"
+CMP = rf"(?:(?P<cmp>{CMP_LTE}|{CMP_GTE})\s+)?"
+DIST_UNIT = r"(?P<unit>минут\w*|мин|метр\w*|м|км|километр\w*)"
+CMP_BEFORE = re.compile(rf"\b(?P<w>{CMP_LTE}|{CMP_GTE})\s+$")
+
+
+def cmp_op(word: str | None, default: str = "lte") -> str:
+    if not word:
+        return default
+    return "gte" if re.fullmatch(CMP_GTE, word.strip()) else "lte"
+
+
+def measured(ctx: Ctx, target: str) -> Iterator[tuple[re.Match, str]]:
+    """Расстояние или время до цели с числом: «до пляжа [обязательно] не дальше 10 минут»
+    и «не дальше 500 м от моря». Возвращает совпадение и оператор."""
+    patterns = (
+        rf"(?:до|к|от)\s+(?:ближайш\w+\s+)?{target}\s+(?:обязательно\s+)?{CMP}"
+        rf"(?P<n>{NUM})\s*{DIST_UNIT}(?:\s+пешком)?",
+        rf"{CMP}(?P<n>{NUM})\s*{DIST_UNIT}\s+(?:пешком\s+)?(?:до|от)\s+(?:ближайш\w+\s+)?{target}",
+    )
+    for pattern in patterns:
+        for m in finditer(pattern, ctx):
+            yield m, cmp_op(m.group("cmp"))
+
 
 @rule
 def beach_distance(ctx: Ctx) -> Iterator[Hit]:
-    unit = r"(?P<unit>минут\w*|мин|метр\w*|м|км|километр\w*)"
-    exact = (
-        rf"(?:до|к)\s+(?:пляж\w*|мор\w*)\s+(?:обязательно\s+)?(?:не\s+больше|не\s+более|максимум|"
-        rf"не\s+дальше|в\s+пределах|до)?\s*(?P<n>{NUM})\s*{unit}(?:\s+пешком)?"
-        rf"|(?P<n2>{NUM})\s*(?P<unit2>минут\w*|мин|метр\w*|м|км)\s+(?:пешком\s+)?(?:до|от)\s+"
-        rf"(?:пляж\w*|мор\w*)"
-    )
-    for m in finditer(exact, ctx):
-        n, u = (
-            (m.group("n"), m.group("unit")) if m.group("n") else (m.group("n2"), m.group("unit2"))
+    for m, op in measured(ctx, r"(?:пляж\w*|мор\w*)"):
+        atom = Atom(
+            "W01", "distance_m", op, number(m.group("n")), m.group("unit"), importance="high"
         )
-        atom = Atom("W01", "distance_m", "lte", number(n), u, importance="high")
         yield Hit(m.start(), m.end(), [atom], "required")
     vague = (
         r"(?:недалеко|близко|рядом|поближе|ближе|недолго\s+идти|близк\w+)\s+(?:от|к|до)?\s*"
@@ -817,6 +836,19 @@ def _negate(atom: Atom, catalog: Catalog) -> Atom | None:
     return None
 
 
+def _apply_comparison(ctx: Ctx, h: Hit) -> Hit:
+    """Сравнение прямо перед числом, которого нет в шаблоне правила: тоже входит в совпадение."""
+    if len(h.atoms) != 1 or not re.match(rf"{NUM}\b", ctx.norm[h.start :]):
+        return h
+    m = CMP_BEFORE.search(ctx.norm[: h.start])
+    if not m:
+        return h
+    atom = h.atoms[0]
+    if atom.op in ("lte", "gte", "lt", "gt"):
+        atom = replace(atom, op=cmp_op(m.group("w")))
+    return replace(h, start=m.start("w"), atoms=[atom])
+
+
 def _apply_negation(ctx: Ctx, h: Hit, catalog: Catalog) -> Hit | None:
     if DISMISSED_AFTER.match(ctx.norm[h.end :]):
         return None
@@ -847,6 +879,7 @@ def parse_rules(
         if all(h.end <= k.start or h.start >= k.end for k in kept):
             kept.append(h)
     # Отрицание: обратное условие или ничего (кусок останется непонятым), но не противоположное.
+    kept = [_apply_comparison(ctx, h) for h in kept]
     kept = [n for h in kept if (n := _apply_negation(ctx, h, catalog))]
     kept.sort(key=lambda h: h.start)
     for h in kept:
