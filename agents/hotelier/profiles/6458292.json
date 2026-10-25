@@ -1,0 +1,15 @@
+{
+  "hotel_id": "6458292",
+  "name": "Bolshaya Dorogomilovskaya Guest House",
+  "note": "Закрытый профиль имитатора отельера: эталонная правда для показа, НЕ факты. Поля — parsed_fields вопросов v9. Ответы уходят с is_simulated. Сценарий «Семья» (Москва).",
+  "seed": 13,
+  "style": "plain",
+  "answers": {
+    "F03": {"fields": {"cot_dimensions": "present", "child_age": 2, "fee": 500}},
+    "F04": {"fields": {"internal_connecting_door": false}},
+    "M01": {"fields": {"bed_configuration": "double"}},
+    "L04": {"fields": {"front_desk_hours": "09:00-21:00", "self_checkin": true}},
+    "P01": {"fields": {"species": "cat", "weight_kg": 5}}
+  },
+  "categories": []
+}

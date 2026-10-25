@@ -10,12 +10,14 @@ from agents.hotelier.parse_answer import validate
 from agents.hotelier.placement import parse_placement, to_placements
 from agents.hotelier.questions import QUESTIONS_CSV
 from agents.hotelier.schemas import AnswerCompact, FieldAnswer, answer_schema
-from agents.hotelier.simulator import load_profile, simulate_placement
+from agents.hotelier.simulator import load_profile, profiled_hotels, simulate_placement
 from agents.llm import Gateway
 from agents.llm.fake import FakeLLM
 from app.main import create_app
 
 RADISSON, ARCHITECT, COSMOS = "13736470", "10012084", "9986868"
+CORAL, DOROGOMILOVSKAYA, PROVENCE = "11313836", "6458292", "8736052"  # сценарии «Семья», «Удалёнка»
+CITY = {DOROGOMILOVSKAYA: "moscow", PROVENCE: "moscow"}  # остальные — Сочи
 OFFLINE = Gateway([])
 CAT = load_catalog()
 
@@ -52,7 +54,10 @@ def test_catalog_fields_are_question_fields():
 
 
 def test_profiles_use_question_fields():
-    for hotel_id in (RADISSON, ARCHITECT, COSMOS):
+    assert {RADISSON, ARCHITECT, COSMOS, CORAL, DOROGOMILOVSKAYA, PROVENCE} <= set(
+        profiled_hotels()
+    )
+    for hotel_id in profiled_hotels():
         for fid, entry in load_profile(hotel_id)["answers"].items():
             assert set(entry.get("fields", {})) <= set(CAT.get(fid).fields), (hotel_id, fid)
 
@@ -75,10 +80,17 @@ def test_questions_get_prefill_and_fields(client):
         (ARCHITECT, "A03", cond("A03", "lift_id", "ne", "none"), "not_fit"),
         (COSMOS, "A03", cond("A03", "lift_id", "ne", "none"), "fits"),
         (COSMOS, "P01", cond("P01", "species", "in", ["dog", "dog_cat", "any"]), "not_fit"),
+        (CORAL, "F03", cond("F03", "cot_dimensions", "ne", "none"), "fits"),
+        (CORAL, "F05", cond("F05", "depth_m", "lte", 1), "fits"),  # «0,6 м», не 6 м
+        (CORAL, "P01", cond("P01", "species", "in", ["dog", "dog_cat", "any"]), "not_fit"),
+        (DOROGOMILOVSKAYA, "F04", cond("F04", "internal_connecting_door"), "not_fit"),
+        (DOROGOMILOVSKAYA, "F03", cond("F03", "fee", "lte", 0), "not_fit"),  # кроватка 500 ₽
+        (PROVENCE, "R03", cond("R03", "desk_clear_width_mm", "gte", 600), "fits"),
+        (PROVENCE, "R01", cond("R01", "download_Mbps", "gte", 100), "not_fit"),  # 50 Мбит/с
     ],
 )
 def test_simulated_answer_changes_search_status(client, hotel_id, feature_id, condition, after):
-    ast = {"raw_text": "тест", "city_id": "sochi", "hard": [condition]}
+    ast = {"raw_text": "тест", "city_id": CITY.get(hotel_id, "sochi"), "hard": [condition]}
     body = ask_simulator(client, hotel_id, feature_id, ast)
     assert body["state"] == "answered" and body["agent"]["parsed_by"] == "rules"
     assert body["facts"][0]["status"] == "simulated_hotelier"
@@ -105,8 +117,9 @@ def test_yes_lift_does_not_fill_lift_size(client):
     assert "ширина двери лифта" in body["agent"]["followup"]
 
 
-def test_unknown_answer_is_dont_know(client):
-    body = ask_simulator(client, RADISSON, "N05")  # «замеров не делали»
+@pytest.mark.parametrize("hotel_id", [RADISSON, PROVENCE])
+def test_unknown_answer_is_dont_know(client, hotel_id):
+    body = ask_simulator(client, hotel_id, "N05")  # «замеров не делали»
     assert body["state"] == "answered_unknown" and body["facts"][0]["status"] == "unknown"
     assert body["agent"]["followup"]
 
@@ -192,7 +205,7 @@ def test_llm_path_uses_schema_and_same_validation():
 
 def test_simulator_round_trip_offline():
     """Каждый ответ профилей разбирается правилами обратно в те же поля (кроме «vague»)."""
-    for hotel_id in (RADISSON, ARCHITECT, COSMOS):
+    for hotel_id in profiled_hotels():
         for fid, entry in load_profile(hotel_id)["answers"].items():
             if "fields" not in entry or entry.get("style") == "vague":
                 continue
