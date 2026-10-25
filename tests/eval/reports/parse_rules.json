@@ -1,13 +1,13 @@
 {
  "summary": {
   "mode": "rules",
-  "cases": 49,
+  "cases": 52,
   "parsed_by": {
-   "rules": 49,
+   "rules": 52,
    "llm": 0
   },
   "hard": {
-   "tp": 62,
+   "tp": 65,
    "fn": 0,
    "fp": 0,
    "precision": 1.0,
@@ -20,7 +20,7 @@
    "precision": 1.0,
    "recall": 0.954
   },
-  "exact_hard_cases": 49,
+  "exact_hard_cases": 52,
   "lost_required": 0,
   "required_leftovers": 1,
   "downgraded_required": 0,
@@ -39,7 +39,7 @@
    "parsed_by": "rules",
    "notes": [],
    "problems": [],
-   "ms": 15,
+   "ms": 16,
    "usage": {},
    "hard": {
     "tp": 2,
@@ -517,7 +517,7 @@
    "parsed_by": "rules",
    "notes": [],
    "problems": [],
-   "ms": 0,
+   "ms": 1,
    "usage": {},
    "hard": {
     "tp": 1,
@@ -544,7 +544,7 @@
    "parsed_by": "rules",
    "notes": [],
    "problems": [],
-   "ms": 0,
+   "ms": 1,
    "usage": {},
    "hard": {
     "tp": 1,
@@ -868,7 +868,7 @@
    "parsed_by": "rules",
    "notes": [],
    "problems": [],
-   "ms": 0,
+   "ms": 1,
    "usage": {},
    "hard": {
     "tp": 2,
@@ -1332,7 +1332,7 @@
    "parsed_by": "rules",
    "notes": [],
    "problems": [],
-   "ms": 0,
+   "ms": 2,
    "usage": {},
    "hard": {
     "tp": 1,
@@ -1361,7 +1361,7 @@
     "Часть запроса не разобрана — она показана отдельно и не считается выполненной."
    ],
    "problems": [],
-   "ms": 2,
+   "ms": 0,
    "usage": {},
    "hard": {
     "tp": 2,
@@ -1439,6 +1439,87 @@
   },
   {
    "id": "cov-3",
+   "parsed_by": "rules",
+   "notes": [],
+   "problems": [],
+   "ms": 0,
+   "usage": {},
+   "hard": {
+    "tp": 1,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 0,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "required_leftovers": 0,
+   "downgraded_required": 0,
+   "unparsed": [],
+   "exact_hard": true
+  },
+  {
+   "id": "road-1",
+   "parsed_by": "rules",
+   "notes": [],
+   "problems": [],
+   "ms": 0,
+   "usage": {},
+   "hard": {
+    "tp": 1,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 0,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "required_leftovers": 0,
+   "downgraded_required": 0,
+   "unparsed": [],
+   "exact_hard": true
+  },
+  {
+   "id": "road-2",
+   "parsed_by": "rules",
+   "notes": [],
+   "problems": [],
+   "ms": 0,
+   "usage": {},
+   "hard": {
+    "tp": 1,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 0,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "required_leftovers": 0,
+   "downgraded_required": 0,
+   "unparsed": [],
+   "exact_hard": true
+  },
+  {
+   "id": "road-3",
    "parsed_by": "rules",
    "notes": [],
    "problems": [],

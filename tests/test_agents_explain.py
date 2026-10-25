@@ -125,3 +125,41 @@ def test_api_search_has_template_explanation_and_explain_endpoint():
         assert any("ключ LLM не задан" in n for n in one["notes"])  # в тестах ключей нет
         missing = c.post("/api/explain", json={"text": "у моря", "hotel_id": "nope"})
         assert missing.status_code == 404
+
+
+def test_same_reason_is_said_once():
+    """Ревью №12: на «с собакой 10 кг» было две почти одинаковые фразы «нужно уточнить —
+    об этом у нас пока нет данных». Одна причина — одна фраза; разные условия — через запятую."""
+    with TestClient(create_app()) as c:
+        dog = c.post("/api/search", json={"text": "С собакой 10 кг", "city_id": "sochi"}).json()
+        both = c.post(
+            "/api/search", json={"text": "обязательно лифт и кондиционер", "city_id": "sochi"}
+        ).json()
+    text = dog["results"][0]["explanation"]["text"]
+    assert text.count("нужно уточнить") == 1 and text.startswith("Можно с животным:")
+    text = both["results"][0]["explanation"]["text"]
+    assert text.count("нужно уточнить") == 1 and text.startswith("Лифт, кондиционер")
+
+
+def test_negated_condition_uses_guest_words():
+    """Ревью №12: подпись отрицания — «без собак», а не «не можно с животным»."""
+    ast = {
+        "raw_text": "обязательно без собак",
+        "city_id": "sochi",
+        "hard": [
+            {"feature_id": "P01", "field": "species", "op": "in",
+             "value": ["dog", "dog_cat", "any"], "binding": "hotel", "atom_id": "a1",
+             "span": {"start": 12, "end": 21, "text": "без собак"}, "text_span": "без собак"},
+        ],
+        "logic": [
+            {"node_id": "n_a1", "op": "ATOM", "atom_id": "a1"},
+            {"node_id": "not_a1", "op": "NOT", "children": ["n_a1"]},
+            {"node_id": "root", "op": "AND", "children": ["not_a1"]},
+        ],
+        "hard_root": "root",
+    }  # fmt: skip
+    with TestClient(create_app()) as c:
+        results = c.post("/api/search", json={"ast": ast}).json()["results"]
+    texts = [r["explanation"]["text"] for r in results]
+    assert any("без собак" in t.lower() for t in texts)
+    assert not any("не можно" in t for t in texts)

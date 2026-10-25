@@ -135,12 +135,17 @@ def to_full_ast(
         if feature.fields and field is not None and field not in feature.fields:
             ooc.append(_out(atom, span, "unsupported_param", [feature.id]))
             continue
-        if atom.atom_id in compact.negated_atoms and atom.requiredness != "required":
-            # Графа logic у мягких условий нет: отрицание переворачивает само условие.
-            # Не выразить — уточнение, но не прямое условие вместо обратного.
+        to_soft = not (atom.requiredness == "required" and atom.mapping == "exact")
+        if atom.atom_id in compact.negated_atoms and to_soft:
+            # Графа logic у мягких условий нет: отрицание переворачивает само условие — и у
+            # обязательного частичного, которое тоже идёт в мягкие. Не выразить — уточнение,
+            # но не прямое условие вместо обратного.
             flipped = negate(feature, field, atom.op, atom.value)
             if flipped is None:
                 clarify.append(_ask(atom, catalog, negated=True))
+                if atom.requiredness == "required":
+                    # Обязательное «не X» не выразили — обязательная часть вне каталога (D38).
+                    ooc.append(_out(atom, span, "missing_feature", [feature.id], "partial"))
                 continue
             atom = atom.model_copy(update={"op": flipped[0], "value": flipped[1]})
         try:

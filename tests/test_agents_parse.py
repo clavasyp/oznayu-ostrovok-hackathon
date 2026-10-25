@@ -394,3 +394,70 @@ def test_soft_negation_from_model_flips_or_asks():
     ]
     (ask,) = ast.clarify  # «exists» не перевернуть — уточнение, а не прямое условие
     assert ask.about == "без лишнего"
+
+
+@pytest.mark.parametrize(
+    "text",
+    [
+        "Обязательно подальше от дороги.",
+        "Подальше от трассы обязательно.",
+        "Обязательно далеко от дороги.",
+    ],
+)
+def test_far_from_road_is_required(text):
+    """Ревью PR №8: «обязательно подальше от дороги» давало «Подходит» у всех отелей Сочи."""
+    ast = parse_query(text, "sochi", today=TODAY, mode="rules").ast
+    assert [(c.feature_id, c.op, c.value) for c in ast.hard] == [("N02", "gte", 200)]
+    assert not ast.unparsed_spans and not ast.out_of_catalog
+
+
+def test_comparatives_are_part_of_condition_not_softeners():
+    """«Подальше / поближе / повыше» — слова самого условия: одни — желательное, а «обязательно»
+    их побеждает. Смягчают только «желательно», «хотелось бы», «лучше»…"""
+
+    def split(text):
+        ast = parse_query(text, "sochi", today=TODAY, mode="rules").ast
+        return [c.feature_id for c in ast.hard], [c.feature_id for c in ast.soft]
+
+    assert split("этаж повыше") == ([], ["floor"])
+    assert split("обязательно этаж повыше") == (["floor"], [])
+    assert split("обязательно поближе к морю") == (["W01"], [])
+    assert split("хотелось бы подальше от шоссе") == ([], ["N02"])
+    assert split("не у трассы") == ([], ["N02"])
+    assert split("подальше от железной дороги") == ([], [])  # ж/д — N03, не дорога
+
+
+def test_far_from_road_changes_statuses():
+    from collections import Counter
+
+    from fastapi.testclient import TestClient
+
+    from app.main import create_app
+
+    with TestClient(create_app()) as c:
+        body = c.post(
+            "/api/search", json={"text": "обязательно подальше от дороги", "city_id": "sochi"}
+        )
+        statuses = Counter(r["status"] for r in body.json()["results"])
+    assert statuses["not_fit"] and statuses["fits"]  # не «Подходит» у всех
+
+
+def test_required_partial_negation_from_model_is_flipped_or_asked():
+    """Ревью №11: обязательный частичный атом из negated_atoms уходил в мягкие неперевёрнутым."""
+    raw = "обязательно не рядом с баром, обязательно без лишнего"
+    c = compact(
+        atom("a1", "не рядом с баром", "N04", field="count", op="gte", value="3",
+             mapping="partial"),
+        atom("a2", "без лишнего", "W05", field="known_step_sections", op="exists",
+             mapping="partial"),
+        negated_atoms=["a1", "a2"],
+    )  # fmt: skip
+    ast = to_full_ast(c, raw, CAT, parsed_by="llm")
+    assert not ast.hard and [(s.feature_id, s.op, s.value) for s in ast.soft] == [("N04", "lt", 3)]
+    # Обязательное частичное остаётся вне каталога (не «Подходит»); невыразимое — ещё и вопрос.
+    assert sorted((o.atom_id, o.requiredness) for o in ast.out_of_catalog) == [
+        ("a1", "required"),
+        ("a2", "required"),
+    ]
+    (ask,) = ast.clarify
+    assert ask.about == "без лишнего"
