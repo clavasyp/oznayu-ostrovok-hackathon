@@ -31,25 +31,15 @@ from core.db import (
     Question,
     RoomType,
 )
-from core.facts import Fact
 from core.packs import Manifest, iter_jsonl, sha256_file, verify
+from core.store_db import fact_to_row
 
 BATCH = 2000
-FACT_COLUMNS = {c.name for c in FactRow.__table__.columns}
 
 
 def fact_row(raw: dict[str, Any]) -> dict[str, Any]:
-    """Факт пакета → строка таблицы fact. Валидация по контракту; лишние поля v9 → extra."""
-    fact = Fact.model_validate(raw)
-    data = fact.model_dump(mode="json")
-    confidence = data.pop("confidence", None) or {}
-    row = {k: v for k, v in data.items() if k in FACT_COLUMNS}
-    row["confidence_level"] = confidence.pop("level", None)
-    row["confidence_reason"] = confidence.pop("reason", None)
-    row["extra"] = {k: v for k, v in data.items() if k not in FACT_COLUMNS}
-    if confidence:  # прочие поля уверенности, если калькулятор их дал
-        row["extra"]["confidence"] = confidence
-    return row
+    """Факт пакета → строка таблицы fact (core.store_db.fact_to_row)."""
+    return fact_to_row(raw)
 
 
 def hotel_row(raw: dict[str, Any]) -> dict[str, Any]:

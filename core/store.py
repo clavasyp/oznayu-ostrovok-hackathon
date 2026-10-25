@@ -9,9 +9,13 @@
 from __future__ import annotations
 
 from collections.abc import Collection
-from typing import Any, Protocol
+from datetime import datetime
+from typing import TYPE_CHECKING, Any, Protocol
 
 from core.facts import Fact
+
+if TYPE_CHECKING:
+    from core.hotelier import AnswerResult
 
 
 class Store(Protocol):
@@ -45,6 +49,23 @@ class Store(Protocol):
         ...
 
     def questions(self, hotel_id: str) -> list[dict[str, Any]]: ...
+
+    def question(
+        self, hotel_id: str, question_id: int | None, feature_id: str | None
+    ) -> dict[str, Any] | None:
+        """Вопрос отелю по ID или по характеристике."""
+        ...
+
+    def set_question_state(self, question_id: int, state: str, at: datetime) -> None: ...
+
+    def apply_answer(self, result: AnswerResult) -> None:
+        """Записать ответ отельера целиком: вопрос, факты, замены, противоречия, размещения.
+        В базе — одной транзакцией. `core.hotelier.AnswerError`, если категории нет."""
+        ...
+
+    def fact_conflicts(self, city_id: str | None = None) -> list[dict[str, Any]]:
+        """Противоречия между фактами: наш расчёт против ответа отеля и т. п."""
+        ...
 
     def conflicts(self, city_id: str | None = None) -> list[dict[str, Any]]:
         """Сверка с карточкой Островка: совпало, расходится, сравнить нечем."""

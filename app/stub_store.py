@@ -13,10 +13,13 @@ import json
 from collections import defaultdict
 from collections.abc import Collection
 from dataclasses import dataclass, field
+from datetime import datetime
 from pathlib import Path
 from typing import Any
 
 from core.facts import Fact
+from core.hotelier import AnswerError, AnswerResult
+from core.packs import stable_id
 
 FIXTURES = Path(__file__).parent / "fixtures"
 
@@ -33,6 +36,9 @@ class StubStore:
     ota_comparisons: list[dict[str, Any]] = field(default_factory=list)
     # Категории с размещениями (D17) — в заглушках пока нет; тесты кладут сюда свои.
     room_types_by_hotel: dict[str, list[dict[str, Any]]] = field(default_factory=dict)
+    # Ответы отельера в режиме заглушек живут в памяти до перезапуска.
+    superseded: dict[str, str] = field(default_factory=dict)
+    fact_conflict_list: list[dict[str, Any]] = field(default_factory=list)
 
     @classmethod
     def load(cls, root: Path = FIXTURES) -> StubStore:
@@ -50,6 +56,9 @@ class StubStore:
         store.city_list = json.loads((root / "cities.json").read_text("utf-8"))
         store.coverage_by_city = json.loads((root / "coverage.json").read_text("utf-8"))
         store.questions_by_hotel = json.loads((root / "questions.json").read_text("utf-8"))
+        for items in store.questions_by_hotel.values():
+            for q in items:  # тот же ID, что у вопроса в пакете (pipeline/build_v9_packs.py)
+                q.setdefault("question_id", stable_id("question", q["hotel_id"], q["feature_id"]))
         store.ota_comparisons = json.loads((root / "conflicts.json").read_text("utf-8"))
         return store
 
@@ -85,6 +94,96 @@ class StubStore:
 
     def questions(self, hotel_id: str) -> list[dict[str, Any]]:
         return self.questions_by_hotel.get(hotel_id, [])
+
+    def question(
+        self, hotel_id: str, question_id: int | None, feature_id: str | None
+    ) -> dict[str, Any] | None:
+        for q in self.questions_by_hotel.get(hotel_id, []):
+            if (question_id is not None and q["question_id"] == question_id) or (
+                question_id is None and q["feature_id"] == feature_id
+            ):
+                return q
+        return None
+
+    def _question_by_id(self, question_id: int) -> dict[str, Any] | None:
+        for items in self.questions_by_hotel.values():
+            for q in items:
+                if q["question_id"] == question_id:
+                    return q
+        return None
+
+    def set_question_state(self, question_id: int, state: str, at: datetime) -> None:
+        q = self._question_by_id(question_id)
+        if q is not None:
+            q["answer_status"], q["asked_at"] = state, at.isoformat()
+
+    def apply_answer(self, result: AnswerResult) -> None:
+        if result.placements:
+            rts = {
+                rt["room_type_id"]: rt for rt in self.room_types_by_hotel.get(result.hotel_id, [])
+            }
+            rt = rts.get(result.room_type_id or "")
+            if rt is None:
+                raise AnswerError(
+                    f"нет категории {result.room_type_id}: размещения не к чему привязать"
+                )
+            ps = result.placements
+            merged: dict[str, dict[str, Any]] = {}
+            for item in ps.items:
+                pid = f"{rt['room_type_id']}|{item.building_id}|{item.floor}"
+                p = merged.setdefault(
+                    pid,
+                    {
+                        "placement_id": pid,
+                        "building_id": item.building_id,
+                        "floor": item.floor,
+                        "floor_label": item.floor_label,
+                        "windows": [],
+                    },
+                )
+                p["windows"] = sorted(set(p["windows"]) | set(item.windows))
+            rt["placement_set"] = {
+                "completeness": ps.completeness,
+                "guarantee": ps.guarantee,
+                "status": result.placement_status,
+                "source": result.placement_source,
+            }
+            rt["placements"] = list(merged.values())
+        q = self._question_by_id(result.question_id)
+        if q is not None:
+            q.update(
+                answer_status=result.state,
+                answer_text=result.answer_text,
+                answered_at=result.answered_at.isoformat(),
+                parsed=result.parsed,
+                is_simulated=result.is_simulated,
+            )
+        for f in result.facts:
+            self.facts[f.fact_id] = f
+            self.by_hotel.setdefault(f.hotel_id, {}).setdefault(f.feature_id, []).append(f)
+        for old, new in result.superseded.items():
+            self.superseded[old] = new
+            fact = self.facts.get(old)
+            if fact is not None:
+                items = self.by_hotel.get(fact.hotel_id, {}).get(fact.feature_id, [])
+                items[:] = [f for f in items if f.fact_id != old]
+        for ours, theirs in result.conflicts:
+            self.fact_conflict_list.append(
+                {
+                    "conflict_id": len(self.fact_conflict_list) + 1,
+                    "city_id": theirs.city_id,
+                    "hotel_id": theirs.hotel_id,
+                    "feature_id": theirs.feature_id,
+                    "subject_id": theirs.subject_id,
+                    "fact_a": ours.fact_id,
+                    "fact_b": theirs.fact_id,
+                    "state": "detected",
+                    "updated_at": result.answered_at.isoformat(),
+                }
+            )
+
+    def fact_conflicts(self, city_id: str | None = None) -> list[dict[str, Any]]:
+        return [c for c in self.fact_conflict_list if not city_id or c["city_id"] == city_id]
 
     def conflicts(self, city_id: str | None = None) -> list[dict[str, Any]]:
         return [c for c in self.ota_comparisons if not city_id or c["city_id"] == city_id]
