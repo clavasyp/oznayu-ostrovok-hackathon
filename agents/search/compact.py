@@ -12,6 +12,7 @@
 from __future__ import annotations
 
 import json
+import re
 from datetime import date
 from typing import Any, Literal
 
@@ -29,10 +30,12 @@ from agents.query_ast import (
     SoftCondition,
     Span,
 )
-from agents.search.text import covered_gaps, find_span
+from agents.search.text import covered_gaps, find_span, marker_requiredness, normalize
 
 CITY_IDS = ("sochi", "moscow", "spb", "kazan", "kaliningrad", "minsk", "istanbul", "dubai")
 IMPORTANCE = {"low": 1, "medium": 2, "high": 3}
+LEFTOVER = "rest"  # atom_id обязательной части вне каталога из непонятого куска
+_PREP_BEFORE = re.compile(r"\b(?:без|не|с|со|для|на|в|во|у|от|до|при|из)\s+$")
 
 
 class _Strict(BaseModel):
@@ -163,6 +166,24 @@ def to_full_ast(
         SoftCondition(**c, weight=round(IMPORTANCE[a.importance] / total, 4)) for a, c in soft
     ]
     logic, root = _logic(compact, hard)
+    unparsed = []
+    norm = normalize(raw_text)
+    for i, gap in enumerate(covered_gaps(raw_text, covered)):
+        gap = _with_preposition(raw_text, gap)
+        if marker_requiredness(norm, gap.start, sentence=False) == "required":
+            # Непонятое рядом с «обязательно», «только», «нужен» — обязательная часть вне
+            # каталога: движок даст по ней «неизвестно», и отель не поднимется выше «уточнить».
+            ooc.append(
+                OutOfCatalog(
+                    text_span=gap.text,
+                    normalized=gap.text,
+                    atom_id=f"{LEFTOVER}{i}",
+                    span=gap,
+                    requiredness="required",
+                )
+            )
+        else:
+            unparsed.append(gap)
     return QueryAST(
         raw_text=raw_text,
         city_id=city_id or (compact.city if compact.city in CITY_IDS else None),
@@ -174,9 +195,22 @@ def to_full_ast(
         out_of_catalog=ooc,
         logic=logic,
         hard_root=root,
-        unparsed_spans=covered_gaps(raw_text, covered),
+        unparsed_spans=unparsed,
         parsed_by=parsed_by,
     )
+
+
+def is_leftover(o: OutOfCatalog) -> bool:
+    """Обязательная часть вне каталога из непонятого куска (а не из атома разбора)."""
+    return bool(o.atom_id and o.atom_id.startswith(LEFTOVER))
+
+
+def _with_preposition(raw: str, gap: Span) -> Span:
+    """«без ковролина», а не «ковролина»: предлог или «не» перед куском — часть его смысла."""
+    m = _PREP_BEFORE.search(normalize(raw[: gap.start]))
+    if not m:
+        return gap
+    return Span(start=m.start(), end=gap.end, text=raw[m.start() : gap.end])
 
 
 def _span(raw: str, atom: CompactAtom, spans: dict[str, tuple[int, int]]) -> Span | None:

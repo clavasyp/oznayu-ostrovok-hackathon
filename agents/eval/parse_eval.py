@@ -23,6 +23,7 @@ from typing import Any
 
 from agents.query_ast import QueryAST
 from agents.search import parse_query
+from agents.search.compact import is_leftover
 
 ROOT = Path(__file__).resolve().parents[2]
 REFERENCE = ROOT / "tests" / "eval" / "parse_reference.jsonl"
@@ -34,6 +35,7 @@ TODAY = date(2026, 10, 25)  # фиксировано: даты без года �
 class Item:
     span: tuple[int, int] | None
     features: set[str]  # ID условия или ближайшие у части вне каталога (+ "ooc")
+    leftover: bool = False  # непонятый кусок рядом с «обязательно» (не атом разбора)
 
 
 def produced(ast: QueryAST) -> tuple[list[Item], list[Item]]:
@@ -44,9 +46,9 @@ def produced(ast: QueryAST) -> tuple[list[Item], list[Item]]:
     hard: dict[Any, Item] = {}
     soft: dict[Any, Item] = {}
 
-    def add(bucket: dict[Any, Item], span, features: set[str]) -> None:
+    def add(bucket: dict[Any, Item], span, features: set[str], leftover: bool = False) -> None:
         key = (span.start, span.end) if span else id(features)
-        item = bucket.setdefault(key, Item(key if span else None, set()))
+        item = bucket.setdefault(key, Item(key if span else None, set(), leftover))
         item.features |= features
 
     for c in ast.hard:
@@ -56,7 +58,7 @@ def produced(ast: QueryAST) -> tuple[list[Item], list[Item]]:
             add(soft, c.span, {c.feature_id})
     for o in ast.out_of_catalog:
         bucket = hard if o.requiredness == "required" else soft
-        add(bucket, o.span, {"ooc", *o.nearest_contracts})
+        add(bucket, o.span, {"ooc", *o.nearest_contracts}, is_leftover(o))
     return list(hard.values()), list(soft.values())
 
 
@@ -83,7 +85,9 @@ def evaluate_case(case: dict[str, Any], mode: str) -> dict[str, Any]:
     hard_items, soft_items = produced(ast)
     extra_ok = set(case.get("hard_extra_ok", []))
     h_tp, h_missed, h_extra = match(case["hard"], hard_items)
-    h_extra = [it for it in h_extra if not it.features & extra_ok]
+    # Непонятое рядом с «обязательно» — осторожность, а не придуманное условие: не «лишнее».
+    leftovers = [it for it in h_extra if it.leftover]
+    h_extra = [it for it in h_extra if not it.features & extra_ok and not it.leftover]
     s_tp, s_missed, s_extra = match(case["soft"], soft_items)
     # Обязательное не найдено среди обязательных: понижено до желательного или потеряно.
     _, lost, _ = match(h_missed, soft_items)
@@ -100,6 +104,7 @@ def evaluate_case(case: dict[str, Any], mode: str) -> dict[str, Any]:
         "extra_hard": [sorted(it.features) for it in h_extra],
         "extra_soft": [sorted(it.features) for it in s_extra],
         "lost_required": lost,
+        "required_leftovers": len(leftovers),
         "downgraded_required": downgraded,
         "unparsed": [s.text for s in ast.unparsed_spans],
         "exact_hard": not h_missed and not h_extra,
@@ -130,6 +135,7 @@ def summarize(rows: list[dict[str, Any]], mode: str) -> dict[str, Any]:
         "soft": tot["soft"] | _prf(**tot["soft"]),
         "exact_hard_cases": sum(r["exact_hard"] for r in rows),
         "lost_required": sum(len(r["lost_required"]) for r in rows),
+        "required_leftovers": sum(r.get("required_leftovers", 0) for r in rows),
         "downgraded_required": sum(r["downgraded_required"] for r in rows),
         "cases_with_unparsed": sum(bool(r["unparsed"]) for r in rows),
         "cases_with_problems": sum(bool(r["problems"]) for r in rows),
@@ -161,6 +167,7 @@ def markdown(summary: dict[str, Any], rows: list[dict[str, Any]]) -> str:
         f"| Запросов с точным набором обязательных | {s['exact_hard_cases']} из {s['cases']} |",
         f"| **Потеряно обязательных** | **{s['lost_required']}** |",
         f"| Обязательных понижено до желательных | {s['downgraded_required']} |",
+        f"| Непонятое рядом с «обязательно» → «уточнить» | {s['required_leftovers']} |",
         f"| Запросов с неразобранным остатком | {s['cases_with_unparsed']} |",
         f"| Разобрано правилами / моделью | {s['parsed_by']['rules']} / {s['parsed_by']['llm']} |",
         f"| Медиана времени, мс | {s['median_ms']} |",

@@ -16,7 +16,7 @@ from typing import Literal
 from agents.catalog import load_catalog
 from agents.llm import Gateway, LLMError, LLMResult, get_gateway
 from agents.query_ast import QueryAST
-from agents.search.compact import CompactAST, compact_schema, to_full_ast
+from agents.search.compact import CompactAST, compact_schema, is_leftover, to_full_ast
 from agents.search.prompt import system_prompt, user_prompt
 from agents.search.rules import parse_rules
 from agents.search.text import normalize
@@ -62,9 +62,14 @@ def parse_query(
     if rules_problems:  # ошибка в правилах — это баг, но запрос всё равно обслуживаем
         log.error("rules ast problems: %s", rules_problems)
 
+    # Непонятое правилами: отдельные куски и обязательные части без характеристики.
+    leftovers = bool(rules_ast.unparsed_spans) or any(
+        is_leftover(o) for o in rules_ast.out_of_catalog
+    )
+
     def offline(note: str | None, errs: list[str] | None = None) -> ParseOutcome:
         notes = [note] if note else []
-        if rules_ast.unparsed_spans:
+        if leftovers:
             notes.append(NOTE_UNPARSED)
         return ParseOutcome(rules_ast, notes, problems=errs or rules_problems)
 
@@ -73,7 +78,7 @@ def parse_query(
         return offline(None)
     if not gw.available:  # пометка «офлайн» — даже если правила справились сами
         return offline(NOTE_OFFLINE)
-    if mode == "auto" and not rules_ast.unparsed_spans and not rules_problems:
+    if mode == "auto" and not leftovers and not rules_problems:
         return offline(None)
     key = (normalize(text).strip(), city_id, catalog.version, today.isoformat())
     if key in _cache:

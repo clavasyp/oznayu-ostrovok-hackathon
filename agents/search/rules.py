@@ -13,13 +13,13 @@ from __future__ import annotations
 
 import re
 from collections.abc import Callable, Iterator
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from dataclasses import field as dfield
 from datetime import date
 
 from agents.catalog import Catalog
 from agents.search.compact import CompactAST, CompactAtom, CompactClarify, OrGroup, Param
-from agents.search.text import normalize
+from agents.search.text import marker_requiredness, normalize
 
 # --- Пороги политики (не измерения): меняются здесь и видны в разборе ---
 NEAR_BEACH_M = 800  # «недалеко от моря» — как в примере трека
@@ -42,15 +42,6 @@ CONSTRUCTION_M = 300
 WARM_SEA_C = 22
 MAX_ASCENT_M = 10
 
-REQ_MARKERS = re.compile(
-    r"\b(обязательн\w*|только|нужн\w*|необходим\w*|должн\w*|точно|строго|непременно|"
-    r"не рассматрива\w*|важно)\b"
-)
-DES_MARKERS = re.compile(
-    r"\b(хотелось бы|хочется|желательно|лучше|был[аио]? бы|плюс\w*|бонус\w*|приятн\w*|"
-    r"хорошо бы|по возможности|неплохо|удобн\w*|здорово|предпочтительн\w*|поменьше|побольше|"
-    r"поближе|подальше|повыше|пониже|нравятся|нравится)\b"
-)
 
 WORD_NUMBERS = {
     **dict.fromkeys(["один", "одна", "одного", "первый", "первого", "первом", "первая"], 1),
@@ -297,7 +288,7 @@ def bars(ctx: Ctx) -> Iterator[Hit]:
     pattern = (
         r"(?:(?P<neg>поменьше|меньше|без|подальше\s+от)\s+)?(?:"
         r"\bбар(?:ы|ов|ам|ами|ах)?\s+(?:\w+\s+)?(?:рядом|недалеко|поблизости)(?:\s+нравятся)?"
-        r"|(?:рядом|недалеко|близость|поблизости)\s+(?:к\s+)?\bбар(?:ы|ов|ам|ами|ах)?\b)"
+        r"|(?:рядом|недалеко|близость|поблизости)\s+(?:[кс]\s+)?\bбар(?:ы|ов|ам|ами|ах)?\b)"
     )
     for m in finditer(pattern, ctx):
         # «Поменьше баров рядом» — меньше; «бары рядом нравятся» — больше.
@@ -764,7 +755,9 @@ def _context(ctx: Ctx) -> tuple[str, int]:
         ctx.context.append((m.start(), m.end()))
     guests = (
         r"с\s+(?:малыш\w*|реб[её]нк\w*|детьми|мамой|дедушк\w*|бабушк\w*)|с\s+детск\w+\s+коляск\w*"
-        r"|вдвоем|на\s+машине"
+        r"|вдвоем|на\s+машине|(?:из|в|до)\s+аэропорт\w*|(?:с|из|на)\s+вокзал\w*"
+        r"|(?:на|в)\s+(?:годовщин\w*|день\s+рождени\w*|медовый\s+месяц|выходные|отпуск\w*"
+        r"|командировк\w*)|романтическ\w+\s+выходн\w*"
     )
     for m in finditer(guests, ctx):
         ctx.context.append((m.start(), m.end()))
@@ -790,25 +783,52 @@ def _date(year: int | None, month: int, day: int, today: date) -> date | None:
 
 
 def requiredness(ctx: Ctx, pos: int, default: str) -> str:
-    sentence_start = max(ctx.norm.rfind(c, 0, pos) for c in ".;!?") + 1
-    sub_start = max(ctx.norm.rfind(c, sentence_start, pos) for c in ",:—–()") + 1
-    sub_start = max(sub_start, ctx.norm.rfind(" а ", sentence_start, pos) + 1, sentence_start)
-    ends = [i for c in ".;!?,:—–()" if (i := ctx.norm.find(c, pos)) >= 0]
-    if (i := ctx.norm.find(" а ", pos)) >= 0:
-        ends.append(i)
-    sub = ctx.norm[sub_start : min(ends) if ends else len(ctx.norm)]
-    req, des = REQ_MARKERS.search(sub), DES_MARKERS.search(sub)
-    if req and not des:
-        return "required"
-    if des and not req:
-        return "desired"
-    sent = ctx.sentence(pos)
-    req, des = REQ_MARKERS.search(sent), DES_MARKERS.search(sent)
-    if req and not des:
-        return "required"
-    if des and not req:
-        return "desired"
-    return default
+    return marker_requiredness(ctx.norm, pos) or default
+
+
+# Отрицание прямо перед фразой: «без собак», «не на первом этаже». Где «без» — часть смысла
+# («без ступеней», «без пересадок»), оно внутри совпадения правила и сюда не попадает.
+NEGATION_BEFORE = re.compile(r"(?:^|[^\w-])(?P<w>не|без)\s+$")
+# «Балкон не нужен», «вид не важен» — требование снято, а не перевёрнуто. «Не обязательно» —
+# не снято, а смягчено: это решает обязательность (`marker_requiredness`).
+DISMISSED_AFTER = re.compile(r"^\s*(?:[—–-]\s*)?не\s*(?:нуж|важ)\w*")
+# «Хвосты» понятых фраз: «рядом с аптекой» — расстояние понято, «рядом» не должно висеть отдельно.
+TAIL_BEFORE = re.compile(
+    r"(?P<w>\b(?:рядом|поблизости|недалеко|неподалеку|близко|возле|около))\s+(?:(?:с|со|от|к|до)\s+)?$"
+)
+TAIL_AFTER = re.compile(r"^\s+(?:рядом|поблизости|недалеко|неподалеку|близко)\b")
+FLIP = {"lte": "gt", "gt": "lte", "gte": "lt", "lt": "gte", "eq": "ne", "ne": "eq"}
+
+
+def _negate(atom: Atom, catalog: Catalog) -> Atom | None:
+    """Обратное условие того же смысла; нельзя выразить — None (кусок останется непонятым)."""
+    feature = catalog.get(atom.feature_id)
+    if feature is None or atom.mapping != "exact":
+        return None
+    spec = feature.field_spec(atom.field or None)
+    if atom.op == "in":
+        values = {v.strip() for v in atom.value.split(",")}
+        rest = [v for v in (spec.values if spec else ()) if v not in values]
+        return replace(atom, value=",".join(rest)) if rest else None
+    if atom.op == "eq" and atom.value in ("true", "false"):
+        return replace(atom, value="false" if atom.value == "true" else "true")
+    if atom.op in FLIP:
+        return replace(atom, op=FLIP[atom.op])
+    return None
+
+
+def _apply_negation(ctx: Ctx, h: Hit, catalog: Catalog) -> Hit | None:
+    if DISMISSED_AFTER.match(ctx.norm[h.end :]):
+        return None
+    m = NEGATION_BEFORE.search(ctx.norm[: h.start])
+    if not m:
+        return h
+    if len(h.atoms) != 1 or h.any_of:
+        return None  # отрицание сложной фразы правилами не выразить — оставляем непонятым
+    atom = _negate(h.atoms[0], catalog)
+    if atom is None:
+        return None
+    return replace(h, start=m.start("w"), atoms=[atom], clarify=[])
 
 
 def parse_rules(
@@ -826,7 +846,14 @@ def parse_rules(
     for h in hits:
         if all(h.end <= k.start or h.start >= k.end for k in kept):
             kept.append(h)
+    # Отрицание: обратное условие или ничего (кусок останется непонятым), но не противоположное.
+    kept = [n for h in kept if (n := _apply_negation(ctx, h, catalog))]
     kept.sort(key=lambda h: h.start)
+    for h in kept:
+        if m := TAIL_BEFORE.search(ctx.norm[: h.start]):
+            ctx.context.append((m.start("w"), h.start))
+        if m := TAIL_AFTER.match(ctx.norm[h.end :]):
+            ctx.context.append((h.end, h.end + m.end()))
 
     atoms: list[CompactAtom] = []
     spans: dict[str, tuple[int, int]] = {}

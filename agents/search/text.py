@@ -25,10 +25,65 @@ STOPWORDS = frozenset(
     должно должны едем едём поедем приедем приезжаем ищу ищем подберите найдите подбери найди
     вариант варианты который которая которое которые всё-таки все-таки нормальный нормальная
     нормальное нормальные большим большой был бы рассматриваю рассматриваем тоже же уж
-    иметь ещё бы чтобы чтоб
+    иметь ещё бы чтобы чтоб её ее его их него нее неё них принять приняли примут пустят быстро
+    спать сплю сон сна днем днём ночью
     """.split()
 )
+# Усилители: «подтверждённый», «проверенный» — система и так требует подтверждения.
+_STOP_STEMS = re.compile(r"^(?:подтвержд|проверенн|гарантированн)\w*$")
+_BREAK = re.compile(r"[.,;:!?—–()]")
 _WORD = re.compile(r"[\w-]+", re.UNICODE)
+
+# Обязательность — по словам гостя: «обязательно», «только» / «хотелось бы», «лучше».
+REQ_MARKERS = re.compile(
+    r"\b(обязательн\w*|только|нуж(?:ен|н\w*)|необходим\w*|должн\w*|точно|строго|непременно|"
+    r"не рассматрива\w*|важно)\b"
+)
+DES_MARKERS = re.compile(
+    r"\b(хотелось бы|хочется|желательно|лучше|был[аио]? бы|плюс\w*|бонус\w*|приятн\w*|"
+    r"хорошо бы|по возможности|неплохо|удобн\w*|здорово|предпочтительн\w*|поменьше|побольше|"
+    r"поближе|подальше|повыше|пониже|нравятся|нравится)\b"
+)
+# «Не обязательно», «не важно» — это мягкое пожелание, а не обязательное условие.
+NOT_REQUIRED = re.compile(r"\bне\s*(?:обязательн|нуж(?:ен|н)|важ(?:ен|н)|принципиальн)\w*")
+_SENTENCE_END = ".;!?"
+_CLAUSE_END = ".;!?,:—–()"
+
+
+def _markers(text: str) -> str | None:
+    relaxed = bool(NOT_REQUIRED.search(text))
+    text = NOT_REQUIRED.sub(" ", text)
+    req, des = bool(REQ_MARKERS.search(text)), bool(DES_MARKERS.search(text)) or relaxed
+    if req and not des:
+        return "required"
+    if des and not req:
+        return "desired"
+    return None
+
+
+def clause_bounds(norm: str, pos: int, ends: str = _CLAUSE_END) -> tuple[int, int]:
+    """Границы части фразы вокруг позиции: по знакам препинания и по противительному «а»."""
+    sentence_start = max(norm.rfind(c, 0, pos) for c in _SENTENCE_END) + 1
+    start = max(norm.rfind(c, sentence_start, pos) for c in ends) + 1
+    if ends == _CLAUSE_END:
+        start = max(start, norm.rfind(" а ", sentence_start, pos) + 1)
+    start = max(start, sentence_start)
+    stops = [i for c in ends if (i := norm.find(c, pos)) >= 0]
+    if ends == _CLAUSE_END and (i := norm.find(" а ", pos)) >= 0:
+        stops.append(i)
+    return start, min(stops) if stops else len(norm)
+
+
+def marker_requiredness(norm: str, pos: int, *, sentence: bool = True) -> str | None:
+    """Обязательность по словам гостя: сначала в своей части фразы, затем — во всём
+    предложении (если `sentence`). Нет слов или они спорят — None."""
+    start, end = clause_bounds(norm, pos)
+    if found := _markers(norm[start:end]):
+        return found
+    if not sentence:
+        return None
+    start, end = clause_bounds(norm, pos, _SENTENCE_END)
+    return _markers(norm[start:end])
 
 
 def normalize(text: str) -> str:
@@ -74,9 +129,11 @@ def covered_gaps(raw: str, covered: list[tuple[int, int]]) -> list[Span]:
     for m in _WORD.finditer(raw):
         inside = any(s <= m.start() and m.end() <= e for s, e in covered)
         word = normalize(m.group())
+        if current and _BREAK.search(raw[current[-1].end() : m.start()]):
+            flush()  # кусок не переходит через знак препинания: у частей фразы своя обязательность
         if inside:
             flush()
-        elif word in STOPWORDS or word.isdigit():
+        elif word in STOPWORDS or word.isdigit() or _STOP_STEMS.match(word):
             continue
         else:
             current.append(m)

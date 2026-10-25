@@ -10,7 +10,7 @@ from agents.catalog import coerce_value, load_catalog
 from agents.llm import Gateway, LLMUnavailable
 from agents.llm.fake import FakeLLM
 from agents.search import parse_query
-from agents.search.compact import CompactAST, compact_schema, to_full_ast
+from agents.search.compact import CompactAST, compact_schema, is_leftover, to_full_ast
 from agents.search.parse import _cache
 from agents.search.validate import problems
 
@@ -220,3 +220,65 @@ def test_api_search_parses_text():
 def test_compact_schema_file_in_sync():
     path = Path("agents/schemas/query_ast_compact.schema.json")
     assert json.loads(path.read_text("utf-8")) == compact_schema()
+
+
+@pytest.mark.parametrize(
+    ("text", "expected"),
+    [
+        ("без собак", [("P01", "species", "in", ["cat", "none"])]),
+        ("у меня аллергия, только отель без собак", [("P01", "species", "in", ["cat", "none"])]),
+        ("не на первом этаже", [("floor", "ordinal", "ne", 1)]),
+        (
+            "номер с балконом, но не на первом этаже",
+            [("M02", "private_balcony", "eq", True), ("floor", "ordinal", "ne", 1)],
+        ),
+        ("номер без балкона обязательно", [("M02", "private_balcony", "eq", False)]),
+        # «без» — часть смысла фразы: условие не переворачивается.
+        ("обязательно без пересадок", [("T01", "transfers", "eq", 0)]),
+        ("вход без ступеней обязательно", [("A02", "threshold_mm", "lte", 20)]),
+    ],
+)
+def test_negation_flips_or_keeps_meaning(text, expected):
+    ast = parse_query(text, today=TODAY, mode="rules").ast
+    assert [(c.feature_id, c.field, c.op, c.value) for c in ast.hard] == expected
+
+
+def test_negation_that_cannot_be_expressed_stays_unparsed():
+    # «Не тихий номер» — правилами не выразить: кусок непонятый, но не противоположное условие.
+    ast = parse_query("номер не тихий", today=TODAY, mode="rules").ast
+    assert not ast.hard and not ast.soft and [s.text for s in ast.unparsed_spans] == ["не тихий"]
+
+
+def test_not_required_and_dismissed():
+    ast = parse_query("кондиционер не обязательно", today=TODAY, mode="rules").ast
+    assert not ast.hard and [c.feature_id for c in ast.soft] == ["S04"]
+    ast = parse_query("балкон не нужен, но лифт обязательно", today=TODAY, mode="rules").ast
+    assert [c.feature_id for c in ast.hard] == ["A03"] and not ast.soft
+
+
+def test_unknown_next_to_required_is_required_out_of_catalog():
+    text = "С собакой 10 кг, обязательно без ковролина. Здравствуйте!"
+    ast = parse_query(text, today=TODAY, mode="rules").ast
+    (rest,) = [o for o in ast.out_of_catalog if is_leftover(o)]
+    assert rest.text_span == "без ковролина" and rest.requiredness == "required"
+    assert [s.text for s in ast.unparsed_spans] == [
+        "Здравствуйте"
+    ]  # без «обязательно» — как раньше
+
+
+def test_tails_of_understood_phrases_are_covered():
+    ast = parse_query("обязательно рядом с аптекой", today=TODAY, mode="rules").ast
+    assert [c.feature_id for c in ast.hard] == ["L01"]
+    assert not ast.unparsed_spans and not ast.out_of_catalog
+
+
+def test_required_leftover_keeps_hotel_below_fits():
+    from fastapi.testclient import TestClient
+
+    from app.main import create_app
+
+    with TestClient(create_app()) as c:
+        body = c.post(
+            "/api/search", json={"text": "обязательно без ковролина", "city_id": "sochi"}
+        ).json()
+    assert {r["status"] for r in body["results"]} == {"needs_check"}
