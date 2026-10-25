@@ -1,0 +1,81 @@
+{
+  "format_version": "1",
+  "city_id": "minsk",
+  "city_name": "Минск",
+  "timezone": "Europe/Minsk",
+  "depth": "automatic",
+  "pack_version": "v9-211f8c6d03",
+  "built_at": "2026-10-24T13:40:02.002091Z",
+  "code_version": "v9-packs.1",
+  "catalog_version": "v9",
+  "sources": [
+    {
+      "id": "42f50d841bbb",
+      "provider": "Copernicus DEM GLO-30",
+      "license": "Copernicus DEM Licence, free worldwide GLO30 use subject to required attribution/notices"
+    },
+    {
+      "id": "d788fa2b07cc",
+      "provider": "ESA WorldCover",
+      "license": "CC BY 4.0"
+    },
+    {
+      "id": "9f7fdcbb7209",
+      "provider": "Open-Meteo Historical Weather API",
+      "license": "CC BY 4.0"
+    },
+    {
+      "id": "86896b6b5e3e",
+      "provider": "OpenStreetMap",
+      "release": "2026-10-22T20:21:33Z",
+      "license": "ODbL1.0"
+    },
+    {
+      "id": "ostrovok",
+      "provider": "ostrovok.ru (страницы отелей, разрешение организаторов)",
+      "url": "https://ostrovok.ru"
+    },
+    {
+      "id": "7e9f69c9baf2",
+      "provider": "ostrovok_cached_v5"
+    }
+  ],
+  "files": [
+    {
+      "path": "data/hotels.jsonl.gz",
+      "kind": "hotels",
+      "rows": 50,
+      "bytes": 4182,
+      "sha256": "4385be9d21ee5d86bdf9926549544a5ce86a10759c919c254deaeabd05123198"
+    },
+    {
+      "path": "data/facts.jsonl.gz",
+      "kind": "facts",
+      "rows": 3950,
+      "bytes": 1643111,
+      "sha256": "76c23db8af9ffd8dd75e0e252bad46ef70afe6a56c1c93544e6e40f50381094b"
+    },
+    {
+      "path": "data/questions.jsonl.gz",
+      "kind": "questions",
+      "rows": 1300,
+      "bytes": 122933,
+      "sha256": "6c265da7569d9c9d4eff8b647ea6ffccc0708289ccb3eadf83c902f91b999766"
+    },
+    {
+      "path": "data/coverage.jsonl.gz",
+      "kind": "coverage",
+      "rows": 54,
+      "bytes": 2772,
+      "sha256": "85ea5b7a1a94242e1577915347fbd94e9214d4464f780a4146495c7d433755e5"
+    },
+    {
+      "path": "data/ota_comparisons.jsonl.gz",
+      "kind": "ota_comparisons",
+      "rows": 3,
+      "bytes": 429,
+      "sha256": "20b26b8b3d7df267931d6f90b7c1d58ef72b2a6e1d23dac462d30ade96ca4801"
+    }
+  ],
+  "notes": "Сборка v9-packs.1 из research_notes/Расчёт характеристик (Codex v9). Диагностика v9 (component_diagnostics, audit_files, components) не включена."
+}

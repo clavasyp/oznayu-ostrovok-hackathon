@@ -47,7 +47,7 @@ docker compose up --build
 
 | Переменная | По умолчанию | Что |
 |---|---|---|
-| `DATA_MODE` | `fixtures` | `fixtures` — заглушки из настоящих фактов v9, без базы; `db` — база после `init` |
+| `DATA_MODE` | `db` | `db` — база, куда `init` загрузил пакеты городов; `fixtures` — заглушки из фактов v9 без базы (для интерфейса без Docker) |
 | `POSTGRES_USER`, `POSTGRES_PASSWORD`, `POSTGRES_DB` | `oznayu` | База; адрес для `init` и `app` compose собирает из них |
 | `LLM_PROVIDER` | `anthropic` | LLM-шлюз: `anthropic` — основной, OpenAI-совместимый — запасной |
 | `LLM_MODEL` | `claude-opus-5-5` | Модель |
@@ -59,7 +59,9 @@ docker compose up --build
 
 Сидирование автоматическое. При каждом запуске `init` применяет миграции и грузит пакеты городов из `packs/` (формат — `packs/FORMAT.md`), сверяя хеши из `manifest.json`. Вручную — `make seed` или `docker compose run --rm init`. Тяжёлые расчёты делаются заранее: в пакетах только результаты, поэтому запуск укладывается в минуты.
 
-Пока пакетов нет, API отдаёт заглушки из настоящих фактов v9 (`app/fixtures/`, `DATA_MODE=fixtures`).
+Сейчас в `packs/` — 8 городов из расчётов v9: 439 отелей, 35 015 фактов с паспортом, 11 414 вопросов отельеру с предзаполнением, покрытие и сверка с карточкой Островка. Пересобрать — `python -m pipeline.build_v9_packs`. Москва и Большой Сочи — полная глубина, остальные 6 городов — автоматический слой (D36). Каталог Островка и новые расчёты добавятся в пакеты своими файлами.
+
+Без Docker API может работать на заглушках из тех же фактов v9 (`app/fixtures/`, `DATA_MODE=fixtures`).
 
 ## Команды
 
@@ -93,10 +95,13 @@ docker compose up --build
 ```bash
 uv sync --extra api --extra llm                          # окружение приложения; группа dev ставится сама
 uv sync --all-extras                                     # + сборка пакетов городов (Сева, Лера, лид)
-uv run --env-file .env uvicorn app.main:app --port 8080  # API на заглушках из фактов v9, без базы
+DATA_MODE=fixtures uv run uvicorn app.main:app --port 8080  # API на заглушках, без базы
 make db                                                  # база на 127.0.0.1:55432, адрес — DATABASE_URL в .env
 uv run --env-file .env python -m pipeline.init           # миграции и пакеты в эту базу
+uv run --env-file .env uvicorn app.main:app --port 8080  # API на этой базе
+uv run python -m pipeline.build_v9_packs                 # пересобрать пакеты из расчётов v9
 make test && make lint
+make test-db                                             # + тесты на настоящем PostGIS (база oznayu_test)
 ```
 
 Версии зафиксированы в `uv.lock`. После правки `pyproject.toml` — `uv lock` и закоммитить lock-файл. CI проверяет это сам.

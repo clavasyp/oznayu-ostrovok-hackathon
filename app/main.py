@@ -26,6 +26,7 @@ from starlette.types import Scope
 from app.api.routes import router
 from app.state import AppState, Phase
 from app.stub_store import StubStore
+from core.store_db import DbStore
 
 UI_DIST = Path(__file__).resolve().parents[1] / "ui" / "dist"
 
@@ -86,10 +87,11 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
     state.data_mode = os.environ.get("DATA_MODE", "fixtures")
     try:
         state.phase = Phase.loading
-        app.state.store = StubStore.load()  # заглушки нужны и в режиме db, пока API не на базе
         if state.data_mode == "db":
             _check_init(app)
+            app.state.store = DbStore(app.state.engine)
         else:
+            app.state.store = StubStore.load()
             state.phase = Phase.ready
     except Exception as exc:  # noqa: BLE001 — показать причину в /health
         state.phase, state.detail = Phase.failed, f"{type(exc).__name__}: {exc}"

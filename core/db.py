@@ -113,7 +113,7 @@ class FactRow(Base):
     feature_id: Mapped[str] = mapped_column(Text)
     feature_version: Mapped[int | None] = mapped_column(Integer)
     params: Mapped[dict[str, Any]] = mapped_column(JSONB, default=dict)
-    value: Mapped[Any] = mapped_column(JSONB)
+    value: Mapped[Any] = mapped_column(JSONB, nullable=True)  # у unknown значения нет
     unit: Mapped[str | None] = mapped_column(Text)
     quantifier: Mapped[str | None] = mapped_column(Text)
     status: Mapped[str] = mapped_column(Text)
@@ -129,7 +129,7 @@ class FactRow(Base):
     observed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
     calculated_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
     valid_to: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
-    refresh_after: Mapped[Any] = mapped_column(JSONB)
+    refresh_after: Mapped[Any] = mapped_column(JSONB, nullable=True)
     scope_note: Mapped[str | None] = mapped_column(Text)
     extra: Mapped[dict[str, Any]] = mapped_column(JSONB, default=dict)
     is_current: Mapped[bool] = mapped_column(Boolean, default=True)
@@ -172,6 +172,7 @@ class Question(Base):
     subject_id: Mapped[str] = mapped_column(Text)
     text: Mapped[str] = mapped_column(Text)
     prefill: Mapped[list[Any]] = mapped_column(JSONB, default=list)
+    fields: Mapped[list[str]] = mapped_column(JSONB, default=list)  # какие поля ждём в ответе
     priority: Mapped[float] = mapped_column(Float, default=0.0)
     reason: Mapped[str] = mapped_column(Text)  # unknown | conflict | low_confidence | expired
     state: Mapped[str] = mapped_column(Text, default="open")
@@ -218,7 +219,7 @@ class CurationClaim(Base):
     feature_id: Mapped[str] = mapped_column(Text)
     params: Mapped[dict[str, Any]] = mapped_column(JSONB, default=dict)
     original_proposal: Mapped[dict[str, Any]] = mapped_column(JSONB)
-    corrected_value: Mapped[Any] = mapped_column(JSONB)
+    corrected_value: Mapped[Any] = mapped_column(JSONB, nullable=True)
     evidence: Mapped[list[Any]] = mapped_column(JSONB, default=list)
     state: Mapped[str] = mapped_column(
         Text, default="proposed"
@@ -254,6 +255,39 @@ class UnmatchedAtom(Base):
     )  # new | triaged | data_task | draft_spec | activated | closed
     linked_feature_id: Mapped[str | None] = mapped_column(Text)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+
+
+class OtaComparison(Base):
+    """Сверка наших фактов с карточкой Островка (v9): совпало, расходится или сравнить нечем."""
+
+    __tablename__ = "ota_comparison"
+
+    id: Mapped[int] = mapped_column(BigInteger, primary_key=True, autoincrement=True)
+    city_id: Mapped[str] = mapped_column(Text, index=True)
+    hotel_id: Mapped[str] = mapped_column(Text, index=True)
+    feature_id: Mapped[str] = mapped_column(Text)
+    ota_value: Mapped[str | None] = mapped_column(Text)
+    other_value: Mapped[Any] = mapped_column(JSONB, nullable=True)
+    classification: Mapped[str] = mapped_column(Text)
+    numeric_comparison: Mapped[str | None] = mapped_column(Text)
+    resolution: Mapped[str | None] = mapped_column(Text)
+    source: Mapped[dict[str, Any]] = mapped_column(JSONB, default=dict)  # ota_url, ota_pointer
+    pack_version: Mapped[str | None] = mapped_column(Text)
+
+
+class CityCoverage(Base):
+    """Покрытие характеристики в городе: сколько отелей посчитано, оценено, неизвестно (core §6)."""
+
+    __tablename__ = "city_coverage"
+
+    city_id: Mapped[str] = mapped_column(Text, primary_key=True)
+    feature_id: Mapped[str] = mapped_column(Text, primary_key=True)
+    feature_name: Mapped[str | None] = mapped_column(Text)
+    n_hotels: Mapped[int] = mapped_column(Integer)
+    computed: Mapped[int] = mapped_column(Integer, default=0)
+    estimate: Mapped[int] = mapped_column(Integer, default=0)
+    unknown: Mapped[int] = mapped_column(Integer, default=0)
+    not_applicable: Mapped[int] = mapped_column(Integer, default=0)
 
 
 class PackLoad(Base):
