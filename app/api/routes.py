@@ -4,7 +4,8 @@
 
 from __future__ import annotations
 
-from datetime import UTC, datetime
+import logging
+from datetime import UTC, datetime, timedelta
 from typing import Any
 
 from fastapi import APIRouter, HTTPException, Request
@@ -14,6 +15,7 @@ from agents import hotelier as agent
 from agents.explain import explain
 from agents.query_ast import QueryAST
 from agents.search import parse_query
+from agents.search.journal import summarize, unmatched_events
 from core import search as engine
 from core.facts import Fact
 from core.hotelier import AnswerError, AnswerIn, build_answer
@@ -21,6 +23,7 @@ from core.reasons import reason_text
 from core.store import Store
 from core.verdict import BOOKED_LABEL, BOOKING_IMITATION_NOTE, GUEST_LABELS
 
+log = logging.getLogger(__name__)
 router = APIRouter(prefix="/api")
 # Объяснение по шаблону — у первых результатов (у остальных — по запросу, POST /api/explain).
 EXPLAIN_TOP = 20
@@ -131,6 +134,8 @@ def search(body: SearchRequest, request: Request) -> dict[str, Any]:
     s = store(request)
     notes = [SEARCH_LEVEL_NOTE]
     ast = _query_ast(body, notes)
+    if body.ast is None and body.text and body.text.strip():
+        _record_unmatched(s, ast)  # журнал «вне каталога» — только по тексту, который разобрали мы
     results = engine.search(s, ast)
     # Объяснение по шаблону (без модели, мгновенно) — у первых результатов выдачи.
     for r in results[:EXPLAIN_TOP]:
@@ -169,6 +174,14 @@ def explain_hotel(body: ExplainRequest, request: Request) -> dict[str, Any]:
         "explanation": e.as_dict(),
         "notes": notes + e.notes,
     }
+
+
+def _record_unmatched(s: Store, ast: QueryAST) -> None:
+    """Сбой записи журнала поиск не ломает (D34: журнал — для админа, а не для гостя)."""
+    try:
+        s.record_unmatched(unmatched_events(ast))
+    except Exception:
+        log.exception("журнал «вне каталога»: запись не удалась")
 
 
 @router.get("/hotelier/{hotel_id}/questions")
@@ -277,4 +290,26 @@ def conflicts(request: Request, city_id: str | None = None) -> dict[str, Any]:
         "stub": s.stub,
         "conflicts": s.conflicts(city_id),
         "fact_conflicts": s.fact_conflicts(city_id),
+    }
+
+
+@router.get("/out-of-catalog")
+def out_of_catalog(
+    request: Request,
+    city_id: str | None = None,
+    stratum: str = "live",
+    days: int = 30,
+    limit: int = 50,
+) -> dict[str, Any]:
+    """«Что спрашивают, а мы не знаем» (экран админа, D34): части запросов вне каталога и
+    неразобранные куски. Частота — число разных запросов за `days` дней, а не число событий."""
+    s = store(request)
+    since = datetime.now(UTC) - timedelta(days=days)
+    events = s.unmatched_events(city_id=city_id, stratum=stratum, since=since)
+    return {
+        "stub": s.stub,
+        "city_id": city_id,
+        "stratum": stratum,
+        "window_days": days,
+        "items": summarize(events, limit=limit),
     }

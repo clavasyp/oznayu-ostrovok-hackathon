@@ -268,6 +268,64 @@
       "title": "LogicNode",
       "type": "object"
     },
+    "NearbyPlace": {
+      "additionalProperties": false,
+      "description": "«Рядом место типа X» (задача 4): категория из `agents/catalog/places.json` и радиус.\n\nПроверить можно, когда в пакете города будет таблица «отель × места рядом» (метки OSM,\nрубрики 2ГИС); до тех пор часть запроса — «вне каталога», но уже с категорией.",
+      "properties": {
+        "category": {
+          "description": "ID категории из словаря мест",
+          "title": "Category",
+          "type": "string"
+        },
+        "label": {
+          "title": "Label",
+          "type": "string"
+        },
+        "radius_m": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Пешком; None — место в отеле",
+          "title": "Radius M"
+        },
+        "radius_source": {
+          "anyOf": [
+            {
+              "enum": [
+                "guest",
+                "policy"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "guest — гость назвал расстояние; policy — «рядом» = near_m",
+          "title": "Radius Source"
+        },
+        "on_site": {
+          "default": false,
+          "description": "«в отеле», «отель с рестораном»",
+          "title": "On Site",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "category",
+        "label"
+      ],
+      "title": "NearbyPlace",
+      "type": "object"
+    },
     "OutOfCatalog": {
       "additionalProperties": false,
       "description": "Часть запроса без характеристики в каталоге (D34): показываем «такое мы пока не знаем».",
@@ -340,6 +398,18 @@
           },
           "title": "Nearest Contracts",
           "type": "array"
+        },
+        "place": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/NearbyPlace"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Для `nearby_place`: что и где"
         }
       },
       "required": [

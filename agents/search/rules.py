@@ -17,7 +17,7 @@ from dataclasses import dataclass, replace
 from dataclasses import field as dfield
 from datetime import date
 
-from agents.catalog import Catalog
+from agents.catalog import Catalog, load_places
 from agents.search.compact import CompactAST, CompactAtom, CompactClarify, OrGroup, Param
 from agents.search.negation import negate
 from agents.search.text import marker_requiredness, normalize
@@ -77,12 +77,6 @@ CITIES = [
     (r"\bстамбул\w*\b", "istanbul"),
     (r"\bдуба[йея]\w*\b", "dubai"),
 ]  # fmt: skip
-CUISINES = {
-    "итальянск": "italian", "грузинск": "georgian", "японск": "japanese", "китайск": "chinese",
-    "французск": "french", "узбекск": "uzbek", "армянск": "armenian", "индийск": "indian",
-    "мексиканск": "mexican", "тайск": "thai", "вьетнамск": "vietnamese", "корейск": "korean",
-    "кавказск": "caucasian", "русск": "russian", "местн": "regional",
-}  # fmt: skip
 
 
 @dataclass
@@ -512,16 +506,62 @@ def playground(ctx: Ctx) -> Iterator[Hit]:
         yield Hit(m.start(), m.end(), [atom], "desired")
 
 
+# Слова вокруг места: «рядом» (радиус — политика словаря мест), «в 5 минутах» (радиус гостя),
+# «в отеле» / «отель с …» (место в самом отеле). «Рядом с морем» и «в 5 минутах от моря» —
+# про море, а не про место: такие слова не забираем у правил моря и центра.
+_BE = r"(?:\s+(?:был\w*|находил\w*|есть))?"
+_NEAR_WORD = (
+    r"(?:рядом|недалеко|поблизости|неподалеку|близко|возле|около|под\s+боком|по\s+соседству"
+    r"|в\s+(?:шаговой|пешей)\s+доступности)"
+)
+_DIST = (
+    rf"(?:в|не\s+дальше|не\s+более|в\s+пределах|до)\s+(?P<n>{NUM})\s*"
+    r"(?P<u>минут\w*|мин|метр\w*|м|км|километр\w*)(?!\w)(?:\s+(?:пешком|ходьбы))?"
+)
+_SITE = r"(?:в|при)\s+(?:самом\s+)?(?:отел\w*|гостиниц\w*|здании)|на\s+территории(?:\s+отел\w*)?"
+_PLACE_BEFORE = re.compile(
+    rf"(?:(?P<near>{_NEAR_WORD}(?:\s+(?:с|со|от|к)(?:\s+отел\w*)?)?)"
+    rf"|{_DIST}(?:\s+от\s+отел\w*)?|(?P<site>{_SITE}|собственн\w*|сво(?:й|им|ей|ю|е|его))"
+    rf"|(?P<with>\bсо?)){_BE}\s+$"
+)
+_PLACE_AFTER = re.compile(
+    rf"{_BE}\s+(?:(?P<near>{_NEAR_WORD}(?:\s+(?:с|со|от|к)\s+отел\w*|(?!\s+(?:с|со|от|к|до)\b)))"
+    rf"|{_DIST}(?:\s+от\s+отел\w*|(?!\s+(?:от|до)\b))|(?P<site>{_SITE}))"
+)
+
+
+def _named_place(raw: str, start: int, end: int) -> bool:
+    """«в Зимнем театре», «ресторан «Пушкин»» — конкретное место (цель), а не «театр рядом»."""
+    if re.match(r"\s*[«\"„]|\s+[А-ЯЁA-Z]", raw[end:]):
+        return True
+    prev = re.search(r"(\S+)\s+$", raw[:start])
+    if not prev or not prev.group(1)[0].isupper():
+        return False
+    head = raw[: prev.start()].rstrip()
+    return bool(head) and head[-1] not in ".!?"  # заглавная не в начале предложения — имя
+
+
 @rule
 def nearby_place(ctx: Ctx) -> Iterator[Hit]:
-    """«Рядом итальянский ресторан» — пока вне каталога, с категорией для задачи 4 (D34)."""
-    keys = "|".join(CUISINES)
-    pattern = rf"(?P<c>{keys})\w*\s+(?:ресторан\w*|кухн\w*|кафе|ед\w*)"
-    for m in finditer(pattern, ctx):
-        cuisine = CUISINES[m.group("c")]
-        atom = Atom("", value=f"cuisine={cuisine}", params={"nearest_contract": "nearby_place"},
-                    mapping="unmatched")  # fmt: skip
-        yield Hit(m.start(), m.end(), [atom], "desired")
+    """«Рядом итальянский ресторан», «музей в 10 минутах» — вне каталога, но с категорией из
+    словаря мест (задача 4, D34): проверка ждёт таблицу «отель × места рядом» в пакете города."""
+    for start, end, category in load_places().find(ctx.norm):
+        if _named_place(ctx.raw, start, end):
+            continue  # названное место — цель маршрута, его разберут «доехать до» или модель
+        before = _PLACE_BEFORE.search(ctx.norm, max(0, start - 60), start)
+        after = _PLACE_AFTER.match(ctx.norm, end)
+        mods = [m for m in (before, after) if m]
+        if category.needs_near and not mods:
+            continue  # «бассейн», «ресторан» без «рядом» — скорее про сам отель; решит модель
+        params = {"nearest_contract": "nearby_place"}
+        for m in mods:
+            if m.group("n"):
+                params |= {"distance": number(m.group("n")), "distance_unit": m.group("u")}
+            if m.group("site") or m.groupdict().get("with"):
+                params["on_site"] = "true"
+        atom = Atom("", value=category.id, params=params, mapping="unmatched")
+        yield Hit(before.start() if before else start, after.end() if after else end,
+                  [atom], "desired")  # fmt: skip
 
 
 @rule

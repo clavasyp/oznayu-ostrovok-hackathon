@@ -25,6 +25,7 @@ from core.db import (
     PlacementWindow,
     Question,
     RoomType,
+    UnmatchedAtom,
 )
 from core.facts import Fact
 from core.hotelier import AnswerError, AnswerResult
@@ -412,3 +413,27 @@ class DbStore:
                 }
                 for c, name in s.execute(q)
             ]
+
+    def record_unmatched(self, events: list[dict[str, Any]]) -> None:
+        if not events:
+            return
+        with self._session() as s, s.begin():
+            s.execute(
+                insert(UnmatchedAtom)
+                .values(events)
+                .on_conflict_do_nothing(index_elements=["event_id"])
+            )
+
+    def unmatched_events(
+        self, city_id: str | None = None, stratum: str | None = None, since: datetime | None = None
+    ) -> list[dict[str, Any]]:
+        q = select(UnmatchedAtom).order_by(UnmatchedAtom.created_at)
+        if city_id:
+            q = q.where(UnmatchedAtom.city_id == city_id)
+        if stratum:
+            q = q.where(UnmatchedAtom.source_stratum == stratum)
+        if since:
+            q = q.where(UnmatchedAtom.created_at >= since)
+        columns = [c.name for c in UnmatchedAtom.__table__.columns if c.name != "id"]
+        with self._session() as s:
+            return [{c: getattr(row, c) for c in columns} for row in s.scalars(q)]

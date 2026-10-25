@@ -18,13 +18,14 @@ from typing import Any, Literal
 
 from pydantic import BaseModel, ConfigDict
 
-from agents.catalog import Catalog, coerce_value
+from agents.catalog import Catalog, FieldSpec, coerce_value, load_places
 from agents.query_ast import (
     Clarification,
     Condition,
     Dates,
     Guests,
     LogicNode,
+    NearbyPlace,
     OutOfCatalog,
     QueryAST,
     SoftCondition,
@@ -198,7 +199,7 @@ def to_full_ast(
         hard=hard,
         soft=soft_conds,
         clarify=clarify,
-        out_of_catalog=ooc,
+        out_of_catalog=[_place(o, {a.atom_id: a for a in compact.atoms}, catalog) for o in ooc],
         logic=logic,
         hard_root=root,
         unparsed_spans=unparsed,
@@ -209,6 +210,47 @@ def to_full_ast(
 def is_leftover(o: OutOfCatalog) -> bool:
     """Обязательная часть вне каталога из непонятого куска (а не из атома разбора)."""
     return bool(o.atom_id and o.atom_id.startswith(LEFTOVER))
+
+
+_RADIUS = FieldSpec(name="radius_m", type="integer", unit="m")
+
+
+def _place(o: OutOfCatalog, atoms: dict[str, CompactAtom], catalog: Catalog) -> OutOfCatalog:
+    """«Рядом место типа X»: категория из словаря мест, радиус в метрах (D8: считает код).
+
+    Категория — `value` атома (ID из словаря), иначе ищем по словам фрагмента. Расстояние гостя
+    («в 5 минутах») — из параметров `distance` / `distance_unit`; без него «рядом» = `near_m`.
+    """
+    if "nearby_place" not in o.nearest_contracts:
+        return o
+    places = load_places()
+    atom = atoms.get(o.atom_id or "")
+    params = {p.key: p.value for p in atom.params} if atom else {}
+    category = places.get(atom.value) if atom else None
+    if category is None:
+        found = places.find(normalize(o.text_span))
+        category = found[0][2] if found else None
+    if category is None:
+        return o  # категории нет в словаре — остаётся вне каталога как есть (и в журнал)
+    radius, source = places.near_m, "policy"
+    if params.get("distance"):
+        try:
+            walk = catalog.walk_speed_m_per_min
+            radius = coerce_value(
+                _RADIUS, params["distance"], params.get("distance_unit", ""), walk
+            )
+            source = "guest"
+        except ValueError:
+            pass  # единица не переводится — радиус по политике, а не догадка
+    on_site = params.get("on_site", "").lower() == "true"
+    place = NearbyPlace(
+        category=category.id,
+        label=category.label,
+        radius_m=None if on_site else max(1, radius),
+        radius_source=None if on_site else source,
+        on_site=on_site,
+    )
+    return o.model_copy(update={"normalized": f"nearby_place:{category.id}", "place": place})
 
 
 def _with_preposition(raw: str, gap: Span) -> Span:

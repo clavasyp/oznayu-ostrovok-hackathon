@@ -112,7 +112,8 @@ def test_nothing_is_lost_without_catalog():
     assert ast.city_id == "moscow"
     by_contract = {o.nearest_contracts[0]: o for o in ast.out_of_catalog}
     assert by_contract["trip_to_target"].requiredness == "required"
-    assert by_contract["nearby_place"].normalized == "cuisine=italian"
+    assert by_contract["nearby_place"].normalized == "nearby_place:italian"
+    assert by_contract["nearby_place"].place.radius_m == 800  # «рядом» — политика словаря мест
     assert by_contract["nearby_place"].requiredness == "desired"
     assert {s.text for s in ast.unparsed_spans} >= {"Приехал посмотреть"}
 

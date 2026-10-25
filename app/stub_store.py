@@ -39,6 +39,7 @@ class StubStore:
     # Ответы отельера в режиме заглушек живут в памяти до перезапуска.
     superseded: dict[str, str] = field(default_factory=dict)
     fact_conflict_list: list[dict[str, Any]] = field(default_factory=list)
+    unmatched: list[dict[str, Any]] = field(default_factory=list)  # журнал «вне каталога»
 
     @classmethod
     def load(cls, root: Path = FIXTURES) -> StubStore:
@@ -187,3 +188,18 @@ class StubStore:
 
     def conflicts(self, city_id: str | None = None) -> list[dict[str, Any]]:
         return [c for c in self.ota_comparisons if not city_id or c["city_id"] == city_id]
+
+    def record_unmatched(self, events: list[dict[str, Any]]) -> None:
+        known = {e["event_id"] for e in self.unmatched}
+        self.unmatched += [e for e in events if e["event_id"] not in known]
+
+    def unmatched_events(
+        self, city_id: str | None = None, stratum: str | None = None, since: datetime | None = None
+    ) -> list[dict[str, Any]]:
+        return [
+            e
+            for e in self.unmatched
+            if (not city_id or e["city_id"] == city_id)
+            and (not stratum or e["source_stratum"] == stratum)
+            and (not since or e["created_at"] >= since)
+        ]
