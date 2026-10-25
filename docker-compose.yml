@@ -10,7 +10,7 @@ x-app: &app
   image: oznayu-app:local
   platform: linux/amd64
   environment:
-    DATA_MODE: ${DATA_MODE:-fixtures}
+    DATA_MODE: ${DATA_MODE:-db}
     DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-oznayu}:${POSTGRES_PASSWORD:-oznayu}@db:5432/${POSTGRES_DB:-oznayu}
     LLM_PROVIDER: ${LLM_PROVIDER:-anthropic}
     LLM_MODEL: ${LLM_MODEL:-claude-opus-5-5}

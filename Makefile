@@ -3,7 +3,7 @@ COMPOSE ?= docker compose
 DEV = $(COMPOSE) -f docker-compose.yml -f docker-compose.dev.yml
 URL ?= http://localhost:8080
 
-.PHONY: up down seed logs ps dev db test lint fmt lock clean
+.PHONY: up down seed logs ps dev db test test-db lint fmt lock clean
 
 # Свой .env из примера — только если его ещё нет.
 .env:
@@ -35,6 +35,11 @@ db: .env ## только база на 127.0.0.1:55432 — для uv run на с
 
 test: ## тесты
 	uv run pytest -q
+
+test-db: .env ## тесты на настоящем PostGIS: база oznayu_test в контейнере make db
+	$(DEV) up -d --wait db
+	$(DEV) exec -T db sh -c 'psql -U "$$POSTGRES_USER" -d postgres -tc "SELECT 1 FROM pg_database WHERE datname = '"'"'oznayu_test'"'"'" | grep -q 1 || createdb -U "$$POSTGRES_USER" oznayu_test'
+	TEST_DATABASE_URL=postgresql+psycopg://oznayu:oznayu@localhost:55432/oznayu_test uv run pytest -q tests/test_db_store.py
 
 lint: ## стиль и актуальность uv.lock
 	uv lock --check
