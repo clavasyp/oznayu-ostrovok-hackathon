@@ -344,7 +344,8 @@ class Logic:
                 item.pop("reason_code", None)
                 item.pop("reason", None)
             return item
-        spans = [c["text_span"] for c in children if c.get("text_span")]
+        # Варианты из одного фрагмента («заселиться ночью»: стойка или самозаселение) — без повтора.
+        spans = list(dict.fromkeys(c["text_span"] for c in children if c.get("text_span")))
         text = {"OR": " или ", "AND": " и "}.get(node.op, ", ").join(spans) or None
         item = {
             "op": node.op,

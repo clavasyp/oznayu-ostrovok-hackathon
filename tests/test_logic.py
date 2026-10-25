@@ -146,6 +146,15 @@ def test_or_needs_one_yes():
     assert run(s, [DESK, SELF_IN], NIGHT, "root")["status"] == GuestStatus.not_fit
 
 
+def test_or_from_one_fragment_shows_it_once():
+    # «Заселиться ночью» — один фрагмент, два варианта: текст пункта без повтора.
+    night = "заселиться ночью"
+    desk = DESK.model_copy(update={"text_span": night})
+    self_in = SELF_IN.model_copy(update={"text_span": night})
+    r = run(store([]), [desk, self_in], NIGHT, "root")
+    assert r["hard"][0]["text_span"] == night
+
+
 def test_or_with_not_inside_stays_unknown():
     # (НЕ собаки) ИЛИ стойка: собак пускают → «нет», про стойку не знаем → «нужно уточнить».
     logic = [
