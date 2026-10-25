@@ -423,3 +423,24 @@ def test_far_from_road_changes_statuses():
         )
         statuses = Counter(r["status"] for r in body.json()["results"])
     assert statuses["not_fit"] and statuses["fits"]  # не «Подходит» у всех
+
+
+def test_required_partial_negation_from_model_is_flipped_or_asked():
+    """Ревью №11: обязательный частичный атом из negated_atoms уходил в мягкие неперевёрнутым."""
+    raw = "обязательно не рядом с баром, обязательно без лишнего"
+    c = compact(
+        atom("a1", "не рядом с баром", "N04", field="count", op="gte", value="3",
+             mapping="partial"),
+        atom("a2", "без лишнего", "W05", field="known_step_sections", op="exists",
+             mapping="partial"),
+        negated_atoms=["a1", "a2"],
+    )  # fmt: skip
+    ast = to_full_ast(c, raw, CAT, parsed_by="llm")
+    assert not ast.hard and [(s.feature_id, s.op, s.value) for s in ast.soft] == [("N04", "lt", 3)]
+    # Обязательное частичное остаётся вне каталога (не «Подходит»); невыразимое — ещё и вопрос.
+    assert sorted((o.atom_id, o.requiredness) for o in ast.out_of_catalog) == [
+        ("a1", "required"),
+        ("a2", "required"),
+    ]
+    (ask,) = ast.clarify
+    assert ask.about == "без лишнего"
