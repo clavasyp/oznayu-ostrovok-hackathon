@@ -1,0 +1,18 @@
+{
+  "hotel_id": "10012084",
+  "name": "Архитектор Apart Hotel by Provence",
+  "note": "Закрытый профиль имитатора отельера: эталонная правда для показа, НЕ факты. Ответы помечены is_simulated.",
+  "seed": 11,
+  "style": "plain",
+  "answers": {
+    "L04": {"fields": {"checkin_possible": true, "front_desk_24h": false, "self_checkin": true, "prior_arrangement": true}, "conditions": "Ночью стойка закрыта, код от двери пришлём заранее."},
+    "L05": {"fields": {"breakfast_start": "08:00", "breakfast_box": false}},
+    "P01": {"fields": {"pets_allowed": true, "species": ["dog"], "max_weight_kg": 15, "prior_approval": true}},
+    "P02": {"fields": {"fee_amount": 1000, "fee_basis": "per_night"}},
+    "S04": {"fields": {"has_ac": true}, "style": "vague"},
+    "A03": {"fields": {"has_lift": false}},
+    "M03": {"fields": {"private_kitchenette": true, "cooking_allowed": true}},
+    "R03": {"fields": {"has_desk": false}}
+  },
+  "categories": []
+}

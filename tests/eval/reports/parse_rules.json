@@ -1,0 +1,1172 @@
+{
+ "summary": {
+  "mode": "rules",
+  "cases": 38,
+  "parsed_by": {
+   "rules": 38,
+   "llm": 0
+  },
+  "hard": {
+   "tp": 45,
+   "fn": 2,
+   "fp": 0,
+   "precision": 1.0,
+   "recall": 0.957
+  },
+  "soft": {
+   "tp": 61,
+   "fn": 3,
+   "fp": 0,
+   "precision": 1.0,
+   "recall": 0.953
+  },
+  "exact_hard_cases": 36,
+  "lost_required": 2,
+  "downgraded_required": 0,
+  "cases_with_unparsed": 25,
+  "cases_with_problems": 0,
+  "median_ms": 1,
+  "tokens": {
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "cache_read_input_tokens": 0
+  }
+ },
+ "cases": [
+  {
+   "id": "v1-01",
+   "parsed_by": "rules",
+   "notes": [],
+   "problems": [],
+   "ms": 13,
+   "usage": {},
+   "hard": {
+    "tp": 2,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 1,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "downgraded_required": 0,
+   "unparsed": [],
+   "exact_hard": true
+  },
+  {
+   "id": "v1-02",
+   "parsed_by": "rules",
+   "notes": [],
+   "problems": [],
+   "ms": 1,
+   "usage": {},
+   "hard": {
+    "tp": 1,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 2,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "downgraded_required": 0,
+   "unparsed": [],
+   "exact_hard": true
+  },
+  {
+   "id": "v1-03",
+   "parsed_by": "rules",
+   "notes": [],
+   "problems": [],
+   "ms": 1,
+   "usage": {},
+   "hard": {
+    "tp": 1,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 2,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "downgraded_required": 0,
+   "unparsed": [],
+   "exact_hard": true
+  },
+  {
+   "id": "v1-04",
+   "parsed_by": "rules",
+   "notes": [
+    "Часть запроса не разобрана — она показана отдельно и не считается выполненной."
+   ],
+   "problems": [],
+   "ms": 1,
+   "usage": {},
+   "hard": {
+    "tp": 1,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 1,
+    "fn": 1,
+    "fp": 0,
+    "missed": [
+     [
+      "V01"
+     ]
+    ]
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "downgraded_required": 0,
+   "unparsed": [
+    "годовщину",
+    "море"
+   ],
+   "exact_hard": true
+  },
+  {
+   "id": "v1-05",
+   "parsed_by": "rules",
+   "notes": [
+    "Часть запроса не разобрана — она показана отдельно и не считается выполненной."
+   ],
+   "problems": [],
+   "ms": 1,
+   "usage": {},
+   "hard": {
+    "tp": 1,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 2,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "downgraded_required": 0,
+   "unparsed": [
+    "работы"
+   ],
+   "exact_hard": true
+  },
+  {
+   "id": "v1-06",
+   "parsed_by": "rules",
+   "notes": [
+    "Часть запроса не разобрана — она показана отдельно и не считается выполненной."
+   ],
+   "problems": [],
+   "ms": 1,
+   "usage": {},
+   "hard": {
+    "tp": 1,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 1,
+    "fn": 1,
+    "fp": 0,
+    "missed": [
+     [
+      "W02"
+     ]
+    ]
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "downgraded_required": 0,
+   "unparsed": [
+    "Мама ходит с тростью",
+    "ближайшей остановки",
+    "недалеко"
+   ],
+   "exact_hard": true
+  },
+  {
+   "id": "v1-07",
+   "parsed_by": "rules",
+   "notes": [
+    "Часть запроса не разобрана — она показана отдельно и не считается выполненной."
+   ],
+   "problems": [],
+   "ms": 0,
+   "usage": {},
+   "hard": {
+    "tp": 1,
+    "fn": 1,
+    "fp": 0,
+    "missed": [
+     [
+      "A05",
+      "A04",
+      "ooc"
+     ]
+    ]
+   },
+   "soft": {
+    "tp": 1,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [
+    [
+     "A05",
+     "A04",
+     "ooc"
+    ]
+   ],
+   "downgraded_required": 0,
+   "unparsed": [
+    "инвалидной коляске: нужен подтверждённый подходящий"
+   ],
+   "exact_hard": false
+  },
+  {
+   "id": "v1-08",
+   "parsed_by": "rules",
+   "notes": [
+    "Часть запроса не разобрана — она показана отдельно и не считается выполненной."
+   ],
+   "problems": [],
+   "ms": 1,
+   "usage": {},
+   "hard": {
+    "tp": 1,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 2,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "downgraded_required": 0,
+   "unparsed": [
+    "её должны точно принять"
+   ],
+   "exact_hard": true
+  },
+  {
+   "id": "v1-09",
+   "parsed_by": "rules",
+   "notes": [
+    "Часть запроса не разобрана — она показана отдельно и не считается выполненной."
+   ],
+   "problems": [],
+   "ms": 1,
+   "usage": {},
+   "hard": {
+    "tp": 2,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 1,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "downgraded_required": 0,
+   "unparsed": [
+    "Будем готовы выехать из аэропорта"
+   ],
+   "exact_hard": true
+  },
+  {
+   "id": "v1-10",
+   "parsed_by": "rules",
+   "notes": [
+    "Часть запроса не разобрана — она показана отдельно и не считается выполненной."
+   ],
+   "problems": [],
+   "ms": 1,
+   "usage": {},
+   "hard": {
+    "tp": 2,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 1,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "downgraded_required": 0,
+   "unparsed": [
+    "прилетаем"
+   ],
+   "exact_hard": true
+  },
+  {
+   "id": "v1-11",
+   "parsed_by": "rules",
+   "notes": [],
+   "problems": [],
+   "ms": 0,
+   "usage": {},
+   "hard": {
+    "tp": 1,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 2,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "downgraded_required": 0,
+   "unparsed": [],
+   "exact_hard": true
+  },
+  {
+   "id": "v1-12",
+   "parsed_by": "rules",
+   "notes": [],
+   "problems": [],
+   "ms": 1,
+   "usage": {},
+   "hard": {
+    "tp": 1,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 2,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "downgraded_required": 0,
+   "unparsed": [],
+   "exact_hard": true
+  },
+  {
+   "id": "v1-13",
+   "parsed_by": "rules",
+   "notes": [],
+   "problems": [],
+   "ms": 0,
+   "usage": {},
+   "hard": {
+    "tp": 1,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 2,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "downgraded_required": 0,
+   "unparsed": [],
+   "exact_hard": true
+  },
+  {
+   "id": "v1-14",
+   "parsed_by": "rules",
+   "notes": [],
+   "problems": [],
+   "ms": 1,
+   "usage": {},
+   "hard": {
+    "tp": 2,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 1,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "downgraded_required": 0,
+   "unparsed": [],
+   "exact_hard": true
+  },
+  {
+   "id": "v1-15",
+   "parsed_by": "rules",
+   "notes": [
+    "Часть запроса не разобрана — она показана отдельно и не считается выполненной."
+   ],
+   "problems": [],
+   "ms": 0,
+   "usage": {},
+   "hard": {
+    "tp": 1,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 2,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "downgraded_required": 0,
+   "unparsed": [
+    "Боюсь высоты",
+    "равно был бы удобен"
+   ],
+   "exact_hard": true
+  },
+  {
+   "id": "v1-16",
+   "parsed_by": "rules",
+   "notes": [
+    "Часть запроса не разобрана — она показана отдельно и не считается выполненной."
+   ],
+   "problems": [],
+   "ms": 1,
+   "usage": {},
+   "hard": {
+    "tp": 1,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 1,
+    "fn": 1,
+    "fp": 0,
+    "missed": [
+     [
+      "W03",
+      "ooc"
+     ]
+    ]
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "downgraded_required": 0,
+   "unparsed": [
+    "дойти до него пешком быстро"
+   ],
+   "exact_hard": true
+  },
+  {
+   "id": "v1-17",
+   "parsed_by": "rules",
+   "notes": [
+    "Часть запроса не разобрана — она показана отдельно и не считается выполненной."
+   ],
+   "problems": [],
+   "ms": 1,
+   "usage": {},
+   "hard": {
+    "tp": 1,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 2,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "downgraded_required": 0,
+   "unparsed": [
+    "романтические выходные"
+   ],
+   "exact_hard": true
+  },
+  {
+   "id": "v1-18",
+   "parsed_by": "rules",
+   "notes": [
+    "Часть запроса не разобрана — она показана отдельно и не считается выполненной."
+   ],
+   "problems": [],
+   "ms": 1,
+   "usage": {},
+   "hard": {
+    "tp": 1,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 2,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "downgraded_required": 0,
+   "unparsed": [
+    "спать днём"
+   ],
+   "exact_hard": true
+  },
+  {
+   "id": "v1-19",
+   "parsed_by": "rules",
+   "notes": [
+    "Часть запроса не разобрана — она показана отдельно и не считается выполненной."
+   ],
+   "problems": [],
+   "ms": 1,
+   "usage": {},
+   "hard": {
+    "tp": 1,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 2,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "downgraded_required": 0,
+   "unparsed": [
+    "Работаю по ночам"
+   ],
+   "exact_hard": true
+  },
+  {
+   "id": "v1-20",
+   "parsed_by": "rules",
+   "notes": [
+    "Часть запроса не разобрана — она показана отдельно и не считается выполненной."
+   ],
+   "problems": [],
+   "ms": 1,
+   "usage": {},
+   "hard": {
+    "tp": 1,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 2,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "downgraded_required": 0,
+   "unparsed": [
+    "месяц для удалённой работы"
+   ],
+   "exact_hard": true
+  },
+  {
+   "id": "v1-21",
+   "parsed_by": "rules",
+   "notes": [
+    "Часть запроса не разобрана — она показана отдельно и не считается выполненной."
+   ],
+   "problems": [],
+   "ms": 1,
+   "usage": {},
+   "hard": {
+    "tp": 1,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 2,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "downgraded_required": 0,
+   "unparsed": [
+    "подтверждение",
+    "рядом"
+   ],
+   "exact_hard": true
+  },
+  {
+   "id": "v1-22",
+   "parsed_by": "rules",
+   "notes": [],
+   "problems": [],
+   "ms": 1,
+   "usage": {},
+   "hard": {
+    "tp": 1,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 2,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "downgraded_required": 0,
+   "unparsed": [],
+   "exact_hard": true
+  },
+  {
+   "id": "v1-23",
+   "parsed_by": "rules",
+   "notes": [
+    "Часть запроса не разобрана — она показана отдельно и не считается выполненной."
+   ],
+   "problems": [],
+   "ms": 0,
+   "usage": {},
+   "hard": {
+    "tp": 0,
+    "fn": 1,
+    "fp": 0,
+    "missed": [
+     [
+      "W03",
+      "ooc"
+     ]
+    ]
+   },
+   "soft": {
+    "tp": 2,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [
+    [
+     "W03",
+     "ooc"
+    ]
+   ],
+   "downgraded_required": 0,
+   "unparsed": [
+    "После концерта в Зимнем театре хочу обязательно дойти до отеля максимум за полчаса"
+   ],
+   "exact_hard": false
+  },
+  {
+   "id": "v1-24",
+   "parsed_by": "rules",
+   "notes": [
+    "Часть запроса не разобрана — она показана отдельно и не считается выполненной."
+   ],
+   "problems": [],
+   "ms": 1,
+   "usage": {},
+   "hard": {
+    "tp": 1,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 2,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "downgraded_required": 0,
+   "unparsed": [
+    "таких вариантов"
+   ],
+   "exact_hard": true
+  },
+  {
+   "id": "v1-25",
+   "parsed_by": "rules",
+   "notes": [
+    "Часть запроса не разобрана — она показана отдельно и не считается выполненной."
+   ],
+   "problems": [],
+   "ms": 1,
+   "usage": {},
+   "hard": {
+    "tp": 1,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 2,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "downgraded_required": 0,
+   "unparsed": [
+    "жить именно в здании",
+    "приятным бонусом"
+   ],
+   "exact_hard": true
+  },
+  {
+   "id": "v1-26",
+   "parsed_by": "rules",
+   "notes": [
+    "Часть запроса не разобрана — она показана отдельно и не считается выполненной."
+   ],
+   "problems": [],
+   "ms": 1,
+   "usage": {},
+   "hard": {
+    "tp": 1,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 2,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "downgraded_required": 0,
+   "unparsed": [
+    "принимали",
+    "аэропорта"
+   ],
+   "exact_hard": true
+  },
+  {
+   "id": "v1-27",
+   "parsed_by": "rules",
+   "notes": [
+    "Часть запроса не разобрана — она показана отдельно и не считается выполненной."
+   ],
+   "problems": [],
+   "ms": 1,
+   "usage": {},
+   "hard": {
+    "tp": 1,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 2,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "downgraded_required": 0,
+   "unparsed": [
+    "Дедушка не пользуется лифтом"
+   ],
+   "exact_hard": true
+  },
+  {
+   "id": "v1-28",
+   "parsed_by": "rules",
+   "notes": [],
+   "problems": [],
+   "ms": 1,
+   "usage": {},
+   "hard": {
+    "tp": 1,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 2,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "downgraded_required": 0,
+   "unparsed": [],
+   "exact_hard": true
+  },
+  {
+   "id": "v1-29",
+   "parsed_by": "rules",
+   "notes": [],
+   "problems": [],
+   "ms": 1,
+   "usage": {},
+   "hard": {
+    "tp": 2,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 1,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "downgraded_required": 0,
+   "unparsed": [],
+   "exact_hard": true
+  },
+  {
+   "id": "v1-30",
+   "parsed_by": "rules",
+   "notes": [
+    "Часть запроса не разобрана — она показана отдельно и не считается выполненной."
+   ],
+   "problems": [],
+   "ms": 1,
+   "usage": {},
+   "hard": {
+    "tp": 1,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 2,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "downgraded_required": 0,
+   "unparsed": [
+    "Люблю",
+    "подтверждённая"
+   ],
+   "exact_hard": true
+  },
+  {
+   "id": "show-1",
+   "parsed_by": "rules",
+   "notes": [],
+   "problems": [],
+   "ms": 1,
+   "usage": {},
+   "hard": {
+    "tp": 1,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 2,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "downgraded_required": 0,
+   "unparsed": [],
+   "exact_hard": true
+  },
+  {
+   "id": "show-2",
+   "parsed_by": "rules",
+   "notes": [
+    "Часть запроса не разобрана — она показана отдельно и не считается выполненной."
+   ],
+   "problems": [],
+   "ms": 1,
+   "usage": {},
+   "hard": {
+    "tp": 1,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 1,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "downgraded_required": 0,
+   "unparsed": [
+    "Приехал посмотреть",
+    "быстро",
+    "рядом"
+   ],
+   "exact_hard": true
+  },
+  {
+   "id": "show-3",
+   "parsed_by": "rules",
+   "notes": [],
+   "problems": [],
+   "ms": 1,
+   "usage": {},
+   "hard": {
+    "tp": 1,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 2,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "downgraded_required": 0,
+   "unparsed": [],
+   "exact_hard": true
+  },
+  {
+   "id": "show-4",
+   "parsed_by": "rules",
+   "notes": [
+    "Часть запроса не разобрана — она показана отдельно и не считается выполненной."
+   ],
+   "problems": [],
+   "ms": 0,
+   "usage": {},
+   "hard": {
+    "tp": 1,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 1,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "downgraded_required": 0,
+   "unparsed": [
+    "её приняли"
+   ],
+   "exact_hard": true
+  },
+  {
+   "id": "show-5",
+   "parsed_by": "rules",
+   "notes": [
+    "Часть запроса не разобрана — она показана отдельно и не считается выполненной."
+   ],
+   "problems": [],
+   "ms": 0,
+   "usage": {},
+   "hard": {
+    "tp": 2,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 0,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "downgraded_required": 0,
+   "unparsed": [
+    "Прилетаю"
+   ],
+   "exact_hard": true
+  },
+  {
+   "id": "show-6",
+   "parsed_by": "rules",
+   "notes": [
+    "Часть запроса не разобрана — она показана отдельно и не считается выполненной."
+   ],
+   "problems": [],
+   "ms": 1,
+   "usage": {},
+   "hard": {
+    "tp": 2,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 2,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "downgraded_required": 0,
+   "unparsed": [
+    "Еду",
+    "удалёнку"
+   ],
+   "exact_hard": true
+  },
+  {
+   "id": "show-7",
+   "parsed_by": "rules",
+   "notes": [
+    "Часть запроса не разобрана — она показана отдельно и не считается выполненной."
+   ],
+   "problems": [],
+   "ms": 0,
+   "usage": {},
+   "hard": {
+    "tp": 3,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 0,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "downgraded_required": 0,
+   "unparsed": [
+    "Еду",
+    "коляске"
+   ],
+   "exact_hard": true
+  },
+  {
+   "id": "show-8",
+   "parsed_by": "rules",
+   "notes": [],
+   "problems": [],
+   "ms": 0,
+   "usage": {},
+   "hard": {
+    "tp": 0,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 2,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "downgraded_required": 0,
+   "unparsed": [],
+   "exact_hard": true
+  }
+ ]
+}

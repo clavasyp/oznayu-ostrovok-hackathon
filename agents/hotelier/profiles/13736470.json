@@ -1,0 +1,42 @@
+{
+  "hotel_id": "13736470",
+  "name": "Radisson Collection Парадиз СПА, Сочи",
+  "note": "Закрытый профиль имитатора отельера: эталонная правда для показа, НЕ факты. Ответы помечены is_simulated.",
+  "seed": 7,
+  "style": "plain",
+  "answers": {
+    "S04": {"fields": {"has_ac": true, "individual_control": true}, "quantifier": "all"},
+    "S05": {"fields": {"full_blackout": false, "edge_gaps": true}, "conditions": "Шторы плотные, но по краям немного света."},
+    "N05": {"say": "Замеров шума в номерах мы не делали, но жалоб на шум ночью почти нет."},
+    "T04": {"fields": {"own_parking": true, "reservation": false, "fee_per_day": 0}},
+    "L04": {"fields": {"checkin_possible": true, "front_desk_24h": true}},
+    "P01": {"fields": {"pets_allowed": true, "species": ["dog", "cat"], "max_weight_kg": 10, "prior_approval": true}},
+    "P02": {"fields": {"fee_amount": 3000, "fee_basis": "per_stay"}},
+    "A02": {"fields": {"step_free": true, "clear_width_mm": 1200}},
+    "A03": {"fields": {"has_lift": true, "door_width_mm": 900, "cabin_width_mm": 1100, "cabin_depth_mm": 2100}},
+    "R01": {"fields": {"download_mbps": 60, "upload_mbps": 25}},
+    "R03": {"fields": {"has_desk": true, "socket_near_desk": true}},
+    "M02": {"fields": {"private_balcony": true}, "quantifier": "all"},
+    "M04": {"fields": {"in_room_kettle": true}},
+    "M05": {"fields": {"has_safe": true}}
+  },
+  "categories": [
+    {
+      "room_type_id": "13736470:3502302001O",
+      "name": "Номер с видом на море",
+      "placements": [{"building": "главный корпус", "floors": [3, 8], "side": "SW"}],
+      "completeness": "complete",
+      "guarantee": "all_guaranteed"
+    },
+    {
+      "room_type_id": "13736470:3202302001F",
+      "name": "Номер с видом на сад",
+      "placements": [
+        {"building": "главный корпус", "floors": [2, 8], "side": "NE"},
+        {"building": "корпус 2", "floors": [1, 7], "side": "E"}
+      ],
+      "completeness": "complete",
+      "guarantee": "on_request"
+    }
+  ]
+}

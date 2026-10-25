@@ -1,0 +1,2153 @@
+{
+ "version": 1,
+ "note": "Словарь для разбора запроса. Названия — из расчёта v9 (coverage.json, questions_26.csv); поля, синонимы и уровни — agents/. Значения характеристик сюда не входят.",
+ "walk_speed_m_per_min": 80,
+ "features": [
+  {
+   "id": "V01",
+   "title": "Виден открытый участок моря из заданной точки окна, с заданным сектором обзора",
+   "short": "вид на море из окна",
+   "level": "facade",
+   "source": "computed",
+   "fields": {
+    "visible": {
+     "type": "bool"
+    }
+   },
+   "default_field": null,
+   "ops": [
+    "eq"
+   ],
+   "params": [],
+   "synonyms": [
+    "вид на море",
+    "море из окна",
+    "видеть море",
+    "морской вид"
+   ]
+  },
+  {
+   "id": "V02",
+   "title": "Видна заданная горная вершина или хребет из точки окна",
+   "short": "вид на горы из окна",
+   "level": "facade",
+   "source": "computed",
+   "fields": {
+    "visible": {
+     "type": "bool"
+    }
+   },
+   "default_field": null,
+   "ops": [
+    "eq"
+   ],
+   "params": [
+    "target"
+   ],
+   "synonyms": [
+    "вид на горы",
+    "горы из окна",
+    "горный вид"
+   ]
+  },
+  {
+   "id": "V03",
+   "title": "Виден конкретный памятник из точки окна",
+   "short": "вид на достопримечательность",
+   "level": "facade",
+   "source": "computed",
+   "fields": {
+    "visible": {
+     "type": "bool"
+    }
+   },
+   "default_field": null,
+   "ops": [
+    "eq"
+   ],
+   "params": [
+    "target"
+   ],
+   "synonyms": [
+    "вид на памятник",
+    "видно из окна",
+    "вид на вокзал"
+   ]
+  },
+  {
+   "id": "V04",
+   "title": "Виден заданный парк или зелёный участок из точки окна",
+   "short": "вид на парк",
+   "level": "facade",
+   "source": "computed",
+   "fields": {
+    "visible": {
+     "type": "bool"
+    }
+   },
+   "default_field": null,
+   "ops": [
+    "eq"
+   ],
+   "params": [
+    "target"
+   ],
+   "synonyms": [
+    "вид на парк",
+    "вид на зелень"
+   ]
+  },
+  {
+   "id": "V05",
+   "title": "Виден солнечный диск в последние заданные минуты перед астрономическим закатом в дату",
+   "short": "закат из окна",
+   "level": "facade",
+   "source": "computed",
+   "fields": {
+    "visible": {
+     "type": "bool"
+    }
+   },
+   "default_field": null,
+   "ops": [
+    "eq"
+   ],
+   "params": [
+    "date"
+   ],
+   "synonyms": [
+    "вид на закат",
+    "видеть закат",
+    "закат из номера",
+    "солнце садится"
+   ]
+  },
+  {
+   "id": "V06",
+   "title": "Дистанция до первого непрозрачного препятствия в горизонтальном секторе окна на высоте взгляда",
+   "short": "открытый вид без препятствий",
+   "level": "facade",
+   "source": "computed",
+   "fields": {
+    "distance_m": {
+     "type": "number",
+     "unit": "m"
+    }
+   },
+   "default_field": "distance_m",
+   "ops": [
+    "gte"
+   ],
+   "params": [],
+   "synonyms": [
+    "вид не в стену",
+    "открытый вид",
+    "без соседнего дома за окном"
+   ]
+  },
+  {
+   "id": "S01",
+   "title": "Геометрические часы прямого солнца на внешней плоскости окна за дату",
+   "short": "часы прямого солнца в окне за день",
+   "level": "facade",
+   "source": "computed",
+   "fields": {
+    "hours": {
+     "type": "number",
+     "unit": "h"
+    }
+   },
+   "default_field": "hours",
+   "ops": [
+    "lte",
+    "gte"
+   ],
+   "params": [
+    "date",
+    "month"
+   ],
+   "synonyms": [
+    "солнце в окне",
+    "солнечный номер",
+    "без прямого солнца"
+   ]
+  },
+  {
+   "id": "S02",
+   "title": "Геометрические часы прямого солнца на внешней плоскости окна в заданном местном интервале",
+   "short": "часы прямого солнца в окне в интервал",
+   "level": "facade",
+   "source": "computed",
+   "fields": {
+    "hours": {
+     "type": "number",
+     "unit": "h"
+    }
+   },
+   "default_field": "hours",
+   "ops": [
+    "lte",
+    "gte"
+   ],
+   "params": [
+    "month",
+    "time_from",
+    "time_to"
+   ],
+   "synonyms": [
+    "утреннее солнце",
+    "солнце после обеда",
+    "солнце за завтраком"
+   ]
+  },
+  {
+   "id": "S03",
+   "title": "Наружная солнечная нагрузка на плоскость окна по модели в месяц",
+   "short": "солнечная нагрузка на окно",
+   "level": "facade",
+   "source": "computed",
+   "fields": {
+    "kwh_m2": {
+     "type": "number",
+     "unit": "kWh/m2/month"
+    }
+   },
+   "default_field": "kwh_m2",
+   "ops": [
+    "lte"
+   ],
+   "params": [
+    "month"
+   ],
+   "synonyms": [
+    "жарко от солнца",
+    "солнце нагревает номер"
+   ]
+  },
+  {
+   "id": "N01",
+   "title": "Наружный долговременный ночной уровень звука Lnight на фасаде за указанный референтный период",
+   "short": "ночной шум на фасаде, дБ",
+   "level": "facade",
+   "source": "computed",
+   "fields": {
+    "lnight_dba": {
+     "type": "number",
+     "unit": "dB(A)"
+    }
+   },
+   "default_field": "lnight_dba",
+   "ops": [
+    "lte"
+   ],
+   "params": [],
+   "synonyms": [
+    "тихо снаружи ночью",
+    "уличный шум",
+    "шумная улица"
+   ]
+  },
+  {
+   "id": "N02",
+   "title": "Минимальная плановая дистанция корпуса до дороги выбранных классов",
+   "short": "далеко от оживлённых дорог",
+   "level": "hotel",
+   "source": "computed",
+   "fields": {
+    "distance_m": {
+     "type": "number",
+     "unit": "m"
+    }
+   },
+   "default_field": "distance_m",
+   "ops": [
+    "gte"
+   ],
+   "params": [],
+   "synonyms": [
+    "подальше от дороги",
+    "не у трассы",
+    "тихий район"
+   ]
+  },
+  {
+   "id": "N03",
+   "title": "Минимальная плановая дистанция корпуса до действующей железнодорожной линии",
+   "short": "далеко от железной дороги",
+   "level": "hotel",
+   "source": "computed",
+   "fields": {
+    "distance_m": {
+     "type": "number",
+     "unit": "m"
+    }
+   },
+   "default_field": "distance_m",
+   "ops": [
+    "gte"
+   ],
+   "params": [],
+   "synonyms": [
+    "не у железной дороги",
+    "без поездов"
+   ]
+  },
+  {
+   "id": "N04",
+   "title": "Количество учтённых в принятом источнике заведений заданных ночных типов в радиусе",
+   "short": "мало баров и клубов рядом",
+   "level": "hotel",
+   "source": "computed",
+   "fields": {
+    "count": {
+     "type": "integer"
+    }
+   },
+   "default_field": "count",
+   "ops": [
+    "lte",
+    "gte"
+   ],
+   "params": [
+    "radius_m"
+   ],
+   "synonyms": [
+    "бары рядом",
+    "без баров",
+    "ночные клубы",
+    "тусовки"
+   ]
+  },
+  {
+   "id": "W01",
+   "title": "Длина легального пешеходного маршрута от входа отеля до выбранного публичного входа на пляж",
+   "short": "пешком до пляжа",
+   "level": "hotel",
+   "source": "computed",
+   "fields": {
+    "distance_m": {
+     "type": "number",
+     "unit": "m"
+    }
+   },
+   "default_field": "distance_m",
+   "ops": [
+    "lte"
+   ],
+   "params": [],
+   "synonyms": [
+    "до моря",
+    "до пляжа пешком",
+    "близко к морю",
+    "недалеко от моря",
+    "у моря"
+   ]
+  },
+  {
+   "id": "W02",
+   "title": "Длина маршрута до конкретного входа станции/остановки",
+   "short": "пешком до остановки или станции",
+   "level": "hotel",
+   "source": "computed",
+   "fields": {
+    "distance_m": {
+     "type": "number",
+     "unit": "m"
+    }
+   },
+   "default_field": "distance_m",
+   "ops": [
+    "lte"
+   ],
+   "params": [],
+   "synonyms": [
+    "до остановки",
+    "до метро",
+    "рядом остановка"
+   ]
+  },
+  {
+   "id": "W03",
+   "title": "Длина маршрута до заданной достопримечательности или точки центра",
+   "short": "пешком до достопримечательности или центра",
+   "level": "hotel",
+   "source": "computed",
+   "fields": {
+    "distance_m": {
+     "type": "number",
+     "unit": "m"
+    }
+   },
+   "default_field": "distance_m",
+   "ops": [
+    "lte"
+   ],
+   "params": [
+    "target_kind"
+   ],
+   "synonyms": [
+    "до центра",
+    "до набережной пешком",
+    "до вокзала пешком"
+   ]
+  },
+  {
+   "id": "W04",
+   "title": "Суммарный набор высоты на выбранном пешеходном маршруте",
+   "short": "подъём по пути",
+   "level": "route",
+   "source": "computed",
+   "fields": {
+    "dsm_positive_dz_estimate_m": {
+     "type": "number",
+     "unit": "m"
+    }
+   },
+   "default_field": "dsm_positive_dz_estimate_m",
+   "ops": [
+    "lte"
+   ],
+   "params": [
+    "target_kind"
+   ],
+   "synonyms": [
+    "без подъёмов",
+    "в горку",
+    "крутой подъём"
+   ]
+  },
+  {
+   "id": "W05",
+   "title": "Число известных участков лестниц на выбранном маршруте",
+   "short": "лестницы по пути",
+   "level": "route",
+   "source": "computed",
+   "fields": {
+    "known_step_sections": {
+     "type": "integer"
+    }
+   },
+   "default_field": "known_step_sections",
+   "ops": [
+    "eq",
+    "lte"
+   ],
+   "params": [
+    "target_kind"
+   ],
+   "synonyms": [
+    "без лестниц",
+    "без ступеней по пути"
+   ]
+  },
+  {
+   "id": "W06",
+   "title": "Количество пересечений дорог выбранных классов на маршруте с типами перехода",
+   "short": "переходы через дороги по пути",
+   "level": "route",
+   "source": "computed",
+   "fields": {
+    "known_crossings": {
+     "type": "integer"
+    }
+   },
+   "default_field": "known_crossings",
+   "ops": [
+    "lte"
+   ],
+   "params": [
+    "target_kind"
+   ],
+   "synonyms": [
+    "без переходов через дорогу"
+   ]
+  },
+  {
+   "id": "Q03",
+   "title": "Доля длины маршрута с явным актуальным указанием стационарного освещения, и доля неизвестного",
+   "short": "освещённость пути",
+   "level": "route",
+   "source": "computed",
+   "fields": {
+    "known_lit_percent": {
+     "type": "number",
+     "unit": "%"
+    }
+   },
+   "default_field": "known_lit_percent",
+   "ops": [
+    "gte"
+   ],
+   "params": [
+    "target_kind"
+   ],
+   "synonyms": [
+    "освещённая дорога",
+    "светло вечером по пути"
+   ]
+  },
+  {
+   "id": "A01",
+   "title": "Маршрут до выбранной цели удовлетворяет индивидуальным ограничениям без непроверенных разрывов",
+   "short": "доступный маршрут для маломобильных",
+   "level": "hotel",
+   "source": "computed",
+   "fields": {
+    "accessible": {
+     "type": "bool"
+    }
+   },
+   "default_field": "accessible",
+   "ops": [
+    "eq"
+   ],
+   "params": [
+    "target_kind"
+   ],
+   "synonyms": [
+    "для коляски",
+    "без бордюров",
+    "доступная среда"
+   ]
+  },
+  {
+   "id": "L01",
+   "title": "Длина маршрута до аптеки с подтверждённым открытием в момент приезда",
+   "short": "аптека, открытая в момент приезда",
+   "level": "hotel",
+   "source": "computed",
+   "fields": {
+    "distance_m": {
+     "type": "number",
+     "unit": "m"
+    }
+   },
+   "default_field": "distance_m",
+   "ops": [
+    "lte"
+   ],
+   "params": [
+    "arrival_local"
+   ],
+   "synonyms": [
+    "аптека рядом",
+    "ночная аптека",
+    "круглосуточная аптека"
+   ]
+  },
+  {
+   "id": "L02",
+   "title": "Длина маршрута до места с выдачей еды в нужный момент",
+   "short": "еда, открытая в нужный момент",
+   "level": "hotel",
+   "source": "computed",
+   "fields": {
+    "distance_m": {
+     "type": "number",
+     "unit": "m"
+    }
+   },
+   "default_field": "distance_m",
+   "ops": [
+    "lte"
+   ],
+   "params": [
+    "arrival_local"
+   ],
+   "synonyms": [
+    "поесть ночью",
+    "открытое кафе",
+    "еда рядом",
+    "позднее кафе"
+   ]
+  },
+  {
+   "id": "L03",
+   "title": "Длина маршрута до открытого супермаркета в заданный момент",
+   "short": "супермаркет, открытый в нужный момент",
+   "level": "hotel",
+   "source": "computed",
+   "fields": {
+    "distance_m": {
+     "type": "number",
+     "unit": "m"
+    }
+   },
+   "default_field": "distance_m",
+   "ops": [
+    "lte"
+   ],
+   "params": [
+    "arrival_local"
+   ],
+   "synonyms": [
+    "магазин рядом",
+    "супермаркет",
+    "круглосуточный магазин"
+   ]
+  },
+  {
+   "id": "P03",
+   "title": "Длина маршрута до места, где официально разрешён выгул указанного животного",
+   "short": "место для выгула собаки",
+   "level": "hotel",
+   "source": "computed",
+   "fields": {
+    "distance_m": {
+     "type": "number",
+     "unit": "m"
+    }
+   },
+   "default_field": "distance_m",
+   "ops": [
+    "lte"
+   ],
+   "params": [
+    "animal"
+   ],
+   "synonyms": [
+    "выгул собаки",
+    "где гулять с собакой",
+    "парк для собак"
+   ]
+  },
+  {
+   "id": "P04",
+   "title": "Длина маршрута до ветеринарной клиники с приёмом в нужный момент",
+   "short": "ветклиника",
+   "level": "hotel",
+   "source": "computed",
+   "fields": {
+    "distance_m": {
+     "type": "number",
+     "unit": "m"
+    }
+   },
+   "default_field": "distance_m",
+   "ops": [
+    "lte"
+   ],
+   "params": [
+    "arrival_local"
+   ],
+   "synonyms": [
+    "ветеринар",
+    "ветклиника рядом"
+   ]
+  },
+  {
+   "id": "F01",
+   "title": "Длина маршрута до действующей публично доступной детской площадки",
+   "short": "детская площадка",
+   "level": "hotel",
+   "source": "computed",
+   "fields": {
+    "distance_m": {
+     "type": "number",
+     "unit": "m"
+    }
+   },
+   "default_field": "distance_m",
+   "ops": [
+    "lte"
+   ],
+   "params": [],
+   "synonyms": [
+    "детская площадка",
+    "площадка рядом"
+   ]
+  },
+  {
+   "id": "F02",
+   "title": "Длина маршрута до учреждения с подтверждённым детским неотложным приёмом в нужное время",
+   "short": "детская неотложная помощь",
+   "level": "hotel",
+   "source": "computed",
+   "fields": {
+    "distance_m": {
+     "type": "number",
+     "unit": "m"
+    }
+   },
+   "default_field": "distance_m",
+   "ops": [
+    "lte"
+   ],
+   "params": [
+    "arrival_local"
+   ],
+   "synonyms": [
+    "детская больница",
+    "детский врач рядом"
+   ]
+  },
+  {
+   "id": "R04",
+   "title": "Длина маршрута до коворкинга с доступом внешних посетителей в нужное время",
+   "short": "коворкинг рядом",
+   "level": "hotel",
+   "source": "computed",
+   "fields": {
+    "distance_m": {
+     "type": "number",
+     "unit": "m"
+    }
+   },
+   "default_field": "distance_m",
+   "ops": [
+    "lte"
+   ],
+   "params": [
+    "arrival_local"
+   ],
+   "synonyms": [
+    "коворкинг"
+   ]
+  },
+  {
+   "id": "R05",
+   "title": "Дистанция до ближайшей наблюдавшейся сотовой ячейки нужного оператора/радиостандарта",
+   "short": "мобильная связь",
+   "level": "hotel",
+   "source": "computed",
+   "fields": {
+    "distance_m": {
+     "type": "number",
+     "unit": "m"
+    }
+   },
+   "default_field": "distance_m",
+   "ops": [
+    "lte"
+   ],
+   "params": [
+    "operator"
+   ],
+   "synonyms": [
+    "хорошая связь",
+    "мобильный интернет"
+   ]
+  },
+  {
+   "id": "T01",
+   "title": "Плановая длительность поездки общественным транспортом из аэропорта при заданном времени прибытия",
+   "short": "из аэропорта на общественном транспорте",
+   "level": "hotel",
+   "source": "computed",
+   "fields": {
+    "duration_min": {
+     "type": "number",
+     "unit": "min"
+    },
+    "transfers": {
+     "type": "integer"
+    }
+   },
+   "default_field": "duration_min",
+   "ops": [
+    "lte"
+   ],
+   "params": [
+    "arrival_local"
+   ],
+   "synonyms": [
+    "из аэропорта",
+    "доехать из аэропорта",
+    "трансфер на автобусе"
+   ]
+  },
+  {
+   "id": "T02",
+   "title": "Плановая длительность поездки общественным транспортом с вокзала в заданное время",
+   "short": "с вокзала на общественном транспорте",
+   "level": "hotel",
+   "source": "computed",
+   "fields": {
+    "duration_min": {
+     "type": "number",
+     "unit": "min"
+    },
+    "transfers": {
+     "type": "integer"
+    }
+   },
+   "default_field": "duration_min",
+   "ops": [
+    "lte"
+   ],
+   "params": [
+    "arrival_local"
+   ],
+   "synonyms": [
+    "с вокзала",
+    "от вокзала"
+   ]
+  },
+  {
+   "id": "T03",
+   "title": "Существует ли плановый маршрут общественного транспорта в заданном ночном окне",
+   "short": "есть ночной общественный транспорт",
+   "level": "hotel",
+   "source": "computed",
+   "fields": {
+    "route_exists": {
+     "type": "bool"
+    }
+   },
+   "default_field": "route_exists",
+   "ops": [
+    "eq"
+   ],
+   "params": [
+    "arrival_local"
+   ],
+   "synonyms": [
+    "ночью на транспорте",
+    "ночной автобус"
+   ]
+  },
+  {
+   "id": "C01",
+   "title": "Средняя месячная температура воздуха 2 м по реанализу за фиксированный исторический период",
+   "short": "средняя температура воздуха за месяц",
+   "level": "hotel",
+   "source": "computed",
+   "fields": {
+    "mean": {
+     "type": "number",
+     "unit": "°C"
+    }
+   },
+   "default_field": "mean",
+   "ops": [
+    "gte",
+    "lte"
+   ],
+   "params": [
+    "month"
+   ],
+   "synonyms": [
+    "тепло",
+    "температура воздуха",
+    "не жарко"
+   ]
+  },
+  {
+   "id": "C02",
+   "title": "Среднее число дней месяца с осадками не менее заданного суточного порога по реанализу",
+   "short": "дождливые дни в месяце",
+   "level": "hotel",
+   "source": "computed",
+   "fields": {
+    "mean": {
+     "type": "number",
+     "unit": "days/month"
+    }
+   },
+   "default_field": "mean",
+   "ops": [
+    "lte"
+   ],
+   "params": [
+    "month"
+   ],
+   "synonyms": [
+    "без дождей",
+    "дождливо"
+   ]
+  },
+  {
+   "id": "C03",
+   "title": "Среднее число дней месяца с Tmax выше заданного порога по реанализу",
+   "short": "жаркие дни в месяце",
+   "level": "hotel",
+   "source": "computed",
+   "fields": {
+    "mean": {
+     "type": "number",
+     "unit": "days/month"
+    }
+   },
+   "default_field": "mean",
+   "ops": [
+    "lte"
+   ],
+   "params": [
+    "month"
+   ],
+   "synonyms": [
+    "не слишком жарко",
+    "жара"
+   ]
+  },
+  {
+   "id": "C04",
+   "title": "Прогноз вероятности осадков модели на выбранный интервал",
+   "short": "вероятность осадков по прогнозу",
+   "level": "hotel",
+   "source": "computed",
+   "fields": {
+    "probability_percent": {
+     "type": "number",
+     "unit": "%"
+    }
+   },
+   "default_field": "probability_percent",
+   "ops": [
+    "lte"
+   ],
+   "params": [
+    "date"
+   ],
+   "synonyms": [
+    "прогноз дождя"
+   ]
+  },
+  {
+   "id": "B01",
+   "title": "Материал поверхности указанного участка пляжа",
+   "short": "покрытие пляжа",
+   "level": "hotel",
+   "source": "computed",
+   "fields": {
+    "surface": {
+     "type": "enum",
+     "values": [
+      "sand",
+      "pebble",
+      "rock",
+      "mixed"
+     ]
+    }
+   },
+   "default_field": "surface",
+   "ops": [
+    "eq",
+    "in"
+   ],
+   "params": [],
+   "synonyms": [
+    "песчаный пляж",
+    "галечный пляж",
+    "песок"
+   ]
+  },
+  {
+   "id": "B02",
+   "title": "Среднемесячная модельная потенциальная температура верхнего слоя морской ячейки на явно выбранной глубине за исторический период",
+   "short": "температура моря за месяц",
+   "level": "hotel",
+   "source": "computed",
+   "fields": {
+    "mean_C": {
+     "type": "number",
+     "unit": "°C"
+    }
+   },
+   "default_field": "mean_C",
+   "ops": [
+    "gte"
+   ],
+   "params": [
+    "month"
+   ],
+   "synonyms": [
+    "тёплое море",
+    "температура воды",
+    "купаться"
+   ]
+  },
+  {
+   "id": "B03",
+   "title": "Прогноз значительной высоты волн Hs в морской ячейке у выбранного пляжа",
+   "short": "волны",
+   "level": "hotel",
+   "source": "computed",
+   "fields": {
+    "hs_m": {
+     "type": "number",
+     "unit": "m"
+    }
+   },
+   "default_field": "hs_m",
+   "ops": [
+    "lte"
+   ],
+   "params": [
+    "date"
+   ],
+   "synonyms": [
+    "без волн",
+    "спокойное море"
+   ]
+  },
+  {
+   "id": "B04",
+   "title": "Последний опубликованный уполномоченной службой флаг/статус купания конкретного пляжа",
+   "short": "флаг купания на пляже",
+   "level": "hotel",
+   "source": "computed",
+   "fields": {
+    "flag": {
+     "type": "enum",
+     "values": [
+      "green",
+      "yellow",
+      "red",
+      "closed"
+     ]
+    }
+   },
+   "default_field": "flag",
+   "ops": [
+    "eq"
+   ],
+   "params": [
+    "date"
+   ],
+   "synonyms": [
+    "можно купаться",
+    "купание разрешено"
+   ]
+  },
+  {
+   "id": "B05",
+   "title": "Последний опубликованный результат микробиологического контроля воды участка",
+   "short": "качество воды на пляже",
+   "level": "hotel",
+   "source": "computed",
+   "fields": {
+    "water_class": {
+     "type": "string"
+    }
+   },
+   "default_field": "water_class",
+   "ops": [
+    "eq"
+   ],
+   "params": [],
+   "synonyms": [
+    "чистая вода",
+    "чистое море"
+   ]
+  },
+  {
+   "id": "E01",
+   "title": "Модельный прогноз PM2.5 для grid-cell и заданного интервала",
+   "short": "прогноз PM2.5",
+   "level": "hotel",
+   "source": "computed",
+   "fields": {
+    "pm25": {
+     "type": "number",
+     "unit": "µg/m3"
+    }
+   },
+   "default_field": "pm25",
+   "ops": [
+    "lte"
+   ],
+   "params": [
+    "date"
+   ],
+   "synonyms": [
+    "чистый воздух",
+    "смог"
+   ]
+  },
+  {
+   "id": "E02",
+   "title": "Последнее валидное измерение PM2.5 на ближайшей разрешённой к использованию станции",
+   "short": "измеренный PM2.5",
+   "level": "hotel",
+   "source": "computed",
+   "fields": {
+    "pm25": {
+     "type": "number",
+     "unit": "µg/m3"
+    }
+   },
+   "default_field": "pm25",
+   "ops": [
+    "lte"
+   ],
+   "params": [],
+   "synonyms": [
+    "качество воздуха"
+   ]
+  },
+  {
+   "id": "E03",
+   "title": "Доля территории с растительным наземным покровом в заданном буфере по классификации на дату",
+   "short": "зелень вокруг",
+   "level": "hotel",
+   "source": "computed",
+   "fields": {},
+   "default_field": null,
+   "ops": [
+    "gte"
+   ],
+   "params": [
+    "radius_m"
+   ],
+   "synonyms": [
+    "зелёный район",
+    "много зелени",
+    "парк рядом",
+    "в зелени"
+   ]
+  },
+  {
+   "id": "E04",
+   "title": "Ночная восходящая радиансность спутникового пикселя по выбранному месяцу",
+   "short": "ночная засветка",
+   "level": "hotel",
+   "source": "computed",
+   "fields": {
+    "radiance": {
+     "type": "number",
+     "unit": "nW/cm2/sr"
+    }
+   },
+   "default_field": "radiance",
+   "ops": [
+    "lte"
+   ],
+   "params": [
+    "month"
+   ],
+   "synonyms": [
+    "тёмное небо",
+    "звёзды видно"
+   ]
+  },
+  {
+   "id": "H01",
+   "title": "Год завершения строительства существующего корпуса с точностью исходника",
+   "short": "год постройки корпуса",
+   "level": "building",
+   "source": "computed",
+   "fields": {
+    "year": {
+     "type": "integer"
+    }
+   },
+   "default_field": "year",
+   "ops": [
+    "lte",
+    "gte"
+   ],
+   "params": [],
+   "synonyms": [
+    "старинное здание",
+    "построено до",
+    "историческое здание"
+   ]
+  },
+  {
+   "id": "H02",
+   "title": "Действующий официальный охранный статус корпуса/объекта наследия",
+   "short": "охранный статус здания",
+   "level": "building",
+   "source": "computed",
+   "fields": {
+    "heritage": {
+     "type": "bool"
+    }
+   },
+   "default_field": "heritage",
+   "ops": [
+    "eq"
+   ],
+   "params": [],
+   "synonyms": [
+    "объект наследия",
+    "памятник архитектуры"
+   ]
+  },
+  {
+   "id": "H03",
+   "title": "Число надземных этажей корпуса по явно указанной системе счёта",
+   "short": "этажность корпуса",
+   "level": "building",
+   "source": "computed",
+   "fields": {
+    "aboveground_levels": {
+     "type": "integer"
+    }
+   },
+   "default_field": "aboveground_levels",
+   "ops": [
+    "lte",
+    "gte"
+   ],
+   "params": [],
+   "synonyms": [
+    "этажность здания",
+    "невысокое здание",
+    "небоскрёб"
+   ]
+  },
+  {
+   "id": "Q01",
+   "title": "Число зарегистрированных правонарушений выбранной категории на 1000 постоянных жителей за период в единице статистики",
+   "short": "уровень правонарушений в районе",
+   "level": "hotel",
+   "source": "computed",
+   "fields": {
+    "per_1000": {
+     "type": "number"
+    }
+   },
+   "default_field": "per_1000",
+   "ops": [
+    "lte"
+   ],
+   "params": [],
+   "synonyms": [
+    "безопасный район",
+    "криминальный район"
+   ]
+  },
+  {
+   "id": "Q02",
+   "title": "Число зарегистрированных ДТП с пострадавшими в заданном буфере маршрута за период",
+   "short": "ДТП на маршруте",
+   "level": "route",
+   "source": "computed",
+   "fields": {
+    "count": {
+     "type": "integer"
+    }
+   },
+   "default_field": "count",
+   "ops": [
+    "lte"
+   ],
+   "params": [
+    "target_kind"
+   ],
+   "synonyms": [
+    "безопасная дорога"
+   ]
+  },
+  {
+   "id": "X01",
+   "title": "Число объявленных событий заданных типов в радиусе с пересечением дат поездки",
+   "short": "события рядом в даты поездки",
+   "level": "hotel",
+   "source": "computed",
+   "fields": {
+    "count": {
+     "type": "integer"
+    }
+   },
+   "default_field": "count",
+   "ops": [
+    "lte",
+    "gte"
+   ],
+   "params": [
+    "date_from",
+    "date_to",
+    "radius_m"
+   ],
+   "synonyms": [
+    "концерты рядом",
+    "фестиваль",
+    "мероприятия"
+   ]
+  },
+  {
+   "id": "X02",
+   "title": "Число опубликованных перекрытий, пересекающих маршрут в заданное время",
+   "short": "перекрытия на маршруте",
+   "level": "hotel",
+   "source": "computed",
+   "fields": {
+    "count": {
+     "type": "integer"
+    }
+   },
+   "default_field": "count",
+   "ops": [
+    "lte"
+   ],
+   "params": [
+    "date_from",
+    "date_to"
+   ],
+   "synonyms": [
+    "перекрытие дорог"
+   ]
+  },
+  {
+   "id": "X03",
+   "title": "Дистанция корпуса до границы опубликованного строительного проекта с заявленным активным периодом",
+   "short": "стройка рядом",
+   "level": "hotel",
+   "source": "computed",
+   "fields": {
+    "distance_m": {
+     "type": "number",
+     "unit": "m"
+    }
+   },
+   "default_field": "distance_m",
+   "ops": [
+    "gte"
+   ],
+   "params": [
+    "date_from",
+    "date_to"
+   ],
+   "synonyms": [
+    "без стройки",
+    "стройка рядом",
+    "ремонт рядом",
+    "строительство"
+   ]
+  },
+  {
+   "id": "S04",
+   "title": "Наличие и режим индивидуального управления охлаждением в категории",
+   "short": "кондиционер в номере",
+   "level": "room_type",
+   "source": "hotelier",
+   "fields": {
+    "has_ac": {
+     "type": "bool"
+    },
+    "individual_control": {
+     "type": "bool"
+    },
+    "operating_season": {
+     "type": "string"
+    },
+    "restrictions": {
+     "type": "string"
+    }
+   },
+   "default_field": "has_ac",
+   "ops": [
+    "eq"
+   ],
+   "params": [],
+   "synonyms": [
+    "кондиционер",
+    "кондей",
+    "охлаждение"
+   ]
+  },
+  {
+   "id": "S05",
+   "title": "Полнота закрытия светопроёмов непрозрачными шторами/ставнями категории",
+   "short": "полное затемнение",
+   "level": "room_type",
+   "source": "hotelier",
+   "fields": {
+    "full_blackout": {
+     "type": "bool"
+    },
+    "coverage": {
+     "type": "enum",
+     "values": [
+      "full",
+      "partial",
+      "none"
+     ]
+    },
+    "edge_gaps": {
+     "type": "bool"
+    }
+   },
+   "default_field": "full_blackout",
+   "ops": [
+    "eq"
+   ],
+   "params": [],
+   "synonyms": [
+    "затемнение",
+    "блэкаут",
+    "blackout",
+    "плотные шторы",
+    "полная темнота"
+   ]
+  },
+  {
+   "id": "N05",
+   "title": "Измеренный внутренний LAeq за согласованный ночной интервал с условиями окон/HVAC",
+   "short": "измеренная тишина в номере, дБ",
+   "level": "room_type",
+   "source": "hotelier",
+   "fields": {
+    "laeq_dba": {
+     "type": "number",
+     "unit": "dB(A)"
+    },
+    "windows_state": {
+     "type": "enum",
+     "values": [
+      "closed",
+      "open"
+     ]
+    },
+    "interval": {
+     "type": "string"
+    }
+   },
+   "default_field": "laeq_dba",
+   "ops": [
+    "lte"
+   ],
+   "params": [
+    "windows_state",
+    "interval"
+   ],
+   "synonyms": [
+    "тихо в номере",
+    "тишина внутри",
+    "шумоизоляция",
+    "чутко сплю"
+   ]
+  },
+  {
+   "id": "N06",
+   "title": "Есть ли у допустимых номеров категории общая стена с лифтовой шахтой",
+   "short": "номер не у лифтовой шахты",
+   "level": "room_type",
+   "source": "hotelier",
+   "fields": {
+    "shared_wall_with_lift": {
+     "type": "bool"
+    },
+    "assignment_guarantee": {
+     "type": "bool"
+    }
+   },
+   "default_field": "shared_wall_with_lift",
+   "ops": [
+    "eq"
+   ],
+   "params": [],
+   "synonyms": [
+    "не рядом с лифтом",
+    "далеко от лифта"
+   ]
+  },
+  {
+   "id": "T04",
+   "title": "Политика парковки отеля: собственная/сторонняя, резервирование, габариты, плата",
+   "short": "парковка отеля",
+   "level": "hotel",
+   "source": "hotelier",
+   "fields": {
+    "own_parking": {
+     "type": "bool"
+    },
+    "reservation": {
+     "type": "bool"
+    },
+    "fee_per_day": {
+     "type": "number",
+     "unit": "RUB"
+    },
+    "max_height_m": {
+     "type": "number",
+     "unit": "m"
+    }
+   },
+   "default_field": "own_parking",
+   "ops": [
+    "eq"
+   ],
+   "params": [],
+   "synonyms": [
+    "парковка",
+    "своя парковка",
+    "где оставить машину"
+   ]
+  },
+  {
+   "id": "T05",
+   "title": "Работающая зарядка на территории отеля: разъём, мощность, режим доступа и резервирования",
+   "short": "зарядка для электромобиля",
+   "level": "hotel",
+   "source": "hotelier",
+   "fields": {
+    "has_charger": {
+     "type": "bool"
+    },
+    "connector": {
+     "type": "enum",
+     "values": [
+      "type2",
+      "ccs",
+      "chademo",
+      "gbt",
+      "other"
+     ]
+    },
+    "power_kw": {
+     "type": "number",
+     "unit": "kW"
+    },
+    "guest_access": {
+     "type": "bool"
+    },
+    "reservation": {
+     "type": "bool"
+    }
+   },
+   "default_field": "has_charger",
+   "ops": [
+    "eq"
+   ],
+   "params": [],
+   "synonyms": [
+    "зарядка",
+    "зарядная станция",
+    "type 2",
+    "электромобиль"
+   ]
+  },
+  {
+   "id": "L04",
+   "title": "Правило заселения в заданное местное время: стойка/самозаезд/предварительное согласование",
+   "short": "заселение в нужное время",
+   "level": "hotel",
+   "source": "hotelier",
+   "fields": {
+    "checkin_possible": {
+     "type": "bool"
+    },
+    "front_desk_24h": {
+     "type": "bool"
+    },
+    "self_checkin": {
+     "type": "bool"
+    },
+    "prior_arrangement": {
+     "type": "bool"
+    }
+   },
+   "default_field": "checkin_possible",
+   "ops": [
+    "eq"
+   ],
+   "params": [
+    "arrival_local"
+   ],
+   "synonyms": [
+    "заселение ночью",
+    "поздний заезд",
+    "круглосуточная стойка",
+    "после полуночи заселиться"
+   ]
+  },
+  {
+   "id": "L05",
+   "title": "Самое раннее время доступного гостю завтрака или согласованного breakfast box",
+   "short": "ранний завтрак",
+   "level": "hotel",
+   "source": "hotelier",
+   "fields": {
+    "breakfast_start": {
+     "type": "time"
+    },
+    "breakfast_box": {
+     "type": "bool"
+    }
+   },
+   "default_field": "breakfast_start",
+   "ops": [
+    "lte"
+   ],
+   "params": [
+    "date"
+   ],
+   "synonyms": [
+    "ранний завтрак",
+    "завтрак с собой",
+    "завтрак с"
+   ]
+  },
+  {
+   "id": "F03",
+   "title": "Политика детской кроватки: возраст/масса, размер, плата и способ подтверждения",
+   "short": "детская кроватка",
+   "level": "room_type",
+   "source": "hotelier",
+   "fields": {
+    "cot_available": {
+     "type": "bool"
+    },
+    "max_child_age": {
+     "type": "number",
+     "unit": "years"
+    },
+    "fee": {
+     "type": "number",
+     "unit": "RUB"
+    }
+   },
+   "default_field": "cot_available",
+   "ops": [
+    "eq"
+   ],
+   "params": [],
+   "synonyms": [
+    "детская кроватка",
+    "кроватка для малыша"
+   ]
+  },
+  {
+   "id": "F04",
+   "title": "Категории и номера, соединённые внутренней дверью, и способ гарантировать пару",
+   "short": "смежные номера",
+   "level": "room_type",
+   "source": "hotelier",
+   "fields": {
+    "connecting_rooms": {
+     "type": "bool"
+    },
+    "guaranteed_pair": {
+     "type": "bool"
+    }
+   },
+   "default_field": "connecting_rooms",
+   "ops": [
+    "eq"
+   ],
+   "params": [],
+   "synonyms": [
+    "смежные номера",
+    "соединённые номера"
+   ]
+  },
+  {
+   "id": "F05",
+   "title": "Правила детского бассейна: возраст, глубина, часы и надзор персонала",
+   "short": "детский бассейн",
+   "level": "hotel",
+   "source": "hotelier",
+   "fields": {
+    "kids_pool": {
+     "type": "bool"
+    },
+    "minimum_age": {
+     "type": "number",
+     "unit": "years"
+    },
+    "depth_m": {
+     "type": "number",
+     "unit": "m"
+    },
+    "supervised": {
+     "type": "bool"
+    }
+   },
+   "default_field": "kids_pool",
+   "ops": [
+    "eq"
+   ],
+   "params": [],
+   "synonyms": [
+    "детский бассейн",
+    "лягушатник"
+   ]
+  },
+  {
+   "id": "P01",
+   "title": "Правило допуска животного: вид, масса, количество и ограничения категории",
+   "short": "можно с животным",
+   "level": "hotel",
+   "source": "hotelier",
+   "fields": {
+    "pets_allowed": {
+     "type": "bool"
+    },
+    "species": {
+     "type": "list",
+     "values": [
+      "dog",
+      "cat",
+      "other"
+     ]
+    },
+    "max_weight_kg": {
+     "type": "number",
+     "unit": "kg"
+    },
+    "max_number": {
+     "type": "integer"
+    },
+    "prior_approval": {
+     "type": "bool"
+    }
+   },
+   "default_field": "pets_allowed",
+   "ops": [
+    "eq",
+    "gte"
+   ],
+   "params": [],
+   "synonyms": [
+    "с собакой",
+    "с кошкой",
+    "с питомцем",
+    "можно с животными"
+   ]
+  },
+  {
+   "id": "P02",
+   "title": "Обязательная доплата и депозит за указанного питомца на срок проживания",
+   "short": "доплата за питомца",
+   "level": "hotel",
+   "source": "hotelier",
+   "fields": {
+    "fee_amount": {
+     "type": "number",
+     "unit": "RUB"
+    },
+    "fee_basis": {
+     "type": "enum",
+     "values": [
+      "per_night",
+      "per_stay"
+     ]
+    },
+    "deposit": {
+     "type": "number",
+     "unit": "RUB"
+    }
+   },
+   "default_field": "fee_amount",
+   "ops": [
+    "lte"
+   ],
+   "params": [],
+   "synonyms": [
+    "доплата за собаку",
+    "депозит за питомца"
+   ]
+  },
+  {
+   "id": "A02",
+   "title": "Минимальная ширина свободного прохода доступного входа и порог по пути до вестибюля",
+   "short": "вход без ступеней",
+   "level": "building",
+   "source": "hotelier",
+   "fields": {
+    "step_free": {
+     "type": "bool"
+    },
+    "clear_width_mm": {
+     "type": "number",
+     "unit": "mm"
+    },
+    "threshold_mm": {
+     "type": "number",
+     "unit": "mm"
+    }
+   },
+   "default_field": "step_free",
+   "ops": [
+    "eq"
+   ],
+   "params": [],
+   "synonyms": [
+    "вход без ступеней",
+    "пандус",
+    "без порогов",
+    "на коляске"
+   ]
+  },
+  {
+   "id": "A03",
+   "title": "Полезные размеры лифта, ширина двери и обслуживаемые этажи",
+   "short": "лифт",
+   "level": "building",
+   "source": "hotelier",
+   "fields": {
+    "has_lift": {
+     "type": "bool"
+    },
+    "door_width_mm": {
+     "type": "number",
+     "unit": "mm"
+    },
+    "cabin_width_mm": {
+     "type": "number",
+     "unit": "mm"
+    },
+    "cabin_depth_mm": {
+     "type": "number",
+     "unit": "mm"
+    },
+    "served_floors": {
+     "type": "list"
+    }
+   },
+   "default_field": "has_lift",
+   "ops": [
+    "eq"
+   ],
+   "params": [],
+   "synonyms": [
+    "лифт",
+    "есть лифт"
+   ]
+  },
+  {
+   "id": "A04",
+   "title": "Высота борта/порога входа в душ в каждом варианте категории",
+   "short": "душ без бортика",
+   "level": "room_type",
+   "source": "hotelier",
+   "fields": {
+    "step_free_shower": {
+     "type": "bool"
+    },
+    "shower_threshold_mm": {
+     "type": "number",
+     "unit": "mm"
+    }
+   },
+   "default_field": "step_free_shower",
+   "ops": [
+    "eq"
+   ],
+   "params": [],
+   "synonyms": [
+    "душ без бортика",
+    "душ без порога"
+   ]
+  },
+  {
+   "id": "A05",
+   "title": "Минимальная чистая ширина дверей на пути в номер и санузел категории",
+   "short": "ширина дверей в номере",
+   "level": "room_type",
+   "source": "hotelier",
+   "fields": {
+    "min_door_width_mm": {
+     "type": "number",
+     "unit": "mm"
+    }
+   },
+   "default_field": "min_door_width_mm",
+   "ops": [
+    "gte"
+   ],
+   "params": [],
+   "synonyms": [
+    "широкие двери",
+    "проедет коляска"
+   ]
+  },
+  {
+   "id": "R01",
+   "title": "Измеренные download/upload Wi-Fi внутри номеров категории по заданному протоколу",
+   "short": "скорость Wi-Fi в номере",
+   "level": "room_type",
+   "source": "hotelier",
+   "fields": {
+    "download_mbps": {
+     "type": "number",
+     "unit": "Mbit/s"
+    },
+    "upload_mbps": {
+     "type": "number",
+     "unit": "Mbit/s"
+    }
+   },
+   "default_field": "download_mbps",
+   "ops": [
+    "gte"
+   ],
+   "params": [],
+   "synonyms": [
+    "wi-fi",
+    "вайфай",
+    "интернет",
+    "мегабит",
+    "быстрый интернет"
+   ]
+  },
+  {
+   "id": "R02",
+   "title": "Измеренная задержка, jitter и доля потерянных пакетов Wi-Fi по протоколу созвона",
+   "short": "стабильность Wi-Fi для созвонов",
+   "level": "room_type",
+   "source": "hotelier",
+   "fields": {
+    "latency_ms": {
+     "type": "number",
+     "unit": "ms"
+    },
+    "jitter_ms": {
+     "type": "number",
+     "unit": "ms"
+    },
+    "loss_percent": {
+     "type": "number",
+     "unit": "%"
+    }
+   },
+   "default_field": "latency_ms",
+   "ops": [
+    "lte"
+   ],
+   "params": [],
+   "synonyms": [
+    "стабильный интернет",
+    "для созвонов",
+    "zoom"
+   ]
+  },
+  {
+   "id": "R03",
+   "title": "Полезные размеры стола и доступная розетка рядом с ним",
+   "short": "рабочий стол",
+   "level": "room_type",
+   "source": "hotelier",
+   "fields": {
+    "has_desk": {
+     "type": "bool"
+    },
+    "desk_width_mm": {
+     "type": "number",
+     "unit": "mm"
+    },
+    "socket_near_desk": {
+     "type": "bool"
+    }
+   },
+   "default_field": "has_desk",
+   "ops": [
+    "eq"
+   ],
+   "params": [],
+   "synonyms": [
+    "рабочий стол",
+    "стол для работы",
+    "удалёнка"
+   ]
+  },
+  {
+   "id": "M01",
+   "title": "Допустимые конфигурации кроватей категории и возможность гарантировать выбранную",
+   "short": "конфигурация кроватей",
+   "level": "room_type",
+   "source": "hotelier",
+   "fields": {
+    "bed_configuration": {
+     "type": "enum",
+     "values": [
+      "double",
+      "twin",
+      "double_or_twin",
+      "other"
+     ]
+    },
+    "assignment_guarantee": {
+     "type": "bool"
+    }
+   },
+   "default_field": "bed_configuration",
+   "ops": [
+    "eq",
+    "in"
+   ],
+   "params": [],
+   "synonyms": [
+    "двуспальная кровать",
+    "раздельные кровати",
+    "твин"
+   ]
+  },
+  {
+   "id": "M02",
+   "title": "Наличие приватного балкона/террасы в вариантах категории и способ закрепить вариант",
+   "short": "балкон",
+   "level": "room_type",
+   "source": "hotelier",
+   "fields": {
+    "private_balcony": {
+     "type": "bool"
+    },
+    "private_terrace": {
+     "type": "bool"
+    },
+    "area_m2": {
+     "type": "number",
+     "unit": "m2"
+    },
+    "assignment_guarantee": {
+     "type": "bool"
+    }
+   },
+   "default_field": "private_balcony",
+   "ops": [
+    "eq"
+   ],
+   "params": [],
+   "synonyms": [
+    "балкон",
+    "лоджия",
+    "терраса"
+   ]
+  },
+  {
+   "id": "M03",
+   "title": "Оборудование приватной кухни/кухонной зоны категории",
+   "short": "кухня в номере",
+   "level": "room_type",
+   "source": "hotelier",
+   "fields": {
+    "private_kitchenette": {
+     "type": "bool"
+    },
+    "cooking_allowed": {
+     "type": "bool"
+    }
+   },
+   "default_field": "private_kitchenette",
+   "ops": [
+    "eq"
+   ],
+   "params": [],
+   "synonyms": [
+    "кухня",
+    "кухонька",
+    "готовить в номере"
+   ]
+  },
+  {
+   "id": "M04",
+   "title": "Наличие электрического чайника в номере категории и условие предоставления",
+   "short": "чайник в номере",
+   "level": "room_type",
+   "source": "hotelier",
+   "fields": {
+    "in_room_kettle": {
+     "type": "bool"
+    },
+    "on_request": {
+     "type": "bool"
+    }
+   },
+   "default_field": "in_room_kettle",
+   "ops": [
+    "eq"
+   ],
+   "params": [],
+   "synonyms": [
+    "чайник"
+   ]
+  },
+  {
+   "id": "M05",
+   "title": "Наличие личного сейфа и полезные внутренние размеры в категории",
+   "short": "сейф в номере",
+   "level": "room_type",
+   "source": "hotelier",
+   "fields": {
+    "has_safe": {
+     "type": "bool"
+    },
+    "safe_inner_width_mm": {
+     "type": "number",
+     "unit": "mm"
+    }
+   },
+   "default_field": "has_safe",
+   "ops": [
+    "eq"
+   ],
+   "params": [],
+   "synonyms": [
+    "сейф"
+   ]
+  },
+  {
+   "id": "M06",
+   "title": "Полный перечень обязательных доплат и возвратных удержаний по выбранной брони",
+   "short": "обязательные доплаты",
+   "level": "hotel",
+   "source": "hotelier",
+   "fields": {
+    "mandatory_fees_total": {
+     "type": "number",
+     "unit": "RUB"
+    },
+    "deposit": {
+     "type": "number",
+     "unit": "RUB"
+    }
+   },
+   "default_field": "mandatory_fees_total",
+   "ops": [
+    "lte"
+   ],
+   "params": [
+    "date_from",
+    "date_to"
+   ],
+   "synonyms": [
+    "без доплат",
+    "скрытые платежи",
+    "депозит"
+   ]
+  },
+  {
+   "id": "floor",
+   "title": "этаж номера",
+   "short": "этаж номера",
+   "level": "placement",
+   "source": "placement",
+   "fields": {
+    "ordinal": {
+     "type": "integer"
+    }
+   },
+   "default_field": "ordinal",
+   "ops": [
+    "eq",
+    "lte",
+    "gte",
+    "in"
+   ],
+   "params": [],
+   "synonyms": [
+    "этаж",
+    "первый этаж",
+    "высокий этаж",
+    "не выше этажа"
+   ]
+  },
+  {
+   "id": "courtyard",
+   "title": "окна во двор",
+   "short": "окна во двор",
+   "level": "facade",
+   "source": "placement",
+   "fields": {
+    "is_courtyard": {
+     "type": "bool"
+    }
+   },
+   "default_field": "is_courtyard",
+   "ops": [
+    "eq"
+   ],
+   "params": [],
+   "synonyms": [
+    "окна во двор",
+    "во двор",
+    "не на улицу"
+   ]
+  }
+ ]
+}
