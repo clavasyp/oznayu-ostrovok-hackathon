@@ -128,6 +128,22 @@ def test_partial_required_stays_unconfirmed():
     assert o.nearest_contracts == ["W05"]
 
 
+@pytest.mark.parametrize(
+    ("text", "op"),
+    [
+        ("мало баров рядом", "lte"),
+        ("хочу, чтобы баров рядом было мало", "lte"),
+        ("немного баров рядом", "lte"),
+        ("рядом много баров", "gte"),
+        ("бары рядом нравятся", "gte"),
+    ],
+)
+def test_bars_few_or_many(text, op):
+    """«Мало баров рядом» — не больше двух, а не «бары нужны» (раньше было наоборот)."""
+    ast = parse_query(text, today=TODAY, mode="rules").ast
+    assert [(c.feature_id, c.op) for c in ast.soft] == [("N04", op)] and not ast.unparsed_spans
+
+
 def test_to_full_ast_guards_model_output():
     raw = "балкон или терраса обязательно, вид на закат, телепорт"
     c = compact(

@@ -60,7 +60,7 @@
 | `POST /api/specs/draft`, `POST /api/specs/trial` | Новая характеристика из текста (core §7.4): `{text}` → черновик YAML, проблемы и замечания; `{yaml, city_id, n}` → покрытие пробного расчёта. Ничего не сохраняет и не включает |
 | `GET /api/hotelier/{id}/questions` | 26 вопросов с предзаполнением и состоянием: `not_asked`, `asked`, `answered`, `answered_unknown`, `answered_unparsed` |
 | `POST /api/hotelier/{id}/questions/{question_id}/ask` | Вопрос отправлен отелю |
-| `POST /api/hotelier/{id}/answers` | Ответ → факты → поиск сразу видит новое; с `ast` — статус отеля до и после (см. ниже) |
+| `POST /api/hotelier/{id}/answers` | Ответ → факты → поиск сразу видит новое; с `ast` — статус отеля до и после (см. ниже); `conflict_questions` — уточняющий вопрос отельеру, если ответ разошёлся с нашим расчётом |
 | `GET /api/conflicts?city_id=` | `conflicts` — сверка с карточкой Островка; `fact_conflicts` — противоречия фактов (расчёт против ответа отеля) |
 | `GET /api/out-of-catalog?city_id=&stratum=live&days=30` | «Что спрашивают, а мы не знаем»: части запросов вне каталога и неразобранные куски (`unmatched_atom`). Частота `queries` — число разных запросов за окно, `required_queries` — из них обязательных. Пишет `POST /api/search` по тексту гостя |
 
