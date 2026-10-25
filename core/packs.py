@@ -25,6 +25,7 @@ FileKind = Literal[
     "facts",
     "questions",
     "coverage",
+    "ota_comparisons",
     "other",
 ]
 
