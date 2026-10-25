@@ -203,6 +203,22 @@ def test_placement_parse_and_mapping():
     assert placements["items"][0] == {"building_id": "way/1", "floor": 3, "windows": ["f_sw"]}
 
 
+def test_number_goes_to_word_next_to_it():
+    """Подпись к числу ищется рядом с ним, а не по всей фразе: «отдача» — к 50, не к 100."""
+
+    def fields(text):
+        return parse_answer("R01", text, gateway=OFFLINE).fields
+
+    both = {"download_Mbps": 100, "upload_Mbps": 50}
+    assert fields("Скорость загрузки 100 Мбит/с, отдачи 50 Мбит/с") == both
+    assert fields("100 Мбит/с на скачивание и 50 Мбит/с на отдачу") == both
+    assert fields("Скорость 100 Мбит/с, отдача 50") == {}  # 100 — без подписи, не угадываем
+    one = parse_answer(
+        "A05", "Минимальная ширина дверей в номер и санузел: 700 мм.", gateway=OFFLINE
+    )
+    assert one.fields == {"door_clear_widths_mm": 700}  # число одно — фраза целая
+
+
 def test_questions_copy_matches_v9():
     # По строкам, а не байтам: в git копия с LF, оригинал v9 — с CRLF.
     v9 = Path("research_notes/Расчёт характеристик/hotelier/questions_26.csv")
