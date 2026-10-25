@@ -127,7 +127,8 @@ def _sentence(field: str, value: Any, unit: str | None) -> str:
     if isinstance(value, (int, float)):
         if unit == "RUB" and value == 0:
             return f"{title}: бесплатно."
-        return f"{title}: {value:g} {UNIT_RU.get(unit or '', unit or '')}".rstrip() + "."
+        number = f"{value:g}".replace(".", ",")  # по-русски: «0,6 м»
+        return f"{title}: {number} {UNIT_RU.get(unit or '', unit or '')}".rstrip() + "."
     if field == "breakfast_start":
         return f"{title} — с {value}."
     return f"{title}: {value}."

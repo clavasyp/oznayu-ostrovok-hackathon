@@ -133,7 +133,7 @@ def parse_answer(
 
 # --- Офлайн-правила ---
 
-_CLAUSES = re.compile(r"[^.;!?\n]+")
+_CLAUSES = re.compile(r"(?:[^.;!?\n]|(?<=\d)\.(?=\d))+")  # «0.6 м» — одна фраза, не две
 _NEG = re.compile(
     r"^\s*нет\b|\bнет\s*(?:,|$)|\bне\s+(?:разреш|допуска|принима|предусмотр|работа|можем|быва|нужн)"
     r"|отсутству|нельзя|к сожалению|\bнет\b"
@@ -151,13 +151,13 @@ _VARIES = re.compile(
     r"зависит от (?:номер|категори|дат|сезон|загрузк|наличи)\w*|по-разному|как повезет|не всегда"
 )
 _NUMBER = re.compile(
-    r"(?<![\w/])(?P<n>\d+(?:[.,]\d+)?|"
+    r"(?<![\w/])(?<!\d[.:])(?P<n>\d+(?:[.,]\d+)?|"
     + "|".join(sorted(WORD_NUMBERS, key=len, reverse=True))
     + r")(?![\w/])"
     r"\s*(?P<u>мм|см|кг|килограмм\w*|мбит\w*|мегабит\w*|мс|квт|кв\.?\s*м|м²|м2|м\b|руб\w*|₽|"
     r"лет|год\w*|%|дб|процент\w*)?"
 )
-_HOURS = re.compile(r"с\s+(\d{1,2})(?::(\d{2}))?\s+до\s+(\d{1,2})(?::(\d{2}))?")
+_HOURS = re.compile(r"с\s+(\d{1,2})(?:[:.](\d{2}))?\s+до\s+(\d{1,2})(?:[:.](\d{2}))?")
 
 
 def _species(clause: str) -> str | None:
@@ -244,10 +244,12 @@ def rules_parse(feature: Feature, answer: str) -> AnswerCompact:
             for spec in feature.fields.values():
                 if spec.unit == "RUB" and re.search(keywords(spec.name), clause):
                     put(spec.name, "0", "руб", start, end)
-        for m in _NUMBER.finditer(clause):
+        numbers = list(_NUMBER.finditer(clause))
+        spans = [m.span("n") for m in numbers]
+        for i, m in enumerate(numbers):
             if re.match(r"\d{1,2}[:.]\d{2}", clause[m.start() :]):
                 continue  # время, а не число
-            candidates = _number_fields(feature, clause, m.group("u") or "")
+            candidates = _number_fields(feature, _part(clause, spans, i), m.group("u") or "")
             if len(candidates) == 1:
                 put(candidates[0], m.group("n"), m.group("u") or "", start, end)
     quantifier = "unknown"
@@ -264,8 +266,28 @@ def rules_parse(feature: Feature, answer: str) -> AnswerCompact:
     )
 
 
+_PART_BREAK = re.compile(r",(?!\d)|\s(?:и|а|но)\s")  # запятая в «0,6» — не граница
+
+
+def _part(clause: str, spans: list[tuple[int, int]], i: int) -> str:
+    """Кусок фразы вокруг i-го числа: режем только между числами.
+
+    В «скорость 100, отдача 50» слово «отдача» — подпись к 50, а не к 100; в «ширина дверей
+    в номер и санузел: 700 мм» число одно, и фраза остаётся целой.
+    """
+    start, end = 0, len(clause)
+    a, b = spans[i]
+    for m in _PART_BREAK.finditer(clause):
+        if i and spans[i - 1][1] <= m.start() and m.end() <= a:
+            start = m.end()  # последняя граница после предыдущего числа
+        elif i + 1 < len(spans) and b <= m.start() and m.end() <= spans[i + 1][0]:
+            end = m.start()  # первая граница перед следующим числом
+            break
+    return clause[start:end]
+
+
 def _number_fields(feature: Feature, clause: str, unit: str) -> list[str]:
-    """Поля, куда может пойти число: по единице, а при нескольких — по ключевому слову."""
+    """Поля, куда может пойти число: по единице, а при нескольких — по слову рядом с числом."""
     walk = load_catalog().walk_speed_m_per_min
     fits = []
     for spec in feature.fields.values():
@@ -344,7 +366,7 @@ def validate(feature: Feature, answer: str, compact: AnswerCompact) -> ParsedAns
                 continue
         out.accepted[fa.name] = Accepted(value, span.text, span.start, span.end)
 
-    out.followup = _followup(feature, out, compact.unclear)
+    out.followup = _followup(feature, out, compact.unclear, f"{answer} {compact.conditions}")
     return out
 
 
@@ -352,13 +374,28 @@ def _negative(name: str, value: object) -> bool:
     return value is False or (name in PRESENCE and value == PRESENCE[name][1]) or value == "none"
 
 
-def _followup(feature: Feature, parsed: ParsedAnswer, unclear: list[str]) -> str | None:
+# От чего зависит, если отельер это назвал: тогда спрашиваем, как именно, а не «от чего».
+_VARIES_BY = [
+    (r"сезон", "Уточните, пожалуйста, как это зависит от сезона: в какие месяцы как?"),
+    (r"дат|дня\b|дней\b|выходн", "Уточните, пожалуйста, как это зависит от дат: в какие дни как?"),
+    (r"номер|категори", "Уточните, пожалуйста: в каких номерах или категориях как?"),
+    (r"загрузк|наличи", "Уточните, пожалуйста: можно ли закрепить это при бронировании?"),
+]
+
+
+def _followup(
+    feature: Feature, parsed: ParsedAnswer, unclear: list[str], text: str = ""
+) -> str | None:
     if parsed.answer_state in ("refused", "not_applicable"):
         return None
     if parsed.answer_state in ("unknown", "contradictory"):
         what = label(feature.default_field) if feature.default_field else feature.short
         return f"Спасибо! Когда будет точная информация, подскажите, пожалуйста: {what}."
     if parsed.answer_state == "varies":
+        norm = normalize(text)
+        for pattern, question in _VARIES_BY:
+            if re.search(rf"завис\w*\s+от\s+(?:\w+\s+)?{pattern}|{pattern}\w*\s+по-разному", norm):
+                return question
         return "Уточните, пожалуйста: от чего это зависит — от номера, категории или дат?"
     if parsed.quantifier == "some":
         return "Уточните, пожалуйста: в каких именно категориях или номерах это так?"

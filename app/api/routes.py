@@ -12,6 +12,7 @@ from fastapi import APIRouter, HTTPException, Request
 from pydantic import BaseModel, ValidationError
 
 from agents import hotelier as agent
+from agents.explain import explain
 from agents.query_ast import QueryAST
 from agents.search import parse_query
 from agents.search.journal import summarize, unmatched_events
@@ -24,6 +25,8 @@ from core.verdict import BOOKED_LABEL, BOOKING_IMITATION_NOTE, GUEST_LABELS
 
 log = logging.getLogger(__name__)
 router = APIRouter(prefix="/api")
+# Объяснение по шаблону — у первых результатов (у остальных — по запросу, POST /api/explain).
+EXPLAIN_TOP = 20
 SEARCH_LEVEL_NOTE = (
     "Условия уровня окна (вид, солнце, шум у окна) проверяются по размещениям категорий "
     "«здание × этаж × окна» (D17) — все вместе на одном размещении; остальные — по отелю, "
@@ -108,10 +111,7 @@ def fact(fact_id: str, request: Request) -> dict[str, Any]:
     return {"stub": s.stub, "fact": fact_json(f)}
 
 
-@router.post("/search")
-def search(body: SearchRequest, request: Request) -> dict[str, Any]:
-    s = store(request)
-    notes = [SEARCH_LEVEL_NOTE]
+def _query_ast(body: SearchRequest, notes: list[str]) -> QueryAST:
     ast = body.ast
     if ast is None and body.text and body.text.strip():
         # Разбор текста (агент-поисковик): правила, модель — для остатка, без ключа — офлайн.
@@ -126,13 +126,53 @@ def search(body: SearchRequest, request: Request) -> dict[str, Any]:
         )
     if body.city_id:
         ast = ast.model_copy(update={"city_id": body.city_id})
+    return ast
+
+
+@router.post("/search")
+def search(body: SearchRequest, request: Request) -> dict[str, Any]:
+    s = store(request)
+    notes = [SEARCH_LEVEL_NOTE]
+    ast = _query_ast(body, notes)
     if body.ast is None and body.text and body.text.strip():
         _record_unmatched(s, ast)  # журнал «вне каталога» — только по тексту, который разобрали мы
+    results = engine.search(s, ast)
+    # Объяснение по шаблону (без модели, мгновенно) — у первых результатов выдачи.
+    for r in results[:EXPLAIN_TOP]:
+        r["explanation"] = explain(r, s.fact, ast=ast).as_dict()
     return {
         "stub": s.stub,
         "notes": notes,
         "ast": ast.model_dump(mode="json", by_alias=True),
-        "results": engine.search(s, ast),
+        "results": results,
+    }
+
+
+class ExplainRequest(SearchRequest):
+    hotel_id: str
+
+
+@router.post("/explain")
+def explain_hotel(body: ExplainRequest, request: Request) -> dict[str, Any]:
+    """Объяснение по одному отелю: порядок и связки от модели, цифры — из фактов (D8).
+
+    Без ключа, при сбое модели или проверки — то же объяснение по шаблону.
+    """
+    s = store(request)
+    notes: list[str] = []
+    ast = _query_ast(body, notes).model_copy(update={"city_id": None})
+    found = engine.search(s, ast, only=[body.hotel_id])
+    if not found:
+        raise HTTPException(404, f"нет отеля {body.hotel_id}")
+    r = found[0]
+    e = explain(r, s.fact, ast=ast, use_llm=True)
+    return {
+        "stub": s.stub,
+        "hotel_id": body.hotel_id,
+        "status": r["status"],
+        "status_label": r["status_label"],
+        "explanation": e.as_dict(),
+        "notes": notes + e.notes,
     }
 
 
