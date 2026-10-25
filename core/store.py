@@ -70,3 +70,13 @@ class Store(Protocol):
     def conflicts(self, city_id: str | None = None) -> list[dict[str, Any]]:
         """Сверка с карточкой Островка: совпало, расходится, сравнить нечем."""
         ...
+
+    def record_unmatched(self, events: list[dict[str, Any]]) -> None:
+        """Журнал «вне каталога» (D34): события `unmatched_atom` из разбора запроса."""
+        ...
+
+    def unmatched_events(
+        self, city_id: str | None = None, stratum: str | None = None, since: datetime | None = None
+    ) -> list[dict[str, Any]]:
+        """События журнала за окно — для экрана «Что спрашивают, а мы не знаем»."""
+        ...
