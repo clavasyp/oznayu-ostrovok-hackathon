@@ -6,8 +6,9 @@
 только переводит текст в поля вопроса и честно говорит, чего не понял:
 - поля — ровно из `parsed_fields` вопроса, с цитатами (иначе 422);
 - «не знаю» → `dont_know`;
-- ответ «для части номеров», противоречивый или без полей — только текст (`answered_unparsed`)
-  и уточняющий вопрос: такой ответ не должен закрыть обязательное условие гостя.
+- ответ «для части номеров», «зависит от номера или даты», противоречивый или без полей —
+  только текст (`answered_unparsed`) и уточняющий вопрос: такой ответ не должен закрыть
+  обязательное условие гостя.
 """
 
 from __future__ import annotations
@@ -36,7 +37,8 @@ def answer_from_text(
     body: dict[str, Any] = {}
     if parsed.answer_state == "unknown":
         body = {"dont_know": True}
-    elif parsed.answer_state in ("answered", "varies") and parsed.quantifier != "some" and fields:
+    elif parsed.answer_state == "answered" and parsed.quantifier != "some" and fields:
+        # «Зависит от номера или даты» (varies) — то же, что «для части номеров»: не факт на отель.
         body = {"fields": fields}
     report = {
         "parsed_by": parsed.parsed_by,

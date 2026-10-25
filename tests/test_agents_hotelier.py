@@ -208,3 +208,24 @@ def test_questions_copy_matches_v9():
     v9 = Path("research_notes/Расчёт характеристик/hotelier/questions_26.csv")
     copy = QUESTIONS_CSV.read_text("utf-8").splitlines()
     assert copy == v9.read_text("utf-8").splitlines()
+
+
+def test_varies_is_not_a_hotel_fact():
+    """«Зависит от номера или даты» — как «для части номеров»: только текст и уточнение."""
+    q = {"feature_id": "M02", "parsed_fields": list(CAT.get("M02").fields)}
+    out = answer_from_text(q, "Да, балкон есть, но это зависит от номера.", gateway=OFFLINE)
+    assert out.body == {} and out.report["answer_state"] == "varies"
+    assert "от чего это зависит" in out.report["followup"]
+    reply = {
+        "answer_state": "varies",
+        "quantifier": "unknown",
+        "fields": [
+            {"name": "private_balcony", "value": "true", "unit": "", "quote": "балкон есть"}
+        ],
+        "conditions": "по датам",
+        "unclear": [],
+    }
+    out = answer_from_text(
+        q, "Балкон есть, по датам по-разному.", gateway=Gateway([FakeLLM([reply])])
+    )
+    assert out.body == {} and out.report["fields"]["private_balcony"]["value"] is True

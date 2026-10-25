@@ -147,6 +147,9 @@ _UNKNOWN = re.compile(
     r"|не могу сказать|уточн\w+ (?:позже|и вернемся)|точной информации нет"
 )
 _REFUSED = re.compile(r"не (?:можем|готовы) (?:ответить|сообщить|раскрыть)|без комментари")
+_VARIES = re.compile(
+    r"зависит от (?:номер|категори|дат|сезон|загрузк|наличи)\w*|по-разному|как повезет|не всегда"
+)
 _NUMBER = re.compile(
     r"(?<![\w/])(?P<n>\d+(?:[.,]\d+)?|"
     + "|".join(sorted(WORD_NUMBERS, key=len, reverse=True))
@@ -180,6 +183,8 @@ def rules_parse(feature: Feature, answer: str) -> AnswerCompact:
         state = "refused"
     elif _UNKNOWN.search(norm):
         state = "unknown"
+    elif _VARIES.search(norm):
+        state = "varies"
     fields: dict[str, FieldAnswer] = {}
     clauses = [(m.start(), m.group()) for m in _CLAUSES.finditer(norm) if m.group().strip()]
 
@@ -353,6 +358,8 @@ def _followup(feature: Feature, parsed: ParsedAnswer, unclear: list[str]) -> str
     if parsed.answer_state in ("unknown", "contradictory"):
         what = label(feature.default_field) if feature.default_field else feature.short
         return f"Спасибо! Когда будет точная информация, подскажите, пожалуйста: {what}."
+    if parsed.answer_state == "varies":
+        return "Уточните, пожалуйста: от чего это зависит — от номера, категории или дат?"
     if parsed.quantifier == "some":
         return "Уточните, пожалуйста: в каких именно категориях или номерах это так?"
     default = feature.default_field
