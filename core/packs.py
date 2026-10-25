@@ -73,6 +73,11 @@ class PackError(Exception):
     pass
 
 
+def stable_id(*parts: str) -> int:
+    """Стабильный BIGINT из текста: повторная загрузка того же пакета обновляет, а не дублирует."""
+    return int(hashlib.sha256("|".join(parts).encode()).hexdigest()[:15], 16)
+
+
 def sha256_file(path: Path) -> str:
     h = hashlib.sha256()
     with path.open("rb") as f:

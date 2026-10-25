@@ -22,7 +22,7 @@ from pathlib import Path
 from typing import Any
 
 from core.facts import Fact
-from core.packs import Manifest, PackFile, PackSource, sha256_file
+from core.packs import Manifest, PackFile, PackSource, sha256_file, stable_id
 
 ROOT = Path(__file__).resolve().parents[1]
 V9 = ROOT / "research_notes" / "Расчёт характеристик"
@@ -48,11 +48,6 @@ CITY_NAMES = {
 }
 FULL_DEPTH = {"sochi", "moscow"}  # D36
 SLIM_KEYS = ("component_diagnostics", "audit_files", "components")  # тяжёлая диагностика v9
-
-
-def stable_id(*parts: str) -> int:
-    """Стабильный BIGINT из текста: повторная загрузка того же пакета обновляет, а не дублирует."""
-    return int(hashlib.sha256("|".join(parts).encode()).hexdigest()[:15], 16)
 
 
 def write_jsonl_gz(path: Path, rows: list[dict[str, Any]]) -> None:

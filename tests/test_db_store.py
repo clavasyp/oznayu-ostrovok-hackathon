@@ -284,3 +284,132 @@ def test_placements_load_and_drive_search(engine, tmp_path):
         load_pack(conn, pack)
     assert all(rt["placement_set"] is None for rt in db.room_types(["t1"])["t1"])
     assert search(db, ast)[0]["hard"][0]["reason_code"] == "no_placements"
+
+
+def test_hotelier_loop_on_db(engine):
+    """Вопрос → ответ имитатора → выдача меняется → настоящий ответ заменяет имитатор →
+    противоречие с расчётом в журнале → размещения категории."""
+    from datetime import UTC, datetime
+
+    from sqlalchemy import insert
+
+    from agents.query_ast import Condition, QueryAST
+    from core.db import Question, RoomType
+    from core.hotelier import AnswerIn, build_answer
+    from core.packs import stable_id
+    from core.search import search
+    from core.store_db import DbStore
+
+    db, hid, now = DbStore(engine), "13736470", datetime.now(UTC)
+    q = db.question(hid, None, "P01")
+    assert q and q["answer_status"] == "not_asked"
+    dog = Condition(feature_id="P01", op="eq", value="dog", field="species", binding="hotel")
+    ast = QueryAST(raw_text="с собакой", city_id="sochi", hard=[dog])
+
+    def status():
+        return search(db, ast, only=[hid])[0]["status"]
+
+    before = status()
+    sim = build_answer(
+        q,
+        AnswerIn(question_id=q["question_id"], fields={"species": "dog"}, is_simulated=True),
+        [],
+        now,
+    )
+    db.apply_answer(sim)
+    assert (before, status()) == ("needs_check", "fits")
+    assert db.question(hid, q["question_id"], None)["answer_status"] == "answered"
+
+    real = build_answer(
+        q,
+        AnswerIn(question_id=q["question_id"], fields={"species": "cat"}),
+        db.facts_for("P01", [hid])[hid],
+        now,
+    )
+    assert real.superseded == {sim.facts[0].fact_id: real.facts[0].fact_id}
+    db.apply_answer(real)
+    assert [f.fact_id for f in db.facts_for("P01", [hid])[hid]] == [real.facts[0].fact_id]
+    assert status() == "not_fit"  # настоящий ответ: только кошки
+
+    # Ответ отеля против нашего расчёта — противоречие в журнале, а не замена.
+    calc = next(
+        f
+        for fs in db.hotel_facts(hid).values()
+        for f in fs
+        if f.status == "computed"
+        and f.subject_level == "hotel"
+        and isinstance(f.value, dict)
+        and any(isinstance(v, int | float) for v in f.value.values())
+    )
+    key = next(k for k, v in calc.value.items() if isinstance(v, int | float))
+    with engine.begin() as conn:
+        conn.execute(
+            insert(Question).values(
+                id=stable_id("question", hid, calc.feature_id),
+                hotel_id=hid,
+                feature_id=calc.feature_id,
+                subject_level="hotel",
+                subject_id=f"hotel:{hid}",
+                text="Проверка расчёта",
+                reason="conflict",
+                fields=[],
+                prefill=[],
+            )
+        )
+    q2 = db.question(hid, None, calc.feature_id)
+    wrong = build_answer(
+        q2,
+        AnswerIn(
+            question_id=q2["question_id"],
+            fields={key: calc.value[key] + 1000},
+            params=calc.params,  # тот же смысл, что у расчёта (D15)
+        ),
+        db.facts_for(calc.feature_id, [hid])[hid],
+        now,
+    )
+    db.apply_answer(wrong)
+    assert any(
+        c["fact_a"] == calc.fact_id and c["fact_b"] == wrong.facts[0].fact_id
+        for c in db.fact_conflicts("sochi")
+    )
+    assert calc.fact_id in {f.fact_id for f in db.facts_for(calc.feature_id, [hid])[hid]}
+
+    # Этажи и стороны номеров категории (D17) — размещения.
+    with engine.begin() as conn:
+        conn.execute(
+            insert(RoomType).values(
+                id=f"{hid}:sea",
+                hotel_id=hid,
+                rg_hash="sea",
+                name="С видом",
+                amenities=[],
+                source={},
+            )
+        )
+    q3 = db.question(hid, None, "M02")
+    placed = build_answer(
+        q3,
+        AnswerIn(
+            question_id=q3["question_id"],
+            room_type_id=f"{hid}:sea",
+            is_simulated=True,
+            placements={
+                "completeness": "complete",
+                "guarantee": "all_guaranteed",
+                "items": [
+                    {"building_id": "way/1", "floor": 5, "windows": ["west"]},
+                    {"building_id": "way/1", "floor": 5, "windows": ["north"]},
+                    {"building_id": "way/1", "floor": 6, "windows": ["west"]},
+                ],
+            },
+        ),
+        [],
+        now,
+    )
+    db.apply_answer(placed)
+    rt = next(r for r in db.room_types([hid])[hid] if r["room_type_id"] == f"{hid}:sea")
+    assert rt["placement_set"]["status"] == "simulated_hotelier"
+    assert [(p["floor"], p["windows"]) for p in rt["placements"]] == [
+        (5, ["north", "west"]),
+        (6, ["west"]),
+    ]

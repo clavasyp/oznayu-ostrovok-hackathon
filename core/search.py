@@ -21,7 +21,7 @@ from __future__ import annotations
 
 import json
 from collections import defaultdict
-from collections.abc import Callable, Iterable
+from collections.abc import Callable, Collection, Iterable
 from pathlib import Path
 from typing import Any
 
@@ -291,8 +291,12 @@ def _score(soft: list[dict[str, Any]]) -> dict[str, float]:
     return {"min": round(score_min, 3), "max": round(score_max, 3)}
 
 
-def search(store: Store, ast: QueryAST) -> list[dict[str, Any]]:
+def search(
+    store: Store, ast: QueryAST, only: Collection[str] | None = None
+) -> list[dict[str, Any]]:
     hotels = store.hotels(ast.city_id or None)
+    if only is not None:
+        hotels = [h for h in hotels if h["hotel_id"] in only]
     ids = [h["hotel_id"] for h in hotels]
     # Один запрос к хранилищу на характеристику, а не на отель.
     features = {c.feature_id for c in [*ast.hard, *ast.soft]}

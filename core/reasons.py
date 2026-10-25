@@ -55,6 +55,7 @@ CODES: dict[str, str] = {
         "Пеший путь по карте не построен — это не значит, что его нет"
     ),
     "missing_aboveground_levels": "Этажность здания неизвестна",
+    "hotelier_does_not_know": "Отель не знает ответа",
     "multiple_buildings_or_counting_scope_conflict": (
         "У отеля несколько зданий — этажность неоднозначна"
     ),

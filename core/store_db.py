@@ -6,14 +6,17 @@ from __future__ import annotations
 
 from collections import defaultdict
 from collections.abc import Collection
+from datetime import datetime
 from typing import Any
 
-from sqlalchemy import Engine, func, select
+from sqlalchemy import Engine, delete, func, select, update
+from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.orm import Session
 
 from core.db import (
     City,
     CityCoverage,
+    Conflict,
     FactRow,
     Hotel,
     OtaComparison,
@@ -24,8 +27,10 @@ from core.db import (
     RoomType,
 )
 from core.facts import Fact
+from core.hotelier import AnswerError, AnswerResult
 
 FACT_COLUMNS = [c.name for c in FactRow.__table__.columns]
+FACT_COLUMN_SET = set(FACT_COLUMNS)
 # Служебные колонки таблицы, которых нет в контракте факта.
 NOT_IN_FACT = {
     "confidence_level",
@@ -37,8 +42,22 @@ NOT_IN_FACT = {
 }
 
 
+def fact_to_row(raw: dict[str, Any]) -> dict[str, Any]:
+    """Факт → строка таблицы `fact`. Валидация по контракту; лишние поля v9 → extra."""
+    fact = Fact.model_validate(raw)
+    data = fact.model_dump(mode="json")
+    confidence = data.pop("confidence", None) or {}
+    row = {k: v for k, v in data.items() if k in FACT_COLUMN_SET}
+    row["confidence_level"] = confidence.pop("level", None)
+    row["confidence_reason"] = confidence.pop("reason", None)
+    row["extra"] = {k: v for k, v in data.items() if k not in FACT_COLUMN_SET}
+    if confidence:  # прочие поля уверенности, если калькулятор их дал
+        row["extra"]["confidence"] = confidence
+    return row
+
+
 def fact_from_row(row: FactRow) -> Fact:
-    """Строка таблицы `fact` → контракт `Fact`: обратное к `pipeline.load_packs.fact_row`."""
+    """Строка таблицы `fact` → контракт `Fact`: обратное к `fact_to_row`."""
     data: dict[str, Any] = {c: getattr(row, c) for c in FACT_COLUMNS if c not in NOT_IN_FACT}
     extra = dict(row.extra or {})
     extra.pop("pack", None)
@@ -217,6 +236,24 @@ class DbStore:
             )
         return dict(out)
 
+    @staticmethod
+    def _question_dict(qu: Question, city_id: str | None) -> dict[str, Any]:
+        return {
+            "question_id": qu.id,
+            "hotel_id": qu.hotel_id,
+            "city_id": city_id,
+            "feature_id": qu.feature_id,
+            "question": qu.text,
+            "parsed_fields": qu.fields or [],
+            "answer_text": qu.answer_text,
+            "is_simulated": qu.is_simulated,
+            "answer_status": qu.state,
+            "asked_at": qu.asked_at.isoformat() if qu.asked_at else None,
+            "answered_at": qu.answered_at.isoformat() if qu.answered_at else None,
+            "parsed": qu.parsed,
+            "claims": qu.prefill or [],
+        }
+
     def questions(self, hotel_id: str) -> list[dict[str, Any]]:
         q = (
             select(Question, Hotel.city_id)
@@ -225,20 +262,129 @@ class DbStore:
             .order_by(Question.feature_id)
         )
         with self._session() as s:
+            return [self._question_dict(qu, city_id) for qu, city_id in s.execute(q)]
+
+    def question(
+        self, hotel_id: str, question_id: int | None, feature_id: str | None
+    ) -> dict[str, Any] | None:
+        q = (
+            select(Question, Hotel.city_id)
+            .join(Hotel, Hotel.id == Question.hotel_id)
+            .where(Question.hotel_id == hotel_id)
+        )
+        if question_id is not None:
+            q = q.where(Question.id == question_id)
+        else:
+            q = q.where(Question.feature_id == feature_id)
+        with self._session() as s:
+            row = s.execute(q.limit(1)).first()
+            return self._question_dict(*row) if row else None
+
+    def set_question_state(self, question_id: int, state: str, at: datetime) -> None:
+        with self._session() as s, s.begin():
+            s.execute(
+                update(Question).where(Question.id == question_id).values(state=state, asked_at=at)
+            )
+
+    def apply_answer(self, result: AnswerResult) -> None:
+        with self._session() as s, s.begin():
+            s.execute(
+                update(Question)
+                .where(Question.id == result.question_id)
+                .values(
+                    state=result.state,
+                    answer_text=result.answer_text,
+                    answered_at=result.answered_at,
+                    parsed=result.parsed,
+                    is_simulated=result.is_simulated,
+                )
+            )
+            for f in result.facts:
+                stmt = insert(FactRow).values(fact_to_row(f.model_dump(mode="json")))
+                s.execute(stmt.on_conflict_do_nothing(index_elements=["fact_id"]))
+            for old, new in result.superseded.items():
+                s.execute(
+                    update(FactRow)
+                    .where(FactRow.fact_id == old)
+                    .values(is_current=False, superseded_by=new)
+                )
+            for ours, theirs in result.conflicts:
+                s.add(
+                    Conflict(
+                        feature_id=theirs.feature_id,
+                        hotel_id=theirs.hotel_id,
+                        subject_level=theirs.subject_level,
+                        subject_id=theirs.subject_id,
+                        fact_a=ours.fact_id,
+                        fact_b=theirs.fact_id,
+                        state="detected",
+                    )
+                )
+            if result.placements:
+                self._replace_placements(s, result)
+
+    @staticmethod
+    def _replace_placements(s: Session, result: AnswerResult) -> None:
+        rt_id = result.room_type_id
+        if rt_id is None or s.get(RoomType, rt_id) is None:
+            raise AnswerError(f"нет категории {rt_id}: размещения не к чему привязать")
+        old = select(Placement.id).where(Placement.room_type_id == rt_id).scalar_subquery()
+        s.execute(delete(PlacementWindow).where(PlacementWindow.placement_id.in_(old)))
+        s.execute(delete(Placement).where(Placement.room_type_id == rt_id))
+        s.execute(delete(PlacementSet).where(PlacementSet.room_type_id == rt_id))
+        ps = result.placements
+        s.add(
+            PlacementSet(
+                room_type_id=rt_id,
+                completeness=ps.completeness,
+                guarantee=ps.guarantee,
+                status=result.placement_status,
+                source=result.placement_source,
+            )
+        )
+        s.flush()
+        windows: dict[str, set[str]] = defaultdict(set)
+        for item in ps.items:
+            pid = f"{rt_id}|{item.building_id}|{item.floor}"
+            if pid not in windows:
+                s.add(
+                    Placement(
+                        id=pid,
+                        room_type_id=rt_id,
+                        building_id=item.building_id,
+                        building_part_id=item.building_part_id,
+                        floor=item.floor,
+                        floor_label=item.floor_label,
+                    )
+                )
+            windows[pid] |= set(item.windows)
+        s.flush()
+        for pid, facades in windows.items():
+            for facade in sorted(facades):
+                s.add(PlacementWindow(placement_id=pid, facade_id=facade))
+
+    def fact_conflicts(self, city_id: str | None = None) -> list[dict[str, Any]]:
+        q = (
+            select(Conflict, Hotel.city_id)
+            .join(Hotel, Hotel.id == Conflict.hotel_id, isouter=True)
+            .order_by(Conflict.updated_at.desc())
+        )
+        if city_id:
+            q = q.where(Hotel.city_id == city_id)
+        with self._session() as s:
             return [
                 {
-                    "question_id": qu.id,
-                    "hotel_id": qu.hotel_id,
-                    "city_id": city_id,
-                    "feature_id": qu.feature_id,
-                    "question": qu.text,
-                    "parsed_fields": qu.fields or [],
-                    "answer_text": qu.answer_text,
-                    "is_simulated": qu.is_simulated,
-                    "answer_status": qu.state,
-                    "claims": qu.prefill or [],
+                    "conflict_id": c.id,
+                    "city_id": city,
+                    "hotel_id": c.hotel_id,
+                    "feature_id": c.feature_id,
+                    "subject_id": c.subject_id,
+                    "fact_a": c.fact_a,
+                    "fact_b": c.fact_b,
+                    "state": c.state,
+                    "updated_at": c.updated_at.isoformat() if c.updated_at else None,
                 }
-                for qu, city_id in s.execute(q)
+                for c, city in s.execute(q)
             ]
 
     def conflicts(self, city_id: str | None = None) -> list[dict[str, Any]]:
