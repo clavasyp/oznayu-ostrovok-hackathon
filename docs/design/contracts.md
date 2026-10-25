@@ -46,8 +46,10 @@
 | `GET /api/cities`, `/api/cities/{id}/coverage` | Города (глубина `full` / `automatic`), покрытие 54 характеристик |
 | `GET /api/hotels?city_id=`, `/api/hotels/{id}`, `/api/facts/{fact_id}` | Отели, факты с паспортами и `unknown_reason_text`, категории с размещениями (`room_types`) |
 | `POST /api/search` | `{text, city_id, ast}` → AST + результаты со статусами; без `ast` — пример запроса трека |
-| `GET /api/hotelier/{id}/questions`, `POST …/answers` | 26 вопросов с предзаполнением; ответ пока не сохраняется |
-| `GET /api/conflicts?city_id=` | Сравнения с карточкой Островка |
+| `GET /api/hotelier/{id}/questions` | 26 вопросов с предзаполнением и состоянием: `not_asked`, `asked`, `answered`, `answered_unknown`, `answered_unparsed` |
+| `POST /api/hotelier/{id}/questions/{question_id}/ask` | Вопрос отправлен отелю |
+| `POST /api/hotelier/{id}/answers` | Ответ → факты → поиск сразу видит новое; с `ast` — статус отеля до и после (см. ниже) |
+| `GET /api/conflicts?city_id=` | `conflicts` — сверка с карточкой Островка; `fact_conflicts` — противоречия фактов (расчёт против ответа отеля) |
 
 **Источник** — интерфейс `core.store.Store`: база (`core/store_db.py`, `DATA_MODE=db`, так у жюри) или заглушки из фактов v9 (`app/stub_store.py`, `DATA_MODE=fixtures`). Формы ответов одинаковые; флаг `"stub"` говорит, откуда данные.
 
@@ -65,6 +67,26 @@
 - **Отель подходит, если подходит хотя бы одна категория.** В ответе: `categories` (вердикт, статус, размещения) и `best_category`.
 - **Оценки** в обязательных условиях не участвуют (D18).
 - **Причины:** код `reason_code` и текст для экрана `reason` (`core/reasons.py`). У фактов в API — `unknown_reason_text`.
+
+## Ответ отельера → факт → пересчёт (`core/hotelier.py`)
+
+**Тело `POST /api/hotelier/{id}/answers`:**
+- `question_id` или `feature_id`;
+- `fields` — поля ровно с именами из вопроса (`parsed_fields`); лишнее — 422, а не догадка;
+- `params` — к каким параметрам характеристики относится ответ (D15);
+- `dont_know`, `answer_text`;
+- `room_type_id` — ответ про категорию;
+- `placements` — этажи и стороны номеров категории: `completeness`, `guarantee`, `items` = явные пары `building_id × floor × windows` (D17);
+- `is_simulated`;
+- `ast` — показать статус до и после.
+
+**Правила:**
+- **Статус факта:** `hotelier`; у имитатора — `simulated_hotelier` с пометкой (D31). Значение — поля ответа, в паспорте — цитата, вопрос, время.
+- **Замена:** новое заявление отеля заменяет его прежние заявления о том же месте — данные Островка (D26), прошлые ответы. У старых фактов `is_current = false` и `superseded_by`. Имитатор настоящий ответ не заменяет.
+- **Наш расчёт** (`computed`, `observed`, `curated`) ответ не заменяет. При расхождении — запись в `conflict`, а поиск показывает «нужно уточнить» (`conflict_fact_ids`).
+- **«Не знаю»** — факт `unknown` (`hotelier_does_not_know`), известное не отменяет.
+- **Текст без полей** — `answered_unparsed`: ждёт агента-отельера, факта нет.
+- **Пересчёт:** поиск читает только действующие факты, поэтому новая выдача видна сразу. Производные расчёты (вид по новым этажам) пересчитают калькуляторы.
 
 ## Кандидаты и непокрытые части запроса (D33, D34, черновик v11)
 
