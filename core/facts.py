@@ -53,6 +53,7 @@ class SubjectLevel(StrEnum):
     building_part = "building_part"
     facade = "facade"
     physical_floor = "physical_floor"
+    facade_physical_floor = "facade_physical_floor"  # окно: фасад на этаже, «здание:фасад:floorN»
     room_type = "room_type"
     placement = "placement"
     route = "route"

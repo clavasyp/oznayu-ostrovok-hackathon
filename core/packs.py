@@ -20,6 +20,9 @@ FORMAT_VERSION = "1"
 FileKind = Literal[
     "hotels",
     "room_types",
+    "placement_sets",
+    "placements",
+    "placement_windows",
     "buildings",
     "hotel_buildings",
     "facts",

@@ -67,6 +67,47 @@ class RoomType(Base):
     source: Mapped[dict[str, Any]] = mapped_column(JSONB, default=dict)
 
 
+class PlacementSet(Base):
+    """Где бывают номера категории (D17): полнота списка и гарантия отеля.
+
+    Размещение — конкретная пара «здание и этаж» со своими окнами, а не два массива
+    (иначе из «восток 1–3, запад 4–5» получились бы ложные «восток-5» и «запад-1»).
+    """
+
+    __tablename__ = "placement_set"
+
+    room_type_id: Mapped[str] = mapped_column(ForeignKey("room_type.id"), primary_key=True)
+    completeness: Mapped[str] = mapped_column(Text)  # complete | partial | unknown
+    # all_guaranteed | exact_room — можно закрывать обязательные условия;
+    # some_possible | on_request — только «нужно уточнить»
+    guarantee: Mapped[str] = mapped_column(Text)
+    status: Mapped[str] = mapped_column(Text)  # hotelier | simulated_hotelier | curated | …
+    source: Mapped[dict[str, Any]] = mapped_column(JSONB, default=dict)  # вопрос, ответ, дата
+    version: Mapped[int] = mapped_column(Integer, default=1)
+    fact_id: Mapped[str | None] = mapped_column(Text)
+
+
+class Placement(Base):
+    __tablename__ = "placement"
+
+    id: Mapped[str] = mapped_column(Text, primary_key=True)  # "<room_type_id>|<здание>|<этаж>"
+    room_type_id: Mapped[str] = mapped_column(ForeignKey("placement_set.room_type_id"), index=True)
+    building_id: Mapped[str] = mapped_column(Text)
+    building_part_id: Mapped[str | None] = mapped_column(Text)
+    floor: Mapped[int] = mapped_column(Integer)  # физический этаж по счёту
+    floor_label: Mapped[str | None] = mapped_column(Text)  # как в отеле: «5», «мансарда»
+
+
+class PlacementWindow(Base):
+    """Окно размещения: фасад. У углового номера окон несколько."""
+
+    __tablename__ = "placement_window"
+
+    placement_id: Mapped[str] = mapped_column(ForeignKey("placement.id"), primary_key=True)
+    facade_id: Mapped[str] = mapped_column(Text, primary_key=True)
+    azimuth_deg: Mapped[float | None] = mapped_column(Float)
+
+
 class Building(Base):
     __tablename__ = "building"
 

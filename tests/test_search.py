@@ -68,7 +68,8 @@ def test_estimate_does_not_close_hard_but_counts_in_soft():
 
 def test_unknown_is_not_no():
     r = evaluate([fact(1, None, status="unknown")], ROAD_FAR, hard=True)
-    assert r["verdict"] == Verdict.unknown and r["reason"] == "нет данных"
+    assert r["verdict"] == Verdict.unknown and r["reason_code"] == "нет данных"
+    assert r["reason"] == "Пока нет данных"  # неизвестный код не ломает ответ
 
 
 def test_params_select_the_meaning():

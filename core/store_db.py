@@ -11,7 +11,18 @@ from typing import Any
 from sqlalchemy import Engine, func, select
 from sqlalchemy.orm import Session
 
-from core.db import City, CityCoverage, FactRow, Hotel, OtaComparison, Question
+from core.db import (
+    City,
+    CityCoverage,
+    FactRow,
+    Hotel,
+    OtaComparison,
+    Placement,
+    PlacementSet,
+    PlacementWindow,
+    Question,
+    RoomType,
+)
 from core.facts import Fact
 
 FACT_COLUMNS = [c.name for c in FactRow.__table__.columns]
@@ -147,6 +158,63 @@ class DbStore:
         with self._session() as s:
             for row in s.scalars(q):
                 out[row.hotel_id].append(fact_from_row(row))
+        return dict(out)
+
+    def room_types(self, hotel_ids: Collection[str]) -> dict[str, list[dict[str, Any]]]:
+        if not hotel_ids:
+            return {}
+        ids = list(hotel_ids)
+        with self._session() as s:
+            rows = s.execute(
+                select(RoomType, PlacementSet)
+                .join(PlacementSet, PlacementSet.room_type_id == RoomType.id, isouter=True)
+                .where(RoomType.hotel_id.in_(ids))
+                .order_by(RoomType.hotel_id, RoomType.name)
+            ).all()
+            rt_ids = [rt.id for rt, _ in rows]
+            placements: dict[str, list[dict[str, Any]]] = defaultdict(list)
+            by_id: dict[str, dict[str, Any]] = {}
+            if rt_ids:
+                for p in s.scalars(
+                    select(Placement)
+                    .where(Placement.room_type_id.in_(rt_ids))
+                    .order_by(Placement.building_id, Placement.floor)
+                ):
+                    item = {
+                        "placement_id": p.id,
+                        "building_id": p.building_id,
+                        "floor": p.floor,
+                        "floor_label": p.floor_label,
+                        "windows": [],
+                    }
+                    placements[p.room_type_id].append(item)
+                    by_id[p.id] = item
+                if by_id:
+                    for w in s.scalars(
+                        select(PlacementWindow)
+                        .where(PlacementWindow.placement_id.in_(list(by_id)))
+                        .order_by(PlacementWindow.facade_id)
+                    ):
+                        by_id[w.placement_id]["windows"].append(w.facade_id)
+        out: dict[str, list[dict[str, Any]]] = defaultdict(list)
+        for rt, ps in rows:
+            out[rt.hotel_id].append(
+                {
+                    "room_type_id": rt.id,
+                    "name": rt.name,
+                    "placement_set": (
+                        {
+                            "completeness": ps.completeness,
+                            "guarantee": ps.guarantee,
+                            "status": ps.status,
+                            "source": ps.source,
+                        }
+                        if ps
+                        else None
+                    ),
+                    "placements": placements.get(rt.id, []),
+                }
+            )
         return dict(out)
 
     def questions(self, hotel_id: str) -> list[dict[str, Any]]:

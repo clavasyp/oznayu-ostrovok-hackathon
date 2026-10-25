@@ -31,6 +31,8 @@ class StubStore:
     coverage_by_city: dict[str, list[dict[str, Any]]] = field(default_factory=dict)
     questions_by_hotel: dict[str, list[dict[str, Any]]] = field(default_factory=dict)
     ota_comparisons: list[dict[str, Any]] = field(default_factory=list)
+    # Категории с размещениями (D17) — в заглушках пока нет; тесты кладут сюда свои.
+    room_types_by_hotel: dict[str, list[dict[str, Any]]] = field(default_factory=dict)
 
     @classmethod
     def load(cls, root: Path = FIXTURES) -> StubStore:
@@ -77,6 +79,9 @@ class StubStore:
             for h in hotel_ids
             if feature_id in self.by_hotel.get(h, {})
         }
+
+    def room_types(self, hotel_ids: Collection[str]) -> dict[str, list[dict[str, Any]]]:
+        return {h: self.room_types_by_hotel[h] for h in hotel_ids if h in self.room_types_by_hotel}
 
     def questions(self, hotel_id: str) -> list[dict[str, Any]]:
         return self.questions_by_hotel.get(hotel_id, [])
