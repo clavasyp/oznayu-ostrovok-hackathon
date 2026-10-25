@@ -1,0 +1,258 @@
+{
+  "$defs": {
+    "CompactAtom": {
+      "additionalProperties": false,
+      "properties": {
+        "atom_id": {
+          "title": "Atom Id",
+          "type": "string"
+        },
+        "text": {
+          "title": "Text",
+          "type": "string"
+        },
+        "requiredness": {
+          "enum": [
+            "required",
+            "desired",
+            "unspecified"
+          ],
+          "title": "Requiredness",
+          "type": "string"
+        },
+        "provenance": {
+          "enum": [
+            "explicit",
+            "inferred"
+          ],
+          "title": "Provenance",
+          "type": "string"
+        },
+        "feature_id": {
+          "title": "Feature Id",
+          "type": "string"
+        },
+        "field": {
+          "title": "Field",
+          "type": "string"
+        },
+        "op": {
+          "enum": [
+            "eq",
+            "ne",
+            "lt",
+            "lte",
+            "gt",
+            "gte",
+            "in",
+            "exists",
+            ""
+          ],
+          "title": "Op",
+          "type": "string"
+        },
+        "value": {
+          "title": "Value",
+          "type": "string"
+        },
+        "unit": {
+          "title": "Unit",
+          "type": "string"
+        },
+        "params": {
+          "items": {
+            "$ref": "#/$defs/Param"
+          },
+          "title": "Params",
+          "type": "array"
+        },
+        "mapping": {
+          "enum": [
+            "exact",
+            "partial",
+            "different_meaning",
+            "unmatched"
+          ],
+          "title": "Mapping",
+          "type": "string"
+        },
+        "importance": {
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ],
+          "title": "Importance",
+          "type": "string"
+        }
+      },
+      "required": [
+        "atom_id",
+        "text",
+        "requiredness",
+        "provenance",
+        "feature_id",
+        "field",
+        "op",
+        "value",
+        "unit",
+        "params",
+        "mapping",
+        "importance"
+      ],
+      "title": "CompactAtom",
+      "type": "object"
+    },
+    "CompactClarify": {
+      "additionalProperties": false,
+      "properties": {
+        "question": {
+          "title": "Question",
+          "type": "string"
+        },
+        "about": {
+          "title": "About",
+          "type": "string"
+        },
+        "options": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Options",
+          "type": "array"
+        }
+      },
+      "required": [
+        "question",
+        "about",
+        "options"
+      ],
+      "title": "CompactClarify",
+      "type": "object"
+    },
+    "OrGroup": {
+      "additionalProperties": false,
+      "properties": {
+        "group_id": {
+          "title": "Group Id",
+          "type": "string"
+        },
+        "atom_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Atom Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "group_id",
+        "atom_ids"
+      ],
+      "title": "OrGroup",
+      "type": "object"
+    },
+    "Param": {
+      "additionalProperties": false,
+      "properties": {
+        "key": {
+          "title": "Key",
+          "type": "string"
+        },
+        "value": {
+          "title": "Value",
+          "type": "string"
+        }
+      },
+      "required": [
+        "key",
+        "value"
+      ],
+      "title": "Param",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "city": {
+      "title": "City",
+      "type": "string"
+    },
+    "date_from": {
+      "title": "Date From",
+      "type": "string"
+    },
+    "date_to": {
+      "title": "Date To",
+      "type": "string"
+    },
+    "adults": {
+      "title": "Adults",
+      "type": "string"
+    },
+    "children_ages": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Children Ages",
+      "type": "array"
+    },
+    "pets": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Pets",
+      "type": "array"
+    },
+    "context_text": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Context Text",
+      "type": "array"
+    },
+    "atoms": {
+      "items": {
+        "$ref": "#/$defs/CompactAtom"
+      },
+      "title": "Atoms",
+      "type": "array"
+    },
+    "or_groups": {
+      "items": {
+        "$ref": "#/$defs/OrGroup"
+      },
+      "title": "Or Groups",
+      "type": "array"
+    },
+    "negated_atoms": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Negated Atoms",
+      "type": "array"
+    },
+    "clarify": {
+      "items": {
+        "$ref": "#/$defs/CompactClarify"
+      },
+      "title": "Clarify",
+      "type": "array"
+    }
+  },
+  "required": [
+    "city",
+    "date_from",
+    "date_to",
+    "adults",
+    "children_ages",
+    "pets",
+    "context_text",
+    "atoms",
+    "or_groups",
+    "negated_atoms",
+    "clarify"
+  ],
+  "title": "CompactAST",
+  "type": "object"
+}
