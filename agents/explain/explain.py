@@ -125,6 +125,19 @@ def _evidence(item: dict[str, Any], catalog: Catalog, fact: Callable[[str], Fact
     return ", ".join(x for x in (shown, note) if x)
 
 
+UNKNOWN_SEP = ": нужно уточнить"
+
+
+def _merge_heads(a: str, b: str) -> str:
+    """Подписи с одной причиной: у одной характеристики — общая («можно с животным» и «можно
+    с животным (масса)» → первая), у разных — через запятую."""
+    if b.startswith(a) or b.lower() in a.lower():
+        return a
+    if a.startswith(b):
+        return b
+    return f"{a}, {b}"
+
+
 def _label(item: dict[str, Any], catalog: Catalog) -> str:
     feature = catalog.get(item.get("feature_id") or "")
     label = feature.short if feature else (item.get("text_span") or "условие")
@@ -158,7 +171,7 @@ def _condition_claim(
         reason = (item.get("reason") or "").rstrip(".")
         reason = reason[:1].lower() + reason[1:] if reason else ""
         tail = ", ".join(x for x in (evidence, reason) if x)
-        text = f"{label}: нужно уточнить" + (f" — {tail}" if tail else "")
+        text = f"{label}{UNKNOWN_SEP}" + (f" — {tail}" if tail else "")
     else:
         text = f"{label}: {VERDICT_WORD.get(verdict, verdict)}" + (
             f" ({evidence})" if evidence else ""
@@ -230,6 +243,16 @@ def build_claims(
 
     def add(claim: Claim) -> None:
         same = next((c for c in claims if c.text == claim.text), None)
+        if same is None and claim.kind == "unknown":
+            # Одна и та же причина «нужно уточнить» — один раз: «лифт, кондиционер: нужно
+            # уточнить — нет данных»; у одной характеристики — общая подпись.
+            head, _, reason = claim.text.partition(UNKNOWN_SEP)
+            for c in claims:
+                c_head, _, c_reason = c.text.partition(UNKNOWN_SEP)
+                if c.kind == "unknown" and reason and c_reason == reason:
+                    c.text = f"{_merge_heads(c_head, head)}{UNKNOWN_SEP}{reason}"
+                    same = c
+                    break
         if same is None:
             claims.append(claim)
         else:  # одно и то же утверждение дважды не говорим — объединяем факты

@@ -125,3 +125,17 @@ def test_api_search_has_template_explanation_and_explain_endpoint():
         assert any("ключ LLM не задан" in n for n in one["notes"])  # в тестах ключей нет
         missing = c.post("/api/explain", json={"text": "у моря", "hotel_id": "nope"})
         assert missing.status_code == 404
+
+
+def test_same_reason_is_said_once():
+    """Ревью №12: на «с собакой 10 кг» было две почти одинаковые фразы «нужно уточнить —
+    об этом у нас пока нет данных». Одна причина — одна фраза; разные условия — через запятую."""
+    with TestClient(create_app()) as c:
+        dog = c.post("/api/search", json={"text": "С собакой 10 кг", "city_id": "sochi"}).json()
+        both = c.post(
+            "/api/search", json={"text": "обязательно лифт и кондиционер", "city_id": "sochi"}
+        ).json()
+    text = dog["results"][0]["explanation"]["text"]
+    assert text.count("нужно уточнить") == 1 and text.startswith("Можно с животным:")
+    text = both["results"][0]["explanation"]["text"]
+    assert text.count("нужно уточнить") == 1 and text.startswith("Лифт, кондиционер")
