@@ -24,6 +24,7 @@ from starlette.responses import Response
 from starlette.types import Scope
 
 from app.api.routes import router
+from app.api.specs import router as specs_router
 from app.state import AppState, Phase
 from app.stub_store import StubStore
 from core.store_db import DbStore
@@ -133,6 +134,7 @@ def create_app(ui_dist: Path | None = None) -> FastAPI:
         return health()
 
     app.include_router(router)
+    app.include_router(specs_router)
     _mount_ui(app, ui_dist or Path(os.environ.get("UI_DIST", UI_DIST)))
     return app
 

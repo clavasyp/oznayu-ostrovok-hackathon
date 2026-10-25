@@ -50,6 +50,7 @@
 | `GET /api/cities`, `/api/cities/{id}/coverage` | Города (глубина `full` / `automatic`), покрытие 54 характеристик |
 | `GET /api/hotels?city_id=`, `/api/hotels/{id}`, `/api/facts/{fact_id}` | Отели, факты с паспортами и `unknown_reason_text`, категории с размещениями (`room_types`) |
 | `POST /api/search` | `{text, city_id, ast}` → AST + результаты со статусами; без `ast` — пример запроса трека |
+| `POST /api/specs/draft`, `POST /api/specs/trial` | Новая характеристика из текста (core §7.4): `{text}` → черновик YAML, проблемы и замечания; `{yaml, city_id, n}` → покрытие пробного расчёта. Ничего не сохраняет и не включает |
 | `GET /api/hotelier/{id}/questions` | 26 вопросов с предзаполнением и состоянием: `not_asked`, `asked`, `answered`, `answered_unknown`, `answered_unparsed` |
 | `POST /api/hotelier/{id}/questions/{question_id}/ask` | Вопрос отправлен отелю |
 | `POST /api/hotelier/{id}/answers` | Ответ → факты → поиск сразу видит новое; с `ast` — статус отеля до и после (см. ниже) |
