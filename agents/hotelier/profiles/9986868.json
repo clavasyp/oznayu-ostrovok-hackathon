@@ -1,0 +1,18 @@
+{
+  "hotel_id": "9986868",
+  "name": "Cosmos Сочи Отель",
+  "note": "Закрытый профиль имитатора отельера: эталонная правда для показа, НЕ факты. Поля — parsed_fields вопросов v9. Ответы уходят с is_simulated.",
+  "seed": 3,
+  "style": "plain",
+  "answers": {
+    "A02": {"fields": {"threshold_mm": 20, "clear_width_mm": 900}},
+    "A03": {"fields": {"lift_id": "present", "door_width_mm": 800, "cabin_width_mm": 1000, "cabin_depth_mm": 1300}, "style": "vague"},
+    "A04": {"fields": {"shower_threshold_mm": 150}},
+    "A05": {"fields": {"door_clear_widths_mm": 700}},
+    "L04": {"fields": {"front_desk_hours": "24/7"}},
+    "P01": {"fields": {"species": "none"}},
+    "S04": {"fields": {"hvac_type": "present"}},
+    "T04": {"say": "Своей парковки нет, рядом городская платная стоянка."}
+  },
+  "categories": []
+}

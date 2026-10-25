@@ -285,6 +285,37 @@ def evaluate_category(
     return out
 
 
+def _any_of(ast: QueryAST, conds: list[Condition], results: list[dict]) -> list[dict]:
+    """OR-группы обязательных условий уровня отеля из графа `logic` AST: группа «да», если «да»
+    хотя бы одно её условие (трёхзначно, `or3`). Пример — «заселиться ночью»: круглосуточная
+    стойка ИЛИ самозаселение. Остальной граф пока — AND, как без `logic`."""
+    if not ast.logic:
+        return results
+    nodes = {n.node_id: n for n in ast.logic}
+    by_atom = {c.atom_id: i for i, c in enumerate(conds) if c.atom_id}
+    grouped: set[int] = set()
+    merged = []
+    for n in ast.logic:
+        if n.op != "OR":
+            continue
+        idx = [
+            by_atom[nodes[ch].atom_id]
+            for ch in n.children
+            if ch in nodes and nodes[ch].op == "ATOM" and nodes[ch].atom_id in by_atom
+        ]
+        if len(idx) < 2:
+            continue
+        grouped.update(idx)
+        rs = [results[i] for i in idx]
+        verdict = or3(r["verdict"] for r in rs)
+        code = next((r.get("reason_code") for r in rs if r.get("reason_code")), "unknown")
+        extra = {"fact_ids": [x for r in rs for x in r["fact_ids"]], "any_of": rs}
+        merged.append(
+            _result(conds[idx[0]], verdict, code if verdict == Verdict.unknown else None, **extra)
+        )
+    return [r for i, r in enumerate(results) if i not in grouped] + merged
+
+
 def _score(soft: list[dict[str, Any]]) -> dict[str, float]:
     score_min = sum(s["weight"] for s in soft if s["verdict"] == Verdict.yes)
     score_max = score_min + sum(s["weight"] for s in soft if s["verdict"] == Verdict.unknown)
@@ -318,6 +349,7 @@ def search(
         hard_hotel, hard_cat, hard_win = split(list(ast.hard))
         soft_hotel, soft_cat, soft_win = split(list(ast.soft))
         hard = [evaluate(own[c.feature_id], c, hard=True) for c in hard_hotel]
+        hard = _any_of(ast, hard_hotel, hard)
         # Обязательная часть запроса вне каталога (D34) не засчитывается как выполненная.
         hard += [
             {
