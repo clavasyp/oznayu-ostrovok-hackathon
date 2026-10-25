@@ -153,6 +153,20 @@ def test_units_and_domain():
     assert parsed.fields == {"clear_width_mm": 900}
 
 
+def test_decimal_point_and_dotted_time():
+    """Точка внутри числа не делит фразу: «0.6 м» — это 0,6 м, а не 6; «09.00» — время."""
+    assert parse_answer("F05", "Глубина бассейна: 0.6 м.", gateway=OFFLINE).fields == {
+        "depth_m": 0.6
+    }
+    assert parse_answer("P01", "Можно с собакой до 10.5 кг", gateway=OFFLINE).fields == {
+        "species": "dog",
+        "weight_kg": 10.5,
+    }
+    hours = parse_answer("L04", "Стойка работает с 09.00 до 21.00.", gateway=OFFLINE).fields
+    assert hours == {"front_desk_hours": "09:00-21:00"}
+    assert parse_answer("F05", "Заезд с 14.00.", gateway=OFFLINE).fields == {}  # не «0 лет»
+
+
 def test_presence_no_beats_type_word():
     parsed = parse_answer("T04", "Своей парковки нет, рядом городская стоянка.", gateway=OFFLINE)
     assert parsed.fields["parking_owner"] == "none"
