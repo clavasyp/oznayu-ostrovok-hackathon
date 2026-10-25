@@ -8,7 +8,7 @@ from __future__ import annotations
 
 from datetime import date
 
-from agents.catalog import Catalog
+from agents.catalog import Catalog, load_places
 from agents.search.compact import CITY_IDS
 
 SYSTEM = """\
@@ -48,8 +48,12 @@ SYSTEM = """\
 11. Субъективное («уютно», «красиво», «вкусно») — атом с `feature_id` = "subjective" и
     `mapping` = `unmatched`.
 12. «Рядом место типа X» («итальянский ресторан рядом») — `feature_id` = "", `mapping` =
-    `unmatched`, `params` = [{{key: "nearest_contract", value: "nearby_place"}}], `value` —
-    категория вида `cuisine=italian`. «Доехать до X» — `nearest_contract` = `trip_to_target`,
+    `unmatched`, `params` = [{{key: "nearest_contract", value: "nearby_place"}}], `value` — ID
+    категории из списка мест ниже (нет подходящей — как сказал гость). Расстояние гостя («в 5
+    минутах») — `params` `distance` = "5", `distance_unit` = "минут"; место в самом отеле
+    («отель с бассейном», «ресторан в отеле») — `on_site` = "true". Аптека, супермаркет, еда
+    в нужный час, ветклиника, детская площадка, коворкинг, бары — это характеристики каталога,
+    а не места. «Доехать до X» — `nearest_contract` = `trip_to_target`,
     `value` — цель. «Съездить в X и вернуться в тот же день» — `same_day_round_trip`.
 13. Ничего важного для гостя не пропускай: каждая такая часть запроса должна стать атомом —
     с характеристикой или без.
@@ -61,11 +65,17 @@ SYSTEM = """\
 Каталог характеристик (ID | смысл | уровень | поля[единица] | поле по умолчанию | операторы |
 параметры | как говорят гости):
 {catalog}
+
+Места для «рядом место типа X» (ID | что это):
+{places}
 """
 
 
 def system_prompt(catalog: Catalog) -> str:
-    return SYSTEM.format(cities=", ".join(CITY_IDS), catalog=catalog.prompt_listing())
+    places = "\n".join(f"{c.id} | {c.label}" for c in load_places().categories.values())
+    return SYSTEM.format(
+        cities=", ".join(CITY_IDS), catalog=catalog.prompt_listing(), places=places
+    )
 
 
 def user_prompt(text: str, city_id: str | None, today: date) -> str:

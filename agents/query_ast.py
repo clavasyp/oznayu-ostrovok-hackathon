@@ -70,6 +70,24 @@ class Clarification(BaseModel):
     options: list[str] = Field(default_factory=list)
 
 
+class NearbyPlace(BaseModel):
+    """«Рядом место типа X» (задача 4): категория из `agents/catalog/places.json` и радиус.
+
+    Проверить можно, когда в пакете города будет таблица «отель × места рядом» (метки OSM,
+    рубрики 2ГИС); до тех пор часть запроса — «вне каталога», но уже с категорией.
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    category: str = Field(description="ID категории из словаря мест")
+    label: str
+    radius_m: int | None = Field(default=None, gt=0, description="Пешком; None — место в отеле")
+    radius_source: Literal["guest", "policy"] | None = Field(
+        default=None, description="guest — гость назвал расстояние; policy — «рядом» = near_m"
+    )
+    on_site: bool = Field(default=False, description="«в отеле», «отель с рестораном»")
+
+
 class OutOfCatalog(BaseModel):
     """Часть запроса без характеристики в каталоге (D34): показываем «такое мы пока не знаем»."""
 
@@ -85,6 +103,7 @@ class OutOfCatalog(BaseModel):
     nearest_contracts: list[str] = Field(
         default_factory=list, description="Ближайшие характеристики каталога, если есть"
     )
+    place: NearbyPlace | None = Field(default=None, description="Для `nearby_place`: что и где")
 
 
 class LogicNode(BaseModel):
