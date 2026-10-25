@@ -172,3 +172,115 @@ def test_new_pack_version_replaces_city_but_keeps_runtime_facts(engine, tmp_path
     with engine.begin() as conn:  # вернуть настоящий пакет
         load_pack(conn, PACKS / "moscow")
     assert count(city_id="moscow") == before
+
+
+def test_placements_load_and_drive_search(engine, tmp_path):
+    """Пакет с категориями и размещениями (D17) → база → хранилище → поиск."""
+    from datetime import UTC, datetime
+
+    from agents.query_ast import Condition, QueryAST
+    from core.facts import make_fact_id
+    from core.packs import Manifest, PackFile, sha256_file
+    from core.search import search, window_subject
+    from core.store_db import DbStore
+    from pipeline.build_v9_packs import write_jsonl_gz
+    from pipeline.load_packs import load_pack
+
+    def fact(rt_or_window, level, feature, value):
+        return {
+            "fact_id": make_fact_id("t1", rt_or_window, feature, {}, "test"),
+            "hotel_id": "t1",
+            "city_id": "testcity",
+            "subject_level": level,
+            "subject_id": rt_or_window,
+            "feature_id": feature,
+            "value": value,
+            "status": "computed",
+        }
+
+    parts = {
+        "hotels": [
+            {"id": "t1", "city_id": "testcity", "name": "Т", "latitude": 43.6, "longitude": 39.7}
+        ],
+        "room_types": [
+            {"id": "t1:sea", "hotel_id": "t1", "rg_hash": "sea", "name": "С видом"},
+            {"id": "t1:std", "hotel_id": "t1", "rg_hash": "std", "name": "Стандарт"},
+        ],
+        "placement_sets": [
+            {
+                "room_type_id": rt,
+                "completeness": "complete",
+                "guarantee": "all_guaranteed",
+                "status": "simulated_hotelier",
+            }
+            for rt in ("t1:sea", "t1:std")
+        ],
+        "placements": [
+            {"id": "t1:sea|b|5", "room_type_id": "t1:sea", "building_id": "b", "floor": 5},
+            {"id": "t1:std|b|2", "room_type_id": "t1:std", "building_id": "b", "floor": 2},
+        ],
+        "placement_windows": [
+            {"placement_id": "t1:sea|b|5", "facade_id": "west"},
+            {"placement_id": "t1:std|b|2", "facade_id": "east"},
+        ],
+        "facts": [
+            fact(window_subject("b", "west", 5), "facade_physical_floor", "V05", True),
+            fact(window_subject("b", "east", 2), "facade_physical_floor", "V05", False),
+        ],
+    }
+    pack = tmp_path / "testcity"
+    (pack / "data").mkdir(parents=True)
+    files = []
+    for kind, rows in parts.items():
+        path = pack / "data" / f"{kind}.jsonl.gz"
+        write_jsonl_gz(path, rows)
+        files.append(
+            PackFile(
+                path=f"data/{kind}.jsonl.gz",
+                kind=kind,
+                rows=len(rows),
+                bytes=path.stat().st_size,
+                sha256=sha256_file(path),
+            )
+        )
+    manifest = Manifest(
+        city_id="testcity",
+        city_name="Тест",
+        timezone="Europe/Moscow",
+        depth="full",
+        pack_version="t.1",
+        built_at=datetime.now(UTC),
+        files=files,
+    )
+    (pack / "manifest.json").write_text(manifest.model_dump_json(), "utf-8")
+    with engine.begin() as conn:
+        load_pack(conn, pack)
+
+    db = DbStore(engine)
+    rts = {rt["room_type_id"]: rt for rt in db.room_types(["t1"])["t1"]}
+    assert rts["t1:sea"]["placements"][0]["windows"] == ["west"]
+    assert rts["t1:sea"]["placement_set"]["completeness"] == "complete"
+
+    ast = QueryAST(
+        raw_text="закат",
+        city_id="testcity",
+        hard=[Condition(feature_id="V05", op="eq", value=True)],
+    )
+    r = search(db, ast)[0]
+    assert r["status"] == "fits" and r["best_category"] == "t1:sea"
+
+    # Новая версия пакета без размещений: старые размещения города убираются.
+    for f in manifest.files:
+        if f.kind in ("placement_sets", "placements", "placement_windows"):
+            (pack / f.path).unlink()
+    manifest.files = [
+        f
+        for f in manifest.files
+        if f.kind not in ("placement_sets", "placements", "placement_windows")
+    ]
+    manifest.pack_version = "t.2"
+    (pack / "manifest.json").write_text(manifest.model_dump_json(), "utf-8")
+    with engine.begin() as conn:
+        load_pack(conn, pack)
+    assert all(rt["placement_set"] is None for rt in db.room_types(["t1"])["t1"])
+    assert search(db, ast)[0]["hard"][0]["reason_code"] == "no_placements"

@@ -11,14 +11,24 @@ from pydantic import BaseModel
 
 from agents.query_ast import QueryAST
 from core import search as engine
+from core.facts import Fact
+from core.reasons import reason_text
 from core.store import Store
 from core.verdict import BOOKED_LABEL, BOOKING_IMITATION_NOTE, GUEST_LABELS
 
 router = APIRouter(prefix="/api")
 SEARCH_LEVEL_NOTE = (
-    "Условия проверяются на уровне отеля, его корпусов и маршрутов. "
-    "Размещения категорий (этаж × окна, D17) — следующим шагом."
+    "Условия уровня окна (вид, солнце, шум у окна) проверяются по размещениям категорий "
+    "«здание × этаж × окна» (D17) — все вместе на одном размещении; остальные — по отелю, "
+    "корпусам и маршрутам."
 )
+
+
+def fact_json(f: Fact) -> dict[str, Any]:
+    out = f.model_dump(mode="json")
+    if f.unknown_reason:
+        out["unknown_reason_text"] = reason_text(f.unknown_reason)
+    return out
 
 
 def store(request: Request) -> Store:
@@ -70,10 +80,10 @@ def hotel(hotel_id: str, request: Request) -> dict[str, Any]:
     if h is None:
         raise HTTPException(404, f"нет отеля {hotel_id}")
     facts = {
-        feature: [f.model_dump(mode="json") for f in items]
-        for feature, items in s.hotel_facts(hotel_id).items()
+        feature: [fact_json(f) for f in items] for feature, items in s.hotel_facts(hotel_id).items()
     }
-    return {"stub": s.stub, "hotel": h, "facts": facts}
+    room_types = s.room_types([hotel_id]).get(hotel_id, [])
+    return {"stub": s.stub, "hotel": h, "facts": facts, "room_types": room_types}
 
 
 @router.get("/facts/{fact_id}")
@@ -82,7 +92,7 @@ def fact(fact_id: str, request: Request) -> dict[str, Any]:
     f = s.fact(fact_id)
     if f is None:
         raise HTTPException(404, f"нет факта {fact_id}")
-    return {"stub": s.stub, "fact": f.model_dump(mode="json")}
+    return {"stub": s.stub, "fact": fact_json(f)}
 
 
 @router.post("/search")

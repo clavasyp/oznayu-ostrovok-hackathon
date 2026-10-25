@@ -60,7 +60,8 @@ def test_estimate_does_not_close_hard_condition(client):
     }
     r = result_for(client.post("/api/search", json={"ast": ast(cond)}), RADISSON)
     assert r["status"] == "needs_check"
-    assert "D18" in r["hard"][0]["reason"]
+    assert r["hard"][0]["reason_code"] == "estimate_only"
+    assert r["hard"][0]["reason"]  # текст для экрана
 
 
 def test_valid_no_means_not_fit(client):
@@ -109,4 +110,4 @@ def test_required_out_of_catalog_is_never_fits(client):
     ]
     r = result_for(client.post("/api/search", json={"ast": body}), RADISSON)
     assert r["status"] == "needs_check"
-    assert any("вне каталога" in (h.get("reason") or "") for h in r["hard"])
+    assert any(h.get("reason_code") == "out_of_catalog" for h in r["hard"])

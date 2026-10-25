@@ -37,6 +37,13 @@ class Store(Protocol):
         """Действующие факты одной характеристики для набора отелей — один запрос на условие."""
         ...
 
+    def room_types(self, hotel_ids: Collection[str]) -> dict[str, list[dict[str, Any]]]:
+        """Категории отелей с размещениями (D17):
+        `{room_type_id, name, placement_set: {completeness, guarantee, status, source} | None,
+        placements: [{placement_id, building_id, floor, floor_label, windows: [facade_id]}]}`.
+        """
+        ...
+
     def questions(self, hotel_id: str) -> list[dict[str, Any]]: ...
 
     def conflicts(self, city_id: str | None = None) -> list[dict[str, Any]]:
