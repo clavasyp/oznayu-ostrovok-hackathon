@@ -1,27 +1,24 @@
-"""Адресный вопрос «стороны и этажи окон категории» → факт размещения (D17).
+"""Адресный вопрос «стороны и этажи окон категории» → размещения D17 для `core/hotelier.py`.
 
-Размещение — список конкретных пар «корпус × этажи × сторона», а не два массива: иначе
-появляются ложные сочетания (core §2.1). Разбор: модель по схеме или правила; позиции цитат и
-проверка чисел — на сервере. Результат — факт `category_placement` уровня категории: по нему
-лид считает вид и солнце по этажам («закат виден с 5-го этажа»).
+Размещение — список конкретных пар «здание × этаж × окна», а не два массива: иначе появляются
+ложные сочетания «восток-5» (core §2.1). Разбор: модель по схеме или правила; позиции цитат и
+проверка чисел — на сервере. Перевод в `placements` ответа (`to_placements`) требует знать, какое
+здание назвал отельер и какой фасад смотрит на названную сторону: без этого размещение не
+отправляется — «нужно уточнить», а не догадка.
 """
 
 from __future__ import annotations
 
 import re
-from datetime import UTC, datetime
 from typing import Any, Literal
 
 from pydantic import BaseModel, ConfigDict
 
 from agents.llm import Gateway, LLMError, get_gateway
 from agents.search.text import find_span, normalize
-from core.facts import Confidence, Fact, RecipeAttempt, Source, Status, make_fact_id
 
 FEATURE_ID = "category_placement"
-ALGORITHM = "hotelier_placement@1"
 Side = Literal["N", "NE", "E", "SE", "S", "SW", "W", "NW", "courtyard"]
-AZIMUTH = {"N": 0, "NE": 45, "E": 90, "SE": 135, "S": 180, "SW": 225, "W": 270, "NW": 315}
 _SIDES = [
     (r"северо-восток\w*", "NE"), (r"северо-запад\w*", "NW"), (r"юго-восток\w*", "SE"),
     (r"юго-запад\w*", "SW"), (r"север\w*", "N"), (r"восток\w*", "E"), (r"\bюг\w*", "S"),
@@ -128,54 +125,32 @@ def parse_placement(
     return compact, rejected, parsed_by
 
 
-def placement_fact(
-    *,
-    hotel_id: str,
-    city_id: str,
-    room_type_id: str,
+def to_placements(
     compact: PlacementCompact,
-    question_id: str,
-    is_simulated: bool,
-    parsed_by: str,
-    at: datetime | None = None,
-) -> Fact | None:
-    if not compact.placements:
-        return None
-    at = at or datetime.now(UTC)
-    algorithm = ALGORITHM + (":simulated" if is_simulated else "")
-    placements: list[dict[str, Any]] = [
-        {
-            "building": p.building or None,
-            "floors": list(range(int(p.floor_from), int(p.floor_to) + 1)),
-            "side": p.side,
-            "azimuth_deg": AZIMUTH.get(p.side),
-        }
-        for p in compact.placements
-    ]
-    return Fact(
-        fact_id=make_fact_id(hotel_id, room_type_id, FEATURE_ID, {}, algorithm),
-        hotel_id=hotel_id,
-        city_id=city_id,
-        subject_level="room_type",
-        subject_id=room_type_id,
-        feature_id=FEATURE_ID,
-        value={
-            "placements": placements,
-            "completeness": compact.completeness,
-            "guarantee": compact.guarantee,
-        },
-        status=Status.simulated_hotelier if is_simulated else Status.hotelier,
-        sources=[Source(provider="hotelier_simulator" if is_simulated else "hotelier")],
-        recipe_id="ask_hotelier",
-        algorithm_version=algorithm,
-        confidence=Confidence(level="medium", reason="ответ отельера о размещении категории"),
-        observed_at=at,
-        calculated_at=at,
-        recipe_attempts=[RecipeAttempt(recipe_id="ask_hotelier", state="accepted", data_kind="В")],
-        # Без гарантии варианта размещение не обещает этаж и сторону конкретной брони (D17).
-        hard_condition_eligible=compact.guarantee == "all_guaranteed",
-        is_simulated=is_simulated,
-        question_id=question_id,
-        quotes=[p.quote for p in compact.placements],
-        parsed_by=parsed_by,
-    )
+    buildings: dict[str, str],
+    facades: dict[tuple[str, str], str],
+) -> tuple[dict[str, Any] | None, list[str]]:
+    """Разобранный ответ → `placements` для `POST /api/hotelier/{id}/answers` (D17).
+
+    `buildings` — как отельер называет корпус → `building_id`; `facades` — (`building_id`,
+    сторона) → `facade_id`. Чего нет в справочниках — не угадываем: размещение не отправляется,
+    причины — во втором значении.
+    """
+    items, missing = [], []
+    for p in compact.placements:
+        building_id = buildings.get(normalize(p.building).strip()) or (
+            next(iter(buildings.values())) if len(buildings) == 1 and not p.building else None
+        )
+        if building_id is None:
+            missing.append(f"нет здания «{p.building}» среди корпусов отеля")
+            continue
+        facade = facades.get((building_id, p.side))
+        if facade is None:
+            missing.append(f"у здания {building_id} нет фасада на сторону {p.side}")
+            continue
+        for floor in range(int(p.floor_from), int(p.floor_to) + 1):
+            items.append({"building_id": building_id, "floor": floor, "windows": [facade]})
+    if missing or not items:
+        return None, missing or ["нет вариантов размещения"]
+    guarantee = compact.guarantee if compact.guarantee != "unknown" else "some_possible"
+    return {"completeness": compact.completeness, "guarantee": guarantee, "items": items}, []

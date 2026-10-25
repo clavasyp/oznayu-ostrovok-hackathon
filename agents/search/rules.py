@@ -18,7 +18,7 @@ from dataclasses import field as dfield
 from datetime import date
 
 from agents.catalog import Catalog
-from agents.search.compact import CompactAST, CompactAtom, CompactClarify, Param
+from agents.search.compact import CompactAST, CompactAtom, CompactClarify, OrGroup, Param
 from agents.search.text import normalize
 
 # --- Пороги политики (не измерения): меняются здесь и видны в разборе ---
@@ -29,6 +29,8 @@ NEAR_FOOD_M = 500
 NEAR_PLAYGROUND_M = 500
 NEAR_PHARMACY_M = 1000
 NEAR_VET_M = 3000
+STEP_FREE_MM = 20  # «без ступеней», «душ без бортика»: порог не выше 2 см
+DESK_MIN_MM = 600  # «нормальный рабочий стол»: ширина не меньше 60 см
 QUIET_ROAD_M = 200  # «тихий» снаружи: до оживлённой дороги не ближе 200 м
 QUIET_BARS_MAX = 2  # и не больше двух баров в 300 м
 BARS_LIKED_MIN = 3
@@ -112,6 +114,7 @@ class Hit:
     clarify: list[CompactClarify] = dfield(default_factory=list)
     # Слова, на которые правило опиралось как на контекст («ночью», «при закрытых окнах»).
     context: list[tuple[int, int]] = dfield(default_factory=list)
+    any_of: bool = False  # атомы — варианты одного требования (OR), а не все сразу
 
 
 @dataclass
@@ -268,9 +271,11 @@ def quiet(ctx: Ctx) -> Iterator[Hit]:
                 params["windows_state"] = "open"
             elif re.search(r"закрыт\w+\s+окн", sent):
                 params["windows_state"] = "closed"
-            atom = Atom("N05", "laeq_dba", "lte", str(QUIET_INDOOR_DBA), "dB(A)", params)
+            atoms = [Atom("N05", "LAeq_dBA", "lte", str(QUIET_INDOOR_DBA), "dB(A)")]
+            if "windows_state" in params:  # замер при тех же окнах, что у гостя
+                atoms.append(Atom("N05", "windows_state", "eq", params["windows_state"]))
             context = ctx.matches_in_sentence(INDOOR, m.start())
-            yield Hit(m.start(), m.end(), [atom], "desired", context=context)
+            yield Hit(m.start(), m.end(), atoms, "desired", context=context)
         else:
             clarify = CompactClarify(
                 question="«Тихий» — важна тишина в самом номере или подальше от дорог и баров?",
@@ -558,10 +563,14 @@ def courtyard(ctx: Ctx) -> Iterator[Hit]:
         yield Hit(m.start(), m.end(), [Atom("courtyard", "is_courtyard", "eq", "true")], "required")
 
 
-def _simple(pattern: str, feature: str, field_: str, default: str = "required", **kw) -> Rule:
+# Вопросы отельеру: поля — ровно `parsed_fields` вопроса (контракт core/hotelier.py). «Есть» там,
+# где у вопроса нет поля да / нет, — «значение не none» (schemas.PRESENCE в agents/hotelier).
+def _simple(
+    pattern: str, feature: str, field_: str, op: str = "eq", value: str = "true", **kw
+) -> Rule:
     def fn(ctx: Ctx) -> Iterator[Hit]:
         for m in finditer(pattern, ctx):
-            yield Hit(m.start(), m.end(), [Atom(feature, field_, "eq", "true", **kw)], default)
+            yield Hit(m.start(), m.end(), [Atom(feature, field_, op, value, **kw)], "required")
 
     fn.__name__ = f"rule_{feature}_{field_}"
     return rule(fn)
@@ -569,29 +578,41 @@ def _simple(pattern: str, feature: str, field_: str, default: str = "required", 
 
 _simple(r"балкон\w*|лоджи\w*", "M02", "private_balcony")
 _simple(r"\bтеррас\w*(?!\s+общ)", "M02", "private_terrace")
-_simple(r"кондиционер\w*|кондей", "S04", "has_ac")
+_simple(r"кондиционер\w*|кондей", "S04", "hvac_type", "ne", "none")
 _simple(
     r"(?:полноценн\w+\s+|полн\w+\s+)?затемнени\w*|блэкаут|blackout"
     r"|полн\w+\s+темнот\w*(?:\s+в\s+(?:комнате|номере))?|плотн\w+\s+штор\w*",
     "S05",
-    "full_blackout",
+    "opaque_coverage",
+    value="full",
 )
 _simple(r"(?:(?:нормальн|рабоч|удобн|пригодн)\w*\s+){1,2}стол(?:а|ом)?\b(?:\s+для\s+работы)?"
-        r"|\bстол(?:а|ом)?\s+для\s+работы", "R03", "has_desk")  # fmt: skip
+        r"|\bстол(?:а|ом)?\s+для\s+работы", "R03", "desk_clear_width_mm", "gte",
+        str(DESK_MIN_MM), unit="mm")  # fmt: skip
 _simple(
-    r"(?:собственн\w+\s+|сво\w+\s+)?парковк\w*(?:\s+у\s+отеля|\s+в\s+отеле)?", "T04", "own_parking"
+    r"(?:собственн\w+\s+|сво\w+\s+)?парковк\w*(?:\s+у\s+отеля|\s+в\s+отеле)?",
+    "T04",
+    "parking_owner",
+    value="own",
 )
-_simple(r"(?:детск\w+\s+)?кроватк\w*", "F03", "cot_available")
-_simple(r"смежн\w+\s+номер\w*", "F04", "connecting_rooms")
-_simple(r"детск\w+\s+бассейн\w*", "F05", "kids_pool")
+_simple(r"(?:детск\w+\s+)?кроватк\w*", "F03", "cot_dimensions", "ne", "none")
+_simple(r"смежн\w+\s+номер\w*", "F04", "internal_connecting_door")
+_simple(r"детск\w+\s+бассейн\w*", "F05", "pool_id", "ne", "none")
 _simple(
     r"(?:своя\s+|приватн\w+\s+)?кухн\w*\s+в\s+номере|кухонн\w+\s+зон\w*",
     "M03",
     "private_kitchenette",
 )
 _simple(r"\bчайник\w*", "M04", "in_room_kettle")
-_simple(r"\bсейф\w*", "M05", "has_safe")
-_simple(r"душ\w*\s+без\s+(?:бортик|порог)\w*", "A04", "step_free_shower")
+_simple(r"\bсейф\w*", "M05", "access", "ne", "none")
+_simple(
+    r"душ\w*\s+без\s+(?:бортик|порог)\w*",
+    "A04",
+    "shower_threshold_mm",
+    "lte",
+    str(STEP_FREE_MM),
+    unit="mm",
+)
 
 
 @rule
@@ -599,7 +620,7 @@ def lift(ctx: Ctx) -> Iterator[Hit]:
     for m in finditer(r"лифт\w*", ctx):
         if re.search(r"не\s+пользу\w*\s*$", ctx.norm[max(0, m.start() - 20) : m.start()]):
             continue  # «не пользуется лифтом» — не требование лифта
-        yield Hit(m.start(), m.end(), [Atom("A03", "has_lift", "eq", "true")], "required")
+        yield Hit(m.start(), m.end(), [Atom("A03", "lift_id", "ne", "none")], "required")
 
 
 @rule
@@ -611,12 +632,8 @@ def step_free(ctx: Ctx) -> Iterator[Hit]:
     for m in finditer(pattern, ctx):
         # Путь до номера целиком строже, чем вход в вестибюль (A02): соответствие частичное.
         mapping = "partial" if "до номера" in m.group() else "exact"
-        yield Hit(
-            m.start(),
-            m.end(),
-            [Atom("A02", "step_free", "eq", "true", mapping=mapping)],
-            "required",
-        )
+        atom = Atom("A02", "threshold_mm", "lte", str(STEP_FREE_MM), "mm", mapping=mapping)
+        yield Hit(m.start(), m.end(), [atom], "required")
 
 
 @rule
@@ -626,9 +643,15 @@ def pets(ctx: Ctx) -> Iterator[Hit]:
         rf"(?:[\s,]+(?:\w+\s+){{0,2}}?(?P<kg>{NUM})\s*(?:кг|килограмм\w*))?"
     )
     for m in finditer(pattern, ctx):
-        atoms = [Atom("P01", "pets_allowed", "eq", "true")]
+        sp = m.group("sp")
+        if re.match(r"собак|пес|пса", sp):
+            atoms = [Atom("P01", "species", "in", "dog,dog_cat,any")]
+        elif re.match(r"кошк|кот", sp):
+            atoms = [Atom("P01", "species", "in", "cat,dog_cat,any")]
+        else:
+            atoms = [Atom("P01", "species", "ne", "none")]
         if m.group("kg"):
-            atoms.append(Atom("P01", "max_weight_kg", "gte", number(m.group("kg")), "kg"))
+            atoms.append(Atom("P01", "weight_kg", "gte", number(m.group("kg")), "kg"))
         yield Hit(m.start(), m.end(), atoms, "required")
 
 
@@ -644,10 +667,11 @@ def charger(ctx: Ctx) -> Iterator[Hit]:
             atom = Atom("T05", value=m.group(), mapping="different_meaning")
             yield Hit(m.start(), m.end(), [atom], "desired")
             continue
-        atoms = [Atom("T05", "has_charger", "eq", "true")]
         if re.search(r"type\s*2|тайп\s*2", m.group()):
-            atoms.append(Atom("T05", "connector", "eq", "type2"))
-        yield Hit(m.start(), m.end(), atoms, "required")
+            atom = Atom("T05", "connector", "eq", "type2")
+        else:
+            atom = Atom("T05", "connector", "ne", "none")
+        yield Hit(m.start(), m.end(), [atom], "required")
 
 
 @rule
@@ -657,8 +681,12 @@ def checkin(ctx: Ctx) -> Iterator[Hit]:
         r"(?:ночью|после\s+полуночи|поздно|поздним\s+вечером)|ночн\w+\s+заселени\w*|поздн\w+\s+заезд\w*"
     )
     for m in finditer(pattern, ctx):
-        # Политика заселения — ответ отельера общего вида, без параметров момента.
-        yield Hit(m.start(), m.end(), [Atom("L04", "checkin_possible", "eq", "true")], "required")
+        # Заселиться ночью можно при круглосуточной стойке ИЛИ при самозаселении.
+        atoms = [
+            Atom("L04", "front_desk_hours", "eq", "24/7"),
+            Atom("L04", "self_checkin", "eq", "true"),
+        ]
+        yield Hit(m.start(), m.end(), atoms, "required", any_of=True)
 
 
 @rule
@@ -669,7 +697,7 @@ def wifi(ctx: Ctx) -> Iterator[Hit]:
     )
     for m in finditer(pattern, ctx):
         upload = re.search(r"отдач|upload|выгрузк", m.group())
-        field_ = "upload_mbps" if upload else "download_mbps"
+        field_ = "upload_Mbps" if upload else "download_Mbps"
         atom = Atom("R01", field_, "gte", number(m.group("n")), "Mbit/s")
         yield Hit(m.start(), m.end(), [atom], "required")
     for m in finditer(r"стабильн\w+\s+(?:wi-?fi|вай-?фай|интернет\w*)", ctx):
@@ -803,9 +831,13 @@ def parse_rules(
     atoms: list[CompactAtom] = []
     spans: dict[str, tuple[int, int]] = {}
     clarify: list[CompactClarify] = []
+    or_groups: list[OrGroup] = []
     pets: list[str] = []
     for h in kept:
         req = requiredness(ctx, h.start, h.default)
+        if h.any_of:
+            ids = [f"a{len(atoms) + i + 1}" for i in range(len(h.atoms))]
+            or_groups.append(OrGroup(group_id=f"g{len(or_groups) + 1}", atom_ids=ids))
         for a in h.atoms:
             atom_id = f"a{len(atoms) + 1}"
             spans[atom_id] = (h.start, h.end)
@@ -825,7 +857,7 @@ def parse_rules(
                     importance=a.importance,
                 )
             )
-            if a.feature_id == "P01" and a.field == "pets_allowed":
+            if a.feature_id == "P01" and a.field == "species":
                 pets.append("cat" if re.search(r"кош|кот", norm[h.start : h.end]) else "dog")
         for c in h.clarify:
             if all(c.about != x.about for x in clarify):
@@ -841,7 +873,7 @@ def parse_rules(
         pets=pets,
         context_text=[raw[s:e] for s, e in ctx.context],
         atoms=atoms,
-        or_groups=[],
+        or_groups=or_groups,
         negated_atoms=[],
         clarify=clarify,
     )

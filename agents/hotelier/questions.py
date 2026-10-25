@@ -1,8 +1,10 @@
-"""Вопросы отельеру с предзаполнением (core §7.2): 26 вопросов v9 + адресные вопросы расчёта.
+"""Вопросы отельеру: текст предзаполнения и поля ответа (core §7.2) + адресные вопросы расчёта.
 
-Предзаполнение — заявления со страницы Островка (v9 `prefill.jsonl`, для отелей показа —
-`app/fixtures/questions.json`): «на Островке указано так — верно?». Это заявление, а не
-проверка: вопрос задаётся всё равно, ответ отельера сверяется с ним.
+Сами вопросы и их состояние ведёт хранилище (`core.store.Store.questions`). Агент добавляет:
+- **предзаполнение** — «на Островке указано так — это верно?» по заявлениям страницы (v9
+  `prefill`). Это заявление, а не проверка: вопрос задаётся всё равно;
+- **поля ответа** — типы, единицы и подписи для формы кабинета и для разбора ответа;
+- **адресные вопросы** «стороны и этажи окон категории» — для вида и солнца (D17).
 """
 
 from __future__ import annotations
@@ -14,10 +16,10 @@ from pathlib import Path
 from typing import Any
 
 from agents.catalog import load_catalog
-from agents.hotelier.schemas import CLAIM_FIELDS, label
+from agents.hotelier.schemas import PRESENCE, label
 
 # Копия `research_notes/Расчёт характеристик/hotelier/questions_26.csv` (v9): research_notes
-# в образ приложения не входит, а анкета нужна и при запуске у жюри.
+# в образ приложения не входит, а тексты вопросов нужны и при запуске у жюри.
 QUESTIONS_CSV = Path(__file__).parent / "questions_26.csv"
 
 
@@ -27,11 +29,7 @@ def question_texts() -> dict[str, dict[str, str]]:
         return {r["feature_id"]: r for r in csv.DictReader(f)}
 
 
-def question_id(hotel_id: str, feature_id: str, subject: str = "") -> str:
-    return "q_" + hashlib.sha256(f"{hotel_id}|{feature_id}|{subject}".encode()).hexdigest()[:16]
-
-
-def prefill_text(feature_id: str, claims: list[dict[str, Any]]) -> str | None:
+def prefill_text(claims: list[dict[str, Any]]) -> str | None:
     """«На Островке указано: …» — по заявлениям уровня отеля, затем категорий, без повторов."""
     quotes: list[str] = []
     for c in sorted(claims, key=lambda c: c.get("subject_type") != "hotel"):
@@ -47,45 +45,37 @@ def prefill_text(feature_id: str, claims: list[dict[str, Any]]) -> str | None:
     return f"На странице отеля на Островке указано: «{shown}»{tail}. Это верно?"
 
 
-def build_question(hotel_id: str, raw: dict[str, Any]) -> dict[str, Any]:
-    """Вопрос анкеты: текст v9, предзаполнение, поля ответа, что из предзаполнения сверяется."""
-    feature_id = raw["feature_id"]
+def field_specs(feature_id: str) -> list[dict[str, Any]]:
     feature = load_catalog().get(feature_id)
-    spec = question_texts().get(feature_id, {})
-    claims = raw.get("claims") or []
-    checked = sorted({f for c in claims if (f := CLAIM_FIELDS.get((feature_id, c.get("atom_id"))))})
-    return {
-        "question_id": question_id(hotel_id, feature_id),
-        "hotel_id": hotel_id,
-        "feature_id": feature_id,
-        "title": feature.short if feature else spec.get("name"),
-        "scope": spec.get("scope"),
-        "text": raw.get("question") or spec.get("free_text_question"),
-        "prefill": prefill_text(feature_id, claims),
-        "prefill_claims": [
-            {k: c.get(k) for k in ("quote", "source_url", "fetched_at", "subject_type", "status")}
-            for c in claims
-        ],
-        "prefill_checks_fields": checked,
-        "fields": [
-            {
-                "name": s.name,
-                "type": s.type,
-                "unit": s.unit,
-                "values": list(s.values),
-                "label": label(s.name),
-            }  # fmt: skip
-            for s in (feature.fields.values() if feature else [])
-        ],
-        "answer_status": raw.get("answer_status", "not_asked"),
-        "is_simulated": False,
+    if feature is None:
+        return []
+    return [
+        {
+            "name": s.name,
+            "type": s.type,
+            "unit": s.unit,
+            "values": list(s.values),
+            "label": label(s.name),
+            "absent_value": PRESENCE[s.name][1] if s.name in PRESENCE else None,
+        }
+        for s in feature.fields.values()
+    ]
+
+
+def enrich_question(q: dict[str, Any]) -> dict[str, Any]:
+    """Вопрос из хранилища + предзаполнение и поля (новые ключи; старые не меняются)."""
+    feature = load_catalog().get(q["feature_id"])
+    return q | {
+        "title": feature.short
+        if feature
+        else question_texts().get(q["feature_id"], {}).get("name"),
+        "prefill": prefill_text(q.get("claims") or []),
+        "fields": field_specs(q["feature_id"]),
     }
 
 
-def questionnaire(hotel_id: str, raw_questions: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    """Анкета отеля: сначала вопросы с предзаполнением (подтвердить быстрее), порядок стабилен."""
-    qs = [build_question(hotel_id, raw) for raw in raw_questions]
-    return sorted(qs, key=lambda q: q["prefill"] is None)
+def placement_question_id(hotel_id: str, room_type_id: str) -> str:
+    return "qp_" + hashlib.sha256(f"{hotel_id}|{room_type_id}".encode()).hexdigest()[:16]
 
 
 def placement_question(hotel_id: str, room_type: dict[str, Any]) -> dict[str, Any]:
@@ -93,18 +83,16 @@ def placement_question(hotel_id: str, room_type: dict[str, Any]) -> dict[str, An
     rt_id = room_type["room_type_id"]
     name = room_type.get("name") or rt_id
     return {
-        "question_id": question_id(hotel_id, "category_placement", rt_id),
+        "question_id": placement_question_id(hotel_id, rt_id),
         "hotel_id": hotel_id,
         "feature_id": "category_placement",
         "room_type_id": rt_id,
         "title": f"Окна категории «{name}»",
-        "text": (
+        "question": (
             f"Категория «{name}» ({rt_id}): на какую сторону выходят окна и с каких этажей? "
             "Если по-разному — перечислите варианты «корпус, этажи, сторона». "
             "Можно ли гарантировать конкретный вариант при бронировании?"
         ),
-        "prefill": None,
-        "is_simulated": False,
     }
 
 

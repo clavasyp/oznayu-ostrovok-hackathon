@@ -1,10 +1,10 @@
 """Имитатор отельера (core §7.2, v4b п.6): отвечает свободным текстом по закрытому профилю отеля.
 
-- Профиль — эталонная правда для показа (`profiles/<hotel_id>.json`), а не факты: всё, что
-  из него выходит, помечено `is_simulated` и становится `simulated_hotelier`.
+- Профиль — эталонная правда для показа (`profiles/<hotel_id>.json`), а не факты: ответ уходит
+  в `POST /api/hotelier/{id}/answers` с `is_simulated = true` и становится `simulated_hotelier`.
 - Генератор не видит запрос гостя — только вопрос анкеты.
-- Ответы программные и детерминированные (фиксированный seed): работают без ключа LLM.
-  Стиль профиля задаёт «живость»: `plain` — все поля, `vague` — только главное («да, лифт есть»).
+- Поля профиля — ровно `parsed_fields` вопроса. Ответы программные и детерминированные
+  (фиксированный seed): работают без ключа LLM. Стиль `vague` — только главное («да, лифт есть»).
 """
 
 from __future__ import annotations
@@ -16,69 +16,78 @@ from pathlib import Path
 from typing import Any
 
 from agents.catalog import load_catalog
-from agents.hotelier.schemas import label
+from agents.hotelier.schemas import PRESENCE, UNIT_RU, label
 
 PROFILES = Path(__file__).parent / "profiles"
 SIMULATED_NOTE = "Ответ имитатора отельера — для показа, не настоящий отельер"
 
-UNIT_RU = {
-    "mm": "мм", "kg": "кг", "RUB": "₽", "Mbit/s": "Мбит/с", "ms": "мс", "m": "м", "m2": "м²",
-    "years": "лет", "kW": "кВт", "%": "%", "dB(A)": "дБ(A)", "h": "ч",
-}  # fmt: skip
 YES = {
-    "has_ac": "Да, кондиционер есть во всех номерах.",
     "individual_control": "Да, гость может сам включать и регулировать кондиционер с пульта.",
-    "full_blackout": "Да, шторы blackout полностью затемняют комнату.",
     "edge_gaps": "Да, по краям штор остаются небольшие просветы.",
-    "own_parking": "Да, у отеля своя парковка.",
+    "shared_wall_with_lift": "Да, у части номеров есть общая стена с лифтовой шахтой.",
+    "assignment_guarantee": "Да, это можно гарантировать при бронировании.",
     "reservation": "Да, место нужно бронировать заранее.",
-    "has_charger": "Да, на территории есть зарядная станция.",
-    "guest_access": "Да, гости могут ей пользоваться.",
-    "checkin_possible": "Да, заселение в это время возможно.",
-    "front_desk_24h": "Да, стойка регистрации работает круглосуточно.",
+    "external_access": "Да, зарядкой могут пользоваться все, не только гости.",
     "self_checkin": "Да, есть самозаселение по коду.",
     "prior_arrangement": "Да, о позднем приезде нужно предупредить заранее.",
     "breakfast_box": "Да, можно взять завтрак с собой.",
-    "cot_available": "Да, детскую кроватку поставим.",
-    "connecting_rooms": "Да, есть смежные номера.",
-    "kids_pool": "Да, детский бассейн есть.",
-    "supervised": "Да, за детьми присматривает инструктор.",
-    "pets_allowed": "Да, с животными можно.",
+    "reservation_guarantee": "Да, кроватку гарантируем при бронировании.",
+    "internal_connecting_door": "Да, есть смежные номера с внутренней дверью.",
+    "guaranteed_pair": "Да, пару номеров можно гарантировать.",
     "prior_approval": "Да, питомца нужно заранее согласовать.",
-    "step_free": "Да, вход без ступеней, есть пандус.",
-    "has_lift": "Да, лифт есть.",
-    "step_free_shower": "Да, душ без бортика.",
-    "has_desk": "Да, в номере есть рабочий стол.",
-    "socket_near_desk": "Да, розетка рядом со столом.",
+    "split_possible": "Да, кровати можно раздвинуть.",
     "private_balcony": "Да, в номерах этой категории есть балкон.",
     "private_terrace": "Да, есть терраса.",
     "private_kitchenette": "Да, в номере есть кухонная зона.",
     "cooking_allowed": "Да, готовить можно.",
     "in_room_kettle": "Да, чайник есть в номере.",
-    "has_safe": "Да, сейф есть.",
-    "assignment_guarantee": "Да, это можно гарантировать при бронировании.",
-    "guaranteed_pair": "Да, пару номеров можно гарантировать.",
-    "shared_wall_with_lift": "Да, у части номеров есть общая стена с лифтовой шахтой.",
+    "on_request": "Да, по запросу.",
+    "guarantee": "Да, гарантируем.",
 }
 NO = {
-    "has_ac": "Нет, кондиционеров в номерах нет.",
-    "pets_allowed": "Нет, с животными, к сожалению, нельзя.",
-    "front_desk_24h": "Нет, стойка регистрации работает не круглосуточно.",
-    "full_blackout": "Нет, полного затемнения нет.",
-    "step_free": "Нет, на входе есть ступени, пандуса нет.",
-    "has_lift": "Нет, лифта нет.",
     "reservation": "Нет, бронировать место заранее не нужно.",
+    "self_checkin": "Нет, самозаселения нет.",
     "breakfast_box": "Нет, завтрак с собой не собираем.",
-    "has_desk": "Нет, рабочего стола в номере нет.",
-    "step_free_shower": "Нет, у душа есть бортик.",
+    "private_balcony": "Нет, балкона в номерах этой категории нет.",
 }
-VALUES_RU = {
-    "dog": "собаками", "cat": "кошками", "per_night": "за сутки", "per_stay": "за всё проживание",
-    "full": "полностью", "partial": "частично", "none": "никак",
-    "closed": "закрытых", "open": "открытых",
-    "type2": "Type 2", "double": "двуспальная", "twin": "раздельные",
-    "double_or_twin": "двуспальная или раздельные",
-}  # fmt: skip
+PRESENT = {
+    "hvac_type": "Да, кондиционер есть во всех номерах.",
+    "connector": "Да, на территории есть зарядная станция.",
+    "cot_dimensions": "Да, детскую кроватку поставим.",
+    "pool_id": "Да, детский бассейн есть.",
+    "lift_id": "Да, лифт есть.",
+    "access": "Да, сейф есть.",
+}
+ABSENT = {
+    "hvac_type": "Нет, кондиционеров в номерах нет.",
+    "connector": "Нет, зарядки для электромобилей нет.",
+    "cot_dimensions": "Нет, детских кроваток нет.",
+    "pool_id": "Нет, детского бассейна нет.",
+    "lift_id": "Нет, лифта нет.",
+    "access": "Нет, сейфа нет.",
+    "parking_owner": "Нет, своей парковки нет.",
+}
+ENUM_SENTENCES = {
+    ("hvac_type", "split"): "Да, в номерах сплит-системы.",
+    ("hvac_type", "central"): "Да, кондиционирование центральное.",
+    ("connector", "type2"): "Да, есть зарядная станция с разъёмом Type 2.",
+    ("parking_owner", "own"): "Да, у отеля своя парковка.",
+    ("parking_owner", "third_party"): "Парковка сторонняя, городская.",
+    ("opaque_coverage", "full"): "Шторы закрывают окна полностью.",
+    ("opaque_coverage", "partial"): "Шторы закрывают окна частично.",
+    ("species", "dog"): "Можно с собаками.",
+    ("species", "cat"): "Можно с кошками.",
+    ("species", "dog_cat"): "Можно с собаками и кошками.",
+    ("species", "any"): "Можно с любыми животными.",
+    ("species", "none"): "Нет, с животными, к сожалению, нельзя.",
+    ("fee_basis", "per_night"): "Доплата берётся за сутки.",
+    ("fee_basis", "per_stay"): "Доплата берётся за всё проживание.",
+    ("windows_state", "closed"): "Замер при закрытых окнах.",
+    ("windows_state", "open"): "Замер при открытых окнах.",
+    ("bed_configuration", "double"): "Кровать двуспальная.",
+    ("bed_configuration", "twin"): "Кровати раздельные.",
+    ("bed_configuration", "double_or_twin"): "Кровати: двуспальная или раздельные.",
+}
 SIDES_RU = {
     "N": "север", "NE": "северо-восток", "E": "восток", "SE": "юго-восток", "S": "юг",
     "SW": "юго-запад", "W": "запад", "NW": "северо-запад",
@@ -100,23 +109,28 @@ def profiled_hotels() -> list[str]:
 def _sentence(field: str, value: Any, unit: str | None) -> str:
     name = label(field).split(",")[0]
     title = name[:1].upper() + name[1:]
+    if (field, value) in ENUM_SENTENCES:
+        return ENUM_SENTENCES[(field, value)]
+    if field in PRESENCE and value == PRESENCE[field][1]:
+        return ABSENT.get(field, f"Нет, {name} — нет.")
+    if field in PRESENCE:
+        return PRESENT.get(field, f"Да, {name} — есть.")
+    if field == "front_desk_hours":
+        if value == "24/7":
+            return "Да, стойка регистрации работает круглосуточно."
+        start, _, end = str(value).partition("-")
+        return f"Стойка регистрации работает с {start} до {end}."
     if isinstance(value, bool):
         return (
             YES.get(field, f"Да, {name} — есть.") if value else NO.get(field, f"Нет, {name} — нет.")
         )
-    if field == "species":
-        return "Можно с " + " и ".join(VALUES_RU.get(v, v) for v in value) + "."
-    if field == "fee_basis":
-        return f"Доплата берётся {VALUES_RU.get(value, value)}."
-    if field == "windows_state":
-        return f"Замер при {VALUES_RU.get(value, value)} окнах."
     if isinstance(value, (int, float)):
         if unit == "RUB" and value == 0:
             return f"{title}: бесплатно."
         return f"{title}: {value:g} {UNIT_RU.get(unit or '', unit or '')}".rstrip() + "."
-    if field.endswith("_start") or field == "breakfast_start":
+    if field == "breakfast_start":
         return f"{title} — с {value}."
-    return f"{title}: {VALUES_RU.get(value, value)}."
+    return f"{title}: {value}."
 
 
 def simulate_answer(hotel_id: str, feature_id: str, *, seed: int | None = None) -> dict[str, Any]:
@@ -142,8 +156,6 @@ def simulate_answer(hotel_id: str, feature_id: str, *, seed: int | None = None) 
             for f in order
             if f in fields and f in feature.fields
         ]
-        if entry.get("quantifier") == "some":
-            parts.append("Это не во всех номерах категории.")
         if entry.get("conditions"):
             parts.append(entry["conditions"])
         text = " ".join(parts)

@@ -1,5 +1,5 @@
 {
- "version": 1,
+ "version": 2,
  "note": "Словарь для разбора запроса. Названия — из расчёта v9 (coverage.json, questions_26.csv); поля, синонимы и уровни — agents/. Значения характеристик сюда не входят.",
  "walk_speed_m_per_min": 80,
  "features": [
@@ -1315,8 +1315,22 @@
    "level": "room_type",
    "source": "hotelier",
    "fields": {
-    "has_ac": {
-     "type": "bool"
+    "room_type_id": {
+     "type": "string"
+    },
+    "variant_ids": {
+     "type": "list"
+    },
+    "hvac_type": {
+     "type": "enum",
+     "values": [
+      "split",
+      "central",
+      "fan_coil",
+      "other",
+      "present",
+      "none"
+     ]
     },
     "individual_control": {
      "type": "bool"
@@ -1328,9 +1342,11 @@
      "type": "string"
     }
    },
-   "default_field": "has_ac",
+   "default_field": "hvac_type",
    "ops": [
-    "eq"
+    "ne",
+    "eq",
+    "in"
    ],
    "params": [],
    "synonyms": [
@@ -1346,10 +1362,16 @@
    "level": "room_type",
    "source": "hotelier",
    "fields": {
-    "full_blackout": {
-     "type": "bool"
+    "room_type_id": {
+     "type": "string"
     },
-    "coverage": {
+    "variant_ids": {
+     "type": "list"
+    },
+    "window_ids": {
+     "type": "list"
+    },
+    "opaque_coverage": {
      "type": "enum",
      "values": [
       "full",
@@ -1359,9 +1381,12 @@
     },
     "edge_gaps": {
      "type": "bool"
+    },
+    "evidence_date": {
+     "type": "string"
     }
    },
-   "default_field": "full_blackout",
+   "default_field": "opaque_coverage",
    "ops": [
     "eq"
    ],
@@ -1381,9 +1406,18 @@
    "level": "room_type",
    "source": "hotelier",
    "fields": {
-    "laeq_dba": {
+    "room_ids": {
+     "type": "list"
+    },
+    "LAeq_dBA": {
      "type": "number",
      "unit": "dB(A)"
+    },
+    "interval": {
+     "type": "string"
+    },
+    "measurement_protocol": {
+     "type": "string"
     },
     "windows_state": {
      "type": "enum",
@@ -1392,11 +1426,18 @@
       "open"
      ]
     },
-    "interval": {
+    "hvac_state": {
+     "type": "enum",
+     "values": [
+      "on",
+      "off"
+     ]
+    },
+    "instrument": {
      "type": "string"
     }
    },
-   "default_field": "laeq_dba",
+   "default_field": "LAeq_dBA",
    "ops": [
     "lte"
    ],
@@ -1418,6 +1459,12 @@
    "level": "room_type",
    "source": "hotelier",
    "fields": {
+    "room_type_id": {
+     "type": "string"
+    },
+    "room_ids": {
+     "type": "list"
+    },
     "shared_wall_with_lift": {
      "type": "bool"
     },
@@ -1442,24 +1489,44 @@
    "level": "hotel",
    "source": "hotelier",
    "fields": {
-    "own_parking": {
-     "type": "bool"
+    "parking_owner": {
+     "type": "enum",
+     "values": [
+      "own",
+      "third_party",
+      "street",
+      "none"
+     ]
     },
     "reservation": {
      "type": "bool"
     },
-    "fee_per_day": {
+    "vehicle_dimensions": {
+     "type": "string"
+    },
+    "fee": {
      "type": "number",
      "unit": "RUB"
     },
-    "max_height_m": {
-     "type": "number",
-     "unit": "m"
+    "currency": {
+     "type": "string"
+    },
+    "charging_basis": {
+     "type": "enum",
+     "values": [
+      "per_day",
+      "per_stay",
+      "free"
+     ]
+    },
+    "access_hours": {
+     "type": "string"
     }
    },
-   "default_field": "own_parking",
+   "default_field": "parking_owner",
    "ops": [
-    "eq"
+    "eq",
+    "ne"
    ],
    "params": [],
    "synonyms": [
@@ -1475,8 +1542,8 @@
    "level": "hotel",
    "source": "hotelier",
    "fields": {
-    "has_charger": {
-     "type": "bool"
+    "charger_id": {
+     "type": "string"
     },
     "connector": {
      "type": "enum",
@@ -1485,22 +1552,33 @@
       "ccs",
       "chademo",
       "gbt",
-      "other"
+      "schuko",
+      "other",
+      "present",
+      "none"
      ]
     },
-    "power_kw": {
+    "power_kW": {
      "type": "number",
      "unit": "kW"
     },
-    "guest_access": {
+    "working_at": {
+     "type": "string"
+    },
+    "external_access": {
      "type": "bool"
     },
     "reservation": {
      "type": "bool"
+    },
+    "fee": {
+     "type": "number",
+     "unit": "RUB"
     }
    },
-   "default_field": "has_charger",
+   "default_field": "connector",
    "ops": [
+    "ne",
     "eq"
    ],
    "params": [],
@@ -1518,20 +1596,27 @@
    "level": "hotel",
    "source": "hotelier",
    "fields": {
-    "checkin_possible": {
-     "type": "bool"
+    "arrival_local": {
+     "type": "string"
     },
-    "front_desk_24h": {
-     "type": "bool"
+    "front_desk_hours": {
+     "type": "string"
     },
     "self_checkin": {
      "type": "bool"
     },
     "prior_arrangement": {
      "type": "bool"
+    },
+    "contact_deadline": {
+     "type": "string"
+    },
+    "fee": {
+     "type": "number",
+     "unit": "RUB"
     }
    },
-   "default_field": "checkin_possible",
+   "default_field": "front_desk_hours",
    "ops": [
     "eq"
    ],
@@ -1552,11 +1637,21 @@
    "level": "hotel",
    "source": "hotelier",
    "fields": {
+    "service_date": {
+     "type": "string"
+    },
     "breakfast_start": {
      "type": "time"
     },
     "breakfast_box": {
      "type": "bool"
+    },
+    "order_deadline": {
+     "type": "string"
+    },
+    "fee": {
+     "type": "number",
+     "unit": "RUB"
     }
    },
    "default_field": "breakfast_start",
@@ -1579,21 +1674,31 @@
    "level": "room_type",
    "source": "hotelier",
    "fields": {
-    "cot_available": {
-     "type": "bool"
-    },
-    "max_child_age": {
+    "child_age": {
      "type": "number",
      "unit": "years"
+    },
+    "weight_limit": {
+     "type": "number",
+     "unit": "kg"
+    },
+    "cot_dimensions": {
+     "type": "string"
     },
     "fee": {
      "type": "number",
      "unit": "RUB"
+    },
+    "currency": {
+     "type": "string"
+    },
+    "reservation_guarantee": {
+     "type": "bool"
     }
    },
-   "default_field": "cot_available",
+   "default_field": "cot_dimensions",
    "ops": [
-    "eq"
+    "ne"
    ],
    "params": [],
    "synonyms": [
@@ -1608,14 +1713,23 @@
    "level": "room_type",
    "source": "hotelier",
    "fields": {
-    "connecting_rooms": {
+    "room_type_pair": {
+     "type": "string"
+    },
+    "room_ids": {
+     "type": "list"
+    },
+    "internal_connecting_door": {
      "type": "bool"
     },
     "guaranteed_pair": {
      "type": "bool"
+    },
+    "booking_method": {
+     "type": "string"
     }
    },
-   "default_field": "connecting_rooms",
+   "default_field": "internal_connecting_door",
    "ops": [
     "eq"
    ],
@@ -1632,8 +1746,8 @@
    "level": "hotel",
    "source": "hotelier",
    "fields": {
-    "kids_pool": {
-     "type": "bool"
+    "pool_id": {
+     "type": "string"
     },
     "minimum_age": {
      "type": "number",
@@ -1643,13 +1757,19 @@
      "type": "number",
      "unit": "m"
     },
-    "supervised": {
-     "type": "bool"
+    "hours": {
+     "type": "string"
+    },
+    "season": {
+     "type": "string"
+    },
+    "supervision_rules": {
+     "type": "string"
     }
    },
-   "default_field": "kids_pool",
+   "default_field": "pool_id",
    "ops": [
-    "eq"
+    "ne"
    ],
    "params": [],
    "synonyms": [
@@ -1664,32 +1784,37 @@
    "level": "hotel",
    "source": "hotelier",
    "fields": {
-    "pets_allowed": {
-     "type": "bool"
-    },
     "species": {
-     "type": "list",
+     "type": "enum",
      "values": [
       "dog",
       "cat",
-      "other"
+      "dog_cat",
+      "any",
+      "none"
      ]
     },
-    "max_weight_kg": {
+    "weight_kg": {
      "type": "number",
      "unit": "kg"
     },
-    "max_number": {
+    "number": {
      "type": "integer"
+    },
+    "room_type_ids": {
+     "type": "list"
+    },
+    "restricted_areas": {
+     "type": "string"
     },
     "prior_approval": {
      "type": "bool"
     }
    },
-   "default_field": "pets_allowed",
+   "default_field": "species",
    "ops": [
-    "eq",
-    "gte"
+    "in",
+    "eq"
    ],
    "params": [],
    "synonyms": [
@@ -1706,9 +1831,32 @@
    "level": "hotel",
    "source": "hotelier",
    "fields": {
+    "species": {
+     "type": "enum",
+     "values": [
+      "dog",
+      "cat",
+      "dog_cat",
+      "any",
+      "none"
+     ]
+    },
+    "weight_kg": {
+     "type": "number",
+     "unit": "kg"
+    },
+    "number": {
+     "type": "integer"
+    },
+    "dates": {
+     "type": "string"
+    },
     "fee_amount": {
      "type": "number",
      "unit": "RUB"
+    },
+    "currency": {
+     "type": "string"
     },
     "fee_basis": {
      "type": "enum",
@@ -1720,6 +1868,9 @@
     "deposit": {
      "type": "number",
      "unit": "RUB"
+    },
+    "refund_rules": {
+     "type": "string"
     }
    },
    "default_field": "fee_amount",
@@ -1739,8 +1890,8 @@
    "level": "building",
    "source": "hotelier",
    "fields": {
-    "step_free": {
-     "type": "bool"
+    "entrance_id": {
+     "type": "string"
     },
     "clear_width_mm": {
      "type": "number",
@@ -1749,11 +1900,17 @@
     "threshold_mm": {
      "type": "number",
      "unit": "mm"
+    },
+    "route_to_lobby": {
+     "type": "string"
+    },
+    "measurement_date": {
+     "type": "string"
     }
    },
-   "default_field": "step_free",
+   "default_field": "threshold_mm",
    "ops": [
-    "eq"
+    "lte"
    ],
    "params": [],
    "synonyms": [
@@ -1770,8 +1927,8 @@
    "level": "building",
    "source": "hotelier",
    "fields": {
-    "has_lift": {
-     "type": "bool"
+    "lift_id": {
+     "type": "string"
     },
     "door_width_mm": {
      "type": "number",
@@ -1785,12 +1942,13 @@
      "type": "number",
      "unit": "mm"
     },
-    "served_floors": {
+    "served_physical_floors": {
      "type": "list"
     }
    },
-   "default_field": "has_lift",
+   "default_field": "lift_id",
    "ops": [
+    "ne",
     "eq"
    ],
    "params": [],
@@ -1806,17 +1964,23 @@
    "level": "room_type",
    "source": "hotelier",
    "fields": {
-    "step_free_shower": {
-     "type": "bool"
+    "room_type_id": {
+     "type": "string"
+    },
+    "variant_ids": {
+     "type": "list"
     },
     "shower_threshold_mm": {
      "type": "number",
      "unit": "mm"
+    },
+    "measurement_date": {
+     "type": "string"
     }
    },
-   "default_field": "step_free_shower",
+   "default_field": "shower_threshold_mm",
    "ops": [
-    "eq"
+    "lte"
    ],
    "params": [],
    "synonyms": [
@@ -1831,12 +1995,25 @@
    "level": "room_type",
    "source": "hotelier",
    "fields": {
-    "min_door_width_mm": {
+    "room_type_id": {
+     "type": "string"
+    },
+    "variant_ids": {
+     "type": "list"
+    },
+    "door_clear_widths_mm": {
      "type": "number",
      "unit": "mm"
+    },
+    "bathroom_width_mm": {
+     "type": "number",
+     "unit": "mm"
+    },
+    "measurement_date": {
+     "type": "string"
     }
    },
-   "default_field": "min_door_width_mm",
+   "default_field": "door_clear_widths_mm",
    "ops": [
     "gte"
    ],
@@ -1853,16 +2030,28 @@
    "level": "room_type",
    "source": "hotelier",
    "fields": {
-    "download_mbps": {
+    "room_ids": {
+     "type": "list"
+    },
+    "download_Mbps": {
      "type": "number",
      "unit": "Mbit/s"
     },
-    "upload_mbps": {
+    "upload_Mbps": {
      "type": "number",
      "unit": "Mbit/s"
+    },
+    "time_samples": {
+     "type": "string"
+    },
+    "protocol": {
+     "type": "string"
+    },
+    "measurement_date": {
+     "type": "string"
     }
    },
-   "default_field": "download_mbps",
+   "default_field": "download_Mbps",
    "ops": [
     "gte"
    ],
@@ -1882,6 +2071,9 @@
    "level": "room_type",
    "source": "hotelier",
    "fields": {
+    "room_ids": {
+     "type": "list"
+    },
     "latency_ms": {
      "type": "number",
      "unit": "ms"
@@ -1893,6 +2085,15 @@
     "loss_percent": {
      "type": "number",
      "unit": "%"
+    },
+    "endpoint": {
+     "type": "string"
+    },
+    "protocol": {
+     "type": "string"
+    },
+    "time_samples": {
+     "type": "string"
     }
    },
    "default_field": "latency_ms",
@@ -1913,20 +2114,32 @@
    "level": "room_type",
    "source": "hotelier",
    "fields": {
-    "has_desk": {
-     "type": "bool"
+    "room_type_id": {
+     "type": "string"
     },
-    "desk_width_mm": {
+    "variant_ids": {
+     "type": "list"
+    },
+    "desk_clear_width_mm": {
      "type": "number",
      "unit": "mm"
     },
-    "socket_near_desk": {
-     "type": "bool"
+    "desk_depth_mm": {
+     "type": "number",
+     "unit": "mm"
+    },
+    "desk_height_mm": {
+     "type": "number",
+     "unit": "mm"
+    },
+    "socket_distance_mm": {
+     "type": "number",
+     "unit": "mm"
     }
    },
-   "default_field": "has_desk",
+   "default_field": "desk_clear_width_mm",
    "ops": [
-    "eq"
+    "gte"
    ],
    "params": [],
    "synonyms": [
@@ -1942,6 +2155,12 @@
    "level": "room_type",
    "source": "hotelier",
    "fields": {
+    "room_type_id": {
+     "type": "string"
+    },
+    "variant_ids": {
+     "type": "list"
+    },
     "bed_configuration": {
      "type": "enum",
      "values": [
@@ -1950,6 +2169,12 @@
       "double_or_twin",
       "other"
      ]
+    },
+    "bed_dimensions_mm": {
+     "type": "string"
+    },
+    "split_possible": {
+     "type": "bool"
     },
     "assignment_guarantee": {
      "type": "bool"
@@ -1974,6 +2199,12 @@
    "level": "room_type",
    "source": "hotelier",
    "fields": {
+    "room_type_id": {
+     "type": "string"
+    },
+    "variant_ids": {
+     "type": "list"
+    },
     "private_balcony": {
      "type": "bool"
     },
@@ -1983,6 +2214,9 @@
     "area_m2": {
      "type": "number",
      "unit": "m2"
+    },
+    "safety": {
+     "type": "string"
     },
     "assignment_guarantee": {
      "type": "bool"
@@ -2006,11 +2240,24 @@
    "level": "room_type",
    "source": "hotelier",
    "fields": {
+    "room_type_id": {
+     "type": "string"
+    },
+    "variant_ids": {
+     "type": "list"
+    },
     "private_kitchenette": {
      "type": "bool"
     },
+    "appliances": {
+     "type": "list"
+    },
     "cooking_allowed": {
      "type": "bool"
+    },
+    "fee": {
+     "type": "number",
+     "unit": "RUB"
     }
    },
    "default_field": "private_kitchenette",
@@ -2031,10 +2278,23 @@
    "level": "room_type",
    "source": "hotelier",
    "fields": {
+    "room_type_id": {
+     "type": "string"
+    },
+    "variant_ids": {
+     "type": "list"
+    },
     "in_room_kettle": {
      "type": "bool"
     },
     "on_request": {
+     "type": "bool"
+    },
+    "fee": {
+     "type": "number",
+     "unit": "RUB"
+    },
+    "guarantee": {
      "type": "bool"
     }
    },
@@ -2054,17 +2314,35 @@
    "level": "room_type",
    "source": "hotelier",
    "fields": {
-    "has_safe": {
-     "type": "bool"
+    "room_type_id": {
+     "type": "string"
+    },
+    "variant_ids": {
+     "type": "list"
     },
     "safe_inner_width_mm": {
      "type": "number",
      "unit": "mm"
+    },
+    "safe_depth_mm": {
+     "type": "number",
+     "unit": "mm"
+    },
+    "safe_height_mm": {
+     "type": "number",
+     "unit": "mm"
+    },
+    "access": {
+     "type": "string"
+    },
+    "fee": {
+     "type": "number",
+     "unit": "RUB"
     }
    },
-   "default_field": "has_safe",
+   "default_field": "access",
    "ops": [
-    "eq"
+    "ne"
    ],
    "params": [],
    "synonyms": [
@@ -2078,18 +2356,34 @@
    "level": "hotel",
    "source": "hotelier",
    "fields": {
-    "mandatory_fees_total": {
-     "type": "number",
-     "unit": "RUB"
+    "booking_id": {
+     "type": "string"
     },
-    "deposit": {
-     "type": "number",
-     "unit": "RUB"
+    "dates": {
+     "type": "string"
+    },
+    "occupancy": {
+     "type": "string"
+    },
+    "mandatory_fee_items": {
+     "type": "list"
+    },
+    "currency": {
+     "type": "string"
+    },
+    "fee_basis": {
+     "type": "string"
+    },
+    "deposit_items": {
+     "type": "list"
+    },
+    "refund_rules": {
+     "type": "string"
     }
    },
-   "default_field": "mandatory_fees_total",
+   "default_field": "mandatory_fee_items",
    "ops": [
-    "lte"
+    "eq"
    ],
    "params": [
     "date_from",

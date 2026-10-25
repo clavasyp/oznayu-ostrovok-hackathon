@@ -10,7 +10,9 @@ from typing import Any
 from fastapi import APIRouter, HTTPException, Request
 from pydantic import BaseModel
 
+from agents import hotelier as agent
 from agents.query_ast import QueryAST
+from agents.search import parse_query
 from core import search as engine
 from core.facts import Fact
 from core.hotelier import AnswerError, AnswerIn, build_answer
@@ -41,6 +43,12 @@ class SearchRequest(BaseModel):
     text: str | None = None
     city_id: str | None = None
     ast: QueryAST | None = None
+
+
+class SimulateRequest(BaseModel):
+    question_id: int | None = None
+    feature_id: str | None = None
+    seed: int | None = None
 
 
 @router.get("/meta/labels")
@@ -102,7 +110,12 @@ def search(body: SearchRequest, request: Request) -> dict[str, Any]:
     s = store(request)
     notes = [SEARCH_LEVEL_NOTE]
     ast = body.ast
-    if ast is None:
+    if ast is None and body.text and body.text.strip():
+        # Разбор текста (агент-поисковик): правила, модель — для остатка, без ключа — офлайн.
+        outcome = parse_query(body.text, body.city_id)
+        ast = outcome.ast
+        notes += outcome.notes
+    elif ast is None:
         ast = engine.example_ast()
         notes.append(
             "Разбор текста — заглушка: используется пример запроса трека. "
@@ -121,7 +134,23 @@ def search(body: SearchRequest, request: Request) -> dict[str, Any]:
 @router.get("/hotelier/{hotel_id}/questions")
 def hotelier_questions(hotel_id: str, request: Request) -> dict[str, Any]:
     s = store(request)
-    return {"stub": s.stub, "hotel_id": hotel_id, "questions": s.questions(hotel_id)}
+    # Агент добавляет к вопросам текст предзаполнения Островка и поля ответа (новые ключи).
+    questions = [agent.enrich_question(q) for q in s.questions(hotel_id)]
+    return {"stub": s.stub, "hotel_id": hotel_id, "questions": questions}
+
+
+@router.post("/hotelier/{hotel_id}/simulate")
+def hotelier_simulate(hotel_id: str, body: SimulateRequest, request: Request) -> dict[str, Any]:
+    """Свободный ответ имитатора отельера по закрытому профилю (D31: всегда `is_simulated`).
+
+    Ответ не сохраняется: его отправляют в `…/answers` с `is_simulated: true`.
+    """
+    q = store(request).question(hotel_id, body.question_id, body.feature_id)
+    if q is None:
+        raise HTTPException(404, f"нет такого вопроса у отеля {hotel_id}")
+    return {"question_id": q["question_id"]} | agent.simulate_answer(
+        hotel_id, q["feature_id"], seed=body.seed
+    )
 
 
 @router.post("/hotelier/{hotel_id}/questions/{question_id}/ask")
@@ -154,6 +183,11 @@ def hotelier_answer(hotel_id: str, body: AnswerIn, request: Request) -> dict[str
     if q is None:
         raise HTTPException(404, f"нет такого вопроса у отеля {hotel_id}")
     existing = s.facts_for(q["feature_id"], [hotel_id]).get(hotel_id, [])
+    parsed = None
+    if body.answer_text and not (body.fields or body.dont_know or body.placements):
+        # Только текст: агент-отельер разбирает его в поля вопроса (без догадок, с цитатами).
+        parsed = agent.answer_from_text(q, body.answer_text)
+        body = body.model_copy(update=parsed.body)
     try:
         result = build_answer(q, body, existing, datetime.now(UTC))
     except AnswerError as e:
@@ -165,8 +199,12 @@ def hotelier_answer(hotel_id: str, body: AnswerIn, request: Request) -> dict[str
         raise HTTPException(422, str(e)) from e
     after = _hotel_view(s, body.ast, hotel_id) if body.ast else None
     notes = []
-    if result.state == "answered_unparsed":
+    if result.state == "answered_unparsed" and parsed is None:
         notes.append("Текст сохранён без полей: его разберёт агент-отельер, факт появится после.")
+    elif result.state == "answered_unparsed":
+        notes.append("Агент не нашёл в ответе полей вопроса — факта нет, нужно уточнение.")
+    if parsed is not None:
+        notes += parsed.report["notes"]
     if body.is_simulated:
         notes.append("Ответ имитатора: факт помечен simulated_hotelier и показывается с пометкой.")
     return {
@@ -180,6 +218,8 @@ def hotelier_answer(hotel_id: str, body: AnswerIn, request: Request) -> dict[str
         "before": before,
         "after": after,
         "notes": notes,
+        # Что понял агент: поля с цитатами, отклонённое с причинами, уточняющий вопрос.
+        "agent": parsed.report if parsed else None,
     }
 
 
