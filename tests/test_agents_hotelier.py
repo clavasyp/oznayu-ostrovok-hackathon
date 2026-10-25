@@ -229,3 +229,17 @@ def test_varies_is_not_a_hotel_fact():
         q, "Балкон есть, по датам по-разному.", gateway=Gateway([FakeLLM([reply])])
     )
     assert out.body == {} and out.report["fields"]["private_balcony"]["value"] is True
+
+
+def test_agent_failure_keeps_text_not_500(client, monkeypatch):
+    import app.api.routes as routes
+
+    def broken(*_a, **_kw):
+        raise ValueError("нет характеристики XX")
+
+    monkeypatch.setattr(routes.agent, "answer_from_text", broken)
+    payload = {"feature_id": "P01", "answer_text": "Можно с собаками.", "is_simulated": True}
+    resp = client.post(f"/api/hotelier/{RADISSON}/answers", json=payload)
+    body = resp.json()
+    assert resp.status_code == 200 and body["state"] == "answered_unparsed"
+    assert body["facts"] == [] and "не разобрал" in body["notes"][0]

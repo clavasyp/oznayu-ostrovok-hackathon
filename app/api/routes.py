@@ -8,7 +8,7 @@ from datetime import UTC, datetime
 from typing import Any
 
 from fastapi import APIRouter, HTTPException, Request
-from pydantic import BaseModel
+from pydantic import BaseModel, ValidationError
 
 from agents import hotelier as agent
 from agents.query_ast import QueryAST
@@ -183,11 +183,15 @@ def hotelier_answer(hotel_id: str, body: AnswerIn, request: Request) -> dict[str
     if q is None:
         raise HTTPException(404, f"нет такого вопроса у отеля {hotel_id}")
     existing = s.facts_for(q["feature_id"], [hotel_id]).get(hotel_id, [])
-    parsed = None
+    parsed, agent_note = None, None
     if body.answer_text and not (body.fields or body.dont_know or body.placements):
         # Только текст: агент-отельер разбирает его в поля вопроса (без догадок, с цитатами).
-        parsed = agent.answer_from_text(q, body.answer_text)
-        body = body.model_copy(update=parsed.body)
+        # Не смог — текст сохраняется без полей (answered_unparsed), а не 500.
+        try:
+            parsed = agent.answer_from_text(q, body.answer_text)
+            body = AnswerIn.model_validate(body.model_dump() | parsed.body)
+        except (ValueError, ValidationError) as e:
+            agent_note = f"Агент не разобрал ответ ({type(e).__name__}): текст сохранён без полей."
     try:
         result = build_answer(q, body, existing, datetime.now(UTC))
     except AnswerError as e:
@@ -199,7 +203,9 @@ def hotelier_answer(hotel_id: str, body: AnswerIn, request: Request) -> dict[str
         raise HTTPException(422, str(e)) from e
     after = _hotel_view(s, body.ast, hotel_id) if body.ast else None
     notes = []
-    if result.state == "answered_unparsed" and parsed is None:
+    if agent_note:
+        notes.append(agent_note)
+    elif result.state == "answered_unparsed" and parsed is None:
         notes.append("Текст сохранён без полей: его разберёт агент-отельер, факт появится после.")
     elif result.state == "answered_unparsed":
         notes.append("Агент не нашёл в ответе полей вопроса — факта нет, нужно уточнение.")
