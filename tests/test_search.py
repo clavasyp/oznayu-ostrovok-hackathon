@@ -90,3 +90,20 @@ def test_quantifier_any_needs_one_yes():
     ]
     anywhere = ROAD_FAR.model_copy(update={"quantifier": "any"})
     assert evaluate(facts, anywhere, hard=True)["verdict"] == Verdict.yes
+
+
+def test_present_without_type_is_unknown_not_no():
+    # «Есть, тип не назван» (D39): на «сплит-система» — уточнить, а не «нет».
+    present = [fact(1, {"hvac_type": "present"})]
+    split = Condition(feature_id="S04", op="eq", value="split", field="hvac_type")
+    r = evaluate(present, split, hard=True)
+    assert r["verdict"] == Verdict.unknown and r["reason_code"] == "value_unspecified"
+    types = split.model_copy(update={"op": "in", "value": ["split", "central"]})
+    assert evaluate(present, types, hard=True)["verdict"] == Verdict.unknown
+    any_hvac = split.model_copy(update={"op": "ne", "value": "none"})
+    assert evaluate(present, any_hvac, hard=True)["verdict"] == Verdict.yes
+    exists = split.model_copy(update={"op": "exists", "value": None})
+    assert evaluate(present, exists, hard=True)["verdict"] == Verdict.yes
+    absent = [fact(1, {"hvac_type": "none"})]
+    for c in (split, any_hvac, exists):
+        assert evaluate(absent, c, hard=True)["verdict"] == Verdict.no

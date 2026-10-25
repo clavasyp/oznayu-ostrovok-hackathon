@@ -1,7 +1,11 @@
+import asyncio
+
+import pytest
 from fastapi.testclient import TestClient
 from sqlalchemy import create_engine, insert
+from starlette.exceptions import HTTPException
 
-from app.main import create_app
+from app.main import SPAStaticFiles, create_app
 from core.db import PackLoad
 
 
@@ -27,6 +31,17 @@ def test_ui_build_served_with_browser_routes(tmp_path):
         missing = c.get("/api/no-such-route")
         assert missing.status_code == 404
         assert missing.headers["content-type"].startswith("application/json")
+
+
+def test_api_path_with_windows_separator_stays_404(tmp_path):
+    # Под Windows путь приходит с «\»: неизвестный /api — всё равно 404, а не index.html.
+    (tmp_path / "index.html").write_text("<div id=root></div>")
+    ui = SPAStaticFiles(directory=tmp_path, html=True)
+    scope = {"type": "http", "method": "GET", "headers": []}
+    with pytest.raises(HTTPException) as err:
+        asyncio.run(ui.get_response("api\\no-such-route", scope))
+    assert err.value.status_code == 404
+    assert asyncio.run(ui.get_response("hotel\\13736470", scope)).status_code == 200
 
 
 def test_db_mode_health_rechecks_until_init_loaded_packs(tmp_path, monkeypatch):
