@@ -231,6 +231,34 @@ def test_varies_is_not_a_hotel_fact():
     assert out.body == {} and out.report["fields"]["private_balcony"]["value"] is True
 
 
+def test_conflict_with_our_calculation_asks_hotelier(client):
+    """Расчёт и ответ отеля разошлись: противоречие записано, отельеру — вопрос с обоими
+    значениями. В данных показа таких пар пока нет — проверяем на подложенном расчёте."""
+    from core.facts import Fact, Source, Status
+
+    store = client.app.state.store
+    ours = Fact(
+        fact_id="calc-a03",
+        hotel_id=COSMOS,
+        city_id="sochi",
+        subject_level="hotel",
+        subject_id=f"hotel:{COSMOS}",
+        feature_id="A03",
+        value={"lift_id": "present", "door_width_mm": 800},
+        status=Status.computed,
+        sources=[Source(provider="OpenStreetMap")],
+    )
+    store.facts[ours.fact_id] = ours
+    store.by_hotel.setdefault(COSMOS, {}).setdefault("A03", []).append(ours)
+    text = "Да, лифт есть. Ширина двери лифта: 900 мм."
+    payload = {"feature_id": "A03", "answer_text": text, "is_simulated": True}
+    body = client.post(f"/api/hotelier/{COSMOS}/answers", json=payload).json()
+    assert body["conflicts"] == [{"fact_a": "calc-a03", "fact_b": body["facts"][0]["fact_id"]}]
+    (q,) = body["conflict_questions"]
+    assert q["fields"] == ["door_width_mm"] and q["fact_ids"][0] == "calc-a03"
+    assert "900 мм" in q["text"] and "800 мм" in q["text"] and "OpenStreetMap" in q["text"]
+
+
 def test_agent_failure_keeps_text_not_500(client, monkeypatch):
     import app.api.routes as routes
 

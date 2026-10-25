@@ -52,7 +52,7 @@
 | `POST /api/search` | `{text, city_id, ast}` → AST + результаты со статусами; без `ast` — пример запроса трека |
 | `GET /api/hotelier/{id}/questions` | 26 вопросов с предзаполнением и состоянием: `not_asked`, `asked`, `answered`, `answered_unknown`, `answered_unparsed` |
 | `POST /api/hotelier/{id}/questions/{question_id}/ask` | Вопрос отправлен отелю |
-| `POST /api/hotelier/{id}/answers` | Ответ → факты → поиск сразу видит новое; с `ast` — статус отеля до и после (см. ниже) |
+| `POST /api/hotelier/{id}/answers` | Ответ → факты → поиск сразу видит новое; с `ast` — статус отеля до и после (см. ниже); `conflict_questions` — уточняющий вопрос отельеру, если ответ разошёлся с нашим расчётом |
 | `GET /api/conflicts?city_id=` | `conflicts` — сверка с карточкой Островка; `fact_conflicts` — противоречия фактов (расчёт против ответа отеля) |
 
 **Источник** — интерфейс `core.store.Store`: база (`core/store_db.py`, `DATA_MODE=db`, так у жюри) или заглушки из фактов v9 (`app/stub_store.py`, `DATA_MODE=fixtures`). Формы ответов одинаковые; флаг `"stub"` говорит, откуда данные.

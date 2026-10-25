@@ -220,6 +220,8 @@ def hotelier_answer(hotel_id: str, body: AnswerIn, request: Request) -> dict[str
         "facts": [fact_json(f) for f in result.facts],
         "superseded": result.superseded,
         "conflicts": [{"fact_a": a.fact_id, "fact_b": b.fact_id} for a, b in result.conflicts],
+        # Расчёт и ответ разошлись: вопрос отельеру с обоими значениями (победителя не назначаем).
+        "conflict_questions": [agent.conflict_question(a, b) for a, b in result.conflicts],
         "placements_saved": result.placements is not None,
         "before": before,
         "after": after,
