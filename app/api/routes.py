@@ -5,6 +5,7 @@
 from __future__ import annotations
 
 import logging
+import re
 from datetime import UTC, datetime, timedelta
 from typing import Any
 
@@ -12,7 +13,9 @@ from fastapi import APIRouter, HTTPException, Request
 from pydantic import BaseModel, ValidationError
 
 from agents import hotelier as agent
+from agents.catalog import load_catalog
 from agents.explain import explain
+from agents.hotelier.schemas import label as field_label
 from agents.query_ast import QueryAST
 from agents.search import parse_query
 from agents.search.journal import summarize, unmatched_events
@@ -32,6 +35,7 @@ SEARCH_LEVEL_NOTE = (
     "«здание × этаж × окна» (D17) — все вместе на одном размещении; остальные — по отелю, "
     "корпусам и маршрутам."
 )
+NEGATION = re.compile(r"(?:не|без|нет|никаких)\b")
 
 
 def fact_json(f: Fact) -> dict[str, Any]:
@@ -65,7 +69,40 @@ def labels() -> dict[str, Any]:
         "booked": BOOKED_LABEL,
         "booking_imitation_note": BOOKING_IMITATION_NOTE,
         "out_of_catalog": "Такое мы пока не знаем",
+        # Названия характеристик (каталог агентов): интерфейсу не нужен свой словарь.
+        "features": {f.id: f.short for f in load_catalog().features.values()},
     }
+
+
+def _label_items(items: list[dict[str, Any]], fields: dict[str, str | None]) -> None:
+    """Подписи пунктов проверки для экрана: `label` — словами гостя, `feature_name` — название
+    характеристики («можно с животным (масса)»).
+
+    Рядом с вердиктом показываем слова гостя: «без собак» правила переворачивают в «можно только
+    с кошкой или без животных», и «можно с животным: нет» читалось бы наоборот. Так же у группы
+    «ИЛИ» (её `text_span` — варианты через «или») и у «НЕ» (`negated`)."""
+    catalog = load_catalog()
+    for item in items:
+        feature = catalog.get(item.get("feature_id") or "")
+        name = feature.short if feature else None
+        field = fields.get(item.get("atom_id") or "")
+        if feature and field and field != feature.default_field:
+            name = f"{name} ({field_label(field).split(',')[0]})"
+        span = (item.get("text_span") or "").strip()
+        if item.get("negated") and span and not NEGATION.match(span.lower()):
+            span = f"не {span}"
+        item["feature_name"] = name
+        item["label"] = span or name or item.get("feature_id") or "условие"
+        if item.get("items"):
+            _label_items(item["items"], fields)
+
+
+def _label_result(r: dict[str, Any], ast: QueryAST) -> None:
+    fields = {c.atom_id: c.field for c in [*ast.hard, *ast.soft] if c.atom_id}
+    _label_items(r.get("hard", []), fields)
+    _label_items(r.get("soft", []), fields)
+    for cat in r.get("categories", []):
+        _label_items(cat.get("conditions", []), fields)
 
 
 @router.get("/cities")
@@ -140,6 +177,8 @@ def search(body: SearchRequest, request: Request) -> dict[str, Any]:
     # Объяснение по шаблону (без модели, мгновенно) — у первых результатов выдачи.
     for r in results[:EXPLAIN_TOP]:
         r["explanation"] = explain(r, s.fact, ast=ast).as_dict()
+    for r in results:
+        _label_result(r, ast)
     return {
         "stub": s.stub,
         "notes": notes,
@@ -213,7 +252,13 @@ def hotelier_ask(hotel_id: str, question_id: int, request: Request) -> dict[str,
     if s.question(hotel_id, question_id, None) is None:
         raise HTTPException(404, f"нет вопроса {question_id} у отеля {hotel_id}")
     s.set_question_state(question_id, "asked", datetime.now(UTC))
-    return {"stub": s.stub, "question": s.question(hotel_id, question_id, None)}
+    return {"stub": s.stub, "question": _question(s, hotel_id, question_id)}
+
+
+def _question(s: Store, hotel_id: str, question_id: int) -> dict[str, Any] | None:
+    """Вопрос как в списке вопросов — с предзаполнением Островка и полями ответа (агент)."""
+    q = s.question(hotel_id, question_id, None)
+    return agent.enrich_question(q) if q else None
 
 
 def _hotel_view(s: Store, ast: QueryAST, hotel_id: str) -> dict[str, Any] | None:
@@ -221,6 +266,7 @@ def _hotel_view(s: Store, ast: QueryAST, hotel_id: str) -> dict[str, Any] | None
     if not found:
         return None
     r = found[0]
+    _label_result(r, ast)
     return {k: r[k] for k in ("status", "status_label", "hard", "best_category")}
 
 
@@ -269,7 +315,7 @@ def hotelier_answer(hotel_id: str, body: AnswerIn, request: Request) -> dict[str
     return {
         "stub": s.stub,
         "state": result.state,
-        "question": s.question(hotel_id, result.question_id, None),
+        "question": _question(s, hotel_id, result.question_id),
         "facts": [fact_json(f) for f in result.facts],
         "superseded": result.superseded,
         "conflicts": [{"fact_a": a.fact_id, "fact_b": b.fact_id} for a, b in result.conflicts],
