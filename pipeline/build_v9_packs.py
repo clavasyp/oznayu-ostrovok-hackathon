@@ -22,12 +22,20 @@ from pathlib import Path
 from typing import Any
 
 from core.facts import Fact
-from core.packs import Manifest, PackFile, PackSource, sha256_file, stable_id
+from core.packs import (
+    Manifest,
+    PackFile,
+    PackSource,
+    move_provenance_params,
+    sha256_file,
+    stable_id,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
 V9 = ROOT / "research_notes" / "Расчёт характеристик"
 PACKS = ROOT / "packs"
-BUILDER_VERSION = "v9-packs.1"
+# .2: пути к файлам расчёта не в params, в паспортах — пути от корня репозитория
+BUILDER_VERSION = "v9-packs.2"
 
 INPUTS = {
     "facts": V9 / "integrated" / "all8_facts.jsonl.gz",
@@ -86,7 +94,7 @@ def hotel_row(h: dict[str, Any]) -> dict[str, Any]:
 
 
 def fact_row(f: dict[str, Any]) -> dict[str, Any]:
-    f = {k: v for k, v in f.items() if k not in SLIM_KEYS}
+    f = move_provenance_params({k: v for k, v in f.items() if k not in SLIM_KEYS})
     Fact.model_validate(f)  # пакет не соберётся, если факт не проходит контракт
     return f
 

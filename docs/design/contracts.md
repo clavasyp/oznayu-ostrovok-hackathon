@@ -14,6 +14,7 @@
 
 - **Поля — как в фактах v9** (`research_notes/Расчёт характеристик/integrated/*_facts.jsonl`): `fact_id`, `hotel_id`, `city_id`, `subject_level`, `subject_id`, `feature_id`, `params`, `value`, `unit`, `status`, `unknown_reason`, `sources`, `recipe_id`, `algorithm_version`, `confidence {level, reason}`, `observed_at`, `calculated_at`, `valid_to`, `scope_note`, `recipe_attempts`, `depends_on`. Лишние поля v9 сохраняются: в базе — в колонке `extra`.
 - **ID — текстовые:** `masterId` Островка для отелей, `way/…` для корпусов OSM, 24 hex для фактов (`make_fact_id` — детерминированный).
+- **Пути к файлам расчёта — не в `params`**, а в поле факта `evidence_files` (`fan_file`, `target_source_path`, `quality_exclusion_evidence`). Пути — в материалах расчётов от папки проекта (`research_notes/…`); не все эти файлы скопированы в репозиторий. Путей с машины разработчика (`/Users/…` и т. п.) в фактах нет — сборщик пакетов падает, если встретит. Прочие служебные поля в `params` (у B02 — координаты API, хеши) пока остаются — отдельная задача.
 - **Статусы:** `observed | computed | estimate | ostrovok_content | curated | hotelier | simulated_hotelier | unknown | not_applicable`.
 - **Правила, которые проверяет модель:**
   - у `unknown` обязательна `unknown_reason`;
@@ -58,7 +59,7 @@
 | `GET /api/hotels?city_id=`, `/api/hotels/{id}`, `/api/facts/{fact_id}` | Отели, факты с паспортами и `unknown_reason_text`, категории с размещениями (`room_types`) |
 | `POST /api/search` | `{text, city_id, ast}` → AST + результаты со статусами; без `ast` — пример запроса трека |
 | `POST /api/specs/draft`, `POST /api/specs/trial` | Новая характеристика из текста (core §7.4): `{text}` → черновик YAML, проблемы и замечания; `{yaml, city_id, n}` → покрытие пробного расчёта. Ничего не сохраняет и не включает |
-| `GET /api/hotelier/{id}/questions` | 26 вопросов с предзаполнением и состоянием: `not_asked`, `asked`, `answered`, `answered_unknown`, `answered_unparsed` |
+| `GET /api/hotelier/{id}/questions` | 26 вопросов с предзаполнением и состоянием: `not_asked`, `asked`, `answered`, `answered_unknown`, `answered_unparsed`. **`question_id` — строка** во всех ответах (id 60-битные, число браузер округлил бы после 2^53); на вход — строка или число |
 | `POST /api/hotelier/{id}/questions/{question_id}/ask` | Вопрос отправлен отелю; `question` — как в списке вопросов: с `prefill`, `fields`, `title` |
 | `POST /api/hotelier/{id}/answers` | Ответ → факты → поиск сразу видит новое; с `ast` — статус отеля до и после (см. ниже); `conflict_questions` — уточняющий вопрос отельеру, если ответ разошёлся с нашим расчётом; `question` — как в списке вопросов: с `prefill`, `fields`, `title` |
 | `GET /api/conflicts?city_id=` | `conflicts` — сверка с карточкой Островка; `fact_conflicts` — противоречия фактов (расчёт против ответа отеля) |

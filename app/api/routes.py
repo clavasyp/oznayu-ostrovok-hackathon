@@ -42,7 +42,27 @@ def fact_json(f: Fact) -> dict[str, Any]:
     out = f.model_dump(mode="json")
     if f.unknown_reason:
         out["unknown_reason_text"] = reason_text(f.unknown_reason)
-    return out
+    return str_question_ids(out)  # паспорт ответа отеля: id вопроса — строкой
+
+
+def str_question_ids(x: Any) -> Any:
+    """`question_id` строкой на любой глубине ответа: паспорта фактов и размещений тоже несут
+    id вопроса (см. `question_json`)."""
+    if isinstance(x, dict):
+        return {
+            k: str(v) if k == "question_id" and isinstance(v, int) else str_question_ids(v)
+            for k, v in x.items()
+        }
+    if isinstance(x, list):
+        return [str_question_ids(v) for v in x]
+    return x
+
+
+def question_json(q: dict[str, Any]) -> dict[str, Any]:
+    """`question_id` строкой: id вопросов 60-битные (`core.packs.stable_id`), а число в JSON
+    браузер читает как double и округляет после 2^53 — «отправить вопрос» били бы мимо (404).
+    На вход API принимает и строку, и число."""
+    return q | {"question_id": str(q["question_id"])}
 
 
 def store(request: Request) -> Store:
@@ -135,7 +155,7 @@ def hotel(hotel_id: str, request: Request) -> dict[str, Any]:
     facts = {
         feature: [fact_json(f) for f in items] for feature, items in s.hotel_facts(hotel_id).items()
     }
-    room_types = s.room_types([hotel_id]).get(hotel_id, [])
+    room_types = str_question_ids(s.room_types([hotel_id]).get(hotel_id, []))  # паспорт размещений
     return {"stub": s.stub, "hotel": h, "facts": facts, "room_types": room_types}
 
 
@@ -227,7 +247,7 @@ def _record_unmatched(s: Store, ast: QueryAST) -> None:
 def hotelier_questions(hotel_id: str, request: Request) -> dict[str, Any]:
     s = store(request)
     # Агент добавляет к вопросам текст предзаполнения Островка и поля ответа (новые ключи).
-    questions = [agent.enrich_question(q) for q in s.questions(hotel_id)]
+    questions = [question_json(agent.enrich_question(q)) for q in s.questions(hotel_id)]
     return {"stub": s.stub, "hotel_id": hotel_id, "questions": questions}
 
 
@@ -240,7 +260,7 @@ def hotelier_simulate(hotel_id: str, body: SimulateRequest, request: Request) ->
     q = store(request).question(hotel_id, body.question_id, body.feature_id)
     if q is None:
         raise HTTPException(404, f"нет такого вопроса у отеля {hotel_id}")
-    return {"question_id": q["question_id"]} | agent.simulate_answer(
+    return {"question_id": str(q["question_id"])} | agent.simulate_answer(
         hotel_id, q["feature_id"], seed=body.seed
     )
 
@@ -258,7 +278,7 @@ def hotelier_ask(hotel_id: str, question_id: int, request: Request) -> dict[str,
 def _question(s: Store, hotel_id: str, question_id: int) -> dict[str, Any] | None:
     """Вопрос как в списке вопросов — с предзаполнением Островка и полями ответа (агент)."""
     q = s.question(hotel_id, question_id, None)
-    return agent.enrich_question(q) if q else None
+    return question_json(agent.enrich_question(q)) if q else None
 
 
 def _hotel_view(s: Store, ast: QueryAST, hotel_id: str) -> dict[str, Any] | None:
