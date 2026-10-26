@@ -4,9 +4,9 @@
   "city_name": "Петербург",
   "timezone": "Europe/Moscow",
   "depth": "automatic",
-  "pack_version": "v9-211f8c6d03",
+  "pack_version": "v9-1434cd8536",
   "built_at": "2026-10-24T14:07:22.981060Z",
-  "code_version": "v9-packs.1",
+  "code_version": "v9-packs.2",
   "catalog_version": "v9",
   "sources": [
     {
@@ -62,8 +62,8 @@
       "path": "data/facts.jsonl.gz",
       "kind": "facts",
       "rows": 4000,
-      "bytes": 1810506,
-      "sha256": "2f8ccb6c488ca60e52853d52ea6e4fa4a130f810c394c442ab163b696464e5ca"
+      "bytes": 1634225,
+      "sha256": "f5ee85fb38e63bc79313af761a6da78907b628d093b132d1f339312de9a74e0d"
     },
     {
       "path": "data/questions.jsonl.gz",
@@ -87,5 +87,5 @@
       "sha256": "38ccc94223601b16090fa5a1a62f92e7f86f42a020f4f8143a06ce3f26f48d2e"
     }
   ],
-  "notes": "Сборка v9-packs.1 из research_notes/Расчёт характеристик (Codex v9). Диагностика v9 (component_diagnostics, audit_files, components) не включена."
+  "notes": "Сборка v9-packs.2 из research_notes/Расчёт характеристик (Codex v9). Диагностика v9 (component_diagnostics, audit_files, components) не включена."
 }

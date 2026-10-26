@@ -12,6 +12,8 @@ import json
 from collections import Counter, defaultdict
 from pathlib import Path
 
+from core.packs import move_provenance_params
+
 ROOT = Path(__file__).resolve().parents[1]
 V9 = ROOT / "research_notes" / "Расчёт характеристик"
 OUT = ROOT / "app" / "fixtures"
@@ -75,6 +77,7 @@ def main() -> None:
             if f["hotel_id"] in demo:
                 for k in SLIM_KEYS:
                     f.pop(k, None)
+                f = move_provenance_params(f)  # пути к файлам расчёта — не в params
                 out.write(json.dumps(f, ensure_ascii=False) + "\n")
                 n += 1
 

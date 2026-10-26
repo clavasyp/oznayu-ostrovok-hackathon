@@ -4,9 +4,9 @@
   "city_name": "Минск",
   "timezone": "Europe/Minsk",
   "depth": "automatic",
-  "pack_version": "v9-211f8c6d03",
+  "pack_version": "v9-1434cd8536",
   "built_at": "2026-10-24T13:40:02.002091Z",
-  "code_version": "v9-packs.1",
+  "code_version": "v9-packs.2",
   "catalog_version": "v9",
   "sources": [
     {
@@ -52,8 +52,8 @@
       "path": "data/facts.jsonl.gz",
       "kind": "facts",
       "rows": 3950,
-      "bytes": 1643111,
-      "sha256": "76c23db8af9ffd8dd75e0e252bad46ef70afe6a56c1c93544e6e40f50381094b"
+      "bytes": 1634984,
+      "sha256": "43385c5f3b482d491510db47a7a8b9f04d0b3acf2d9c55104ca71667cc296c02"
     },
     {
       "path": "data/questions.jsonl.gz",
@@ -77,5 +77,5 @@
       "sha256": "20b26b8b3d7df267931d6f90b7c1d58ef72b2a6e1d23dac462d30ade96ca4801"
     }
   ],
-  "notes": "Сборка v9-packs.1 из research_notes/Расчёт характеристик (Codex v9). Диагностика v9 (component_diagnostics, audit_files, components) не включена."
+  "notes": "Сборка v9-packs.2 из research_notes/Расчёт характеристик (Codex v9). Диагностика v9 (component_diagnostics, audit_files, components) не включена."
 }

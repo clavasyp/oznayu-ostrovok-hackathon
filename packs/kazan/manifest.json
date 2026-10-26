@@ -4,9 +4,9 @@
   "city_name": "Казань",
   "timezone": "Europe/Moscow",
   "depth": "automatic",
-  "pack_version": "v9-211f8c6d03",
+  "pack_version": "v9-1434cd8536",
   "built_at": "2026-10-24T14:08:40.955407Z",
-  "code_version": "v9-packs.1",
+  "code_version": "v9-packs.2",
   "catalog_version": "v9",
   "sources": [
     {
@@ -57,8 +57,8 @@
       "path": "data/facts.jsonl.gz",
       "kind": "facts",
       "rows": 3961,
-      "bytes": 1654300,
-      "sha256": "65ac07950e0bd4c7f2ac78eb9c407caeca3517a279b2d4bae01799a820d5117f"
+      "bytes": 1472822,
+      "sha256": "41e274596b28d3a3aec7fba0a13daf45b9e0d5b8c9ceadb33e5d4b89966d599a"
     },
     {
       "path": "data/questions.jsonl.gz",
@@ -82,5 +82,5 @@
       "sha256": "7e28acba94723dd565d1ecdc1e1ba0c43e98658f60efefc137437b4afbd54947"
     }
   ],
-  "notes": "Сборка v9-packs.1 из research_notes/Расчёт характеристик (Codex v9). Диагностика v9 (component_diagnostics, audit_files, components) не включена."
+  "notes": "Сборка v9-packs.2 из research_notes/Расчёт характеристик (Codex v9). Диагностика v9 (component_diagnostics, audit_files, components) не включена."
 }
