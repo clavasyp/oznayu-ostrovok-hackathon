@@ -1,0 +1,3084 @@
+{
+  "branch": "seva/ostrovok-import",
+  "date": "2026-10-26",
+  "scope": "Stages 3–6 from docs/tasks/seva.md; prepared packs outside repository, publication is stage 10",
+  "catalog": {
+    "algorithm_version": "city-catalog.1",
+    "input_pages": {
+      "moscow": 4333,
+      "sochi": 2678
+    },
+    "cities": {
+      "moscow": {
+        "snapshot_hotels_in_boundary": 4210,
+        "hotels": 4211,
+        "legacy_v9_only": [
+          "9771294"
+        ],
+        "room_types": 12739,
+        "facts": 113816,
+        "subzones": {
+          "null": 4211
+        },
+        "pack_version": "city-catalog.1-a706acb44554"
+      },
+      "sochi": {
+        "snapshot_hotels_in_boundary": 2666,
+        "hotels": 2695,
+        "legacy_v9_only": [
+          "10012084",
+          "10210406",
+          "10439075",
+          "10441489",
+          "10479044",
+          "10575679",
+          "10595288",
+          "11161657",
+          "11181978",
+          "11200750",
+          "11201577",
+          "11202853",
+          "11205863",
+          "11255055",
+          "11303583",
+          "11313836",
+          "13124554",
+          "13343374",
+          "13429040",
+          "13674260",
+          "13714940",
+          "13736470",
+          "8877049",
+          "9024570",
+          "9742403",
+          "9769189",
+          "9829023",
+          "9986868",
+          "9995282"
+        ],
+        "room_types": 9233,
+        "facts": 86355,
+        "subzones": {
+          "adler": 737,
+          "lazarevskoe": 260,
+          "sirius": 397,
+          "center": 337,
+          "other_greater_sochi": 468,
+          "krasnaya_polyana": 253,
+          "khosta": 41,
+          "loo": 152,
+          "dagomys": 50
+        },
+        "pack_version": "city-catalog.1-5eb174a75e6f"
+      }
+    }
+  },
+  "catalog_exclusion_counts": {
+    "non_hotel_response": 3312,
+    "outside_focus_boundaries": 135,
+    "v9_outside_focus_boundary": 1
+  },
+  "database": {
+    "postgresql": "16.15",
+    "postgis": "3.4.6",
+    "host": "127.0.0.1",
+    "port": 55439,
+    "database": "seva_catalog_test",
+    "hotels": 7206,
+    "facts": 304874,
+    "room_types": 21972,
+    "orphan_room_facts": 0,
+    "repeat_init_seconds": 0.1
+  },
+  "osm": {
+    "moscow": {
+      "algorithm_version": "osm-city.1",
+      "attribution": "© OpenStreetMap contributors",
+      "bbox": [
+        36.65,
+        55.0,
+        38.3,
+        56.15
+      ],
+      "boundary_relation_ids": [
+        102269
+      ],
+      "city_id": "moscow",
+      "counts": {
+        "buildings": 1152531,
+        "node": 688594,
+        "relation": 96431,
+        "restriction_nodes": 110267,
+        "way": 2425560
+      },
+      "extent_note": "Graph uses a disclosed envelope; hotel membership uses the exact city union.",
+      "files": [
+        {
+          "bytes": 391634662,
+          "path": "records.jsonl.gz",
+          "sha256": "17c16153648a8a5a89e23cd260454bd10ceb0cf23c64d506092723b6b75d8f16"
+        },
+        {
+          "bytes": 65666900,
+          "path": "buildings.jsonl.gz",
+          "sha256": "8b645a1b7fdb74d57bd539a4d72d2ea0ba8df9ab234329d1f7697b2293d64ced"
+        },
+        {
+          "bytes": 1662590,
+          "path": "boundary.geojson",
+          "sha256": "3d49f8c08ff35407d18d97e50414df18aaca38d5f8ac043f5bc9be7fe4130259"
+        },
+        {
+          "bytes": 49680778,
+          "path": "localities.geojson",
+          "sha256": "e21d840aff792498058e7f4017e60057e653d290c77b0f8c409f57b8d9481eda"
+        }
+      ],
+      "geometry_diagnostics": {
+        "RuntimeError": 43
+      },
+      "license": "ODbL-1.0",
+      "license_url": "https://www.openstreetmap.org/copyright",
+      "node_policy": "Keep pure barrier/access/foot/locked nodes; retain shared OSM node IDs.",
+      "source_date": "2026-10-22T20:21:33Z",
+      "source_file": "central-fed-district-261022.osm.pbf",
+      "source_sha256": "0067f5ee4128c29eb013ddc9da5ae5b235938249553435227a4161b585a87bc7",
+      "source_url": "https://download.geofabrik.de/russia/central-fed-district-261022.osm.pbf"
+    },
+    "sochi": {
+      "algorithm_version": "osm-city.1",
+      "attribution": "© OpenStreetMap contributors",
+      "bbox": [
+        39.0,
+        43.2,
+        41.1,
+        44.6
+      ],
+      "boundary_relation_ids": [
+        365233,
+        11865346
+      ],
+      "city_id": "sochi",
+      "counts": {
+        "buildings": 311183,
+        "node": 47140,
+        "relation": 28079,
+        "restriction_nodes": 5328,
+        "way": 441589
+      },
+      "extent_note": "Graph uses a disclosed envelope; hotel membership uses the exact city union.",
+      "files": [
+        {
+          "bytes": 97270863,
+          "path": "records.jsonl.gz",
+          "sha256": "c13bc17f530ff51b577cbfc9621f494b4d9855eb0495ef57536651f20c0641a8"
+        },
+        {
+          "bytes": 14663801,
+          "path": "buildings.jsonl.gz",
+          "sha256": "b013c617d5998d1fa3041939cc7845a37943b9f14a27bdce6826c99719302d5c"
+        },
+        {
+          "bytes": 861599,
+          "path": "boundary.geojson",
+          "sha256": "111a329ce37bb2bcbcea3a38db61d169bd521fc4a41994249fdf0a3c45692497"
+        },
+        {
+          "bytes": 13899880,
+          "path": "localities.geojson",
+          "sha256": "42763f767258a1e4bb51fb19917a5eb09b8955a2ea5ccce2c254e4b9cbb151c8"
+        }
+      ],
+      "geometry_diagnostics": {
+        "RuntimeError": 4
+      },
+      "license": "ODbL-1.0",
+      "license_url": "https://www.openstreetmap.org/copyright",
+      "node_policy": "Keep pure barrier/access/foot/locked nodes; retain shared OSM node IDs.",
+      "source_date": "2026-10-22T20:21:33Z",
+      "source_file": "south-fed-district-261022.osm.pbf",
+      "source_sha256": "242254bbd0c250e4fab8c1b70e77d6ff6ccfa6dde9498134e0019698cf6f2ee6",
+      "source_url": "https://download.geofabrik.de/russia/south-fed-district-261022.osm.pbf"
+    }
+  },
+  "sochi": {
+    "algorithm_version": "route-poi.1",
+    "hotels": 2695,
+    "geo_facts": 83561,
+    "feature_ids": [
+      "N02",
+      "N03",
+      "N04",
+      "W01",
+      "W02",
+      "W03",
+      "W04",
+      "W05",
+      "W06",
+      "L01",
+      "L02",
+      "L03",
+      "F01",
+      "F02",
+      "P03",
+      "P04",
+      "Q03"
+    ],
+    "feature_statuses": {
+      "N02": {
+        "unknown": 2030,
+        "computed": 673
+      },
+      "N03": {
+        "unknown": 2030,
+        "computed": 673
+      },
+      "N04": {
+        "computed": 2695
+      },
+      "W01": {
+        "estimate": 5122,
+        "unknown": 268
+      },
+      "W02": {
+        "estimate": 5048,
+        "unknown": 342
+      },
+      "W03": {
+        "estimate": 4894,
+        "unknown": 496
+      },
+      "W04": {
+        "estimate": 5064,
+        "unknown": 326
+      },
+      "W05": {
+        "computed": 5156,
+        "unknown": 234
+      },
+      "W06": {
+        "computed": 5156,
+        "unknown": 234
+      },
+      "L01": {
+        "estimate": 4894,
+        "unknown": 496
+      },
+      "L02": {
+        "unknown": 5390
+      },
+      "L03": {
+        "estimate": 4466,
+        "unknown": 924
+      },
+      "F01": {
+        "estimate": 5010,
+        "unknown": 380
+      },
+      "F02": {
+        "unknown": 5390
+      },
+      "P03": {
+        "unknown": 5390
+      },
+      "P04": {
+        "unknown": 1504,
+        "estimate": 3886
+      },
+      "Q03": {
+        "computed": 5064,
+        "unknown": 326
+      }
+    },
+    "building_matches": {
+      "matched_hotels": 665,
+      "links": 673,
+      "ambiguous_auto_candidates": 1,
+      "methods": {
+        "v9_accepted_link_replay": 66,
+        "unique_full_address_and_point_in_polygon": 607
+      },
+      "review_candidates": [
+        {
+          "hotel_id": "8395013",
+          "candidate_building_ids": [
+            "way/202376397",
+            "way/925045309"
+          ],
+          "evidence": {
+            "way/202376397": {
+              "hotel_address": "Альпийская ул., д. 88, лит. A, Сочи",
+              "normalized_hotel": "улица альпийская, 88а",
+              "normalized_osm": "улица альпийская, 88а",
+              "point_covered_by_building": true,
+              "rule": "unique_full_address_and_point_in_polygon"
+            },
+            "way/925045309": {
+              "hotel_address": "Альпийская ул., д. 88, лит. A, Сочи",
+              "normalized_hotel": "улица альпийская, 88а",
+              "normalized_osm": "улица альпийская, 88а",
+              "point_covered_by_building": true,
+              "rule": "unique_full_address_and_point_in_polygon"
+            }
+          },
+          "state": "proposed",
+          "reason": "multiple_address_footprints"
+        }
+      ]
+    },
+    "control_v9": {
+      "baseline_hotels": 89,
+      "contexts": 2775,
+      "counts": {
+        "equal_status_and_metric": 2775
+      },
+      "differences": [],
+      "tolerance": {
+        "relative": 1e-08,
+        "absolute": 0.01
+      },
+      "scope": "Сверка статуса и основной метрики, не измерение физической точности.",
+      "inputs": {
+        "cohort_sha256": "c0f37fe6fa70f0ac9134608ee4b08537f0fd332a9fa78c8691047069d798afd1",
+        "facts_sha256": "716e84a029d183e439f7c7c923626a6edf2d30b16ee6f4e72999d5de5ac38db9",
+        "osm_manifest_sha256": "976c9a689d1e225cfefe8fee06e1a53524dd76a371a61533bc4b586082a0dfc0",
+        "building_link_policy": "v9_accepted_links_only",
+        "scene_policy": "v9_first_vertex_bbox_for_control_only",
+        "raster_sha256": {
+          "Copernicus_DSM_COG_10_N43_00_E039_00_DEM.tif": "ec4192bc74e18926617e40373898d37d6000ab0593cabde3a25a5d9781d7991e",
+          "Copernicus_DSM_COG_10_N43_00_E040_00_DEM.tif": "49e7ef0de441d943645ee1b8aa9941f35a2d3e7c1574be23135b339612d58493"
+        }
+      }
+    },
+    "full_scene_common_hotels": {
+      "baseline_hotels": 89,
+      "contexts": 2775,
+      "counts": {
+        "equal_status_and_metric": 2641,
+        "metric_changed": 126,
+        "status_changed": 8
+      },
+      "differences": [
+        {
+          "key": [
+            "6496437",
+            "W01",
+            "",
+            null,
+            "2026-11-14",
+            "2026-11-17"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 219.10184099485073,
+          "new": 219.06927689739717,
+          "delta": -0.032564097453558816,
+          "old_target": "way/53086451#graph-node-8310506432",
+          "new_target": "way/53086451#graph-node-8310506432",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "6496437",
+            "W01",
+            "",
+            null,
+            "2027-07-15",
+            "2027-07-18"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 219.10184099485073,
+          "new": 219.06927689739717,
+          "delta": -0.032564097453558816,
+          "old_target": "way/53086451#graph-node-8310506432",
+          "new_target": "way/53086451#graph-node-8310506432",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "6496437",
+            "W02",
+            "",
+            null,
+            "2026-11-14",
+            "2026-11-17"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 801.3386254457721,
+          "new": 801.3060613483185,
+          "delta": -0.03256409745358724,
+          "old_target": "node/882105143",
+          "new_target": "node/882105143",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "6496437",
+            "W02",
+            "",
+            null,
+            "2027-07-15",
+            "2027-07-18"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 801.3386254457721,
+          "new": 801.3060613483185,
+          "delta": -0.03256409745358724,
+          "old_target": "node/882105143",
+          "new_target": "node/882105143",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "6496437",
+            "W03",
+            "",
+            null,
+            "2026-11-14",
+            "2026-11-17"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 28146.500025989528,
+          "new": 28146.467461892073,
+          "delta": -0.03256409745517885,
+          "old_target": "project:center:sochi:osm-node-4758135895",
+          "new_target": "project:center:sochi:osm-node-4758135895",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "6496437",
+            "W03",
+            "",
+            null,
+            "2027-07-15",
+            "2027-07-18"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 28146.500025989528,
+          "new": 28146.467461892073,
+          "delta": -0.03256409745517885,
+          "old_target": "project:center:sochi:osm-node-4758135895",
+          "new_target": "project:center:sochi:osm-node-4758135895",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "6496437",
+            "L01",
+            "",
+            "2026-11-14T02:00:00",
+            null,
+            null
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 814.65401343907,
+          "new": 814.6214493416164,
+          "delta": -0.03256409745358724,
+          "old_target": "node/5033456927",
+          "new_target": "node/5033456927",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "6496437",
+            "L01",
+            "",
+            "2027-07-17T02:00:00",
+            null,
+            null
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 814.65401343907,
+          "new": 814.6214493416164,
+          "delta": -0.03256409745358724,
+          "old_target": "node/5033456927",
+          "new_target": "node/5033456927",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "6496437",
+            "L03",
+            "",
+            "2026-11-14T02:00:00",
+            null,
+            null
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 42.49796695162023,
+          "new": 42.46540285416667,
+          "delta": -0.032564097453558816,
+          "old_target": "node/7115085742",
+          "new_target": "node/7115085742",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "6496437",
+            "L03",
+            "",
+            "2027-07-17T02:00:00",
+            null,
+            null
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 42.49796695162023,
+          "new": 42.46540285416667,
+          "delta": -0.032564097453558816,
+          "old_target": "node/7115085742",
+          "new_target": "node/7115085742",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "6496437",
+            "P04",
+            "",
+            "2026-11-14T02:00:00",
+            null,
+            null
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 26998.50092530164,
+          "new": 26998.468361204184,
+          "delta": -0.03256409745517885,
+          "old_target": "node/11016638319",
+          "new_target": "node/11016638319",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "6496437",
+            "P04",
+            "",
+            "2027-07-17T02:00:00",
+            null,
+            null
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 26998.50092530164,
+          "new": 26998.468361204184,
+          "delta": -0.03256409745517885,
+          "old_target": "node/11016638319",
+          "new_target": "node/11016638319",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "6496437",
+            "F01",
+            "",
+            null,
+            "2026-11-14",
+            "2026-11-17"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 443.10055966137975,
+          "new": 443.0679955639262,
+          "delta": -0.032564097453530394,
+          "old_target": "way/170900825",
+          "new_target": "way/170900825",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "6496437",
+            "F01",
+            "",
+            null,
+            "2027-07-15",
+            "2027-07-18"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 443.10055966137975,
+          "new": 443.0679955639262,
+          "delta": -0.032564097453530394,
+          "old_target": "way/170900825",
+          "new_target": "way/170900825",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "6497279",
+            "W01",
+            "",
+            null,
+            "2026-11-14",
+            "2026-11-17"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 673.7025939404753,
+          "new": 673.7460011247013,
+          "delta": 0.04340718422599821,
+          "old_target": "way/240616876#graph-node-7231480831",
+          "new_target": "way/240616876#graph-node-7231480831",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "6497279",
+            "W01",
+            "",
+            null,
+            "2027-07-15",
+            "2027-07-18"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 673.7025939404753,
+          "new": 673.7460011247013,
+          "delta": 0.04340718422599821,
+          "old_target": "way/240616876#graph-node-7231480831",
+          "new_target": "way/240616876#graph-node-7231480831",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "6497279",
+            "W02",
+            "",
+            null,
+            "2026-11-14",
+            "2026-11-17"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 227.6935892213992,
+          "new": 227.73699640562512,
+          "delta": 0.04340718422591294,
+          "old_target": "node/3790659745",
+          "new_target": "node/3790659745",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "6497279",
+            "W02",
+            "",
+            null,
+            "2027-07-15",
+            "2027-07-18"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 227.6935892213992,
+          "new": 227.73699640562512,
+          "delta": 0.04340718422591294,
+          "old_target": "node/3790659745",
+          "new_target": "node/3790659745",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "6497279",
+            "W03",
+            "",
+            null,
+            "2026-11-14",
+            "2026-11-17"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 33134.08578346085,
+          "new": 33134.12919064507,
+          "delta": 0.043407184224633966,
+          "old_target": "project:center:sochi:osm-node-4758135895",
+          "new_target": "project:center:sochi:osm-node-4758135895",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "6497279",
+            "W03",
+            "",
+            null,
+            "2027-07-15",
+            "2027-07-18"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 33134.08578346085,
+          "new": 33134.12919064507,
+          "delta": 0.043407184224633966,
+          "old_target": "project:center:sochi:osm-node-4758135895",
+          "new_target": "project:center:sochi:osm-node-4758135895",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "6497279",
+            "L01",
+            "",
+            "2026-11-14T02:00:00",
+            null,
+            null
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 1285.9128457896131,
+          "new": 1285.9562529738387,
+          "delta": 0.04340718422554346,
+          "old_target": "node/5507670523",
+          "new_target": "node/5507670523",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "6497279",
+            "L01",
+            "",
+            "2027-07-17T02:00:00",
+            null,
+            null
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 1285.9128457896131,
+          "new": 1285.9562529738387,
+          "delta": 0.04340718422554346,
+          "old_target": "node/5507670523",
+          "new_target": "node/5507670523",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "6497279",
+            "L03",
+            "",
+            "2026-11-14T02:00:00",
+            null,
+            null
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 5219.761599005575,
+          "new": 5219.805006189801,
+          "delta": 0.043407184226452955,
+          "old_target": "node/5123957524",
+          "new_target": "node/5123957524",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "6497279",
+            "L03",
+            "",
+            "2027-07-17T02:00:00",
+            null,
+            null
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 5219.761599005575,
+          "new": 5219.805006189801,
+          "delta": 0.043407184226452955,
+          "old_target": "node/5123957524",
+          "new_target": "node/5123957524",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "6497279",
+            "P04",
+            "",
+            "2026-11-14T02:00:00",
+            null,
+            null
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 31986.086682772977,
+          "new": 31986.1300899572,
+          "delta": 0.043407184224633966,
+          "old_target": "node/11016638319",
+          "new_target": "node/11016638319",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "6497279",
+            "P04",
+            "",
+            "2027-07-17T02:00:00",
+            null,
+            null
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 31986.086682772977,
+          "new": 31986.1300899572,
+          "delta": 0.043407184224633966,
+          "old_target": "node/11016638319",
+          "new_target": "node/11016638319",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "6497279",
+            "F01",
+            "",
+            null,
+            "2026-11-14",
+            "2026-11-17"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 399.5714151236769,
+          "new": 399.61482230790284,
+          "delta": 0.043407184225941364,
+          "old_target": "node/3046952442",
+          "new_target": "node/3046952442",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "6497279",
+            "F01",
+            "",
+            null,
+            "2027-07-15",
+            "2027-07-18"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 399.5714151236769,
+          "new": 399.61482230790284,
+          "delta": 0.043407184225941364,
+          "old_target": "node/3046952442",
+          "new_target": "node/3046952442",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "6551322",
+            "W01",
+            "",
+            null,
+            "2026-11-14",
+            "2026-11-17"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 836.5270201703197,
+          "new": 836.6223180708843,
+          "delta": 0.09529790056456022,
+          "old_target": "way/53087011#graph-node-434354018",
+          "new_target": "way/53087011#graph-node-434354018",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "6551322",
+            "W01",
+            "",
+            null,
+            "2027-07-15",
+            "2027-07-18"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 836.5270201703197,
+          "new": 836.6223180708843,
+          "delta": 0.09529790056456022,
+          "old_target": "way/53087011#graph-node-434354018",
+          "new_target": "way/53087011#graph-node-434354018",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "6551322",
+            "W02",
+            "",
+            null,
+            "2026-11-14",
+            "2026-11-17"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 351.73492223600147,
+          "new": 351.83022013656597,
+          "delta": 0.09529790056450338,
+          "old_target": "node/3973019579",
+          "new_target": "node/3973019579",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "6551322",
+            "W02",
+            "",
+            null,
+            "2027-07-15",
+            "2027-07-18"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 351.73492223600147,
+          "new": 351.83022013656597,
+          "delta": 0.09529790056450338,
+          "old_target": "node/3973019579",
+          "new_target": "node/3973019579",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "6551322",
+            "W03",
+            "",
+            null,
+            "2026-11-14",
+            "2026-11-17"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 26584.351251962158,
+          "new": 26584.44654986272,
+          "delta": 0.09529790056330967,
+          "old_target": "project:center:sochi:osm-node-4758135895",
+          "new_target": "project:center:sochi:osm-node-4758135895",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "6551322",
+            "W03",
+            "",
+            null,
+            "2027-07-15",
+            "2027-07-18"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 26584.351251962158,
+          "new": 26584.44654986272,
+          "delta": 0.09529790056330967,
+          "old_target": "project:center:sochi:osm-node-4758135895",
+          "new_target": "project:center:sochi:osm-node-4758135895",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "6551322",
+            "L01",
+            "",
+            "2026-11-14T02:00:00",
+            null,
+            null
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 1504.4373822544,
+          "new": 1504.5326801549647,
+          "delta": 0.09529790056467391,
+          "old_target": "way/235368455",
+          "new_target": "way/235368455",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "6551322",
+            "L01",
+            "",
+            "2027-07-17T02:00:00",
+            null,
+            null
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 1504.4373822544,
+          "new": 1504.5326801549647,
+          "delta": 0.09529790056467391,
+          "old_target": "way/235368455",
+          "new_target": "way/235368455",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "6551322",
+            "L03",
+            "",
+            "2026-11-14T02:00:00",
+            null,
+            null
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 1825.114441957473,
+          "new": 1825.2097398580377,
+          "delta": 0.09529790056467391,
+          "old_target": "node/2371493269",
+          "new_target": "node/2371493269",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "6551322",
+            "L03",
+            "",
+            "2027-07-17T02:00:00",
+            null,
+            null
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 1825.114441957473,
+          "new": 1825.2097398580377,
+          "delta": 0.09529790056467391,
+          "old_target": "node/2371493269",
+          "new_target": "node/2371493269",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "6551322",
+            "P04",
+            "",
+            "2026-11-14T02:00:00",
+            null,
+            null
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 25436.35215127427,
+          "new": 25436.447449174833,
+          "delta": 0.09529790056330967,
+          "old_target": "node/11016638319",
+          "new_target": "node/11016638319",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "6551322",
+            "P04",
+            "",
+            "2027-07-17T02:00:00",
+            null,
+            null
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 25436.35215127427,
+          "new": 25436.447449174833,
+          "delta": 0.09529790056330967,
+          "old_target": "node/11016638319",
+          "new_target": "node/11016638319",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "6551322",
+            "F01",
+            "",
+            null,
+            "2026-11-14",
+            "2026-11-17"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 1253.7313176316877,
+          "new": 1253.8266155322524,
+          "delta": 0.09529790056467391,
+          "old_target": "node/7198076286",
+          "new_target": "node/7198076286",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "6551322",
+            "F01",
+            "",
+            null,
+            "2027-07-15",
+            "2027-07-18"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 1253.7313176316877,
+          "new": 1253.8266155322524,
+          "delta": 0.09529790056467391,
+          "old_target": "node/7198076286",
+          "new_target": "node/7198076286",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "7725078",
+            "W01",
+            "",
+            null,
+            "2026-11-14",
+            "2026-11-17"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 163.20820528283872,
+          "new": 163.14454730468208,
+          "delta": -0.06365797815664109,
+          "old_target": "way/248628855#graph-node-7563693424",
+          "new_target": "way/248628855#graph-node-7563693424",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "7725078",
+            "W01",
+            "",
+            null,
+            "2027-07-15",
+            "2027-07-18"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 163.20820528283872,
+          "new": 163.14454730468208,
+          "delta": -0.06365797815664109,
+          "old_target": "way/248628855#graph-node-7563693424",
+          "new_target": "way/248628855#graph-node-7563693424",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "7725078",
+            "W02",
+            "",
+            null,
+            "2026-11-14",
+            "2026-11-17"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 703.267738056161,
+          "new": 703.2040800780043,
+          "delta": -0.06365797815669794,
+          "old_target": "node/13140508680",
+          "new_target": "node/13140508680",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "7725078",
+            "W02",
+            "",
+            null,
+            "2027-07-15",
+            "2027-07-18"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 703.267738056161,
+          "new": 703.2040800780043,
+          "delta": -0.06365797815669794,
+          "old_target": "node/13140508680",
+          "new_target": "node/13140508680",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "7725078",
+            "W03",
+            "",
+            null,
+            "2026-11-14",
+            "2026-11-17"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 29218.092320652544,
+          "new": 29218.028662674387,
+          "delta": -0.06365797815669794,
+          "old_target": "project:center:sochi:osm-node-4758135895",
+          "new_target": "project:center:sochi:osm-node-4758135895",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "7725078",
+            "W03",
+            "",
+            null,
+            "2027-07-15",
+            "2027-07-18"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 29218.092320652544,
+          "new": 29218.028662674387,
+          "delta": -0.06365797815669794,
+          "old_target": "project:center:sochi:osm-node-4758135895",
+          "new_target": "project:center:sochi:osm-node-4758135895",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "7725078",
+            "L01",
+            "",
+            "2026-11-14T02:00:00",
+            null,
+            null
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 84.15647693595062,
+          "new": 84.09281895779397,
+          "delta": -0.0636579781566553,
+          "old_target": "node/11135956614",
+          "new_target": "node/11135956614",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "7725078",
+            "L01",
+            "",
+            "2027-07-17T02:00:00",
+            null,
+            null
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 84.15647693595062,
+          "new": 84.09281895779397,
+          "delta": -0.0636579781566553,
+          "old_target": "node/11135956614",
+          "new_target": "node/11135956614",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "7725078",
+            "L03",
+            "",
+            "2026-11-14T02:00:00",
+            null,
+            null
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 650.5703719930361,
+          "new": 650.5067140148794,
+          "delta": -0.06365797815669794,
+          "old_target": "node/5123957524",
+          "new_target": "node/5123957524",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "7725078",
+            "L03",
+            "",
+            "2027-07-17T02:00:00",
+            null,
+            null
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 650.5703719930361,
+          "new": 650.5067140148794,
+          "delta": -0.06365797815669794,
+          "old_target": "node/5123957524",
+          "new_target": "node/5123957524",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "7725078",
+            "P04",
+            "",
+            "2026-11-14T02:00:00",
+            null,
+            null
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 28070.093219964656,
+          "new": 28070.0295619865,
+          "delta": -0.06365797815669794,
+          "old_target": "node/11016638319",
+          "new_target": "node/11016638319",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "7725078",
+            "P04",
+            "",
+            "2027-07-17T02:00:00",
+            null,
+            null
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 28070.093219964656,
+          "new": 28070.0295619865,
+          "delta": -0.06365797815669794,
+          "old_target": "node/11016638319",
+          "new_target": "node/11016638319",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "7725078",
+            "F01",
+            "",
+            null,
+            "2026-11-14",
+            "2026-11-17"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 227.365808801993,
+          "new": 227.30215082383637,
+          "delta": -0.06365797815664109,
+          "old_target": "way/1278225789",
+          "new_target": "way/1278225789",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "7725078",
+            "F01",
+            "",
+            null,
+            "2027-07-15",
+            "2027-07-18"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 227.365808801993,
+          "new": 227.30215082383637,
+          "delta": -0.06365797815664109,
+          "old_target": "way/1278225789",
+          "new_target": "way/1278225789",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "7726257",
+            "W01",
+            "",
+            null,
+            "2026-11-14",
+            "2026-11-17"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 673.4890416975827,
+          "new": 673.5996368114584,
+          "delta": 0.1105951138756609,
+          "old_target": "way/53086451#graph-node-2123824713",
+          "new_target": "way/53086451#graph-node-2123824713",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "7726257",
+            "W01",
+            "",
+            null,
+            "2027-07-15",
+            "2027-07-18"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 673.4890416975827,
+          "new": 673.5996368114584,
+          "delta": 0.1105951138756609,
+          "old_target": "way/53086451#graph-node-2123824713",
+          "new_target": "way/53086451#graph-node-2123824713",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "7726257",
+            "W02",
+            "",
+            null,
+            "2026-11-14",
+            "2026-11-17"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 340.4752612942074,
+          "new": 340.5858564080832,
+          "delta": 0.11059511387577459,
+          "old_target": "node/882105143",
+          "new_target": "node/882105143",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "7726257",
+            "W02",
+            "",
+            null,
+            "2027-07-15",
+            "2027-07-18"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 340.4752612942074,
+          "new": 340.5858564080832,
+          "delta": 0.11059511387577459,
+          "old_target": "node/882105143",
+          "new_target": "node/882105143",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "7726257",
+            "W03",
+            "",
+            null,
+            "2026-11-14",
+            "2026-11-17"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 27793.71267681776,
+          "new": 27793.823271931637,
+          "delta": 0.11059511387793464,
+          "old_target": "project:center:sochi:osm-node-4758135895",
+          "new_target": "project:center:sochi:osm-node-4758135895",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "7726257",
+            "W03",
+            "",
+            null,
+            "2027-07-15",
+            "2027-07-18"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 27793.71267681776,
+          "new": 27793.823271931637,
+          "delta": 0.11059511387793464,
+          "old_target": "project:center:sochi:osm-node-4758135895",
+          "new_target": "project:center:sochi:osm-node-4758135895",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "7726257",
+            "L01",
+            "",
+            "2026-11-14T02:00:00",
+            null,
+            null
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 353.7906492875053,
+          "new": 353.90124440138106,
+          "delta": 0.11059511387577459,
+          "old_target": "node/5033456927",
+          "new_target": "node/5033456927",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "7726257",
+            "L01",
+            "",
+            "2027-07-17T02:00:00",
+            null,
+            null
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 353.7906492875053,
+          "new": 353.90124440138106,
+          "delta": 0.11059511387577459,
+          "old_target": "node/5033456927",
+          "new_target": "node/5033456927",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "7726257",
+            "L03",
+            "",
+            "2026-11-14T02:00:00",
+            null,
+            null
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 502.44301082089424,
+          "new": 502.55360593477,
+          "delta": 0.11059511387577459,
+          "old_target": "node/7115085742",
+          "new_target": "node/7115085742",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "7726257",
+            "L03",
+            "",
+            "2027-07-17T02:00:00",
+            null,
+            null
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 502.44301082089424,
+          "new": 502.55360593477,
+          "delta": 0.11059511387577459,
+          "old_target": "node/7115085742",
+          "new_target": "node/7115085742",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "7726257",
+            "P04",
+            "",
+            "2026-11-14T02:00:00",
+            null,
+            null
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 26645.71357612987,
+          "new": 26645.82417124375,
+          "delta": 0.11059511387793464,
+          "old_target": "node/11016638319",
+          "new_target": "node/11016638319",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "7726257",
+            "P04",
+            "",
+            "2027-07-17T02:00:00",
+            null,
+            null
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 26645.71357612987,
+          "new": 26645.82417124375,
+          "delta": 0.11059511387793464,
+          "old_target": "node/11016638319",
+          "new_target": "node/11016638319",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "7726257",
+            "F01",
+            "",
+            null,
+            "2026-11-14",
+            "2026-11-17"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 416.9271493175546,
+          "new": 417.0377444314304,
+          "delta": 0.11059511387577459,
+          "old_target": "way/161202286",
+          "new_target": "way/161202286",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "7726257",
+            "F01",
+            "",
+            null,
+            "2027-07-15",
+            "2027-07-18"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 416.9271493175546,
+          "new": 417.0377444314304,
+          "delta": 0.11059511387577459,
+          "old_target": "way/161202286",
+          "new_target": "way/161202286",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "7851188",
+            "N02",
+            "",
+            null,
+            null,
+            null
+          ],
+          "reason": "status_changed",
+          "old": "unknown",
+          "new": "computed",
+          "explanation": "new_unique_full_address_and_point_building_match"
+        },
+        {
+          "key": [
+            "7851188",
+            "N03",
+            "",
+            null,
+            null,
+            null
+          ],
+          "reason": "status_changed",
+          "old": "unknown",
+          "new": "computed",
+          "explanation": "new_unique_full_address_and_point_building_match"
+        },
+        {
+          "key": [
+            "7851188",
+            "W01",
+            "",
+            null,
+            "2026-11-14",
+            "2026-11-17"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 20.229950547956097,
+          "new": 20.193651455064575,
+          "delta": -0.03629909289152167,
+          "old_target": "way/53087011#graph-node-5129364865",
+          "new_target": "way/53087011#graph-node-5129364865",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "7851188",
+            "W01",
+            "",
+            null,
+            "2027-07-15",
+            "2027-07-18"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 20.229950547956097,
+          "new": 20.193651455064575,
+          "delta": -0.03629909289152167,
+          "old_target": "way/53087011#graph-node-5129364865",
+          "new_target": "way/53087011#graph-node-5129364865",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "7851188",
+            "W02",
+            "",
+            null,
+            "2026-11-14",
+            "2026-11-17"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 535.468883087932,
+          "new": 535.4325839950404,
+          "delta": -0.03629909289156785,
+          "old_target": "node/1725392305",
+          "new_target": "node/1725392305",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "7851188",
+            "W02",
+            "",
+            null,
+            "2027-07-15",
+            "2027-07-18"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 535.468883087932,
+          "new": 535.4325839950404,
+          "delta": -0.03629909289156785,
+          "old_target": "node/1725392305",
+          "new_target": "node/1725392305",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "7851188",
+            "W03",
+            "",
+            null,
+            "2026-11-14",
+            "2026-11-17"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 26926.352143240332,
+          "new": 26926.31584414744,
+          "delta": -0.03629909289156785,
+          "old_target": "project:center:sochi:osm-node-4758135895",
+          "new_target": "project:center:sochi:osm-node-4758135895",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "7851188",
+            "W03",
+            "",
+            null,
+            "2027-07-15",
+            "2027-07-18"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 26926.352143240332,
+          "new": 26926.31584414744,
+          "delta": -0.03629909289156785,
+          "old_target": "project:center:sochi:osm-node-4758135895",
+          "new_target": "project:center:sochi:osm-node-4758135895",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "7851188",
+            "L01",
+            "",
+            "2026-11-14T02:00:00",
+            null,
+            null
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 1348.748465287254,
+          "new": 1348.7121661943625,
+          "delta": -0.03629909289156785,
+          "old_target": "way/235368455",
+          "new_target": "way/235368455",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "7851188",
+            "L01",
+            "",
+            "2027-07-17T02:00:00",
+            null,
+            null
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 1348.748465287254,
+          "new": 1348.7121661943625,
+          "delta": -0.03629909289156785,
+          "old_target": "way/235368455",
+          "new_target": "way/235368455",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "7851188",
+            "L03",
+            "",
+            "2026-11-14T02:00:00",
+            null,
+            null
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 1403.053367941995,
+          "new": 1403.0170688491035,
+          "delta": -0.03629909289156785,
+          "old_target": "node/7115085742",
+          "new_target": "node/7115085742",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "7851188",
+            "L03",
+            "",
+            "2027-07-17T02:00:00",
+            null,
+            null
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 1403.053367941995,
+          "new": 1403.0170688491035,
+          "delta": -0.03629909289156785,
+          "old_target": "node/7115085742",
+          "new_target": "node/7115085742",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "7851188",
+            "P04",
+            "",
+            "2026-11-14T02:00:00",
+            null,
+            null
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 25778.353042552444,
+          "new": 25778.316743459553,
+          "delta": -0.03629909289156785,
+          "old_target": "node/11016638319",
+          "new_target": "node/11016638319",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "7851188",
+            "P04",
+            "",
+            "2027-07-17T02:00:00",
+            null,
+            null
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 25778.353042552444,
+          "new": 25778.316743459553,
+          "delta": -0.03629909289156785,
+          "old_target": "node/11016638319",
+          "new_target": "node/11016638319",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "7851188",
+            "F01",
+            "",
+            null,
+            "2026-11-14",
+            "2026-11-17"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 1005.266014603609,
+          "new": 1005.2297155107175,
+          "delta": -0.03629909289156785,
+          "old_target": "way/170900825",
+          "new_target": "way/170900825",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "7851188",
+            "F01",
+            "",
+            null,
+            "2027-07-15",
+            "2027-07-18"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 1005.266014603609,
+          "new": 1005.2297155107175,
+          "delta": -0.03629909289156785,
+          "old_target": "way/170900825",
+          "new_target": "way/170900825",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "7942708",
+            "W01",
+            "",
+            null,
+            "2026-11-14",
+            "2026-11-17"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 2180.674255181651,
+          "new": 2180.6917607218,
+          "delta": 0.01750554014915906,
+          "old_target": "way/249721768#graph-node-9256511263",
+          "new_target": "way/249721768#graph-node-9256511263",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "7942708",
+            "W01",
+            "",
+            null,
+            "2027-07-15",
+            "2027-07-18"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 2180.674255181651,
+          "new": 2180.6917607218,
+          "delta": 0.01750554014915906,
+          "old_target": "way/249721768#graph-node-9256511263",
+          "new_target": "way/249721768#graph-node-9256511263",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "7942708",
+            "W02",
+            "",
+            null,
+            "2026-11-14",
+            "2026-11-17"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 50.906264626717544,
+          "new": 50.9237701668667,
+          "delta": 0.01750554014915906,
+          "old_target": "node/1193974866",
+          "new_target": "node/1193974866",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "7942708",
+            "W02",
+            "",
+            null,
+            "2027-07-15",
+            "2027-07-18"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 50.906264626717544,
+          "new": 50.9237701668667,
+          "delta": 0.01750554014915906,
+          "old_target": "node/1193974866",
+          "new_target": "node/1193974866",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "7942708",
+            "W03",
+            "",
+            null,
+            "2026-11-14",
+            "2026-11-17"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 4754.512028163095,
+          "new": 4754.529533703244,
+          "delta": 0.017505540148704313,
+          "old_target": "project:center:sochi:osm-node-4758135895",
+          "new_target": "project:center:sochi:osm-node-4758135895",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "7942708",
+            "W03",
+            "",
+            null,
+            "2027-07-15",
+            "2027-07-18"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 4754.512028163095,
+          "new": 4754.529533703244,
+          "delta": 0.017505540148704313,
+          "old_target": "project:center:sochi:osm-node-4758135895",
+          "new_target": "project:center:sochi:osm-node-4758135895",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "7942708",
+            "L01",
+            "",
+            "2026-11-14T02:00:00",
+            null,
+            null
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 1060.2913797554893,
+          "new": 1060.3088852956384,
+          "delta": 0.01750554014915906,
+          "old_target": "node/2414675500",
+          "new_target": "node/2414675500",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "7942708",
+            "L01",
+            "",
+            "2027-07-17T02:00:00",
+            null,
+            null
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 1060.2913797554893,
+          "new": 1060.3088852956384,
+          "delta": 0.01750554014915906,
+          "old_target": "node/2414675500",
+          "new_target": "node/2414675500",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "7942708",
+            "L03",
+            "",
+            "2026-11-14T02:00:00",
+            null,
+            null
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 2686.5103347113845,
+          "new": 2686.5278402515337,
+          "delta": 0.01750554014915906,
+          "old_target": "way/46916858",
+          "new_target": "way/46916858",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "7942708",
+            "L03",
+            "",
+            "2027-07-17T02:00:00",
+            null,
+            null
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 2686.5103347113845,
+          "new": 2686.5278402515337,
+          "delta": 0.01750554014915906,
+          "old_target": "way/46916858",
+          "new_target": "way/46916858",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "7942708",
+            "P04",
+            "",
+            "2026-11-14T02:00:00",
+            null,
+            null
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 8974.567052477745,
+          "new": 8974.584558017894,
+          "delta": 0.017505540148704313,
+          "old_target": "node/11016638319",
+          "new_target": "node/11016638319",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "7942708",
+            "P04",
+            "",
+            "2027-07-17T02:00:00",
+            null,
+            null
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 8974.567052477745,
+          "new": 8974.584558017894,
+          "delta": 0.017505540148704313,
+          "old_target": "node/11016638319",
+          "new_target": "node/11016638319",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "7942708",
+            "F01",
+            "",
+            null,
+            "2026-11-14",
+            "2026-11-17"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 728.5685353999729,
+          "new": 728.5860409401221,
+          "delta": 0.01750554014915906,
+          "old_target": "way/1318127330",
+          "new_target": "way/1318127330",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "7942708",
+            "F01",
+            "",
+            null,
+            "2027-07-15",
+            "2027-07-18"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 728.5685353999729,
+          "new": 728.5860409401221,
+          "delta": 0.01750554014915906,
+          "old_target": "way/1318127330",
+          "new_target": "way/1318127330",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "8085655",
+            "W01",
+            "",
+            null,
+            "2026-11-14",
+            "2026-11-17"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 65.65533956923507,
+          "new": 65.51346897047941,
+          "delta": -0.14187059875565922,
+          "old_target": "way/1465352981#graph-node-7208022534",
+          "new_target": "way/1465352981#graph-node-7208022534",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "8085655",
+            "W01",
+            "",
+            null,
+            "2027-07-15",
+            "2027-07-18"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 65.65533956923507,
+          "new": 65.51346897047941,
+          "delta": -0.14187059875565922,
+          "old_target": "way/1465352981#graph-node-7208022534",
+          "new_target": "way/1465352981#graph-node-7208022534",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "8085655",
+            "W02",
+            "",
+            null,
+            "2026-11-14",
+            "2026-11-17"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 599.4513819390266,
+          "new": 599.309511340271,
+          "delta": -0.141870598755645,
+          "old_target": "node/7116557466",
+          "new_target": "node/7116557466",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "8085655",
+            "W02",
+            "",
+            null,
+            "2027-07-15",
+            "2027-07-18"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 599.4513819390266,
+          "new": 599.309511340271,
+          "delta": -0.141870598755645,
+          "old_target": "node/7116557466",
+          "new_target": "node/7116557466",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "8085655",
+            "W03",
+            "",
+            null,
+            "2026-11-14",
+            "2026-11-17"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 29021.52267568183,
+          "new": 29021.380805083078,
+          "delta": -0.14187059875257546,
+          "old_target": "project:center:sochi:osm-node-4758135895",
+          "new_target": "project:center:sochi:osm-node-4758135895",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "8085655",
+            "W03",
+            "",
+            null,
+            "2027-07-15",
+            "2027-07-18"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 29021.52267568183,
+          "new": 29021.380805083078,
+          "delta": -0.14187059875257546,
+          "old_target": "project:center:sochi:osm-node-4758135895",
+          "new_target": "project:center:sochi:osm-node-4758135895",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "8085655",
+            "L01",
+            "",
+            "2026-11-14T02:00:00",
+            null,
+            null
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 338.8689924309902,
+          "new": 338.72712183223456,
+          "delta": -0.141870598755645,
+          "old_target": "node/11135956614",
+          "new_target": "node/11135956614",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "8085655",
+            "L01",
+            "",
+            "2027-07-17T02:00:00",
+            null,
+            null
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 338.8689924309902,
+          "new": 338.72712183223456,
+          "delta": -0.141870598755645,
+          "old_target": "node/11135956614",
+          "new_target": "node/11135956614",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "8085655",
+            "L03",
+            "",
+            "2026-11-14T02:00:00",
+            null,
+            null
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 514.4126165766265,
+          "new": 514.2707459778709,
+          "delta": -0.141870598755645,
+          "old_target": "node/5123957524",
+          "new_target": "node/5123957524",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "8085655",
+            "L03",
+            "",
+            "2027-07-17T02:00:00",
+            null,
+            null
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 514.4126165766265,
+          "new": 514.2707459778709,
+          "delta": -0.141870598755645,
+          "old_target": "node/5123957524",
+          "new_target": "node/5123957524",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "8085655",
+            "P04",
+            "",
+            "2026-11-14T02:00:00",
+            null,
+            null
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 27873.523574993942,
+          "new": 27873.38170439519,
+          "delta": -0.14187059875257546,
+          "old_target": "node/11016638319",
+          "new_target": "node/11016638319",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "8085655",
+            "P04",
+            "",
+            "2027-07-17T02:00:00",
+            null,
+            null
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 27873.523574993942,
+          "new": 27873.38170439519,
+          "delta": -0.14187059875257546,
+          "old_target": "node/11016638319",
+          "new_target": "node/11016638319",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "8085655",
+            "F01",
+            "",
+            null,
+            "2026-11-14",
+            "2026-11-17"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 117.40669138546795,
+          "new": 117.26482078671229,
+          "delta": -0.14187059875565922,
+          "old_target": "way/1278225789",
+          "new_target": "way/1278225789",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "8085655",
+            "F01",
+            "",
+            null,
+            "2027-07-15",
+            "2027-07-18"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 117.40669138546795,
+          "new": 117.26482078671229,
+          "delta": -0.14187059875565922,
+          "old_target": "way/1278225789",
+          "new_target": "way/1278225789",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "8105660",
+            "W01",
+            "",
+            null,
+            "2026-11-14",
+            "2026-11-17"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 365.98865321286456,
+          "new": 365.9613545352188,
+          "delta": -0.027298677645774205,
+          "old_target": "way/248626774#graph-node-4459414510",
+          "new_target": "way/248626774#graph-node-4459414510",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "8105660",
+            "W01",
+            "",
+            null,
+            "2027-07-15",
+            "2027-07-18"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 365.98865321286456,
+          "new": 365.9613545352188,
+          "delta": -0.027298677645774205,
+          "old_target": "way/248626774#graph-node-4459414510",
+          "new_target": "way/248626774#graph-node-4459414510",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "8105660",
+            "W02",
+            "",
+            null,
+            "2026-11-14",
+            "2026-11-17"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 463.29037493099963,
+          "new": 463.26307625335386,
+          "delta": -0.027298677645774205,
+          "old_target": "node/1672980136",
+          "new_target": "node/1672980136",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "8105660",
+            "W02",
+            "",
+            null,
+            "2027-07-15",
+            "2027-07-18"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 463.29037493099963,
+          "new": 463.26307625335386,
+          "delta": -0.027298677645774205,
+          "old_target": "node/1672980136",
+          "new_target": "node/1672980136",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "8105660",
+            "W03",
+            "",
+            null,
+            "2026-11-14",
+            "2026-11-17"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 22556.676109837732,
+          "new": 22556.648811160085,
+          "delta": -0.02729867764719529,
+          "old_target": "project:center:sochi:osm-node-4758135895",
+          "new_target": "project:center:sochi:osm-node-4758135895",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "8105660",
+            "W03",
+            "",
+            null,
+            "2027-07-15",
+            "2027-07-18"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 22556.676109837732,
+          "new": 22556.648811160085,
+          "delta": -0.02729867764719529,
+          "old_target": "project:center:sochi:osm-node-4758135895",
+          "new_target": "project:center:sochi:osm-node-4758135895",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "8105660",
+            "L01",
+            "",
+            "2026-11-14T02:00:00",
+            null,
+            null
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 5306.602214608612,
+          "new": 5306.574915930966,
+          "delta": -0.0272986776453763,
+          "old_target": "way/235368455",
+          "new_target": "way/235368455",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "8105660",
+            "L01",
+            "",
+            "2027-07-17T02:00:00",
+            null,
+            null
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 5306.602214608612,
+          "new": 5306.574915930966,
+          "delta": -0.0272986776453763,
+          "old_target": "way/235368455",
+          "new_target": "way/235368455",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "8105660",
+            "L03",
+            "",
+            "2026-11-14T02:00:00",
+            null,
+            null
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 1010.9978045052679,
+          "new": 1010.9705058276221,
+          "delta": -0.02729867764583105,
+          "old_target": "node/1675419727",
+          "new_target": "node/1675419727",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "8105660",
+            "L03",
+            "",
+            "2027-07-17T02:00:00",
+            null,
+            null
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 1010.9978045052679,
+          "new": 1010.9705058276221,
+          "delta": -0.02729867764583105,
+          "old_target": "node/1675419727",
+          "new_target": "node/1675419727",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "8105660",
+            "P04",
+            "",
+            "2026-11-14T02:00:00",
+            null,
+            null
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 21408.677009149844,
+          "new": 21408.649710472197,
+          "delta": -0.02729867764719529,
+          "old_target": "node/11016638319",
+          "new_target": "node/11016638319",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "8105660",
+            "P04",
+            "",
+            "2027-07-17T02:00:00",
+            null,
+            null
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 21408.677009149844,
+          "new": 21408.649710472197,
+          "delta": -0.02729867764719529,
+          "old_target": "node/11016638319",
+          "new_target": "node/11016638319",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "8105660",
+            "F01",
+            "",
+            null,
+            "2026-11-14",
+            "2026-11-17"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 100.43967823171373,
+          "new": 100.41237955406793,
+          "delta": -0.027298677645802627,
+          "old_target": "node/13114142680",
+          "new_target": "node/13114142680",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "8105660",
+            "F01",
+            "",
+            null,
+            "2027-07-15",
+            "2027-07-18"
+          ],
+          "reason": "metric_changed",
+          "field": "distance_m",
+          "old": 100.43967823171373,
+          "new": 100.41237955406793,
+          "delta": -0.027298677645802627,
+          "old_target": "node/13114142680",
+          "new_target": "node/13114142680",
+          "explanation": "snapshot_coordinates_changed_same_route"
+        },
+        {
+          "key": [
+            "8660598",
+            "N02",
+            "",
+            null,
+            null,
+            null
+          ],
+          "reason": "status_changed",
+          "old": "unknown",
+          "new": "computed",
+          "explanation": "new_unique_full_address_and_point_building_match"
+        },
+        {
+          "key": [
+            "8660598",
+            "N03",
+            "",
+            null,
+            null,
+            null
+          ],
+          "reason": "status_changed",
+          "old": "unknown",
+          "new": "computed",
+          "explanation": "new_unique_full_address_and_point_building_match"
+        },
+        {
+          "key": [
+            "8740393",
+            "N02",
+            "",
+            null,
+            null,
+            null
+          ],
+          "reason": "status_changed",
+          "old": "unknown",
+          "new": "computed",
+          "explanation": "new_unique_full_address_and_point_building_match"
+        },
+        {
+          "key": [
+            "8740393",
+            "N03",
+            "",
+            null,
+            null,
+            null
+          ],
+          "reason": "status_changed",
+          "old": "unknown",
+          "new": "computed",
+          "explanation": "new_unique_full_address_and_point_building_match"
+        },
+        {
+          "key": [
+            "8853896",
+            "N02",
+            "",
+            null,
+            null,
+            null
+          ],
+          "reason": "status_changed",
+          "old": "unknown",
+          "new": "computed",
+          "explanation": "new_unique_full_address_and_point_building_match"
+        },
+        {
+          "key": [
+            "8853896",
+            "N03",
+            "",
+            null,
+            null,
+            null
+          ],
+          "reason": "status_changed",
+          "old": "unknown",
+          "new": "computed",
+          "explanation": "new_unique_full_address_and_point_building_match"
+        }
+      ],
+      "tolerance": {
+        "relative": 1e-08,
+        "absolute": 0.01
+      },
+      "scope": "Сверка статуса и основной метрики, не измерение физической точности."
+    },
+    "diagnostics": {
+      "city_id": "sochi",
+      "hotels": 2695,
+      "graph_nodes": 817418,
+      "graph_edges": 844180,
+      "load_seconds": 1.4159995771478862e-06,
+      "input_manifest": {
+        "algorithm_version": "osm-city.1",
+        "attribution": "© OpenStreetMap contributors",
+        "bbox": [
+          39.0,
+          43.2,
+          41.1,
+          44.6
+        ],
+        "boundary_relation_ids": [
+          365233,
+          11865346
+        ],
+        "city_id": "sochi",
+        "counts": {
+          "buildings": 311183,
+          "node": 47140,
+          "relation": 28079,
+          "restriction_nodes": 5328,
+          "way": 441589
+        },
+        "extent_note": "Graph uses a disclosed envelope; hotel membership uses the exact city union.",
+        "files": [
+          {
+            "bytes": 97270863,
+            "path": "records.jsonl.gz",
+            "sha256": "c13bc17f530ff51b577cbfc9621f494b4d9855eb0495ef57536651f20c0641a8"
+          },
+          {
+            "bytes": 14663801,
+            "path": "buildings.jsonl.gz",
+            "sha256": "b013c617d5998d1fa3041939cc7845a37943b9f14a27bdce6826c99719302d5c"
+          },
+          {
+            "bytes": 861599,
+            "path": "boundary.geojson",
+            "sha256": "111a329ce37bb2bcbcea3a38db61d169bd521fc4a41994249fdf0a3c45692497"
+          },
+          {
+            "bytes": 13899880,
+            "path": "localities.geojson",
+            "sha256": "42763f767258a1e4bb51fb19917a5eb09b8955a2ea5ccce2c254e4b9cbb151c8"
+          }
+        ],
+        "geometry_diagnostics": {
+          "RuntimeError": 4
+        },
+        "license": "ODbL-1.0",
+        "license_url": "https://www.openstreetmap.org/copyright",
+        "node_policy": "Keep pure barrier/access/foot/locked nodes; retain shared OSM node IDs.",
+        "source_date": "2026-10-22T20:21:33Z",
+        "source_file": "south-fed-district-261022.osm.pbf",
+        "source_sha256": "242254bbd0c250e4fab8c1b70e77d6ff6ccfa6dde9498134e0019698cf6f2ee6",
+        "source_url": "https://download.geofabrik.de/russia/south-fed-district-261022.osm.pbf",
+        "sha256": "242254bbd0c250e4fab8c1b70e77d6ff6ccfa6dde9498134e0019698cf6f2ee6"
+      },
+      "no_new_http_requests": true,
+      "blocked_pedestrian_nodes": 2062,
+      "blocked_node_policy": "explicit foot/access restrictions and unresolved conditional nodes; locked gates without explicit foot permission. Bollard alone is not blocked.",
+      "gtfs_calendar_checks": [],
+      "marine_beach_gate": {
+        "method_version": "marine-adjacency-v1",
+        "tolerance_m": 25,
+        "coastline_segments": 186,
+        "mapped_beaches": 216,
+        "accepted_geometry_count": 190,
+        "eligible_graph_contact_candidates": 2045,
+        "rejected_meaning": "marine_adjacency_unconfirmed, not proof that the beach is river/lake"
+      },
+      "center_target": {
+        "osm_node_id": 4758135895,
+        "coordinates": [
+          39.7230602,
+          43.5851489
+        ],
+        "selection_reference_coordinates": [
+          39.7231,
+          43.5855
+        ],
+        "reference_to_node_m": 39.14087564057043,
+        "selection_rule": "nearest node to reference center in largest connected mapped pedestrian network component",
+        "component_nodes": 778272,
+        "meaning": "An explicit chosen point near the center, not an implicit administrative center or hotel entrance."
+      },
+      "total_seconds": 291.0341580000022,
+      "family_seconds": {
+        "N": 5.93312153613806,
+        "W_A_Q03": 213.5739233311142,
+        "L_F_P_R04": 70.93752948192923
+      },
+      "facts": 97036,
+      "unique_hotel_feature_pairs": 53900,
+      "statuses": {
+        "computed": 19417,
+        "unknown": 39235,
+        "estimate": 38384
+      },
+      "result_bytes": 0,
+      "feature_counts": {
+        "N02": {
+          "unknown": 2030,
+          "computed": 673
+        },
+        "N03": {
+          "unknown": 2030,
+          "computed": 673
+        },
+        "N04": {
+          "computed": 2695
+        },
+        "W01": {
+          "estimate": 5122,
+          "unknown": 268
+        },
+        "W02": {
+          "estimate": 5048,
+          "unknown": 342
+        },
+        "W03": {
+          "estimate": 4894,
+          "unknown": 496
+        },
+        "W04": {
+          "estimate": 5064,
+          "unknown": 326
+        },
+        "W05": {
+          "computed": 5156,
+          "unknown": 234
+        },
+        "W06": {
+          "computed": 5156,
+          "unknown": 234
+        },
+        "L01": {
+          "estimate": 4894,
+          "unknown": 496
+        },
+        "L02": {
+          "unknown": 5390
+        },
+        "L03": {
+          "estimate": 4466,
+          "unknown": 924
+        },
+        "F01": {
+          "estimate": 5010,
+          "unknown": 380
+        },
+        "F02": {
+          "unknown": 5390
+        },
+        "P03": {
+          "unknown": 5390
+        },
+        "P04": {
+          "unknown": 1504,
+          "estimate": 3886
+        },
+        "Q03": {
+          "computed": 5064,
+          "unknown": 326
+        }
+      },
+      "graph_license": "ODbL1.0; attribution/share-alike obligations; source ages and extent retained",
+      "blocked_node_contacts": 0
+    },
+    "pack_version": "route-poi.1-d0a2886871a8",
+    "full_scene_difference_inputs": [
+      "Полные геометрии расширенного среза вместо первой вершины bbox v9.",
+      "Координаты снимка 24.10 и новые однозначные адресные связи; контроль использует исходную когорту и прежние связи."
+    ],
+    "common_input_evidence": {
+      "6496437": {
+        "old_coordinates": [
+          39.914955,
+          43.42598
+        ],
+        "new_coordinates": [
+          39.914955139160156,
+          43.42597961425781
+        ],
+        "snapshot_source": "https://ostrovok.ru/hotel/russia/sochi/mid6496437/el_paraiso_hotel_/"
+      },
+      "6497279": {
+        "old_coordinates": [
+          39.963497,
+          43.40364
+        ],
+        "new_coordinates": [
+          39.963497161865234,
+          43.40364074707031
+        ],
+        "snapshot_source": "https://ostrovok.ru/hotel/russia/sirius/mid6497279/gostinichnyi_kompleks_bogatyr/"
+      },
+      "6551322": {
+        "old_coordinates": [
+          39.90978,
+          43.442566
+        ],
+        "new_coordinates": [
+          39.9097785949707,
+          43.44256591796875
+        ],
+        "snapshot_source": "https://ostrovok.ru/hotel/russia/sochi/mid6551322/galotel/"
+      },
+      "7725078": {
+        "old_coordinates": [
+          39.92229,
+          43.418995
+        ],
+        "new_coordinates": [
+          39.92229080200195,
+          43.41899490356445
+        ],
+        "snapshot_source": "https://ostrovok.ru/hotel/russia/sochi/mid7725078/paradiz_hotel_2/"
+      },
+      "7726257": {
+        "old_coordinates": [
+          39.91863,
+          43.428806
+        ],
+        "new_coordinates": [
+          39.91862869262695,
+          43.42880630493164
+        ],
+        "snapshot_source": "https://ostrovok.ru/hotel/russia/adler/mid7726257/sm_royal_hotel/"
+      },
+      "7851188": {
+        "old_coordinates": [
+          39.907738,
+          43.43636
+        ],
+        "new_coordinates": [
+          39.907737731933594,
+          43.43635940551758
+        ],
+        "snapshot_source": "https://ostrovok.ru/hotel/russia/adler/mid7851188/okhotnik_adler_hotel/"
+      },
+      "7942708": {
+        "old_coordinates": [
+          39.719173,
+          43.621414
+        ],
+        "new_coordinates": [
+          39.719173431396484,
+          43.62141418457031
+        ],
+        "snapshot_source": "https://ostrovok.ru/hotel/russia/sochi/mid7942708/bellagio_hotel_3/"
+      },
+      "8085655": {
+        "old_coordinates": [
+          39.9202,
+          43.42032
+        ],
+        "new_coordinates": [
+          39.92020034790039,
+          43.420318603515625
+        ],
+        "snapshot_source": "https://ostrovok.ru/hotel/russia/sochi/mid8085655/mechta_hotel_3/"
+      },
+      "8105660": {
+        "old_coordinates": [
+          39.896145,
+          43.47276
+        ],
+        "new_coordinates": [
+          39.89614486694336,
+          43.47275924682617
+        ],
+        "snapshot_source": "https://ostrovok.ru/hotel/russia/sochi/mid8105660/otel_arli/"
+      },
+      "8660598": {
+        "old_coordinates": [
+          39.72528076171875,
+          43.576438903808594
+        ],
+        "new_coordinates": [
+          39.72528076171875,
+          43.576438903808594
+        ],
+        "snapshot_source": "https://ostrovok.ru/hotel/russia/sochi/mid8660598/minihotel_morskoj/"
+      },
+      "8740393": {
+        "old_coordinates": [
+          39.60409927368164,
+          43.676448822021484
+        ],
+        "new_coordinates": [
+          39.60409927368164,
+          43.676448822021484
+        ],
+        "snapshot_source": "https://ostrovok.ru/hotel/russia/sochi/mid8740393/akvaloo_sanatorium/"
+      },
+      "8853896": {
+        "old_coordinates": [
+          39.73775863647461,
+          43.57493591308594
+        ],
+        "new_coordinates": [
+          39.73775863647461,
+          43.57493591308594
+        ],
+        "snapshot_source": "https://ostrovok.ru/hotel/russia/sochi/mid8853896/bella_sun_sochi_apartments/"
+      }
+    }
+  },
+  "artifacts": {
+    "sources": "/private/tmp/seva-data",
+    "packs": "/private/tmp/seva-data/calculated-packs",
+    "report": "/private/tmp/seva-data/calculated-packs/sochi_geo_report.json"
+  },
+  "validation": {
+    "pytest_full": 339,
+    "pytest_skipped": 0,
+    "lint": true,
+    "full_next_archive_sha256_verified": true,
+    "geometry_rejections": {
+      "sochi": 4,
+      "moscow": 43
+    },
+    "physical_accuracy": "unmeasured"
+  },
+  "notes": [
+    "6 automatic city packs are byte-for-byte copies of v9.",
+    "Existing repository packs/ remain unchanged until stage 10.",
+    "New hotelier questions were not generated; retained v9 questions only.",
+    "Private temporary database is not the jury Docker stack."
+  ]
+}

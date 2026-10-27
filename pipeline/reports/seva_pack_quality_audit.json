@@ -1,0 +1,1001 @@
+{
+  "version": "pack-audit.3",
+  "built_at": "2026-10-27T20:42:11.595950+00:00",
+  "cities": [
+    {
+      "pack": "dubai",
+      "status": "passed",
+      "rows": {
+        "hotels": 50,
+        "facts": 4000,
+        "questions": 1300,
+        "coverage": 54,
+        "ota_comparisons": 39
+      },
+      "files": [
+        {
+          "path": "data/hotels.jsonl.gz",
+          "rows": 50,
+          "kind": "hotels"
+        },
+        {
+          "path": "data/facts.jsonl.gz",
+          "rows": 4000,
+          "kind": "facts"
+        },
+        {
+          "path": "data/questions.jsonl.gz",
+          "rows": 1300,
+          "kind": "questions"
+        },
+        {
+          "path": "data/coverage.jsonl.gz",
+          "rows": 54,
+          "kind": "coverage"
+        },
+        {
+          "path": "data/ota_comparisons.jsonl.gz",
+          "rows": 39,
+          "kind": "ota_comparisons"
+        }
+      ],
+      "city_id": "dubai",
+      "pack_version": "v9-1434cd8536",
+      "manifest_sha256": "740c59278a41b248ef48eeedf0b67d173adb5a545322cb64efe9834e6b692aee",
+      "snapshot": {
+        "status": "not_checked",
+        "reason": "snapshot_not_supplied"
+      },
+      "fact_statuses": {
+        "unknown": 2465,
+        "estimate": 844,
+        "computed": 690,
+        "observed": 1
+      },
+      "unknown_reasons": {
+        "No selected connected route in cached graph; no absence or accessibility conclusion.": 20,
+        "No dated official material descriptor with matched named beach segment/extent; hotel marketing sand/pebble claims are not equivalent official data.": 50,
+        "Both requested trips beyond the16day marine forecast horizon at2026-10-24; no valid modelrun/lead/wetcell for requested dates.": 50,
+        "No matched authorized latest beach flag/status feed withissuer andobservationtime; future2026/2027status cannot be inferred fromhistoricalorweather.": 50,
+        "No published authorized labprotocol matchedtohotel-selected beachsamplepoint withsamplingdate/method/units.": 50,
+        "Requested trips beyond16day forecast horizon; no valid ensembleprobabilityrun. Historical rainy-dayfrequency is not rainprobabilityforecast.": 50,
+        "Requested trips beyondOpenMeteoairqualityAPImaximum7day horizon(default5days); no valid CAMSmodelrun for requested dates. Cached2026-10-23PM2.5 not transferable.": 50,
+        "D22 selects Open-Meteo asprimaryairsource; thisAPI exposesCAMSmodelPM2.5, no eligible stationmeasurements withstation/QC/timeaveraging. Directofficial/OpenAQstationpaths notapprovedunderD22; CAMSmodelE01 cannotreplaceobservation.": 50,
+        "No corrected BlackMarble monthlyA3 radiance plusQA/cloud/snow validpixel cached; no sufficient correctedA2 dailyseries. UncorrectedA1/otherVIIRS products rejected as different estimand.": 50,
+        "No eligible target/connected route in cached graph; absent mapping is not absence of playground/dog area.": 8,
+        "no_confirmed_open_service_hours_in_cached_source_or_extent": 300,
+        "no_building_match": 588,
+        "hotel_snap_over_100m": 20,
+        "No licensed georeferenced accepted facade-height Lnight layer, complete emissions model, or independent acoustic validation in cached inputs; road distance is not dB.": 50,
+        "verified_hotel_building_footprint_missing_or_ambiguous": 98,
+        "No OSM/hotelier-confirmed target entrance and public-admission/animal/leash/season policy for mapped candidate; OSM dog_park alone is insufficient.": 100,
+        "No matched police-category numerator, resident population denominator, reporting period and statistical-boundary version.": 50,
+        "No complete official geocoded injury-crash IDs/dates/coordinate completeness for route buffer and period. Selective news bulletins cannot provide full count.": 50,
+        "No licensed fresh OpenCellID export with operator/radio/last_seen and observed cell coordinates. OSM mast location or phone bars is another meaning.": 50,
+        "No licensed complete current operator schedule/active service calendar and verified terminal-to-hotel itinerary for requested date. Zero active cached services is not no real transit.": 300,
+        "hotel_or_target_snap_over_100m": 4,
+        "No accepted dated, geocoded primary-source event/closure/construction inventory with coverage, status and licence for requested trip. Generic OSM construction tags do not provide permit geometry and active dates.": 300,
+        "No zero-gap surveyed constraints: hotel exit, kerbs, width, slope, surface, stairs and working lifts unverified. A route with no mapped steps is insufficient.": 96,
+        "no_verified_construction_completion_event": 1,
+        "no_current_official_heritage_registry_match": 1,
+        "no_verified_window_height_ground_datum_and_complete_obstacles": 9,
+        "no_connected_eligible_candidate_in_cached_graph": 16,
+        "no_connected_path_in_cached_graph_not_proof_no_real_path": 4
+      },
+      "fact_subject_checks": {
+        "hotel": 3613,
+        "external_geometry_subject_not_resolved": 387
+      },
+      "ostrovok_import_passports": 0,
+      "subzones": {
+        "not_specified": 50
+      },
+      "building_linked_hotels": 0,
+      "seconds": 0.158,
+      "errors": {},
+      "warnings": {
+        "external_geometry_subjects_not_resolved": 1
+      },
+      "samples": [
+        {
+          "code": "external_geometry_subjects_not_resolved",
+          "where": "manifest.json",
+          "severity": "warning",
+          "field": null
+        }
+      ]
+    },
+    {
+      "pack": "istanbul",
+      "status": "passed",
+      "rows": {
+        "hotels": 50,
+        "facts": 4000,
+        "questions": 1300,
+        "coverage": 54,
+        "ota_comparisons": 18
+      },
+      "files": [
+        {
+          "path": "data/hotels.jsonl.gz",
+          "rows": 50,
+          "kind": "hotels"
+        },
+        {
+          "path": "data/facts.jsonl.gz",
+          "rows": 4000,
+          "kind": "facts"
+        },
+        {
+          "path": "data/questions.jsonl.gz",
+          "rows": 1300,
+          "kind": "questions"
+        },
+        {
+          "path": "data/coverage.jsonl.gz",
+          "rows": 54,
+          "kind": "coverage"
+        },
+        {
+          "path": "data/ota_comparisons.jsonl.gz",
+          "rows": 18,
+          "kind": "ota_comparisons"
+        }
+      ],
+      "city_id": "istanbul",
+      "pack_version": "v9-1434cd8536",
+      "manifest_sha256": "f973a6543618c04725ec3d8f4208d87172d7f2ffa326156c10edb35c0b473a17",
+      "snapshot": {
+        "status": "not_checked",
+        "reason": "snapshot_not_supplied"
+      },
+      "fact_statuses": {
+        "unknown": 2408,
+        "estimate": 890,
+        "computed": 702
+      },
+      "unknown_reasons": {
+        "No zero-gap surveyed constraints: hotel exit, kerbs, width, slope, surface, stairs and working lifts unverified. A route with no mapped steps is insufficient.": 100,
+        "No dated official material descriptor with matched named beach segment/extent; hotel marketing sand/pebble claims are not equivalent official data.": 50,
+        "Both requested trips beyond the16day marine forecast horizon at2026-10-24; no valid modelrun/lead/wetcell for requested dates.": 50,
+        "No matched authorized latest beach flag/status feed withissuer andobservationtime; future2026/2027status cannot be inferred fromhistoricalorweather.": 50,
+        "No published authorized labprotocol matchedtohotel-selected beachsamplepoint withsamplingdate/method/units.": 50,
+        "Requested trips beyond16day forecast horizon; no valid ensembleprobabilityrun. Historical rainy-dayfrequency is not rainprobabilityforecast.": 50,
+        "Requested trips beyondOpenMeteoairqualityAPImaximum7day horizon(default5days); no valid CAMSmodelrun for requested dates. Cached2026-10-23PM2.5 not transferable.": 50,
+        "D22 selects Open-Meteo asprimaryairsource; thisAPI exposesCAMSmodelPM2.5, no eligible stationmeasurements withstation/QC/timeaveraging. Directofficial/OpenAQstationpaths notapprovedunderD22; CAMSmodelE01 cannotreplaceobservation.": 50,
+        "No corrected BlackMarble monthlyA3 radiance plusQA/cloud/snow validpixel cached; no sufficient correctedA2 dailyseries. UncorrectedA1/otherVIIRS products rejected as different estimand.": 50,
+        "no_confirmed_open_service_hours_in_cached_source_or_extent": 300,
+        "no_building_match": 588,
+        "No licensed georeferenced accepted facade-height Lnight layer, complete emissions model, or independent acoustic validation in cached inputs; road distance is not dB.": 50,
+        "verified_hotel_building_footprint_missing_or_ambiguous": 98,
+        "No OSM/hotelier-confirmed target entrance and public-admission/animal/leash/season policy for mapped candidate; OSM dog_park alone is insufficient.": 100,
+        "No matched police-category numerator, resident population denominator, reporting period and statistical-boundary version.": 50,
+        "No complete official geocoded injury-crash IDs/dates/coordinate completeness for route buffer and period. Selective news bulletins cannot provide full count.": 50,
+        "No licensed fresh OpenCellID export with operator/radio/last_seen and observed cell coordinates. OSM mast location or phone bars is another meaning.": 50,
+        "No licensed complete current operator schedule/active service calendar and verified terminal-to-hotel itinerary for requested date. Zero active cached services is not no real transit.": 300,
+        "No accepted dated, geocoded primary-source event/closure/construction inventory with coverage, status and licence for requested trip. Generic OSM construction tags do not provide permit geometry and active dates.": 300,
+        "no_connected_path_in_cached_graph_not_proof_no_real_path": 10,
+        "no_verified_construction_completion_event": 1,
+        "no_current_official_heritage_registry_match": 1,
+        "missing_aboveground_levels": 1,
+        "no_verified_window_height_ground_datum_and_complete_obstacles": 9
+      },
+      "fact_subject_checks": {
+        "hotel": 3598,
+        "external_geometry_subject_not_resolved": 402
+      },
+      "ostrovok_import_passports": 0,
+      "subzones": {
+        "not_specified": 50
+      },
+      "building_linked_hotels": 0,
+      "seconds": 0.178,
+      "errors": {},
+      "warnings": {
+        "external_geometry_subjects_not_resolved": 1
+      },
+      "samples": [
+        {
+          "code": "external_geometry_subjects_not_resolved",
+          "where": "manifest.json",
+          "severity": "warning",
+          "field": null
+        }
+      ]
+    },
+    {
+      "pack": "kaliningrad",
+      "status": "passed",
+      "rows": {
+        "hotels": 50,
+        "facts": 4006,
+        "questions": 1300,
+        "coverage": 54,
+        "ota_comparisons": 8
+      },
+      "files": [
+        {
+          "path": "data/hotels.jsonl.gz",
+          "rows": 50,
+          "kind": "hotels"
+        },
+        {
+          "path": "data/facts.jsonl.gz",
+          "rows": 4006,
+          "kind": "facts"
+        },
+        {
+          "path": "data/questions.jsonl.gz",
+          "rows": 1300,
+          "kind": "questions"
+        },
+        {
+          "path": "data/coverage.jsonl.gz",
+          "rows": 54,
+          "kind": "coverage"
+        },
+        {
+          "path": "data/ota_comparisons.jsonl.gz",
+          "rows": 8,
+          "kind": "ota_comparisons"
+        }
+      ],
+      "city_id": "kaliningrad",
+      "pack_version": "v9-1434cd8536",
+      "manifest_sha256": "ff87d5cfa0ad2d1cbedf95b7297af2e554124fad3bf6ebd3abdcbf85dcfc0933",
+      "snapshot": {
+        "status": "not_checked",
+        "reason": "snapshot_not_supplied"
+      },
+      "fact_statuses": {
+        "unknown": 2373,
+        "estimate": 884,
+        "computed": 742,
+        "observed": 7
+      },
+      "unknown_reasons": {
+        "No zero-gap surveyed constraints: hotel exit, kerbs, width, slope, surface, stairs and working lifts unverified. A route with no mapped steps is insufficient.": 98,
+        "No dated official material descriptor with matched named beach segment/extent; hotel marketing sand/pebble claims are not equivalent official data.": 50,
+        "Both requested trips beyond the16day marine forecast horizon at2026-10-24; no valid modelrun/lead/wetcell for requested dates.": 50,
+        "No matched authorized latest beach flag/status feed withissuer andobservationtime; future2026/2027status cannot be inferred fromhistoricalorweather.": 50,
+        "No published authorized labprotocol matchedtohotel-selected beachsamplepoint withsamplingdate/method/units.": 50,
+        "Requested trips beyond16day forecast horizon; no valid ensembleprobabilityrun. Historical rainy-dayfrequency is not rainprobabilityforecast.": 50,
+        "Requested trips beyondOpenMeteoairqualityAPImaximum7day horizon(default5days); no valid CAMSmodelrun for requested dates. Cached2026-10-23PM2.5 not transferable.": 50,
+        "D22 selects Open-Meteo asprimaryairsource; thisAPI exposesCAMSmodelPM2.5, no eligible stationmeasurements withstation/QC/timeaveraging. Directofficial/OpenAQstationpaths notapprovedunderD22; CAMSmodelE01 cannotreplaceobservation.": 50,
+        "No corrected BlackMarble monthlyA3 radiance plusQA/cloud/snow validpixel cached; no sufficient correctedA2 dailyseries. UncorrectedA1/otherVIIRS products rejected as different estimand.": 50,
+        "no_confirmed_open_service_hours_in_cached_source_or_extent": 300,
+        "no_verified_construction_completion_event": 22,
+        "no_current_official_heritage_registry_match": 22,
+        "missing_aboveground_levels": 15,
+        "No licensed georeferenced accepted facade-height Lnight layer, complete emissions model, or independent acoustic validation in cached inputs; road distance is not dB.": 50,
+        "No OSM/hotelier-confirmed target entrance and public-admission/animal/leash/season policy for mapped candidate; OSM dog_park alone is insufficient.": 100,
+        "No matched police-category numerator, resident population denominator, reporting period and statistical-boundary version.": 50,
+        "No complete official geocoded injury-crash IDs/dates/coordinate completeness for route buffer and period. Selective news bulletins cannot provide full count.": 50,
+        "No licensed fresh OpenCellID export with operator/radio/last_seen and observed cell coordinates. OSM mast location or phone bars is another meaning.": 50,
+        "no_verified_window_height_ground_datum_and_complete_obstacles": 198,
+        "No licensed complete current operator schedule/active service calendar and verified terminal-to-hotel itinerary for requested date. Zero active cached services is not no real transit.": 300,
+        "No accepted dated, geocoded primary-source event/closure/construction inventory with coverage, status and licence for requested trip. Generic OSM construction tags do not provide permit geometry and active dates.": 300,
+        "No selected connected route in cached graph; no absence or accessibility conclusion.": 10,
+        "No eligible target/connected route in cached graph; absent mapping is not absence of playground/dog area.": 2,
+        "no_building_match": 336,
+        "no_connected_eligible_candidate_in_cached_graph": 10,
+        "verified_hotel_building_footprint_missing_or_ambiguous": 54,
+        "no_connected_path_in_cached_graph_not_proof_no_real_path": 2,
+        "verified_hotel_building_footprint_rejected_or_unconfirmed_by_strict_full_address_corpus_gate": 2,
+        "multiple_buildings_or_counting_scope_conflict": 2
+      },
+      "fact_subject_checks": {
+        "hotel": 3559,
+        "external_geometry_subject_not_resolved": 447
+      },
+      "ostrovok_import_passports": 0,
+      "subzones": {
+        "not_specified": 50
+      },
+      "building_linked_hotels": 0,
+      "seconds": 0.164,
+      "errors": {},
+      "warnings": {
+        "external_geometry_subjects_not_resolved": 1
+      },
+      "samples": [
+        {
+          "code": "external_geometry_subjects_not_resolved",
+          "where": "manifest.json",
+          "severity": "warning",
+          "field": null
+        }
+      ]
+    },
+    {
+      "pack": "kazan",
+      "status": "passed",
+      "rows": {
+        "hotels": 50,
+        "facts": 3961,
+        "questions": 1300,
+        "coverage": 54,
+        "ota_comparisons": 1
+      },
+      "files": [
+        {
+          "path": "data/hotels.jsonl.gz",
+          "rows": 50,
+          "kind": "hotels"
+        },
+        {
+          "path": "data/facts.jsonl.gz",
+          "rows": 3961,
+          "kind": "facts"
+        },
+        {
+          "path": "data/questions.jsonl.gz",
+          "rows": 1300,
+          "kind": "questions"
+        },
+        {
+          "path": "data/coverage.jsonl.gz",
+          "rows": 54,
+          "kind": "coverage"
+        },
+        {
+          "path": "data/ota_comparisons.jsonl.gz",
+          "rows": 1,
+          "kind": "ota_comparisons"
+        }
+      ],
+      "city_id": "kazan",
+      "pack_version": "v9-1434cd8536",
+      "manifest_sha256": "090746a725bc2cc8af47fc123026136e3803423bb0b3781b1c8b27e197381c67",
+      "snapshot": {
+        "status": "not_checked",
+        "reason": "snapshot_not_supplied"
+      },
+      "fact_statuses": {
+        "unknown": 2102,
+        "not_applicable": 350,
+        "computed": 778,
+        "estimate": 698,
+        "observed": 33
+      },
+      "unknown_reasons": {
+        "No zero-gap surveyed constraints: hotel exit, kerbs, width, slope, surface, stairs and working lifts unverified. A route with no mapped steps is insufficient.": 100,
+        "Requested trips beyond16day forecast horizon; no valid ensembleprobabilityrun. Historical rainy-dayfrequency is not rainprobabilityforecast.": 50,
+        "Requested trips beyondOpenMeteoairqualityAPImaximum7day horizon(default5days); no valid CAMSmodelrun for requested dates. Cached2026-10-23PM2.5 not transferable.": 50,
+        "D22 selects Open-Meteo asprimaryairsource; thisAPI exposesCAMSmodelPM2.5, no eligible stationmeasurements withstation/QC/timeaveraging. Directofficial/OpenAQstationpaths notapprovedunderD22; CAMSmodelE01 cannotreplaceobservation.": 50,
+        "No corrected BlackMarble monthlyA3 radiance plusQA/cloud/snow validpixel cached; no sufficient correctedA2 dailyseries. UncorrectedA1/otherVIIRS products rejected as different estimand.": 50,
+        "no_confirmed_open_service_hours_in_cached_source_or_extent": 300,
+        "no_verified_construction_completion_event": 37,
+        "no_current_official_heritage_registry_match": 37,
+        "multiple_buildings_or_counting_scope_conflict": 3,
+        "No licensed georeferenced accepted facade-height Lnight layer, complete emissions model, or independent acoustic validation in cached inputs; road distance is not dB.": 50,
+        "No OSM/hotelier-confirmed target entrance and public-admission/animal/leash/season policy for mapped candidate; OSM dog_park alone is insufficient.": 100,
+        "No matched police-category numerator, resident population denominator, reporting period and statistical-boundary version.": 50,
+        "No complete official geocoded injury-crash IDs/dates/coordinate completeness for route buffer and period. Selective news bulletins cannot provide full count.": 50,
+        "No licensed fresh OpenCellID export with operator/radio/last_seen and observed cell coordinates. OSM mast location or phone bars is another meaning.": 50,
+        "no_verified_window_height_ground_datum_and_complete_obstacles": 333,
+        "No licensed complete current operator schedule/active service calendar and verified terminal-to-hotel itinerary for requested date. Zero active cached services is not no real transit.": 300,
+        "No accepted dated, geocoded primary-source event/closure/construction inventory with coverage, status and licence for requested trip. Generic OSM construction tags do not provide permit geometry and active dates.": 300,
+        "missing_aboveground_levels": 6,
+        "no_building_match": 156,
+        "verified_hotel_building_footprint_missing_or_ambiguous": 26,
+        "undefined_lighting_fraction_zero_graph_length": 2,
+        "Ground DTM/survey absent; DSM estimate unavailable": 2
+      },
+      "fact_subject_checks": {
+        "hotel": 3448,
+        "external_geometry_subject_not_resolved": 513
+      },
+      "ostrovok_import_passports": 0,
+      "subzones": {
+        "not_specified": 50
+      },
+      "building_linked_hotels": 0,
+      "seconds": 0.146,
+      "errors": {},
+      "warnings": {
+        "external_geometry_subjects_not_resolved": 1
+      },
+      "samples": [
+        {
+          "code": "external_geometry_subjects_not_resolved",
+          "where": "manifest.json",
+          "severity": "warning",
+          "field": null
+        }
+      ]
+    },
+    {
+      "pack": "minsk",
+      "status": "passed",
+      "rows": {
+        "hotels": 50,
+        "facts": 3950,
+        "questions": 1300,
+        "coverage": 54,
+        "ota_comparisons": 3
+      },
+      "files": [
+        {
+          "path": "data/hotels.jsonl.gz",
+          "rows": 50,
+          "kind": "hotels"
+        },
+        {
+          "path": "data/facts.jsonl.gz",
+          "rows": 3950,
+          "kind": "facts"
+        },
+        {
+          "path": "data/questions.jsonl.gz",
+          "rows": 1300,
+          "kind": "questions"
+        },
+        {
+          "path": "data/coverage.jsonl.gz",
+          "rows": 54,
+          "kind": "coverage"
+        },
+        {
+          "path": "data/ota_comparisons.jsonl.gz",
+          "rows": 3,
+          "kind": "ota_comparisons"
+        }
+      ],
+      "city_id": "minsk",
+      "pack_version": "v9-1434cd8536",
+      "manifest_sha256": "921d582a7a07de6d780bee103c050b668528a73387d62d05f2dbf66e638af3c0",
+      "snapshot": {
+        "status": "not_checked",
+        "reason": "snapshot_not_supplied"
+      },
+      "fact_statuses": {
+        "unknown": 2100,
+        "not_applicable": 350,
+        "computed": 700,
+        "estimate": 800
+      },
+      "unknown_reasons": {
+        "No zero-gap surveyed constraints: hotel exit, kerbs, width, slope, surface, stairs and working lifts unverified. A route with no mapped steps is insufficient.": 100,
+        "Requested trips beyond16day forecast horizon; no valid ensembleprobabilityrun. Historical rainy-dayfrequency is not rainprobabilityforecast.": 50,
+        "Requested trips beyondOpenMeteoairqualityAPImaximum7day horizon(default5days); no valid CAMSmodelrun for requested dates. Cached2026-10-23PM2.5 not transferable.": 50,
+        "D22 selects Open-Meteo asprimaryairsource; thisAPI exposesCAMSmodelPM2.5, no eligible stationmeasurements withstation/QC/timeaveraging. Directofficial/OpenAQstationpaths notapprovedunderD22; CAMSmodelE01 cannotreplaceobservation.": 50,
+        "No corrected BlackMarble monthlyA3 radiance plusQA/cloud/snow validpixel cached; no sufficient correctedA2 dailyseries. UncorrectedA1/otherVIIRS products rejected as different estimand.": 50,
+        "no_building_match": 600,
+        "no_confirmed_open_service_hours_in_cached_source_or_extent": 200,
+        "No licensed georeferenced accepted facade-height Lnight layer, complete emissions model, or independent acoustic validation in cached inputs; road distance is not dB.": 50,
+        "verified_hotel_building_footprint_missing_or_ambiguous": 100,
+        "No OSM/hotelier-confirmed target entrance and public-admission/animal/leash/season policy for mapped candidate; OSM dog_park alone is insufficient.": 100,
+        "No matched police-category numerator, resident population denominator, reporting period and statistical-boundary version.": 50,
+        "No complete official geocoded injury-crash IDs/dates/coordinate completeness for route buffer and period. Selective news bulletins cannot provide full count.": 50,
+        "No licensed fresh OpenCellID export with operator/radio/last_seen and observed cell coordinates. OSM mast location or phone bars is another meaning.": 50,
+        "No licensed complete current operator schedule/active service calendar and verified terminal-to-hotel itinerary for requested date. Zero active cached services is not no real transit.": 300,
+        "No accepted dated, geocoded primary-source event/closure/construction inventory with coverage, status and licence for requested trip. Generic OSM construction tags do not provide permit geometry and active dates.": 300
+      },
+      "fact_subject_checks": {
+        "hotel": 3550,
+        "external_geometry_subject_not_resolved": 400
+      },
+      "ostrovok_import_passports": 0,
+      "subzones": {
+        "not_specified": 50
+      },
+      "building_linked_hotels": 0,
+      "seconds": 0.146,
+      "errors": {},
+      "warnings": {
+        "external_geometry_subjects_not_resolved": 1
+      },
+      "samples": [
+        {
+          "code": "external_geometry_subjects_not_resolved",
+          "where": "manifest.json",
+          "severity": "warning",
+          "field": null
+        }
+      ]
+    },
+    {
+      "pack": "moscow",
+      "status": "passed",
+      "rows": {
+        "hotels": 4211,
+        "room_types": 12739,
+        "buildings": 1295,
+        "hotel_buildings": 1585,
+        "facades": 22404,
+        "places": 56391,
+        "transit_stations": 1701,
+        "hotel_stations": 50532,
+        "transit_times": 0,
+        "curation_items": 2634,
+        "facts": 213541,
+        "questions": 108470,
+        "coverage": 54,
+        "ota_comparisons": 5
+      },
+      "files": [
+        {
+          "path": "data/hotels.jsonl.gz",
+          "rows": 4211,
+          "kind": "hotels"
+        },
+        {
+          "path": "data/room_types.jsonl.gz",
+          "rows": 12739,
+          "kind": "room_types"
+        },
+        {
+          "path": "data/buildings.jsonl.gz",
+          "rows": 1295,
+          "kind": "buildings"
+        },
+        {
+          "path": "data/hotel_buildings.jsonl.gz",
+          "rows": 1585,
+          "kind": "hotel_buildings"
+        },
+        {
+          "path": "data/facades.jsonl.gz",
+          "rows": 22404,
+          "kind": "facades"
+        },
+        {
+          "path": "data/places.jsonl.gz",
+          "rows": 56391,
+          "kind": "places"
+        },
+        {
+          "path": "data/transit_stations.jsonl.gz",
+          "rows": 1701,
+          "kind": "transit_stations"
+        },
+        {
+          "path": "data/hotel_stations.jsonl.gz",
+          "rows": 50532,
+          "kind": "hotel_stations"
+        },
+        {
+          "path": "data/transit_times.jsonl.gz",
+          "rows": 0,
+          "kind": "transit_times"
+        },
+        {
+          "path": "data/curation_items.jsonl.gz",
+          "rows": 2634,
+          "kind": "curation_items"
+        },
+        {
+          "path": "data/facts.jsonl.gz",
+          "rows": 213541,
+          "kind": "facts"
+        },
+        {
+          "path": "data/questions.jsonl.gz",
+          "rows": 108470,
+          "kind": "questions"
+        },
+        {
+          "path": "data/coverage.jsonl.gz",
+          "rows": 54,
+          "kind": "coverage"
+        },
+        {
+          "path": "data/ota_comparisons.jsonl.gz",
+          "rows": 5,
+          "kind": "ota_comparisons"
+        }
+      ],
+      "city_id": "moscow",
+      "pack_version": "seva-full.3-3e2ff6a04b0c",
+      "manifest_sha256": "0e77353969fc09fb1314da789bae7f6c61a63c5b98e4f0524e5b4376d6986ecc",
+      "snapshot": {
+        "status": "not_checked",
+        "reason": "snapshot_not_supplied"
+      },
+      "fact_statuses": {
+        "unknown": 96722,
+        "ostrovok_content": 18156,
+        "computed": 32368,
+        "estimate": 57612,
+        "not_applicable": 8667,
+        "observed": 16
+      },
+      "unknown_reasons": {
+        "ostrovok_field_unknown_or_missing": 62492,
+        "No OSM/hotelier-confirmed target entrance and public-admission/animal/leash/season policy for mapped candidate; OSM dog_park alone is insufficient.": 8422,
+        "no_confirmed_open_service_hours_in_cached_source_or_extent": 16942,
+        "verified_hotel_building_footprint_missing_or_ambiguous": 5252,
+        "No eligible target/connected route in cached graph; absent mapping is not absence of playground/dog area.": 160,
+        "no_connected_eligible_candidate_in_cached_graph": 696,
+        "No selected connected route in cached graph; no absence or accessibility conclusion.": 728,
+        "hotel_snap_over_100m": 40,
+        "no_building_match": 372,
+        "undefined_lighting_fraction_zero_graph_length": 76,
+        "No complete official geocoded injury-crash IDs/dates/coordinate completeness for route buffer and period. Selective news bulletins cannot provide full count.": 49,
+        "no_connected_path_in_cached_graph_not_proof_no_real_path": 178,
+        "No accepted dated, geocoded primary-source event/closure/construction inventory with coverage, status and licence for requested trip. Generic OSM construction tags do not provide permit geometry and active dates.": 294,
+        "Requested trips beyondOpenMeteoairqualityAPImaximum7day horizon(default5days); no valid CAMSmodelrun for requested dates. Cached2026-10-23PM2.5 not transferable.": 49,
+        "No licensed complete current operator schedule/active service calendar and verified terminal-to-hotel itinerary for requested date. Zero active cached services is not no real transit.": 294,
+        "No zero-gap surveyed constraints: hotel exit, kerbs, width, slope, surface, stairs and working lifts unverified. A route with no mapped steps is insufficient.": 98,
+        "Ground DTM/survey absent; DSM estimate unavailable": 76,
+        "Requested trips beyond16day forecast horizon; no valid ensembleprobabilityrun. Historical rainy-dayfrequency is not rainprobabilityforecast.": 49,
+        "no_current_official_heritage_registry_match": 18,
+        "No corrected BlackMarble monthlyA3 radiance plusQA/cloud/snow validpixel cached; no sufficient correctedA2 dailyseries. UncorrectedA1/otherVIIRS products rejected as different estimand.": 49,
+        "No licensed fresh OpenCellID export with operator/radio/last_seen and observed cell coordinates. OSM mast location or phone bars is another meaning.": 49,
+        "no_verified_window_height_ground_datum_and_complete_obstacles": 162,
+        "D22 selects Open-Meteo asprimaryairsource; thisAPI exposesCAMSmodelPM2.5, no eligible stationmeasurements withstation/QC/timeaveraging. Directofficial/OpenAQstationpaths notapprovedunderD22; CAMSmodelE01 cannotreplaceobservation.": 49,
+        "hotel_or_target_snap_over_100m": 10,
+        "no_verified_construction_completion_event": 18,
+        "No licensed georeferenced accepted facade-height Lnight layer, complete emissions model, or independent acoustic validation in cached inputs; road distance is not dB.": 49,
+        "No matched police-category numerator, resident population denominator, reporting period and statistical-boundary version.": 49,
+        "missing_aboveground_levels": 2
+      },
+      "fact_subject_checks": {
+        "room_type": 76434,
+        "external_geometry_subject_not_resolved": 32960,
+        "building": 3186,
+        "hotel": 100961
+      },
+      "ostrovok_import_passports": 80648,
+      "subzones": {
+        "not_specified": 4211
+      },
+      "building_linked_hotels": 1585,
+      "seconds": 6.37,
+      "errors": {},
+      "warnings": {
+        "snapshot_not_checked": 1,
+        "external_geometry_subjects_not_resolved": 1,
+        "dated_transit_times_unavailable": 1
+      },
+      "samples": [
+        {
+          "code": "snapshot_not_checked",
+          "where": "manifest.json",
+          "severity": "warning",
+          "field": null
+        },
+        {
+          "code": "external_geometry_subjects_not_resolved",
+          "where": "manifest.json",
+          "severity": "warning",
+          "field": null
+        },
+        {
+          "code": "dated_transit_times_unavailable",
+          "where": "manifest.json",
+          "severity": "warning",
+          "field": null
+        }
+      ]
+    },
+    {
+      "pack": "sochi",
+      "status": "passed",
+      "rows": {
+        "hotels": 2695,
+        "room_types": 9272,
+        "buildings": 635,
+        "hotel_buildings": 673,
+        "facades": 6127,
+        "places": 6475,
+        "transit_stations": 176,
+        "hotel_stations": 15806,
+        "transit_times": 0,
+        "curation_items": 2034,
+        "facts": 304550,
+        "questions": 69144,
+        "coverage": 54,
+        "ota_comparisons": 16
+      },
+      "files": [
+        {
+          "path": "data/hotels.jsonl.gz",
+          "rows": 2695,
+          "kind": "hotels"
+        },
+        {
+          "path": "data/room_types.jsonl.gz",
+          "rows": 9233,
+          "kind": "room_types"
+        },
+        {
+          "path": "data/room_types_snapshot_2026-10-27-targeted.jsonl.gz",
+          "rows": 39,
+          "kind": "room_types"
+        },
+        {
+          "path": "data/buildings.jsonl.gz",
+          "rows": 635,
+          "kind": "buildings"
+        },
+        {
+          "path": "data/hotel_buildings.jsonl.gz",
+          "rows": 673,
+          "kind": "hotel_buildings"
+        },
+        {
+          "path": "data/facades.jsonl.gz",
+          "rows": 6127,
+          "kind": "facades"
+        },
+        {
+          "path": "data/places.jsonl.gz",
+          "rows": 6475,
+          "kind": "places"
+        },
+        {
+          "path": "data/transit_stations.jsonl.gz",
+          "rows": 176,
+          "kind": "transit_stations"
+        },
+        {
+          "path": "data/hotel_stations.jsonl.gz",
+          "rows": 15806,
+          "kind": "hotel_stations"
+        },
+        {
+          "path": "data/transit_times.jsonl.gz",
+          "rows": 0,
+          "kind": "transit_times"
+        },
+        {
+          "path": "data/curation_items.jsonl.gz",
+          "rows": 2034,
+          "kind": "curation_items"
+        },
+        {
+          "path": "data/facts.jsonl.gz",
+          "rows": 146006,
+          "kind": "facts"
+        },
+        {
+          "path": "data/facts_snapshot_2026-10-27-targeted.jsonl.gz",
+          "rows": 238,
+          "kind": "facts"
+        },
+        {
+          "path": "data/view_sun.jsonl.gz",
+          "rows": 158306,
+          "kind": "facts"
+        },
+        {
+          "path": "data/questions.jsonl.gz",
+          "rows": 69144,
+          "kind": "questions"
+        },
+        {
+          "path": "data/coverage.jsonl.gz",
+          "rows": 54,
+          "kind": "coverage"
+        },
+        {
+          "path": "data/ota_comparisons.jsonl.gz",
+          "rows": 16,
+          "kind": "ota_comparisons"
+        }
+      ],
+      "city_id": "sochi",
+      "pack_version": "category-supplement.2-9062f7ca04de+5161ea64",
+      "manifest_sha256": "375e9386923553c1e296c59e14e831a1d74ad6ab8300b4c845190af932a04414",
+      "snapshot": {
+        "status": "not_checked",
+        "reason": "snapshot_not_supplied"
+      },
+      "fact_statuses": {
+        "computed": 65085,
+        "unknown": 152635,
+        "estimate": 68541,
+        "ostrovok_content": 18231,
+        "observed": 58
+      },
+      "unknown_reasons": {
+        "No OSM/hotelier-confirmed target entrance and public-admission/animal/leash/season policy for mapped candidate; OSM dog_park alone is insufficient.": 5390,
+        "no_building_match": 372,
+        "ostrovok_field_unknown_or_missing": 40079,
+        "no_connected_eligible_candidate_in_cached_graph": 1920,
+        "no_confirmed_open_service_hours_in_cached_source_or_extent": 12514,
+        "No licensed complete current operator schedule/active service calendar and verified terminal-to-hotel itinerary for requested date. Zero active cached services is not no real transit.": 534,
+        "no_verified_window_height_ground_datum_and_complete_obstacles": 522,
+        "No eligible target/connected route in cached graph; absent mapping is not absence of playground/dog area.": 380,
+        "verified_hotel_building_footprint_missing_or_ambiguous": 4060,
+        "no_connected_path_in_cached_graph_not_proof_no_real_path": 484,
+        "No published authorized labprotocol matchedtohotel-selected beachsamplepoint withsamplingdate/method/units.": 89,
+        "No accepted dated, geocoded primary-source event/closure/construction inventory with coverage, status and licence for requested trip. Generic OSM construction tags do not provide permit geometry and active dates.": 534,
+        "No zero-gap surveyed constraints: hotel exit, kerbs, width, slope, surface, stairs and working lifts unverified. A route with no mapped steps is insufficient.": 174,
+        "No selected connected route in cached graph; no absence or accessibility conclusion.": 940,
+        "No licensed georeferenced accepted facade-height Lnight layer, complete emissions model, or independent acoustic validation in cached inputs; road distance is not dB.": 89,
+        "D22 selects Open-Meteo asprimaryairsource; thisAPI exposesCAMSmodelPM2.5, no eligible stationmeasurements withstation/QC/timeaveraging. Directofficial/OpenAQstationpaths notapprovedunderD22; CAMSmodelE01 cannotreplaceobservation.": 89,
+        "Requested trips beyond16day forecast horizon; no valid ensembleprobabilityrun. Historical rainy-dayfrequency is not rainprobabilityforecast.": 89,
+        "No corrected BlackMarble monthlyA3 radiance plusQA/cloud/snow validpixel cached; no sufficient correctedA2 dailyseries. UncorrectedA1/otherVIIRS products rejected as different estimand.": 89,
+        "No dated official material descriptor with matched named beach segment/extent; hotel marketing sand/pebble claims are not equivalent official data.": 89,
+        "No matched police-category numerator, resident population denominator, reporting period and statistical-boundary version.": 89,
+        "hotel_snap_over_100m": 58,
+        "Requested trips beyondOpenMeteoairqualityAPImaximum7day horizon(default5days); no valid CAMSmodelrun for requested dates. Cached2026-10-23PM2.5 not transferable.": 89,
+        "No complete official geocoded injury-crash IDs/dates/coordinate completeness for route buffer and period. Selective news bulletins cannot provide full count.": 89,
+        "undefined_lighting_fraction_zero_graph_length": 92,
+        "No matched authorized latest beach flag/status feed withissuer andobservationtime; future2026/2027status cannot be inferred fromhistoricalorweather.": 89,
+        "no_verified_construction_completion_event": 58,
+        "Both requested trips beyond the16day marine forecast horizon at2026-10-24; no valid modelrun/lead/wetcell for requested dates.": 89,
+        "No licensed fresh OpenCellID export with operator/radio/last_seen and observed cell coordinates. OSM mast location or phone bars is another meaning.": 89,
+        "no_current_official_heritage_registry_match": 58,
+        "Ground DTM/survey absent; DSM estimate unavailable": 92,
+        "missing_aboveground_levels": 8,
+        "hotel_or_target_snap_over_100m": 12,
+        "multiple_buildings_or_counting_scope_conflict": 4,
+        "view_sea_blocked": 3721,
+        "view_obstacle_height": 21360,
+        "view_trees": 15119,
+        "view_need_dates": 3295,
+        "view_terrain_beyond": 3537,
+        "view_obstacle_unmeasured": 14939,
+        "view_obstacle_satellite": 9773,
+        "view_terrain": 1586,
+        "view_low_floor": 583,
+        "view_sun_oblique": 2328,
+        "floor_count_unknown": 6367,
+        "view_obstacle_height_tag": 259,
+        "view_sun_partial": 415
+      },
+      "fact_subject_checks": {
+        "external_geometry_subject_not_resolved": 20624,
+        "hotel": 68584,
+        "room_type": 55632,
+        "building": 1404,
+        "facade_physical_floor": 127090,
+        "facade": 31216
+      },
+      "ostrovok_import_passports": 58310,
+      "subzones": {
+        "center": 337,
+        "other_greater_sochi": 468,
+        "sirius": 397,
+        "krasnaya_polyana": 253,
+        "adler": 737,
+        "loo": 152,
+        "lazarevskoe": 260,
+        "dagomys": 50,
+        "khosta": 41
+      },
+      "building_linked_hotels": 665,
+      "seconds": 8.374,
+      "errors": {},
+      "warnings": {
+        "snapshot_not_checked": 1,
+        "external_geometry_subjects_not_resolved": 1,
+        "dated_transit_times_unavailable": 1
+      },
+      "samples": [
+        {
+          "code": "snapshot_not_checked",
+          "where": "manifest.json",
+          "severity": "warning",
+          "field": null
+        },
+        {
+          "code": "external_geometry_subjects_not_resolved",
+          "where": "manifest.json",
+          "severity": "warning",
+          "field": null
+        },
+        {
+          "code": "dated_transit_times_unavailable",
+          "where": "manifest.json",
+          "severity": "warning",
+          "field": null
+        }
+      ]
+    },
+    {
+      "pack": "spb",
+      "status": "passed",
+      "rows": {
+        "hotels": 50,
+        "facts": 4000,
+        "questions": 1300,
+        "coverage": 54,
+        "ota_comparisons": 9
+      },
+      "files": [
+        {
+          "path": "data/hotels.jsonl.gz",
+          "rows": 50,
+          "kind": "hotels"
+        },
+        {
+          "path": "data/facts.jsonl.gz",
+          "rows": 4000,
+          "kind": "facts"
+        },
+        {
+          "path": "data/questions.jsonl.gz",
+          "rows": 1300,
+          "kind": "questions"
+        },
+        {
+          "path": "data/coverage.jsonl.gz",
+          "rows": 54,
+          "kind": "coverage"
+        },
+        {
+          "path": "data/ota_comparisons.jsonl.gz",
+          "rows": 9,
+          "kind": "ota_comparisons"
+        }
+      ],
+      "city_id": "spb",
+      "pack_version": "v9-1434cd8536",
+      "manifest_sha256": "1182dd83ef104a010034f4f8af6c6f1f3fb545bc05e5ff433df737b1206d40d2",
+      "snapshot": {
+        "status": "not_checked",
+        "reason": "snapshot_not_supplied"
+      },
+      "fact_statuses": {
+        "unknown": 2484,
+        "estimate": 766,
+        "computed": 726,
+        "observed": 24
+      },
+      "unknown_reasons": {
+        "No zero-gap surveyed constraints: hotel exit, kerbs, width, slope, surface, stairs and working lifts unverified. A route with no mapped steps is insufficient.": 92,
+        "No dated official material descriptor with matched named beach segment/extent; hotel marketing sand/pebble claims are not equivalent official data.": 50,
+        "Both requested trips beyond the16day marine forecast horizon at2026-10-24; no valid modelrun/lead/wetcell for requested dates.": 50,
+        "No matched authorized latest beach flag/status feed withissuer andobservationtime; future2026/2027status cannot be inferred fromhistoricalorweather.": 50,
+        "No published authorized labprotocol matchedtohotel-selected beachsamplepoint withsamplingdate/method/units.": 50,
+        "Requested trips beyond16day forecast horizon; no valid ensembleprobabilityrun. Historical rainy-dayfrequency is not rainprobabilityforecast.": 50,
+        "Requested trips beyondOpenMeteoairqualityAPImaximum7day horizon(default5days); no valid CAMSmodelrun for requested dates. Cached2026-10-23PM2.5 not transferable.": 50,
+        "D22 selects Open-Meteo asprimaryairsource; thisAPI exposesCAMSmodelPM2.5, no eligible stationmeasurements withstation/QC/timeaveraging. Directofficial/OpenAQstationpaths notapprovedunderD22; CAMSmodelE01 cannotreplaceobservation.": 50,
+        "No corrected BlackMarble monthlyA3 radiance plusQA/cloud/snow validpixel cached; no sufficient correctedA2 dailyseries. UncorrectedA1/otherVIIRS products rejected as different estimand.": 50,
+        "no_confirmed_open_service_hours_in_cached_source_or_extent": 300,
+        "no_building_match": 300,
+        "No licensed georeferenced accepted facade-height Lnight layer, complete emissions model, or independent acoustic validation in cached inputs; road distance is not dB.": 50,
+        "verified_hotel_building_footprint_missing_or_ambiguous": 50,
+        "No OSM/hotelier-confirmed target entrance and public-admission/animal/leash/season policy for mapped candidate; OSM dog_park alone is insufficient.": 100,
+        "No matched police-category numerator, resident population denominator, reporting period and statistical-boundary version.": 50,
+        "No complete official geocoded injury-crash IDs/dates/coordinate completeness for route buffer and period. Selective news bulletins cannot provide full count.": 50,
+        "No licensed fresh OpenCellID export with operator/radio/last_seen and observed cell coordinates. OSM mast location or phone bars is another meaning.": 50,
+        "No licensed complete current operator schedule/active service calendar and verified terminal-to-hotel itinerary for requested date. Zero active cached services is not no real transit.": 300,
+        "No accepted dated, geocoded primary-source event/closure/construction inventory with coverage, status and licence for requested trip. Generic OSM construction tags do not provide permit geometry and active dates.": 300,
+        "no_verified_construction_completion_event": 25,
+        "no_current_official_heritage_registry_match": 25,
+        "no_verified_window_height_ground_datum_and_complete_obstacles": 225,
+        "no_connected_path_in_cached_graph_not_proof_no_real_path": 78,
+        "No selected connected route in cached graph; no absence or accessibility conclusion.": 40,
+        "No eligible target/connected route in cached graph; absent mapping is not absence of playground/dog area.": 8,
+        "no_connected_eligible_candidate_in_cached_graph": 40,
+        "missing_aboveground_levels": 1
+      },
+      "fact_subject_checks": {
+        "hotel": 3558,
+        "external_geometry_subject_not_resolved": 442
+      },
+      "ostrovok_import_passports": 0,
+      "subzones": {
+        "not_specified": 50
+      },
+      "building_linked_hotels": 0,
+      "seconds": 0.168,
+      "errors": {},
+      "warnings": {
+        "external_geometry_subjects_not_resolved": 1
+      },
+      "samples": [
+        {
+          "code": "external_geometry_subjects_not_resolved",
+          "where": "manifest.json",
+          "severity": "warning",
+          "field": null
+        }
+      ]
+    }
+  ],
+  "duplicate_hotels_between_cities": [],
+  "status": "passed",
+  "seconds": 15.715,
+  "code_sha256": {
+    "audit_packs.py": "afcc57c1b4cf7b78859b2400425688185176ff00f0e7067a9fc383098cb645fb",
+    "audit_ostrovok.py": "3f783f3eb5e57ad5e264433b54b7119cbca47ab8180841b04f237f3839583618"
+  },
+  "peak_rss_mib": 93.91
+}

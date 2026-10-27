@@ -41,10 +41,23 @@ class Feature:
     ops: tuple[str, ...]
     params: tuple[str, ...]
     synonyms: tuple[str, ...]
+    # Названия по направлению условия, если `short` читается только в одну сторону: «мало баров
+    # и клубов рядом» тому, кто просил «от 2 баров», — наоборот.
+    short_more: str | None = None
+    short_less: str | None = None
 
     @property
     def room_level(self) -> bool:
         return self.level in ROOM_LEVELS
+
+    def short_for(self, op: str | None, value: Any = None) -> str:
+        """Название под условие гостя: «бары и клубы рядом» при ≥, «мало баров…» при ≤ и = 0."""
+        if op in ("gte", "gt") and self.short_more:
+            return self.short_more
+        zero = op == "eq" and not isinstance(value, bool) and value == 0
+        if (op in ("lte", "lt") or zero) and self.short_less:
+            return self.short_less
+        return self.short
 
     def field_spec(self, name: str | None) -> FieldSpec | None:
         name = name or self.default_field
@@ -102,6 +115,8 @@ def load_catalog(path: Path = CATALOG_PATH) -> Catalog:
             ops=tuple(f["ops"]),
             params=tuple(f["params"]),
             synonyms=tuple(f["synonyms"]),
+            short_more=f.get("short_more"),
+            short_less=f.get("short_less"),
         )
     return Catalog(
         features=features,

@@ -14,5 +14,15 @@
     "S04": {"fields": {"hvac_type": "present"}},
     "T04": {"say": "Своей парковки нет, рядом городская платная стоянка."}
   },
-  "categories": []
+  "categories": [
+    {
+      "room_type_id": "9986868:32023020005",
+      "name": "Двухместный номер Стандарт с видом на город",
+      "placements": [
+        {"building": "основное здание", "building_id": "way/190714781", "floors": [2, 6], "side": "N"}
+      ],
+      "completeness": "complete",
+      "guarantee": "on_request"
+    }
+  ]
 }

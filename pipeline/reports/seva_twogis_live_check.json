@@ -1,0 +1,130 @@
+{
+  "version": "twogis-smoke.1",
+  "built_at": "2026-10-27T09:13:25.471676+00:00",
+  "key_tier": "demo_key",
+  "commercial_ok": false,
+  "cases": [
+    {
+      "action": "categories",
+      "request": {
+        "q": "Рестораны",
+        "region_id": 32,
+        "page_size": 5
+      },
+      "maximum_units": 1,
+      "status": "failed",
+      "error_kind": "network_timeout",
+      "http_status": null,
+      "api_status": null
+    },
+    {
+      "action": "places",
+      "request": {
+        "q": "ресторан",
+        "point": "37.6388,55.7647",
+        "radius": 1000,
+        "type": "branch",
+        "page_size": 3,
+        "fields": "items.point,items.rubrics,items.schedule"
+      },
+      "maximum_units": 1,
+      "status": "skipped",
+      "reason": "same_host_connection_failed"
+    },
+    {
+      "action": "routing",
+      "request": {
+        "points": [
+          {
+            "lat": 55.7647,
+            "lon": 37.6388,
+            "type": "walking"
+          },
+          {
+            "lat": 55.7452,
+            "lon": 37.6032,
+            "type": "walking"
+          }
+        ],
+        "transport": "walking",
+        "route_mode": "fastest",
+        "output": "summary",
+        "alternative": 0,
+        "locale": "ru"
+      },
+      "maximum_units": 1,
+      "status": "failed",
+      "error_kind": "network_timeout",
+      "http_status": null,
+      "api_status": null
+    },
+    {
+      "action": "transit",
+      "request": {
+        "source": {
+          "point": {
+            "lat": 55.7647,
+            "lon": 37.6388
+          }
+        },
+        "target": {
+          "point": {
+            "lat": 55.7452,
+            "lon": 37.6032
+          }
+        },
+        "transport": [
+          "metro"
+        ],
+        "start_time": 1793178000,
+        "enable_schedule": true,
+        "locale": "ru"
+      },
+      "maximum_units": 1,
+      "status": "skipped",
+      "reason": "same_host_connection_failed"
+    },
+    {
+      "action": "matrix",
+      "request": {
+        "points": [
+          {
+            "lat": 55.7647,
+            "lon": 37.6388
+          },
+          {
+            "lat": 55.7452,
+            "lon": 37.6032
+          }
+        ],
+        "sources": [
+          0
+        ],
+        "targets": [
+          1
+        ],
+        "transport": "walking",
+        "start_time": "2026-10-28T12:00:00+03:00"
+      },
+      "maximum_units": 1,
+      "status": "skipped",
+      "reason": "same_host_connection_failed"
+    }
+  ],
+  "network_attempts": 2,
+  "http_responses": 0,
+  "published_to_packs": false,
+  "status": "blocked",
+  "blocked_hosts": [
+    "catalog.api.2gis.com",
+    "routing.api.2gis.com"
+  ],
+  "budget_reserved_this_month": {
+    "categories": 2,
+    "routing": 1
+  },
+  "code_sha256": {
+    "pipeline/check_twogis.py": "c81b85833b65b1ca03a70913150415aee41907ad3f874749cfb1118241af4641",
+    "connectors/twogis.py": "2b89441fcb01182c55c7a45ae309eccff048688e812771ceb4adebc0b196c78e"
+  }
+}

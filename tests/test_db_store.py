@@ -21,26 +21,46 @@ CITIES = ("sochi", "moscow")
 
 
 @pytest.fixture(scope="module")
-def engine():
+def engine(tmp_path_factory):
+    from uuid import uuid4
+
     from alembic import command
     from alembic.config import Config
     from sqlalchemy import create_engine, text
     from sqlalchemy.engine import make_url
 
+    from pipeline.build_v9_packs import build
     from pipeline.load_packs import load_pack
+
+    # Эти тесты сравнивают именно v9 с неизменными fixtures. Итоговые городские
+    # пакеты уже шире когорты и имеют пересчитанные факты: их в PostGIS грузит
+    # tests/test_shipped_packs_db.py (`make test-packs`).
+    global PACKS
+    PACKS = tmp_path_factory.mktemp("v9-contract-packs")
+    build(PACKS)
 
     assert make_url(TEST_URL).database.endswith("_test"), "тест очищает базу — только *_test"
     eng = create_engine(TEST_URL)
+    shadow = "seva_extension_" + uuid4().hex[:12]
     with eng.begin() as conn:
         conn.execute(text("DROP SCHEMA IF EXISTS public CASCADE"))
         conn.execute(text("CREATE SCHEMA public"))
+        # Как в образе PostGIS: одноимённая таблица расширения в search_path.
+        conn.execute(text(f"CREATE SCHEMA {shadow}"))
+        conn.execute(text(f"CREATE TABLE {shadow}.place (gid integer)"))
     saved = os.environ.get("DATABASE_URL")
-    os.environ["DATABASE_URL"] = TEST_URL  # migrations/env.py берёт адрес отсюда
+    os.environ["DATABASE_URL"] = (
+        make_url(TEST_URL)
+        .update_query_dict({"options": f"-csearch_path=public,{shadow}"})
+        .render_as_string(hide_password=False)
+    )
     try:
         cfg = Config(str(ROOT / "alembic.ini"))
         cfg.set_main_option("script_location", str(ROOT / "migrations"))
         command.upgrade(cfg, "head")
     finally:
+        with eng.begin() as conn:
+            conn.execute(text(f"DROP SCHEMA {shadow} CASCADE"))
         if saved is None:
             os.environ.pop("DATABASE_URL", None)
         else:
@@ -68,9 +88,15 @@ def test_same_pack_is_not_loaded_twice(engine):
 
 
 def test_db_facts_equal_fixture_facts(stores):
+    from core.packs import iter_jsonl
+    from pipeline.make_fixtures import LAYERS
+
     db, stub = stores
     hotels = [h["hotel_id"] for h in stub.hotels() if h["city_id"] in CITIES]
     assert hotels
+    # В заглушках — ещё и факты слоёв калькуляторов (вид и солнце); v9-пакеты теста их не несут,
+    # слой в базе проверяет tests/test_shipped_packs_db.py.
+    layer = {r["fact_id"] for path in LAYERS if path.is_file() for r in iter_jsonl(path)}
     for hotel_id in hotels:
         a = {
             f.fact_id: f.model_dump(mode="json")
@@ -81,8 +107,26 @@ def test_db_facts_equal_fixture_facts(stores):
             f.fact_id: f.model_dump(mode="json")
             for fs in stub.hotel_facts(hotel_id).values()
             for f in fs
+            if f.fact_id not in layer
         }
         assert a == b, hotel_id
+
+
+def test_facts_for_filters_params_in_db(stores):
+    """Поиск отбирает факты по параметрам в SQL (даты заката — их тысячи на отель). Если с
+    такими параметрами фактов нет, а с другими есть — один факт остаётся: поиск скажет
+    «посчитано на другие параметры», а не «нет данных»."""
+    db, _ = stores
+    ids = [h["hotel_id"] for h in db.hotels("sochi")]
+    hid, facts = next((h, fs) for h, fs in db.facts_for("L01", ids).items() if fs[0].params)
+    want = facts[0].params
+    got = db.facts_for("L01", [hid], params=want)[hid]
+    assert got and all(f.params == want for f in got) and not got[0].sources  # без паспорта
+    other = db.facts_for("L01", [hid], params={"arrival_local": "1999-01-01T00:00:00"})[hid]
+    assert len(other) == 1
+    keyed = db.facts_for("L01", [hid], params={}, key_params=("arrival_local",))[hid]
+    assert len(keyed) == 1 and "arrival_local" in keyed[0].params
+    assert db.fact(got[0].fact_id).sources  # полный факт — по id
 
 
 def test_search_on_db_matches_fixtures(stores):
@@ -283,7 +327,9 @@ def test_placements_load_and_drive_search(engine, tmp_path):
     with engine.begin() as conn:
         load_pack(conn, pack)
     assert all(rt["placement_set"] is None for rt in db.room_types(["t1"])["t1"])
-    assert search(db, ast)[0]["hard"][0]["reason_code"] == "no_placements"
+    r = search(db, ast)[0]
+    # Без размещений — сводка по окнам корпусов (D40): «неизвестно», где окна «да».
+    assert r["status"] != "fits" and r["hard"][0]["reason_code"] == "window_some"
 
 
 def test_hotelier_loop_on_db(engine):

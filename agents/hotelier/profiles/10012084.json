@@ -7,11 +7,20 @@
   "answers": {
     "L04": {"fields": {"front_desk_hours": "08:00-23:00", "self_checkin": true, "prior_arrangement": true}, "conditions": "Ночью код от двери пришлём заранее."},
     "L05": {"fields": {"breakfast_start": "08:00", "breakfast_box": false}},
-    "P01": {"fields": {"species": "dog", "weight_kg": 15, "prior_approval": true}},
-    "P02": {"fields": {"fee_amount": 1000, "fee_basis": "per_night"}},
+    "P01": {"fields": {"species": "none"}},
     "S04": {"fields": {"hvac_type": "present"}, "style": "vague"},
     "A03": {"fields": {"lift_id": "none"}},
     "M03": {"fields": {"private_kitchenette": true, "cooking_allowed": true}}
   },
-  "categories": []
+  "categories": [
+    {
+      "room_type_id": "10012084:3402",
+      "name": "Номер Стандарт с террасой",
+      "placements": [
+        {"building": "основное здание", "building_id": "way/74466391", "floors": [1, 2], "side": "SE"}
+      ],
+      "completeness": "complete",
+      "guarantee": "all_guaranteed"
+    }
+  ]
 }

@@ -43,7 +43,7 @@ STATUS_NOTE = {
     Status.ostrovok_content: "данные Островка",
     Status.curated: "проверено командой",
 }
-DEFAULT_FIELDS = ("distance_m", "count", "mean", "mean_C", "aboveground_levels")
+DEFAULT_FIELDS = ("distance_m", "count", "mean", "mean_C", "aboveground_levels", "visible")
 _NUM = re.compile(r"\d+(?:[.,]\d+)?")
 
 
@@ -104,6 +104,50 @@ def _fmt_value(value: Any, unit: str | None) -> str | None:
     return None
 
 
+# Значения перечислений — словами, а не кодами: «dog_cat» → «пускают собак и кошек».
+VALUE_WORDS: dict[str, dict[str, str]] = {
+    "species": {"dog": "пускают собак", "cat": "пускают кошек", "dog_cat": "пускают собак и кошек",
+                "any": "пускают любых животных", "none": "с животными нельзя",
+                "present": "с животными можно, вид не указан"},
+    "hvac_type": {"split": "сплит-система", "central": "центральный", "fan_coil": "фанкойлы",
+                  "other": "другой тип"},
+    "connector": {"type2": "Type 2", "ccs": "CCS", "chademo": "CHAdeMO", "gbt": "GB/T",
+                  "schuko": "бытовая розетка", "other": "другой разъём"},
+    "parking_owner": {"own": "своя", "third_party": "партнёрская", "street": "на улице"},
+    "charging_basis": {"per_day": "за сутки", "per_stay": "за проживание", "free": "бесплатно"},
+    "fee_basis": {"per_night": "за ночь", "per_stay": "за проживание"},
+    "bed_configuration": {"double": "двуспальная", "twin": "раздельные",
+                          "double_or_twin": "двуспальная или раздельные", "other": "другая"},
+    "opaque_coverage": {"full": "полностью", "partial": "частично",
+                        "present": "шторы есть, закрывают ли полностью — не указано"},
+    "windows_state": {"closed": "окна закрыты", "open": "окна открыты"},
+    "hvac_state": {"on": "кондиционер включён", "off": "кондиционер выключен"},
+    "surface": {"sand": "песок", "pebble": "галька", "rock": "камни", "mixed": "смешанный"},
+    "flag": {"green": "зелёный флаг", "yellow": "жёлтый флаг", "red": "красный флаг",
+             "closed": "пляж закрыт"},
+}  # fmt: skip
+PRESENCE_WORDS = {"present": "есть", "none": "нет"}  # «лифт есть», «кроватки нет»
+
+
+def value_words(field_name: str | None, value: Any) -> str | None:
+    """Код перечисления → слова; не перечисление — None."""
+    if not isinstance(value, str):
+        return None
+    return VALUE_WORDS.get(field_name or "", {}).get(value) or PRESENCE_WORDS.get(value)
+
+
+def _indirect(item: dict[str, Any]) -> bool:
+    """Условие не прямое: «не равно», «= нет / ложь», множество с «нет» — так правила
+    переворачивают «без собак» (species ∈ {кошки, нет}). «≠ нет» — это «есть X» (кондиционер,
+    лифт, кроватка): прямое условие, подпись — название характеристики, а не «Лифтом: да»."""
+    op, value = item.get("cond_op"), item.get("cond_value")
+    return (
+        (op == "ne" and value != "none")
+        or (op == "eq" and (value is False or value == "none"))
+        or (op == "in" and isinstance(value, list) and "none" in value)
+    )
+
+
 def _evidence(item: dict[str, Any], catalog: Catalog, fact: Callable[[str], Fact | None]) -> str:
     """Значение из первого факта условия и его происхождение: «810 м, оценка»."""
     f = next((x for fid in item.get("fact_ids", []) if (x := fact(fid))), None)
@@ -119,13 +163,57 @@ def _evidence(item: dict[str, Any], catalog: Catalog, fact: Callable[[str], Fact
             else next((v[k] for k in DEFAULT_FIELDS if k in v), None)
         )
     spec = feature.field_spec(field_name) if feature else None
-    shown = _fmt_value(v, spec.unit if spec else None)
+    shown = value_words(field_name, v) or _fmt_value(v, spec.unit if spec else None)
     # «есть только оценка» скажет причина — второй раз «оценка» не нужна.
     note = None if item.get("reason_code") == "estimate_only" else STATUS_NOTE.get(f.status)
     return ", ".join(x for x in (shown, note) if x)
 
 
 UNKNOWN_SEP = ": нужно уточнить"
+
+
+SIDES = {"С": "север", "СВ": "северо-восток", "В": "восток", "ЮВ": "юго-восток", "Ю": "юг",
+         "ЮЗ": "юго-запад", "З": "запад", "СЗ": "северо-запад"}  # fmt: skip
+
+
+def _where(sides: dict[str, list[int]]) -> str:
+    """{"ЮЗ": [7, 8, 9], "З": [0]} → «окна на юго-запад, этажи 7–9; на запад — все этажи»."""
+    parts = []
+    for side, floors in sides.items():
+        named = [f for f in floors if f]
+        if not named or 0 in floors:
+            where = "все этажи"
+        else:
+            where = f"этаж {named[0]}" if len(named) == 1 else f"этажи {_floor_ranges(named)}"
+        parts.append(f"на {SIDES[side]}, {where}" if side in SIDES else where)
+    return "; ".join(parts)
+
+
+def _windows_evidence(item: dict[str, Any], catalog: Catalog) -> str:
+    """Окна отеля без привязки категорий (`core.search.hotel_windows`): где условие гостя
+    выполняется по расчёту и где — только по оценке.
+
+    Полярность — как у гостя: «без вида на закат» (НЕ, или условие `visible = false`) —
+    подходят окна, где заката нет."""
+    w = item.get("windows") or {}
+    negated = bool(item.get("negated"))
+    good, bad = ("no", "yes") if negated else ("yes", "no")
+    positive = (w.get("want") is not False) != negated  # подходят окна, где это есть
+    feature = catalog.get(item.get("feature_id") or "")
+    short = feature.short if feature else "это"
+    covered = sum(len(f) for f in (w.get(bad) or {}).values()) == w.get("count")
+    if w.get(good):
+        where = _where(w[good])
+        return (
+            f"по расчёту — окна {where}" if positive else f"по расчёту {short}: нет — окна {where}"
+        )
+    if covered:  # «ни одно окно» скажет причина (`no_window_known`)
+        return "" if positive else f"по расчёту {short} — во всех окнах"
+    if positive and not negated and w.get("estimate"):
+        return f"по оценке — окна {_where(w['estimate'])}"
+    if positive and not negated and w.get("estimate_none"):
+        return "по оценке — ни из одного окна"
+    return ""
 
 
 def _merge_heads(a: str, b: str) -> str:
@@ -140,7 +228,9 @@ def _merge_heads(a: str, b: str) -> str:
 
 def _label(item: dict[str, Any], catalog: Catalog) -> str:
     feature = catalog.get(item.get("feature_id") or "")
-    label = feature.short if feature else (item.get("text_span") or "условие")
+    # По направлению условия: «бары и клубы рядом» тому, кто просил от двух баров (ревью №21).
+    short = feature.short_for(item.get("cond_op"), item.get("cond_value")) if feature else None
+    label = short or item.get("text_span") or "условие"
     field_name = item.get("field")
     if (
         feature
@@ -157,6 +247,8 @@ def _label(item: dict[str, Any], catalog: Catalog) -> str:
         if span and re.match(r"(?:не|без|нет|никаких)\b", span.lower()):
             return span
         return f"не {span}" if span else f"не {label}"
+    if _indirect(item) and (span := (item.get("text_span") or "").strip()):
+        return span  # «без собак: нет», а не «можно с животным: нет»
     return label
 
 
@@ -172,7 +264,12 @@ def _condition_claim(
     if item.get("reason_code") == "out_of_catalog":
         text = f"«{item.get('text_span') or label}»: такого мы пока не знаем"
         return Claim(claim_id, "out_of_catalog", text)
-    evidence = "" if item.get("items") else _evidence(item, catalog, fact)
+    if item.get("windows"):
+        evidence = _windows_evidence(item, catalog)
+        if item.get("negated"):  # причина сказана про само условие, а не про «без него»
+            item = item | {"reason": "уточним у отеля, где будет номер"}
+    else:
+        evidence = "" if item.get("items") else _evidence(item, catalog, fact)
     if verdict == "unknown":
         reason = (item.get("reason") or "").rstrip(".")
         reason = reason[:1].lower() + reason[1:] if reason else ""
@@ -202,11 +299,21 @@ def _floor_ranges(floors: list[int]) -> str:
     return ", ".join(out)
 
 
-def _floors_claim(claim_id: str, category: dict[str, Any], catalog: Catalog) -> Claim | None:
-    """«Только с 5-го этажа»: по размещениям лучшей категории — одни этажи подходят, другие нет."""
-    ps = [p for p in category.get("placements") or [] if p.get("floor") is not None]
-    yes = [p["floor"] for p in ps if str(p.get("verdict")) == "yes"]
-    no = [p["floor"] for p in ps if str(p.get("verdict")) == "no"]
+def _floors_claim(
+    claim_id: str,
+    category: dict[str, Any],
+    catalog: Catalog,
+    label: Callable[[dict[str, Any]], str] | None = None,
+) -> Claim | None:
+    """«Только с 5-го этажа»: по размещениям лучшей категории — одни этажи подходят, другие нет.
+    `label` — подпись условия, как у пункта выше («без вида на море», а не «вид на море»)."""
+    by_floor: dict[int, set[str]] = {}
+    for p in category.get("placements") or []:
+        if p.get("floor") is not None:
+            by_floor.setdefault(p["floor"], set()).add(str(p.get("verdict")))
+    # Этаж «да» — только если «да» на всех его размещениях: номер на одной из стен (D41-3).
+    yes = sorted(f for f, vs in by_floor.items() if vs == {"yes"})
+    no = sorted(f for f, vs in by_floor.items() if vs == {"no"})
     if not yes or not no:
         return None
     window = [
@@ -215,7 +322,8 @@ def _floors_claim(claim_id: str, category: dict[str, Any], catalog: Catalog) -> 
         if str(c.get("feature_id", ""))[:1] in "VSN"
         or c.get("feature_id") in ("floor", "courtyard")
     ]
-    what = ", ".join(dict.fromkeys(_label(c, catalog) for c in window)) or "условия окна"
+    label = label or (lambda c: _label(c, catalog))
+    what = ", ".join(dict.fromkeys(label(c) for c in window)) or "условия окна"
     if min(yes) > max(no):
         where = f"только с {min(yes)}-го этажа"
     elif max(yes) < min(no):
@@ -237,12 +345,17 @@ def build_claims(
     """Утверждения о том, почему отель получил свой статус. Цифры — только из фактов."""
     catalog = catalog or load_catalog()
     claims: list[Claim] = []
-    # Какое поле факта сравнивалось — из условия AST (в результате поиска его нет).
-    fields = {c.atom_id: c.field for c in [*ast.hard, *ast.soft] if c.atom_id} if ast else {}
+    # Какое поле факта сравнивалось и как — из условия AST (в результате поиска этого нет).
+    conds = {c.atom_id: c for c in [*ast.hard, *ast.soft] if c.atom_id} if ast else {}
 
     def with_field(item: dict[str, Any]) -> dict[str, Any]:
-        found = fields.get(item.get("atom_id") or "")
-        return item | {"field": found} if found and not item.get("field") else item
+        c = conds.get(item.get("atom_id") or "")
+        if c is None:
+            return item
+        extra = {"cond_op": c.op, "cond_value": c.value}
+        if c.field and not item.get("field"):
+            extra["field"] = c.field
+        return item | extra
 
     def next_id() -> str:
         return f"c{len(claims) + 1}"
@@ -268,7 +381,20 @@ def build_claims(
         add(_condition_claim(next_id(), with_field(item), catalog, fact))
     best_id = result.get("best_category")
     best = next((c for c in result.get("categories", []) if c["room_type_id"] == best_id), None)
-    if best and (floors := _floors_claim(next_id(), best, catalog)):
+    # Условие окна в категории подписываем так же, как пункт выше: там уже есть НЕ из графа и
+    # слова гостя, а у условий категории — только ID (ревью №21).
+    labels: dict[str, str] = {}
+    todo = list(result.get("hard", []))
+    while todo:
+        item = todo.pop()
+        todo += item.get("items") or []
+        if item.get("atom_id"):
+            labels[item["atom_id"]] = _label(with_field(item), catalog)
+
+    def window_label(c: dict[str, Any]) -> str:
+        return labels.get(c.get("atom_id") or "") or _label(with_field(c), catalog)
+
+    if best and (floors := _floors_claim(next_id(), best, catalog, window_label)):
         add(floors)
     soft = sorted(result.get("soft", []), key=lambda s: -float(s.get("weight", 0)))
     for item in [s for s in soft if str(s.get("verdict")) == "yes"][:max_soft]:

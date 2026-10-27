@@ -13,5 +13,33 @@
     "L04": {"fields": {"front_desk_hours": "24/7"}},
     "P01": {"fields": {"species": "none"}}
   },
-  "categories": []
+  "categories": [
+    {
+      "room_type_id": "11313836:3202302",
+      "name": "Двухместный номер Standard",
+      "placements": [
+        {"building": "корпус «Коралл»", "building_id": "way/53742331", "floors": [2, 8], "side": "E"}
+      ],
+      "completeness": "complete",
+      "guarantee": "on_request"
+    },
+    {
+      "room_type_id": "11313836:7002302",
+      "name": "Двухместная студия",
+      "placements": [
+        {"building": "корпус «Коралл»", "building_id": "way/53742331", "floors": [9, 15], "side": "E"}
+      ],
+      "completeness": "complete",
+      "guarantee": "all_guaranteed"
+    },
+    {
+      "room_type_id": "11313836:3B02",
+      "name": "Номер Доступная среда",
+      "placements": [
+        {"building": "корпус «Коралл»", "building_id": "way/53742331", "floors": [2, 3], "side": "E"}
+      ],
+      "completeness": "complete",
+      "guarantee": "all_guaranteed"
+    }
+  ]
 }

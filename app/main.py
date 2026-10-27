@@ -23,6 +23,8 @@ from starlette.exceptions import HTTPException
 from starlette.responses import Response
 from starlette.types import Scope
 
+from app.api.geo_routes import router as geo_router
+from app.api.placement_routes import router as placement_router
 from app.api.routes import router
 from app.api.specs import router as specs_router
 from app.state import AppState, Phase
@@ -135,6 +137,8 @@ def create_app(ui_dist: Path | None = None) -> FastAPI:
 
     app.include_router(router)
     app.include_router(specs_router)
+    app.include_router(geo_router)
+    app.include_router(placement_router)
     _mount_ui(app, ui_dist or Path(os.environ.get("UI_DIST", UI_DIST)))
     return app
 

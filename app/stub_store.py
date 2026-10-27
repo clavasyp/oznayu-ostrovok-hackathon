@@ -18,8 +18,9 @@ from pathlib import Path
 from typing import Any
 
 from core.facts import Fact
-from core.hotelier import AnswerError, AnswerResult
+from core.hotelier import AnswerError, AnswerResult, placement_id, replaces_placements
 from core.packs import stable_id
+from core.placement_catalog import placement_choices, placement_maps, with_alias
 
 FIXTURES = Path(__file__).parent / "fixtures"
 
@@ -36,6 +37,10 @@ class StubStore:
     ota_comparisons: list[dict[str, Any]] = field(default_factory=list)
     # Категории с размещениями (D17) — в заглушках пока нет; тесты кладут сюда свои.
     room_types_by_hotel: dict[str, list[dict[str, Any]]] = field(default_factory=dict)
+    # Корпуса и фасады (строки пакета `hotel_buildings`, `buildings`, `facades`) — тоже из тестов.
+    hotel_buildings: list[dict[str, Any]] = field(default_factory=list)
+    buildings: list[dict[str, Any]] = field(default_factory=list)
+    facades: list[dict[str, Any]] = field(default_factory=list)
     # Ответы отельера в режиме заглушек живут в памяти до перезапуска.
     superseded: dict[str, str] = field(default_factory=dict)
     fact_conflict_list: list[dict[str, Any]] = field(default_factory=list)
@@ -83,7 +88,13 @@ class StubStore:
     def fact(self, fact_id: str) -> Fact | None:
         return self.facts.get(fact_id)
 
-    def facts_for(self, feature_id: str, hotel_ids: Collection[str]) -> dict[str, list[Fact]]:
+    def facts_for(
+        self,
+        feature_id: str,
+        hotel_ids: Collection[str],
+        params: dict[str, Any] | None = None,
+        key_params: Collection[str] = (),
+    ) -> dict[str, list[Fact]]:
         return {
             h: self.by_hotel[h][feature_id]
             for h in hotel_ids
@@ -92,6 +103,32 @@ class StubStore:
 
     def room_types(self, hotel_ids: Collection[str]) -> dict[str, list[dict[str, Any]]]:
         return {h: self.room_types_by_hotel[h] for h in hotel_ids if h in self.room_types_by_hotel}
+
+    def placement_geometry(self, hotel_id: str) -> dict[str, Any]:
+        """Подмножество `core.geo_store.GeoStore.geometry`, нужное агенту размещений."""
+        links = [link for link in self.hotel_buildings if link["hotel_id"] == hotel_id]
+        bids = {link["building_id"] for link in links}
+        facades = [f for f in self.facades if f["building_id"] in bids]
+        aliases, sides = placement_maps(links, facades, hotel_id)
+        return {
+            "hotel_buildings": links,
+            "facades": facades,
+            "placement_building_aliases": aliases,
+            "placement_facades": [
+                {"building_id": b, "side": side, "facade_id": fid}
+                for (b, side), fid in sorted(sides.items())
+            ],
+            "placement_building_choices": placement_choices(
+                links, [b for b in self.buildings if b["id"] in bids], facades, hotel_id
+            ),
+        }
+
+    def add_building_alias(self, hotel_id: str, building_id: str, alias: dict[str, Any]) -> bool:
+        for link in self.hotel_buildings:
+            if link["hotel_id"] == hotel_id and link["building_id"] == building_id:
+                link["evidence"] = with_alias(link.get("evidence"), alias)
+                return True
+        return False
 
     def questions(self, hotel_id: str) -> list[dict[str, Any]]:
         return self.questions_by_hotel.get(hotel_id, [])
@@ -128,29 +165,16 @@ class StubStore:
                 raise AnswerError(
                     f"нет категории {result.room_type_id}: размещения не к чему привязать"
                 )
-            ps = result.placements
-            merged: dict[str, dict[str, Any]] = {}
-            for item in ps.items:
-                pid = f"{rt['room_type_id']}|{item.building_id}|{item.floor}"
-                p = merged.setdefault(
-                    pid,
-                    {
-                        "placement_id": pid,
-                        "building_id": item.building_id,
-                        "floor": item.floor,
-                        "floor_label": item.floor_label,
-                        "windows": [],
-                    },
-                )
-                p["windows"] = sorted(set(p["windows"]) | set(item.windows))
-            rt["placement_set"] = {
-                "completeness": ps.completeness,
-                "guarantee": ps.guarantee,
-                "status": result.placement_status,
-                "source": result.placement_source,
-            }
-            rt["placements"] = list(merged.values())
-        q = self._question_by_id(result.question_id)
+            prev = (rt.get("placement_set") or {}).get("status")
+            if replaces_placements(result.placement_status, prev):
+                self._replace_placements(rt, result)
+            else:  # ответ имитатора не заменяет набор настоящего отеля или команды (D41-8)
+                result.placements_kept, result.placements = prev, None
+        q = (
+            self._question_by_id(result.question_id)
+            if isinstance(result.question_id, int)
+            else None
+        )
         if q is not None:
             q.update(
                 answer_status=result.state,
@@ -182,6 +206,31 @@ class StubStore:
                     "updated_at": result.answered_at.isoformat(),
                 }
             )
+
+    @staticmethod
+    def _replace_placements(rt: dict[str, Any], result: AnswerResult) -> None:
+        ps = result.placements  # не None: проверил apply_answer
+        merged: dict[str, dict[str, Any]] = {}
+        for item in ps.items:
+            pid = placement_id(rt["room_type_id"], item)
+            p = merged.setdefault(
+                pid,
+                {
+                    "placement_id": pid,
+                    "building_id": item.building_id,
+                    "floor": item.floor,
+                    "floor_label": item.floor_label,
+                    "windows": [],
+                },
+            )
+            p["windows"] = sorted(set(p["windows"]) | set(item.windows))
+        rt["placement_set"] = {
+            "completeness": ps.completeness,
+            "guarantee": ps.guarantee,
+            "status": result.placement_status,
+            "source": result.placement_source,
+        }
+        rt["placements"] = sorted(merged.values(), key=lambda p: (p["building_id"], p["floor"]))
 
     def fact_conflicts(self, city_id: str | None = None) -> list[dict[str, Any]]:
         return [c for c in self.fact_conflict_list if not city_id or c["city_id"] == city_id]

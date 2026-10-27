@@ -163,3 +163,143 @@ def test_negated_condition_uses_guest_words():
     texts = [r["explanation"]["text"] for r in results]
     assert any("без собак" in t.lower() for t in texts)
     assert not any("не можно" in t for t in texts)
+
+
+def test_indirect_condition_says_guest_words_and_enum_words():
+    """Ревью №20: «без собак» → правила дают species ∈ {cat, none} без negated, и объяснение
+    говорило «Можно с животным: нет (dog_cat…)» — будто с животными нельзя."""
+    with TestClient(create_app()) as c:
+        sim = c.post("/api/hotelier/13736470/simulate", json={"feature_id": "P01"}).json()
+        payload = {"question_id": sim["question_id"], "answer_text": sim["answer_text"],
+                   "is_simulated": True}  # fmt: skip
+        c.post("/api/hotelier/13736470/answers", json=payload)
+        found = c.post("/api/search", json={"text": "обязательно без собак", "city_id": "sochi"})
+    radisson = next(r for r in found.json()["results"] if r["hotel"]["hotel_id"] == "13736470")
+    assert radisson["status"] == "not_fit"
+    assert radisson["explanation"]["text"].startswith(
+        "Без собак: нет (пускают собак и кошек, ответ имитатора отельера)"
+    )
+
+
+def test_every_enum_value_has_words():
+    from agents.catalog import load_catalog
+    from agents.explain.explain import value_words
+
+    assert value_words("species", "dog_cat") == "пускают собак и кошек"
+    assert value_words("lift_id", "present") == "есть" and value_words("x", 5) is None
+    missing = [
+        (f.id, name, v)
+        for f in load_catalog().features.values()
+        for name, spec in f.fields.items()
+        for v in spec.values
+        if value_words(name, v) is None
+    ]
+    assert missing == []
+
+
+def test_has_x_is_direct_condition():
+    """Ревью №21: «≠ нет» — это «есть X»; подпись — название, а не «Лифтом: да»."""
+    with TestClient(create_app()) as c:
+        for hotel_id, feature_id in (("9986868", "A03"), ("13736470", "P01")):
+            sim = c.post(f"/api/hotelier/{hotel_id}/simulate", json={"feature_id": feature_id})
+            sim = sim.json()
+            payload = {"question_id": sim["question_id"], "answer_text": sim["answer_text"],
+                       "is_simulated": True}  # fmt: skip
+            c.post(f"/api/hotelier/{hotel_id}/answers", json=payload)
+        lift = c.post("/api/search", json={"text": "обязательно с лифтом", "city_id": "sochi"})
+        pet = c.post("/api/search", json={"text": "с питомцем 15 кг", "city_id": "sochi"})
+    cosmos = next(r for r in lift.json()["results"] if r["hotel"]["hotel_id"] == "9986868")
+    assert cosmos["explanation"]["text"].startswith("Лифт: да (есть")
+    radisson = next(r for r in pet.json()["results"] if r["hotel"]["hotel_id"] == "13736470")
+    assert "можно с животным: да" in radisson["explanation"]["text"]
+    assert "с питомцем 15 кг: да" not in radisson["explanation"]["text"]
+
+
+def test_label_follows_condition_direction():
+    """Ревью №21: подпись N04 одна — «мало баров и клубов рядом», и гость, просивший
+    «обязательно 2 бара рядом», видел «Мало баров и клубов рядом: нет (1)» — будто отель отклонён
+    за то, что баров мало. Так же W05: «Лестницы по пути: да (0)» на «без лестниц»."""
+    with TestClient(create_app()) as c:
+
+        def text(query: str, hotel_id: str = RADISSON) -> str:
+            body = c.post("/api/search", json={"text": query, "city_id": "sochi"}).json()
+            found = next(r for r in body["results"] if r["hotel"]["hotel_id"] == hotel_id)
+            return found["explanation"]["text"]
+
+        assert text("обязательно 2 бара рядом").startswith("Бары и клубы рядом: нет (1)")
+        assert text("мало баров рядом").startswith("Мало баров и клубов рядом: да (1)")
+        stairs = text("до пляжа без лестниц")
+        assert "без лестниц по пути: да (0)" in stairs and "лестницы по пути: да" not in stairs
+
+
+def test_floors_claim_counts_floor_only_when_all_walls_agree():
+    """D41-3: на этаже несколько размещений — по одному на стену стороны. Этаж «да», только
+    если закат виден со всех стен; иначе этаж в утверждение не попадает."""
+    from agents.catalog import load_catalog
+    from agents.explain.explain import _floors_claim
+
+    def placement(floor, wall, verdict):
+        return {"placement_id": f"p{floor}{wall}", "building_id": "b", "floor": floor,
+                "verdict": verdict}  # fmt: skip
+
+    category = {
+        "name": "Стандарт",
+        "conditions": [{"feature_id": "V05", "text_span": "закат"}],
+        "placements": [
+            placement(2, "a", "no"),
+            placement(2, "b", "no"),
+            placement(3, "a", "yes"),
+            placement(3, "b", "no"),  # одна стена из двух — не «да»
+            placement(4, "a", "yes"),
+            placement(4, "b", "yes"),
+        ],  # fmt: skip
+    }
+    claim = _floors_claim("c1", category, load_catalog(), label=lambda c: "закат из окна")
+    assert (
+        claim is not None
+        and claim.text == "закат из окна: только с 4-го этажа в категории «Стандарт»"
+    )
+    category["placements"] = category["placements"][:4]  # «да» нигде целиком — утверждения нет
+    assert _floors_claim("c1", category, load_catalog(), label=lambda c: "закат") is None
+
+
+def test_floors_claim_uses_item_label():
+    """Ревью №21: утверждение об этажах подписывалось названием характеристики — на «без вида
+    на море» гость читал «вид на море из окна: только до 2-го этажа», хотя на этих этажах вида
+    как раз нет. Теперь подпись та же, что у пункта выше: слова гостя."""
+    from agents.search import parse_query
+
+    ast = parse_query("обязательно без вида на море", "sochi", mode="rules").ast
+    (v01,) = ast.hard
+    assert (v01.feature_id, v01.value) == ("V01", False)
+    item = {
+        "feature_id": "V01",
+        "atom_id": v01.atom_id,
+        "text_span": v01.text_span,
+        "verdict": "unknown",
+        "fact_ids": [],
+        "reason_code": "depends_on_room",
+        "reason": "Зависит от номера.",
+    }
+    placements = [
+        {
+            "placement_id": f"p{n}",
+            "building_id": "b",
+            "floor": n,
+            "verdict": "yes" if n <= 2 else "no",
+        }
+        for n in range(1, 5)
+    ]
+    result = {
+        "status": "needs_check",
+        "hard": [item],
+        "soft": [],
+        "categories": [
+            {"room_type_id": "h:std", "name": "Стандарт", "conditions": [item],
+             "placements": placements},
+        ],
+        "best_category": "h:std",
+    }  # fmt: skip
+    texts = [c.text for c in build_claims(result, FACTS.get, ast=ast)]
+    assert "без вида на море: только до 2-го этажа в категории «Стандарт»" in texts
+    assert not any(t.startswith("вид на море из окна") for t in texts)

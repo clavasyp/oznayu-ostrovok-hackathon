@@ -1,37 +1,43 @@
 {
  "summary": {
   "mode": "llm",
-  "cases": 38,
+  "cases": 52,
+  "llm": [
+   "anthropic / claude-opus-5-5"
+  ],
   "parsed_by": {
    "rules": 0,
-   "llm": 38
+   "llm": 52
   },
   "hard": {
-   "tp": 46,
+   "tp": 64,
    "fn": 1,
-   "fp": 4,
-   "precision": 0.92,
-   "recall": 0.979
+   "fp": 5,
+   "precision": 0.928,
+   "recall": 0.985
   },
   "soft": {
-   "tp": 64,
-   "fn": 0,
-   "fp": 2,
-   "precision": 0.97,
-   "recall": 1.0
+   "tp": 60,
+   "fn": 5,
+   "fp": 5,
+   "precision": 0.923,
+   "recall": 0.923
   },
-  "exact_hard_cases": 34,
+  "exact_hard_cases": 47,
   "lost_required": 0,
+  "required_leftovers": 0,
   "downgraded_required": 1,
-  "cases_with_unparsed": 6,
+  "cases_with_unparsed": 7,
   "cases_with_problems": 0,
-  "median_ms": 5321,
+  "median_ms": 4654,
   "tokens": {
-   "input_tokens": 4143,
-   "output_tokens": 21030,
-   "cache_read_input_tokens": 387390
+   "input_tokens": 5246,
+   "output_tokens": 24000,
+   "cache_read_input_tokens": 622284
   },
-  "cost_usd": 0.567
+  "llm_effort": "low",
+  "run_date": "2026-10-27",
+  "note": "Снимок прогона 27.10: модель без сети не перезапустить, тест его не сверяет. Эталонов тогда было 52, совпадение — по коду характеристики: направление в эталонах баров добавлено позже."
  },
  "cases": [
   {
@@ -39,11 +45,12 @@
    "parsed_by": "llm",
    "notes": [],
    "problems": [],
-   "ms": 8425,
+   "ms": 8211,
+   "llm": "anthropic / claude-opus-5-5",
    "usage": {
     "input_tokens": 113,
-    "output_tokens": 642,
-    "cache_read_input_tokens": 10470,
+    "output_tokens": 633,
+    "cache_read_input_tokens": 11967,
     "cache_creation_input_tokens": 0
    },
    "hard": {
@@ -61,6 +68,7 @@
    "extra_hard": [],
    "extra_soft": [],
    "lost_required": [],
+   "required_leftovers": 0,
    "downgraded_required": 0,
    "unparsed": [],
    "exact_hard": true
@@ -72,11 +80,12 @@
     "Часть запроса не разобрана — она показана отдельно и не считается выполненной."
    ],
    "problems": [],
-   "ms": 5152,
+   "ms": 4373,
+   "llm": "anthropic / claude-opus-5-5",
    "usage": {
     "input_tokens": 108,
-    "output_tokens": 460,
-    "cache_read_input_tokens": 10470,
+    "output_tokens": 461,
+    "cache_read_input_tokens": 11967,
     "cache_creation_input_tokens": 0
    },
    "hard": {
@@ -94,9 +103,10 @@
    "extra_hard": [],
    "extra_soft": [],
    "lost_required": [],
+   "required_leftovers": 0,
    "downgraded_required": 0,
    "unparsed": [
-    "чутко сплю"
+    "чутко"
    ],
    "exact_hard": true
   },
@@ -105,11 +115,12 @@
    "parsed_by": "llm",
    "notes": [],
    "problems": [],
-   "ms": 4745,
+   "ms": 6644,
+   "llm": "anthropic / claude-opus-5-5",
    "usage": {
     "input_tokens": 98,
-    "output_tokens": 516,
-    "cache_read_input_tokens": 10470,
+    "output_tokens": 481,
+    "cache_read_input_tokens": 11967,
     "cache_creation_input_tokens": 0
    },
    "hard": {
@@ -127,6 +138,7 @@
    "extra_hard": [],
    "extra_soft": [],
    "lost_required": [],
+   "required_leftovers": 0,
    "downgraded_required": 0,
    "unparsed": [],
    "exact_hard": true
@@ -136,42 +148,12 @@
    "parsed_by": "llm",
    "notes": [],
    "problems": [],
-   "ms": 29403,
+   "ms": 4087,
+   "llm": "anthropic / claude-opus-5-5",
    "usage": {
     "input_tokens": 108,
-    "output_tokens": 454,
-    "cache_read_input_tokens": 0,
-    "cache_creation_input_tokens": 10470
-   },
-   "hard": {
-    "tp": 1,
-    "fn": 0,
-    "fp": 0,
-    "missed": []
-   },
-   "soft": {
-    "tp": 2,
-    "fn": 0,
-    "fp": 0,
-    "missed": []
-   },
-   "extra_hard": [],
-   "extra_soft": [],
-   "lost_required": [],
-   "downgraded_required": 0,
-   "unparsed": [],
-   "exact_hard": true
-  },
-  {
-   "id": "v1-05",
-   "parsed_by": "llm",
-   "notes": [],
-   "problems": [],
-   "ms": 5407,
-   "usage": {
-    "input_tokens": 121,
-    "output_tokens": 570,
-    "cache_read_input_tokens": 10470,
+    "output_tokens": 455,
+    "cache_read_input_tokens": 11967,
     "cache_creation_input_tokens": 0
    },
    "hard": {
@@ -189,6 +171,40 @@
    "extra_hard": [],
    "extra_soft": [],
    "lost_required": [],
+   "required_leftovers": 0,
+   "downgraded_required": 0,
+   "unparsed": [],
+   "exact_hard": true
+  },
+  {
+   "id": "v1-05",
+   "parsed_by": "llm",
+   "notes": [],
+   "problems": [],
+   "ms": 5321,
+   "llm": "anthropic / claude-opus-5-5",
+   "usage": {
+    "input_tokens": 121,
+    "output_tokens": 577,
+    "cache_read_input_tokens": 11967,
+    "cache_creation_input_tokens": 0
+   },
+   "hard": {
+    "tp": 1,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 2,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "required_leftovers": 0,
    "downgraded_required": 0,
    "unparsed": [],
    "exact_hard": true
@@ -200,11 +216,12 @@
     "Часть запроса не разобрана — она показана отдельно и не считается выполненной."
    ],
    "problems": [],
-   "ms": 7169,
+   "ms": 6246,
+   "llm": "anthropic / claude-opus-5-5",
    "usage": {
     "input_tokens": 116,
-    "output_tokens": 757,
-    "cache_read_input_tokens": 10470,
+    "output_tokens": 657,
+    "cache_read_input_tokens": 11967,
     "cache_creation_input_tokens": 0
    },
    "hard": {
@@ -222,6 +239,7 @@
    "extra_hard": [],
    "extra_soft": [],
    "lost_required": [],
+   "required_leftovers": 0,
    "downgraded_required": 0,
    "unparsed": [
     "недалеко"
@@ -233,11 +251,12 @@
    "parsed_by": "llm",
    "notes": [],
    "problems": [],
-   "ms": 8280,
+   "ms": 7481,
+   "llm": "anthropic / claude-opus-5-5",
    "usage": {
     "input_tokens": 113,
-    "output_tokens": 858,
-    "cache_read_input_tokens": 10470,
+    "output_tokens": 862,
+    "cache_read_input_tokens": 11967,
     "cache_creation_input_tokens": 0
    },
    "hard": {
@@ -255,6 +274,7 @@
    "extra_hard": [],
    "extra_soft": [],
    "lost_required": [],
+   "required_leftovers": 0,
    "downgraded_required": 0,
    "unparsed": [],
    "exact_hard": true
@@ -264,17 +284,18 @@
    "parsed_by": "llm",
    "notes": [],
    "problems": [],
-   "ms": 9169,
+   "ms": 7034,
+   "llm": "anthropic / claude-opus-5-5",
    "usage": {
     "input_tokens": 105,
-    "output_tokens": 731,
-    "cache_read_input_tokens": 10470,
+    "output_tokens": 651,
+    "cache_read_input_tokens": 11967,
     "cache_creation_input_tokens": 0
    },
    "hard": {
     "tp": 1,
     "fn": 0,
-    "fp": 2,
+    "fp": 1,
     "missed": []
    },
    "soft": {
@@ -286,13 +307,11 @@
    "extra_hard": [
     [
      "P01"
-    ],
-    [
-     "P01"
     ]
    ],
    "extra_soft": [],
    "lost_required": [],
+   "required_leftovers": 0,
    "downgraded_required": 0,
    "unparsed": [],
    "exact_hard": false
@@ -304,11 +323,12 @@
     "Часть запроса не разобрана — она показана отдельно и не считается выполненной."
    ],
    "problems": [],
-   "ms": 6162,
+   "ms": 5920,
+   "llm": "anthropic / claude-opus-5-5",
    "usage": {
     "input_tokens": 128,
-    "output_tokens": 695,
-    "cache_read_input_tokens": 10470,
+    "output_tokens": 512,
+    "cache_read_input_tokens": 11967,
     "cache_creation_input_tokens": 0
    },
    "hard": {
@@ -326,6 +346,7 @@
    "extra_hard": [],
    "extra_soft": [],
    "lost_required": [],
+   "required_leftovers": 0,
    "downgraded_required": 0,
    "unparsed": [
     "Будем готовы"
@@ -337,11 +358,12 @@
    "parsed_by": "llm",
    "notes": [],
    "problems": [],
-   "ms": 8820,
+   "ms": 5488,
+   "llm": "anthropic / claude-opus-5-5",
    "usage": {
     "input_tokens": 128,
-    "output_tokens": 615,
-    "cache_read_input_tokens": 10470,
+    "output_tokens": 574,
+    "cache_read_input_tokens": 11967,
     "cache_creation_input_tokens": 0
    },
    "hard": {
@@ -359,6 +381,7 @@
    "extra_hard": [],
    "extra_soft": [],
    "lost_required": [],
+   "required_leftovers": 0,
    "downgraded_required": 0,
    "unparsed": [],
    "exact_hard": true
@@ -368,11 +391,12 @@
    "parsed_by": "llm",
    "notes": [],
    "problems": [],
-   "ms": 5273,
+   "ms": 4428,
+   "llm": "anthropic / claude-opus-5-5",
    "usage": {
     "input_tokens": 107,
-    "output_tokens": 496,
-    "cache_read_input_tokens": 10470,
+    "output_tokens": 491,
+    "cache_read_input_tokens": 11967,
     "cache_creation_input_tokens": 0
    },
    "hard": {
@@ -390,6 +414,7 @@
    "extra_hard": [],
    "extra_soft": [],
    "lost_required": [],
+   "required_leftovers": 0,
    "downgraded_required": 0,
    "unparsed": [],
    "exact_hard": true
@@ -399,11 +424,12 @@
    "parsed_by": "llm",
    "notes": [],
    "problems": [],
-   "ms": 5593,
+   "ms": 5310,
+   "llm": "anthropic / claude-opus-5-5",
    "usage": {
     "input_tokens": 103,
-    "output_tokens": 533,
-    "cache_read_input_tokens": 10470,
+    "output_tokens": 534,
+    "cache_read_input_tokens": 11967,
     "cache_creation_input_tokens": 0
    },
    "hard": {
@@ -421,6 +447,7 @@
    "extra_hard": [],
    "extra_soft": [],
    "lost_required": [],
+   "required_leftovers": 0,
    "downgraded_required": 0,
    "unparsed": [],
    "exact_hard": true
@@ -430,11 +457,12 @@
    "parsed_by": "llm",
    "notes": [],
    "problems": [],
-   "ms": 4905,
+   "ms": 5521,
+   "llm": "anthropic / claude-opus-5-5",
    "usage": {
     "input_tokens": 103,
-    "output_tokens": 500,
-    "cache_read_input_tokens": 10470,
+    "output_tokens": 532,
+    "cache_read_input_tokens": 11967,
     "cache_creation_input_tokens": 0
    },
    "hard": {
@@ -452,6 +480,7 @@
    "extra_hard": [],
    "extra_soft": [],
    "lost_required": [],
+   "required_leftovers": 0,
    "downgraded_required": 0,
    "unparsed": [],
    "exact_hard": true
@@ -461,11 +490,12 @@
    "parsed_by": "llm",
    "notes": [],
    "problems": [],
-   "ms": 5650,
+   "ms": 5966,
+   "llm": "anthropic / claude-opus-5-5",
    "usage": {
     "input_tokens": 107,
-    "output_tokens": 687,
-    "cache_read_input_tokens": 10470,
+    "output_tokens": 699,
+    "cache_read_input_tokens": 11967,
     "cache_creation_input_tokens": 0
    },
    "hard": {
@@ -483,6 +513,7 @@
    "extra_hard": [],
    "extra_soft": [],
    "lost_required": [],
+   "required_leftovers": 0,
    "downgraded_required": 0,
    "unparsed": [],
    "exact_hard": true
@@ -494,11 +525,12 @@
     "Часть запроса не разобрана — она показана отдельно и не считается выполненной."
    ],
    "problems": [],
-   "ms": 3899,
+   "ms": 3947,
+   "llm": "anthropic / claude-opus-5-5",
    "usage": {
     "input_tokens": 109,
     "output_tokens": 374,
-    "cache_read_input_tokens": 10470,
+    "cache_read_input_tokens": 11967,
     "cache_creation_input_tokens": 0
    },
    "hard": {
@@ -516,6 +548,7 @@
    "extra_hard": [],
    "extra_soft": [],
    "lost_required": [],
+   "required_leftovers": 0,
    "downgraded_required": 0,
    "unparsed": [
     "Боюсь высоты"
@@ -527,11 +560,12 @@
    "parsed_by": "llm",
    "notes": [],
    "problems": [],
-   "ms": 5825,
+   "ms": 6121,
+   "llm": "anthropic / claude-opus-5-5",
    "usage": {
     "input_tokens": 119,
-    "output_tokens": 587,
-    "cache_read_input_tokens": 10470,
+    "output_tokens": 573,
+    "cache_read_input_tokens": 11967,
     "cache_creation_input_tokens": 0
    },
    "hard": {
@@ -549,6 +583,7 @@
    "extra_hard": [],
    "extra_soft": [],
    "lost_required": [],
+   "required_leftovers": 0,
    "downgraded_required": 0,
    "unparsed": [],
    "exact_hard": true
@@ -558,11 +593,12 @@
    "parsed_by": "llm",
    "notes": [],
    "problems": [],
-   "ms": 4671,
+   "ms": 5091,
+   "llm": "anthropic / claude-opus-5-5",
    "usage": {
     "input_tokens": 96,
-    "output_tokens": 450,
-    "cache_read_input_tokens": 10470,
+    "output_tokens": 448,
+    "cache_read_input_tokens": 11967,
     "cache_creation_input_tokens": 0
    },
    "hard": {
@@ -580,6 +616,7 @@
    "extra_hard": [],
    "extra_soft": [],
    "lost_required": [],
+   "required_leftovers": 0,
    "downgraded_required": 0,
    "unparsed": [],
    "exact_hard": true
@@ -589,11 +626,12 @@
    "parsed_by": "llm",
    "notes": [],
    "problems": [],
-   "ms": 5210,
+   "ms": 5346,
+   "llm": "anthropic / claude-opus-5-5",
    "usage": {
     "input_tokens": 102,
-    "output_tokens": 523,
-    "cache_read_input_tokens": 10470,
+    "output_tokens": 521,
+    "cache_read_input_tokens": 11967,
     "cache_creation_input_tokens": 0
    },
    "hard": {
@@ -615,6 +653,7 @@
     ]
    ],
    "lost_required": [],
+   "required_leftovers": 0,
    "downgraded_required": 0,
    "unparsed": [],
    "exact_hard": true
@@ -624,11 +663,12 @@
    "parsed_by": "llm",
    "notes": [],
    "problems": [],
-   "ms": 6273,
+   "ms": 4654,
+   "llm": "anthropic / claude-opus-5-5",
    "usage": {
     "input_tokens": 116,
-    "output_tokens": 535,
-    "cache_read_input_tokens": 10470,
+    "output_tokens": 514,
+    "cache_read_input_tokens": 11967,
     "cache_creation_input_tokens": 0
    },
    "hard": {
@@ -646,6 +686,7 @@
    "extra_hard": [],
    "extra_soft": [],
    "lost_required": [],
+   "required_leftovers": 0,
    "downgraded_required": 0,
    "unparsed": [],
    "exact_hard": true
@@ -655,11 +696,12 @@
    "parsed_by": "llm",
    "notes": [],
    "problems": [],
-   "ms": 4104,
+   "ms": 4276,
+   "llm": "anthropic / claude-opus-5-5",
    "usage": {
     "input_tokens": 114,
-    "output_tokens": 433,
-    "cache_read_input_tokens": 10470,
+    "output_tokens": 438,
+    "cache_read_input_tokens": 11967,
     "cache_creation_input_tokens": 0
    },
    "hard": {
@@ -677,6 +719,7 @@
    "extra_hard": [],
    "extra_soft": [],
    "lost_required": [],
+   "required_leftovers": 0,
    "downgraded_required": 0,
    "unparsed": [],
    "exact_hard": true
@@ -686,11 +729,12 @@
    "parsed_by": "llm",
    "notes": [],
    "problems": [],
-   "ms": 4661,
+   "ms": 4023,
+   "llm": "anthropic / claude-opus-5-5",
    "usage": {
     "input_tokens": 119,
-    "output_tokens": 444,
-    "cache_read_input_tokens": 10470,
+    "output_tokens": 437,
+    "cache_read_input_tokens": 11967,
     "cache_creation_input_tokens": 0
    },
    "hard": {
@@ -708,6 +752,7 @@
    "extra_hard": [],
    "extra_soft": [],
    "lost_required": [],
+   "required_leftovers": 0,
    "downgraded_required": 0,
    "unparsed": [],
    "exact_hard": true
@@ -717,11 +762,12 @@
    "parsed_by": "llm",
    "notes": [],
    "problems": [],
-   "ms": 5505,
+   "ms": 5809,
+   "llm": "anthropic / claude-opus-5-5",
    "usage": {
     "input_tokens": 125,
-    "output_tokens": 616,
-    "cache_read_input_tokens": 10470,
+    "output_tokens": 650,
+    "cache_read_input_tokens": 11967,
     "cache_creation_input_tokens": 0
    },
    "hard": {
@@ -739,6 +785,7 @@
    "extra_hard": [],
    "extra_soft": [],
    "lost_required": [],
+   "required_leftovers": 0,
    "downgraded_required": 0,
    "unparsed": [],
    "exact_hard": true
@@ -748,11 +795,12 @@
    "parsed_by": "llm",
    "notes": [],
    "problems": [],
-   "ms": 5743,
+   "ms": 6687,
+   "llm": "anthropic / claude-opus-5-5",
    "usage": {
     "input_tokens": 119,
-    "output_tokens": 580,
-    "cache_read_input_tokens": 10470,
+    "output_tokens": 708,
+    "cache_read_input_tokens": 11967,
     "cache_creation_input_tokens": 0
    },
    "hard": {
@@ -770,6 +818,7 @@
    "extra_hard": [],
    "extra_soft": [],
    "lost_required": [],
+   "required_leftovers": 0,
    "downgraded_required": 0,
    "unparsed": [],
    "exact_hard": true
@@ -781,11 +830,12 @@
     "Часть запроса не разобрана — она показана отдельно и не считается выполненной."
    ],
    "problems": [],
-   "ms": 3617,
+   "ms": 4465,
+   "llm": "anthropic / claude-opus-5-5",
    "usage": {
     "input_tokens": 105,
-    "output_tokens": 382,
-    "cache_read_input_tokens": 10470,
+    "output_tokens": 509,
+    "cache_read_input_tokens": 11967,
     "cache_creation_input_tokens": 0
    },
    "hard": {
@@ -803,9 +853,10 @@
    "extra_hard": [],
    "extra_soft": [],
    "lost_required": [],
+   "required_leftovers": 0,
    "downgraded_required": 0,
    "unparsed": [
-    "таких вариантов"
+    "Из таких вариантов"
    ],
    "exact_hard": true
   },
@@ -816,11 +867,12 @@
     "Часть запроса не разобрана — она показана отдельно и не считается выполненной."
    ],
    "problems": [],
-   "ms": 5746,
+   "ms": 4966,
+   "llm": "anthropic / claude-opus-5-5",
    "usage": {
     "input_tokens": 103,
-    "output_tokens": 472,
-    "cache_read_input_tokens": 10470,
+    "output_tokens": 517,
+    "cache_read_input_tokens": 11967,
     "cache_creation_input_tokens": 0
    },
    "hard": {
@@ -838,8 +890,10 @@
    "extra_hard": [],
    "extra_soft": [],
    "lost_required": [],
+   "required_leftovers": 0,
    "downgraded_required": 0,
    "unparsed": [
+    "жить",
     "приятным бонусом"
    ],
    "exact_hard": true
@@ -849,11 +903,12 @@
    "parsed_by": "llm",
    "notes": [],
    "problems": [],
-   "ms": 5652,
+   "ms": 5594,
+   "llm": "anthropic / claude-opus-5-5",
    "usage": {
     "input_tokens": 117,
-    "output_tokens": 721,
-    "cache_read_input_tokens": 10470,
+    "output_tokens": 596,
+    "cache_read_input_tokens": 11967,
     "cache_creation_input_tokens": 0
    },
    "hard": {
@@ -871,6 +926,7 @@
    "extra_hard": [],
    "extra_soft": [],
    "lost_required": [],
+   "required_leftovers": 0,
    "downgraded_required": 0,
    "unparsed": [],
    "exact_hard": true
@@ -880,11 +936,12 @@
    "parsed_by": "llm",
    "notes": [],
    "problems": [],
-   "ms": 4778,
+   "ms": 4596,
+   "llm": "anthropic / claude-opus-5-5",
    "usage": {
     "input_tokens": 107,
-    "output_tokens": 487,
-    "cache_read_input_tokens": 10470,
+    "output_tokens": 482,
+    "cache_read_input_tokens": 11967,
     "cache_creation_input_tokens": 0
    },
    "hard": {
@@ -902,6 +959,7 @@
    "extra_hard": [],
    "extra_soft": [],
    "lost_required": [],
+   "required_leftovers": 0,
    "downgraded_required": 0,
    "unparsed": [],
    "exact_hard": true
@@ -911,11 +969,12 @@
    "parsed_by": "llm",
    "notes": [],
    "problems": [],
-   "ms": 4662,
+   "ms": 4580,
+   "llm": "anthropic / claude-opus-5-5",
    "usage": {
     "input_tokens": 101,
-    "output_tokens": 433,
-    "cache_read_input_tokens": 10470,
+    "output_tokens": 435,
+    "cache_read_input_tokens": 11967,
     "cache_creation_input_tokens": 0
    },
    "hard": {
@@ -925,14 +984,24 @@
     "missed": []
    },
    "soft": {
-    "tp": 2,
-    "fn": 0,
-    "fp": 0,
-    "missed": []
+    "tp": 1,
+    "fn": 1,
+    "fp": 1,
+    "missed": [
+     [
+      "N05"
+     ]
+    ]
    },
    "extra_hard": [],
-   "extra_soft": [],
+   "extra_soft": [
+    [
+     "N01",
+     "ooc"
+    ]
+   ],
    "lost_required": [],
+   "required_leftovers": 0,
    "downgraded_required": 0,
    "unparsed": [],
    "exact_hard": true
@@ -942,11 +1011,12 @@
    "parsed_by": "llm",
    "notes": [],
    "problems": [],
-   "ms": 4530,
+   "ms": 4728,
+   "llm": "anthropic / claude-opus-5-5",
    "usage": {
     "input_tokens": 102,
-    "output_tokens": 473,
-    "cache_read_input_tokens": 10470,
+    "output_tokens": 465,
+    "cache_read_input_tokens": 11967,
     "cache_creation_input_tokens": 0
    },
    "hard": {
@@ -964,6 +1034,7 @@
    "extra_hard": [],
    "extra_soft": [],
    "lost_required": [],
+   "required_leftovers": 0,
    "downgraded_required": 0,
    "unparsed": [],
    "exact_hard": true
@@ -973,11 +1044,12 @@
    "parsed_by": "llm",
    "notes": [],
    "problems": [],
-   "ms": 5186,
+   "ms": 5311,
+   "llm": "anthropic / claude-opus-5-5",
    "usage": {
     "input_tokens": 110,
-    "output_tokens": 583,
-    "cache_read_input_tokens": 10470,
+    "output_tokens": 582,
+    "cache_read_input_tokens": 11967,
     "cache_creation_input_tokens": 0
    },
    "hard": {
@@ -1000,6 +1072,7 @@
    ],
    "extra_soft": [],
    "lost_required": [],
+   "required_leftovers": 0,
    "downgraded_required": 0,
    "unparsed": [],
    "exact_hard": false
@@ -1009,11 +1082,12 @@
    "parsed_by": "llm",
    "notes": [],
    "problems": [],
-   "ms": 4900,
+   "ms": 4642,
+   "llm": "anthropic / claude-opus-5-5",
    "usage": {
     "input_tokens": 78,
-    "output_tokens": 492,
-    "cache_read_input_tokens": 10470,
+    "output_tokens": 479,
+    "cache_read_input_tokens": 11967,
     "cache_creation_input_tokens": 0
    },
    "hard": {
@@ -1039,6 +1113,7 @@
     ]
    ],
    "lost_required": [],
+   "required_leftovers": 0,
    "downgraded_required": 1,
    "unparsed": [],
    "exact_hard": false
@@ -1048,11 +1123,12 @@
    "parsed_by": "llm",
    "notes": [],
    "problems": [],
-   "ms": 4203,
+   "ms": 4833,
+   "llm": "anthropic / claude-opus-5-5",
    "usage": {
     "input_tokens": 108,
-    "output_tokens": 413,
-    "cache_read_input_tokens": 10470,
+    "output_tokens": 460,
+    "cache_read_input_tokens": 11967,
     "cache_creation_input_tokens": 0
    },
    "hard": {
@@ -1070,6 +1146,7 @@
    "extra_hard": [],
    "extra_soft": [],
    "lost_required": [],
+   "required_leftovers": 0,
    "downgraded_required": 0,
    "unparsed": [],
    "exact_hard": true
@@ -1079,11 +1156,12 @@
    "parsed_by": "llm",
    "notes": [],
    "problems": [],
-   "ms": 4531,
+   "ms": 4407,
+   "llm": "anthropic / claude-opus-5-5",
    "usage": {
     "input_tokens": 108,
-    "output_tokens": 477,
-    "cache_read_input_tokens": 10470,
+    "output_tokens": 465,
+    "cache_read_input_tokens": 11967,
     "cache_creation_input_tokens": 0
    },
    "hard": {
@@ -1101,6 +1179,7 @@
    "extra_hard": [],
    "extra_soft": [],
    "lost_required": [],
+   "required_leftovers": 0,
    "downgraded_required": 0,
    "unparsed": [],
    "exact_hard": true
@@ -1110,11 +1189,12 @@
    "parsed_by": "llm",
    "notes": [],
    "problems": [],
-   "ms": 5321,
+   "ms": 3581,
+   "llm": "anthropic / claude-opus-5-5",
    "usage": {
     "input_tokens": 109,
-    "output_tokens": 540,
-    "cache_read_input_tokens": 10470,
+    "output_tokens": 424,
+    "cache_read_input_tokens": 11967,
     "cache_creation_input_tokens": 0
    },
    "hard": {
@@ -1136,6 +1216,7 @@
    ],
    "extra_soft": [],
    "lost_required": [],
+   "required_leftovers": 0,
    "downgraded_required": 0,
    "unparsed": [],
    "exact_hard": false
@@ -1145,11 +1226,12 @@
    "parsed_by": "llm",
    "notes": [],
    "problems": [],
-   "ms": 5191,
+   "ms": 4223,
+   "llm": "anthropic / claude-opus-5-5",
    "usage": {
     "input_tokens": 103,
-    "output_tokens": 413,
-    "cache_read_input_tokens": 10470,
+    "output_tokens": 400,
+    "cache_read_input_tokens": 11967,
     "cache_creation_input_tokens": 0
    },
    "hard": {
@@ -1167,6 +1249,7 @@
    "extra_hard": [],
    "extra_soft": [],
    "lost_required": [],
+   "required_leftovers": 0,
    "downgraded_required": 0,
    "unparsed": [],
    "exact_hard": true
@@ -1176,11 +1259,12 @@
    "parsed_by": "llm",
    "notes": [],
    "problems": [],
-   "ms": 6868,
+   "ms": 5229,
+   "llm": "anthropic / claude-opus-5-5",
    "usage": {
     "input_tokens": 124,
-    "output_tokens": 803,
-    "cache_read_input_tokens": 10470,
+    "output_tokens": 549,
+    "cache_read_input_tokens": 11967,
     "cache_creation_input_tokens": 0
    },
    "hard": {
@@ -1190,14 +1274,24 @@
     "missed": []
    },
    "soft": {
-    "tp": 2,
-    "fn": 0,
-    "fp": 0,
-    "missed": []
+    "tp": 1,
+    "fn": 1,
+    "fp": 1,
+    "missed": [
+     [
+      "N04"
+     ]
+    ]
    },
    "extra_hard": [],
-   "extra_soft": [],
+   "extra_soft": [
+    [
+     "N01",
+     "ooc"
+    ]
+   ],
    "lost_required": [],
+   "required_leftovers": 0,
    "downgraded_required": 0,
    "unparsed": [],
    "exact_hard": true
@@ -1207,11 +1301,12 @@
    "parsed_by": "llm",
    "notes": [],
    "problems": [],
-   "ms": 6236,
+   "ms": 6524,
+   "llm": "anthropic / claude-opus-5-5",
    "usage": {
     "input_tokens": 104,
-    "output_tokens": 742,
-    "cache_read_input_tokens": 10470,
+    "output_tokens": 744,
+    "cache_read_input_tokens": 11967,
     "cache_creation_input_tokens": 0
    },
    "hard": {
@@ -1229,6 +1324,7 @@
    "extra_hard": [],
    "extra_soft": [],
    "lost_required": [],
+   "required_leftovers": 0,
    "downgraded_required": 0,
    "unparsed": [],
    "exact_hard": true
@@ -1238,21 +1334,70 @@
    "parsed_by": "llm",
    "notes": [],
    "problems": [],
-   "ms": 5123,
+   "ms": 4357,
+   "llm": "anthropic / claude-opus-5-5",
    "usage": {
     "input_tokens": 87,
-    "output_tokens": 543,
-    "cache_read_input_tokens": 10470,
+    "output_tokens": 445,
+    "cache_read_input_tokens": 11967,
     "cache_creation_input_tokens": 0
    },
    "hard": {
     "tp": 0,
     "fn": 0,
+    "fp": 2,
+    "missed": []
+   },
+   "soft": {
+    "tp": 0,
+    "fn": 2,
+    "fp": 0,
+    "missed": [
+     [
+      "B02"
+     ],
+     [
+      "B01"
+     ]
+    ]
+   },
+   "extra_hard": [
+    [
+     "B01"
+    ],
+    [
+     "B02",
+     "ooc"
+    ]
+   ],
+   "extra_soft": [],
+   "lost_required": [],
+   "required_leftovers": 0,
+   "downgraded_required": 0,
+   "unparsed": [],
+   "exact_hard": false
+  },
+  {
+   "id": "neg-1",
+   "parsed_by": "llm",
+   "notes": [],
+   "problems": [],
+   "ms": 7245,
+   "llm": "anthropic / claude-opus-5-5",
+   "usage": {
+    "input_tokens": 75,
+    "output_tokens": 243,
+    "cache_read_input_tokens": 11967,
+    "cache_creation_input_tokens": 0
+   },
+   "hard": {
+    "tp": 1,
+    "fn": 0,
     "fp": 0,
     "missed": []
    },
    "soft": {
-    "tp": 2,
+    "tp": 0,
     "fn": 0,
     "fp": 0,
     "missed": []
@@ -1260,6 +1405,448 @@
    "extra_hard": [],
    "extra_soft": [],
    "lost_required": [],
+   "required_leftovers": 0,
+   "downgraded_required": 0,
+   "unparsed": [],
+   "exact_hard": true
+  },
+  {
+   "id": "neg-2",
+   "parsed_by": "llm",
+   "notes": [],
+   "problems": [],
+   "ms": 3038,
+   "llm": "anthropic / claude-opus-5-5",
+   "usage": {
+    "input_tokens": 77,
+    "output_tokens": 268,
+    "cache_read_input_tokens": 11967,
+    "cache_creation_input_tokens": 0
+   },
+   "hard": {
+    "tp": 2,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 0,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "required_leftovers": 0,
+   "downgraded_required": 0,
+   "unparsed": [],
+   "exact_hard": true
+  },
+  {
+   "id": "neg-3",
+   "parsed_by": "llm",
+   "notes": [],
+   "problems": [],
+   "ms": 4461,
+   "llm": "anthropic / claude-opus-5-5",
+   "usage": {
+    "input_tokens": 94,
+    "output_tokens": 436,
+    "cache_read_input_tokens": 11967,
+    "cache_creation_input_tokens": 0
+   },
+   "hard": {
+    "tp": 2,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 0,
+    "fn": 0,
+    "fp": 1,
+    "missed": []
+   },
+   "extra_hard": [],
+   "extra_soft": [
+    [
+     "M02"
+    ]
+   ],
+   "lost_required": [],
+   "required_leftovers": 0,
+   "downgraded_required": 0,
+   "unparsed": [],
+   "exact_hard": true
+  },
+  {
+   "id": "neg-4",
+   "parsed_by": "llm",
+   "notes": [],
+   "problems": [],
+   "ms": 3704,
+   "llm": "anthropic / claude-opus-5-5",
+   "usage": {
+    "input_tokens": 80,
+    "output_tokens": 388,
+    "cache_read_input_tokens": 11967,
+    "cache_creation_input_tokens": 0
+   },
+   "hard": {
+    "tp": 2,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 0,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "required_leftovers": 0,
+   "downgraded_required": 0,
+   "unparsed": [],
+   "exact_hard": true
+  },
+  {
+   "id": "neg-5",
+   "parsed_by": "llm",
+   "notes": [
+    "Часть запроса не разобрана — она показана отдельно и не считается выполненной."
+   ],
+   "problems": [],
+   "ms": 4440,
+   "llm": "anthropic / claude-opus-5-5",
+   "usage": {
+    "input_tokens": 85,
+    "output_tokens": 288,
+    "cache_read_input_tokens": 11967,
+    "cache_creation_input_tokens": 0
+   },
+   "hard": {
+    "tp": 1,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 0,
+    "fn": 1,
+    "fp": 0,
+    "missed": [
+     [
+      "S04"
+     ]
+    ]
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "required_leftovers": 0,
+   "downgraded_required": 0,
+   "unparsed": [
+    "кондиционер"
+   ],
+   "exact_hard": true
+  },
+  {
+   "id": "cmp-1",
+   "parsed_by": "llm",
+   "notes": [],
+   "problems": [],
+   "ms": 2854,
+   "llm": "anthropic / claude-opus-5-5",
+   "usage": {
+    "input_tokens": 77,
+    "output_tokens": 201,
+    "cache_read_input_tokens": 11967,
+    "cache_creation_input_tokens": 0
+   },
+   "hard": {
+    "tp": 1,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 0,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "required_leftovers": 0,
+   "downgraded_required": 0,
+   "unparsed": [],
+   "exact_hard": true
+  },
+  {
+   "id": "cmp-2",
+   "parsed_by": "llm",
+   "notes": [],
+   "problems": [],
+   "ms": 2506,
+   "llm": "anthropic / claude-opus-5-5",
+   "usage": {
+    "input_tokens": 81,
+    "output_tokens": 206,
+    "cache_read_input_tokens": 11967,
+    "cache_creation_input_tokens": 0
+   },
+   "hard": {
+    "tp": 1,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 0,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "required_leftovers": 0,
+   "downgraded_required": 0,
+   "unparsed": [],
+   "exact_hard": true
+  },
+  {
+   "id": "colon-1",
+   "parsed_by": "llm",
+   "notes": [],
+   "problems": [],
+   "ms": 3739,
+   "llm": "anthropic / claude-opus-5-5",
+   "usage": {
+    "input_tokens": 76,
+    "output_tokens": 319,
+    "cache_read_input_tokens": 11967,
+    "cache_creation_input_tokens": 0
+   },
+   "hard": {
+    "tp": 2,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 0,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "required_leftovers": 0,
+   "downgraded_required": 0,
+   "unparsed": [],
+   "exact_hard": true
+  },
+  {
+   "id": "cov-1",
+   "parsed_by": "llm",
+   "notes": [],
+   "problems": [],
+   "ms": 2523,
+   "llm": "anthropic / claude-opus-5-5",
+   "usage": {
+    "input_tokens": 79,
+    "output_tokens": 204,
+    "cache_read_input_tokens": 11967,
+    "cache_creation_input_tokens": 0
+   },
+   "hard": {
+    "tp": 1,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 0,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "required_leftovers": 0,
+   "downgraded_required": 0,
+   "unparsed": [],
+   "exact_hard": true
+  },
+  {
+   "id": "cov-2",
+   "parsed_by": "llm",
+   "notes": [],
+   "problems": [],
+   "ms": 3051,
+   "llm": "anthropic / claude-opus-5-5",
+   "usage": {
+    "input_tokens": 78,
+    "output_tokens": 195,
+    "cache_read_input_tokens": 11967,
+    "cache_creation_input_tokens": 0
+   },
+   "hard": {
+    "tp": 1,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 0,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "required_leftovers": 0,
+   "downgraded_required": 0,
+   "unparsed": [],
+   "exact_hard": true
+  },
+  {
+   "id": "cov-3",
+   "parsed_by": "llm",
+   "notes": [],
+   "problems": [],
+   "ms": 2842,
+   "llm": "anthropic / claude-opus-5-5",
+   "usage": {
+    "input_tokens": 82,
+    "output_tokens": 207,
+    "cache_read_input_tokens": 11967,
+    "cache_creation_input_tokens": 0
+   },
+   "hard": {
+    "tp": 1,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 0,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "required_leftovers": 0,
+   "downgraded_required": 0,
+   "unparsed": [],
+   "exact_hard": true
+  },
+  {
+   "id": "road-1",
+   "parsed_by": "llm",
+   "notes": [],
+   "problems": [],
+   "ms": 2704,
+   "llm": "anthropic / claude-opus-5-5",
+   "usage": {
+    "input_tokens": 73,
+    "output_tokens": 242,
+    "cache_read_input_tokens": 11967,
+    "cache_creation_input_tokens": 0
+   },
+   "hard": {
+    "tp": 1,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 0,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "required_leftovers": 0,
+   "downgraded_required": 0,
+   "unparsed": [],
+   "exact_hard": true
+  },
+  {
+   "id": "road-2",
+   "parsed_by": "llm",
+   "notes": [],
+   "problems": [],
+   "ms": 6898,
+   "llm": "anthropic / claude-opus-5-5",
+   "usage": {
+    "input_tokens": 73,
+    "output_tokens": 238,
+    "cache_read_input_tokens": 11967,
+    "cache_creation_input_tokens": 0
+   },
+   "hard": {
+    "tp": 1,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 0,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "required_leftovers": 0,
+   "downgraded_required": 0,
+   "unparsed": [],
+   "exact_hard": true
+  },
+  {
+   "id": "road-3",
+   "parsed_by": "llm",
+   "notes": [],
+   "problems": [],
+   "ms": 3394,
+   "llm": "anthropic / claude-opus-5-5",
+   "usage": {
+    "input_tokens": 73,
+    "output_tokens": 231,
+    "cache_read_input_tokens": 11967,
+    "cache_creation_input_tokens": 0
+   },
+   "hard": {
+    "tp": 1,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "soft": {
+    "tp": 0,
+    "fn": 0,
+    "fp": 0,
+    "missed": []
+   },
+   "extra_hard": [],
+   "extra_soft": [],
+   "lost_required": [],
+   "required_leftovers": 0,
    "downgraded_required": 0,
    "unparsed": [],
    "exact_hard": true

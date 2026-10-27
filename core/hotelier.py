@@ -26,11 +26,28 @@ from core.facts import Fact, Status, make_fact_id
 
 ALGORITHM = "hotelier-answer.1"
 HOTEL_ORIGIN = frozenset({Status.ostrovok_content, Status.hotelier, Status.simulated_hotelier})
+# Вид и солнце из окна (каталог: source = computed) — только расчёт или настоящий отель.
+SIMULATOR_NOT_HARD = ("V0", "S01", "S02", "S03")
+# Ответ имитатора заменяет только прежний ответ имитатора: факт Островка — заявление настоящего
+# отеля на его странице (D26), выдуманный ответ его не перекрывает (D41) — расхождение остаётся
+# противоречием. Ответ настоящего отеля заменяет и Островок, и имитатора.
 SUPERSEDES = {
     Status.hotelier: HOTEL_ORIGIN,
-    Status.simulated_hotelier: frozenset({Status.ostrovok_content, Status.simulated_hotelier}),
+    Status.simulated_hotelier: frozenset({Status.simulated_hotelier}),
 }
 COMPARABLE = frozenset({Status.computed, Status.observed, Status.curated})
+
+
+def replaces_placements(new_status: str | None, old_status: str | None) -> bool:
+    """Заменяет ли ответ набор размещений категории (D17: набор у категории один).
+
+    Как `SUPERSEDES` у фактов: ответ имитатора заменяет только прежний набор имитатора — набор
+    со слов настоящего отеля или проверенный командой он не трогает (D41-8). Ответ настоящего
+    отеля заменяет любой прежний набор: это его слово о собственных номерах.
+    """
+    if old_status is None or new_status != Status.simulated_hotelier:
+        return True
+    return old_status == Status.simulated_hotelier
 
 
 class AnswerError(ValueError):
@@ -43,6 +60,16 @@ class PlacementIn(BaseModel):
     floor_label: str | None = None
     building_part_id: str | None = None
     windows: list[str] = Field(min_length=1, description="ID фасадов; у углового номера несколько")
+    # Разные номера на одном этаже одного здания: «номер на одной из стен стороны» (D41-3) —
+    # у каждой стены свой вариант. Пункты с одним вариантом (или без него) — один номер: их
+    # окна сливаются (угловой номер).
+    room_variant: str | None = None
+
+
+def placement_id(room_type_id: str, item: PlacementIn) -> str:
+    """ID размещения: «<категория>|<здание>|<этаж>», у варианта номера — ещё «|<вариант>»."""
+    base = f"{room_type_id}|{item.building_id}|{item.floor}"
+    return f"{base}|{item.room_variant}" if item.room_variant else base
 
 
 class PlacementsIn(BaseModel):
@@ -81,7 +108,8 @@ class AnswerIn(BaseModel):
 
 @dataclass
 class AnswerResult:
-    question_id: int
+    # ID вопроса из таблицы вопросов; у вопроса о размещении (`qp_…`) — строка, его в таблице нет.
+    question_id: int | str | None
     hotel_id: str
     feature_id: str
     state: str  # answered | answered_unknown | answered_unparsed
@@ -96,6 +124,9 @@ class AnswerResult:
     room_type_id: str | None = None
     placement_status: str | None = None
     placement_source: dict[str, Any] = field(default_factory=dict)
+    # Статус прежнего набора, который ответ не заменил (имитатор при настоящем ответе, D41-8):
+    # хранилище ставит его и обнуляет `placements`.
+    placements_kept: str | None = None
 
 
 def _params_key(params: dict[str, Any]) -> str:
@@ -182,7 +213,10 @@ def build_answer(
         },
         observed_at=now,
         scope_note="Ответ отеля на вопрос; не условие брони.",
-        hard_condition_eligible=not answer.dont_know,
+        # Вид и солнце из окна у имитатора — выдумка, а не расчёт: обязательное условие им не
+        # закрыть. Имитатор отвечает только где расположены номера (размещения, D17).
+        hard_condition_eligible=not answer.dont_know
+        and not (answer.is_simulated and feature_id.startswith(SIMULATOR_NOT_HARD)),
     )
     result.facts.append(fact)
     result.state = "answered_unknown" if answer.dont_know else "answered"

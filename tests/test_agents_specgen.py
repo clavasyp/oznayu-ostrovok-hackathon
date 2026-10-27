@@ -20,7 +20,12 @@ BUILT_UP = "Доля застройки в 300 м"
 
 @pytest.fixture
 def no_landcover(monkeypatch):
-    """Калькулятора Леры ещё нет — и тест не сломается, когда он появится."""
+    """Калькулятора Леры ещё нет — и тест не сломается, когда он появится.
+
+    Сначала импорт `calculators`: он регистрирует калькулятор, и без этого тест зависел от
+    порядка запуска (один файл — калькулятор появлялся уже после удаления)."""
+    import calculators  # noqa: F401
+
     monkeypatch.delitem(plugins.CALCULATORS, "env.landcover_share", raising=False)
 
 
@@ -174,6 +179,7 @@ def test_trial_run_coverage(monkeypatch):
     assert result["statuses"] == {"computed": 6, "unknown": 2} and result["coverage"] == 0.75
     assert result["unknown_reasons"] == {"worldcover_tile_missing": 2}
     assert calc.ctx.params["classes"] == [50]  # параметры рецепта дошли до калькулятора
+    assert calc.ctx.params["feature_id"] == "built_up_share_300m"
 
     monkeypatch.setitem(plugins.CALCULATORS, calc.id, FakeLandcover(fail=True))
     failed = trial_run(spec, StubStore.load(), "sochi", n=3)

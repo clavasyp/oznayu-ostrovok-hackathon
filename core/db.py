@@ -9,10 +9,11 @@ from __future__ import annotations
 from datetime import datetime
 from typing import Any
 
-from geoalchemy2 import Geometry
+from geoalchemy2 import Geography, Geometry
 from sqlalchemy import (
     BigInteger,
     Boolean,
+    Computed,
     DateTime,
     Float,
     ForeignKey,
@@ -47,7 +48,8 @@ class Hotel(Base):
     address: Mapped[str | None] = mapped_column(Text)
     kind: Mapped[str | None] = mapped_column(Text)
     stars: Mapped[float | None] = mapped_column(Float)
-    subzone: Mapped[str | None] = mapped_column(Text)  # для Сочи: центр, Адлер, Сириус…
+    subzone: Mapped[str | None] = mapped_column(Text)  # для Сочи: «Адлер», «Сириус»… — гостю
+    subzone_id: Mapped[str | None] = mapped_column(Text)  # код подзоны: adler, sirius…
     latitude: Mapped[float] = mapped_column(Float)
     longitude: Mapped[float] = mapped_column(Float)
     geom: Mapped[Any] = mapped_column(Geometry("POINT", srid=4326))
@@ -126,6 +128,87 @@ class HotelBuilding(Base):
     building_id: Mapped[str] = mapped_column(ForeignKey("building.id"), primary_key=True)
     method: Mapped[str] = mapped_column(Text)  # auto | curated
     evidence: Mapped[dict[str, Any]] = mapped_column(JSONB, default=dict)
+
+
+class Facade(Base):
+    """Сегмент контура. NULL courtyard — неизвестно, не «улица»."""
+
+    __tablename__ = "facade"
+    building_id: Mapped[str] = mapped_column(ForeignKey("building.id"), primary_key=True)
+    facade_id: Mapped[str] = mapped_column(Text, primary_key=True)
+    azimuth_deg: Mapped[float] = mapped_column(Float)
+    side: Mapped[str] = mapped_column(Text)
+    is_courtyard: Mapped[bool | None] = mapped_column(Boolean, nullable=True)
+    geometry: Mapped[dict] = mapped_column(JSONB)
+    length_m: Mapped[float] = mapped_column(Float)
+    source: Mapped[dict] = mapped_column(JSONB)
+
+
+PLACE_GEOG = "ST_SetSRID(ST_MakePoint(longitude, latitude), 4326)::geography"
+
+
+class Place(Base):
+    """Место D34. Пары «отель → место» не хранятся: их считает запрос по `geog` (D41)."""
+
+    __tablename__ = "place"
+    # Образ PostGIS также содержит tiger.place (без id). Проверка create_all и FK
+    # должны обращаться к нашей таблице, независимо от extension search_path.
+    __table_args__ = (
+        Index("ix_place_geog", "geog", postgresql_using="gist"),
+        {"schema": "public"},
+    )
+    id: Mapped[str] = mapped_column(Text, primary_key=True)
+    city_id: Mapped[str] = mapped_column(ForeignKey("city.id"), index=True)
+    name: Mapped[str | None] = mapped_column(Text)
+    latitude: Mapped[float] = mapped_column(Float)
+    longitude: Mapped[float] = mapped_column(Float)
+    categories: Mapped[list] = mapped_column(JSONB)
+    tags: Mapped[dict] = mapped_column(JSONB)
+    source: Mapped[dict] = mapped_column(JSONB)
+    # Точка для ST_DWithin / ST_Distance по сфероиду WGS84; считается самой базой из координат.
+    geog: Mapped[Any] = mapped_column(
+        Geography("POINT", srid=4326, spatial_index=False),
+        Computed(PLACE_GEOG, persisted=True),
+    )
+
+
+class TransitStation(Base):
+    __tablename__ = "transit_station"
+    id: Mapped[str] = mapped_column(Text, primary_key=True)
+    city_id: Mapped[str] = mapped_column(ForeignKey("city.id"), index=True)
+    name: Mapped[str | None] = mapped_column(Text)
+    latitude: Mapped[float] = mapped_column(Float)
+    longitude: Mapped[float] = mapped_column(Float)
+    mode: Mapped[str] = mapped_column(Text)
+    source: Mapped[dict] = mapped_column(JSONB)
+
+
+class HotelStation(Base):
+    __tablename__ = "hotel_station"
+    hotel_id: Mapped[str] = mapped_column(ForeignKey("hotel.id"), primary_key=True)
+    station_id: Mapped[str] = mapped_column(
+        ForeignKey("transit_station.id"), primary_key=True, index=True
+    )
+    rank: Mapped[int] = mapped_column(Integer)
+    distance_m: Mapped[float] = mapped_column(Float)
+    distance_kind: Mapped[str] = mapped_column(Text)
+    walking_distance_m: Mapped[float | None] = mapped_column(Float, nullable=True)
+    source: Mapped[dict] = mapped_column(JSONB)
+
+
+class TransitTime(Base):
+    """Только измеренный/ответивший API контекст; отсутствие пары возвращается unknown."""
+
+    __tablename__ = "transit_time"
+    id: Mapped[str] = mapped_column(Text, primary_key=True)
+    city_id: Mapped[str] = mapped_column(ForeignKey("city.id"), index=True)
+    source_station_id: Mapped[str] = mapped_column(ForeignKey("transit_station.id"), index=True)
+    target_station_id: Mapped[str] = mapped_column(ForeignKey("transit_station.id"), index=True)
+    departure_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))
+    profile: Mapped[str] = mapped_column(Text)
+    duration_s: Mapped[float] = mapped_column(Float)
+    transfers: Mapped[int] = mapped_column(Integer)
+    source: Mapped[dict] = mapped_column(JSONB)
 
 
 class Feature(Base):

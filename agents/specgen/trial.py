@@ -67,7 +67,9 @@ def trial_run(
         if h.get("latitude") is not None and h.get("longitude") is not None
     ]
     root = data_dir or Path(os.environ.get("DATA_DIR", "data"))
-    params = dict(recipe.params)
+    # ID характеристики — калькулятору с параметрами (env.landcover_share), чтобы факты
+    # пробного расчёта были подписаны черновиком, а не общим ID калькулятора.
+    params = dict(recipe.params) | {"feature_id": spec.id}
     if os.environ.get("WORLDCOVER_DIR"):
         params.setdefault("worldcover_dir", os.environ["WORLDCOVER_DIR"])
     ctx = CityContext(

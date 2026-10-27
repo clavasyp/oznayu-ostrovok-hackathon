@@ -23,20 +23,40 @@
   "categories": [
     {
       "room_type_id": "13736470:3502302001O",
-      "name": "Номер с видом на море",
-      "placements": [{"building": "главный корпус", "floors": [3, 8], "side": "SW"}],
+      "name": "Двухместный номер Коллекшн Супериор с балконом и с видом на море",
+      "placements": [
+        {"building": "корпус 2", "building_id": "way/260633950", "floors": [3, 8], "side": "S"}
+      ],
       "completeness": "complete",
       "guarantee": "all_guaranteed"
     },
     {
       "room_type_id": "13736470:3202302001F",
-      "name": "Номер с видом на сад",
+      "name": "Двухместный номер Коллекшн с балконом и с видом на горы",
       "placements": [
-        {"building": "главный корпус", "floors": [2, 8], "side": "NE"},
-        {"building": "корпус 2", "floors": [1, 7], "side": "E"}
+        {"building": "главный корпус", "building_id": "way/207598815", "floors": [2, 9], "side": "E"},
+        {"building": "корпус 3", "building_id": "way/260633951", "floors": [2, 8], "side": "NE"}
       ],
       "completeness": "complete",
       "guarantee": "on_request"
+    },
+    {
+      "room_type_id": "13736470:5002302001O",
+      "name": "Двухместный люкс с балконом и с видом на море",
+      "placements": [
+        {"building": "корпус 4", "building_id": "way/374404842", "floors": [5, 7], "side": "S"}
+      ],
+      "completeness": "complete",
+      "guarantee": "all_guaranteed"
+    },
+    {
+      "room_type_id": "13736470:3A02302001O",
+      "name": "Двухместный номер Коллекшн Премиум с балконом и с видом на море",
+      "placements": [
+        {"building": "главный корпус", "building_id": "way/207598815", "floors": [3, 8], "side": "SW"}
+      ],
+      "completeness": "complete",
+      "guarantee": "all_guaranteed"
     }
   ]
 }

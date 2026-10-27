@@ -215,19 +215,24 @@ def test_simulator_round_trip_offline():
 
 
 def test_placement_parse_and_mapping():
-    rt = "13736470:3502302001O"
+    rt = "13736470:3A02302001O"
     text = simulate_placement(RADISSON, rt)["answer_text"]
     compact, rejected, _ = parse_placement(text, gateway=OFFLINE)
     assert not rejected and compact.guarantee == "all_guaranteed"
     (p,) = compact.placements
-    assert (p.side, p.floor_from, p.floor_to, p.building) == ("SW", "3", "8", "главный корпус")
-    # Без справочника корпусов и фасадов размещение не отправляется — не угадываем.
+    assert (p.sides, p.floor_from, p.floor_to, p.building) == (["SW"], "3", "8", "главный корпус")
+    # Без справочника корпусов и стен размещение не отправляется — не угадываем.
     placements, why = to_placements(compact, {}, {})
     assert placements is None and "нет здания" in why[0]
-    placements, why = to_placements(compact, {"главный корпус": "way/1"}, {("way/1", "SW"): "f_sw"})
+    walls = {("way/1", "SW"): ["f_sw1", "f_sw2"]}
+    placements, why = to_placements(compact, {"Главный корпус": "way/1"}, walls)
     assert not why and placements["guarantee"] == "all_guaranteed"
-    assert [i["floor"] for i in placements["items"]] == [3, 4, 5, 6, 7, 8]
-    assert placements["items"][0] == {"building_id": "way/1", "floor": 3, "windows": ["f_sw"]}
+    # Номер — у одной из стен юго-запада (D41-3): на каждую стену и этаж своё размещение.
+    assert [i["floor"] for i in placements["items"]] == [3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8]
+    assert placements["items"][:2] == [
+        {"building_id": "way/1", "floor": 3, "windows": ["f_sw1"], "room_variant": "f_sw1"},
+        {"building_id": "way/1", "floor": 3, "windows": ["f_sw2"], "room_variant": "f_sw2"},
+    ]
 
 
 def test_number_goes_to_word_next_to_it():

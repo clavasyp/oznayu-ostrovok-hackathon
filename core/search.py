@@ -29,7 +29,8 @@
 from __future__ import annotations
 
 import json
-from collections import defaultdict
+import re
+from collections import Counter, defaultdict
 from collections.abc import Callable, Collection, Iterable
 from pathlib import Path
 from typing import Any
@@ -51,6 +52,7 @@ DEFAULT_FIELDS = (
     "aboveground_levels",
     "known_step_sections",
     "known_lit_percent",
+    "visible",  # вид и солнце (V01, V05): {"visible": bool, "why": …}
 )
 ORDER = {GuestStatus.fits: 0, GuestStatus.needs_check: 1, GuestStatus.not_fit: 2}
 WINDOW_LEVELS = frozenset(
@@ -69,6 +71,13 @@ GUARANTEED = frozenset({"all_guaranteed", "exact_room"})
 PLACEMENT_FIELDS = {"floor": "floor"}
 # Наличие без поля да / нет (D39): «нет» — `none`, «есть, тип не назван» — `present`.
 PRESENT, ABSENT = "present", "none"
+COMPASS = ("С", "СВ", "В", "ЮВ", "Ю", "ЮЗ", "З", "СЗ")
+# Параметры, без которых факт отвечает на другой вопрос (D15): закат на дату — не «закат вообще».
+# Для запроса без даты у окна есть свой факт: «нет» — только если закат за стеной весь год (D40).
+KEY_PARAMS = {"V05": ("date",)}
+WINDOW_IDS_PER_WINDOW = 2  # в fact_ids — не больше стольких фактов одного окна
+WINDOW_IDS_MAX = 60
+ALL_FLOORS = 0  # факт про весь фасад (D39): все этажи
 
 
 def example_ast() -> QueryAST:
@@ -121,7 +130,11 @@ def _unspecified(op: str, left: Any, right: Any) -> bool:
 
 
 def _params_match(fact: Fact, params: dict[str, Any]) -> bool:
-    return all(fact.params.get(k) == v for k, v in params.items())
+    """Параметры запроса совпадают с параметрами факта; параметр-ключ (`KEY_PARAMS`) у факта
+    есть, только если он есть и в запросе: факт на дату не отвечает на вопрос без даты (D15)."""
+    if any(fact.params.get(k) != v for k, v in params.items()):
+        return False
+    return all(k in params or k not in fact.params for k in KEY_PARAMS.get(fact.feature_id, ()))
 
 
 def _place(fact: Fact) -> tuple[str, str]:
@@ -153,8 +166,12 @@ def evaluate(facts: list[Fact], c: Condition, hard: bool) -> dict[str, Any]:
     known = [f for f in facts if f.status not in (Status.unknown, Status.not_applicable)]
     usable = [f for f in known if f.usable_in_hard] if hard else known
     if not usable:
-        code = "estimate_only" if known else (facts[0].unknown_reason or "unknown")
-        return _result(c, Verdict.unknown, code, fact_ids=ids)
+        out = _result(c, Verdict.unknown, _not_hard_code(known, facts), fact_ids=ids)
+        if known:
+            # Куда склоняются оценка или заявление Островка не для всех номеров: только для
+            # порядка внутри «Нужно уточнить», вердикт остаётся «неизвестно».
+            out["leaning"] = evaluate(known, c, hard=False)["verdict"]
+        return out
 
     extra = {
         "fact_ids": [f.fact_id for f in usable],
@@ -168,13 +185,16 @@ def evaluate(facts: list[Fact], c: Condition, hard: bool) -> dict[str, Any]:
     unspecified = False
     for fs in places.values():
         results: set[bool | None] = set()
+        vague = False  # «есть, тип не назван» (D39) — не спорит с конкретным фактом того же места
         for f in fs:
             left = _number(f, c.field)
             if _unspecified(c.op, left, c.value):
-                unspecified = True
-                results.add(None)
+                vague = True
             else:
                 results.add(_compare(c.op, left, c.value))
+        if vague and not results & {True, False}:
+            unspecified = True
+            results.add(None)
         if results == {True}:
             verdicts.append(Verdict.yes)
         elif results == {False}:
@@ -197,6 +217,40 @@ def evaluate(facts: list[Fact], c: Condition, hard: bool) -> dict[str, Any]:
     if unspecified:
         return _result(c, Verdict.unknown, "value_unspecified", **extra)
     return _result(c, Verdict.unknown, "not_comparable", **extra)
+
+
+def _not_hard_code(known: list[Fact], facts: list[Fact]) -> str:
+    """Почему значение есть, а обязательное условие не закрыто: оценка — не то же, что
+    заявление Островка не для всех номеров или расчёт с оговоркой."""
+    if not known:
+        return facts[0].unknown_reason or "unknown"
+    statuses = {f.status for f in known}
+    if Status.estimate in statuses:
+        return "estimate_only"
+    if Status.ostrovok_content in statuses:
+        return "ostrovok_partial"
+    return "not_hard_eligible"
+
+
+# Заявление отеля обо всех номерах: ответ отеля (и имитатора) или проверка командой на уровне
+# отеля относится к каждой категории, пока у категории нет своего факта того же места.
+HOTEL_WIDE = frozenset({Status.hotelier, Status.simulated_hotelier, Status.curated})
+
+
+def _category_facts(facts: list[Fact], room_type_id: str) -> list[Fact]:
+    out = []
+    for f in facts:
+        if f.subject_id == room_type_id:
+            out.append(f)
+        elif f.subject_level == SubjectLevel.hotel and f.status in HOTEL_WIDE:
+            # Место факта — категория: ответ отеля и свой факт категории сравниваются как одно
+            # место (расхождение — «противоречие», а не «зависит от корпуса»).
+            out.append(f.model_copy(update={"subject_id": room_type_id}))
+    return out
+
+
+def _placed(rt: dict[str, Any]) -> bool:
+    return bool(rt.get("placement_set") and rt.get("placements"))
 
 
 def _level(facts: Iterable[Fact]) -> str:
@@ -231,6 +285,109 @@ def _window_condition(c: Condition, windows: list[list[Fact]], hard: bool) -> di
         code = next((r["reason_code"] for r in results if r.get("reason_code")), "unknown")
         return _result(c, verdict, code, fact_ids=ids)
     return _result(c, verdict, fact_ids=ids)
+
+
+def _side(f: Fact) -> str:
+    """Сторона света фасада окна (из паспорта расчёта), «?» — если её нет."""
+    detail = f.depends_on[0] if f.depends_on and isinstance(f.depends_on[0], dict) else {}
+    az = detail.get("facade_azimuth_deg")
+    return "?" if az is None else COMPASS[int((float(az) + 22.5) // 45) % 8]
+
+
+def _window_floor(subject_id: str) -> int:
+    m = re.search(r":floor(\d+)$", subject_id)
+    return int(m.group(1)) if m else ALL_FLOORS
+
+
+def hotel_windows(c: Condition, facts: list[Fact], hard: bool) -> dict[str, Any]:
+    """Условие окна, когда категории ещё не привязаны к фасадам и этажам (D17).
+
+    Ответ по отелю — всегда «неизвестно»: какие корпуса у отеля, мы знаем не полностью, а где
+    будет номер, скажет только отель. В пункте — `windows`: где по расчёту «да» и «нет»
+    (сторона и этажи) и где «да» только по оценке (D18); `fact_ids` — факты этих окон.
+    """
+    windows: dict[str, list[Fact]] = defaultdict(list)
+    for f in facts:
+        if f.subject_level in WINDOW_LEVELS and _params_match(f, c.params):
+            windows[f.subject_id].append(f)
+    if not windows:
+        any_window = any(f.subject_level in WINDOW_LEVELS for f in facts)
+        return _result(c, Verdict.unknown, "no_fact_params" if any_window else "no_placements")
+    found: dict[str, dict[str, set[int]]] = {
+        "yes": defaultdict(set),
+        "no": defaultdict(set),
+        "estimate": defaultdict(set),
+    }
+    ids: dict[str, list[str]] = {"yes": [], "no": [], "estimate": []}
+    # Окна считаем поштучно: на одной стороне и этаже бывает несколько стен (фасады `seg-…`).
+    counts, reasons, estimate_no = Counter(), Counter(), 0
+    for subject, fs in windows.items():
+        # Где «да» по расчёту — только по фактам, которые закрывают обязательное условие; оценка
+        # отдельно — и для желательного условия тоже, чтобы не выдать её за расчёт.
+        r = evaluate(fs, c, hard=True)
+        kind = {Verdict.yes: "yes", Verdict.no: "no"}.get(r["verdict"])
+        if kind is None:
+            base = next((f.unknown_reason for f in fs if f.status == Status.unknown), None)
+            reasons[base or r.get("reason_code")] += 1
+            if r.get("reason_code") == "estimate_only":
+                guess = evaluate(fs, c, hard=False)
+                kind = "estimate" if guess["verdict"] == Verdict.yes else None
+                estimate_no += guess["verdict"] == Verdict.no
+                r = guess
+        if kind is not None:
+            counts[kind] += 1
+            found[kind][_side(fs[0])].add(_window_floor(subject))
+            ids[kind] += r["fact_ids"][:WINDOW_IDS_PER_WINDOW]
+    summary: dict[str, Any] = {
+        kind: {side: sorted(floors) for side, floors in sorted(sides.items())}
+        for kind, sides in found.items()
+    }
+    summary |= {"count": len(windows), "want": c.value}
+    n_no = counts["no"]
+    if not found["yes"] and not found["estimate"] and estimate_no:
+        # Точно «да» нигде, по оценке — тоже нигде: так и скажем, а не «есть только оценка».
+        summary["estimate_none"] = estimate_no + n_no == len(windows)
+    if found["yes"]:
+        all_yes = counts["yes"] == len(windows)
+        code, shown = ("window_all" if all_yes else "window_some"), ids["yes"]
+    elif n_no == len(windows):
+        code, shown = "no_window_known", ids["no"]
+    elif found["estimate"]:
+        code, shown = "estimate_only", ids["estimate"]
+    else:
+        top = reasons.most_common(1)
+        code, shown = (top[0][0] if top else None) or "unknown", []
+    return _result(c, Verdict.unknown, code, fact_ids=shown[:WINDOW_IDS_MAX], windows=summary)
+
+
+# Внутри одного статуса — сначала отели, где условие окна по расчёту выполняется хотя бы
+# в части окон, потом — по оценке; в конце — где по расчёту ни из одного окна (D40).
+WINDOWS_RANK = {"window_all": 4, "window_some": 3, "no_window_known": 0}
+
+
+def _windows_rank(items: list[dict[str, Any]]) -> int:
+    ranks = []
+    for item in items:
+        w = item.get("windows")
+        if not w or item.get("negated"):
+            continue
+        code = item.get("reason_code")
+        if code in WINDOWS_RANK:
+            ranks.append(WINDOWS_RANK[code])
+        elif w.get("estimate"):
+            ranks.append(2)
+        else:
+            ranks.append(0 if w.get("estimate_none") else 1)
+    return min(ranks) if ranks else 1  # условий окна несколько — по худшему
+
+
+def _hard_rank(items: list[dict[str, Any]]) -> tuple[int, int, int]:
+    """Внутри статуса: больше обязательных «да», меньше «неизвестно» — выше (а не по алфавиту);
+    среди «неизвестно» выше те, где оценка или Островок говорят «да», ниже — где «нет»."""
+    yes = sum(1 for h in items if h.get("verdict") == Verdict.yes)
+    unknown = [h for h in items if h.get("verdict") == Verdict.unknown]
+    leaning = sum({Verdict.yes: 1, Verdict.no: -1}.get(h.get("leaning"), 0) for h in unknown)
+    return -yes, len(unknown), -leaning
 
 
 def _placement_condition(c: Condition, p: dict[str, Any]) -> dict[str, Any]:
@@ -376,7 +533,7 @@ def evaluate_category(
     размещении: условия отеля (`base`), категории и этого размещения — вместе.
     """
     conditions = [
-        evaluate([f for f in facts[c.feature_id] if f.subject_id == rt["room_type_id"]], c, hard)
+        evaluate(_category_facts(facts[c.feature_id], rt["room_type_id"]), c, hard)
         for c in category_conds
     ]
     own = list(conditions)
@@ -399,7 +556,13 @@ def evaluate_category(
         placements = rt.get("placements") or []
         if not ps or not placements or ps.get("completeness") != "complete":
             code = "no_placements" if not ps or not placements else "placements_incomplete"
-            missing = [_result(c, Verdict.unknown, code) for c in window_conds]
+            missing = [
+                # Категория не привязана к корпусам — сводка по окнам корпусов отеля (D17, D40).
+                hotel_windows(c, facts[c.feature_id], hard)
+                if code == "no_placements" and c.feature_id not in PLACEMENT_FIELDS
+                else _result(c, Verdict.unknown, code)
+                for c in window_conds
+            ]
             conditions += missing
             verdicts.append(Verdict.unknown)
             whole = combine(missing) if logic else None
@@ -501,7 +664,20 @@ def search(
     ids = [h["hotel_id"] for h in hotels]
     # Один запрос к хранилищу на характеристику, а не на отель.
     features = {c.feature_id for c in [*ast.hard, *ast.soft]}
-    facts = {fid: store.facts_for(fid, ids) for fid in features}
+    wanted: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    for c in [*ast.hard, *ast.soft]:
+        if c.params not in wanted[c.feature_id]:
+            wanted[c.feature_id].append(c.params)
+    # Параметры одни на все условия характеристики — хранилище отберёт факты по ним (даты).
+    facts = {
+        fid: store.facts_for(
+            fid,
+            ids,
+            params=wanted[fid][0] if len(wanted[fid]) == 1 else None,
+            key_params=KEY_PARAMS.get(fid, ()),
+        )
+        for fid in features
+    }
     room_types = store.room_types(ids) if features else {}
     logic = Logic.of(ast)
 
@@ -545,14 +721,22 @@ def search(
         nodes: dict[str, Verdict] = {}
         if hard_cat or hard_win or soft_cat or soft_win:
             rts = room_types.get(hid, [])
-            if not rts:
-                code = "no_placements" if (hard_win or soft_win) else "no_room_types"
-                hard += [_result(c, Verdict.unknown, code) for c in [*hard_cat, *hard_win]]
+            if (hard_win or soft_win) and not any(_placed(rt) for rt in rts):
+                # Ни одна категория не привязана к корпусам и этажам — условия окна по всем окнам
+                # корпусов отеля (D17, D40): сводка, где «да» и где «нет».
+                hard += [hotel_windows(c, own[c.feature_id], hard=True) for c in hard_win]
                 soft += [
-                    _result(c, Verdict.unknown, code) | {"weight": c.weight}
-                    for c in [*soft_cat, *soft_win]
+                    hotel_windows(c, own[c.feature_id], hard=False) | {"weight": c.weight}
+                    for c in soft_win
                 ]
-            else:
+                hard_win, soft_win = [], []
+            if not rts:
+                hard += [_result(c, Verdict.unknown, "no_room_types") for c in hard_cat]
+                soft += [
+                    _result(c, Verdict.unknown, "no_room_types") | {"weight": c.weight}
+                    for c in soft_cat
+                ]
+            elif hard_cat or hard_win or soft_cat or soft_win:
                 base = _env(hard)
                 # Условия отеля вне графа — через И; условия в графе уже внутри категории.
                 outer = [h["verdict"] for h in hard if logic is None or not logic.covers(h)]
@@ -564,7 +748,7 @@ def search(
                     cat["status"] = guest_status([cat["verdict"]])
                     cat["status_label"] = GUEST_LABELS[cat["status"]]
                     categories.append(cat)
-                categories.sort(key=lambda x: ORDER[x["status"]])
+                categories.sort(key=lambda x: (ORDER[x["status"]], *_hard_rank(x["conditions"])))
                 best = categories[0]
                 nodes = best.get("_logic", {})
                 for cat in categories:
@@ -603,5 +787,13 @@ def search(
                 "best_category": best["room_type_id"] if best else None,
             }
         )
-    results.sort(key=lambda r: (ORDER[r["status"]], -r["score"]["max"], -r["score"]["min"]))
+    results.sort(
+        key=lambda r: (
+            ORDER[r["status"]],
+            -_windows_rank(r["hard"]),
+            *_hard_rank(r["hard"]),
+            -r["score"]["max"],
+            -r["score"]["min"],
+        )
+    )
     return results

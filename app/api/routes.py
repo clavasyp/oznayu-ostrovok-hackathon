@@ -6,11 +6,12 @@ from __future__ import annotations
 
 import logging
 import re
+from collections import Counter
 from datetime import UTC, datetime, timedelta
 from typing import Any
 
 from fastapi import APIRouter, HTTPException, Request
-from pydantic import BaseModel, ValidationError
+from pydantic import BaseModel, Field, ValidationError
 
 from agents import hotelier as agent
 from agents.catalog import load_catalog
@@ -20,7 +21,7 @@ from agents.query_ast import QueryAST
 from agents.search import parse_query
 from agents.search.journal import summarize, unmatched_events
 from core import search as engine
-from core.facts import Fact
+from core.facts import Fact, Status
 from core.hotelier import AnswerError, AnswerIn, build_answer
 from core.reasons import reason_text
 from core.store import Store
@@ -73,6 +74,9 @@ class SearchRequest(BaseModel):
     text: str | None = None
     city_id: str | None = None
     ast: QueryAST | None = None
+    # Страница выдачи: с полным каталогом в городе тысячи отелей (`total` — сколько всего).
+    limit: int = Field(default=100, ge=1, le=1000)
+    offset: int = Field(default=0, ge=0)
 
 
 class SimulateRequest(BaseModel):
@@ -94,7 +98,7 @@ def labels() -> dict[str, Any]:
     }
 
 
-def _label_items(items: list[dict[str, Any]], fields: dict[str, str | None]) -> None:
+def _label_items(items: list[dict[str, Any]], conds: dict[str, Any]) -> None:
     """Подписи пунктов проверки для экрана: `label` — словами гостя, `feature_name` — название
     характеристики («можно с животным (масса)»).
 
@@ -104,8 +108,12 @@ def _label_items(items: list[dict[str, Any]], fields: dict[str, str | None]) -> 
     catalog = load_catalog()
     for item in items:
         feature = catalog.get(item.get("feature_id") or "")
-        name = feature.short if feature else None
-        field = fields.get(item.get("atom_id") or "")
+        cond = conds.get(item.get("atom_id") or "")
+        # Название — под направление условия: «бары и клубы рядом» у «≥ 2», «мало баров…» у «≤ 2».
+        name = (
+            (feature.short_for(cond.op, cond.value) if cond else feature.short) if feature else None
+        )
+        field = cond.field if cond else None
         if feature and field and field != feature.default_field:
             name = f"{name} ({field_label(field).split(',')[0]})"
         span = (item.get("text_span") or "").strip()
@@ -114,15 +122,15 @@ def _label_items(items: list[dict[str, Any]], fields: dict[str, str | None]) -> 
         item["feature_name"] = name
         item["label"] = span or name or item.get("feature_id") or "условие"
         if item.get("items"):
-            _label_items(item["items"], fields)
+            _label_items(item["items"], conds)
 
 
 def _label_result(r: dict[str, Any], ast: QueryAST) -> None:
-    fields = {c.atom_id: c.field for c in [*ast.hard, *ast.soft] if c.atom_id}
-    _label_items(r.get("hard", []), fields)
-    _label_items(r.get("soft", []), fields)
+    conds = {c.atom_id: c for c in [*ast.hard, *ast.soft] if c.atom_id}
+    _label_items(r.get("hard", []), conds)
+    _label_items(r.get("soft", []), conds)
     for cat in r.get("categories", []):
-        _label_items(cat.get("conditions", []), fields)
+        _label_items(cat.get("conditions", []), conds)
 
 
 @router.get("/cities")
@@ -152,11 +160,40 @@ def hotel(hotel_id: str, request: Request) -> dict[str, Any]:
     h = s.hotel(hotel_id)
     if h is None:
         raise HTTPException(404, f"нет отеля {hotel_id}")
-    facts = {
-        feature: [fact_json(f) for f in items] for feature, items in s.hotel_facts(hotel_id).items()
-    }
+    facts: dict[str, list[dict[str, Any]]] = {}
+    windows: dict[str, dict[str, int]] = {}
+    for feature, items in s.hotel_facts(hotel_id).items():
+        # Факты окон (вид и солнце — тысячи на отель) — счётчиками; каждый — по /facts/{id}.
+        plain = [f for f in items if f.subject_level not in engine.WINDOW_LEVELS]
+        if plain:
+            facts[feature] = [fact_json(f) for f in plain]
+        if len(plain) < len(items):
+            windows[feature] = _window_counts(
+                [f for f in items if f.subject_level in engine.WINDOW_LEVELS]
+            )
     room_types = str_question_ids(s.room_types([hotel_id]).get(hotel_id, []))  # паспорт размещений
-    return {"stub": s.stub, "hotel": h, "facts": facts, "room_types": room_types}
+    return {
+        "stub": s.stub,
+        "hotel": h,
+        "facts": facts,
+        "windows": windows,
+        "room_types": room_types,
+    }
+
+
+def _window_counts(items: list[Fact]) -> dict[str, int]:
+    """Факты окон одной характеристики: сколько «да» и «нет» по расчёту, по оценке, неизвестно."""
+    out = {"facts": len(items), "computed_yes": 0, "computed_no": 0, "estimate_yes": 0,
+           "estimate_no": 0, "unknown": 0}  # fmt: skip
+    for f in items:
+        visible = (f.value or {}).get("visible") if isinstance(f.value, dict) else f.value
+        if f.status == Status.estimate:
+            out["estimate_yes" if visible else "estimate_no"] += 1
+        elif f.status == Status.unknown or visible is None:
+            out["unknown"] += 1
+        else:
+            out["computed_yes" if visible else "computed_no"] += 1
+    return out
 
 
 @router.get("/facts/{fact_id}")
@@ -194,16 +231,22 @@ def search(body: SearchRequest, request: Request) -> dict[str, Any]:
     if body.ast is None and body.text and body.text.strip():
         _record_unmatched(s, ast)  # журнал «вне каталога» — только по тексту, который разобрали мы
     results = engine.search(s, ast)
-    # Объяснение по шаблону (без модели, мгновенно) — у первых результатов выдачи.
-    for r in results[:EXPLAIN_TOP]:
+    counts = Counter(str(r["status"]) for r in results)
+    page = results[body.offset : body.offset + body.limit]  # полный каталог — тысячи отелей
+    # Объяснение по шаблону (без модели, мгновенно) — у первых результатов страницы.
+    for r in page[:EXPLAIN_TOP]:
         r["explanation"] = explain(r, s.fact, ast=ast).as_dict()
-    for r in results:
+    for r in page:
         _label_result(r, ast)
     return {
         "stub": s.stub,
         "notes": notes,
         "ast": ast.model_dump(mode="json", by_alias=True),
-        "results": results,
+        "total": len(results),
+        "counts": {k: counts.get(k, 0) for k in ("fits", "needs_check", "not_fit")},
+        "offset": body.offset,
+        "limit": body.limit,
+        "results": page,
     }
 
 

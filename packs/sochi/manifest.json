@@ -4,10 +4,10 @@
   "city_name": "Большой Сочи",
   "timezone": "Europe/Moscow",
   "depth": "full",
-  "pack_version": "v9-1434cd8536",
-  "built_at": "2026-10-24T13:59:16.108365Z",
-  "code_version": "v9-packs.2",
-  "catalog_version": "v9",
+  "pack_version": "category-supplement.2-9062f7ca04de+5161ea64",
+  "built_at": "2026-10-27T07:56:12.063670Z",
+  "code_version": "category-supplement.2",
+  "catalog_version": "ostrovok-2026-10-24+v9",
   "sources": [
     {
       "id": "42f50d841bbb",
@@ -48,44 +48,196 @@
     {
       "id": "7e9f69c9baf2",
       "provider": "ostrovok_cached_v5"
+    },
+    {
+      "id": "ostrovok_site",
+      "provider": "ostrovok.ru",
+      "release": "snapshot_2026-10-24",
+      "sha256": "b119459f669384ab6a8abf66e1e1b95af7c3063e082a1a91d6c962272ec4554f"
+    },
+    {
+      "id": "city_boundary",
+      "provider": "OpenStreetMap/Geofabrik",
+      "release": "2026-10-22T20:21:33Z",
+      "sha256": "111a329ce37bb2bcbcea3a38db61d169bd521fc4a41994249fdf0a3c45692497",
+      "license": "ODbL-1.0"
+    },
+    {
+      "id": "geo_sochi",
+      "provider": "OpenStreetMap/Geofabrik",
+      "release": "route-poi.1",
+      "sha256": "976c9a689d1e225cfefe8fee06e1a53524dd76a371a61533bc4b586082a0dfc0",
+      "license": "ODbL-1.0"
+    },
+    {
+      "id": "d34_d39_osm",
+      "provider": "OpenStreetMap/Geofabrik",
+      "release": "2026-10-22T20:21:33Z",
+      "sha256": "976c9a689d1e225cfefe8fee06e1a53524dd76a371a61533bc4b586082a0dfc0",
+      "license": "ODbL-1.0",
+      "commercial_ok": true
+    },
+    {
+      "id": "ostrovok_category_supplement",
+      "provider": "ostrovok.ru",
+      "release": "snapshot_2026-10-27-targeted",
+      "sha256": "1c0e3ed5dc92ab6535416b8dbfe63bf68ec79282eb09360db1a4e5592472881b",
+      "fetched_at": "2026-10-27T07:46:59.656535Z"
+    },
+    {
+      "id": "view_sun:osm-buildings",
+      "provider": "OpenStreetMap (сцена v9)",
+      "license": "ODbL-1.0",
+      "commercial_ok": true,
+      "layer": "data/view_sun.jsonl.gz"
+    },
+    {
+      "id": "view_sun:copdem-glo30",
+      "provider": "Copernicus DEM GLO-30",
+      "url": "https://copernicus-dem-30m.s3.amazonaws.com/",
+      "license": "Copernicus DEM licence (free, attribution)",
+      "commercial_ok": true,
+      "layer": "data/view_sun.jsonl.gz"
+    },
+    {
+      "id": "view_sun:worldcover-2021",
+      "provider": "ESA WorldCover",
+      "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/",
+      "release": "v200 2021",
+      "license": "CC BY 4.0",
+      "commercial_ok": true,
+      "layer": "data/view_sun.jsonl.gz"
+    },
+    {
+      "id": "view_sun:3d-globfp-v2",
+      "provider": "3D-GloBFP",
+      "url": "https://doi.org/10.5281/zenodo.15487037",
+      "release": "v2 (2025-05-22)",
+      "license": "CC BY 4.0",
+      "layer": "data/view_sun.jsonl.gz"
     }
   ],
   "files": [
     {
-      "path": "data/hotels.jsonl.gz",
-      "kind": "hotels",
-      "rows": 89,
-      "bytes": 7316,
-      "sha256": "dc587e73783a0ea1fc7a6dfb892e9644883e07c7eb0400ae4a9d8e62a7c362fd"
-    },
-    {
-      "path": "data/facts.jsonl.gz",
-      "kind": "facts",
-      "rows": 7148,
-      "bytes": 3153627,
-      "sha256": "c14d3132b2dfe2d9687ecf7a99304b9b2e8469bd9a6c94e1d292992ff9684280"
-    },
-    {
-      "path": "data/questions.jsonl.gz",
-      "kind": "questions",
-      "rows": 2314,
-      "bytes": 166131,
-      "sha256": "2d934e29aebf8eb79bb7cd19cba7a54db516e950fa43fb787d980891d03282a2"
+      "path": "data/buildings.jsonl.gz",
+      "kind": "buildings",
+      "rows": 635,
+      "bytes": 71505,
+      "sha256": "f631cff78ac252b0063f9a2b1736d8eb40d8f666e28aec5e9e010b6ffebd219a"
     },
     {
       "path": "data/coverage.jsonl.gz",
       "kind": "coverage",
       "rows": 54,
-      "bytes": 2839,
-      "sha256": "9fc097f8b2936dbf2bf5a9bb8258ab9af63503f7fc99bd39042da93885a60422"
+      "bytes": 2904,
+      "sha256": "be21d71bb0a849a8b7fd4ab8a832e3c2feaa0b940911367d1b49ccd620cdf7fe"
+    },
+    {
+      "path": "data/curation_items.jsonl.gz",
+      "kind": "curation_items",
+      "rows": 2034,
+      "bytes": 383006,
+      "sha256": "f56c52861095fa455ac3846cdb1b9e0085bc8fed51f47fa1798b498f078941cd"
+    },
+    {
+      "path": "data/facades.jsonl.gz",
+      "kind": "facades",
+      "rows": 6127,
+      "bytes": 344862,
+      "sha256": "90088590b216bad075113964bee4d88e80158d2a853b6fad7690306fcccffe57"
+    },
+    {
+      "path": "data/facts.jsonl.gz",
+      "kind": "facts",
+      "rows": 146006,
+      "bytes": 37258344,
+      "sha256": "da4f025ac0cec65cb2f9d2b49bf58d3515250009822386c5e1ae84f5a4a229a5"
+    },
+    {
+      "path": "data/hotel_buildings.jsonl.gz",
+      "kind": "hotel_buildings",
+      "rows": 673,
+      "bytes": 24632,
+      "sha256": "71c3e78603f76f1f4a6319c564cc154baa99b9df89e24bdad34ddff0863f4a68"
+    },
+    {
+      "path": "data/hotel_stations.jsonl.gz",
+      "kind": "hotel_stations",
+      "rows": 15806,
+      "bytes": 207792,
+      "sha256": "31a04369ef62db22d84bbd53d7ec89d8e0d6f771323315ccf7a091884c8c9910"
+    },
+    {
+      "path": "data/hotels.jsonl.gz",
+      "kind": "hotels",
+      "rows": 2695,
+      "bytes": 528386,
+      "sha256": "03599618a7793d79cd5479050654b8a4859c3671d6bbacc760fc35a721fd3600"
     },
     {
       "path": "data/ota_comparisons.jsonl.gz",
       "kind": "ota_comparisons",
       "rows": 16,
-      "bytes": 1914,
-      "sha256": "d4dc858117e0d95206759970e3ed1d131c8f4f8f490c118d052550e273035a81"
+      "bytes": 1924,
+      "sha256": "72dc6e02136e47d79c58a050802036f22e200e8839c587d618c2f3b7ce3d629a"
+    },
+    {
+      "path": "data/places.jsonl.gz",
+      "kind": "places",
+      "rows": 6475,
+      "bytes": 387905,
+      "sha256": "d8a0c0f3fe8a5bc42ae79790e86b447eba469c78223d4735bd353a5cb15e53d3"
+    },
+    {
+      "path": "data/questions.jsonl.gz",
+      "kind": "questions",
+      "rows": 69144,
+      "bytes": 3848713,
+      "sha256": "5634d3c776248f4f3954e8b7faff0319c0cdb8b759099417c6fa61d67deefca3"
+    },
+    {
+      "path": "data/room_types.jsonl.gz",
+      "kind": "room_types",
+      "rows": 9233,
+      "bytes": 422384,
+      "sha256": "14aab048fbb511b85aaafe7f889b853e628b6d2a1e84c2a411935a8a20b07283"
+    },
+    {
+      "path": "data/transit_stations.jsonl.gz",
+      "kind": "transit_stations",
+      "rows": 176,
+      "bytes": 13491,
+      "sha256": "cf9f02c4e0e90b8f327a1b1b49dc16d4da291458bce8636132dc805bdabcb316"
+    },
+    {
+      "path": "data/transit_times.jsonl.gz",
+      "kind": "transit_times",
+      "rows": 0,
+      "bytes": 20,
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "path": "data/room_types_snapshot_2026-10-27-targeted.jsonl.gz",
+      "kind": "room_types",
+      "rows": 39,
+      "bytes": 2723,
+      "sha256": "bafb2ac4197a147bf1dc30e0845f039866f3b03ff0bc8c5b12fca6afbd001dc1"
+    },
+    {
+      "path": "data/facts_snapshot_2026-10-27-targeted.jsonl.gz",
+      "kind": "facts",
+      "rows": 238,
+      "bytes": 14879,
+      "sha256": "98522f9b7b02412be39b9246bb7c5a55034f36e2ee33d72da8f78713850d6f0d"
+    },
+    {
+      "path": "data/view_sun.jsonl.gz",
+      "kind": "facts",
+      "rows": 158306,
+      "bytes": 7357936,
+      "sha256": "745010bb22a3d01d0dbc045b3d10cbcf29986335fa401a86887d124a3f0263a4",
+      "layer": true
     }
   ],
-  "notes": "Сборка v9-packs.2 из research_notes/Расчёт характеристик (Codex v9). Диагностика v9 (component_diagnostics, audit_files, components) не включена."
+  "notes": "Полный каталог, георасчёты, корпуса/геометрические фасады и OSM D34. Расстояния до мест и станций — по прямой, доступ не подтверждён. Места рядом считает запрос PostGIS; в пакете только места с категорией словаря мест или характеристики каталога. 2ГИС bundle не передан. Пустая transit_times не означает отсутствие транспорта; вне датированных ответов время неизвестно. Категории дополнены из snapshot_2026-10-27-targeted; координаты и геофакты сохранены."
 }

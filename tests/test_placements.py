@@ -102,7 +102,9 @@ def test_incomplete_or_missing_placements_need_check():
     assert r["status"] == GuestStatus.needs_check
     assert r["hard"][0]["reason_code"] == "placements_incomplete"
     r = run(store(facts, []), SUNSET)  # окна посчитаны, но категории не привязаны к ним
-    assert r["status"] == GuestStatus.needs_check and r["hard"][0]["reason_code"] == "no_placements"
+    assert r["status"] == GuestStatus.needs_check
+    assert r["hard"][0]["reason_code"] == "window_all"  # «да» во всех окнах, но где номер — ?
+    assert r["hard"][0]["windows"]["yes"] == {"?": [5]}
 
 
 def test_corner_room_view_needs_one_window_noise_needs_all():

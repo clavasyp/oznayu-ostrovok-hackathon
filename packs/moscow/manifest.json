@@ -4,10 +4,10 @@
   "city_name": "Москва",
   "timezone": "Europe/Moscow",
   "depth": "full",
-  "pack_version": "v9-1434cd8536",
-  "built_at": "2026-10-24T14:05:37.530650Z",
-  "code_version": "v9-packs.2",
-  "catalog_version": "v9",
+  "pack_version": "seva-full.3-3e2ff6a04b0c",
+  "built_at": "2026-10-26T15:12:24Z",
+  "code_version": "seva-full.3",
+  "catalog_version": "ostrovok-2026-10-24+v9",
   "sources": [
     {
       "id": "42f50d841bbb",
@@ -43,44 +43,144 @@
     {
       "id": "7e9f69c9baf2",
       "provider": "ostrovok_cached_v5"
+    },
+    {
+      "id": "ostrovok_site",
+      "provider": "ostrovok.ru",
+      "release": "snapshot_2026-10-24",
+      "sha256": "b119459f669384ab6a8abf66e1e1b95af7c3063e082a1a91d6c962272ec4554f"
+    },
+    {
+      "id": "city_boundary",
+      "provider": "OpenStreetMap/Geofabrik",
+      "release": "2026-10-22T20:21:33Z",
+      "sha256": "3d49f8c08ff35407d18d97e50414df18aaca38d5f8ac043f5bc9be7fe4130259",
+      "license": "ODbL-1.0"
+    },
+    {
+      "id": "geo_moscow",
+      "provider": "OpenStreetMap/Geofabrik",
+      "release": "route-poi.1",
+      "sha256": "80a79d4f29d3001424385bb97e0ceadfd9274a043aa8dd6ffb5267c352477497",
+      "license": "ODbL-1.0"
+    },
+    {
+      "id": "moscow_dsm",
+      "provider": "Copernicus DEM GLO-30",
+      "sha256": "cf42916337e2a04f2514bc88fe25c0a0d672c5b4bc64d99ca4d87cf4a5362d51",
+      "license": "Copernicus DEM Licence",
+      "tile_sha256": {
+        "Copernicus_DSM_COG_10_N55_00_E037_00_DEM.tif": "027a31311fd198c54d08d7f6025835fa34b24c3e08ddc43023b485ee63f21320"
+      }
+    },
+    {
+      "id": "d34_d39_osm",
+      "provider": "OpenStreetMap/Geofabrik",
+      "release": "2026-10-22T20:21:33Z",
+      "sha256": "80a79d4f29d3001424385bb97e0ceadfd9274a043aa8dd6ffb5267c352477497",
+      "license": "ODbL-1.0",
+      "commercial_ok": true
     }
   ],
   "files": [
     {
-      "path": "data/hotels.jsonl.gz",
-      "kind": "hotels",
-      "rows": 50,
-      "bytes": 4938,
-      "sha256": "ccb83f3074ed1abe6aea01f694c64bdc7106e3e78e9bdba61589eaf3d6a46e76"
-    },
-    {
-      "path": "data/facts.jsonl.gz",
-      "kind": "facts",
-      "rows": 3950,
-      "bytes": 1665664,
-      "sha256": "91999bf07ab860aa907ea1527a848970ebd4d356f1c347eab9bf30d4290f2d75"
-    },
-    {
-      "path": "data/questions.jsonl.gz",
-      "kind": "questions",
-      "rows": 1300,
-      "bytes": 95045,
-      "sha256": "8805d19d023875775f500fb40d00b42a3d7e9c08d7073dc3fb1570d505ace5b6"
+      "path": "data/buildings.jsonl.gz",
+      "kind": "buildings",
+      "rows": 1295,
+      "bytes": 245023,
+      "sha256": "fddbb12f343ecd5c6e8a6f89ea2b7aa608c594cd433083c8d3496222e992548b"
     },
     {
       "path": "data/coverage.jsonl.gz",
       "kind": "coverage",
       "rows": 54,
-      "bytes": 2791,
-      "sha256": "9648539819f24f5ef01115bab6c571e9bced1abf22912362dd6cbe9e8919032a"
+      "bytes": 2864,
+      "sha256": "5cc696d750980171bac1185526daa70ea06ba0077f128c4ef91c386c0868e04d"
+    },
+    {
+      "path": "data/curation_items.jsonl.gz",
+      "kind": "curation_items",
+      "rows": 2634,
+      "bytes": 634611,
+      "sha256": "c02256f6855d2c5acba72ce6965b138686e7b7966d99e03282bc9bde918f2fe6"
+    },
+    {
+      "path": "data/facades.jsonl.gz",
+      "kind": "facades",
+      "rows": 22404,
+      "bytes": 1203565,
+      "sha256": "3c83acd7bb894d125bf2842d77e1059e4e1d0857e9eb26ff8872439770dd6049"
+    },
+    {
+      "path": "data/facts.jsonl.gz",
+      "kind": "facts",
+      "rows": 213541,
+      "bytes": 45052958,
+      "sha256": "bc378be2f9caec53285b5837a8569ceb5afe988984797c9fc83d41ad33df8c5f"
+    },
+    {
+      "path": "data/hotel_buildings.jsonl.gz",
+      "kind": "hotel_buildings",
+      "rows": 1585,
+      "bytes": 69158,
+      "sha256": "85f8414d9385bb7d80fb6c73f0380ca3ca5f80341f5949a844ac6189fa896850"
+    },
+    {
+      "path": "data/hotel_stations.jsonl.gz",
+      "kind": "hotel_stations",
+      "rows": 50532,
+      "bytes": 745363,
+      "sha256": "aae73cd893ef81ba68a6da64b46ec082e10ac6ae40e89da855866d082d0b990f"
+    },
+    {
+      "path": "data/hotels.jsonl.gz",
+      "kind": "hotels",
+      "rows": 4211,
+      "bytes": 825642,
+      "sha256": "581fab657e7529199b1d20b1b17c99f87fd9e8c29442ee718ab9faf46adfc41f"
     },
     {
       "path": "data/ota_comparisons.jsonl.gz",
       "kind": "ota_comparisons",
       "rows": 5,
-      "bytes": 689,
-      "sha256": "59d39cb1b931ff4a6714afb803321cdc1faee36ec925d36087663123a2e240b0"
+      "bytes": 692,
+      "sha256": "1665f1c4315d7e3183fa9dbd5312228a3af335b29e7ba6a44cfac829f7690234"
+    },
+    {
+      "path": "data/places.jsonl.gz",
+      "kind": "places",
+      "rows": 56391,
+      "bytes": 4377338,
+      "sha256": "2a4daa24a37f062a3a622d609f30e72ac85f3dc8f9f7d836811353f7927e13ee"
+    },
+    {
+      "path": "data/questions.jsonl.gz",
+      "kind": "questions",
+      "rows": 108470,
+      "bytes": 5630074,
+      "sha256": "37525fded7d928afb7f50ba34b9e47e3c82772226ed6b76246af1be1168f107b"
+    },
+    {
+      "path": "data/room_types.jsonl.gz",
+      "kind": "room_types",
+      "rows": 12739,
+      "bytes": 594479,
+      "sha256": "b698574a6ec322efdda49808c915e593250c74e750eb1d8b2e15b6a25c09dacb"
+    },
+    {
+      "path": "data/transit_stations.jsonl.gz",
+      "kind": "transit_stations",
+      "rows": 1701,
+      "bytes": 124349,
+      "sha256": "935c00102bbc60af8c3c18dd193eead07b097b0673f42b69a901f121af919b74"
+    },
+    {
+      "path": "data/transit_times.jsonl.gz",
+      "kind": "transit_times",
+      "rows": 0,
+      "bytes": 20,
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
     }
   ],
-  "notes": "Сборка v9-packs.2 из research_notes/Расчёт характеристик (Codex v9). Диагностика v9 (component_diagnostics, audit_files, components) не включена."
+  "notes": "Полный каталог, георасчёты, корпуса/геометрические фасады и OSM D34. Расстояния до мест и станций — по прямой, доступ не подтверждён. Места рядом считает запрос PostGIS; в пакете только места с категорией словаря мест или характеристики каталога. 2ГИС bundle не передан. Пустая transit_times не означает отсутствие транспорта; вне датированных ответов время неизвестно."
 }

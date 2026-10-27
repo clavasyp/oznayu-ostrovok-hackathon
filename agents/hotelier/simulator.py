@@ -171,14 +171,20 @@ def simulate_answer(hotel_id: str, feature_id: str, *, seed: int | None = None) 
 
 
 def simulate_placement(hotel_id: str, room_type_id: str) -> dict[str, Any]:
-    """Ответ на адресный вопрос: стороны и этажи окон категории — из профиля."""
+    """Ответ на адресный вопрос: стороны и этажи окон категории — из профиля.
+
+    `building_aliases` — корпуса, которые «отельер» отметил в списке корпусов по карте: как он
+    их называет → `building_id`. Выбор корпуса, как и текст, — со слов имитатора.
+    """
     profile = load_profile(hotel_id) or {}
     cat = next(
         (c for c in profile.get("categories", []) if c["room_type_id"] == room_type_id), None
     )
+    aliases: dict[str, str] = {}
     if cat is None:
         text = "Точно сказать не можем — зависит от конкретного номера."
     else:
+        aliases = {p["building"]: p["building_id"] for p in cat["placements"] if "building_id" in p}
         parts = []
         for p in cat["placements"]:
             side = "во двор" if p["side"] == "courtyard" else f"на {SIDES_RU[p['side']]}"
@@ -196,6 +202,7 @@ def simulate_placement(hotel_id: str, room_type_id: str) -> dict[str, Any]:
         "feature_id": "category_placement",
         "room_type_id": room_type_id,
         "answer_text": text,
+        "building_aliases": aliases,
         "is_simulated": True,
         "note": SIMULATED_NOTE,
     }

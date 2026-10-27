@@ -19,6 +19,7 @@ from core.db import (
     Conflict,
     FactRow,
     Hotel,
+    HotelBuilding,
     OtaComparison,
     Placement,
     PlacementSet,
@@ -28,7 +29,9 @@ from core.db import (
     UnmatchedAtom,
 )
 from core.facts import Fact
-from core.hotelier import AnswerError, AnswerResult
+from core.geo_store import GeoStore
+from core.hotelier import AnswerError, AnswerResult, placement_id, replaces_placements
+from core.placement_catalog import with_alias
 
 FACT_COLUMNS = [c.name for c in FactRow.__table__.columns]
 FACT_COLUMN_SET = set(FACT_COLUMNS)
@@ -73,6 +76,32 @@ def fact_from_row(row: FactRow) -> Fact:
     return Fact.model_validate(data | extra)
 
 
+# Поиску хватает значения, статуса и места факта; паспорт (источники, попытки рецептов, оговорки
+# — это бо́льшая часть строки) объяснение берёт по id (`fact`). `depends_on` — сторона окна.
+SEARCH_COLUMNS = (
+    "fact_id",
+    "hotel_id",
+    "city_id",
+    "subject_level",
+    "subject_id",
+    "feature_id",
+    "params",
+    "value",
+    "unit",
+    "quantifier",
+    "status",
+    "unknown_reason",
+    "hard_condition_eligible",
+    "algorithm_version",
+    "depends_on",
+)
+
+
+def search_fact(row: Any) -> Fact:
+    """Строка `SEARCH_COLUMNS` → `Fact` без паспорта (только для поиска)."""
+    return Fact.model_validate({k: v for k, v in row._mapping.items() if v is not None})
+
+
 def hotel_dict(h: Hotel) -> dict[str, Any]:
     return {
         "hotel_id": h.id,
@@ -83,7 +112,8 @@ def hotel_dict(h: Hotel) -> dict[str, Any]:
         "longitude": h.longitude,
         "hotel_kind": h.kind,
         "hotel_url": (h.source or {}).get("url"),
-        "subzone": h.subzone,
+        "subzone": h.subzone,  # для гостя: «Адлер», «Красная Поляна»
+        "subzone_id": h.subzone_id,  # код для фильтров: adler, krasnaya_polyana
         "stars": h.stars,
     }
 
@@ -166,18 +196,41 @@ class DbStore:
             row = s.get(FactRow, fact_id)
             return fact_from_row(row) if row else None
 
-    def facts_for(self, feature_id: str, hotel_ids: Collection[str]) -> dict[str, list[Fact]]:
+    def facts_for(
+        self,
+        feature_id: str,
+        hotel_ids: Collection[str],
+        params: dict[str, Any] | None = None,
+        key_params: Collection[str] = (),
+    ) -> dict[str, list[Fact]]:
         if not hotel_ids:
             return {}
-        q = select(FactRow).where(
+        base = (
             FactRow.feature_id == feature_id,
             FactRow.hotel_id.in_(list(hotel_ids)),
             FactRow.is_current,
         )
+        cols = [FactRow.__table__.c[c] for c in SEARCH_COLUMNS]
+        q = select(*cols).where(*base)
+        if params is not None:
+            # Факты окон — по датам (V05): без фильтра в SQL поиск разбирал бы все даты сразу.
+            q = q.where(FactRow.params.contains(params))
+            q = q.where(*(~FactRow.params.has_key(k) for k in key_params if k not in params))
         out: dict[str, list[Fact]] = defaultdict(list)
         with self._session() as s:
-            for row in s.scalars(q):
-                out[row.hotel_id].append(fact_from_row(row))
+            for row in s.execute(q):
+                out[row.hotel_id].append(search_fact(row))
+            rest = [h for h in hotel_ids if h not in out]
+            if params is not None and rest:
+                # Факты есть, но с другими параметрами — по одному на отель (см. `Store`).
+                q = (
+                    select(*cols)
+                    .where(*base[:1], FactRow.hotel_id.in_(rest), FactRow.is_current)
+                    .distinct(FactRow.hotel_id)
+                    .order_by(FactRow.hotel_id, FactRow.fact_id)
+                )
+                for row in s.execute(q):
+                    out[row.hotel_id].append(search_fact(row))
         return dict(out)
 
     def room_types(self, hotel_ids: Collection[str]) -> dict[str, list[dict[str, Any]]]:
@@ -237,6 +290,17 @@ class DbStore:
             )
         return dict(out)
 
+    def placement_geometry(self, hotel_id: str) -> dict[str, Any]:
+        return GeoStore(self.engine).geometry(hotel_id)
+
+    def add_building_alias(self, hotel_id: str, building_id: str, alias: dict[str, Any]) -> bool:
+        with self._session() as s, s.begin():
+            link = s.get(HotelBuilding, (hotel_id, building_id))
+            if link is None:
+                return False
+            link.evidence = with_alias(link.evidence, alias)
+        return True
+
     @staticmethod
     def _question_dict(qu: Question, city_id: str | None) -> dict[str, Any]:
         return {
@@ -289,17 +353,18 @@ class DbStore:
 
     def apply_answer(self, result: AnswerResult) -> None:
         with self._session() as s, s.begin():
-            s.execute(
-                update(Question)
-                .where(Question.id == result.question_id)
-                .values(
-                    state=result.state,
-                    answer_text=result.answer_text,
-                    answered_at=result.answered_at,
-                    parsed=result.parsed,
-                    is_simulated=result.is_simulated,
+            if isinstance(result.question_id, int):  # у вопроса о размещении (`qp_…`) строки нет
+                s.execute(
+                    update(Question)
+                    .where(Question.id == result.question_id)
+                    .values(
+                        state=result.state,
+                        answer_text=result.answer_text,
+                        answered_at=result.answered_at,
+                        parsed=result.parsed,
+                        is_simulated=result.is_simulated,
+                    )
                 )
-            )
             for f in result.facts:
                 stmt = insert(FactRow).values(fact_to_row(f.model_dump(mode="json")))
                 s.execute(stmt.on_conflict_do_nothing(index_elements=["fact_id"]))
@@ -329,6 +394,11 @@ class DbStore:
         rt_id = result.room_type_id
         if rt_id is None or s.get(RoomType, rt_id) is None:
             raise AnswerError(f"нет категории {rt_id}: размещения не к чему привязать")
+        prev = s.get(PlacementSet, rt_id)
+        if prev is not None and not replaces_placements(result.placement_status, prev.status):
+            # Ответ имитатора не заменяет набор настоящего отеля или проверенный командой (D41-8).
+            result.placements_kept, result.placements = prev.status, None
+            return
         old = select(Placement.id).where(Placement.room_type_id == rt_id).scalar_subquery()
         s.execute(delete(PlacementWindow).where(PlacementWindow.placement_id.in_(old)))
         s.execute(delete(Placement).where(Placement.room_type_id == rt_id))
@@ -346,7 +416,7 @@ class DbStore:
         s.flush()
         windows: dict[str, set[str]] = defaultdict(set)
         for item in ps.items:
-            pid = f"{rt_id}|{item.building_id}|{item.floor}"
+            pid = placement_id(rt_id, item)
             if pid not in windows:
                 s.add(
                     Placement(

@@ -56,8 +56,13 @@ def main() -> int:
     if not packs:
         print("init: пакетов пока нет: fixtures — заглушки v9, db — ждёт пакеты", flush=True)
     for pack_dir in packs:
+        city_started = time.monotonic()
         with engine.begin() as conn:
-            print("init:", load_pack(conn, pack_dir), flush=True)
+            # Прогресс по видам файлов: на Москве init иначе молчит минутами.
+            result = load_pack(
+                conn, pack_dir, progress=lambda line: print("init:", line, flush=True)
+            )
+        print(f"init: {result} — {time.monotonic() - city_started:.1f} с", flush=True)
     print(f"init: готово за {time.monotonic() - started:.1f} с", flush=True)
     return 0
 

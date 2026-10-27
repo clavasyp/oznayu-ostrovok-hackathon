@@ -110,6 +110,16 @@
   "hotel_url": "https://ostrovok.ru/hotel/russia/adler/"
  },
  {
+  "hotel_id": "6496437",
+  "city_id": "sochi",
+  "name": "Отель Грейс Эль Параисо",
+  "address": "улица Просвещения, д.70, Сочи",
+  "latitude": 43.42598,
+  "longitude": 39.914955,
+  "hotel_kind": "HOTEL",
+  "hotel_url": "https://ostrovok.ru/hotel/russia/sochi/"
+ },
+ {
   "hotel_id": "8736052",
   "city_id": "moscow",
   "name": "Мини-отель «Прованс» — хостел",

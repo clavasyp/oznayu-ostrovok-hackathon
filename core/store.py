@@ -37,8 +37,21 @@ class Store(Protocol):
 
     def fact(self, fact_id: str) -> Fact | None: ...
 
-    def facts_for(self, feature_id: str, hotel_ids: Collection[str]) -> dict[str, list[Fact]]:
-        """Действующие факты одной характеристики для набора отелей — один запрос на условие."""
+    def facts_for(
+        self,
+        feature_id: str,
+        hotel_ids: Collection[str],
+        params: dict[str, Any] | None = None,
+        key_params: Collection[str] = (),
+    ) -> dict[str, list[Fact]]:
+        """Действующие факты одной характеристики для набора отелей — один запрос на условие.
+        Для поиска и сверки ответа: паспорт (источники, попытки рецептов) хранилище может не
+        отдавать — полный факт даёт `fact` по id.
+
+        `params` — подсказка, а не фильтр смысла: хранилище может отдать только факты с этими
+        параметрами (и без `key_params`, которых нет в запросе), но у отеля, где фактов с ними
+        нет, а с другими есть, оставляет один такой — поиск скажет «посчитано на другие даты»,
+        а не «нет данных». Сравнение по параметрам всё равно делает поиск (`_params_match`)."""
         ...
 
     def room_types(self, hotel_ids: Collection[str]) -> dict[str, list[dict[str, Any]]]:
@@ -46,6 +59,18 @@ class Store(Protocol):
         `{room_type_id, name, placement_set: {completeness, guarantee, status, source} | None,
         placements: [{placement_id, building_id, floor, floor_label, windows: [facade_id]}]}`.
         """
+        ...
+
+    def placement_geometry(self, hotel_id: str) -> dict[str, Any]:
+        """Корпуса и фасады отеля для размещений D17 — как `GET /api/hotels/{id}/geometry`:
+        `facades`, `placement_building_aliases`, `placement_facades`,
+        `placement_building_choices` (`core.placement_catalog`)."""
+        ...
+
+    def add_building_alias(self, hotel_id: str, building_id: str, alias: dict[str, Any]) -> bool:
+        """Название корпуса со слов отеля → `hotel_building.evidence.hotel_aliases`:
+        `{name, status: hotelier | simulated_hotelier, source: {question_id, answered_at,
+        quote…}}`. False — у отеля нет такого корпуса."""
         ...
 
     def questions(self, hotel_id: str) -> list[dict[str, Any]]: ...

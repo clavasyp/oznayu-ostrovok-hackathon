@@ -85,12 +85,15 @@ CALCULATORS: dict[str, CalculatorSpec] = {
         CalculatorSpec(
             id="env.landcover_share",
             version="1",
-            title="Доля классов покрова WorldCover на суше в радиусе вокруг отеля",
+            title="Доля классов покрова WorldCover в радиусе вокруг отеля",
             subject_level="hotel",
             layers=("worldcover",),
             unit="%",
             params={
-                "classes": "список кодов WorldCover, например [50] — застройка",
+                "classes": (
+                    "список кодов WorldCover, например [50] — застройка; доля от суши, "
+                    "а с водой (80) — от всей размеченной площади"
+                ),
                 "radius_m": "радиус круга вокруг отеля, м (100–2000)",
             },
             owner="Лера (план, docs/tasks/lera.md)",

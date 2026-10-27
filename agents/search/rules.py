@@ -18,9 +18,17 @@ from dataclasses import field as dfield
 from datetime import date
 
 from agents.catalog import Catalog, load_places
-from agents.search.compact import CompactAST, CompactAtom, CompactClarify, OrGroup, Param
+from agents.search.compact import (
+    DISMISSED,
+    RULE_CONTEXT,
+    CompactAST,
+    CompactAtom,
+    CompactClarify,
+    OrGroup,
+    Param,
+)
 from agents.search.negation import negate
-from agents.search.text import marker_requiredness, normalize
+from agents.search.text import STOPWORDS, clause_bounds, marker_requiredness, normalize
 
 # --- Пороги политики (не измерения): меняются здесь и видны в разборе ---
 NEAR_BEACH_M = 800  # «недалеко от моря» — как в примере трека
@@ -278,26 +286,73 @@ def _quiet_outside() -> list[Atom]:
     ]
 
 
-_FEW_BARS = r"(?<!не\s)(?:поменьше|меньше|мало|немного|минимум|без|подальше\s+от)"
-_MANY_BARS = r"(?<!не\s)(?:много|побольше|куча)"
+# Число баров со сравнением: «не больше двух», «минимум три», «до пяти».
+BAR_COUNT_OPS = {
+    r"не\s+больше": "lte", r"не\s+более": "lte", "максимум": "lte", "до": "lte",
+    "меньше": "lt", "менее": "lt",
+    r"не\s+меньше": "gte", r"не\s+менее": "gte", "минимум": "gte", "от": "gte",
+    "больше": "gt", "более": "gt",
+}  # fmt: skip
+# «Не много», «не очень много» — мало; «не мало», «немало» — много: отрицание меняет количество
+# на противоположное.
+_FEW_BARS = (
+    r"(?:не\s+(?:очень\s+|слишком\s+|особо\s+|так\s+)?много"
+    r"|(?<!не\s)(?:поменьше|меньше|мало|немного|минимум|без|подальше\s+от))"
+)
+_MANY_BARS = r"(?:не\s+мало|немало|(?<!не\s)(?:много|побольше|куча))"
+# Отрицание в части фразы вне слов самого условия: «чтобы 2 бара рядом не было», «не хочу больше
+# двух баров» — правило условие не ставит.
+_NEGATION_WORD = re.compile(r"(?<![\w-])(?:не|нет|ни|без|никак\w*)(?![\w-])")
 
 
 @rule
 def bars(ctx: Ctx) -> Iterator[Hit]:
-    bar = r"\bбар(?:ы|ов|ам|ами|ах)?"
+    bar = r"\bбар(?:ы|ов|ам|ами|ах|а)?\b"
+    # Число гостя: «не больше двух баров», «2 бара рядом», «от 2 до 5 баров». «до» и «от» —
+    # только отдельным словом: в «надо два бара» нет «до».
+    count = (
+        rf"(?<![\w-])(?:от\s+(?P<lo>{NUM})\s+до\s+(?P<hi>{NUM})"
+        rf"|(?:(?P<cmp>{'|'.join(BAR_COUNT_OPS)})\s+)?(?P<n>{NUM}))(?![\w-])"
+    )
     pattern = (
-        rf"(?:(?P<pre>{_FEW_BARS}|{_MANY_BARS})\s+)?(?:"
+        rf"(?:(?:{count}|(?<![\w-])(?P<pre>{_FEW_BARS}|{_MANY_BARS}))\s+)?(?:"
         rf"{bar}\s+(?:\w+\s+)?(?:рядом|недалеко|поблизости)(?:\s+нравятся)?"
         rf"|(?:рядом|недалеко|близость|поблизости)\s+(?:(?P<mid>{_FEW_BARS}|{_MANY_BARS})\s+)?"
-        rf"(?:[кс]\s+)?{bar}\b)"
+        rf"(?:[кс]\s+)?{bar})"
         rf"(?:\s+(?:было|будет|бы)?\s*(?P<post>{_FEW_BARS}|{_MANY_BARS})\b)?"
     )
     for m in finditer(pattern, ctx):
-        # «Мало / поменьше баров рядом», «чтобы баров было мало» — меньше; «бары рядом
-        # нравятся», «рядом много баров» — больше. Без слова о количестве — бары нужны.
+        # «Мало / поменьше баров рядом» — не больше двух; «рядом много баров» — от трёх; число
+        # гостя — как сказал. Нет ни числа, ни слова о количестве («не хочу бара рядом», «бары
+        # недалеко были бы плюсом») или рядом отрицание («чтобы 2 бара рядом не было») — условие
+        # не ставим: фраза остаётся непонятой, её разберёт модель или она станет обязательной
+        # частью вне каталога (D38). Перевёрнутое обязательное хуже непонятого.
+        start, end = clause_bounds(ctx.norm, m.start())
+        own = [m.span(g) for g in ("cmp", "pre", "mid", "post") if m.group(g)]
+        if any(
+            not any(s <= neg.start() < e for s, e in own)
+            for neg in _NEGATION_WORD.finditer(ctx.norm, start, end)
+        ):
+            continue
         word = m.group("pre") or m.group("mid") or m.group("post") or ""
-        few = re.fullmatch(_FEW_BARS, word) is not None
-        op, value = ("lte", QUIET_BARS_MAX) if few else ("gte", BARS_LIKED_MIN)
+        if m.group("lo"):
+            atoms = [
+                Atom("N04", "count", "gte", number(m.group("lo")), importance="low"),
+                Atom("N04", "count", "lte", number(m.group("hi")), importance="low"),
+            ]
+            yield Hit(m.start(), m.end(), atoms, "desired")
+            continue
+        if m.group("n"):
+            value = number(m.group("n"))
+            cmp = m.group("cmp")
+            op = BAR_COUNT_OPS[re.sub(r"\s+", r"\\s+", cmp)] if cmp else "gte"
+            if not cmp and float(value) == 0:
+                op = "lte"  # «ноль баров»
+        elif word:
+            few = re.fullmatch(_FEW_BARS, word) is not None
+            op, value = ("lte", QUIET_BARS_MAX) if few else ("gte", BARS_LIKED_MIN)
+        else:
+            continue
         atom = Atom("N04", "count", op, str(value), importance="low")
         yield Hit(m.start(), m.end(), [atom], "desired")
 
@@ -881,12 +936,29 @@ def requiredness(ctx: Ctx, pos: int, default: str) -> str:
     return marker_requiredness(ctx.norm, pos) or default
 
 
-# Отрицание прямо перед фразой: «без собак», «не на первом этаже». Где «без» — часть смысла
-# («без ступеней», «без пересадок»), оно внутри совпадения правила и сюда не попадает.
-NEGATION_BEFORE = re.compile(r"(?:^|[^\w-])(?P<w>не|без)\s+$")
-# «Балкон не нужен», «вид не важен» — требование снято, а не перевёрнуто. «Не обязательно» —
-# не снято, а смягчено: это решает обязательность (`marker_requiredness`).
-DISMISSED_AFTER = re.compile(r"^\s*(?:[—–-]\s*)?не\s*(?:нуж|важ)\w*")
+# Отрицание прямо перед фразой: «без собак», «не на первом этаже», «никаких собак», «аллергия на
+# собак». Где «без» — часть смысла («без ступеней», «без пересадок»), оно внутри совпадения правила
+# и сюда не попадает.
+NEGATION_BEFORE = re.compile(r"(?:^|[^\w-])(?P<w>не|без|никак\w*|аллерги\w*\s+на)\s+$")
+# «Балкон не нужен», «вид не важен», «лифт нам ни к чему» — требование снято, а не перевёрнуто.
+# «Всё равно», «неважно» — только в конце части фразы: «лифт всё равно был бы удобен» — не отказ.
+# «Не обязательно» — не снято, а смягчено: это решает обязательность (`marker_requiredness`).
+DISMISSED_AFTER = re.compile(
+    r"^\s*(?:[—–-]\s*)?(?:(?:нам|мне)\s+)?(?:не\s*(?:нуж|важ|принципиал|требу|понадоб)\w*"
+    r"|(?:ни\s+к\s+чему|без\s+разницы|все\s+равно|неваж\w*)(?=\s*(?:[.,;:!?—–()]|$)))"
+)
+# «Можно и без балкона», «обойдёмся без лифта», «без балкона тоже можно» — тоже снятие, а не
+# условие «без балкона».
+DISMISSED_BEFORE = re.compile(
+    r"(?:^|[^\w-])(?P<w>(?:можно\s+(?:и\s+|даже\s+)?|обойд\w+\s+)без)\s+$"
+)
+WITHOUT_IS_FINE = re.compile(r"^\s+(?:тоже\s+|и\s+)?(?:можно|обойд\w+)\b")
+# «Или» между совпадениями: «балкон или терраса», «с собакой или с кошкой», «кухня или хотя бы
+# чайник». Перед совпадением допускаем ещё пару слов: «балкон или большая терраса».
+_OR = r"(?<![\w-])или\s+(?:хотя\s+бы\s+|же\s+)?(?:(?:с|со|на|в|во)\s+)?"
+OR_BETWEEN = re.compile(rf"\s*,?\s*{_OR}")
+OR_AFTER = re.compile(rf"^\s*,?\s*{_OR}(?P<w>[\w-]+)")
+OR_BEFORE = re.compile(rf"(?P<w>[\w-]+)\s*,?\s*{_OR}(?:[\w-]+\s+){{0,2}}$")
 # «Хвосты» понятых фраз: «рядом с аптекой» — расстояние понято, «рядом» не должно висеть отдельно.
 TAIL_BEFORE = re.compile(
     r"(?P<w>\b(?:рядом|поблизости|недалеко|неподалеку|близко|возле|около))\s+(?:(?:с|со|от|к|до)\s+)?$"
@@ -918,9 +990,53 @@ def _apply_comparison(ctx: Ctx, h: Hit) -> Hit:
     return replace(h, start=m.start("w"), atoms=[atom])
 
 
+def _dismissed(ctx: Ctx, h: Hit) -> tuple[int, int] | None:
+    """Снятое требование: условия нет, но кусок понят — модель его заново не разбирает
+    (на «Балкон не нужен» она ставила лишнее M02)."""
+    if m := DISMISSED_AFTER.match(ctx.norm[h.end :]):
+        return h.start, h.end + m.end()
+    if m := DISMISSED_BEFORE.search(ctx.norm[: h.start]):
+        return m.start("w"), h.end
+    neg = NEGATION_BEFORE.search(ctx.norm[: h.start])
+    if neg and neg.group("w") == "без" and (m := WITHOUT_IS_FINE.match(ctx.norm[h.end :])):
+        return neg.start("w"), h.end + m.end()
+    return None
+
+
+def _or_chains(ctx: Ctx, kept: list[Hit], reqs: list[str]) -> tuple[set[int], list[list[int]]]:
+    """Совпадения через «или» (номера в `kept`): что не брать и какие группы ИЛИ собрать.
+
+    Обязательное «или» правила выражают только группой ИЛИ из простых условий одной
+    обязательности. Иначе — второй вариант не понят («аптека или супермаркет»), условие
+    составное («собака 10 кг или кошка») — вся цепочка остаётся непонятой: её разберёт модель
+    или она станет обязательной частью вне каталога (D38). Два обязательных через «И» вместо
+    «ИЛИ» дали бы «Не подходит» отелю, который гостю подходит."""
+    chains: list[list[int]] = []
+    for i in range(len(kept)):
+        if i and OR_BETWEEN.fullmatch(ctx.norm[kept[i - 1].end : kept[i].start]):
+            chains[-1].append(i)
+        else:
+            chains.append([i])
+    drop: set[int] = set()
+    groups: list[list[int]] = []
+    for chain in chains:
+        simple = all(len(kept[i].atoms) == 1 and not kept[i].any_of for i in chain)
+        simple = simple and len({reqs[i] for i in chain}) == 1
+        if "required" not in {reqs[i] for i in chain}:
+            if len(chain) > 1 and simple:
+                groups.append(chain)  # желательные — ИЛИ не мешает, но и «И» не страшно
+            continue
+        after = OR_AFTER.match(ctx.norm[kept[chain[-1]].end :])
+        before = OR_BEFORE.search(ctx.norm[: kept[chain[0]].start])
+        dangling = any(m and m.group("w") not in STOPWORDS for m in (after, before))
+        if dangling or (len(chain) > 1 and not simple):
+            drop.update(chain)
+        elif len(chain) > 1:
+            groups.append(chain)
+    return drop, groups
+
+
 def _apply_negation(ctx: Ctx, h: Hit, catalog: Catalog) -> Hit | None:
-    if DISMISSED_AFTER.match(ctx.norm[h.end :]):
-        return None
     m = NEGATION_BEFORE.search(ctx.norm[: h.start])
     if not m:
         return h
@@ -948,22 +1064,34 @@ def parse_rules(
         if all(h.end <= k.start or h.start >= k.end for k in kept):
             kept.append(h)
     # Отрицание: обратное условие или ничего (кусок останется непонятым), но не противоположное.
-    kept = [_apply_comparison(ctx, h) for h in kept]
-    kept = [n for h in kept if (n := _apply_negation(ctx, h, catalog))]
-    kept.sort(key=lambda h: h.start)
+    dismissed: list[tuple[int, int]] = []  # снятые требования: «балкон не нужен»
+    out: list[Hit] = []
+    for h in (_apply_comparison(ctx, h) for h in kept):
+        if span := _dismissed(ctx, h):
+            dismissed.append(span)
+        elif n := _apply_negation(ctx, h, catalog):
+            out.append(n)
+    kept = sorted(out, key=lambda h: h.start)
+    reqs = [requiredness(ctx, h.start, h.default) for h in kept]
+    drop, chains = _or_chains(ctx, kept, reqs)
+    chains = [[i - sum(d < i for d in drop) for i in c] for c in chains]
+    kept = [h for i, h in enumerate(kept) if i not in drop]
+    reqs = [r for i, r in enumerate(reqs) if i not in drop]
+    used: list[tuple[int, int]] = []  # слова, на которые опирались правила (не город и даты)
     for h in kept:
         if m := TAIL_BEFORE.search(ctx.norm[: h.start]):
-            ctx.context.append((m.start("w"), h.start))
+            used.append((m.start("w"), h.start))
         if m := TAIL_AFTER.match(ctx.norm[h.end :]):
-            ctx.context.append((h.end, h.end + m.end()))
+            used.append((h.end, h.end + m.end()))
 
     atoms: list[CompactAtom] = []
     spans: dict[str, tuple[int, int]] = {}
     clarify: list[CompactClarify] = []
     or_groups: list[OrGroup] = []
     pets: list[str] = []
-    for h in kept:
-        req = requiredness(ctx, h.start, h.default)
+    first_atom: list[str] = []  # id первого атома каждого совпадения — для групп ИЛИ
+    for h, req in zip(kept, reqs, strict=True):
+        first_atom.append(f"a{len(atoms) + 1}")
         if h.any_of:
             ids = [f"a{len(atoms) + i + 1}" for i in range(len(h.atoms))]
             or_groups.append(OrGroup(group_id=f"g{len(or_groups) + 1}", atom_ids=ids))
@@ -991,8 +1119,13 @@ def parse_rules(
         for c in h.clarify:
             if all(c.about != x.about for x in clarify):
                 clarify.append(c)
-        ctx.context += h.context
+        used += h.context
+    # «Балкон или терраса» — гость согласен на любое, а не на оба сразу (ревью №29).
+    for chain in chains:
+        ids = [first_atom[i] for i in chain]
+        or_groups.append(OrGroup(group_id=f"g{len(or_groups) + 1}", atom_ids=ids))
 
+    context = ctx.context + used
     compact = CompactAST(
         city=city,
         date_from=ctx.date_from.isoformat() if ctx.date_from else "",
@@ -1000,11 +1133,15 @@ def parse_rules(
         adults=str(adults) if adults else "",
         children_ages=[],
         pets=pets,
-        context_text=[raw[s:e] for s, e in ctx.context],
+        context_text=[raw[s:e] for s, e in context],
         atoms=atoms,
         or_groups=or_groups,
         negated_atoms=[],
         clarify=clarify,
     )
-    spans |= {f"ctx{i}": span for i, span in enumerate(ctx.context)}
+    spans |= {f"ctx{i}": span for i, span in enumerate(context)}
+    # Понятое без атома: слова условия («ночью», «с открытым окном», «рядом») и снятые
+    # требования («балкон не нужен»). Модель не ставит на них своих условий (`merge_rest`).
+    spans |= {f"{RULE_CONTEXT}{i}": span for i, span in enumerate(used)}
+    spans |= {f"{DISMISSED}{i}": span for i, span in enumerate(dismissed)}
     return compact, spans

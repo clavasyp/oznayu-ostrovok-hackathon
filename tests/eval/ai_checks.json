@@ -1,0 +1,211 @@
+{
+  "checked_at": "2026-10-24",
+  "checker": "ИИ-ассистент — черновик проверки, НЕ подпись человека",
+  "how": "Открывал ссылку эталона, искал в тексте заявленное значение, для фото смотрел кадр. Где источник недоступен или вопрос не решается источником — так и написано. Вердикт подтверждает человек.",
+  "cases": {
+    "FACADE_REF_01": {
+      "check": "эталон подтверждён",
+      "verdict_proposal": "не проверить",
+      "evidence_url": "https://adlerkurortsochi.ru/korpusa/",
+      "note": "На странице корпусов: «Коралл» — «современный трехзвездочный 15-ти этажный комплекс». Эталон Codex (15) совпадает с заявлением оператора. У нас факта нет — сравнивать нечего: это промах покрытия, а не ошибка значения."
+    },
+    "FACADE_REF_02": {
+      "check": "эталон подтверждён",
+      "verdict_proposal": "не проверить",
+      "evidence_url": "https://lavicon.ru/fregat-hotel/",
+      "note": "Официальный сайт: «Современный 15‑этажный отель 4 звезды LAVICON ОТЕЛЬ ФРЕГАТ». Наш ответ — unknown, то есть «неизвестно», а не «неверно». Соглашение о подсчёте (цоколь, крыша) оператор не раскрывает."
+    },
+    "FACADE_REF_03": {
+      "check": "не проверить",
+      "verdict_proposal": "не проверить",
+      "evidence_url": "https://pansamarin.ru/wp-content/uploads/2025/03/4575678.jpg",
+      "note": "Кадр обрезан сверху: видны цоколь и 3–4 уровня, выше срез. Этажность по такому фото не считается, у нас факта нет."
+    },
+    "FACADE_REF_04": {
+      "check": "источник недоступен",
+      "verdict_proposal": "не проверить",
+      "evidence_url": "https://www.radissonhotels.com/en-us/hotels/radisson-collection-resort",
+      "note": "Ссылка эталона отдаёт 404 — проверять нечем. Ссылку надо заменить до того, как случай попадёт в метрику."
+    },
+    "FACADE_REF_05": {
+      "check": "источник недоступен",
+      "verdict_proposal": "не проверить",
+      "evidence_url": "https://www.radissonhotels.com/en-us/hotels/radisson-collection-resort",
+      "note": "Тот же 404. Эталона нет."
+    },
+    "FACADE_REF_06": {
+      "check": "не проверить",
+      "verdict_proposal": "не проверить",
+      "evidence_url": "https://adlerkurortsochi.ru/wp-content/uploads/2023/06/IMG_2230_11zon.jpg",
+      "note": "Тишину по фото фасада проверить нельзя: нужны замеры или жалобы гостей с датой. Наш ответ — unknown."
+    },
+    "FACADE_REF_07": {
+      "check": "не проверить",
+      "verdict_proposal": "не проверить",
+      "evidence_url": "https://pansamarin.ru/wp-content/uploads/2025/03/4575678.jpg",
+      "note": "Фото фасада не доказывает уровень шума. Нужны замеры, жалобы или карта источников шума."
+    },
+    "FACADE_REF_08": {
+      "check": "частично",
+      "verdict_proposal": "не проверить",
+      "evidence_url": "https://marinayacht.stellarhotels.ru/rooms/",
+      "note": "Отель в описаниях категорий пишет «вид на парк и боковым видом на море», «видом на море и здание Морского Порта». Это заявление оператора на уровне категории, а не панорама «что видно с какой стороны и этажа»."
+    },
+    "geo-sochi-01": {
+      "check": "источник недоступен",
+      "verdict_proposal": "не проверить",
+      "evidence_url": "https://stoletov.ru/pharmacies/doktor-stoletov-sochi-konstitutsii-sssr",
+      "note": "Страница аптеки отдаёт 404 — режим «круглосуточно» по ней не проверить. OSM API из этой среды отвечает 429, поэтому и тег OSM не перепроверен."
+    },
+    "geo-sochi-02": {
+      "check": "эталон подтверждён",
+      "verdict_proposal": "не проверить",
+      "evidence_url": "https://www.centervet-sochi.com/",
+      "note": "Сайт клиники: «Г. Сочи, ул. Тепличная 18/А — Круглосуточно». Режим работы подтверждён. Но эталон описывает только его: вопрос «рядом ли» (6,8 км) этим не решается."
+    },
+    "geo-sochi-03": {
+      "check": "не проверить",
+      "verdict_proposal": "не проверить",
+      "evidence_url": "https://bandidobar.com/",
+      "note": "Счёт баров идёт по одному слою карт, независимой инвентаризации нет. Отсутствие объекта в слое не значит, что его нет в городе."
+    },
+    "geo-sochi-04": {
+      "check": "не проверить",
+      "verdict_proposal": "не проверить",
+      "evidence_url": "https://www.openstreetmap.org/way/240616876",
+      "note": "Эталонного маршрута до пляжа нет: 155 м — расстояние до контакта графа с пляжем, а не до входа. OSM API недоступен (429)."
+    },
+    "geo-sochi-05": {
+      "check": "не проверить",
+      "verdict_proposal": "не проверить",
+      "evidence_url": "https://www.openstreetmap.org/way/240616876",
+      "note": "Эталон — тот же OSM-след, что и у нас: проверяется воспроизводимость, а не точность. Ноль размеченных ступеней не значит «ступеней нет»."
+    },
+    "geo-sochi-06": {
+      "check": "не проверить",
+      "verdict_proposal": "не проверить",
+      "evidence_url": "https://www.openstreetmap.org/way/240616876",
+      "note": "То же: один источник на обе стороны сравнения."
+    },
+    "geo-sochi-07": {
+      "check": "не проверить",
+      "verdict_proposal": "не проверить",
+      "evidence_url": "https://www.openstreetmap.org/way/257675020",
+      "note": "Расстояние до оси контура воспроизводимо, но независимого эталона того же смысла нет."
+    },
+    "geo-sochi-08": {
+      "check": "не проверить",
+      "verdict_proposal": "не проверить",
+      "evidence_url": "https://www.openstreetmap.org/way/240616876",
+      "note": "Освещённость на маршруте не размечена (известно 0%) — сравнивать не с чем."
+    },
+    "geo-sochi-09": {
+      "check": "не проверить",
+      "verdict_proposal": "не проверить",
+      "evidence_url": "https://akvaloo.ru/",
+      "note": "Удобства на сайте отеля не задают расстояние: эталона «сколько метров до детской зоны» нет."
+    },
+    "geo-sochi-10": {
+      "check": "не проверить",
+      "verdict_proposal": "не проверить",
+      "evidence_url": "https://www.sochi-tk.ru/routes.html",
+      "note": "Расписание на будущие даты поездки официально не опубликовано — проверять нечего."
+    },
+    "ENV-C01-10012084-07": {
+      "check": "не эталон того же смысла",
+      "verdict_proposal": "не проверить",
+      "evidence_url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/4.4/data/0-data/",
+      "note": "Наши 23,8 °C против станционных 23,7 (Δ0,11 °C). Станция на побережье, наша ячейка 0,25° — другой участок: это пространственная репрезентативность, а не ошибка расчёта."
+    },
+    "ENV-C01-10012084-11": {
+      "check": "не эталон того же смысла",
+      "verdict_proposal": "не проверить",
+      "evidence_url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/4.4/data/0-data/",
+      "note": "12,5 против 11,4 (Δ1,1 °C). Ноябрь расходится сильнее июля — типично для пары «береговая станция — ячейка над другой точкой»."
+    },
+    "ENV-C01-13736470-07": {
+      "check": "не эталон того же смысла",
+      "verdict_proposal": "не проверить",
+      "evidence_url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/4.4/data/0-data/",
+      "note": "21,5 против 23,7 (Δ2,2 °C): отель в Сириусе, ячейка (43,5; 40,0) восточнее и выше, станция прибрежная."
+    },
+    "ENV-C01-13736470-11": {
+      "check": "не эталон того же смысла",
+      "verdict_proposal": "не проверить",
+      "evidence_url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/4.4/data/0-data/",
+      "note": "9,1 против 11,4 (Δ2,3 °C) — та же разница смысла, что и в июле."
+    },
+    "ENV-B02-13736470-07": {
+      "check": "не проверить",
+      "verdict_proposal": "не проверить",
+      "evidence_url": "https://stac.marine.copernicus.eu/metadata/GLOBAL_ANALYSISFORECAST_PHY_001_024",
+      "note": "Случай проверяет смысл источника (thetao, глубина 0,494 м, мокрая ячейка), а не независимое измерение температуры. Эталона температуры того же смысла нет."
+    },
+    "ENV-B02-10012084-11": {
+      "check": "не проверить",
+      "verdict_proposal": "не проверить",
+      "evidence_url": "https://stac.marine.copernicus.eu/metadata/GLOBAL_ANALYSISFORECAST_PHY_001_024",
+      "note": "То же: аудит смысла, не измерение."
+    },
+    "ENV-E03-7807617": {
+      "check": "не проверить",
+      "verdict_proposal": "не проверить",
+      "evidence_url": "https://www.rest-matsesta.ru/",
+      "note": "Количественного эталона доли зелени в 300 м нет: описание сада на сайте отеля не размечено по площади."
+    },
+    "ENV-E03-10439075": {
+      "check": "не проверить",
+      "verdict_proposal": "не проверить",
+      "evidence_url": "https://villamariaclub.ru/",
+      "note": "То же: описание территории отеля не является измерением доли растительности."
+    },
+    "STATION_C01_43.5_39.75_7": {
+      "check": "не эталон того же смысла",
+      "verdict_proposal": "не проверить",
+      "evidence_url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/4.4/data/0-data/",
+      "note": "23,81 против 23,7 (Δ0,11 °C) — в пределах климатического разброса, но станция и ячейка это разные объекты. Годится как проверка вменяемости, не как точность."
+    },
+    "STATION_C01_43.5_39.75_11": {
+      "check": "не эталон того же смысла",
+      "verdict_proposal": "не проверить",
+      "evidence_url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/4.4/data/0-data/",
+      "note": "12,49 против 11,4 (Δ1,09 °C)."
+    },
+    "STATION_C02_43.5_39.75_7": {
+      "check": "не эталон того же смысла",
+      "verdict_proposal": "не проверить",
+      "evidence_url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/4.4/data/0-data/",
+      "note": "9,9 против 6,0 дней (Δ3,9). Это уже не шум: ERA5 даёт больше дождевых дней, чем станция. Границу применимости C02 надо назвать в питче, а не прятать."
+    },
+    "STATION_C02_43.5_39.75_11": {
+      "check": "не эталон того же смысла",
+      "verdict_proposal": "не проверить",
+      "evidence_url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/4.4/data/0-data/",
+      "note": "10,93 против 10,0 (Δ0,93) — в ноябре сходится."
+    },
+    "STATION_C01_43.5_40.0_7": {
+      "check": "не эталон того же смысла",
+      "verdict_proposal": "не проверить",
+      "evidence_url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/4.4/data/0-data/",
+      "note": "21,49 против 23,7 (Δ2,2 °C): ячейка восточнее станции, над другой местностью."
+    },
+    "STATION_C01_43.5_40.0_11": {
+      "check": "не эталон того же смысла",
+      "verdict_proposal": "не проверить",
+      "evidence_url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/4.4/data/0-data/",
+      "note": "9,12 против 11,4 (Δ2,3 °C)."
+    },
+    "STATION_C02_43.5_40.0_7": {
+      "check": "не эталон того же смысла",
+      "verdict_proposal": "не проверить",
+      "evidence_url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/4.4/data/0-data/",
+      "note": "14,37 против 6,0 дней (Δ8,4, в 2,4 раза): ячейка захватывает горы, станция на берегу. Показательный пример, почему нельзя сравнивать разные объекты."
+    },
+    "STATION_C02_43.5_40.0_11": {
+      "check": "не эталон того же смысла",
+      "verdict_proposal": "не проверить",
+      "evidence_url": "https://www.nodc.noaa.gov/archive/arc0216/0253808/4.4/data/0-data/",
+      "note": "11,37 против 10,0 (Δ1,37)."
+    }
+  }
+}

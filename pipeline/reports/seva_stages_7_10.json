@@ -1,0 +1,1189 @@
+{
+  "built_at": "2026-10-26T16:26:58.751903+00:00",
+  "branch": "seva/ostrovok-import",
+  "stage_7": {
+    "status": "implemented_and_real_data_verified",
+    "hotels": 4211,
+    "geo_facts": 130541,
+    "district_parts": 142,
+    "graph": {
+      "graph_nodes": 3098732,
+      "graph_edges": 3536806,
+      "blocked_pedestrian_nodes": 41177
+    },
+    "peak_rss_mib": 5440.8,
+    "initial_calculation_seconds": 3849.6045112910033,
+    "building_matches": {
+      "matched_hotels": 1585,
+      "links": 1585,
+      "ambiguous_auto_candidates": 13,
+      "methods": {
+        "unique_full_address_and_point_in_polygon": 1567,
+        "v9_accepted_link_replay": 18
+      }
+    },
+    "w04_dsm_completion": {
+      "updated_facts": 8164,
+      "routes": 4120,
+      "tiles": {
+        "Copernicus_DSM_COG_10_N55_00_E037_00_DEM.tif": "027a31311fd198c54d08d7f6025835fa34b24c3e08ddc43023b485ee63f21320"
+      },
+      "statuses": {
+        "estimate": 8164,
+        "unknown": 258
+      },
+      "physical_ground_profile_verified": false,
+      "seconds": 65.09382491600263,
+      "code_sha256": "b1dc63f52b2a5ed0b5e4c6408a97cc58f978b9288489e3231ab8a229bf2474b5"
+    },
+    "feature_statuses": {
+      "N02": {
+        "unknown": 2626,
+        "computed": 1585
+      },
+      "N03": {
+        "unknown": 2626,
+        "computed": 1585
+      },
+      "N04": {
+        "computed": 4211
+      },
+      "W01": {
+        "not_applicable": 8422
+      },
+      "W02": {
+        "estimate": 8240,
+        "unknown": 182
+      },
+      "W03": {
+        "estimate": 8234,
+        "unknown": 188
+      },
+      "W04": {
+        "estimate": 8164,
+        "unknown": 258
+      },
+      "W05": {
+        "computed": 8240,
+        "unknown": 182
+      },
+      "W06": {
+        "computed": 8240,
+        "unknown": 182
+      },
+      "L01": {
+        "estimate": 8238,
+        "unknown": 184
+      },
+      "L02": {
+        "unknown": 8422
+      },
+      "L03": {
+        "estimate": 8240,
+        "unknown": 182
+      },
+      "F01": {
+        "estimate": 8262,
+        "unknown": 160
+      },
+      "F02": {
+        "unknown": 8422
+      },
+      "P03": {
+        "unknown": 8422
+      },
+      "P04": {
+        "estimate": 8234,
+        "unknown": 188
+      },
+      "Q03": {
+        "computed": 8164,
+        "unknown": 258
+      }
+    },
+    "v9_comparison_updated_inputs": {
+      "baseline_hotels": 50,
+      "contexts": 1550,
+      "counts": {
+        "equal_status_and_metric": 1505,
+        "status_changed": 14,
+        "missing_context": 31
+      },
+      "differences": [
+        {
+          "key": [
+            "6346858",
+            "N02",
+            "",
+            null,
+            null,
+            null
+          ],
+          "reason": "status_changed",
+          "old": "unknown",
+          "new": "computed"
+        },
+        {
+          "key": [
+            "6346858",
+            "N03",
+            "",
+            null,
+            null,
+            null
+          ],
+          "reason": "status_changed",
+          "old": "unknown",
+          "new": "computed"
+        },
+        {
+          "key": [
+            "6870778",
+            "N02",
+            "",
+            null,
+            null,
+            null
+          ],
+          "reason": "status_changed",
+          "old": "unknown",
+          "new": "computed"
+        },
+        {
+          "key": [
+            "6870778",
+            "N03",
+            "",
+            null,
+            null,
+            null
+          ],
+          "reason": "status_changed",
+          "old": "unknown",
+          "new": "computed"
+        },
+        {
+          "key": [
+            "6959324",
+            "N02",
+            "",
+            null,
+            null,
+            null
+          ],
+          "reason": "status_changed",
+          "old": "unknown",
+          "new": "computed"
+        },
+        {
+          "key": [
+            "6959324",
+            "N03",
+            "",
+            null,
+            null,
+            null
+          ],
+          "reason": "status_changed",
+          "old": "unknown",
+          "new": "computed"
+        },
+        {
+          "key": [
+            "7590428",
+            "N02",
+            "",
+            null,
+            null,
+            null
+          ],
+          "reason": "status_changed",
+          "old": "unknown",
+          "new": "computed"
+        },
+        {
+          "key": [
+            "7590428",
+            "N03",
+            "",
+            null,
+            null,
+            null
+          ],
+          "reason": "status_changed",
+          "old": "unknown",
+          "new": "computed"
+        },
+        {
+          "key": [
+            "8352750",
+            "N02",
+            "",
+            null,
+            null,
+            null
+          ],
+          "reason": "status_changed",
+          "old": "unknown",
+          "new": "computed"
+        },
+        {
+          "key": [
+            "8352750",
+            "N03",
+            "",
+            null,
+            null,
+            null
+          ],
+          "reason": "status_changed",
+          "old": "unknown",
+          "new": "computed"
+        },
+        {
+          "key": [
+            "8684850",
+            "N04",
+            "",
+            null,
+            null,
+            null
+          ],
+          "reason": "context_missing"
+        },
+        {
+          "key": [
+            "8684850",
+            "N02",
+            "way/156930124",
+            null,
+            null,
+            null
+          ],
+          "reason": "context_missing"
+        },
+        {
+          "key": [
+            "8684850",
+            "N03",
+            "way/156930124",
+            null,
+            null,
+            null
+          ],
+          "reason": "context_missing"
+        },
+        {
+          "key": [
+            "8684850",
+            "W01",
+            "",
+            null,
+            "2026-11-14",
+            "2026-11-17"
+          ],
+          "reason": "context_missing"
+        },
+        {
+          "key": [
+            "8684850",
+            "W01",
+            "",
+            null,
+            "2027-07-15",
+            "2027-07-18"
+          ],
+          "reason": "context_missing"
+        },
+        {
+          "key": [
+            "8684850",
+            "W02",
+            "",
+            null,
+            "2026-11-14",
+            "2026-11-17"
+          ],
+          "reason": "context_missing"
+        },
+        {
+          "key": [
+            "8684850",
+            "W02",
+            "",
+            null,
+            "2027-07-15",
+            "2027-07-18"
+          ],
+          "reason": "context_missing"
+        },
+        {
+          "key": [
+            "8684850",
+            "W03",
+            "",
+            null,
+            "2026-11-14",
+            "2026-11-17"
+          ],
+          "reason": "context_missing"
+        },
+        {
+          "key": [
+            "8684850",
+            "W03",
+            "",
+            null,
+            "2027-07-15",
+            "2027-07-18"
+          ],
+          "reason": "context_missing"
+        },
+        {
+          "key": [
+            "8684850",
+            "W05",
+            "",
+            null,
+            "2026-11-14",
+            "2026-11-17"
+          ],
+          "reason": "context_missing"
+        },
+        {
+          "key": [
+            "8684850",
+            "W05",
+            "",
+            null,
+            "2027-07-15",
+            "2027-07-18"
+          ],
+          "reason": "context_missing"
+        },
+        {
+          "key": [
+            "8684850",
+            "W06",
+            "",
+            null,
+            "2026-11-14",
+            "2026-11-17"
+          ],
+          "reason": "context_missing"
+        },
+        {
+          "key": [
+            "8684850",
+            "W06",
+            "",
+            null,
+            "2027-07-15",
+            "2027-07-18"
+          ],
+          "reason": "context_missing"
+        },
+        {
+          "key": [
+            "8684850",
+            "Q03",
+            "",
+            null,
+            "2026-11-14",
+            "2026-11-17"
+          ],
+          "reason": "context_missing"
+        },
+        {
+          "key": [
+            "8684850",
+            "Q03",
+            "",
+            null,
+            "2027-07-15",
+            "2027-07-18"
+          ],
+          "reason": "context_missing"
+        },
+        {
+          "key": [
+            "8684850",
+            "W04",
+            "",
+            null,
+            "2026-11-14",
+            "2026-11-17"
+          ],
+          "reason": "context_missing"
+        },
+        {
+          "key": [
+            "8684850",
+            "W04",
+            "",
+            null,
+            "2027-07-15",
+            "2027-07-18"
+          ],
+          "reason": "context_missing"
+        },
+        {
+          "key": [
+            "8684850",
+            "L01",
+            "",
+            "2026-11-14T02:00:00",
+            null,
+            null
+          ],
+          "reason": "context_missing"
+        },
+        {
+          "key": [
+            "8684850",
+            "L01",
+            "",
+            "2027-07-17T02:00:00",
+            null,
+            null
+          ],
+          "reason": "context_missing"
+        },
+        {
+          "key": [
+            "8684850",
+            "L02",
+            "",
+            "2026-11-14T02:00:00",
+            null,
+            null
+          ],
+          "reason": "context_missing"
+        },
+        {
+          "key": [
+            "8684850",
+            "L02",
+            "",
+            "2027-07-17T02:00:00",
+            null,
+            null
+          ],
+          "reason": "context_missing"
+        },
+        {
+          "key": [
+            "8684850",
+            "L03",
+            "",
+            "2026-11-14T02:00:00",
+            null,
+            null
+          ],
+          "reason": "context_missing"
+        },
+        {
+          "key": [
+            "8684850",
+            "L03",
+            "",
+            "2027-07-17T02:00:00",
+            null,
+            null
+          ],
+          "reason": "context_missing"
+        },
+        {
+          "key": [
+            "8684850",
+            "F02",
+            "",
+            "2026-11-14T02:00:00",
+            null,
+            null
+          ],
+          "reason": "context_missing"
+        },
+        {
+          "key": [
+            "8684850",
+            "F02",
+            "",
+            "2027-07-17T02:00:00",
+            null,
+            null
+          ],
+          "reason": "context_missing"
+        },
+        {
+          "key": [
+            "8684850",
+            "P04",
+            "",
+            "2026-11-14T02:00:00",
+            null,
+            null
+          ],
+          "reason": "context_missing"
+        },
+        {
+          "key": [
+            "8684850",
+            "P04",
+            "",
+            "2027-07-17T02:00:00",
+            null,
+            null
+          ],
+          "reason": "context_missing"
+        },
+        {
+          "key": [
+            "8684850",
+            "P03",
+            "",
+            null,
+            "2026-11-14",
+            "2026-11-17"
+          ],
+          "reason": "context_missing"
+        },
+        {
+          "key": [
+            "8684850",
+            "P03",
+            "",
+            null,
+            "2027-07-15",
+            "2027-07-18"
+          ],
+          "reason": "context_missing"
+        },
+        {
+          "key": [
+            "8684850",
+            "F01",
+            "",
+            null,
+            "2026-11-14",
+            "2026-11-17"
+          ],
+          "reason": "context_missing"
+        },
+        {
+          "key": [
+            "8684850",
+            "F01",
+            "",
+            null,
+            "2027-07-15",
+            "2027-07-18"
+          ],
+          "reason": "context_missing"
+        },
+        {
+          "key": [
+            "8736714",
+            "N02",
+            "",
+            null,
+            null,
+            null
+          ],
+          "reason": "status_changed",
+          "old": "unknown",
+          "new": "computed"
+        },
+        {
+          "key": [
+            "8736714",
+            "N03",
+            "",
+            null,
+            null,
+            null
+          ],
+          "reason": "status_changed",
+          "old": "unknown",
+          "new": "computed"
+        },
+        {
+          "key": [
+            "8869553",
+            "N02",
+            "",
+            null,
+            null,
+            null
+          ],
+          "reason": "status_changed",
+          "old": "unknown",
+          "new": "computed"
+        },
+        {
+          "key": [
+            "8869553",
+            "N03",
+            "",
+            null,
+            null,
+            null
+          ],
+          "reason": "status_changed",
+          "old": "unknown",
+          "new": "computed"
+        }
+      ],
+      "tolerance": {
+        "relative": 1e-08,
+        "absolute": 0.01
+      },
+      "scope": "Сверка статуса и основной метрики, не измерение физической точности."
+    },
+    "excluded_v9_hotel_ids": [
+      "8684850"
+    ],
+    "source_inputs_original_run": "a3125c800d6b2b1c5d848f815ee2d5d87f4b8b1d67d64178b80bc8990ae47199",
+    "original_source_archive": "/private/tmp/seva-data/moscow-original-code",
+    "no_blocked_node_contacts": true,
+    "sochi_control_after_spatial_index_change": {
+      "baseline_hotels": 89,
+      "contexts": 2775,
+      "counts": {
+        "equal_status_and_metric": 2775
+      },
+      "differences": [],
+      "tolerance": {
+        "relative": 1e-08,
+        "absolute": 0.01
+      },
+      "scope": "Сверка статуса и основной метрики, не измерение физической точности.",
+      "inputs": {
+        "cohort_sha256": "c0f37fe6fa70f0ac9134608ee4b08537f0fd332a9fa78c8691047069d798afd1",
+        "facts_sha256": "716e84a029d183e439f7c7c923626a6edf2d30b16ee6f4e72999d5de5ac38db9",
+        "osm_manifest_sha256": "976c9a689d1e225cfefe8fee06e1a53524dd76a371a61533bc4b586082a0dfc0",
+        "building_link_policy": "v9_accepted_links_only",
+        "scene_policy": "v9_first_vertex_bbox_for_control_only",
+        "raster_sha256": {
+          "Copernicus_DSM_COG_10_N43_00_E039_00_DEM.tif": "ec4192bc74e18926617e40373898d37d6000ab0593cabde3a25a5d9781d7991e",
+          "Copernicus_DSM_COG_10_N43_00_E040_00_DEM.tif": "49e7ef0de441d943645ee1b8aa9941f35a2d3e7c1574be23135b339612d58493"
+        }
+      }
+    }
+  },
+  "stage_8": {
+    "status": "implemented",
+    "by_city": {
+      "moscow": {
+        "buildings": 1295,
+        "facades": 22404,
+        "inner_ring_facades": 381,
+        "actual_windows_or_room_placements_invented": 0
+      },
+      "sochi": {
+        "buildings": 635,
+        "facades": 6127,
+        "inner_ring_facades": 76,
+        "actual_windows_or_room_placements_invented": 0
+      }
+    },
+    "actual_room_placements_invented": 0,
+    "hotel_aliases_not_guessed": true
+  },
+  "stage_9": {
+    "status": "partial_external_api_key_missing",
+    "by_city": {
+      "moscow": {
+        "provider": "OpenStreetMap",
+        "radius_m": 1500,
+        "places": 240027,
+        "hotel_place_pairs": 14914222,
+        "stations": 1701,
+        "hotel_station_pairs": 50532,
+        "categories": {
+          "fuel": 715,
+          "theatre": 277,
+          "church": 803,
+          "coffee": 5483,
+          "post": 1070,
+          "museum": 373,
+          "restaurant": 2747,
+          "uzbek": 111,
+          "japanese": 451,
+          "bank": 1929,
+          "atm": 2822,
+          "cinema": 142,
+          "seafood": 136,
+          "hospital": 3300,
+          "viewpoint": 286,
+          "vietnamese": 131,
+          "mall": 619,
+          "georgian": 383,
+          "russian": 279,
+          "vegetarian": 601,
+          "burger": 655,
+          "gym": 719,
+          "exchange": 98,
+          "italian": 942,
+          "market": 162,
+          "spa": 186,
+          "laundry": 815,
+          "steak": 71,
+          "regional": 69,
+          "theme_park": 111,
+          "chinese": 74,
+          "pool": 234,
+          "bakery": 1153,
+          "french": 17,
+          "bike_rental": 88,
+          "souvenir": 297,
+          "ski_lift": 6,
+          "zoo": 24,
+          "indian": 26,
+          "wine": 116,
+          "car_rental": 31,
+          "thai": 16,
+          "armenian": 13,
+          "korean": 29,
+          "mexican": 15,
+          "kosher": 9,
+          "caucasian": 21,
+          "halal": 34,
+          "mosque": 10,
+          "water_park": 7,
+          "synagogue": 5
+        },
+        "transit_times": 0,
+        "transit_time_status": "unknown",
+        "reason": "2gis_key_and_dated_transit_responses_unavailable",
+        "distance_kind": "geodesic_to_representative_point",
+        "all_recorded_locations_within_radius": true,
+        "real_world_completeness_guaranteed": false,
+        "walking_access_guaranteed": false
+      },
+      "sochi": {
+        "provider": "OpenStreetMap",
+        "radius_m": 1500,
+        "places": 20078,
+        "hotel_place_pairs": 2075950,
+        "stations": 176,
+        "hotel_station_pairs": 15806,
+        "categories": {
+          "coffee": 962,
+          "cinema": 19,
+          "fuel": 64,
+          "ski_lift": 54,
+          "viewpoint": 172,
+          "atm": 264,
+          "post": 117,
+          "restaurant": 331,
+          "burger": 40,
+          "bank": 108,
+          "hospital": 162,
+          "theatre": 22,
+          "georgian": 28,
+          "bakery": 164,
+          "mall": 71,
+          "museum": 31,
+          "spa": 51,
+          "laundry": 16,
+          "japanese": 27,
+          "zoo": 13,
+          "indian": 1,
+          "italian": 65,
+          "regional": 42,
+          "pool": 1626,
+          "gym": 30,
+          "russian": 24,
+          "market": 34,
+          "theme_park": 31,
+          "souvenir": 104,
+          "seafood": 24,
+          "thai": 2,
+          "vegetarian": 17,
+          "water_park": 14,
+          "church": 66,
+          "car_rental": 17,
+          "bike_rental": 29,
+          "chinese": 5,
+          "wine": 11,
+          "steak": 1,
+          "french": 6,
+          "vietnamese": 5,
+          "uzbek": 3
+        },
+        "transit_times": 0,
+        "transit_time_status": "unknown",
+        "reason": "2gis_key_and_dated_transit_responses_unavailable",
+        "distance_kind": "geodesic_to_representative_point",
+        "all_recorded_locations_within_radius": true,
+        "real_world_completeness_guaranteed": false,
+        "walking_access_guaranteed": false
+      }
+    },
+    "twogis_live_requests": 0,
+    "twogis_coverage_not_claimed": true,
+    "transit_times": 0,
+    "sources_for_unknown_transit": "No 2GIS key or dated provider responses; no timetable/transfer inference from mapped stations."
+  },
+  "stage_10": {
+    "status": "correctness_verified_native_and_docker_performance_pending",
+    "packs": {
+      "dubai": {
+        "depth": "automatic",
+        "files": 5,
+        "rows": {
+          "hotels": 50,
+          "facts": 4000,
+          "room_types": 0,
+          "facades": 0,
+          "hotel_places": 0
+        },
+        "bytes": 1779322
+      },
+      "istanbul": {
+        "depth": "automatic",
+        "files": 5,
+        "rows": {
+          "hotels": 50,
+          "facts": 4000,
+          "room_types": 0,
+          "facades": 0,
+          "hotel_places": 0
+        },
+        "bytes": 2155856
+      },
+      "kaliningrad": {
+        "depth": "automatic",
+        "files": 5,
+        "rows": {
+          "hotels": 50,
+          "facts": 4006,
+          "room_types": 0,
+          "facades": 0,
+          "hotel_places": 0
+        },
+        "bytes": 1733930
+      },
+      "kazan": {
+        "depth": "automatic",
+        "files": 5,
+        "rows": {
+          "hotels": 50,
+          "facts": 3961,
+          "room_types": 0,
+          "facades": 0,
+          "hotel_places": 0
+        },
+        "bytes": 1595118
+      },
+      "minsk": {
+        "depth": "automatic",
+        "files": 5,
+        "rows": {
+          "hotels": 50,
+          "facts": 3950,
+          "room_types": 0,
+          "facades": 0,
+          "hotel_places": 0
+        },
+        "bytes": 1765300
+      },
+      "moscow": {
+        "depth": "full",
+        "files": 74,
+        "rows": {
+          "hotels": 4211,
+          "facts": 242838,
+          "room_types": 12739,
+          "facades": 22404,
+          "hotel_places": 14914222
+        },
+        "bytes": 220243907
+      },
+      "sochi": {
+        "depth": "full",
+        "files": 23,
+        "rows": {
+          "hotels": 2695,
+          "facts": 167141,
+          "room_types": 9233,
+          "facades": 6127,
+          "hotel_places": 2075950
+        },
+        "bytes": 66731862
+      },
+      "spb": {
+        "depth": "automatic",
+        "files": 5,
+        "rows": {
+          "hotels": 50,
+          "facts": 4000,
+          "room_types": 0,
+          "facades": 0,
+          "hotel_places": 0
+        },
+        "bytes": 1763844
+      }
+    },
+    "automatic_cities_unchanged_from_head": [
+      "spb",
+      "kazan",
+      "kaliningrad",
+      "minsk",
+      "istanbul",
+      "dubai"
+    ],
+    "total_data_bytes": 297769139,
+    "max_file_bytes": 51436169,
+    "native_city_init_seconds": {
+      "sochi": 82.2,
+      "moscow": 125.6
+    },
+    "native_api_and_database": {
+      "counts": {
+        "hotel": 7206,
+        "room_type": 21972,
+        "fact": 433896,
+        "building": 1930,
+        "hotel_building": 2258,
+        "facade": 28531,
+        "place": 260105,
+        "hotel_place": 16990172,
+        "transit_station": 1877,
+        "hotel_station": 66338,
+        "transit_time": 0,
+        "curation_item": 4656
+      },
+      "orphan_room_facts": 0,
+      "foreign_keys": [
+        [
+          "hotel_place",
+          "hotel_place_hotel_id_fkey",
+          true
+        ],
+        [
+          "hotel_place",
+          "hotel_place_place_id_fkey",
+          true
+        ],
+        [
+          "hotel_station",
+          "hotel_station_hotel_id_fkey",
+          true
+        ],
+        [
+          "hotel_station",
+          "hotel_station_station_id_fkey",
+          true
+        ]
+      ],
+      "api_seconds": 0.23136583300220082,
+      "geometry_hotel_id": "6295905",
+      "geometry_buildings": 1,
+      "geometry_facades": 7,
+      "nearby_italian_candidates": 8,
+      "stations": 12,
+      "transit_status": "unknown",
+      "health": "ok"
+    },
+    "docker": {
+      "status": "functional_checks_passed_performance_limit_exceeded",
+      "compose_seconds_to_health": 5100.417591875004,
+      "under_600_seconds": false,
+      "repeat_command_seconds": 9.671809915998892,
+      "cities": [
+        {
+          "city_id": "sochi",
+          "name": "Большой Сочи",
+          "depth": "full",
+          "timezone": "Europe/Moscow",
+          "hotels": 2695,
+          "hotels_in_sample": 2695
+        },
+        {
+          "city_id": "moscow",
+          "name": "Москва",
+          "depth": "full",
+          "timezone": "Europe/Moscow",
+          "hotels": 4211,
+          "hotels_in_sample": 4211
+        },
+        {
+          "city_id": "dubai",
+          "name": "Дубай",
+          "depth": "automatic",
+          "timezone": "Asia/Dubai",
+          "hotels": 50,
+          "hotels_in_sample": 50
+        },
+        {
+          "city_id": "kazan",
+          "name": "Казань",
+          "depth": "automatic",
+          "timezone": "Europe/Moscow",
+          "hotels": 50,
+          "hotels_in_sample": 50
+        },
+        {
+          "city_id": "kaliningrad",
+          "name": "Калининград",
+          "depth": "automatic",
+          "timezone": "Europe/Kaliningrad",
+          "hotels": 50,
+          "hotels_in_sample": 50
+        },
+        {
+          "city_id": "minsk",
+          "name": "Минск",
+          "depth": "automatic",
+          "timezone": "Europe/Minsk",
+          "hotels": 50,
+          "hotels_in_sample": 50
+        },
+        {
+          "city_id": "spb",
+          "name": "Петербург",
+          "depth": "automatic",
+          "timezone": "Europe/Moscow",
+          "hotels": 50,
+          "hotels_in_sample": 50
+        },
+        {
+          "city_id": "istanbul",
+          "name": "Стамбул",
+          "depth": "automatic",
+          "timezone": "Europe/Istanbul",
+          "hotels": 50,
+          "hotels_in_sample": 50
+        }
+      ],
+      "counts": {
+        "hotels": 7206,
+        "room_types": 21972,
+        "facts": 433896,
+        "facades": 28531,
+        "places": 260105,
+        "hotel_place_pairs": 16990172,
+        "stations": 1877,
+        "hotel_station_pairs": 66338,
+        "transit_times": 0,
+        "curation_items": 4656,
+        "orphan_room_facts": 0
+      },
+      "health": {
+        "status": "ok"
+      },
+      "geometry_hotel_id": "6295905",
+      "geometry_facades": 7,
+      "nearby_italian_candidates": 8,
+      "environment": "temporary Lima VZ, 2 CPUs/3GiB; linux/amd64 via qemu on arm64; base dependency image cache exists",
+      "init_seconds": 5075.9,
+      "postgis_version": "3.6.4",
+      "foreign_keys": [
+        [
+          "hotel_place",
+          "hotel_place_hotel_id_fkey",
+          true
+        ],
+        [
+          "hotel_place",
+          "hotel_place_place_id_fkey",
+          true
+        ],
+        [
+          "hotel_station",
+          "hotel_station_hotel_id_fkey",
+          true
+        ],
+        [
+          "hotel_station",
+          "hotel_station_station_id_fkey",
+          true
+        ]
+      ],
+      "repeat_init_skipped_cities": 8,
+      "first_migration_issue": "PostGIS tiger.place shadowed unqualified table; fixed with public.place; regression test included",
+      "benchmark_scope": "Successful compose up --build -d after migration fix; cached images and dependencies; VM provisioning and downloads excluded",
+      "native_linux_amd64_end_to_end_seconds": null,
+      "native_linux_amd64_under_600_seconds_verified": false,
+      "temporary_vm_stopped": true,
+      "verified_at": "2026-10-26T17:18:20.339909+00:00"
+    }
+  },
+  "verification": {
+    "pytest_passed": 358,
+    "pytest_skipped": 0,
+    "ruff_check": true,
+    "ruff_format_check": true,
+    "uv_lock_offline_check": true,
+    "git_diff_check": true,
+    "new_database_tests": [
+      "geo layer roundtrip and API",
+      "same manifest skipped",
+      "new version preserves runtime facts and reviewer decisions",
+      "duplicate COPY rollback",
+      "orphan FK validation rollback",
+      "validated FK definitions restored",
+      "PostGIS extension-name collision"
+    ],
+    "source_hashes_verified": 48
+  },
+  "code_sha256": {
+    "calculators/route_facades.py": "ec4f64704e0ee1d120b4e734dbda0948d15808dd31b8edca7b49d9fe2b73b745",
+    "calculators/poi_hours.py": "05ed0fd876458021ca41c0684b832286a6520b9afd8207ed23e69ed8084d4bee",
+    "calculators/__init__.py": "0cb585dc7ac5b042f346f6f62daadcf3ba0a23625af633fd993bdee3df07e2e4",
+    "calculators/route_geo.py": "3e7ecd0d41e91c465d7a6649636e6daba38058d4dab80ad2d01f6efc8c137f5c",
+    "calculators/route_graph.py": "58ad52eff5a5f6e50f1de6c149bd5029c58d2f7a55449ec8b44dca7da3504ec4",
+    "calculators/env_vegetation.py": "2e3d22a4fb93434f26507ca52d889f29c714acc67c014615957789e473d820be",
+    "connectors/city_geography.py": "275b40ae48b7015e0bf1fcdf7bf29b0942b80feea9ef2e380e19a36e711cc06a",
+    "connectors/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "connectors/osm_pbf.py": "8f1dc063cb0f25ef4a38859e21c9fac44efdc9fe8a130b6e0d8ddc8792cffe3e",
+    "connectors/ostrovok_site.py": "6f3ba9a2fce0d8fd2cdc7597e8fa796210b150d9c85c61caaabb376d2d5da102",
+    "connectors/twogis.py": "a8f3a39b48f5b49a45804c2285648575bf0ae336d6e844001615bef979926163",
+    "pipeline/calculate_moscow.py": "d3bdaaed375bf61384c377f1b2b101c1dd9cb4044a6a740ad2ddaef8f6ced9cc",
+    "pipeline/build_v9_packs.py": "45e7111f12b284fe83a766c8cb2dc24935f1ae76e3dd0242e869800f7851b8ac",
+    "pipeline/finalize_packs.py": "489cbf1af59e9e5a2f1c593b6d176726e707d1c3a8547d4bd0d8b6e896d2a660",
+    "pipeline/twogis_layers.py": "7ffdca8921bc484b81dd52ca799dae3a94b58712a1f27dfbbbe5cc694299a1cc",
+    "pipeline/complete_ascent.py": "b1dc63f52b2a5ed0b5e4c6408a97cc58f978b9288489e3231ab8a229bf2474b5",
+    "pipeline/load_packs.py": "027755b727217b69bfff922ff99a30617b364c6072c42f2a25f5b83efe7d9616",
+    "pipeline/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "pipeline/collect_twogis.py": "20b11c30db5fbe07e3a2871b1cf86d6ffd03b57efdd4b0f6cce1e1d78ca1d7d1",
+    "pipeline/import_ostrovok.py": "6f07e9a8c661ac20d8e18fc8b59668cca945319579253c1c31e16fb65e2eb9af",
+    "pipeline/nearby_tables.py": "e04da8c025872abc5c654fecbdda165dc05cca42ce4759784fa1104b8af7a58b",
+    "pipeline/building_review.py": "ec57a4822b7f9882e8bc32fd87a547336b3383cdf0e1989a31ccdaf79d37d7ee",
+    "pipeline/init.py": "e9b8163579a2d43a3e50cedb57eacebb85e020f1c58df8822ca71b4d59209b29",
+    "pipeline/make_fixtures.py": "7f1835ef73f9ec23d7662ac5289ae71224a5062cee94e22456b7ed8ee391ef7c",
+    "pipeline/build_packs.py": "610a01b7a3833fe3a560a840235c4684ed7897dc41db26e81c1864e55cddea62",
+    "pipeline/calculate_city.py": "32676cd24e3c8eb75305165404e1acee50f5506c90c25777d83561e0ae5aa033",
+    "pipeline/publish_packs.py": "11e011bb37cafe80d1b1acb73ca8e757c2ae1a0c5b3f75c79f181f5747c4fd4c",
+    "core/plugins.py": "20260819f44b3e68dcacedc7f9f98888812b4e2f81dd2c3fcf9b90f5f3e40327",
+    "core/store.py": "23a6df1aa49b689e83d687cfb95382d2b173a80ffd922b34266b16c47a61ffe5",
+    "core/db.py": "94efc2c19160a99cc5f403c79631e6f65e01c55993996ce0db4165c123366a79",
+    "core/facts.py": "62b07c8e44070dbd7090ab4300632cdcec47d4aa909c0a2bfb0936f089d5c0d8",
+    "core/placement_catalog.py": "7fe4cc41ffdc2591deb2b3404e6dd3ba981720dbc185b1bd2e4fa7e887d8edcc",
+    "core/reasons.py": "88d4483d482ffe4d3964b523e5093bdc0cf3853831f7a165e7c4b06188c2a9ac",
+    "core/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "core/store_db.py": "091235bc7851b6c044930eae595cc2f0fdbf6c7a597e13c7caad872877974475",
+    "core/hotelier.py": "91d32a291ab8f58e46d8e3fd3371c758df48a53771de2ae50ddda8caea1b5b6b",
+    "core/search.py": "9319bfc3fdf286b5121602227fe5a123c6ec99be32f92600320c3b2e23096bbe",
+    "core/geo_store.py": "9c7ed203820f32da379ab9d753877f3582aa163df856918da71135394b87b655",
+    "core/packs.py": "d00beb016c11d6d46f7a6990ab2e283839595e116f63cfa0d0ac42031e28c62a",
+    "core/verdict.py": "8d76cef0c639c6899dd5fa8fdd05a421f9ae4c055fb96a0b9f126fad23c48a07",
+    "app/api/specs.py": "6a39c4ce983e26a83b4460cc66c7da3d2a678104fff07d4b3d8c3d3478984a38",
+    "app/api/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "app/api/geo_routes.py": "b29a6aa7edefeefb68490338190290efe945865d1375d422522bece357180317",
+    "app/api/routes.py": "d12d88c1583f783dd23acb21b51f4e21638be7ecd69ad584dcacad445dea2332",
+    "migrations/versions/0003_placements.py": "5e4cd676f980c16d9e607fb9afbcc9552adc9572d39249e37b1502db8508f16f",
+    "migrations/versions/0004_geo_layers.py": "403f3030aefee5dfb0412dd158d3b111de004b8587fe772a47d66ebfd4ef504c",
+    "migrations/versions/0002_v9_packs.py": "aecb9c472831c9e7afe69635e9db99749c164e3ef2463bf516d4b9b5aa9701e8",
+    "migrations/versions/0001_initial.py": "ee40844e7e49449cb72aa7ea8e6e0ead85fdd5a634f1bcee420ca06d823df5c2"
+  },
+  "remaining": [
+    "Obtain a 2GIS key and verify service/rubric access; demo for smoke checks only.",
+    "Populate dated public-transport responses after budget/subscription is available.",
+    "Human review of building candidates and hotel-specific building aliases.",
+    "Raw v11 candidate files unavailable locally; import helper does not treat external accepted as a human decision."
+  ],
+  "verified_at": "2026-10-26T17:18:20.339909+00:00"
+}

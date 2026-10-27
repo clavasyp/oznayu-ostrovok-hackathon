@@ -37,6 +37,10 @@ from agents.search.text import covered_gaps, find_span, marker_requiredness, nor
 CITY_IDS = ("sochi", "moscow", "spb", "kazan", "kaliningrad", "minsk", "istanbul", "dubai")
 IMPORTANCE = {"low": 1, "medium": 2, "high": 3}
 LEFTOVER = "rest"  # atom_id обязательной части вне каталога из непонятого куска
+# Ключи позиций правил без атома: слова, на которые опиралось правило («ночью», «рядом»), и
+# снятое требование («балкон не нужен»). Кусок понят — не остаток и не место для атома модели.
+RULE_CONTEXT = "rctx"
+DISMISSED = "skip"
 _PREP_BEFORE = re.compile(r"\b(?:без|не|с|со|для|на|в|во|у|от|до|при|из)\s+$")
 
 
@@ -115,6 +119,7 @@ def to_full_ast(
             covered.append(spans[f"ctx{i}"])
         elif s := find_span(raw_text, text):
             covered.append((s.start, s.end))
+    covered += [s for key, s in spans.items() if key.startswith(DISMISSED)]
 
     for atom in compact.atoms:
         span = _span(raw_text, atom, spans)

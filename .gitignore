@@ -11,13 +11,16 @@ venv/
 node_modules/
 ui/dist/
 
-# Секреты и личные настройки запуска
-.env
+# Секреты и личные настройки запуска: любые .env*, кроме шаблона
+.env*
+!.env.example
 docker-compose.override.yml
 
 # Сырые и тяжёлые данные — на общем диске, не в git
 data/raw/
 data/ostrovok_catalog/snapshot_*/
+# Кеш ответов и журнал расхода 2ГИС (D37: не публикуются)
+data/twogis_cache/
 *.osm.pbf
 *.tif
 *.nc

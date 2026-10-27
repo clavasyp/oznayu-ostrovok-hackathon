@@ -14,7 +14,7 @@
      "type": "bool"
     }
    },
-   "default_field": null,
+   "default_field": "visible",
    "ops": [
     "eq"
    ],
@@ -37,7 +37,7 @@
      "type": "bool"
     }
    },
-   "default_field": null,
+   "default_field": "visible",
    "ops": [
     "eq"
    ],
@@ -61,7 +61,7 @@
      "type": "bool"
     }
    },
-   "default_field": null,
+   "default_field": "visible",
    "ops": [
     "eq"
    ],
@@ -85,7 +85,7 @@
      "type": "bool"
     }
    },
-   "default_field": null,
+   "default_field": "visible",
    "ops": [
     "eq"
    ],
@@ -108,7 +108,7 @@
      "type": "bool"
     }
    },
-   "default_field": null,
+   "default_field": "visible",
    "ops": [
     "eq"
    ],
@@ -296,6 +296,8 @@
    "id": "N04",
    "title": "Количество учтённых в принятом источнике заведений заданных ночных типов в радиусе",
    "short": "мало баров и клубов рядом",
+   "short_more": "бары и клубы рядом",
+   "short_less": "мало баров и клубов рядом",
    "level": "hotel",
    "source": "computed",
    "fields": {
@@ -420,6 +422,8 @@
    "id": "W05",
    "title": "Число известных участков лестниц на выбранном маршруте",
    "short": "лестницы по пути",
+   "short_more": "лестницы по пути",
+   "short_less": "без лестниц по пути",
    "level": "route",
    "source": "computed",
    "fields": {

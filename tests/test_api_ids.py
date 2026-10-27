@@ -13,7 +13,13 @@ import pytest
 from fastapi.testclient import TestClient
 
 from app.main import create_app
-from core.packs import PROVENANCE_PARAMS, PackError, discover, move_provenance_params
+from core.packs import (
+    PROVENANCE_PARAMS,
+    PackError,
+    discover,
+    move_provenance_params,
+    read_manifest,
+)
 from pipeline.build_v9_packs import PACKS
 from pipeline.make_fixtures import OUT as FIXTURES
 
@@ -107,14 +113,14 @@ def test_provenance_paths_leave_params():
         move_provenance_params({"fact_id": "f2", "params": {"other": "/Users/dev/x.json"}})
 
 
-FACT_FILES = [
-    *(p / "data" / "facts.jsonl.gz" for p in discover(PACKS)),
+FACT_FILES = [  # все файлы фактов пакетов, и слои калькуляторов (вид и солнце) тоже
+    *(p / f.path for p in discover(PACKS) for f in read_manifest(p).files if f.kind == "facts"),
     FIXTURES / "facts.jsonl.gz",
 ]
 LOCAL_ROOTS = ("/Users/", "/home/", "/private/", "/tmp/")
 
 
-@pytest.mark.parametrize("path", FACT_FILES, ids=lambda p: p.parent.parent.name)
+@pytest.mark.parametrize("path", FACT_FILES, ids=lambda p: f"{p.parent.parent.name}/{p.name}")
 def test_facts_have_no_local_paths(path):
     with gzip.open(path, "rt", encoding="utf-8") as f:
         for line in f:

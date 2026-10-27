@@ -13,5 +13,15 @@
     "L04": {"fields": {"front_desk_hours": "24/7"}},
     "P01": {"fields": {"species": "none"}}
   },
-  "categories": []
+  "categories": [
+    {
+      "room_type_id": "8736052:3202",
+      "name": "Номер Standard",
+      "placements": [
+        {"building": "основное здание", "building_id": "relation/19206805", "floors": [2, 5], "side": "SW"}
+      ],
+      "completeness": "complete",
+      "guarantee": "on_request"
+    }
+  ]
 }

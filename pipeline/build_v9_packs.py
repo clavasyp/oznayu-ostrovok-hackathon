@@ -2,8 +2,10 @@
 
 Вход — research_notes/Расчёт характеристик (Codex v9, сверено): 439 отелей восьми городов,
 35 015 фактов, вопросы отельеру с предзаполнением, покрытие и сверка с карточкой Островка.
-Это первый слой данных в базе (веха M1). Каталог Островка (Сева) и новые расчёты добавятся
-своими файлами пакета.
+Шесть автоматических городов (D36) идут в packs/ как есть. Москва и Сочи в packs/ — полный
+каталог Островка (`pipeline.build_packs` → `finalize_packs` → `supplement_categories`), их v9
+нужна только как вход `build_packs`: собирать в другую папку — `--out /tmp/v9`. Пакет другой
+сборки сборщик v9 не перезаписывает.
 
 Сборка детерминированная: те же входы → те же байты и те же sha256 в manifest.json.
 """
@@ -14,9 +16,9 @@ import ast
 import csv
 import gzip
 import hashlib
-import io
 import json
 from collections import Counter, defaultdict
+from collections.abc import Collection
 from datetime import datetime
 from pathlib import Path
 from typing import Any
@@ -24,11 +26,15 @@ from typing import Any
 from core.facts import Fact
 from core.packs import (
     Manifest,
+    PackError,
     PackFile,
     PackSource,
+    keep_layers,
     move_provenance_params,
     sha256_file,
     stable_id,
+    write_jsonl_gz,
+    write_manifest,
 )
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -56,15 +62,6 @@ CITY_NAMES = {
 }
 FULL_DEPTH = {"sochi", "moscow"}  # D36
 SLIM_KEYS = ("component_diagnostics", "audit_files", "components")  # тяжёлая диагностика v9
-
-
-def write_jsonl_gz(path: Path, rows: list[dict[str, Any]]) -> None:
-    """gzip без времени в заголовке — иначе sha256 менялся бы при каждой сборке."""
-    buf = io.BytesIO()
-    with gzip.GzipFile(fileobj=buf, mode="wb", mtime=0, compresslevel=9) as gz:
-        for row in rows:
-            gz.write((json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n").encode())
-    path.write_bytes(buf.getvalue())
 
 
 def hotel_row(h: dict[str, Any]) -> dict[str, Any]:
@@ -184,7 +181,19 @@ def load_inputs() -> dict[str, Any]:
             "ota_comparisons": ota}  # fmt: skip
 
 
-def build(out_root: Path = PACKS) -> list[str]:
+def foreign_packs(out_root: Path, cities: Collection[str]) -> list[str]:
+    """Пакеты не сборки v9 в папке результата: их сборщик v9 не перезаписывает."""
+    foreign = []
+    for city in sorted(cities):
+        path = out_root / city / "manifest.json"
+        if path.is_file():
+            code = json.loads(path.read_text("utf-8")).get("code_version") or ""
+            if not code.startswith("v9-packs"):
+                foreign.append(f"{city} ({code or 'без code_version'})")
+    return foreign
+
+
+def build(out_root: Path = PACKS, cities: Collection[str] | None = None) -> list[str]:
     data = load_inputs()
     inputs_sha = hashlib.sha256(
         (BUILDER_VERSION + "".join(sha256_file(p) for p in INPUTS.values())).encode()
@@ -212,6 +221,20 @@ def build(out_root: Path = PACKS) -> list[str]:
     timezones = defaultdict(Counter)
     for h in data["hotels"]:
         timezones[h["city_id"]][h.get("timezone") or "UTC"] += 1
+
+    if cities is not None:
+        unknown = set(cities) - set(by_city)
+        if unknown:
+            raise PackError(f"нет таких городов в расчётах v9: {sorted(unknown)}")
+        by_city = {c: parts for c, parts in by_city.items() if c in cities}
+    foreign = foreign_packs(out_root, by_city)
+    if foreign:
+        raise PackError(
+            f"{out_root}: пакеты другой сборки — {', '.join(foreign)}; сборщик v9 их не "
+            "перезаписывает. Москва и Сочи в packs/ — полный каталог Островка. v9 как вход "
+            "build_packs — в другую папку: --out /tmp/v9; шесть автоматических городов — "
+            "--city spb --city kazan …"
+        )
 
     report = []
     for city, parts in sorted(by_city.items()):
@@ -250,9 +273,8 @@ def build(out_root: Path = PACKS) -> list[str]:
                 "Диагностика v9 (component_diagnostics, audit_files, components) не включена."
             ),
         )
-        (pack / "manifest.json").write_text(
-            manifest.model_dump_json(indent=2, exclude_none=True) + "\n", "utf-8"
-        )
+        manifest = keep_layers(pack, manifest)  # слои калькуляторов (вид и солнце) — как были
+        write_manifest(pack, manifest)
         size = sum(f.bytes for f in files)
         report.append(
             f"{city}: " + ", ".join(f"{f.kind} {f.rows}" for f in files) + f"; {size / 1e6:.1f} МБ"
@@ -260,6 +282,16 @@ def build(out_root: Path = PACKS) -> list[str]:
     return report
 
 
-if __name__ == "__main__":
-    for line in build():
+def main(argv: list[str] | None = None) -> None:
+    import argparse
+
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--out", type=Path, default=PACKS, help="папка результата (packs/)")
+    parser.add_argument("--city", action="append", help="только эти города (можно несколько)")
+    args = parser.parse_args(argv)
+    for line in build(args.out, args.city):
         print(line)
+
+
+if __name__ == "__main__":
+    main()

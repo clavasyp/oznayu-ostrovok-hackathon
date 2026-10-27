@@ -190,7 +190,13 @@ def test_llm_only_for_incomplete_and_checked_against_raw():
 
 
 def test_cli_report_and_candidates(tmp_path, capsys):
-    assert main(["--city", "moscow"]) == 0
+    from pipeline.build_v9_packs import build
+
+    # Контроль парсера на фиксированной когорте v9, отдельно от полного каталога.
+    packs = tmp_path / "v9-packs"
+    build(packs)
+    common = ["--city", "moscow", "--packs", str(packs)]
+    assert main(common) == 0
     assert "у 49 из 50 отелей" in capsys.readouterr().out
     lat, lon = 55.7655, 37.6077  # Малая Дмитровка, 29 с3 (условная точка для теста)
     rows = [{"id": "way/1", "city_id": "moscow", "tags": {"addr:street": "улица Малая Дмитровка",
@@ -200,7 +206,7 @@ def test_cli_report_and_candidates(tmp_path, capsys):
     with gzip.open(path, "wt", encoding="utf-8") as f:
         f.write("\n".join(json.dumps(r, ensure_ascii=False) for r in rows))
     out = tmp_path / "candidates.jsonl"
-    assert main(["--city", "moscow", "--buildings", str(path), "--out", str(out)]) == 0
+    assert main(common + ["--buildings", str(path), "--out", str(out)]) == 0
     items = [json.loads(line) for line in out.read_text("utf-8").splitlines()]
     assert len(items) == 50
     che = next(i for i in items if i["subject_id"] == "6843354")  # «Отель Че»

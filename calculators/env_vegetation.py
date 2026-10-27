@@ -3,7 +3,8 @@
 Перенос `green_fraction` из расчётов v9
 (research_notes/Расчёт характеристик/scripts/environment.py):
 пересечение пикселей с кругом 300 м в азимутальной проекции вокруг отеля; знаменатель — суша
-(без воды 80 и пропусков 0). Если покрытие растром < 99% — факт `unknown` с причиной.
+(без воды 80 и пропусков 0). Если покрытие растром < 99%, круг выходит за край растра (вырезка
+`data/worldcover`) или нет геобиблиотек (`geo_libs_missing`) — факт `unknown` с причиной.
 Владелец дальше — Лера (calculators/env*).
 """
 
@@ -14,6 +15,7 @@ from collections.abc import Sequence
 from datetime import UTC, datetime
 from pathlib import Path
 
+from calculators.env_landcover import GEO_LIBS_MISSING, circle_outside
 from core.facts import Confidence, Fact, RecipeAttempt, Source, Status, make_fact_id
 from core.plugins import CityContext, Subject, register_calculator
 
@@ -50,6 +52,8 @@ def vegetation_share(lat: float, lon: float, tile: Path) -> tuple[float | None, 
     )
     circle = shapely.Point(0, 0).buffer(RADIUS_M, quad_segs=64)
     with rasterio.open(tile) as ds:
+        if circle_outside(ds.bounds, lat, lon, RADIUS_M):
+            return None, f"worldcover_tile_missing:{tile.name}:outside_window"
         dx = 330 / (111000 * math.cos(math.radians(lat)))
         dy = 330 / 111000
         win = from_bounds(lon - dx, lat - dy, lon + dx, lat + dy, ds.transform)
@@ -98,17 +102,20 @@ class VegetationShare:
                     reason="Нет более нового лицензированного покрова с общей маской суши.",
                 )
             ]
-            value, reason = None, None
+            value, reason, detail = None, None, None
             if not tile.is_file():
                 reason = f"worldcover_tile_missing:{tile.name}"
             else:
-                value, reason = vegetation_share(s.latitude, s.longitude, tile)
+                try:
+                    value, reason = vegetation_share(s.latitude, s.longitude, tile)
+                except ImportError as e:  # геобиблиотеки — только в группе builder
+                    reason, detail = GEO_LIBS_MISSING, f"{GEO_LIBS_MISSING}: нет {e.name}"
             attempts.append(
                 RecipeAttempt(
                     recipe_id="E03-R2",
                     data_kind="Б",
                     state="accepted" if value is not None else "failed",
-                    reason=reason,
+                    reason=detail or reason,
                 )
             )
             facts.append(

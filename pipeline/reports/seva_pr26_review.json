@@ -1,0 +1,780 @@
+{
+  "version": "category-supplement.1",
+  "snapshot_version": "snapshot_2026-10-27-targeted",
+  "index_sha256": "1c0e3ed5dc92ab6535416b8dbfe63bf68ec79282eb09360db1a4e5592472881b",
+  "hotels": {
+    "6458292": {
+      "city_id": "moscow",
+      "existing_categories": 0,
+      "added_categories": 0,
+      "added_facts": 0,
+      "position_delta_m": 0.0,
+      "source": {
+        "provider": "ostrovok.ru",
+        "url": "https://ostrovok.ru/hotel/russia/moscow/mid6458292/bolshaya_dorogomilovskaya_guest_house/",
+        "original_url": "https://ostrovok.ru/hotel/russia/moscow/mid6458292/bolshaya_dorogomilovskaya_guest_house/",
+        "dataset_version": "snapshot_2026-10-27-targeted",
+        "dataset_sha256": "3e9f2682fca49fc8ac44d9987fce2c2b2a92d9946408c3888c58ae1c7e7e8343",
+        "html_sha256": "e175429eae40be378af51931e23ecdf754a0feb52effeb977a2c5b99ee6de402",
+        "json_pointer": "/props/pageProps/hotel",
+        "snapshot_file": "next/e1/e175429eae40be378af51931e23ecdf754a0feb52effeb977a2c5b99ee6de402.json.gz",
+        "fetched_at": "2026-10-27T07:46:53.852713+00:00",
+        "mid_url": "6458292",
+        "geography_verified": false
+      },
+      "status": "room_groups_empty",
+      "categories_after": 0,
+      "building_choices": [
+        {
+          "building_id": "relation/15812142",
+          "mapped_address": "Большая Дорогомиловская улица, 4",
+          "mapped_name": null,
+          "mapped_levels": 12,
+          "hotel_aliases": [],
+          "unambiguous_facades": [],
+          "ambiguous_sides": [
+            {
+              "side": "E",
+              "facade_ids": [
+                "seg-1177d9d1d6bde56e3855",
+                "seg-263cf3a3d211f4923e26",
+                "seg-2d2f701b8d74df4d4d8d",
+                "seg-512abeb42fb1e4cec93e",
+                "seg-b6584a0862e09ea83bb7"
+              ],
+              "reason": "multiple_facades_require_clarification"
+            },
+            {
+              "side": "N",
+              "facade_ids": [
+                "seg-428206c0ff671e35fc81",
+                "seg-4508a0cd12f9f1b6d246"
+              ],
+              "reason": "multiple_facades_require_clarification"
+            },
+            {
+              "side": "S",
+              "facade_ids": [
+                "seg-289c7cd6ad891fee6869",
+                "seg-3430f1b527c8f77ce338",
+                "seg-43c0b20a7a9ebeb3683a",
+                "seg-4b728cd5a825a87be12a",
+                "seg-74a7555f87f32c85ec59",
+                "seg-c813e3f53b1a93e29454"
+              ],
+              "reason": "multiple_facades_require_clarification"
+            },
+            {
+              "side": "W",
+              "facade_ids": [
+                "seg-19a9ef8059b4e60534e0",
+                "seg-58c20f7ed193e812bf4a",
+                "seg-c9c64a7ad5d3bdf5c5e3",
+                "seg-ddd34f8e052aa57b893e"
+              ],
+              "reason": "multiple_facades_require_clarification"
+            }
+          ],
+          "category_floors_verified": false
+        }
+      ],
+      "view_sun_feature_statuses": {
+        "V01:unknown": 1,
+        "V05:unknown": 1,
+        "N01:unknown": 1,
+        "S01:unknown": 1
+      }
+    },
+    "8736052": {
+      "city_id": "moscow",
+      "existing_categories": 10,
+      "added_categories": 0,
+      "added_facts": 0,
+      "status": "already_present",
+      "categories_after": 10,
+      "building_choices": [
+        {
+          "building_id": "relation/19206805",
+          "mapped_address": "Страстной бульвар, 4",
+          "mapped_name": null,
+          "mapped_levels": 5,
+          "hotel_aliases": [],
+          "unambiguous_facades": [],
+          "ambiguous_sides": [
+            {
+              "side": "NE",
+              "facade_ids": [
+                "seg-286a94c58be8787878b1",
+                "seg-3f53d2dd74c95d5c6566",
+                "seg-4b3d822fd09eaa60ddbd",
+                "seg-6b3dc13a219fc107baa0",
+                "seg-a2739738284c13012971",
+                "seg-b8b39ace705f97329090",
+                "seg-c4885f51eef22eb89964",
+                "seg-cdfe7a2190690d6eb997",
+                "seg-d45a814e3488ec833310"
+              ],
+              "reason": "multiple_facades_require_clarification"
+            },
+            {
+              "side": "NW",
+              "facade_ids": [
+                "seg-02aff5de5343384544ed",
+                "seg-051a6a4aa3a7044b7612",
+                "seg-2398e481c294041678eb",
+                "seg-2594cf8dbe2331f93dbe",
+                "seg-2711442474ad880a30e2",
+                "seg-3754629025b725de55e1",
+                "seg-6e1e962f0b2b5abe5dd0",
+                "seg-767d98052526cae7a3f7",
+                "seg-770ab9b2f5a334fa53ff",
+                "seg-78a535aa89f69bcbf686",
+                "seg-8e961a9a9ecf5ea7f2c3",
+                "seg-9e398d70b1457e24a4a3",
+                "seg-b5cb388fa1e2188d43bd",
+                "seg-c7c25d7bc66ec1be589e",
+                "seg-ca2095f838e5ab947f13",
+                "seg-ca6eba80a1db06501837",
+                "seg-caeb917733ff447a592b",
+                "seg-d885c816b2cc7baa4b95",
+                "seg-dae7238127acaea26eee"
+              ],
+              "reason": "multiple_facades_require_clarification"
+            },
+            {
+              "side": "SE",
+              "facade_ids": [
+                "seg-2ba708eaa8c08eb08716",
+                "seg-4102c5c31f820bf1588e",
+                "seg-5bca36ec3e04104cbb2a",
+                "seg-6edb6c06fadd76a8c87c",
+                "seg-9023c647517aeed80b3c",
+                "seg-b88b3ff318236601ad0b",
+                "seg-c5818a16c1e13b4630cb",
+                "seg-c7b4a6c179626d2a73b8",
+                "seg-cc043075001b30323c69",
+                "seg-dd5c15bb9576aea53ef3",
+                "seg-e111a3016f5e1b1275b6"
+              ],
+              "reason": "multiple_facades_require_clarification"
+            },
+            {
+              "side": "SW",
+              "facade_ids": [
+                "seg-1472f44e2dfcbfcc30cb",
+                "seg-33f98d9650a6a08bb1e6",
+                "seg-4eb69c70a66314625323",
+                "seg-53de51c975e8c4d25fcd",
+                "seg-674883af2123b91ac249",
+                "seg-914dde3fa662d8f38b3f"
+              ],
+              "reason": "multiple_facades_require_clarification"
+            }
+          ],
+          "category_floors_verified": false
+        }
+      ],
+      "view_sun_feature_statuses": {
+        "V01:unknown": 1,
+        "S01:unknown": 1,
+        "V05:unknown": 1,
+        "N01:unknown": 1
+      }
+    },
+    "10012084": {
+      "city_id": "sochi",
+      "existing_categories": 0,
+      "added_categories": 11,
+      "added_facts": 105,
+      "position_delta_m": 0.099,
+      "source": {
+        "provider": "ostrovok.ru",
+        "url": "https://ostrovok.ru/hotel/russia/sochi/mid10012084/arkhitektor_aparthotel/",
+        "original_url": "https://ostrovok.ru/hotel/russia/sochi/mid10012084/arkhitektor_aparthotel/",
+        "dataset_version": "snapshot_2026-10-27-targeted",
+        "dataset_sha256": "408e97b9adfe2b6eedbc893da2412be36dae026830c0ff8a68657767664a7ca6",
+        "html_sha256": "0d8b2577eb7ce8611ee2af9da71b50c518aedd29565a6368d732a6c484df9398",
+        "json_pointer": "/props/pageProps/hotel",
+        "snapshot_file": "next/0d/0d8b2577eb7ce8611ee2af9da71b50c518aedd29565a6368d732a6c484df9398.json.gz",
+        "fetched_at": "2026-10-27T07:46:56.635674+00:00",
+        "mid_url": "10012084",
+        "geography_verified": false
+      },
+      "status": "added",
+      "categories_after": 11,
+      "building_choices": [
+        {
+          "building_id": "way/74466391",
+          "mapped_address": "улица Конституции СССР, 18",
+          "mapped_name": null,
+          "mapped_levels": 4,
+          "hotel_aliases": [],
+          "unambiguous_facades": [],
+          "ambiguous_sides": [
+            {
+              "side": "NE",
+              "facade_ids": [
+                "seg-157ea0fc7f27411a8063",
+                "seg-1f01bde95b578e0f7834",
+                "seg-25e0aa1a3bbecfd5ad9c",
+                "seg-56bf9482078824c0c8e2",
+                "seg-76e0d7da08138a0e2ada",
+                "seg-819398c6295bf787c5f6",
+                "seg-dc2fcfd8efc1d6901627",
+                "seg-e7b37df03e475c972fcf"
+              ],
+              "reason": "multiple_facades_require_clarification"
+            },
+            {
+              "side": "NW",
+              "facade_ids": [
+                "seg-42d4e3d3600dbcedf19d",
+                "seg-5d94075351ae418f52e8",
+                "seg-c8ae0f7c804e88198fc8",
+                "seg-cffb51e6bd9635ca1667",
+                "seg-f6c51533c63cf1b80699"
+              ],
+              "reason": "multiple_facades_require_clarification"
+            },
+            {
+              "side": "SE",
+              "facade_ids": [
+                "seg-167ae6d011df2fdc02d3",
+                "seg-3407b27ad7e31ec18495",
+                "seg-49ed1d61e348b9820ae3",
+                "seg-563a6041327419f29ef9",
+                "seg-5baf2caa7bc791d814ea",
+                "seg-5bb7a7ddc132597582e3",
+                "seg-6979a1efe2b9d19128e5",
+                "seg-6ee9bbbac48c34426e31",
+                "seg-8717f4291028d698374e",
+                "seg-b4484399d65a96ecdfe7",
+                "seg-b44a1cac3a25d16885c7",
+                "seg-b462d1b8c469ac31bea7",
+                "seg-c7c3e80c5a466b96ff4f",
+                "seg-fcc85ab0cb061b81b1a1"
+              ],
+              "reason": "multiple_facades_require_clarification"
+            },
+            {
+              "side": "SW",
+              "facade_ids": [
+                "seg-1a4ce6c8ba16d0bc5643",
+                "seg-43827058f51d8d9d0613",
+                "seg-7390f679dcdc5af5d4db",
+                "seg-87651aded5db44bbc599",
+                "seg-9bcf8b3d9b4b41ae4590",
+                "seg-9dc123a13df1c8e68e95",
+                "seg-c200ca3b041f2c0a75bb",
+                "seg-ee9697ec2d48c6fd1da5",
+                "seg-f7064e85d4d50620a06a"
+              ],
+              "reason": "multiple_facades_require_clarification"
+            }
+          ],
+          "category_floors_verified": false
+        }
+      ],
+      "view_sun_feature_statuses": {
+        "N01:unknown": 1,
+        "V01:unknown": 1,
+        "S01:unknown": 1,
+        "V05:unknown": 1
+      }
+    },
+    "11313836": {
+      "city_id": "sochi",
+      "existing_categories": 0,
+      "added_categories": 6,
+      "added_facts": 49,
+      "position_delta_m": 0.0,
+      "source": {
+        "provider": "ostrovok.ru",
+        "url": "https://ostrovok.ru/hotel/russia/sochi/mid11313836/sanatoriy_korall_adlerkurort/",
+        "original_url": "https://ostrovok.ru/hotel/russia/sochi/mid11313836/sanatoriy_korall_adlerkurort/",
+        "dataset_version": "snapshot_2026-10-27-targeted",
+        "dataset_sha256": "bc5484593f6275b83b6486f7094b841af01d3e54e5048e03431024e01e540af0",
+        "html_sha256": "1cc9c5079d6b96c93b9239cb1946060a2f83f700fe458659bbe75efb94f84613",
+        "json_pointer": "/props/pageProps/hotel",
+        "snapshot_file": "next/1c/1cc9c5079d6b96c93b9239cb1946060a2f83f700fe458659bbe75efb94f84613.json.gz",
+        "fetched_at": "2026-10-27T07:46:57.344648+00:00",
+        "mid_url": "11313836",
+        "geography_verified": false
+      },
+      "status": "added",
+      "categories_after": 6,
+      "building_choices": [
+        {
+          "building_id": "way/53742331",
+          "mapped_address": "улица Ленина, 219/28",
+          "mapped_name": null,
+          "mapped_levels": 15,
+          "hotel_aliases": [],
+          "unambiguous_facades": [
+            {
+              "side": "E",
+              "facade_id": "seg-c358f2fef18b9b9ea541"
+            }
+          ],
+          "ambiguous_sides": [
+            {
+              "side": "N",
+              "facade_ids": [
+                "seg-382a02b3de86bed0e935",
+                "seg-ac2cd12faaa43a56c921"
+              ],
+              "reason": "multiple_facades_require_clarification"
+            },
+            {
+              "side": "S",
+              "facade_ids": [
+                "seg-0c84c7ff48a910033c5e",
+                "seg-2205ba7eb5dc6d974276"
+              ],
+              "reason": "multiple_facades_require_clarification"
+            },
+            {
+              "side": "W",
+              "facade_ids": [
+                "seg-49eb1f65bfc3f1e7e9c7",
+                "seg-70c6cb511d6a78c284c8"
+              ],
+              "reason": "multiple_facades_require_clarification"
+            }
+          ],
+          "category_floors_verified": false
+        }
+      ],
+      "view_sun_feature_statuses": {
+        "V05:unknown": 1,
+        "N01:unknown": 1,
+        "S01:unknown": 1,
+        "V01:unknown": 1
+      }
+    },
+    "13736470": {
+      "city_id": "sochi",
+      "existing_categories": 0,
+      "added_categories": 15,
+      "added_facts": 125,
+      "position_delta_m": 0.0,
+      "source": {
+        "provider": "ostrovok.ru",
+        "url": "https://ostrovok.ru/hotel/russia/adler/mid13736470/the_radisson_collection_paradise_resort_spa/",
+        "original_url": "https://ostrovok.ru/hotel/russia/adler/mid13736470/the_radisson_collection_paradise_resort_spa/",
+        "dataset_version": "snapshot_2026-10-27-targeted",
+        "dataset_sha256": "c4267e07c01e731a4c599b62787018aee82d7c9842db8e86382c3017c87f174d",
+        "html_sha256": "56d16cfa15610ed429ca23ff823a98a67fa1c8a30aa0a8c59581d1f365a31b56",
+        "json_pointer": "/props/pageProps/hotel",
+        "snapshot_file": "next/56/56d16cfa15610ed429ca23ff823a98a67fa1c8a30aa0a8c59581d1f365a31b56.json.gz",
+        "fetched_at": "2026-10-27T07:46:58.478469+00:00",
+        "mid_url": "13736470",
+        "geography_verified": false
+      },
+      "status": "added",
+      "categories_after": 15,
+      "building_choices": [
+        {
+          "building_id": "way/207598815",
+          "mapped_address": "улица 65 лет Победы, 50",
+          "mapped_name": "Radisson Collection",
+          "mapped_levels": 9,
+          "hotel_aliases": [],
+          "unambiguous_facades": [
+            {
+              "side": "E",
+              "facade_id": "seg-3db826b4b07f8e7c82e8"
+            }
+          ],
+          "ambiguous_sides": [
+            {
+              "side": "N",
+              "facade_ids": [
+                "seg-4d6e2071f688a21e2022",
+                "seg-5d86abe9f7d831e05995",
+                "seg-738a8ab35bb35b3bd1b7"
+              ],
+              "reason": "multiple_facades_require_clarification"
+            },
+            {
+              "side": "NE",
+              "facade_ids": [
+                "seg-27571875a70b59ae3efa",
+                "seg-3a0352acddcd1affed98",
+                "seg-52c1ac4bc275c9fce037",
+                "seg-822f1529129f00debca2",
+                "seg-badba67b35e44e2a72f4",
+                "seg-e91e808738d7dbf15677"
+              ],
+              "reason": "multiple_facades_require_clarification"
+            },
+            {
+              "side": "NW",
+              "facade_ids": [
+                "seg-173463830ec53ab216f2",
+                "seg-56b25004bb78346183e9",
+                "seg-653f2c3f2340ee33a1f4"
+              ],
+              "reason": "multiple_facades_require_clarification"
+            },
+            {
+              "side": "S",
+              "facade_ids": [
+                "seg-b9bc08c80714fa3dba83",
+                "seg-c67697eff6c26003516e"
+              ],
+              "reason": "multiple_facades_require_clarification"
+            },
+            {
+              "side": "SE",
+              "facade_ids": [
+                "seg-7189eade039e19520c54",
+                "seg-8fd139b29967d98af980",
+                "seg-9f40b4b60031f81a0fc1",
+                "seg-f9ef3c2834408e228e3a"
+              ],
+              "reason": "multiple_facades_require_clarification"
+            },
+            {
+              "side": "SW",
+              "facade_ids": [
+                "seg-1a673a4f08a5bdb5f42e",
+                "seg-268cb57784cdf674a0ef",
+                "seg-56ff48c96c10d9f1b1e8",
+                "seg-b24c0f2d17d6897661af",
+                "seg-e02d364112c7aa9f4f65"
+              ],
+              "reason": "multiple_facades_require_clarification"
+            },
+            {
+              "side": "W",
+              "facade_ids": [
+                "seg-0720e5efcf4b1d15df5c",
+                "seg-ba191c37b912b48b7ddd",
+                "seg-d8f58250c80308963da4",
+                "seg-e4f06b443dd5df14c0db"
+              ],
+              "reason": "multiple_facades_require_clarification"
+            }
+          ],
+          "category_floors_verified": false
+        },
+        {
+          "building_id": "way/260633950",
+          "mapped_address": "улица 65 лет Победы, 50",
+          "mapped_name": null,
+          "mapped_levels": 8,
+          "hotel_aliases": [],
+          "unambiguous_facades": [
+            {
+              "side": "E",
+              "facade_id": "seg-a0afe12e440c8c77af32"
+            },
+            {
+              "side": "NE",
+              "facade_id": "seg-1a673a4f08a5bdb5f42e"
+            },
+            {
+              "side": "S",
+              "facade_id": "seg-85409c322209413f0ec1"
+            },
+            {
+              "side": "W",
+              "facade_id": "seg-3db826b4b07f8e7c82e8"
+            }
+          ],
+          "ambiguous_sides": [
+            {
+              "side": "N",
+              "facade_ids": [
+                "seg-80c7b38bd2b28bba4b07",
+                "seg-c67697eff6c26003516e"
+              ],
+              "reason": "multiple_facades_require_clarification"
+            },
+            {
+              "side": "NW",
+              "facade_ids": [
+                "seg-4672b847a3f42eb9c175",
+                "seg-9f40b4b60031f81a0fc1"
+              ],
+              "reason": "multiple_facades_require_clarification"
+            },
+            {
+              "side": "SE",
+              "facade_ids": [
+                "seg-42ee414dd453e49b481e",
+                "seg-469f7fb4e6da6b3fac22",
+                "seg-e2b444474ebe94d0fa8b",
+                "seg-f941d8e5f7301af589d3"
+              ],
+              "reason": "multiple_facades_require_clarification"
+            },
+            {
+              "side": "SW",
+              "facade_ids": [
+                "seg-0aa42fe3b08630d042f2",
+                "seg-3e9e421327087bbdebfc",
+                "seg-63ecdf79f6eb9c80888c"
+              ],
+              "reason": "multiple_facades_require_clarification"
+            }
+          ],
+          "category_floors_verified": false
+        },
+        {
+          "building_id": "way/260633951",
+          "mapped_address": "улица 65 лет Победы, 50",
+          "mapped_name": null,
+          "mapped_levels": 8,
+          "hotel_aliases": [],
+          "unambiguous_facades": [
+            {
+              "side": "NE",
+              "facade_id": "seg-56ff48c96c10d9f1b1e8"
+            }
+          ],
+          "ambiguous_sides": [
+            {
+              "side": "E",
+              "facade_ids": [
+                "seg-03a5f8657cb245f62309",
+                "seg-e4f06b443dd5df14c0db"
+              ],
+              "reason": "multiple_facades_require_clarification"
+            },
+            {
+              "side": "N",
+              "facade_ids": [
+                "seg-b9bc08c80714fa3dba83",
+                "seg-d752a5015f2f26256474"
+              ],
+              "reason": "multiple_facades_require_clarification"
+            },
+            {
+              "side": "S",
+              "facade_ids": [
+                "seg-c080e7631c9bd408dac4",
+                "seg-c4cf5c9f84b14eba8690",
+                "seg-f17234a4ffaafb28e83a"
+              ],
+              "reason": "multiple_facades_require_clarification"
+            },
+            {
+              "side": "SE",
+              "facade_ids": [
+                "seg-12890bda1d9d196a3422",
+                "seg-653f2c3f2340ee33a1f4"
+              ],
+              "reason": "multiple_facades_require_clarification"
+            },
+            {
+              "side": "SW",
+              "facade_ids": [
+                "seg-566004b91c3bcc5fac42",
+                "seg-aafe4cd593944405f63e"
+              ],
+              "reason": "multiple_facades_require_clarification"
+            },
+            {
+              "side": "W",
+              "facade_ids": [
+                "seg-09a07563ef4950af3e6c",
+                "seg-1c61b57107bf3554ffe5",
+                "seg-33dac10d91b13eae2a70",
+                "seg-9ad9c7658f4699c14b7d"
+              ],
+              "reason": "multiple_facades_require_clarification"
+            }
+          ],
+          "category_floors_verified": false
+        },
+        {
+          "building_id": "way/374404842",
+          "mapped_address": "улица 65 лет Победы, 50",
+          "mapped_name": null,
+          "mapped_levels": 7,
+          "hotel_aliases": [],
+          "unambiguous_facades": [
+            {
+              "side": "NE",
+              "facade_id": "seg-6f6c7fff903f0c3da17d"
+            },
+            {
+              "side": "S",
+              "facade_id": "seg-738a8ab35bb35b3bd1b7"
+            }
+          ],
+          "ambiguous_sides": [
+            {
+              "side": "E",
+              "facade_ids": [
+                "seg-0720e5efcf4b1d15df5c",
+                "seg-16b7948734cfcaf7ab6d",
+                "seg-d8f58250c80308963da4"
+              ],
+              "reason": "multiple_facades_require_clarification"
+            },
+            {
+              "side": "NW",
+              "facade_ids": [
+                "seg-1fe7d9a8dbdd0a517ff6",
+                "seg-7189eade039e19520c54",
+                "seg-f9ef3c2834408e228e3a"
+              ],
+              "reason": "multiple_facades_require_clarification"
+            },
+            {
+              "side": "SW",
+              "facade_ids": [
+                "seg-27571875a70b59ae3efa",
+                "seg-3a0352acddcd1affed98",
+                "seg-52c1ac4bc275c9fce037",
+                "seg-822f1529129f00debca2",
+                "seg-badba67b35e44e2a72f4"
+              ],
+              "reason": "multiple_facades_require_clarification"
+            }
+          ],
+          "category_floors_verified": false
+        }
+      ],
+      "view_sun_feature_statuses": {
+        "V01:unknown": 1,
+        "V05:unknown": 1,
+        "S01:unknown": 1,
+        "N01:unknown": 1
+      }
+    },
+    "9986868": {
+      "city_id": "sochi",
+      "existing_categories": 0,
+      "added_categories": 7,
+      "added_facts": 57,
+      "position_delta_m": 0.149,
+      "source": {
+        "provider": "ostrovok.ru",
+        "url": "https://ostrovok.ru/hotel/russia/sochi/mid9986868/cosmos_sochi_hotel/",
+        "original_url": "https://ostrovok.ru/hotel/russia/sochi/mid9986868/cosmos_sochi_hotel/",
+        "dataset_version": "snapshot_2026-10-27-targeted",
+        "dataset_sha256": "55379ea2ba85616dec1c7dfb079d97fa07d1c3bc07cc57111879a82948234812",
+        "html_sha256": "77b68e4b7c2cc424003f6a3334a391b9ed6fa3245ba6a980221d6bed6c08d4af",
+        "json_pointer": "/props/pageProps/hotel",
+        "snapshot_file": "next/77/77b68e4b7c2cc424003f6a3334a391b9ed6fa3245ba6a980221d6bed6c08d4af.json.gz",
+        "fetched_at": "2026-10-27T07:46:59.656535+00:00",
+        "mid_url": "9986868",
+        "geography_verified": false
+      },
+      "status": "added",
+      "categories_after": 7,
+      "building_choices": [
+        {
+          "building_id": "way/190714781",
+          "mapped_address": "улица Горького, 56 с1",
+          "mapped_name": "Cosmos",
+          "mapped_levels": 6,
+          "hotel_aliases": [],
+          "unambiguous_facades": [],
+          "ambiguous_sides": [
+            {
+              "side": "E",
+              "facade_ids": [
+                "seg-829d8567dd78e2e6c4e7",
+                "seg-bbb7fad310ecda2b7680",
+                "seg-e65b7bc3ffb26d426c8f"
+              ],
+              "reason": "multiple_facades_require_clarification"
+            },
+            {
+              "side": "N",
+              "facade_ids": [
+                "seg-0c8d170d71992c2ef2de",
+                "seg-373803862de3e8d50466",
+                "seg-57f308c2637a57c04034",
+                "seg-985256fb102ea7a52692",
+                "seg-f1b067a03ac47bb8f15f",
+                "seg-f2d27bc811fc71637f84"
+              ],
+              "reason": "multiple_facades_require_clarification"
+            },
+            {
+              "side": "S",
+              "facade_ids": [
+                "seg-00fae6cb9fc8346ad9b5",
+                "seg-0aa6f0adca48f39afd09",
+                "seg-2efcbb3fc66700e30d09",
+                "seg-4822fb0c56b2fcb7a0d6",
+                "seg-6c81ce7d481fc26f7cf5"
+              ],
+              "reason": "multiple_facades_require_clarification"
+            },
+            {
+              "side": "W",
+              "facade_ids": [
+                "seg-1f0bbb13c05c5c9fd6b5",
+                "seg-1fe4fc162a7580bd4f88",
+                "seg-2d2a7eb7688234fb4f37",
+                "seg-3689b1308acadbbbe14f",
+                "seg-3afa7631510af1ccff88",
+                "seg-6b0115fe03f5affadb9c"
+              ],
+              "reason": "multiple_facades_require_clarification"
+            }
+          ],
+          "category_floors_verified": false
+        }
+      ],
+      "view_sun_feature_statuses": {
+        "V05:unknown": 1,
+        "V01:unknown": 1,
+        "S01:unknown": 1,
+        "N01:unknown": 1
+      }
+    }
+  },
+  "cities": {
+    "sochi": {
+      "pack_version": "category-supplement.1-0afb7f8bab40",
+      "added_categories": 39,
+      "added_facts": 336
+    }
+  },
+  "built_at": "2026-10-27T07:59:05.723060+00:00",
+  "review_url": "https://github.com/ostrovok-hackathon-2026/vaibovovka/pull/26#issuecomment-6428895168",
+  "unresolved": [
+    {
+      "item": "6458292 categories",
+      "reason": "roomGroups is empty in both 2026-10-24 and fresh 2026-10-27 JSON; no rgHash can be fabricated"
+    },
+    {
+      "item": "hotel building names",
+      "reason": "requires a dated hotel answer or human-verified source; OSM names are exposed separately"
+    },
+    {
+      "item": "ambiguous facade directions",
+      "reason": "all candidate facade IDs exposed; no single facade selected without clarification"
+    },
+    {
+      "item": "window-level view/sun facts",
+      "reason": "assigned to lead/Lera in review; no verified window-level data in Seva inputs"
+    }
+  ],
+  "verification": {
+    "pytest_passed": 363,
+    "pytest_skipped": 0,
+    "native_init_seconds": 79.2,
+    "database_counts": {
+      "hotel": 7206,
+      "room_type": 22011,
+      "fact": 434232
+    },
+    "orphan_room_facts": 0,
+    "reverse_indexes": [
+      "ix_hotel_place_place_id",
+      "ix_hotel_station_station_id"
+    ],
+    "radisson_api_building_choices": 4,
+    "requests_to_ostrovok": 6,
+    "snapshot_source_not_relabelled_as_2026_10_24": true
+  }
+}

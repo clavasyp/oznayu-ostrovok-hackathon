@@ -31,7 +31,10 @@ DEMO_SOCHI = [
     "8740393",  # Аквалоо
     "10575679",  # Бергамо
     "11201577",  # Mantera
+    "6496437",  # Грейс Эль Параисо: закат и море из окна с 7-го этажа (вид и солнце, D40)
 ]
+# Слои калькуляторов в пакетах (pipeline/build_view_sun.py): их факты — тоже в заглушки.
+LAYERS = [ROOT / "packs" / "sochi" / "data" / "view_sun.jsonl.gz"]
 DEMO_MOSCOW = ["8736052", "6458292"]  # «Прованс», Bolshaya Dorogomilovskaya
 MOSCOW_EXTRA = 8
 SLIM_KEYS = ("component_diagnostics", "audit_files", "components")  # тяжёлая диагностика v9
@@ -50,8 +53,11 @@ FULL_DEPTH = {"sochi", "moscow"}  # D36
 
 def read_facts() -> list[dict]:
     facts = []
-    with gzip.open(V9 / "integrated" / "all8_facts.jsonl.gz", "rt", encoding="utf-8") as f:
-        facts.extend(json.loads(line) for line in f if line.strip())
+    for path in [V9 / "integrated" / "all8_facts.jsonl.gz", *LAYERS]:
+        if not path.is_file():
+            continue
+        with gzip.open(path, "rt", encoding="utf-8") as f:
+            facts.extend(json.loads(line) for line in f if line.strip())
     return facts
 
 
