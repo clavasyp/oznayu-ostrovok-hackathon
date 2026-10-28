@@ -129,6 +129,30 @@ def test_facts_for_filters_params_in_db(stores):
     assert db.fact(got[0].fact_id).sources  # полный факт — по id
 
 
+def test_activated_feature_is_stored_and_listed(stores, monkeypatch):
+    """Включение характеристики текстом на базе: спецификация и факты в одной транзакции,
+    повторное включение пересчитывает, а не копит факты. В v9-пакетах мест нет — честное
+    «неизвестно» с причиной."""
+    from agents.catalog import catalog as catalog_module
+    from agents.catalog import load_catalog
+    from agents.specgen import draft_spec
+    from agents.specgen.activate import activate
+
+    monkeypatch.setattr(catalog_module, "_RUNTIME", {})
+    db, _ = stores
+    spec = draft_spec("сколько кафе в 500 м", use_llm=False).spec
+    for _ in range(2):
+        result = activate(spec, db, ("sochi",))
+    assert result["activated"], result
+    ids = [h["hotel_id"] for h in db.hotels("sochi")]
+    facts = db.facts_for(spec.id, ids)
+    assert sum(map(len, facts.values())) == len(ids) == result["facts"]
+    assert {f.unknown_reason for fs in facts.values() for f in fs} == {"place_no_data"}
+    (stored,) = [f for f in db.feature_specs() if f["id"] == spec.id]
+    assert stored["cities"]["sochi"]["hotels"] == len(ids)
+    load_catalog.cache_clear()
+
+
 def test_search_on_db_matches_fixtures(stores):
     from core.search import example_ast, search
 

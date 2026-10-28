@@ -311,6 +311,24 @@ def test_hotelier_aliases_survive_new_pack_version():
     assert placement_maps(links, [], "h")[0]["корпус 2"] == "way/1"
 
 
+def test_answer_shows_search_before_after_and_asks_if_list_is_complete(client):
+    """С запросом гостя ответ о размещении показывает статус отеля до и после; понятое без
+    «других вариантов нет» сохраняется, а отель получает вопрос, все ли это номера."""
+    from agents.search import parse_query
+
+    rt_id = f"{KORALL}:3202302"
+    ast = parse_query("обязательно на этаже не ниже 5", "sochi", mode="rules").ast
+    answer = {"room_type_id": rt_id, "answer_text": "Окна на восток, с 2 по 8 этаж.",
+              "ast": ast.model_dump(mode="json")}  # fmt: skip
+    body = client.post(f"/api/hotelier/{KORALL}/placement-answers", json=answer).json()
+    assert body["state"] == "answered" and body["before"] and body["after"]
+    assert body["room_type"]["placement_set"]["completeness"] != "complete"
+    assert "Других вариантов нет" in body["followup"]
+    questions = client.get(f"/api/hotelier/{KORALL}/placement-questions").json()["questions"]
+    (q,) = [q for q in questions if q["room_type_id"] == rt_id]
+    assert q["answer_text"] == "Окна на восток, с 2 по 8 этаж."
+
+
 def post_answer(client, hotel_id, room_type_id, text, aliases=None, simulated=False):
     body = {"room_type_id": room_type_id, "answer_text": text, "is_simulated": simulated}
     if aliases is not None:

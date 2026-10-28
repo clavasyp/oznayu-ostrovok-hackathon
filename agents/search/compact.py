@@ -259,6 +259,7 @@ def _place(o: OutOfCatalog, atoms: dict[str, CompactAtom], catalog: Catalog) -> 
         radius_m=None if on_site else max(1, radius),
         radius_source=None if on_site else source,
         on_site=on_site,
+        quality=params.get("quality") or None,
     )
     return o.model_copy(update={"normalized": f"nearby_place:{category.id}", "place": place})
 

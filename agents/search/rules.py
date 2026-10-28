@@ -17,7 +17,7 @@ from dataclasses import dataclass, replace
 from dataclasses import field as dfield
 from datetime import date
 
-from agents.catalog import Catalog, load_places
+from agents.catalog import Catalog, load_catalog, load_places
 from agents.search.compact import (
     DISMISSED,
     RULE_CONTEXT,
@@ -365,18 +365,8 @@ def green(ctx: Ctx) -> Iterator[Hit]:
         )
 
 
-@rule
-def park(ctx: Ctx) -> Iterator[Hit]:
-    pattern = (
-        r"(?:подходящ\w+\s+)?парк\w*(?:\s+для\s+прогулок)?(?:\s+(?:рядом|поблизости))?"
-        r"|(?:рядом|поблизости)\s+парк\w*"
-    )
-    for m in finditer(pattern, ctx):
-        if re.search(r"парковк", m.group()):
-            continue
-        # Доля зелени — не близость парка: соответствие частичное, только мягкое.
-        atom = Atom("E03", "", "gte", str(GREEN_SHARE_MIN), "%", mapping="partial")
-        yield Hit(m.start(), m.end(), [atom], "desired")
+# «Парк рядом», «у сквера», «парк в 10 минутах» — место словаря `park` (`nearby_place`): его
+# считают по паркам пакета (край парка, PostGIS). Доля зелени вокруг — E03 (`green`).
 
 
 @rule
@@ -598,15 +588,26 @@ _DIST = (
     r"(?P<u>минут\w*|мин|метр\w*|м|км|километр\w*)(?!\w)(?:\s+(?:пешком|ходьбы))?"
 )
 _SITE = r"(?:в|при)\s+(?:самом\s+)?(?:отел\w*|гостиниц\w*|здании)|на\s+территории(?:\s+отел\w*)?"
+# Прилагательные между «рядом с» и местом: «рядом с хорошими ресторанами», «рядом уютное кафе».
+_ADJ = r"[а-я]+(?:ыми|ими|ых|их|ый|ий|ой|ая|яя|ое|ее|ые|ие|ую|юю|ом|ем|ого|его|ому|ему)"
+# Слова о качестве места: подтвердить их нечем (рейтингов нет) — гость увидит это честно.
+_QUALITY = re.compile(
+    r"(?:хорош|лучш|вкусн|приличн|отличн|достойн|нормальн|классн|топов"
+    r"|уютн|атмосферн|романтичн|стильн)\w*"
+)
+# «у парка»: «у» — «рядом» только перед местом (после — «бассейн у отеля» про сам отель).
 _PLACE_BEFORE = re.compile(
-    rf"(?:(?P<near>{_NEAR_WORD}(?:\s+(?:с|со|от|к)(?:\s+отел\w*)?)?)"
+    rf"(?:(?P<near>(?:{_NEAR_WORD}|\bу)(?:\s+(?:с|со|от|к)(?:\s+отел\w*)?)?)"
     rf"|{_DIST}(?:\s+от\s+отел\w*)?|(?P<site>{_SITE}|собственн\w*|сво(?:й|им|ей|ю|е|его))"
-    rf"|(?P<with>\bсо?)){_BE}\s+$"
+    rf"|(?P<with>\bсо?)){_BE}(?P<adj>(?:\s+{_ADJ}){{0,2}})\s+$"
 )
 _PLACE_AFTER = re.compile(
     rf"{_BE}\s+(?:(?P<near>{_NEAR_WORD}(?:\s+(?:с|со|от|к)\s+отел\w*|(?!\s+(?:с|со|от|к|до)\b)))"
     rf"|{_DIST}(?:\s+от\s+отел\w*|(?!\s+(?:от|до)\b))|(?P<site>{_SITE}))"
 )
+# Перечисление мест: «рядом с парками и хорошими ресторанами», «рядом кафе, пекарня» — второе
+# место берёт «рядом» (или расстояние) первого; между ними только «и» / запятая и прилагательные.
+_PLACE_LIST = re.compile(rf"\s*(?:,\s*(?:и\s+)?|\s+и\s+)(?P<adj>(?:{_ADJ}\s+){{0,2}})")
 
 
 def _named_place(raw: str, start: int, end: int) -> bool:
@@ -624,23 +625,55 @@ def _named_place(raw: str, start: int, end: int) -> bool:
 def nearby_place(ctx: Ctx) -> Iterator[Hit]:
     """«Рядом итальянский ресторан», «музей в 10 минутах» — вне каталога, но с категорией из
     словаря мест (задача 4, D34): проверка ждёт таблицу «отель × места рядом» в пакете города."""
+    listed_from: tuple[int, dict[str, str]] | None = None  # конец и «рядом» прошлого места
     for start, end, category in load_places().find(ctx.norm):
         if _named_place(ctx.raw, start, end):
+            listed_from = None
             continue  # названное место — цель маршрута, его разберут «доехать до» или модель
         before = _PLACE_BEFORE.search(ctx.norm, max(0, start - 60), start)
         after = _PLACE_AFTER.match(ctx.norm, end)
         mods = [m for m in (before, after) if m]
-        if category.needs_near and not mods:
+        listed = None
+        if not mods and listed_from:
+            listed = _PLACE_LIST.fullmatch(ctx.norm, listed_from[0], start)
+        if category.needs_near and not mods and not listed:
+            listed_from = None
             continue  # «бассейн», «ресторан» без «рядом» — скорее про сам отель; решит модель
         params = {"nearest_contract": "nearby_place"}
+        adj = (before.group("adj") if before else listed.group("adj") if listed else "") or ""
+        if quality := _QUALITY.search(adj):
+            params["quality"] = quality.group(0)
+        # «с парком поблизости» — рядом, а не в самом отеле: «с» без «рядом» — «отель с садом».
+        near_after = bool(after and (after.group("near") or after.group("n")))
         for m in mods:
             if m.group("n"):
                 params |= {"distance": number(m.group("n")), "distance_unit": m.group("u")}
-            if m.group("site") or m.groupdict().get("with"):
+            if m.group("site") or (m.groupdict().get("with") and not near_after):
                 params["on_site"] = "true"
+        if listed and listed_from:
+            params |= listed_from[1]
+        own = {k: v for k, v in params.items() if k != "quality"}
+        listed_from = (after.end() if after else end, own) if mods or listed else None
+        first = before.start() if before else listed.start("adj") if listed and adj else start
         atom = Atom("", value=category.id, params=params, mapping="unmatched")
-        yield Hit(before.start() if before else start, after.end() if after else end,
-                  [atom], "desired")  # fmt: skip
+        yield Hit(first, after.end() if after else end, [atom], "desired")
+
+
+@rule
+def runtime_features(ctx: Ctx) -> Iterator[Hit]:
+    """Характеристики, включённые по описанию текстом (задача 4): слова гостя — синонимы из
+    спецификации, условие — её `search.default` («много кафе рядом» → не меньше 3)."""
+    for f in load_catalog().features.values():
+        if not f.runtime or not f.search_default or not f.default_field:
+            continue
+        cond = f.search_default
+        for phrase in f.synonyms:
+            words = normalize(phrase).strip()
+            if not words:
+                continue
+            for m in re.finditer(rf"(?<!\w){re.escape(words)}(?!\w)", ctx.norm):
+                atom = Atom(f.id, f.default_field, cond["op"], str(cond["value"]))
+                yield Hit(m.start(), m.end(), [atom], "desired")
 
 
 @rule

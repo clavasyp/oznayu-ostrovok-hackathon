@@ -46,6 +46,9 @@ export function itemTitle(item, labels) {
 // Мелкая подпись: что именно проверяли (название характеристики), если оно отличается от слов гостя.
 export function itemSubtitle(item, labels) {
   if (!item) return ''
+  // «Рядом место типа X» и «доехать до X» — без характеристики каталога, но проверены по картам.
+  if (item.nearby || item.place) return 'по местам на карте'
+  if (item.trip || String(item.reason_code || '').startsWith('trip_')) return 'оценка по прямой'
   if (item.reason_code === 'out_of_catalog' || (!item.feature_id && !item.items?.length && !item.op)) return 'не проверяем — такого пока нет в каталоге'
   const name = item.feature_name || featureName(item.feature_id, labels)
   const title = itemTitle(item, labels)
@@ -64,7 +67,7 @@ export function placementFloors(placements) {
   const floors = new Map()
   for (const p of placements || []) {
     const key = `${p.building_id ?? ''}|${p.floor_label || p.floor}`
-    const floor = floors.get(key) || { key, building_id: p.building_id, floor: p.floor, floor_label: p.floor_label, kinds: new Set(), walls: 0 }
+    const floor = floors.get(key) || { key, building_id: p.building_id, building_name: p.building_name, floor: p.floor, floor_label: p.floor_label, kinds: new Set(), walls: 0 }
     floor.kinds.add(verdictKind(p.verdict))
     floor.walls += 1
     floors.set(key, floor)
@@ -124,4 +127,17 @@ export function distinctTitles(items, labels) {
 // Служебные пометки API для команды (номера решений, имена) гостю не показываем.
 export function guestNotes(notes) {
   return (notes || []).filter((note) => !/\bD\d{1,3}\b|агент Данила|заглушк/i.test(note))
+}
+
+// Часть запроса вне каталога: что с ней делает поиск. «Рядом место типа X» проверяем по местам
+// карты, «доехать до X» — оценкой по прямой, остальное — не проверяем (журнал спроса).
+export function outOfCatalogCheck(item) {
+  const place = item?.place
+  if (place && !place.on_site && place.radius_m) {
+    const quality = place.quality ? ' · «' + place.quality + '» не проверить — рейтингов нет' : ''
+    return { checked: true, note: 'проверяем по карте · ' + place.label + ', до ' + place.radius_m + ' м' + quality }
+  }
+  if ((item?.nearest_contracts || []).includes('trip_to_target')) return { checked: true, note: 'оценка по прямой · время на транспорте не считаем' }
+  const where = place ? place.label + (place.on_site ? ' в отеле' : '') : ''
+  return { checked: false, note: (item?.mapping_status === 'partial' ? 'понято частично · не проверяем' : 'не проверяем') + (where ? ' · ' + where : '') }
 }

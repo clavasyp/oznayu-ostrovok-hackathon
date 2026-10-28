@@ -30,10 +30,17 @@ class ValueField(_Strict):
     values: list[str] | None = None  # для enum
 
 
+class SearchCondition(_Strict):
+    op: Op
+    value: Any
+
+
 class SearchSpec(_Strict):
     default_field: str
     operators: list[Op]
     synonyms: list[str] = Field(default_factory=list)
+    # Что значат слова гостя без числа («много кафе рядом»): условие для разбора по синонимам.
+    default: SearchCondition | None = None
 
 
 class Requires(_Strict):

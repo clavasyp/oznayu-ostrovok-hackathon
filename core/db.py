@@ -425,6 +425,26 @@ class PackLoad(Base):
     loaded_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
 
 
+class FeatureSpecRow(Base):
+    """Характеристика, включённая по описанию текстом (задача 4, core §7.4): спецификация и её
+    запись для каталога. Факты расчёта — в `fact` с тем же `feature_id`, вне пакетов: новая версия
+    пакета их не стирает."""
+
+    __tablename__ = "feature_spec"
+
+    id: Mapped[str] = mapped_column(Text, primary_key=True)
+    version: Mapped[int] = mapped_column(Integer, default=1)
+    status: Mapped[str] = mapped_column(Text)  # active | retired
+    title: Mapped[str] = mapped_column(Text)
+    yaml: Mapped[str] = mapped_column(Text)
+    feature: Mapped[dict[str, Any]] = mapped_column(JSONB)  # запись для `agents.catalog`
+    cities: Mapped[dict[str, Any]] = mapped_column(JSONB, default=dict)  # покрытие по городам
+    source_text: Mapped[str | None] = mapped_column(Text)
+    activated_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), server_default=func.now()
+    )
+
+
 class AuditLog(Base):
     __tablename__ = "audit_log"
 

@@ -52,6 +52,11 @@ def test_osm_tags_match():
         ("отель с бассейном", "pool", None, None, True),
         ("ресторан в отеле", "restaurant", None, None, True),
         ("хочу грузинскую кухню", "georgian", 800, "policy", False),
+        ("отель рядом с парком", "park", 800, "policy", False),
+        ("отель у сквера", "park", 800, "policy", False),
+        ("парк в 15 минутах", "park", 1200, "guest", False),
+        ("с парком поблизости", "park", 800, "policy", False),  # рядом, а не в самом отеле
+        ("отель с садом", "park", None, None, True),
     ],
 )
 def test_nearby_place_rules(text, category, radius, source, on_site):
@@ -62,6 +67,42 @@ def test_nearby_place_rules(text, category, radius, source, on_site):
         source,
         on_site,
     )
+
+
+def test_park_is_a_place_and_greenery_stays_e03():
+    """«Парк рядом» — место словаря (`park`, считается по паркам пакета), а доля зелени вокруг —
+    E03. «Детский сад», «вид на парк», «парк-отель», аквапарк и парк аттракционов — не парк."""
+    ast = parse("зелёный район и парк рядом")
+    assert [c.feature_id for c in ast.soft] == ["E03"]
+    assert [p.category for p in places_of(ast)] == ["park"]
+    assert [p.category for p in places_of(parse("зелёная зона рядом"))] == ["park"]
+    for text in (
+        "детский сад рядом",
+        "вид на парк",
+        "парк-отель",
+        "рядом аквапарк",
+        "рядом парк аттракционов",
+        "парковка у отеля",
+    ):
+        assert "park" not in [p.category for p in places_of(parse(text))], text
+    park = PLACES.get("park")
+    assert matches({"leisure": "park"}, park)
+    assert not matches({"leisure": "park", "access": "private"}, park)
+    assert not matches({"leisure": "garden"}, park)  # сад без названия — чаще двор или участок
+    assert matches({"leisure": "garden", "name": "Аптекарский огород"}, park)
+    assert not matches({"leisure": "garden", "name": "Сад", "garden:type": "residential"}, park)
+
+
+def test_listed_places_share_near():
+    """«Рядом с парками и хорошими ресторанами» — «рядом» и у второго места перечисления."""
+    ast = parse("у моря рядом с парками и хорошими ресторанами")
+    assert [c.feature_id for c in ast.soft] == ["W01"] and not ast.unparsed_spans
+    park, restaurant = places_of(ast)
+    assert (park.category, park.radius_m) == ("park", 800)
+    assert (restaurant.category, restaurant.radius_m) == ("restaurant", 800)
+    assert restaurant.quality == "хорошими" and not restaurant.on_site
+    # Без «рядом» у первого «ресторан» — про сам отель: перечисление его не берёт.
+    assert [p.category for p in places_of(parse("парк и ресторан"))] == ["park"]
 
 
 def test_place_words_do_not_steal_from_sea_and_catalog():

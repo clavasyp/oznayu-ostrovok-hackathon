@@ -24,6 +24,8 @@ x-app: &app
     LLM_FALLBACK_MODEL: ${LLM_FALLBACK_MODEL:-}
     LLM_FALLBACK_API_KEY: ${LLM_FALLBACK_API_KEY:-}
     LLM_FALLBACK_BASE_URL: ${LLM_FALLBACK_BASE_URL:-}
+    # Прогрев кеша базы запросами показа в фоне после загрузки пакетов (первый поиск не ждёт диска).
+    WARMUP: ${WARMUP:-1}
 
 services:
   db:

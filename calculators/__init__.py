@@ -5,4 +5,5 @@ from calculators import (
     env_landcover,  # noqa: F401  (доля классов WorldCover)
     env_marine,  # noqa: F401  (B02 — температура моря)
     env_vegetation,  # noqa: F401  (пример контракта — E03)
+    geo_place_count,  # noqa: F401  (сколько мест категории в радиусе — для specgen)
 )

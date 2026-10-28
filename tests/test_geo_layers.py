@@ -124,6 +124,191 @@ def test_d34_keeps_all_categorized_places_in_radius_without_pairs(tmp_path):
     assert report["transit_time_status"] == "unknown"
 
 
+def _area(oid, polygon, tags):
+    return {
+        "osm_type": "way",
+        "osm_id": oid,
+        "tags": tags,
+        "nodes": None,
+        "geometry_wkb": polygon.wkb_hex,
+        "version": 1,
+        "timestamp": "2026-10-22T00:00:00Z",
+    }
+
+
+def _square(lon, lat, east_m, size_m):
+    """Квадрат size_m × size_m, западный край в east_m к востоку от точки."""
+    from shapely.geometry import box
+
+    from calculators.route_facades import GEOD
+
+    west = GEOD.fwd(lon, lat, 90, east_m)[0]
+    east = GEOD.fwd(lon, lat, 90, east_m + size_m)[0]
+    north = GEOD.fwd(lon, lat, 0, size_m / 2)[1]
+    south = GEOD.fwd(lon, lat, 180, size_m / 2)[1]
+    return box(west, south, east, north)
+
+
+def test_d34_park_gets_edge_points_and_distance_to_edge(tmp_path):
+    """Километровый парк в 200 м: точка внутри — в ~700 м, а ближайшая точка края — в 200 м
+    (не дальше чем на половину шага). Зелень двора без названия и закрытый парк — не парки."""
+    from calculators.route_facades import GEOD
+    from pipeline.nearby_tables import EDGE_SPACING_M, build
+    from tests.test_seva_geo import MANIFEST, node, write_rows
+
+    hotel = (37.6, 55.7)
+    rows = [
+        _area(1, _square(*hotel, 200, 1000), {"leisure": "park", "name": "Большой парк"}),
+        _area(2, _square(*hotel, -100, 40), {"leisure": "park"}),  # двор, 0,16 га
+        _area(3, _square(*hotel, 300, 100), {"leisure": "park"}),  # без названия, 1 га
+        _area(4, _square(*hotel, 400, 30), {"leisure": "park", "name": "Сквер"}),
+        _area(5, _square(*hotel, 500, 200), {"leisure": "park", "access": "private"}),
+        _area(6, _square(*hotel, 600, 200), {"leisure": "garden"}),  # сад без названия
+        _area(7, _square(*hotel, 700, 200), {"leisure": "garden", "name": "Аптекарский огород"}),
+        node(8, 37.601, 55.7, {"aerialway": "station", "name": "Нижняя станция"}),
+    ]
+    write_rows(tmp_path / "records.jsonl.gz", rows)
+    (tmp_path / "manifest.json").write_text(json.dumps(MANIFEST))
+    parts = {"hotels": [{"id": "h", "longitude": hotel[0], "latitude": hotel[1]}]}
+    report = build(parts, tmp_path, "moscow")
+    by_id = {p["id"]: p for p in parts["places"]}
+    objects = {k for k in by_id if "#" not in k}
+    assert objects == {f"osm:way/{i}" for i in (1, 3, 4, 7)} | {"osm:node/8"}
+    assert by_id["osm:node/8"]["categories"] == ["ski_lift"]
+    edges = [p for p in parts["places"] if p["id"].startswith("osm:way/1#edge")]
+    assert edges and all(p["categories"] == ["park"] for p in edges)
+    info = edges[0]["source"]["geometry"]
+    assert info["role"] == "edge" and info["object"] == "osm:way/1"
+    assert info["spacing_m"] == EDGE_SPACING_M and 3_900 < info["edge_length_m"] < 4_100
+    assert by_id["osm:way/1"]["source"]["geometry"]["role"] == "representative_point"
+    assert 0.99e6 < by_id["osm:way/1"]["source"]["geometry"]["area_m2"] < 1.01e6
+
+    def distance(p):
+        return GEOD.inv(*hotel, p["longitude"], p["latitude"])[2]
+
+    assert distance(by_id["osm:way/1"]) > 600  # точка внутри обманывает
+    nearest = min(distance(p) for p in edges)
+    assert 200 <= nearest <= 200 + EDGE_SPACING_M / 2
+    assert all(distance(p) <= 1500 for p in edges)  # точки края — только в 1500 м от отелей
+    assert report["edge_objects"] == 4 and report["edge_rows"] == len(
+        [k for k in by_id if "#edge" in k]
+    )
+    assert report["places"] == 5 and report["place_rows"] == len(parts["places"])
+    assert [p["id"] for p in parts["places"]] == sorted(by_id)
+
+
+def test_d34_region_drops_places_and_stations_beyond_border(tmp_path):
+    """Срез Сочи захватывает Абхазию: станция за границей субъекта не становится ближайшей."""
+    from shapely.geometry import box, mapping
+
+    from pipeline.nearby_tables import build
+    from tests.test_seva_geo import MANIFEST, node, write_rows
+
+    rows = [
+        node(1, 40.000, 43.40, {"railway": "station", "name": "Весёлое"}),
+        node(2, 40.013, 43.39, {"railway": "station", "name": "Ԥсоу"}),
+        node(3, 40.012, 43.39, {"amenity": "pharmacy", "name": "Аптека за границей"}),
+        node(4, 39.999, 43.40, {"amenity": "pharmacy"}),
+    ]
+    write_rows(tmp_path / "records.jsonl.gz", rows)
+    (tmp_path / "manifest.json").write_text(json.dumps(MANIFEST))
+    region = {
+        "features": [{"type": "Feature", "geometry": None, "properties": {"osm_id": "r/1"}}],
+        "union_geometry": mapping(box(39.0, 43.2, 40.005, 44.6)),
+    }
+    (tmp_path / "region.geojson").write_text(json.dumps(region))
+    parts = {"hotels": [{"id": "h", "longitude": 40.004, "latitude": 43.395}]}
+    report = build(parts, tmp_path, "sochi")
+    assert [s["name"] for s in parts["transit_stations"]] == ["Весёлое"]
+    assert [p["id"] for p in parts["places"]] == ["osm:node/4"]
+    assert {(s["station_id"], s["rank"]) for s in parts["hotel_stations"]} == {("osm:node/1", 1)}
+    assert report["outside_region"] == {"places": 1, "stations": 1}
+    assert report["region"] == ["r/1"]
+
+
+def test_refresh_places_rewrites_only_d34_tables_and_keeps_layers(tmp_path):
+    """Пересборка мест готового пакета: меняются места, станции и манифест; слой калькулятора,
+    его источник и прочие файлы — нет; повтор на тех же входах даёт те же байты."""
+    from datetime import UTC, datetime
+
+    from core.packs import Manifest, PackFile, PackSource, read_manifest, sha256_file, verify
+    from core.packs import write_jsonl_gz as write
+    from pipeline.refresh_places import refresh
+    from tests.test_seva_geo import MANIFEST, node, write_rows
+
+    osm = tmp_path / "osm"
+    osm.mkdir()
+    write_rows(
+        osm / "records.jsonl.gz",
+        [
+            _area(1, _square(39.7, 43.58, 100, 300), {"leisure": "park", "name": "Парк"}),
+            node(2, 39.701, 43.58, {"railway": "station", "name": "Станция"}),
+        ],
+    )
+    (osm / "manifest.json").write_text(
+        json.dumps(MANIFEST | {"city_id": "sochi", "algorithm_version": "osm-places.1"})
+    )
+    pack = tmp_path / "sochi"
+    (pack / "data").mkdir(parents=True)
+    rows = {
+        "hotels": [{"id": "h", "city_id": "sochi", "latitude": 43.58, "longitude": 39.7}],
+        "places": [{"id": "osm:node/9", "city_id": "sochi", "categories": ["L01"]}],
+        "transit_stations": [],
+        "hotel_stations": [],
+        "transit_times": [],
+        "facts": [{"fact_id": "layer"}],
+    }
+    files = []
+    for kind, records in rows.items():
+        path = pack / "data" / ("view_sun" if kind == "facts" else kind)
+        path = path.with_suffix(".jsonl.gz")
+        write(path, records)
+        files.append(
+            PackFile(
+                path=f"data/{path.name}",
+                kind=kind,
+                rows=len(records),
+                bytes=path.stat().st_size,
+                sha256=sha256_file(path),
+                layer=True if kind == "facts" else None,
+            )
+        )
+    layer = PackSource(id="view_sun:x", provider="test", layer="data/view_sun.jsonl.gz")
+    (pack / "manifest.json").write_text(
+        Manifest(
+            city_id="sochi",
+            city_name="Большой Сочи",
+            timezone="Europe/Moscow",
+            depth="full",
+            pack_version="build.1-aaaa+bbbb",
+            built_at=datetime(2026, 10, 27, tzinfo=UTC),
+            code_version="build.1",
+            sources=[layer],
+            files=files,
+        ).model_dump_json(exclude_none=True)
+    )
+    built = datetime(2026, 10, 28, 3, tzinfo=UTC)
+    report = refresh(pack, osm, built_at=built)
+    manifest = verify(pack)
+    by_kind = {f.kind: f for f in manifest.files}
+    assert by_kind["places"].rows == report["places"]["after"] > 1  # парк и его точки края
+    assert report["places"]["removed"] == 1  # прежняя аптека не из этого среза
+    assert by_kind["transit_stations"].rows == 1 and by_kind["hotel_stations"].rows == 1
+    assert by_kind["facts"] == files[-1]  # слой не тронут
+    base, layers = manifest.pack_version.split("+")  # версия сборки и хеш слоёв
+    assert base.startswith("build.1-") and base != "build.1-aaaa" and layers
+    assert manifest.code_version == "build.1" and manifest.built_at == built
+    ids = [s.id for s in manifest.sources]
+    assert ids == ["view_sun:x", "d34_places_osm"]
+    assert manifest.sources[1].sha256 == MANIFEST["source_sha256"]
+    first = {p.name: p.read_bytes() for p in (pack / "data").iterdir()}
+    first["manifest.json"] = (pack / "manifest.json").read_bytes()
+    refresh(pack, osm, built_at=built)
+    again = {p.name: p.read_bytes() for p in (pack / "data").iterdir()}
+    again["manifest.json"] = (pack / "manifest.json").read_bytes()
+    assert again == first and read_manifest(pack).notes.count("places-refresh.1") == 1
+
+
 def test_moscow_shards_share_full_graph_and_restore_route_callback(tmp_path):
     from calculators.route_geo import RoutePoiCalculator
     from calculators.route_graph import PedestrianGraph

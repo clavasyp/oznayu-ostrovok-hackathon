@@ -13,6 +13,9 @@
   `calculate_city.py` / `calculate_moscow.py` (георасчёты) → `finalize_packs.py` (фасады, места,
   станции, очередь D33) → `supplement_categories.py` (категории из отдельного снимка) →
   `publish_packs.py` (в `packs/` с резервной копией). Команды — `connectors/README.md`.
+- `refresh_places.py` — места и станции готового пакета заново из среза OSM (`connectors.osm_pbf
+  --places-only`) без полной пересборки: парки с точками края, подъёмники, граница страны.
+  Пакет меняется на месте; отчёт прогона 28.10 — `reports/places_refresh.json`.
 - `audit_packs.py`, `audit_ostrovok.py` — офлайн-аудит пакетов и сверка D26 со снимком
   (`make audit`).
 - `make_fixtures.py` — заглушки для режима `DATA_MODE=fixtures`.

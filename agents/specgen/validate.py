@@ -59,10 +59,13 @@ def check(spec: FeatureSpec) -> Check:
 
     if not ID.match(spec.id):
         p(f"id «{spec.id}»: латиница в нижнем регистре, цифры и «_», 3–64 знака")
-    if catalog.get(spec.id.upper()) or catalog.get(spec.id):
+    taken = catalog.get(spec.id.upper()) or catalog.get(spec.id)
+    if taken and not taken.runtime:  # включённую текстом можно включить снова — пересчёт
         p(f"id «{spec.id}» уже занят характеристикой каталога")
     synonyms = {normalize(s).strip() for s in spec.search.synonyms}
     for f in catalog.features.values():
+        if f.id == spec.id:
+            continue
         same = synonyms & {normalize(s).strip() for s in f.synonyms}
         if same:
             w(f"похоже на {f.id} «{f.short}»: те же слова гостя ({', '.join(sorted(same))})")
@@ -148,6 +151,14 @@ def check(spec: FeatureSpec) -> Check:
             radius = r.params["radius_m"]
             if not isinstance(radius, int | float) or not RADIUS_M[0] <= radius <= RADIUS_M[1]:
                 p(f"{where}: radius_m — число от {RADIUS_M[0]} до {RADIUS_M[1]} м")
+        if name == "geo.place_count":
+            from agents.catalog.places import load_places
+
+            if load_places().get(str(r.params.get("category"))) is None:
+                p(f"{where}: category — ID из словаря мест agents/catalog/places.json")
+            # Места карт — не перепись: число «не меньше», «не больше N» по нему не обещаем.
+            if default is not None and set(spec.search.operators) - {"gte", "gt", "exists"}:
+                p(f"{where}: {name} даёт число «не меньше» — в search.operators только gte, gt")
         if name not in plugins:
             w(f"{where}: калькулятор {name} ещё не зарегистрирован ({calc.owner}) — пробный "
               "расчёт недоступен")  # fmt: skip

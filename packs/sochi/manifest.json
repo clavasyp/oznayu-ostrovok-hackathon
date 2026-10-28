@@ -4,8 +4,8 @@
   "city_name": "Большой Сочи",
   "timezone": "Europe/Moscow",
   "depth": "full",
-  "pack_version": "category-supplement.2-9062f7ca04de+5161ea64",
-  "built_at": "2026-10-27T07:56:12.063670Z",
+  "pack_version": "category-supplement.2-36311c2fd6d9+e2448a2e",
+  "built_at": "2026-10-28T03:00:00Z",
   "code_version": "category-supplement.2",
   "catalog_version": "ostrovok-2026-10-24+v9",
   "sources": [
@@ -83,6 +83,20 @@
       "release": "snapshot_2026-10-27-targeted",
       "sha256": "1c0e3ed5dc92ab6535416b8dbfe63bf68ec79282eb09360db1a4e5592472881b",
       "fetched_at": "2026-10-27T07:46:59.656535Z"
+    },
+    {
+      "id": "d34_places_osm",
+      "provider": "OpenStreetMap/Geofabrik",
+      "release": "2026-10-22T20:21:33Z",
+      "sha256": "242254bbd0c250e4fab8c1b70e77d6ff6ccfa6dde9498134e0019698cf6f2ee6",
+      "license": "ODbL-1.0",
+      "commercial_ok": true,
+      "extract": "osm-places.1",
+      "method": "nearby-tables.3; places-refresh.1",
+      "region_relations": [
+        108082,
+        253256
+      ]
     },
     {
       "id": "view_sun:osm-buildings",
@@ -164,8 +178,8 @@
       "path": "data/hotel_stations.jsonl.gz",
       "kind": "hotel_stations",
       "rows": 15806,
-      "bytes": 207792,
-      "sha256": "31a04369ef62db22d84bbd53d7ec89d8e0d6f771323315ccf7a091884c8c9910"
+      "bytes": 206088,
+      "sha256": "1dd340a5b1f2e541fed1c08e3b9f3275deecca54df2847f7efb976215b0169e5"
     },
     {
       "path": "data/hotels.jsonl.gz",
@@ -184,9 +198,9 @@
     {
       "path": "data/places.jsonl.gz",
       "kind": "places",
-      "rows": 6475,
-      "bytes": 387905,
-      "sha256": "d8a0c0f3fe8a5bc42ae79790e86b447eba469c78223d4735bd353a5cb15e53d3"
+      "rows": 7754,
+      "bytes": 438165,
+      "sha256": "8dcfef83c80ac9073f4fd1f54b34834b2e291f8ac91f6615527b08e8b8410a68"
     },
     {
       "path": "data/questions.jsonl.gz",
@@ -205,9 +219,9 @@
     {
       "path": "data/transit_stations.jsonl.gz",
       "kind": "transit_stations",
-      "rows": 176,
-      "bytes": 13491,
-      "sha256": "cf9f02c4e0e90b8f327a1b1b49dc16d4da291458bce8636132dc805bdabcb316"
+      "rows": 172,
+      "bytes": 13138,
+      "sha256": "3d5c9cd0684eb8d6dba56b90b97eb1c55add3389b5fd902445cee765c18ea3eb"
     },
     {
       "path": "data/transit_times.jsonl.gz",
@@ -233,11 +247,11 @@
     {
       "path": "data/view_sun.jsonl.gz",
       "kind": "facts",
-      "rows": 158306,
-      "bytes": 7357936,
-      "sha256": "745010bb22a3d01d0dbc045b3d10cbcf29986335fa401a86887d124a3f0263a4",
+      "rows": 230468,
+      "bytes": 10620040,
+      "sha256": "1d40655f3071b86aa201055148932c5aa1ad0893a42e20816d3d04c4af516767",
       "layer": true
     }
   ],
-  "notes": "Полный каталог, георасчёты, корпуса/геометрические фасады и OSM D34. Расстояния до мест и станций — по прямой, доступ не подтверждён. Места рядом считает запрос PostGIS; в пакете только места с категорией словаря мест или характеристики каталога. 2ГИС bundle не передан. Пустая transit_times не означает отсутствие транспорта; вне датированных ответов время неизвестно. Категории дополнены из snapshot_2026-10-27-targeted; координаты и геофакты сохранены."
+  "notes": "Полный каталог, георасчёты, корпуса/геометрические фасады и OSM D34. Расстояния до мест и станций — по прямой, доступ не подтверждён. Места рядом считает запрос PostGIS; в пакете только места с категорией словаря мест или характеристики каталога. 2ГИС bundle не передан. Пустая transit_times не означает отсутствие транспорта; вне датированных ответов время неизвестно. Категории дополнены из snapshot_2026-10-27-targeted; координаты и геофакты сохранены. Места и станции — places-refresh.1: парки с точками края через 150 м, подъёмники и аттракционы; места и станции за границей РФ не берутся."
 }

@@ -13,10 +13,10 @@ import { addIsoDays, cityToday, conditionPeriod, defaultStay, formatDateRange, f
 import { useDialog } from './useDialog.js'
 import { groupMapPoints } from './mapClusters.js'
 import { applyEdits, conditionChips, editOf, moveCondition, recordEdit } from './astEdit.js'
-import { PROVENANCE, STATUS_LABELS, distinctTitles, featureName, guestNotes, hasEstimate, hotelKind, itemMarks, itemSubtitle, itemTitle, orderedItems, placementFloors, shortVerdict, verdictKind, verdictText } from './labels.js'
+import { PROVENANCE, STATUS_LABELS, distinctTitles, featureName, guestNotes, hasEstimate, hotelKind, itemMarks, itemSubtitle, itemTitle, orderedItems, outOfCatalogCheck, placementFloors, shortVerdict, verdictKind, verdictText } from './labels.js'
 import { PAGE_SIZE, clarifyKey, clarifyKind, filterTotal, pageWindow, refineQuery, searchCounts, serverPaged } from './query.js'
 import { attemptStateText, confidenceText, factRows, formatDateTime, formatFactValue, formatNumber, hotelierSource, paramWords, providerText, subjectLevelText, windowsText } from './facts.js'
-import { ANSWER_STATES, agentFields, confirmText } from './hotelier.js'
+import { ANSWER_STATES, agentFields, buildingLabel, confirmText, marksFromAliases, osmUrl, placementBody, placementOutcome, placementQuestionText, placementState, questionAfter, searchCheck, wallSides } from './hotelier.js'
 
 const API = '/api'
 const DEFAULT_QUERY = 'тихий номер с видом на закат недалеко от моря'
@@ -108,6 +108,8 @@ function App() {
   const [toast, setToast] = useState('')
   const [hotelierAnswers, setHotelierAnswers] = useState({})
   const [activeHotel, setActiveHotel] = useState('')
+  // Вкладка кабинета («Об отеле» / «Где окна номеров») переживает переход в поиск и обратно.
+  const [hotelierTab, setHotelierTab] = useState('questions')
   const searchSeq = useRef(0)
   const searchAbort = useRef(null)
   const pageSeq = useRef(0)
@@ -170,6 +172,7 @@ function App() {
         if (!current || current.hotel.city_id !== cityId) return current
         return (data.results || []).find((item) => item.hotel.hotel_id === current.hotel.hotel_id) || { ...current, stale: true }
       })
+      return data
     } catch (error) {
       if (isAbort(error) || seq !== searchSeq.current) return
       setSearchData(null)
@@ -270,9 +273,26 @@ function App() {
     if (text && text !== query.trim()) runSearch(text, city)
   }
 
+  // Пересчёт подборки гостя с тем же разбором; промис с новой выдачей (или null) — для кабинета.
   function refreshGuest() {
     const data = searchRef.current
-    if (data?.ast) runSearch(data.ast.raw_text, data.ast.city_id || city, { ast: data.ast })
+    return data?.ast ? runSearch(data.ast.raw_text, data.ast.city_id || city, { ast: data.ast }) : Promise.resolve(null)
+  }
+
+  // «Проверить в поиске» из кабинета: подборка гостя и карточка отеля, если он на странице.
+  // Поиск по другому городу — тот же запрос гостя в городе отеля.
+  async function showInSearch(hotelId, cityId) {
+    setSection('guest')
+    let items = list.items
+    if (searchRef.current?.ast?.city_id !== cityId) {
+      setCity(cityId)
+      const data = await runSearch(query, cityId)
+      if (!data) return
+      items = data.results || []
+    }
+    const result = items.find((item) => item.hotel.hotel_id === hotelId)
+    if (result) openHotel(result)
+    else notify('Отеля нет на первой странице подборки — уточните запрос или откройте фильтр «Подходят»')
   }
 
   const paged = serverPaged(searchData)
@@ -316,7 +336,7 @@ function App() {
 
           <main className="content">
             {section === 'guest' && <GuestView {...{ city, changeCity, cities, selectedCity, query, setQuery, runSearch, searchState, searchError, searchData, list, visibleResults, remaining, changeFilter, loadMore, openHotel, showMap, setShowMap, savedIds, toggleSave, notify, stay, applyStay, edits, setEdits }} />}
-            {section === 'hotelier' && <HotelierView {...{ guestCity: city, cities, activeHotel, setActiveHotel, drafts: hotelierAnswers, setDrafts: setHotelierAnswers, notify, searchData, refreshGuest, guestResults: list.items }} />}
+            {section === 'hotelier' && <HotelierView {...{ guestCity: city, cities, activeHotel, setActiveHotel, drafts: hotelierAnswers, setDrafts: setHotelierAnswers, notify, searchData, refreshGuest, guestResults: list.items, showInSearch, tab: hotelierTab, setTab: setHotelierTab }} />}
             {section === 'admin' && <AdminView {...{ guestCity: city, cities, notify }} />}
           </main>
         </div>
@@ -465,7 +485,7 @@ function UnderstoodCard({ ast, query, city, runSearch, edits, setEdits, notify, 
       <div className="condition-group"><div className="group-label"><span className="condition-dot required" />ОБЯЗАТЕЛЬНО</div>{required.map((chip) => <ConditionChip key={chip.key} chip={chip} editing={editing} onMove={move} />)}{oocRequired.map((item, index) => <OutOfCatalogChip key={`r${item.atom_id || index}`} item={item} />)}{!required.length && !oocRequired.length && <span className="muted-small">Пока не указано</span>}</div>
       <div className="condition-group"><div className="group-label"><span className="condition-dot preferred" />ЖЕЛАТЕЛЬНО</div>{preferred.map((chip) => <ConditionChip key={chip.key} chip={chip} editing={editing} onMove={move} />)}{oocDesired.map((item, index) => <OutOfCatalogChip key={`d${item.atom_id || index}`} item={item} />)}{!preferred.length && !oocDesired.length && <span className="muted-small">Пока не указано</span>}</div>
       {oocOther.map((item, index) => <div className="unknown-box" key={`o${item.atom_id || index}`}><span className="unknown-symbol">?</span><div><strong>{labels.out_of_catalog || 'Такое мы пока не знаем'}</strong><span>{item.text_span}</span></div></div>)}
-      {outOfCatalog.length > 0 && <p className="ooc-note">«Не проверяем» — такого пока нет в нашем каталоге. Обязательная часть оставляет отель не выше «Нужно уточнить». Мы записали, что такое спрашивают.</p>}
+      {outOfCatalog.some((item) => !outOfCatalogCheck(item).checked) && <p className="ooc-note">«Не проверяем» — такого пока нет в нашем каталоге. Обязательная часть оставляет отель не выше «Нужно уточнить». Мы записали, что такое спрашивают.</p>}
       {unparsed.length > 0 && <div className="unknown-box unparsed-box"><span className="unknown-symbol">?</span><div><strong>Не учли в поиске</strong><span>{unparsed.map((span) => `«${span.text}»`).join(', ')} — эту часть мы не проверяли, на статусы она не влияет. Переформулируйте, если она важна.</span></div></div>}
       {(shown.clarify || []).map((item) => {
         const key = clarifyKey(item)
@@ -510,9 +530,8 @@ function ConditionChip({ chip, editing, onMove }) {
 }
 
 function OutOfCatalogChip({ item }) {
-  const place = item.place
-  const where = place ? `${place.label}${place.on_site ? ' в отеле' : place.radius_m ? `, до ${place.radius_m} м` : ''}` : ''
-  return <span className="condition-chip ooc-chip" title={where || 'Такое мы пока не знаем'}>{item.text_span}<small>{item.mapping_status === 'partial' ? 'понято частично · не проверяем' : 'не проверяем'}{where ? ` · ${where}` : ''}</small></span>
+  const check = outOfCatalogCheck(item)
+  return <span className={`condition-chip ooc-chip${check.checked ? ' checked' : ''}`} title={check.checked ? check.note : 'Такое мы пока не знаем'}>{item.text_span}<small>{check.note}</small></span>
 }
 
 function GuestCounter({ label, value, min, max, onChange }) {
@@ -701,7 +720,7 @@ function CategorySection({ roomTypes, categories, bestCategory, loading }) {
       return <div className={`category-row ${room.room_type_id === bestCategory ? 'best' : ''}`} key={room.room_type_id}>
         <div className="category-row-heading"><div><strong>{room.name || room.room_type_id}</strong>{room.room_type_id === bestCategory && <span className="best-category-tag">Лучший вариант</span>}</div>{status && <span className={`mini-status ${verdictKind(status)}`}>{category.status_label || STATUS_LABELS[status] || 'Нужно уточнить'}</span>}</div>
         {(placementSummary || guarantee) && <span className="category-meta">{placementSummary}{placementSummary && guarantee && ' · '}{guarantee ? ({ all_guaranteed: 'все номера гарантированы', exact_room: 'номер выбран точно', some_possible: 'есть подходящие номера', on_request: 'по запросу' }[guarantee] || guarantee) : ''}</span>}
-        {floors.length > 0 && <div className="placement-list">{floors.slice(0, 4).map((floor) => <span key={floor.key} title={floor.walls > 1 ? `Номер на одной из ${floor.walls} стен этой стороны` : undefined}><i className={`reason-marker ${floor.verdict}`} />{floor.floor_label || `${floor.floor} этаж`}{floor.building_id ? ` · корпус ${floor.building_id}` : ''}</span>)}{floors.length > 4 && <small>и ещё {floors.length - 4}</small>}</div>}
+        {floors.length > 0 && <div className="placement-list">{floors.slice(0, 4).map((floor) => <span key={floor.key} title={floor.walls > 1 ? `Номер на одной из ${floor.walls} стен этой стороны` : undefined}><i className={`reason-marker ${floor.verdict}`} />{floor.floor_label || `${floor.floor} этаж`}{floor.building_id ? ` · ${floor.building_name || 'корпус по карте'}` : ''}</span>)}{floors.length > 4 && <small>и ещё {floors.length - 4}</small>}</div>}
         {category.reason && <p className="category-reason">{category.reason}</p>}
       </div>
     })}
@@ -804,9 +823,10 @@ function BookingDialog({ result, ast, timeZone, stay, applyStay, booked, labels,
   </section></div>
 }
 
-function HotelierView({ guestCity, cities, activeHotel, setActiveHotel, drafts, setDrafts, notify, searchData, refreshGuest, guestResults }) {
+function HotelierView({ guestCity, cities, activeHotel, setActiveHotel, drafts, setDrafts, notify, searchData, refreshGuest, guestResults, showInSearch, tab, setTab }) {
   const labels = useLabels()
   const draftKey = (question) => `${question.hotel_id}:${question.question_id}`
+  const placementKey = (question) => `placement:${question.hotel_id}:${question.room_type_id}`
   const [hotelCity, setHotelCity] = useState(guestCity)
   const [hotels, setHotels] = useState([])
   const [hotelFilter, setHotelFilter] = useState('')
@@ -817,6 +837,9 @@ function HotelierView({ guestCity, cities, activeHotel, setActiveHotel, drafts, 
   const [questionsLoading, setQuestionsLoading] = useState(false)
   const [pending, setPending] = useState({})
   const pendingRef = useRef({})
+  const [placement, setPlacement] = useState({ state: 'loading', questions: [], choices: [], notes: [] })
+  const [placementOutcomes, setPlacementOutcomes] = useState({})
+  const [marks, setMarks] = useState({})
   const cityOptions = cities.length ? cities : Object.entries(cityNames).map(([city_id, name]) => ({ city_id, name }))
 
   useEffect(() => {
@@ -848,6 +871,17 @@ function HotelierView({ guestCity, cities, activeHotel, setActiveHotel, drafts, 
       .then((d) => { if (!cancelled) setQuestions(d.questions || []) })
       .catch(() => { if (!cancelled) setQuestions([]) })
       .finally(() => { if (!cancelled) setQuestionsLoading(false) })
+    return () => { cancelled = true }
+  }, [activeHotel])
+
+  // Где окна номеров: вопрос на каждую категорию, корпуса отеля по карте (D17).
+  useEffect(() => {
+    if (!activeHotel) return undefined
+    let cancelled = false
+    setPlacement({ state: 'loading', questions: [], choices: [], notes: [] })
+    api(`/hotelier/${activeHotel}/placement-questions`)
+      .then((d) => { if (!cancelled) setPlacement({ state: 'ready', questions: d.questions || [], choices: d.building_choices || [], notes: d.notes || [] }) })
+      .catch(() => { if (!cancelled) setPlacement({ state: 'error', questions: [], choices: [], notes: [] }) })
     return () => { cancelled = true }
   }, [activeHotel])
 
@@ -911,6 +945,52 @@ function HotelierView({ guestCity, cities, activeHotel, setActiveHotel, drafts, 
     finally { unlock(question) }
   }
 
+  // Имитатор только заполняет ответ и отмечает корпуса — отправляет отельер (видно, что уйдёт).
+  async function simulatePlacement(question) {
+    if (!lock(question, 'simulate')) return
+    try {
+      const data = await api(`/hotelier/${question.hotel_id}/placement-simulate`, { method: 'POST', body: JSON.stringify({ room_type_id: question.room_type_id }) })
+      if (!data.answer_text) return notify('Имитатор не нашёл, что ответить')
+      setDrafts((items) => ({ ...items, [placementKey(question)]: data.answer_text }))
+      setMarks((items) => ({ ...items, [question.room_type_id]: marksFromAliases(data.building_aliases) }))
+      notify(data.notes?.[0] || 'Имитатор ответил — проверьте текст и корпус и отправьте')
+    } catch { notify('Имитатор не ответил. Проверьте соединение с API.') }
+    finally { unlock(question) }
+  }
+  function setMark(question, buildingId, change) {
+    setMarks((items) => {
+      const current = items[question.room_type_id] || {}
+      const mark = current[buildingId] || { checked: false, name: '' }
+      const known = placement.choices.find((item) => item.building_id === buildingId)?.hotel_aliases?.[0] || ''
+      const next = { ...mark, ...change }
+      if (change.checked && !mark.name && known) next.name = known
+      return { ...items, [question.room_type_id]: { ...current, [buildingId]: next } }
+    })
+  }
+  // Песочница: is_simulated (D41-8). Ответ учтён — пересчитываем подборку гостя того же города
+  // (уже после разблокировки карточки: поиск по всему городу идёт несколько секунд).
+  async function sendPlacement(question) {
+    const { body, error } = placementBody(question, drafts[placementKey(question)] ?? '', marks[question.room_type_id])
+    if (error) return notify(error)
+    if (!lock(question, 'send')) return
+    const rt = question.room_type_id
+    const sameCity = searchData?.ast?.city_id === hotelCity
+    const before = sameCity ? searchCheck(guestResults, question.hotel_id, rt) : null
+    let recheck = false
+    try {
+      const data = await api(`/hotelier/${question.hotel_id}/placement-answers`, { method: 'POST', body: JSON.stringify(body) })
+      recheck = data.state === 'answered' && sameCity
+      setPlacement((current) => ({ ...current, questions: current.questions.map((item) => item.room_type_id === rt ? questionAfter(item, data) : item) }))
+      setPlacementOutcomes((items) => ({ ...items, [rt]: { summary: placementOutcome(data, question), before, after: null, checking: recheck, checked: false, query: sameCity ? searchData.ast.raw_text : '' } }))
+      notify(data.state === 'answered' ? 'Размещения сохранены — пересчитываем выдачу' : data.state === 'needs_clarification' ? 'Нужно уточнение — размещения не сохранены' : data.state === 'real_answer_kept' ? 'Настоящий ответ отеля остаётся — ответ имитатора не сохранён' : 'Размещения не к чему привязать')
+    } catch (error) {
+      notify(error.status === 422 ? 'Ответ не принят: проверьте ответ и названия корпусов' : 'Не удалось сохранить ответ. Проверьте соединение с API.')
+    } finally { unlock(question) }
+    if (!recheck) return
+    const fresh = await refreshGuest()
+    setPlacementOutcomes((items) => items[rt]?.checking ? { ...items, [rt]: { ...items[rt], after: fresh ? searchCheck(fresh.results, question.hotel_id, rt) : null, checking: false, checked: Boolean(fresh) } } : items)
+  }
+
   const matches = useMemo(() => {
     const needle = hotelFilter.trim().toLowerCase()
     return (needle ? hotels.filter((hotel) => (hotel.name || '').toLowerCase().includes(needle)) : hotels).slice(0, 100)
@@ -921,13 +1001,47 @@ function HotelierView({ guestCity, cities, activeHotel, setActiveHotel, drafts, 
     return questionFilter === 'all' || (questionFilter === 'answered' ? answered : !answered)
   })
   const questionFilterLabel = { all: 'Все вопросы', unanswered: 'Без ответа', answered: 'С ответом' }[questionFilter]
+  const visiblePlacement = placement.questions.filter((question) => questionFilter === 'all' || (questionFilter === 'answered') === placementState(question).answered)
+  const guestSearchHere = searchData?.ast?.city_id === hotelCity
   return <div className="workspace-view hotelier-view"><div className="content-topline"><div className="breadcrumb">Командный кабинет <span>/</span> Для отельера</div><span className="data-depth"><i />Песочница</span></div><div className="workspace-heading"><div className="workspace-icon hotelier"><MessageCircle size={22} /></div><div><span className="section-kicker">КАБИНЕТ ПАРТНЁРА</span><h1>Помогите гостям<br />узнать <em>больше.</em></h1><p>Ответьте на вопросы о вашем отеле. Мы покажем гостям, что подтверждено, а что ещё нужно уточнить.</p></div></div>
     <div className="hotel-select-card"><div className="hotel-picker"><span className="section-kicker">ВАШ ОБЪЕКТ</span><div className="hotel-picker-row"><select aria-label="Город" value={hotelCity} onChange={(e) => { setHotelCity(e.target.value); setHotelFilter('') }}>{cityOptions.map((item) => <option key={item.city_id} value={item.city_id}>{item.name}</option>)}</select><input type="search" aria-label="Найти отель по названию" placeholder={`Найти среди ${hotels.length} отелей`} value={hotelFilter} onChange={(e) => setHotelFilter(e.target.value)} /></div><select aria-label="Отель" value={activeHotel} onChange={(e) => setActiveHotel(e.target.value)}>{active && !matches.includes(active) && <option value={active.hotel_id}>{active.name}</option>}{matches.map((hotel) => <option key={hotel.hotel_id} value={hotel.hotel_id}>{hotel.name}</option>)}</select>{hotels.length > matches.length && !hotelFilter && <small>Показаны первые {matches.length} — уточните название в поиске</small>}</div><span className="sim-tag">ПЕСОЧНИЦА</span></div>
     <div className="hotelier-banner"><Sparkles size={18} /><div><strong>Ответ сразу разбирает агент-отельер</strong><span>Без ключа LLM — правилами, с ключом — моделью. Поля с цитатами становятся фактом и сразу пересчитывают выдачу; что понял агент, видно под ответом. В песочнице ответы сохраняются с пометкой «ответ имитатора» — для показа, а не как слова настоящего отеля.</span></div></div>
-    <div className="workspace-section-head"><div><span className="section-kicker">ВОПРОСЫ ПО ОТЕЛЮ</span><h2>Вопросы по отелю <span className="count-bubble">{visibleQuestions.length}</span></h2></div><button className="filter-button" onClick={() => setQuestionFilter((value) => value === 'all' ? 'unanswered' : value === 'unanswered' ? 'answered' : 'all')}><ArrowDownUp size={14} /> {questionFilterLabel}</button></div>
+    <div className="workspace-section-head"><div><span className="section-kicker">ВОПРОСЫ ПО ОТЕЛЮ</span><h2>{tab === 'placement' ? 'Где окна номеров' : 'Вопросы по отелю'} <span className="count-bubble">{tab === 'placement' ? visiblePlacement.length : visibleQuestions.length}</span></h2></div><button className="filter-button" onClick={() => setQuestionFilter((value) => value === 'all' ? 'unanswered' : value === 'unanswered' ? 'answered' : 'all')}><ArrowDownUp size={14} /> {questionFilterLabel}</button></div>
+    <div className="status-filter question-tabs" role="group" aria-label="Какие вопросы показать">{[['questions', 'Об отеле', questions.length], ['placement', 'Где окна номеров', placement.questions.length]].map(([value, label, count]) => <button key={value} className={`filter-pill ${tab === value ? 'active' : ''}`} aria-pressed={tab === value} onClick={() => setTab(value)}>{label}<b>{count}</b></button>)}</div>
     {loading && <div className="loading-inline">Загружаем отели…</div>}{!loading && !hotels.length && <div className="empty-state"><CircleHelp size={28} /><h3>Нет данных отелей</h3><p>Подключите API, чтобы загрузить вопросы.</p></div>}
-    {questionsLoading && <div className="loading-inline">Загружаем вопросы отеля…</div>}
-    <div className="question-list">{visibleQuestions.map((question) => {
+    {tab === 'placement' && <>
+      <p className="placement-intro">По сторонам и этажам окон считаем вид и закат для каждого номера категории. Сторона света — все стены корпуса на эту сторону по карте, номер — у одной из них. Напишите, если других вариантов нет: иначе гость увидит «Нужно уточнить».</p>
+      {placement.state === 'loading' && activeHotel && <div className="loading-inline">Загружаем категории номеров…</div>}
+      {placement.state === 'error' && <div className="loading-inline">Не удалось загрузить категории. Проверьте соединение с API.</div>}
+      {placement.notes.map((note) => <div className="loading-inline" key={note}>{note}</div>)}
+      <div className="question-list">{visiblePlacement.map((question) => {
+        const state = placementState(question)
+        const outcome = placementOutcomes[question.room_type_id]
+        const busy = pending[question.question_id]
+        const choices = question.building_choices || []
+        const roomMarks = marks[question.room_type_id] || {}
+        const inputId = `placement-${question.question_id}`
+        const sidesOf = (buildingId) => wallSides(placement.choices.find((item) => item.building_id === buildingId))
+        return <article className="question-card placement-card" key={question.question_id}>
+          <div className="question-card-top"><span className="question-feature">{question.title}</span><span className={`question-state ${state.answered ? 'answered' : ''}`}><span />{state.text}</span></div>
+          <h3>{placementQuestionText(question)}</h3>
+          {choices.length > 1 && <fieldset className="building-choices"><legend>КОРПУС — ОТМЕТЬТЕ ТОТ, О КОТОРОМ ОТВЕТ</legend>{choices.map((choice) => {
+            const mark = roomMarks[choice.building_id] || { checked: false, name: '' }
+            return <div className={`building-choice ${mark.checked ? 'checked' : ''}`} key={choice.building_id}><div className="building-choice-row"><label title={choice.label}><input type="checkbox" checked={mark.checked} onChange={(e) => setMark(question, choice.building_id, { checked: e.target.checked })} /><span>{buildingLabel(choice.label)}{sidesOf(choice.building_id) && <small>Стены по карте: {sidesOf(choice.building_id)}</small>}</span></label>{osmUrl(choice.building_id) && <a className="building-map-link" href={osmUrl(choice.building_id)} target="_blank" rel="noreferrer" aria-label={`Корпус на карте: ${buildingLabel(choice.label)}`}>на карте <ExternalLink size={11} /></a>}</div>{mark.checked && <input type="text" aria-label="Как вы называете этот корпус" placeholder="Как вы его называете: «корпус 2», «главный»…" value={mark.name} onChange={(e) => setMark(question, choice.building_id, { name: e.target.value })} />}</div>
+          })}</fieldset>}
+          {choices.length === 1 && <p className="building-single">Корпус по карте: {buildingLabel(choices[0].label)}{sidesOf(choices[0].building_id) && <small>Стены по карте: {sidesOf(choices[0].building_id)}</small>}</p>}
+          <label htmlFor={inputId}>ГДЕ ОКНА НОМЕРОВ</label>
+          <textarea id={inputId} rows="3" value={drafts[placementKey(question)] ?? ''} onChange={(e) => setDrafts((items) => ({ ...items, [placementKey(question)]: e.target.value }))} placeholder="Например: окна на юго-запад, с 9 по 15 этаж. Других вариантов нет." />
+          <div className="question-evidence"><span><ShieldCheck size={14} />В песочнице ответ сохранится с пометкой «ответ имитатора» и не заменит ответ настоящего отеля</span></div>
+          <div className="decision-row"><span>ПОДСКАЗКА</span><div><button className="decision-button simulated" disabled={Boolean(busy)} onClick={() => simulatePlacement(question)}><Sparkles size={12} />{busy === 'simulate' ? 'Имитатор отвечает…' : 'Ответ имитатора'}</button></div></div>
+          {outcome && <PlacementOutcome outcome={outcome} guestSearchHere={guestSearchHere} onCheck={() => showInSearch(question.hotel_id, hotelCity)} />}
+          <div className="question-actions"><div className="question-api-actions"><span className="local-note">Понятое сохранится, о непонятом агент задаст уточняющий вопрос.</span></div><button className="primary-button" disabled={Boolean(busy)} onClick={() => sendPlacement(question)}>{busy === 'send' ? 'Сохраняем…' : 'Отправить'} <ArrowRight size={15} /></button></div>
+        </article>
+      })}</div>
+      {placement.state === 'ready' && !placement.notes.length && !visiblePlacement.length && <div className="loading-inline">{placement.questions.length ? 'Нет вопросов с таким фильтром.' : 'У отеля нет категорий номеров.'}</div>}
+    </>}
+    {tab === 'questions' && questionsLoading && <div className="loading-inline">Загружаем вопросы отеля…</div>}
+    {tab === 'questions' && <div className="question-list">{visibleQuestions.map((question) => {
       const answered = ['answered', 'answered_unknown', 'answered_unparsed'].includes(question.answer_status)
       const outcome = outcomes[question.question_id]
       const busy = pending[question.question_id]
@@ -947,7 +1061,28 @@ function HotelierView({ guestCity, cities, activeHotel, setActiveHotel, drafts, 
         {outcome && <AnswerOutcome outcome={outcome} question={question} />}
         <div className="question-actions"><div className="question-api-actions">{question.answer_status === 'not_asked' && <button className="ask-question-button" disabled={Boolean(busy)} onClick={() => askQuestion(question)}>{busy === 'ask' ? 'Отправляем…' : 'Отправить вопрос отелю'}</button>}{question.answer_status === 'asked' && <span className="asked-note"><Check size={13} /> Вопрос отправлен</span>}<span className="local-note">Если в тексте не найдётся ответа на вопрос, он сохранится без факта.</span></div><button className="primary-button" disabled={Boolean(busy)} onClick={() => answer(question, 'text')}>{busy === 'text' ? 'Сохраняем…' : 'Отправить ответ'} <ArrowRight size={15} /></button></div>
       </article>
-    })}</div>
+    })}</div>}
+  </div>
+}
+
+// Итог ответа о размещении: что сохранено, что понял агент, уточнение и как это видит гость.
+function PlacementOutcome({ outcome, guestSearchHere, onCheck }) {
+  const { summary, before, after, checking, checked, query } = outcome
+  return <div className={`answer-outcome ${summary.tone === 'pending' ? 'pending' : ''}`}>
+    <strong>{summary.title} · песочница, с пометкой «ответ имитатора»</strong>
+    {summary.lines.map((line) => <span key={line}>{line}</span>)}
+    {summary.variants.length > 0 && <div className="agent-fields"><small>Агент понял{summary.parsedBy === 'llm' ? ' (модель)' : ' (правила)'}:</small><ul>{summary.variants.map((variant, index) => <li key={index}><b>{variant.building}:</b> {variant.floors}, {variant.sides}{variant.quote && <q>{variant.quote}</q>}</li>)}</ul></div>}
+    {summary.rejected.length > 0 && <small>Не принято: {summary.rejected.join('; ')}</small>}
+    {summary.followup && <span className="agent-followup placement-followup">{summary.state === 'answered' ? 'Уточняющий вопрос' : 'Что уточнить'}: {summary.followup}</span>}
+    {summary.notes.map((note) => <small key={note}>{note}</small>)}
+    {summary.state === 'answered' && <div className="placement-check">
+      {checking && <span>Пересчитываем подборку гостя…</span>}
+      {after && <span>В подборке гостя{query ? ` по запросу «${query}»` : ''}: {before && before.statusLabel !== after.statusLabel ? `${before.statusLabel} → ` : ''}<b>{after.statusLabel}</b>{after.category ? ` · «${after.category.name}» — ${after.category.statusLabel}` : ''}</span>}
+      {after?.category?.reason && <small>{after.category.reason}</small>}
+      {checked && !after && <span>Отеля нет на первой странице подборки гостя.</span>}
+      {!guestSearchHere && <span>Подборка гостя сейчас не по городу отеля — по кнопке найдём по тому же запросу в городе отеля.</span>}
+      <button className="inline-action" disabled={checking} onClick={onCheck}><Search size={13} />Проверить в поиске</button>
+    </div>}
   </div>
 }
 
@@ -982,6 +1117,8 @@ function AdminView({ guestCity, cities, notify }) {
   const [yamlText, setYamlText] = useState('')
   const [trial, setTrial] = useState(null)
   const [specBusy, setSpecBusy] = useState('')
+  const [activeFeatures, setActiveFeatures] = useState([])
+  const [activation, setActivation] = useState(null)
   const [refreshVersion, setRefreshVersion] = useState(0)
   const cityOptions = cities.length ? cities : Object.entries(cityNames).map(([city_id, name]) => ({ city_id, name }))
   useEffect(() => {
@@ -989,6 +1126,7 @@ function AdminView({ guestCity, cities, notify }) {
     api(`/cities/${panelCity}/coverage`).then((d) => { if (!cancelled) setCoverage(d.features || []) }).catch(() => { if (!cancelled) setCoverage([]) })
     api(`/conflicts?city_id=${panelCity}`).then((d) => { if (!cancelled) { setConflicts(d.conflicts || []); setFactConflicts(d.fact_conflicts || []) } }).catch(() => { if (!cancelled) { setConflicts([]); setFactConflicts([]) } })
     setJournal((current) => ({ ...current, state: 'loading' }))
+    api('/specs').then((d) => { if (!cancelled) setActiveFeatures(d.features || []) }).catch(() => { if (!cancelled) setActiveFeatures([]) })
     api(`/out-of-catalog?city_id=${panelCity}`).then((d) => { if (!cancelled) setJournal({ state: 'ready', items: d.items || [], days: d.window_days || 30 }) }).catch(() => { if (!cancelled) setJournal({ state: 'error', items: [], days: 30 }) })
     return () => { cancelled = true }
   }, [panelCity, refreshVersion])
@@ -999,16 +1137,28 @@ function AdminView({ guestCity, cities, notify }) {
   const conflictRows = showAllConflicts ? conflicts : conflicts.slice(0, 4)
   const factConflictRows = showAllFactConflicts ? factConflicts : factConflicts.slice(0, 4)
 
-  async function prepareFeatureDraft(event) {
-    event.preventDefault()
-    if (featureText.trim().length < 3) return notify('Опишите характеристику хотя бы парой слов')
+  async function prepareFeatureDraft(event, text = featureText) {
+    event?.preventDefault()
+    if (text.trim().length < 3) return notify('Опишите характеристику хотя бы парой слов')
+    setFeatureText(text)
     setSpecBusy('draft')
     setTrial(null)
+    setActivation(null)
     try {
-      const data = await api('/specs/draft', { method: 'POST', body: JSON.stringify({ text: featureText.trim() }) })
+      const data = await api('/specs/draft', { method: 'POST', body: JSON.stringify({ text: text.trim() }) })
       setSpecDraft(data)
       setYamlText(data.yaml || '')
     } catch (error) { notify(error.status === 422 ? 'Текст слишком короткий или длинный для черновика' : 'Не удалось подготовить черновик. Проверьте соединение с API.') }
+    finally { setSpecBusy('') }
+  }
+  async function activateFeature() {
+    setSpecBusy('activate')
+    try {
+      const result = await api('/specs/activate', { method: 'POST', body: JSON.stringify({ yaml: yamlText }) })
+      setActivation(result)
+      setRefreshVersion((v) => v + 1)
+      notify(`Характеристика включена: посчитана для ${result.facts} отелей, поиск её уже знает`)
+    } catch (error) { notify(error.status === 422 ? 'Не включить: в спецификации есть проблемы' : 'Включение не удалось. Проверьте соединение с API.') }
     finally { setSpecBusy('') }
   }
   async function runTrial() {
@@ -1036,7 +1186,7 @@ function AdminView({ guestCity, cities, notify }) {
     <section className="admin-panel"><div className="workspace-section-head"><div><span className="section-kicker">D34 · ПРОБЕЛЫ КАТАЛОГА</span><h2>Что спрашивают, а мы не знаем <span className="count-bubble">{journal.items.length}</span></h2></div><span className="sim-tag">ЖУРНАЛ ПОИСКА · {journal.days} ДН.</span></div>
       {journal.state === 'loading' && <div className="loading-inline">Загружаем журнал…</div>}
       {journal.state === 'error' && <div className="empty-facts">Журнал не загрузился: проверьте соединение с API.</div>}
-      {journal.state === 'ready' && journal.items.map((item) => <div className="unknown-request-row" key={item.normalized}><div><strong>{item.label}</strong><span>{[item.unparsed ? 'не разобрано' : 'вне каталога', item.required_queries ? `обязательно — в ${item.required_queries}` : '', item.examples?.length ? `например: «${item.examples.join('», «')}»` : '', item.nearest_contracts?.length ? `ближе всего: ${item.nearest_contracts.map((id) => labels.features?.[id] || CONTRACTS[id] || id).join(', ')}` : ''].filter(Boolean).join(' · ')}</span></div><b title="Разных запросов">{item.queries}</b></div>)}
+      {journal.state === 'ready' && journal.items.map((item) => <div className="unknown-request-row" key={item.normalized}><div><strong>{item.label}</strong><span>{[item.unparsed ? 'не разобрано' : 'вне каталога', item.required_queries ? `обязательно — в ${item.required_queries}` : '', item.examples?.length ? `например: «${item.examples.join('», «')}»` : '', item.nearest_contracts?.length ? `ближе всего: ${item.nearest_contracts.map((id) => labels.features?.[id] || CONTRACTS[id] || id).join(', ')}` : ''].filter(Boolean).join(' · ')}</span></div><b title="Разных запросов">{item.queries}</b><button className="text-button" disabled={specBusy === 'draft'} onClick={() => prepareFeatureDraft(null, item.label)}>Сделать характеристику</button></div>)}
       {journal.state === 'ready' && !journal.items.length && <div className="review-placeholder"><div className="review-icon"><CircleHelp size={20} /></div><div><strong>Пока никто не спросил того, чего нет в каталоге</strong><p>Журнал пишет поиск по тексту гостя: части запроса вне каталога и неразобранные куски. Частота — число разных запросов.</p></div></div>}
     </section>
     <section className="admin-panel"><div className="workspace-section-head"><div><span className="section-kicker">D34 · ДОБАВИТЬ ПРИЗНАК</span><h2>Новая характеристика</h2></div><span className="sim-tag">ЧЕРНОВИК · ВКЛЮЧАЕТ ЧЕЛОВЕК</span></div>
@@ -1052,7 +1202,10 @@ function AdminView({ guestCity, cities, notify }) {
         {trial && <div className={`trial-result ${trial.ran ? '' : 'pending'}`}>{trial.ran
           ? <><strong>Посчитано у {Math.round((trial.coverage || 0) * 100)}% из {trial.hotels} отелей</strong><span>{Object.entries(trial.statuses || {}).map(([status, n]) => `${PROVENANCE[status] || status}: ${n}`).join(' · ')}</span>{trial.examples?.slice(0, 3).map((item) => <small key={item.hotel_id}>{item.name || item.hotel_id}: {item.value == null ? 'неизвестно' : formatFactValue({ value: item.value, unit: item.unit })}</small>)}</>
           : <><strong>Пробный расчёт не запущен</strong><span>{trial.reason}</span></>}{trial.warnings?.map((item) => <small key={item}>{item}</small>)}</div>}
+        {trial?.ran && !activation && <button className="primary-button" disabled={specBusy === 'activate'} onClick={activateFeature}>{specBusy === 'activate' ? 'Считаем по всем отелям…' : 'Включить: посчитать для Москвы и Сочи'}</button>}
+        {activation && <div className="trial-result"><strong>Включена: {activation.title}</strong><span>{Object.entries(activation.cities || {}).map(([city, c]) => `${cityNames[city] || city}: ${Math.round((c.coverage || 0) * 100)}% из ${c.hotels}`).join(' · ')}</span><small>Поиск уже понимает её по словам гостя; факты — с паспортом расчёта.</small></div>}
       </div></div>}
+      {activeFeatures.length > 0 && <div className="active-features"><span className="section-kicker">ВКЛЮЧЕНЫ ТЕКСТОМ</span>{activeFeatures.map((f) => <div className="unknown-request-row" key={f.id}><div><strong>{f.title}</strong><span>{[f.synonyms?.length ? `слова гостя: «${f.synonyms.slice(0, 3).join('», «')}»` : '', ...Object.entries(f.cities || {}).map(([city, c]) => `${cityNames[city] || city}: ${Math.round((c.coverage || 0) * 100)}%`)].filter(Boolean).join(' · ')}</span></div></div>)}</div>}
     </section>
   </div>
 }

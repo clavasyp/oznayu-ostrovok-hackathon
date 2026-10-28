@@ -264,7 +264,15 @@ def _condition_claim(
     if item.get("reason_code") == "out_of_catalog":
         text = f"«{item.get('text_span') or label}»: такого мы пока не знаем"
         return Claim(claim_id, "out_of_catalog", text)
-    if item.get("windows"):
+    if trip := item.get("trip"):
+        # «Доехать до X»: цель из мест города, расстояние по прямой и пешком с запасом (оценка).
+        km = f"{trip['distance_m'] / 1000:.1f}".replace(".", ",")
+        evidence = f"«{trip['name']}» — {km} км по прямой, пешком около {trip['walk_min']} мин"
+    elif place := item.get("place"):
+        # «Рядом место типа X» (D34): место из данных карт пакета, расстояние — по прямой.
+        name = f"«{place['name']}»" if place.get("name") else "есть на карте"
+        evidence = f"{name}, {place['distance_m']} м по прямой"
+    elif item.get("windows"):
         evidence = _windows_evidence(item, catalog)
         if item.get("negated"):  # причина сказана про само условие, а не про «без него»
             item = item | {"reason": "уточним у отеля, где будет номер"}

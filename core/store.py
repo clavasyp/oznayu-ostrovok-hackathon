@@ -61,6 +61,46 @@ class Store(Protocol):
         """
         ...
 
+    def nearest_places(
+        self, hotel_ids: Collection[str], category: str, radius_m: float
+    ) -> tuple[dict[str, dict[str, Any]], int]:
+        """«Рядом место типа X» (D34): ближайшее место категории в радиусе (по прямой) от каждого
+        отеля — `{place_id, name, distance_m, source, …}`; второе значение — сколько мест этой
+        категории в городах отелей (0 — данных о таких местах нет, а не «рядом нет»)."""
+        ...
+
+    def place_counts(
+        self, hotel_ids: Collection[str], category: str, radius_m: float
+    ) -> tuple[dict[str, dict[str, Any]], int]:
+        """Сколько мест категории в радиусе от каждого отеля: `{count, nearest_m}`; второе
+        значение — как у `nearest_places`."""
+        ...
+
+    def find_target(self, city_id: str, text: str) -> dict[str, Any] | None:
+        """Цель «доехать до X» по названию среди мест города: `{place_id, name, categories,
+        latitude, longitude}` или None — такой цели в наших данных нет."""
+        ...
+
+    def distances(self, hotel_ids: Collection[str], target: dict[str, Any]) -> dict[str, int]:
+        """Расстояние по прямой от отелей до цели (`find_target`), м."""
+        ...
+
+    def save_feature(
+        self,
+        feature: dict[str, Any],
+        spec_yaml: str,
+        facts: list[Fact],
+        cities: dict[str, Any],
+        source_text: str | None,
+    ) -> None:
+        """Включить характеристику, описанную текстом (задача 4): спецификация и факты расчёта
+        по городам; прежние факты этой характеристики заменяются."""
+        ...
+
+    def feature_specs(self) -> list[dict[str, Any]]:
+        """Включённые характеристики — записи каталога (`agents.specgen.activate.spec_feature`)."""
+        ...
+
     def placement_geometry(self, hotel_id: str) -> dict[str, Any]:
         """Корпуса и фасады отеля для размещений D17 — как `GET /api/hotels/{id}/geometry`:
         `facades`, `placement_building_aliases`, `placement_facades`,

@@ -5,6 +5,7 @@ from agents.catalog.catalog import (
     FieldSpec,
     coerce_value,
     load_catalog,
+    register_features,
 )
 from agents.catalog.places import PlaceCategory, Places, load_places, matches
 
@@ -19,4 +20,5 @@ __all__ = [
     "load_catalog",
     "load_places",
     "matches",
+    "register_features",
 ]

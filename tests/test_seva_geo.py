@@ -114,6 +114,62 @@ def test_osm_extract_retains_crossing_way_and_pure_gate(tmp_path):
     assert extract_city(source, out, "moscow") == manifest  # Повторная проверка хешей.
 
 
+def test_places_extract_keeps_lifts_and_region_border(tmp_path):
+    """Срез мест: станции подъёмников (`aerialway`) в нём есть; граница субъектов РФ —
+    `region.geojson`; координаты узлов — во временном файле, который удаляется."""
+    from shapely.geometry import Point, shape
+
+    from connectors.osm_pbf import extract_places
+    from core.packs import iter_jsonl
+
+    node_rows = [
+        (1, 39.70, 43.58, ""),
+        (2, 39.71, 43.58, ""),
+        (3, 39.71, 43.59, ""),
+        (4, 39.70, 43.59, ""),
+        (5, 39.705, 43.585, '<tag k="aerialway" v="station"/><tag k="name" v="Газпром"/>'),
+        (6, 40.02, 43.39, '<tag k="railway" v="station"/><tag k="name" v="Ԥсоу"/>'),
+        (7, 39.70, 43.60, '<tag k="amenity" v="bench"/>'),
+        (8, 39.70, 43.61, '<tag k="highway" v="bus_stop"/>'),
+        (10, 39.0, 43.4, ""),
+        (11, 40.0, 43.4, ""),
+        (12, 40.0, 44.0, ""),
+        (13, 39.0, 44.0, ""),
+        (14, 40.0, 44.5, ""),
+        (15, 39.0, 44.5, ""),
+    ]
+    nodes = "".join(
+        f'<node id="{i}" version="1" lon="{x}" lat="{y}">{tags}</node>'
+        for i, x, y, tags in node_rows
+    )
+    region = '<tag k="type" v="boundary"/><tag k="boundary" v="administrative"/>'
+    source = tmp_path / "test.osm"
+    source.write_text(f"""<osm version="0.6" generator="synthetic-test">{nodes}
+      <way id="20" version="1"><nd ref="1"/><nd ref="2"/><nd ref="3"/><nd ref="4"/>
+        <nd ref="1"/><tag k="leisure" v="park"/><tag k="name" v="Парк"/></way>
+      <way id="21" version="1"><nd ref="1"/><nd ref="2"/><tag k="highway" v="primary"/></way>
+      <way id="100" version="1"><nd ref="10"/><nd ref="11"/><nd ref="12"/><nd ref="13"/>
+        <nd ref="10"/></way>
+      <way id="101" version="1"><nd ref="13"/><nd ref="12"/><nd ref="14"/><nd ref="15"/>
+        <nd ref="13"/></way>
+      <relation id="108082" version="1"><member type="way" ref="100" role="outer"/>
+        {region}<tag k="admin_level" v="4"/><tag k="name" v="Краснодарский край"/></relation>
+      <relation id="253256" version="1"><member type="way" ref="101" role="outer"/>
+        {region}<tag k="admin_level" v="4"/><tag k="name" v="Адыгея"/></relation></osm>""")
+    out = tmp_path / "places"
+    manifest = extract_places(source, out, "sochi")
+    rows = {(r["osm_type"], r["osm_id"]): r for r in iter_jsonl(out / "records.jsonl.gz")}
+    # Скамейка — метка места, её отсеет nearby_tables; дороги, остановки и границы — не в срезе.
+    assert set(rows) == {("node", 5), ("node", 6), ("node", 7), ("way", 20)}
+    assert manifest["region_relation_ids"] == [108082, 253256]
+    doc = json.loads((out / "region.geojson").read_text())
+    border = shape(doc["union_geometry"])
+    assert border.covers(Point(39.705, 43.585)) and border.covers(Point(39.5, 44.2))
+    assert not border.covers(Point(40.02, 43.39))  # «Ԥсоу» — за границей
+    assert not (tmp_path / "places.nodes").exists()
+    assert extract_places(source, out, "sochi") == manifest  # повторная проверка хешей
+
+
 @pytest.mark.parametrize(
     "tags,allowed",
     [

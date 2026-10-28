@@ -21,6 +21,7 @@ def test_geo_pack_roundtrip_api_replace_and_copy_rollback(tmp_path, monkeypatch)
     import pipeline.load_packs as loader
     from app.main import create_app
     from core.db import CurationItem, Facade, FactRow, HotelStation, PackLoad
+    from core.geo_store import GeoStore
     from core.packs import Manifest, PackFile, sha256_file
     from pipeline.build_v9_packs import write_jsonl_gz
     from pipeline.load_packs import load_pack
@@ -88,6 +89,31 @@ def test_geo_pack_roundtrip_api_replace_and_copy_rollback(tmp_path, monkeypatch)
                 "tags": {"amenity": "cafe", "tourism": "hotel"},
                 "source": {"provider": "OpenStreetMap"},
             },
+            # Парк: точка внутри в ~600 м, точки края в ~100 и ~300 м (pipeline/nearby_tables.py).
+            *(
+                {
+                    "id": city + "park" + suffix,
+                    "city_id": city,
+                    "name": "Парк",
+                    "latitude": 0.7,
+                    "longitude": longitude,
+                    "categories": ["park"],
+                    "tags": {"leisure": "park", "name": "Парк"},
+                    "source": {
+                        "provider": "OpenStreetMap",
+                        "geometry": {
+                            "method": "edge-points.1",
+                            "role": role,
+                            "object": city + "park",
+                        },
+                    },
+                }
+                for suffix, longitude, role in (
+                    ("", 0.6054, "representative_point"),
+                    ("#edge0001", 0.6009, "edge"),
+                    ("#edge0002", 0.6027, "edge"),
+                )
+            ),
             {  # дальше 1500 м
                 "id": city + "far",
                 "city_id": city,
@@ -204,7 +230,21 @@ def test_geo_pack_roundtrip_api_replace_and_copy_rollback(tmp_path, monkeypatch)
         assert proximity["source"]["passport_ref"] == "place.source"
         assert "geog" not in places["places"][0]["place"]
         everything = client.get(f"/api/hotels/{hid}/nearby-places").json()
-        assert [p["place"]["id"] for p in everything["places"]] == [city + "place"]
+        # Парк — одной строкой: ближайшая его точка (край), а не три точки.
+        assert [p["place"]["id"] for p in everything["places"]] == [
+            city + "place",
+            city + "park#edge0001",
+        ]
+        assert everything["total"] == 2
+        park = client.get(f"/api/hotels/{hid}/nearby-places", params={"category": "park"}).json()
+        assert park["total"] == 1
+        proximity = park["places"][0]["proximity"]
+        assert proximity["distance_kind"] == "geodesic_to_edge_point"
+        assert 95 < proximity["distance_m"] < 105
+        found, known = GeoStore(engine).nearest([hid], "park", 800)
+        assert known == 3 and found[hid]["place_id"] == city + "park#edge0001"
+        assert found[hid]["distance_kind"] == "geodesic_to_edge_point"
+        assert found[hid]["name"] == "Парк" and 95 < found[hid]["distance_m"] < 105
         pharmacies = client.get(f"/api/hotels/{hid}/nearby-places?category=L01").json()
         assert pharmacies["total"] == 0 and pharmacies["status"] == "unknown"
         wrong = client.get(f"/api/hotels/{hid}/nearby-places?category=pharmacy")

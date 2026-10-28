@@ -45,6 +45,9 @@ class Feature:
     # и клубов рядом» тому, кто просил «от 2 баров», — наоборот.
     short_more: str | None = None
     short_less: str | None = None
+    # Включённая по описанию текстом (задача 4): условие для слов гостя без числа и ID спецификации.
+    search_default: dict[str, Any] | None = None
+    runtime: bool = False
 
     @property
     def room_level(self) -> bool:
@@ -94,33 +97,51 @@ class Catalog:
         return "\n".join(lines)
 
 
+# Характеристики, включённые по описанию текстом (`agents/specgen/activate.py`): в каталог без
+# правки `features.json` и без перезапуска. Источник правды — таблица `feature_spec`.
+_RUNTIME: dict[str, dict[str, Any]] = {}
+
+
+def register_features(docs: list[dict[str, Any]]) -> None:
+    """Добавить в каталог включённые характеристики (записи в формате `features.json`)."""
+    for doc in docs:
+        _RUNTIME[doc["id"]] = doc
+    load_catalog.cache_clear()
+
+
+def _feature(f: dict[str, Any], runtime: bool = False) -> Feature:
+    fields = {
+        name: FieldSpec(name, s["type"], s.get("unit"), tuple(s.get("values") or ()))
+        for name, s in f["fields"].items()
+    }
+    return Feature(
+        id=f["id"],
+        title=f["title"],
+        short=f["short"],
+        level=f["level"],
+        source=f["source"],
+        fields=fields,
+        default_field=f["default_field"],
+        ops=tuple(f["ops"]),
+        params=tuple(f["params"]),
+        synonyms=tuple(f["synonyms"]),
+        short_more=f.get("short_more"),
+        short_less=f.get("short_less"),
+        search_default=f.get("search_default"),
+        runtime=runtime,
+    )
+
+
 @lru_cache(maxsize=1)
 def load_catalog(path: Path = CATALOG_PATH) -> Catalog:
     raw = path.read_bytes()
     doc = json.loads(raw)
-    features = {}
-    for f in doc["features"]:
-        fields = {
-            name: FieldSpec(name, s["type"], s.get("unit"), tuple(s.get("values", ())))
-            for name, s in f["fields"].items()
-        }
-        features[f["id"]] = Feature(
-            id=f["id"],
-            title=f["title"],
-            short=f["short"],
-            level=f["level"],
-            source=f["source"],
-            fields=fields,
-            default_field=f["default_field"],
-            ops=tuple(f["ops"]),
-            params=tuple(f["params"]),
-            synonyms=tuple(f["synonyms"]),
-            short_more=f.get("short_more"),
-            short_less=f.get("short_less"),
-        )
+    features = {f["id"]: _feature(f) for f in doc["features"]}
+    features |= {fid: _feature(f, runtime=True) for fid, f in sorted(_RUNTIME.items())}
+    extra = json.dumps(sorted(_RUNTIME), ensure_ascii=False).encode() if _RUNTIME else b""
     return Catalog(
         features=features,
-        version=hashlib.sha256(raw).hexdigest()[:12],
+        version=hashlib.sha256(raw + extra).hexdigest()[:12],
         walk_speed_m_per_min=float(doc["walk_speed_m_per_min"]),
     )
 

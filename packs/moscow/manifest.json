@@ -4,8 +4,8 @@
   "city_name": "Москва",
   "timezone": "Europe/Moscow",
   "depth": "full",
-  "pack_version": "seva-full.3-3e2ff6a04b0c",
-  "built_at": "2026-10-26T15:12:24Z",
+  "pack_version": "seva-full.3-d0015521442f",
+  "built_at": "2026-10-28T03:00:00Z",
   "code_version": "seva-full.3",
   "catalog_version": "ostrovok-2026-10-24+v9",
   "sources": [
@@ -80,6 +80,16 @@
       "sha256": "80a79d4f29d3001424385bb97e0ceadfd9274a043aa8dd6ffb5267c352477497",
       "license": "ODbL-1.0",
       "commercial_ok": true
+    },
+    {
+      "id": "d34_places_osm",
+      "provider": "OpenStreetMap/Geofabrik",
+      "release": "2026-10-22T20:21:33Z",
+      "sha256": "0067f5ee4128c29eb013ddc9da5ae5b235938249553435227a4161b585a87bc7",
+      "license": "ODbL-1.0",
+      "commercial_ok": true,
+      "extract": "osm-places.1",
+      "method": "nearby-tables.3; places-refresh.1"
     }
   ],
   "files": [
@@ -130,7 +140,7 @@
       "kind": "hotel_stations",
       "rows": 50532,
       "bytes": 745363,
-      "sha256": "aae73cd893ef81ba68a6da64b46ec082e10ac6ae40e89da855866d082d0b990f"
+      "sha256": "486ea3e9b6b7ee976410393fc83b246e46635a498ab918b1566db8ff2385f3d1"
     },
     {
       "path": "data/hotels.jsonl.gz",
@@ -149,9 +159,9 @@
     {
       "path": "data/places.jsonl.gz",
       "kind": "places",
-      "rows": 56391,
-      "bytes": 4377338,
-      "sha256": "2a4daa24a37f062a3a622d609f30e72ac85f3dc8f9f7d836811353f7927e13ee"
+      "rows": 68094,
+      "bytes": 4795555,
+      "sha256": "70311286fb57e615071c9be375247d3cca85d7019d1368396417d2d5ee5e1f86"
     },
     {
       "path": "data/questions.jsonl.gz",
@@ -182,5 +192,5 @@
       "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
     }
   ],
-  "notes": "Полный каталог, георасчёты, корпуса/геометрические фасады и OSM D34. Расстояния до мест и станций — по прямой, доступ не подтверждён. Места рядом считает запрос PostGIS; в пакете только места с категорией словаря мест или характеристики каталога. 2ГИС bundle не передан. Пустая transit_times не означает отсутствие транспорта; вне датированных ответов время неизвестно."
+  "notes": "Полный каталог, георасчёты, корпуса/геометрические фасады и OSM D34. Расстояния до мест и станций — по прямой, доступ не подтверждён. Места рядом считает запрос PostGIS; в пакете только места с категорией словаря мест или характеристики каталога. 2ГИС bundle не передан. Пустая transit_times не означает отсутствие транспорта; вне датированных ответов время неизвестно. Места и станции — places-refresh.1: парки с точками края через 150 м, подъёмники и аттракционы; места и станции за границей РФ не берутся."
 }

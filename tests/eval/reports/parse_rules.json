@@ -27,7 +27,7 @@
   "downgraded_required": 0,
   "cases_with_unparsed": 22,
   "cases_with_problems": 0,
-  "median_ms": 1,
+  "median_ms": 0,
   "tokens": {
    "input_tokens": 0,
    "output_tokens": 0,
@@ -40,7 +40,7 @@
    "parsed_by": "rules",
    "notes": [],
    "problems": [],
-   "ms": 41,
+   "ms": 18,
    "llm": null,
    "usage": {},
    "hard": {
@@ -162,7 +162,7 @@
     "Часть запроса не разобрана — она показана отдельно и не считается выполненной."
    ],
    "problems": [],
-   "ms": 2,
+   "ms": 1,
    "llm": null,
    "usage": {},
    "hard": {
@@ -192,7 +192,7 @@
     "Часть запроса не разобрана — она показана отдельно и не считается выполненной."
    ],
    "problems": [],
-   "ms": 6,
+   "ms": 1,
    "llm": null,
    "usage": {},
    "hard": {
@@ -260,7 +260,7 @@
    "parsed_by": "rules",
    "notes": [],
    "problems": [],
-   "ms": 2,
+   "ms": 1,
    "llm": null,
    "usage": {},
    "hard": {
@@ -290,7 +290,7 @@
     "Часть запроса не разобрана — она показана отдельно и не считается выполненной."
    ],
    "problems": [],
-   "ms": 2,
+   "ms": 1,
    "llm": null,
    "usage": {},
    "hard": {
@@ -322,7 +322,7 @@
     "Часть запроса не разобрана — она показана отдельно и не считается выполненной."
    ],
    "problems": [],
-   "ms": 2,
+   "ms": 1,
    "llm": null,
    "usage": {},
    "hard": {
@@ -352,7 +352,7 @@
    "parsed_by": "rules",
    "notes": [],
    "problems": [],
-   "ms": 4,
+   "ms": 0,
    "llm": null,
    "usage": {},
    "hard": {
@@ -380,7 +380,7 @@
    "parsed_by": "rules",
    "notes": [],
    "problems": [],
-   "ms": 2,
+   "ms": 0,
    "llm": null,
    "usage": {},
    "hard": {
@@ -408,7 +408,7 @@
    "parsed_by": "rules",
    "notes": [],
    "problems": [],
-   "ms": 7,
+   "ms": 0,
    "llm": null,
    "usage": {},
    "hard": {
@@ -436,7 +436,7 @@
    "parsed_by": "rules",
    "notes": [],
    "problems": [],
-   "ms": 3,
+   "ms": 0,
    "llm": null,
    "usage": {},
    "hard": {
@@ -466,7 +466,7 @@
     "Часть запроса не разобрана — она показана отдельно и не считается выполненной."
    ],
    "problems": [],
-   "ms": 2,
+   "ms": 0,
    "llm": null,
    "usage": {},
    "hard": {
@@ -499,7 +499,7 @@
     "Часть запроса не разобрана — она показана отдельно и не считается выполненной."
    ],
    "problems": [],
-   "ms": 6,
+   "ms": 1,
    "llm": null,
    "usage": {},
    "hard": {
@@ -534,7 +534,7 @@
    "parsed_by": "rules",
    "notes": [],
    "problems": [],
-   "ms": 1,
+   "ms": 0,
    "llm": null,
    "usage": {},
    "hard": {
@@ -562,7 +562,7 @@
    "parsed_by": "rules",
    "notes": [],
    "problems": [],
-   "ms": 2,
+   "ms": 0,
    "llm": null,
    "usage": {},
    "hard": {
@@ -592,7 +592,7 @@
     "Часть запроса не разобрана — она показана отдельно и не считается выполненной."
    ],
    "problems": [],
-   "ms": 6,
+   "ms": 1,
    "llm": null,
    "usage": {},
    "hard": {
@@ -720,7 +720,7 @@
     "Часть запроса не разобрана — она показана отдельно и не считается выполненной."
    ],
    "problems": [],
-   "ms": 3,
+   "ms": 1,
    "llm": null,
    "usage": {},
    "hard": {
@@ -750,7 +750,7 @@
     "Часть запроса не разобрана — она показана отдельно и не считается выполненной."
    ],
    "problems": [],
-   "ms": 1,
+   "ms": 0,
    "llm": null,
    "usage": {},
    "hard": {
@@ -782,7 +782,7 @@
     "Часть запроса не разобрана — она показана отдельно и не считается выполненной."
    ],
    "problems": [],
-   "ms": 1,
+   "ms": 0,
    "llm": null,
    "usage": {},
    "hard": {
@@ -877,7 +877,7 @@
    "parsed_by": "rules",
    "notes": [],
    "problems": [],
-   "ms": 2,
+   "ms": 0,
    "llm": null,
    "usage": {},
    "hard": {
@@ -905,7 +905,7 @@
    "parsed_by": "rules",
    "notes": [],
    "problems": [],
-   "ms": 1,
+   "ms": 0,
    "llm": null,
    "usage": {},
    "hard": {
@@ -935,7 +935,7 @@
     "Часть запроса не разобрана — она показана отдельно и не считается выполненной."
    ],
    "problems": [],
-   "ms": 1,
+   "ms": 0,
    "llm": null,
    "usage": {},
    "hard": {
@@ -1000,7 +1000,7 @@
     "Часть запроса не разобрана — она показана отдельно и не считается выполненной."
    ],
    "problems": [],
-   "ms": 1,
+   "ms": 0,
    "llm": null,
    "usage": {},
    "hard": {
@@ -1030,7 +1030,7 @@
    "parsed_by": "rules",
    "notes": [],
    "problems": [],
-   "ms": 1,
+   "ms": 0,
    "llm": null,
    "usage": {},
    "hard": {
@@ -1058,7 +1058,7 @@
    "parsed_by": "rules",
    "notes": [],
    "problems": [],
-   "ms": 1,
+   "ms": 0,
    "llm": null,
    "usage": {},
    "hard": {
@@ -1088,7 +1088,7 @@
     "Часть запроса не разобрана — она показана отдельно и не считается выполненной."
    ],
    "problems": [],
-   "ms": 1,
+   "ms": 0,
    "llm": null,
    "usage": {},
    "hard": {
@@ -1120,7 +1120,7 @@
     "Часть запроса не разобрана — она показана отдельно и не считается выполненной."
    ],
    "problems": [],
-   "ms": 2,
+   "ms": 1,
    "llm": null,
    "usage": {},
    "hard": {
@@ -1153,7 +1153,7 @@
     "Часть запроса не разобрана — она показана отдельно и не считается выполненной."
    ],
    "problems": [],
-   "ms": 1,
+   "ms": 0,
    "llm": null,
    "usage": {},
    "hard": {
@@ -1184,7 +1184,7 @@
    "parsed_by": "rules",
    "notes": [],
    "problems": [],
-   "ms": 2,
+   "ms": 0,
    "llm": null,
    "usage": {},
    "hard": {
@@ -1272,7 +1272,7 @@
    "parsed_by": "rules",
    "notes": [],
    "problems": [],
-   "ms": 1,
+   "ms": 0,
    "llm": null,
    "usage": {},
    "hard": {
@@ -1302,7 +1302,7 @@
     "Часть запроса не разобрана — она показана отдельно и не считается выполненной."
    ],
    "problems": [],
-   "ms": 1,
+   "ms": 0,
    "llm": null,
    "usage": {},
    "hard": {
@@ -1330,7 +1330,7 @@
    "parsed_by": "rules",
    "notes": [],
    "problems": [],
-   "ms": 1,
+   "ms": 0,
    "llm": null,
    "usage": {},
    "hard": {
@@ -1612,7 +1612,7 @@
    "parsed_by": "rules",
    "notes": [],
    "problems": [],
-   "ms": 1,
+   "ms": 0,
    "llm": null,
    "usage": {},
    "hard": {

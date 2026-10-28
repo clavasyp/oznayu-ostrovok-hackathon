@@ -14,10 +14,12 @@ from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.orm import Session
 
 from core.db import (
+    Building,
     City,
     CityCoverage,
     Conflict,
     FactRow,
+    FeatureSpecRow,
     Hotel,
     HotelBuilding,
     OtaComparison,
@@ -233,6 +235,29 @@ class DbStore:
                     out[row.hotel_id].append(search_fact(row))
         return dict(out)
 
+    @staticmethod
+    def _building_names(s: Session, building_ids: set[str]) -> dict[str, str]:
+        """Как назвать корпус гостю: название со слов отеля, иначе имя или адрес по карте —
+        не «way/123» (идентификатор OSM — для паспорта, а не для подписи)."""
+        out: dict[str, str] = {}
+        if not building_ids:
+            return out
+        for link in s.scalars(
+            select(HotelBuilding).where(HotelBuilding.building_id.in_(list(building_ids)))
+        ):
+            aliases = (link.evidence or {}).get("hotel_aliases") or []
+            if aliases and aliases[0].get("name"):
+                out.setdefault(link.building_id, aliases[0]["name"])
+        for b in s.scalars(select(Building).where(Building.id.in_(list(building_ids)))):
+            tags = b.tags or {}
+            street = " ".join(
+                x for x in (tags.get("addr:street"), tags.get("addr:housenumber")) if x
+            )
+            label = tags.get("name") or street
+            if label:
+                out.setdefault(b.id, label)
+        return out
+
     def room_types(self, hotel_ids: Collection[str]) -> dict[str, list[dict[str, Any]]]:
         if not hotel_ids:
             return {}
@@ -269,6 +294,9 @@ class DbStore:
                         .order_by(PlacementWindow.facade_id)
                     ):
                         by_id[w.placement_id]["windows"].append(w.facade_id)
+                    names = self._building_names(s, {(p["building_id"]) for p in by_id.values()})
+                    for item in by_id.values():
+                        item["building_name"] = names.get(item["building_id"])
         out: dict[str, list[dict[str, Any]]] = defaultdict(list)
         for rt, ps in rows:
             out[rt.hotel_id].append(
@@ -292,6 +320,68 @@ class DbStore:
 
     def placement_geometry(self, hotel_id: str) -> dict[str, Any]:
         return GeoStore(self.engine).geometry(hotel_id)
+
+    def nearest_places(
+        self, hotel_ids: Collection[str], category: str, radius_m: float
+    ) -> tuple[dict[str, dict[str, Any]], int]:
+        return GeoStore(self.engine).nearest(list(hotel_ids), category, radius_m)
+
+    def place_counts(
+        self, hotel_ids: Collection[str], category: str, radius_m: float
+    ) -> tuple[dict[str, dict[str, Any]], int]:
+        return GeoStore(self.engine).place_counts(list(hotel_ids), category, radius_m)
+
+    def find_target(self, city_id: str, text: str) -> dict[str, Any] | None:
+        return GeoStore(self.engine).find_target(city_id, text)
+
+    def distances(self, hotel_ids: Collection[str], target: dict[str, Any]) -> dict[str, int]:
+        return GeoStore(self.engine).distances(list(hotel_ids), target)
+
+    def save_feature(
+        self,
+        feature: dict[str, Any],
+        spec_yaml: str,
+        facts: list[Fact],
+        cities: dict[str, Any],
+        source_text: str | None,
+    ) -> None:
+        """Включить характеристику: спецификация в `feature_spec`, факты расчёта — вместо прежних
+        фактов этой характеристики (повторное включение пересчитывает), в одной транзакции."""
+        row = {
+            "id": feature["id"],
+            "version": feature.get("spec_version", 1),
+            "status": "active",
+            "title": feature["title"],
+            "yaml": spec_yaml,
+            "feature": feature,
+            "cities": cities,
+            "source_text": source_text,
+        }
+        rows = [fact_to_row(f.model_dump(mode="json")) for f in facts]
+        with Session(self.engine) as s, s.begin():
+            s.execute(
+                insert(FeatureSpecRow)
+                .values(row)
+                .on_conflict_do_update(
+                    index_elements=[FeatureSpecRow.id],
+                    set_={k: v for k, v in row.items() if k != "id"} | {"activated_at": func.now()},
+                )
+            )
+            s.execute(delete(FactRow).where(FactRow.feature_id == feature["id"]))
+            for i in range(0, len(rows), 2000):
+                s.execute(insert(FactRow), rows[i : i + 2000])
+
+    def feature_specs(self) -> list[dict[str, Any]]:
+        """Включённые характеристики (записи каталога) — каталог подхватывает их при старте."""
+        with self._session() as s:
+            return [
+                {**r.feature, "cities": r.cities, "activated_at": r.activated_at.isoformat()}
+                for r in s.scalars(
+                    select(FeatureSpecRow)
+                    .where(FeatureSpecRow.status == "active")
+                    .order_by(FeatureSpecRow.id)
+                )
+            ]
 
     def add_building_alias(self, hotel_id: str, building_id: str, alias: dict[str, Any]) -> bool:
         with self._session() as s, s.begin():

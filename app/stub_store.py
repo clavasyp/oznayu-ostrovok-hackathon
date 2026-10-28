@@ -41,6 +41,12 @@ class StubStore:
     hotel_buildings: list[dict[str, Any]] = field(default_factory=list)
     buildings: list[dict[str, Any]] = field(default_factory=list)
     facades: list[dict[str, Any]] = field(default_factory=list)
+    # Места рядом (D34): категория → отель → ближайшее место; в заглушках мест нет — из тестов.
+    places_near: dict[str, dict[str, dict[str, Any]]] = field(default_factory=dict)
+    # Цели «доехать до X»: город → [{place_id, name, …, distances: {hotel_id: м}}] — из тестов.
+    targets: dict[str, list[dict[str, Any]]] = field(default_factory=dict)
+    # Характеристики, включённые по описанию текстом, — в памяти до перезапуска.
+    features_on: dict[str, dict[str, Any]] = field(default_factory=dict)
     # Ответы отельера в режиме заглушек живут в памяти до перезапуска.
     superseded: dict[str, str] = field(default_factory=dict)
     fact_conflict_list: list[dict[str, Any]] = field(default_factory=list)
@@ -103,6 +109,56 @@ class StubStore:
 
     def room_types(self, hotel_ids: Collection[str]) -> dict[str, list[dict[str, Any]]]:
         return {h: self.room_types_by_hotel[h] for h in hotel_ids if h in self.room_types_by_hotel}
+
+    def nearest_places(
+        self, hotel_ids: Collection[str], category: str, radius_m: float
+    ) -> tuple[dict[str, dict[str, Any]], int]:
+        known = self.places_near.get(category, {})
+        near = {h: p for h, p in known.items() if h in hotel_ids and p["distance_m"] <= radius_m}
+        return near, len(known)
+
+    def place_counts(
+        self, hotel_ids: Collection[str], category: str, radius_m: float
+    ) -> tuple[dict[str, dict[str, Any]], int]:
+        near, known = self.nearest_places(hotel_ids, category, radius_m)
+        counts = {h: {"count": 0, "nearest_m": None} for h in hotel_ids}
+        counts |= {h: {"count": 1, "nearest_m": p["distance_m"]} for h, p in near.items()}
+        return counts, known
+
+    def find_target(self, city_id: str, text: str) -> dict[str, Any] | None:
+        from core.geo_store import target_match, target_rank, target_stems
+
+        stems = target_stems(text)
+        found = [
+            t for t in self.targets.get(city_id, []) if stems and target_match(t["name"], stems)
+        ]
+        if not found:
+            return None
+        return min(found, key=lambda t: target_rank(t["name"], t.get("categories"), len(stems)))
+
+    def distances(self, hotel_ids: Collection[str], target: dict[str, Any]) -> dict[str, int]:
+        return {h: d for h, d in target.get("distances", {}).items() if h in hotel_ids}
+
+    def save_feature(
+        self,
+        feature: dict[str, Any],
+        spec_yaml: str,
+        facts: list[Fact],
+        cities: dict[str, Any],
+        source_text: str | None,
+    ) -> None:
+        fid = feature["id"]
+        for f in [f for f in self.facts.values() if f.feature_id == fid]:
+            del self.facts[f.fact_id]
+        for features in self.by_hotel.values():
+            features.pop(fid, None)
+        for f in facts:
+            self.facts[f.fact_id] = f
+            self.by_hotel.setdefault(f.hotel_id, {}).setdefault(fid, []).append(f)
+        self.features_on[fid] = {**feature, "cities": cities, "yaml": spec_yaml}
+
+    def feature_specs(self) -> list[dict[str, Any]]:
+        return [v for _, v in sorted(self.features_on.items())]
 
     def placement_geometry(self, hotel_id: str) -> dict[str, Any]:
         """Подмножество `core.geo_store.GeoStore.geometry`, нужное агенту размещений."""

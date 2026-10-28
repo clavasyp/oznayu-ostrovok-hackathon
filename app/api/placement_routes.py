@@ -14,6 +14,7 @@ from pydantic import BaseModel, Field, field_validator
 
 from agents import hotelier as agent
 from agents.hotelier.placement import FEATURE_ID, answer_placement
+from agents.query_ast import QueryAST
 from core.hotelier import AnswerError, AnswerIn, build_answer
 from core.placement_catalog import name_key
 from core.store import Store
@@ -38,6 +39,8 @@ class PlacementAnswerRequest(BaseModel):
     # Песочница кабинета и имитатор — true (D41-8): такой ответ не заменяет настоящий.
     is_simulated: bool = False
     respondent: str | None = None
+    # Запрос гостя: в ответе — статус отеля по нему до и после, как у `…/answers`.
+    ast: QueryAST | None = None
 
     @field_validator("building_aliases")
     @classmethod
@@ -78,6 +81,7 @@ def _with_state(question: dict[str, Any], rt: dict[str, Any]) -> dict[str, Any]:
         "answered_at": source.get("answered_at") if answered else None,
         "placement_status": ps.get("status"),
         "placement_completeness": ps.get("completeness"),
+        "answer_text": source.get("quote") if answered else None,
     }
 
 
@@ -129,8 +133,11 @@ def placement_answer(
     отмеченные в списке, сохраняются как названия со слов отеля (`hotelier` /
     `simulated_hotelier`): вопрос, дата, «выбран в списке» и цитата, если название есть в тексте.
     """
+    from app.api.routes import _hotel_view
+
     s, hotel, room_types = _context(request, hotel_id)
     rt = _room_type(room_types, body.room_type_id)
+    before = _hotel_view(s, body.ast, hotel_id) if body.ast else None
     geometry = s.placement_geometry(hotel_id)
     q = agent.placement_question(hotel_id, rt, geometry.get("placement_building_choices"))
     got = answer_placement(
@@ -189,6 +196,15 @@ def placement_answer(
         state = "answered"
     else:
         state = "needs_clarification" if got.followup else "not_placed"
+    after_rt = _room_type(s.room_types([hotel_id]).get(hotel_id, []), rt["room_type_id"])
+    followup = got.followup
+    completeness = (after_rt.get("placement_set") or {}).get("completeness")
+    if saved and not followup and completeness != "complete":
+        # Понятое сохранено, но гость увидит «уточним остальные» — спросим об этом прямо.
+        followup = (
+            f"Это все номера категории «{rt.get('name') or rt['room_type_id']}»? Если других "
+            "вариантов нет, так и напишите: «Других вариантов нет»."
+        )
     return {
         "stub": s.stub,
         "hotel_id": hotel_id,
@@ -202,9 +218,11 @@ def placement_answer(
         "placements_saved": saved,
         "real_answer_kept": kept is not None,
         "placements": got.placements,
-        "followup": got.followup,
+        "followup": followup,
         "aliases_saved": aliases,
-        "room_type": _room_type(s.room_types([hotel_id]).get(hotel_id, []), rt["room_type_id"]),
+        "room_type": after_rt,
+        "before": before,
+        "after": _hotel_view(s, body.ast, hotel_id) if body.ast else None,
         "notes": notes,
         # Что понял агент: варианты с цитатами, корпусом и стенами, отклонённое с причинами.
         "agent": got.report,

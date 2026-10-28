@@ -1,6 +1,6 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { distinctTitles, guestNotes, hotelKind, itemMarks, itemSubtitle, itemTitle, orderedItems, placementFloors, shortVerdict, verdictKind, verdictText } from '../src/labels.js'
+import { distinctTitles, guestNotes, hotelKind, itemMarks, itemSubtitle, itemTitle, orderedItems, outOfCatalogCheck, placementFloors, shortVerdict, verdictKind, verdictText } from '../src/labels.js'
 
 const labels = { features: { P01: 'можно с животным', L04: 'заселение в нужное время', L01: 'аптека, открытая в момент приезда', N02: 'далеко от оживлённых дорог', N04: 'мало баров и клубов рядом', B02: 'температура моря за месяц' } }
 
@@ -62,4 +62,13 @@ test('placements on several walls of one floor are one row; the floor is «yes»
   const p = (floor, wall, verdict) => ({ placement_id: `rt|b|${floor}|seg-${wall}`, building_id: 'b', floor, verdict })
   const floors = placementFloors([p(3, 'a', 'yes'), p(3, 'b', 'no'), p(4, 'a', 'yes'), p(4, 'b', 'yes'), p(5, 'a', 'no')])
   assert.deepEqual(floors.map((f) => [f.floor, f.verdict, f.walls]), [[3, 'unknown', 2], [4, 'yes', 2], [5, 'no', 1]])
+})
+
+test('places and trips are checked by the map, the rest of out-of-catalog is not', () => {
+  const place = { text_span: 'рядом с хорошими ресторанами', place: { label: 'ресторан', radius_m: 800, quality: 'хорошими' } }
+  assert.equal(outOfCatalogCheck(place).checked, true)
+  assert.match(outOfCatalogCheck(place).note, /проверяем по карте · ресторан, до 800 м · «хорошими» не проверить/)
+  assert.equal(outOfCatalogCheck({ text_span: 'доехать до Большого театра', nearest_contracts: ['trip_to_target'] }).checked, true)
+  assert.equal(outOfCatalogCheck({ text_span: 'чистота' }).checked, false)
+  assert.equal(itemSubtitle({ text_span: 'рядом с парком', nearby: { category: 'park' }, verdict: 'yes' }, {}), 'по местам на карте')
 })

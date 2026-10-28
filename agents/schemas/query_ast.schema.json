@@ -317,6 +317,19 @@
           "description": "«в отеле», «отель с рестораном»",
           "title": "On Site",
           "type": "boolean"
+        },
+        "quality": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "«хорошие», «лучшие», «вкусные» — слова гостя о качестве; проверить нечем",
+          "title": "Quality"
         }
       },
       "required": [

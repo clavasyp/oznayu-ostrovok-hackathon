@@ -98,6 +98,22 @@ CALCULATORS: dict[str, CalculatorSpec] = {
             },
             owner="Лера (план, docs/tasks/lera.md)",
         ),
+        CalculatorSpec(
+            id="geo.place_count",
+            version="1",
+            title=(
+                "Сколько мест категории из словаря мест в радиусе вокруг отеля (по прямой; "
+                "места карт отмечены не все — число «не меньше»)"
+            ),
+            subject_level="hotel",
+            layers=("osm_poi",),
+            unit="count",
+            params={
+                "category": "ID категории из agents/catalog/places.json (restaurant, coffee, …)",
+                "radius_m": "радиус вокруг отеля, м (100–2000)",
+            },
+            owner="лид",
+        ),
     )
 }
 

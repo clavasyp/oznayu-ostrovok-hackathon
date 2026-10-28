@@ -64,6 +64,27 @@ class SPAStaticFiles(StaticFiles):
             return await super().get_response("index.html", scope)
 
 
+# Запросы показа из README: прогреваем кеш базы в фоне, чтобы первый поиск не ждал диска (база
+# в Docker на Apple Silicon — в эмуляции amd64). Включается `WARMUP=1` (compose), тесты — без него.
+WARMUP_QUERIES = (
+    ("тихий номер с видом на закат недалеко от моря, 15 ноября", "sochi"),
+    ("хочу отель у моря рядом с парками и хорошими ресторанами", "sochi"),
+    ("отель рядом с парком", "moscow"),
+)
+
+
+def _warm_up(engine: Any) -> None:
+    from agents.search import parse_query
+    from core.search import search
+
+    store = DbStore(engine)
+    for text, city in WARMUP_QUERIES:
+        try:
+            search(store, parse_query(text, city, mode="rules").ast)
+        except Exception:  # noqa: BLE001 — прогрев не должен ронять приложение
+            return
+
+
 def _check_init(app: FastAPI) -> None:
     """Режим db: готово, когда init загрузил пакеты городов. Пока нет — /health проверяет снова."""
     from sqlalchemy import create_engine, func, select
@@ -82,6 +103,18 @@ def _check_init(app: FastAPI) -> None:
         return
     if loaded:
         state.phase, state.detail = Phase.ready, None
+        # Характеристики, включённые по описанию текстом (задача 4), — в каталог разбора и поиска.
+        from agents.catalog import register_features
+
+        try:
+            register_features(DbStore(app.state.engine).feature_specs())
+        except SQLAlchemyError:
+            pass  # база без таблицы feature_spec (миграция ещё не прошла) — каталог из файла
+        if os.environ.get("WARMUP") == "1" and not getattr(app.state, "warmed", False):
+            import threading
+
+            app.state.warmed = True
+            threading.Thread(target=_warm_up, args=(app.state.engine,), daemon=True).start()
     else:
         state.phase, state.detail = Phase.waiting_for_init, "пакеты городов ещё не загружены"
 

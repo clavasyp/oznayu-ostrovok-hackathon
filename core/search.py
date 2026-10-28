@@ -35,7 +35,7 @@ from collections.abc import Callable, Collection, Iterable
 from pathlib import Path
 from typing import Any
 
-from agents.query_ast import Condition, LogicNode, QueryAST
+from agents.query_ast import Condition, LogicNode, OutOfCatalog, QueryAST
 from core.facts import Fact, Status, SubjectLevel
 from core.reasons import reason_text
 from core.store import Store
@@ -121,6 +121,17 @@ def _compare(op: str, left: Any, right: Any) -> bool | None:
         return None
 
 
+# Числа «не меньше»: места карт отмечены не все (калькулятор `geo.place_count`) — меньше нужного
+# по картам не значит «нет».
+LOWER_BOUND = ("geo.place_count@",)
+
+
+def _below_bound(f: Fact, op: str, ok: bool | None) -> bool:
+    return (
+        ok is False and op in ("gte", "gt") and (f.algorithm_version or "").startswith(LOWER_BOUND)
+    )
+
+
 def _unspecified(op: str, left: Any, right: Any) -> bool:
     """«Есть, тип не назван» против конкретного типа: не «нет», а «неизвестно» (D39)."""
     if left != PRESENT or op not in ("eq", "ne", "in"):
@@ -183,6 +194,7 @@ def evaluate(facts: list[Fact], c: Condition, hard: bool) -> dict[str, Any]:
     verdicts: list[Verdict] = []
     conflict_ids: list[str] = []
     unspecified = False
+    bound = False  # по картам меньше нужного, но число «не меньше»
     for fs in places.values():
         results: set[bool | None] = set()
         vague = False  # «есть, тип не назван» (D39) — не спорит с конкретным фактом того же места
@@ -190,8 +202,11 @@ def evaluate(facts: list[Fact], c: Condition, hard: bool) -> dict[str, Any]:
             left = _number(f, c.field)
             if _unspecified(c.op, left, c.value):
                 vague = True
+            elif _below_bound(f, c.op, ok := _compare(c.op, left, c.value)):
+                bound = True
+                results.add(None)
             else:
-                results.add(_compare(c.op, left, c.value))
+                results.add(ok)
         if vague and not results & {True, False}:
             unspecified = True
             results.add(None)
@@ -216,7 +231,93 @@ def evaluate(facts: list[Fact], c: Condition, hard: bool) -> dict[str, Any]:
         return _result(c, Verdict.unknown, "depends_on_building", **extra)
     if unspecified:
         return _result(c, Verdict.unknown, "value_unspecified", **extra)
+    if bound:
+        return _result(c, Verdict.unknown, "count_lower_bound", leaning=Verdict.no, **extra)
     return _result(c, Verdict.unknown, "not_comparable", **extra)
+
+
+# «Рядом место типа X» (D34): пешком обычно на треть дальше, чем по прямой.
+DETOUR = 1.3
+PLACE_WEIGHT = 0.5  # пожелание «рядом X» в ранжировании — наравне со средним желательным
+
+
+def place_item(o: OutOfCatalog, found: dict[str, Any] | None, known: int) -> dict[str, Any]:
+    """Часть запроса «рядом место типа X» по местам пакета (PostGIS на запросе, D41).
+
+    «Да» — место категории в радиусе с запасом на обход, с паспортом места и расстоянием.
+    «Нет» не говорим: места в данных — не перепись (v11); не нашли — «неизвестно», и это
+    склоняет вниз в ранжировании, а не отсекает."""
+    place = o.place
+    assert place is not None
+    out: dict[str, Any] = {
+        "atom_id": o.atom_id,
+        "text_span": o.text_span,
+        "label": place.label,
+        "verdict": Verdict.unknown,
+        "fact_ids": [],
+        "nearby": {"category": place.category, "radius_m": place.radius_m},
+    }
+
+    def why(code: str) -> dict[str, Any]:
+        return {"reason_code": code, "reason": reason_text(code)}
+
+    if place.on_site or not place.radius_m:
+        return out | why("place_on_site")
+    if not known:
+        return out | why("place_no_data")
+    if found is None:
+        return out | why("place_not_found") | {"leaning": Verdict.no}
+    out["place"] = found
+    if found["distance_m"] * DETOUR > place.radius_m:
+        return out | why("place_far_on_foot") | {"leaning": Verdict.yes}
+    if place.quality:
+        # Место есть, а «хорошее» ли — оценок у нас нет (v11: рейтинг не факт без снимка).
+        return out | why("place_quality_unknown") | {"leaning": Verdict.yes}
+    return out | {"verdict": Verdict.yes}
+
+
+WALK_M_PER_MIN = 80  # как в каталоге: «10 минут пешком» ≈ 800 м
+TRIP_NEAR_M, TRIP_FAR_M = 2000, 8000  # по прямой: ближе — склоняется к «да», дальше — к «нет»
+
+
+def trip_item(o: OutOfCatalog, target: dict[str, Any] | None, distance: int | None) -> dict:
+    """«Доехать до X» по своим данным (D34): цель — место города по названию, расстояние по
+    прямой и время пешком с запасом на обход. Это оценка (D18): время на транспорте мы пока не
+    считаем, поэтому «неизвестно», а ближе к цели — выше в выдаче."""
+    out: dict[str, Any] = {
+        "atom_id": o.atom_id,
+        "text_span": o.text_span,
+        "label": f"до {o.normalized}" if o.normalized else o.text_span,
+        "verdict": Verdict.unknown,
+        "fact_ids": [],
+    }
+    if target is None:
+        return out | {"reason_code": "trip_target_not_found",
+                      "reason": reason_text("trip_target_not_found")}  # fmt: skip
+    if distance is None:  # у отеля нет точки — расстояние не посчитать, в конец выдачи
+        return out | {"reason_code": "trip_distance_unknown", "leaning": Verdict.no,
+                      "reason": reason_text("trip_distance_unknown")}  # fmt: skip
+    walk = round(distance * DETOUR / WALK_M_PER_MIN)
+    leaning = (
+        Verdict.yes if distance <= TRIP_NEAR_M else Verdict.no if distance > TRIP_FAR_M else None
+    )
+    return out | {
+        "reason_code": "trip_estimate",
+        "reason": reason_text("trip_estimate"),
+        "trip": {
+            "place_id": target["place_id"],
+            "name": target["name"],
+            "distance_m": distance,
+            "walk_min": walk,
+        },  # fmt: skip
+        "leaning": leaning,
+    }
+
+
+def _trip_rank(items: list[dict[str, Any]]) -> int:
+    """Ближе к цели поездки — выше; без цели — в конце."""
+    trips = [i["trip"]["distance_m"] for i in items if i.get("trip")]
+    return sum(trips) if trips else 10**9
 
 
 def _not_hard_code(known: list[Fact], facts: list[Fact]) -> str:
@@ -680,6 +781,19 @@ def search(
     }
     room_types = store.room_types(ids) if features else {}
     logic = Logic.of(ast)
+    # «Доехать до X» — цель ищется один раз, расстояния — одним запросом на все отели.
+    trips: dict[int, tuple[dict[str, Any] | None, dict[str, int]]] = {}
+    for o in ast.out_of_catalog:
+        if "trip_to_target" in o.nearest_contracts and ast.city_id:
+            target = store.find_target(ast.city_id, o.normalized or o.text_span)
+            dist = store.distances(ids, target) if target else {}
+            trips[id(o)] = (target, dist)
+    # «Рядом место типа X» — один запрос к местам на часть запроса, а не на отель.
+    places = {
+        id(o): store.nearest_places(ids, o.place.category, o.place.radius_m)
+        for o in ast.out_of_catalog
+        if o.place and not o.place.on_site and o.place.radius_m
+    }
 
     results = []
     for hotel in hotels:
@@ -698,23 +812,40 @@ def search(
         hard_hotel, hard_cat, hard_win = split(list(ast.hard))
         soft_hotel, soft_cat, soft_win = split(list(ast.soft))
         hard = [evaluate(own[c.feature_id], c, hard=True) for c in hard_hotel]
-        # Обязательная часть запроса вне каталога (D34) не засчитывается как выполненная;
-        # часть вне каталога внутри графа — «неизвестно» на своём месте в графе.
-        hard += [
-            {
-                "atom_id": o.atom_id,
-                "text_span": o.text_span,
-                "verdict": Verdict.unknown,
-                "reason_code": "out_of_catalog",
-                "reason": reason_text("out_of_catalog"),
-                "fact_ids": [],
-            }
-            for o in ast.out_of_catalog
-            if o.requiredness == "required" or (logic is not None and o.atom_id in logic.atoms)
-        ]
         soft = [
             evaluate(own[c.feature_id], c, hard=False) | {"weight": c.weight} for c in soft_hotel
         ]
+        # Часть запроса вне каталога (D34): «рядом место типа X» считается по местам пакета;
+        # остальное в обязательной части не засчитывается — «неизвестно» на своём месте в графе.
+        for o in ast.out_of_catalog:
+            required = o.requiredness == "required" or (
+                logic is not None and o.atom_id in logic.atoms
+            )
+            if o.place:
+                found, known = places.get(id(o), ({}, 0))
+                item = place_item(o, found.get(hid), known)
+                if required:
+                    hard.append(item)
+                else:
+                    soft.append(item | {"weight": PLACE_WEIGHT})
+            elif id(o) in trips:
+                target, dist = trips[id(o)]
+                item = trip_item(o, target, dist.get(hid))
+                if required:
+                    hard.append(item)
+                else:
+                    soft.append(item | {"weight": PLACE_WEIGHT})
+            elif required:
+                hard.append(
+                    {
+                        "atom_id": o.atom_id,
+                        "text_span": o.text_span,
+                        "verdict": Verdict.unknown,
+                        "reason_code": "out_of_catalog",
+                        "reason": reason_text("out_of_catalog"),
+                        "fact_ids": [],
+                    }
+                )
 
         categories: list[dict[str, Any]] = []
         best: dict[str, Any] | None = None
@@ -792,6 +923,7 @@ def search(
             ORDER[r["status"]],
             -_windows_rank(r["hard"]),
             *_hard_rank(r["hard"]),
+            _trip_rank(r["hard"] + r["soft"]),
             -r["score"]["max"],
             -r["score"]["min"],
         )

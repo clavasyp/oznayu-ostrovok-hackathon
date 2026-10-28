@@ -26,6 +26,21 @@ TIMEZONES = {
 }  # остальные города показа — Europe/Moscow
 
 
+def subjects_of(hotels: list[dict[str, Any]]) -> list[Subject]:
+    """Отели с координатами → объекты расчёта уровня отеля."""
+    return [
+        Subject(
+            hotel_id=str(h["hotel_id"]),
+            subject_level="hotel",
+            subject_id=f"hotel:{h['hotel_id']}",
+            latitude=h.get("latitude"),
+            longitude=h.get("longitude"),
+        )
+        for h in hotels
+        if h.get("latitude") is not None and h.get("longitude") is not None
+    ]
+
+
 def trial_run(
     spec: FeatureSpec,
     store: Any,
@@ -55,21 +70,11 @@ def trial_run(
         }
     calc = plugins[parse_ref(recipe.calculator)[0]]
     hotels = sorted(store.hotels(city_id), key=lambda h: str(h["hotel_id"]))[:n]
-    subjects = [
-        Subject(
-            hotel_id=str(h["hotel_id"]),
-            subject_level="hotel",
-            subject_id=f"hotel:{h['hotel_id']}",
-            latitude=h.get("latitude"),
-            longitude=h.get("longitude"),
-        )
-        for h in hotels
-        if h.get("latitude") is not None and h.get("longitude") is not None
-    ]
+    subjects = subjects_of(hotels)
     root = data_dir or Path(os.environ.get("DATA_DIR", "data"))
     # ID характеристики — калькулятору с параметрами (env.landcover_share), чтобы факты
     # пробного расчёта были подписаны черновиком, а не общим ID калькулятора.
-    params = dict(recipe.params) | {"feature_id": spec.id}
+    params = dict(recipe.params) | {"feature_id": spec.id, "store": store}
     if os.environ.get("WORLDCOVER_DIR"):
         params.setdefault("worldcover_dir", os.environ["WORLDCOVER_DIR"])
     ctx = CityContext(

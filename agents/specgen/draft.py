@@ -75,8 +75,69 @@ class Draft:
         }
 
 
+_COUNT = re.compile(
+    r"(?:сколько|количеств\w*|числ[оа]|много|несколько|не\s+меньше\s+\d+)\s+(?P<what>.+?)\s+"
+    r"(?:в\s+(?:радиусе\s+)?|вокруг\s+(?:отеля\s+)?(?:в\s+)?|на\s+)?(?:до\s+)?"
+    r"(?P<n>\d+(?:[.,]\d+)?)\s*(?P<u>км|километр\w*|м|метр\w*|мин\w*)(?!\w)"
+)
+WALK_M_PER_MIN = 80  # как скорость пешехода в каталоге: «10 минут» ≈ 800 м по прямой — с запасом
+
+
+def place_count_draft(text: str) -> FeatureSpec | None:
+    """«Сколько кафе в 500 м», «много ресторанов в 10 минутах» → число мест категории в радиусе
+    (`geo.place_count`). Категория — из словаря мест; не узнали — None."""
+    from agents.catalog.places import load_places
+
+    norm = normalize(text)
+    m = _COUNT.search(norm)
+    if not m:
+        return None
+    found = load_places().find(m.group("what"))
+    if not found:
+        return None
+    category = found[0][2]
+    n = float(m.group("n").replace(",", "."))
+    unit = m.group("u")
+    if unit.startswith(("км", "километр")):
+        radius = round(n * 1000)
+    elif unit.startswith("мин"):
+        radius = round(n * WALK_M_PER_MIN)
+    else:
+        radius = round(n)
+    fid = f"{category.id}_count_{radius}m"
+    label = category.label
+    return FeatureSpec(
+        id=fid,
+        title=f"Сколько мест «{label}» в радиусе {radius} м",
+        family="nearby",
+        subject_level="hotel",
+        value={"count": ValueField(type="integer", unit="count")},
+        search=SearchSpec(
+            default_field="count",
+            operators=["gte"],
+            synonyms=[norm.strip(), f"много {m.group('what').strip()}"],
+            default={"op": "gte", "value": 3},
+        ),
+        recipes=[
+            Recipe(
+                id=f"{fid}-R1",
+                kind="computed",
+                calculator="geo.place_count@1",
+                params={"category": category.id, "radius_m": radius},
+                requires=Requires(layers=["osm_poi"]),
+                confidence="medium",
+            )
+        ],
+        ttl_days=90,
+        source_text=text,
+    )
+
+
 def rules_draft(text: str) -> FeatureSpec | None:
-    """«Доля застройки в 300 м» → спецификация доли покрова. Не узнали — None."""
+    """«Доля застройки в 300 м» → спецификация доли покрова; «сколько кафе в 500 м» — число мест
+    категории. Не узнали — None."""
+    if spec := place_count_draft(text):
+        return spec
     m = _SHARE.search(normalize(text))
     if not m:
         return None

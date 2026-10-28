@@ -86,6 +86,10 @@ class NearbyPlace(BaseModel):
         default=None, description="guest — гость назвал расстояние; policy — «рядом» = near_m"
     )
     on_site: bool = Field(default=False, description="«в отеле», «отель с рестораном»")
+    quality: str | None = Field(
+        default=None,
+        description="«хорошие», «лучшие», «вкусные» — слова гостя о качестве; проверить нечем",
+    )
 
 
 class OutOfCatalog(BaseModel):

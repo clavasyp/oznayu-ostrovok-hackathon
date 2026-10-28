@@ -46,8 +46,13 @@ CITIES = {
         "tile_list": AUDIT / "copdem_tileList.txt",
         # Солнцестояния: крайние азимуты заката за год — для ответа «в любую дату».
         "season": ["2026-12-21", "2027-06-21"],
-        # Даты v9 и день выезда: вечера поездок сценариев показа (ноябрь и июль).
+        # Даты v9 и день выезда: вечера поездок сценариев показа (ноябрь и июль); 10–13.11 —
+        # заезд по умолчанию в интерфейсе (через две недели от дней показа жюри).
         "dates": [
+            "2026-11-10",
+            "2026-11-11",
+            "2026-11-12",
+            "2026-11-13",
             "2026-11-14",
             "2026-11-15",
             "2026-11-16",
@@ -111,10 +116,17 @@ def worldcover_bbox(geoms: list) -> tuple[float, float, float, float]:
     return min(xs) - pad_lon, min(ys) - pad, max(xs) + pad_lon, max(ys) + pad
 
 
-def inputs_time(cfg: dict, extra: list[Path]) -> datetime:
-    """`calculated_at` фактов — время самого свежего входа: тот же вход — тот же пакет (sha256)."""
-    paths = [cfg["scene"], cfg["globfp"], cfg["worldcover"], *cfg["dsm"], *extra]
-    return datetime.fromtimestamp(max(p.stat().st_mtime for p in paths), UTC).replace(microsecond=0)
+def inputs_time(cfg: dict, pack: Path) -> datetime:
+    """`calculated_at` фактов — время самого свежего входа: тот же вход — тот же пакет (sha256).
+
+    Корпуса и фасады — по `built_at` манифеста пакета, а не по времени файлов: `git checkout`
+    и перезапись других файлов пакета меняют его, не меняя самих входов."""
+    from core.packs import read_manifest
+
+    paths = [cfg["scene"], cfg["globfp"], cfg["worldcover"], *cfg["dsm"]]
+    files = datetime.fromtimestamp(max(p.stat().st_mtime for p in paths), UTC)
+    built = read_manifest(pack).built_at
+    return max(files, built).replace(microsecond=0)
 
 
 def pack_inputs(pack: Path) -> tuple[list[dict], list[dict], list[dict], list[Path]]:
@@ -165,7 +177,7 @@ def main() -> None:
           f"препятствий, {time.time() - t0:.0f} с")  # fmt: skip
     dates = [date.fromisoformat(d) for d in cfg["dates"]]
     season = tuple(date.fromisoformat(d) for d in cfg["season"])
-    calculated_at = inputs_time(cfg, inputs)
+    calculated_at = inputs_time(cfg, pack)
     windows = list(view_sun.windows_from_pack(scene, facades, links))
     by_building: dict[str, list] = defaultdict(list)  # корпус — в один процесс: общие кеши
     for w in windows:
