@@ -98,3 +98,33 @@ def test_trip_to_target_is_an_estimate_closer_first():
     assert "«Большой театр» — 0,1 км по прямой, пешком около 2 мин" in text
     missing = parse_query("доехать до Эрмитажа", "moscow", mode="rules").ast
     assert search(s, missing)[0]["hard"][0]["reason_code"] == "trip_target_not_found"
+
+
+def test_amenity_in_the_hotel_is_checked_on_the_hotel_page():
+    """«Обязательно бассейн» — про сам отель: строка удобств страницы — «да» с паспортом;
+    сезонный — «уточним»; строки нет — «спросим отель», не «нет»."""
+    from datetime import UTC, datetime
+
+    from core.facts import Fact
+
+    def onsite(hid, names, **extra):
+        value = {"present": True, "names": names} | extra
+        return Fact(fact_id=f"f{hid}", hotel_id=hid, city_id="sochi", subject_level="hotel",
+                    subject_id=f"hotel:{hid}", feature_id="onsite", params={"category": "pool"},
+                    value=value, status="ostrovok_content", hard_condition_eligible=True,
+                    sources=[{"provider": "ostrovok.ru"}],
+                    observed_at=datetime.now(UTC))  # fmt: skip
+
+    s = StubStore(hotel_by_id=HOTELS, by_hotel={
+        "near": {"onsite": [onsite("near", ["Открытый бассейн"])]},
+        "far": {"onsite": [onsite("far", ["Сезонный открытый бассейн"], seasonal=True)]},
+    })  # fmt: skip
+    results, ast = run("обязательно бассейн", s)
+    (o,) = ast.out_of_catalog
+    assert o.place.on_site and o.requiredness == "required"
+    assert results["near"]["status"] == GuestStatus.fits
+    claims = " ".join(c.text for c in build_claims(results["near"], lambda _: None, ast=ast))
+    assert "Островок: «Открытый бассейн»" in claims
+    assert results["far"]["hard"][0]["reason_code"] == "place_on_site_seasonal"
+    assert results["none"]["hard"][0]["reason_code"] == "place_on_site"
+    assert [h for h in results] == ["near", "far", "none"]

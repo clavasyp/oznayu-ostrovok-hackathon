@@ -4,7 +4,7 @@
   "city_name": "Большой Сочи",
   "timezone": "Europe/Moscow",
   "depth": "full",
-  "pack_version": "category-supplement.2-36311c2fd6d9+e2448a2e",
+  "pack_version": "category-supplement.2-36311c2fd6d9+f389570b",
   "built_at": "2026-10-28T03:00:00Z",
   "code_version": "category-supplement.2",
   "catalog_version": "ostrovok-2026-10-24+v9",
@@ -129,6 +129,14 @@
       "release": "v2 (2025-05-22)",
       "license": "CC BY 4.0",
       "layer": "data/view_sun.jsonl.gz"
+    },
+    {
+      "id": "hotel_amenities:ostrovok_site",
+      "provider": "ostrovok.ru",
+      "release": "snapshot_2026-10-24",
+      "sha256": "b119459f669384ab6a8abf66e1e1b95af7c3063e082a1a91d6c962272ec4554f",
+      "license": "Страницы Островка; сбор разрешён организаторами (D24)",
+      "layer": "data/hotel_amenities.jsonl.gz"
     }
   ],
   "files": [
@@ -250,6 +258,14 @@
       "rows": 230468,
       "bytes": 10620040,
       "sha256": "1d40655f3071b86aa201055148932c5aa1ad0893a42e20816d3d04c4af516767",
+      "layer": true
+    },
+    {
+      "path": "data/hotel_amenities.jsonl.gz",
+      "kind": "facts",
+      "rows": 5569,
+      "bytes": 603895,
+      "sha256": "2a68aa96236845b36823f2e397c83d1772100f6271c68ec0e8510f913a885790",
       "layer": true
     }
   ],

@@ -12,6 +12,7 @@ from agents.query_ast import Condition
 from connectors.ostrovok_site import (
     OstrovokSiteConnector,
     RoomTypeRecord,
+    amenity_facts,
     parse_page,
     read_snapshot,
     snapshot_path,
@@ -484,3 +485,38 @@ def test_real_postgis_loader_roundtrip(snapshot, tmp_path, monkeypatch):
                 transaction.rollback()  # Не оставлять пилотные отели в общей тестовой БД.
     finally:
         engine.dispose()
+
+
+def amenities(*names):
+    return lambda h: h.update(amenityGroups=[{"amenities": [{"name": n} for n in names]}])
+
+
+def test_hotel_amenities_are_hotel_claims_for_hard_conditions(snapshot):
+    """Удобства отеля — заявление отеля о себе (D26): «да» и явное «нет» закрывают условие."""
+    root, add = snapshot
+    add(hid="101", mutate=amenities("Лифт", "Бесплатная парковка", "Парковка рядом с отелем",
+                                    "Круглосуточная стойка регистрации",
+                                    "Сезонный открытый бассейн", "Сауна"))  # fmt: skip
+    add(hid="102", mutate=amenities("Отсутствие лифтов", "Парковка отсутствует",
+                                    "Бесплатная общественная парковка поблизости"))  # fmt: skip
+    add(hid="103")
+    facts = amenity_facts(root, "moscow", {"101", "102", "103"})
+    by = {(f.hotel_id, f.feature_id, f.params.get("category")): f for f in facts}
+    assert {f.hotel_id for f in facts} == {"101", "102"}  # строки нет — не пишем ничего (D26)
+    assert all(f.usable_in_hard and f.status == "ostrovok_content" for f in facts)
+    for f in facts:  # паспорт — строка удобств страницы
+        assert f.sources[0].json_pointer.startswith("/props/pageProps/hotel/amenityGroups/0/")
+
+    lift = Condition(feature_id="A03", field="lift_id", op="ne", value="none")
+    assert evaluate([by["101", "A03", None]], lift, hard=True)["verdict"] == Verdict.yes
+    assert evaluate([by["102", "A03", None]], lift, hard=True)["verdict"] == Verdict.no
+
+    own = Condition(feature_id="T04", field="parking_owner", op="eq", value="own")
+    assert by["101", "T04", None].value == {"parking_owner": "own", "charging_basis": "free"}
+    assert by["102", "T04", None].value == {"parking_owner": "street"}  # своей нет, есть городская
+    assert evaluate([by["102", "T04", None]], own, hard=True)["verdict"] == Verdict.no
+
+    desk = Condition(feature_id="L04", field="front_desk_hours", op="eq", value="24/7")
+    assert evaluate([by["101", "L04", None]], desk, hard=True)["verdict"] == Verdict.yes
+    assert by["101", "onsite", "pool"].value["seasonal"] is True
+    assert by["101", "onsite", "spa"].value == {"present": True, "names": ["Сауна"]}

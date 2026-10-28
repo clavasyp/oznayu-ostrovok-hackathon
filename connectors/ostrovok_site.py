@@ -11,6 +11,7 @@ import hashlib
 import json
 import re
 import zlib
+from collections.abc import Iterable
 from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
@@ -75,6 +76,7 @@ class Claim:
     hard: bool = False
     note: str = NOTE_ROOM
     room_type_ids: tuple[str, ...] = ()
+    params: dict[str, Any] = field(default_factory=dict)
 
 
 def room_claims(base: str, tags: list[str], bedding: str | None) -> list[Claim]:
@@ -167,6 +169,100 @@ def pet_claims(raw: dict[str, Any], hotel_id: str) -> list[Claim]:
         claims.append(
             Claim("P01", HOTEL_POINTER, None, note="Нет явного запрета; допуск неизвестен.")
         )
+    return claims
+
+
+# Удобства отеля (группы удобств страницы): заявление отеля о себе (D26), поэтому годится для
+# обязательного условия. Слой пакета `hotel_amenities` (pipeline/build_hotel_amenities.py), а не
+# сборка каталога: в parse_page их нет, иначе при пересборке факты задвоятся.
+AMENITY_VERSION = "ostrovok-amenities.1"
+LIFT_YES = {"лифт", "работают лифты для доступа к верхним этажам"}
+LIFT_NO = {"отсутствие лифтов"}
+# Парковка: «Парковка» без «рядом» — у самого отеля; «рядом с отелем» — чужая, «общественная
+# поблизости» — городская; «отсутствует» — своей нет.
+PARKING = {
+    "парковка": "own",
+    "бесплатная парковка": "own",
+    "парковка (по запросу)": "own",
+    "парковка рядом с отелем": "third_party",
+    "бесплатная парковка рядом с отелем": "third_party",
+    "бесплатная общественная парковка поблизости": "street",
+    "парковка отсутствует": "none",
+}
+PARKING_ORDER = ("own", "third_party", "street", "none")
+FRONT_DESK_24 = {"круглосуточная стойка регистрации"}
+EV_CHARGING = {"зарядка электромобилей"}
+# «В отеле есть» — категории словаря мест (agents/catalog/places.json): «отель с бассейном»
+# проверяется по странице отеля, а не по картам. Детский бассейн — F-характеристика каталога.
+ONSITE = "onsite"
+ONSITE_NAMES = {
+    "pool": {
+        "бассейн", "открытый бассейн", "бассейн с подогревом", "сезонный открытый бассейн",
+        "крытый бассейн", "открытый бассейн с подогревом", "сезонный крытый бассейн",
+        "бассейн на крыше", "закрытый бассейн с подогревом",
+    },
+    "spa": {"спа-центр", "сауна", "баня", "хаммам", "паровая баня"},
+    "gym": {"фитнес-центр", "тренажерный зал"},
+    "restaurant": {"ресторан", "ресторан («шведский стол»)"},
+    "coffee": {"кафе"},
+    "laundry": {"прачечная", "химчистка"},
+    "bike_rental": {"прокат велосипедов", "бесплатный прокат велосипедов"},
+    "car_rental": {"прокат автомобилей"},
+}  # fmt: skip
+
+
+def amenity_claims(raw: dict[str, Any]) -> list[Claim]:
+    """Удобства отеля со страницы: лифт A03, парковка T04, круглосуточная стойка L04, зарядка
+    T05 и «в отеле есть» (`onsite`, по категории словаря мест). Чего на странице нет, о том не
+    пишем ничего: отсутствие строки — не «нет» (D26); «нет» — только явная строка страницы."""
+    found: dict[str, list[tuple[str, str]]] = {}
+    for i, group in enumerate(raw.get("amenityGroups") or []):
+        for j, amenity in enumerate(group.get("amenities") or []):
+            name = text(amenity.get("name"))
+            if name:
+                pointer = f"{HOTEL_POINTER}/amenityGroups/{i}/amenities/{j}/name"
+                found.setdefault(name.casefold().rstrip(". "), []).append((pointer, name))
+
+    def fields(phrases: Iterable[str]) -> tuple[tuple[str, str], ...]:
+        return tuple(pair for p in sorted(phrases) for pair in found.get(p, []))
+
+    claims = []
+    if lift := fields(LIFT_YES & found.keys()):
+        note = "Островок: лифт есть; размеры кабины и этажи не указаны."
+        claims.append(Claim("A03", lift[0][0], {"lift_id": "present"}, lift, hard=True, note=note))
+    if no_lift := fields(LIFT_NO & found.keys()):
+        claims.append(Claim("A03", no_lift[0][0], {"lift_id": "none"}, no_lift, hard=True,
+                            note="Островок: «Отсутствие лифтов»."))  # fmt: skip
+    if parking := PARKING.keys() & found.keys():
+        owner = min((PARKING[p] for p in parking), key=PARKING_ORDER.index)
+        value: dict[str, Any] = {"parking_owner": owner}
+        if owner == "own" and "бесплатная парковка" in parking:
+            value["charging_basis"] = "free"
+        if owner == "own" and "парковка (по запросу)" in parking:
+            value["reservation"] = True
+        f = fields(parking)
+        note = {
+            "own": "Островок: парковка у отеля; габариты и наличие мест на даты не указаны.",
+            "third_party": "Островок: парковка рядом с отелем, своей не указано.",
+            "street": "Островок: только общественная парковка поблизости.",
+            "none": "Островок: «Парковка отсутствует».",
+        }[owner]
+        claims.append(Claim("T04", f[0][0], value, f, hard=True, note=note))
+    if desk := fields(FRONT_DESK_24 & found.keys()):
+        claims.append(Claim("L04", desk[0][0], {"front_desk_hours": "24/7"}, desk, hard=True,
+                            note="Островок: круглосуточная стойка регистрации."))  # fmt: skip
+    if ev := fields(EV_CHARGING & found.keys()):
+        note = "Островок: зарядка электромобилей есть; разъём и мощность не указаны."
+        claims.append(Claim("T05", ev[0][0], {"connector": "present"}, ev, hard=True, note=note))
+    for category, names in ONSITE_NAMES.items():
+        if f := fields(names & found.keys()):
+            shown = [n for _, n in f]
+            value = {"present": True, "names": shown}
+            if all(n.casefold().startswith("сезонный") for n in shown):
+                value["seasonal"] = True
+            note = "Островок: " + ", ".join(f"«{n}»" for n in shown) + "."
+            params = {"category": category}
+            claims.append(Claim(ONSITE, f[0][0], value, f, hard=True, note=note, params=params))
     return claims
 
 
@@ -266,28 +362,34 @@ def _source(entry: dict, root: Path, digest: str, pointer: str) -> dict:
 
 
 def _fact(
-    hotel: HotelRecord, claim: Claim, source: dict, *, room_type: RoomTypeRecord | None = None
+    hotel: HotelRecord,
+    claim: Claim,
+    source: dict,
+    *,
+    room_type: RoomTypeRecord | None = None,
+    version: str = VERSION,
 ) -> Fact:
     """Факт из утверждения: паспорт на каждое подтверждающее поле, первый — главный."""
     subject = room_type.id if room_type else f"hotel:{hotel.id}"
     sources = [
         source | {"json_pointer": pointer, "source_value": shown} for pointer, shown in claim.fields
     ] or [source | {"json_pointer": claim.pointer}]
-    identity = f"{VERSION}:{source['dataset_sha256']}:{claim.pointer}:{source['fetched_at']}"
+    identity = f"{version}:{source['dataset_sha256']}:{claim.pointer}:{source['fetched_at']}"
     value, note = claim.value, claim.note
     return Fact(
-        fact_id=make_fact_id(hotel.id, subject, claim.feature_id, {}, identity),
+        fact_id=make_fact_id(hotel.id, subject, claim.feature_id, claim.params, identity),
         hotel_id=hotel.id,
         city_id=hotel.city_id,
         subject_level="room_type" if room_type else "hotel",
         subject_id=subject,
         feature_id=claim.feature_id,
+        params=claim.params,
         value=value,
         status="ostrovok_content" if value is not None else "unknown",
         unknown_reason="ostrovok_field_unknown_or_missing" if value is None else None,
         sources=sources,
         recipe_id=f"{claim.feature_id}-OSTROVOK",
-        algorithm_version=VERSION,
+        algorithm_version=version,
         confidence={"level": "medium" if value is not None else "unknown", "reason": note},
         observed_at=source["fetched_at"],
         scope_note=note,
@@ -392,6 +494,28 @@ def parse_page(root: Path, entry: dict) -> Catalog:
     for claim in pet_claims(raw, hotel.id):
         result.facts.append(_fact(hotel, claim, source))
     return result
+
+
+def amenity_facts(root: Path, city_id: CityId, hotel_ids: set[str]) -> list[Fact]:
+    """Факты удобств отеля (`amenity_claims`) для отелей пакета: страница отеля — как в
+    `read_snapshot`, паспорт — поле страницы. Непригодные страницы пропускаются: их уже отметил
+    журнал исключений сборки каталога."""
+    facts: list[Fact] = []
+    for entry in iter_jsonl(root / "manifests/pages.jsonl"):
+        if entry.get("city") != city_id or entry.get("status") != 200 or not entry.get("next_file"):
+            continue
+        try:
+            hotel = parse_page(root, entry).hotels[0]
+        except (OSError, ValueError, TypeError, KeyError, EOFError, zlib.error):
+            continue
+        if hotel.id not in hotel_ids:
+            continue
+        payload = gzip.decompress(snapshot_path(root, entry["next_file"]).read_bytes())
+        raw = json.loads(payload)["props"]["pageProps"]["hotel"]
+        source = _source(entry, root, hashlib.sha256(payload).hexdigest(), HOTEL_POINTER)
+        for claim in amenity_claims(raw):
+            facts.append(_fact(hotel, claim, source, version=AMENITY_VERSION))
+    return facts
 
 
 def read_snapshot(root: Path, city_id: CityId, limit: int | None = 5) -> Catalog:

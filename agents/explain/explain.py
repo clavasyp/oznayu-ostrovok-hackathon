@@ -272,6 +272,9 @@ def _condition_claim(
         # «Рядом место типа X» (D34): место из данных карт пакета, расстояние — по прямой.
         name = f"«{place['name']}»" if place.get("name") else "есть на карте"
         evidence = f"{name}, {place['distance_m']} м по прямой"
+    elif names := item.get("on_site"):
+        # «В отеле есть X»: строки удобств со страницы отеля на Островке (D26).
+        evidence = "Островок: " + ", ".join(f"«{n}»" for n in names)
     elif item.get("windows"):
         evidence = _windows_evidence(item, catalog)
         if item.get("negated"):  # причина сказана про само условие, а не про «без него»

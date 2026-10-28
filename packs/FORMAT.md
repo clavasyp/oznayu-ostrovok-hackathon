@@ -24,6 +24,7 @@ packs/<city_id>/
     coverage.jsonl.gz           покрытие по характеристикам: feature_id, n_hotels, computed, estimate, unknown, not_applicable
     ota_comparisons.jsonl.gz    сверка с карточкой Островка: hotel_id, feature_id, ota_value, classification, source
     view_sun.jsonl.gz           слой «вид и солнце» (Сочи): факты V05 и V01 по окнам — kind "facts" (D40)
+    hotel_amenities.jsonl.gz    слой «удобства отеля» (Москва, Сочи): A03, T04, L04, T05 и `onsite` — kind "facts" (D26)
 ```
 
 **Правила:**
@@ -128,7 +129,7 @@ packs/<city_id>/
 
 `depth`: `full` — Москва и Большой Сочи; `automatic` — 6 городов автоматическим слоем (D36).
 
-**Слои калькуляторов.** Файл, который собирает не сборка v9, а отдельный калькулятор (сейчас — `python -m pipeline.build_view_sun`), добавляется в манифест через `core.packs.add_layer`:
+**Слои калькуляторов.** Файл, который собирает не сборка v9, а отдельный калькулятор (сейчас — `python -m pipeline.build_view_sun` и `python -m pipeline.build_hotel_amenities --snapshot <снимок Островка>`), добавляется в манифест через `core.packs.add_layer`:
 - у файла в `files` — `"layer": true`; файлов одного `kind` может быть несколько (`facts.jsonl.gz` и `view_sun.jsonl.gz`), загрузка берёт все;
 - у его источников — `"layer": "<путь файла>"`, id с префиксом слоя (`view_sun:copdem-glo30`);
 - `pack_version` — версия сборки плюс хеш слоёв: `<версия сборки>+<хеш слоёв>` (например, `category-supplement.1-d55b41f99505+xxxxxxxx`);

@@ -216,8 +216,14 @@ class DbStore:
         q = select(*cols).where(*base)
         if params is not None:
             # Факты окон — по датам (V05): без фильтра в SQL поиск разбирал бы все даты сразу.
-            q = q.where(FactRow.params.contains(params))
-            q = q.where(*(~FactRow.params.has_key(k) for k in key_params if k not in params))
+            # Ключевой параметр — сравнением `params ->> key` (по нему индекс
+            # `ix_fact_feature_hotel_date`), остальные — вхождением.
+            rest = {k: v for k, v in params.items() if k not in key_params}
+            if rest:
+                q = q.where(FactRow.params.contains(rest))
+            for k in key_params:
+                value = FactRow.params[k].astext
+                q = q.where(value == str(params[k]) if k in params else value.is_(None))
         out: dict[str, list[Fact]] = defaultdict(list)
         with self._session() as s:
             for row in s.execute(q):

@@ -242,12 +242,21 @@ DETOUR = 1.3
 PLACE_WEIGHT = 0.5  # пожелание «рядом X» в ранжировании — наравне со средним желательным
 
 
-def place_item(o: OutOfCatalog, found: dict[str, Any] | None, known: int) -> dict[str, Any]:
+ONSITE = "onsite"  # «в отеле есть X»: удобства со страницы отеля (connectors/ostrovok_site.py)
+
+
+def place_item(
+    o: OutOfCatalog,
+    found: dict[str, Any] | None,
+    known: int,
+    onsite: list[Fact] | None = None,
+) -> dict[str, Any]:
     """Часть запроса «рядом место типа X» по местам пакета (PostGIS на запросе, D41).
 
     «Да» — место категории в радиусе с запасом на обход, с паспортом места и расстоянием.
     «Нет» не говорим: места в данных — не перепись (v11); не нашли — «неизвестно», и это
-    склоняет вниз в ранжировании, а не отсекает."""
+    склоняет вниз в ранжировании, а не отсекает. «В отеле есть X» — по странице отеля (D26):
+    строка удобств — «да», сезонное — «уточним»; строки нет — спросим отель."""
     place = o.place
     assert place is not None
     out: dict[str, Any] = {
@@ -262,7 +271,17 @@ def place_item(o: OutOfCatalog, found: dict[str, Any] | None, known: int) -> dic
     def why(code: str) -> dict[str, Any]:
         return {"reason_code": code, "reason": reason_text(code)}
 
-    if place.on_site or not place.radius_m:
+    if place.on_site:
+        own = [f for f in onsite or [] if f.params.get("category") == place.category]
+        claims = [f for f in own if f.usable_in_hard and (f.value or {}).get("present")]
+        if not claims:
+            return out | why("place_on_site")
+        value = claims[0].value or {}
+        out |= {"fact_ids": [f.fact_id for f in claims], "on_site": value.get("names", [])}
+        if value.get("seasonal"):
+            return out | why("place_on_site_seasonal") | {"leaning": Verdict.yes}
+        return out | {"verdict": Verdict.yes}
+    if not place.radius_m:
         return out | why("place_on_site")
     if not known:
         return out | why("place_no_data")
@@ -481,6 +500,22 @@ def _windows_rank(items: list[dict[str, Any]]) -> int:
         else:
             ranks.append(0 if w.get("estimate_none") else 1)
     return min(ranks) if ranks else 1  # условий окна несколько — по худшему
+
+
+def _soft_lean(items: list[dict[str, Any]]) -> float:
+    """Желательные «неизвестно» с наклоном: часть окон видит море, оценка или Островок говорят
+    «да» — выше, «нет» — ниже. Иначе при общем «неизвестно» порядок решал бы алфавит."""
+    lean = 0.0
+    for s in items:
+        if s.get("verdict") != Verdict.unknown:
+            continue
+        w = s.get("windows") or {}
+        rank = WINDOWS_RANK.get(s.get("reason_code") or "", 2 if w.get("estimate") else None)
+        if s.get("leaning") == Verdict.yes or (rank or 0) >= 2:
+            lean += s.get("weight") or 0
+        elif s.get("leaning") == Verdict.no or rank == 0 or w.get("estimate_none"):
+            lean -= s.get("weight") or 0
+    return lean
 
 
 def _hard_rank(items: list[dict[str, Any]]) -> tuple[int, int, int]:
@@ -795,6 +830,11 @@ def search(
         for o in ast.out_of_catalog
         if o.place and not o.place.on_site and o.place.radius_m
     }
+    onsite = (
+        store.facts_for(ONSITE, ids)
+        if any(o.place and o.place.on_site for o in ast.out_of_catalog)
+        else {}
+    )
 
     results = []
     for hotel in hotels:
@@ -824,7 +864,7 @@ def search(
             )
             if o.place:
                 found, known = places.get(id(o), ({}, 0))
-                item = place_item(o, found.get(hid), known)
+                item = place_item(o, found.get(hid), known, onsite.get(hid))
                 if required:
                     hard.append(item)
                 else:
@@ -929,6 +969,7 @@ def search(
             _trip_rank(r["hard"] + r["soft"]),
             -r["score"]["max"],
             -r["score"]["min"],
+            -_soft_lean(r["soft"]),
         )
     )
     return results

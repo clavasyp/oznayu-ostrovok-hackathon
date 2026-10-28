@@ -1,6 +1,6 @@
 {
   "version": "pack-audit.3",
-  "built_at": "2026-10-28T00:28:11.322824+00:00",
+  "built_at": "2026-10-28T07:56:03.839407+00:00",
   "cities": [
     {
       "pack": "dubai",
@@ -91,7 +91,7 @@
         "not_specified": 50
       },
       "building_linked_hotels": 0,
-      "seconds": 0.167,
+      "seconds": 0.158,
       "errors": {},
       "warnings": {
         "external_geometry_subjects_not_resolved": 1
@@ -189,7 +189,7 @@
         "not_specified": 50
       },
       "building_linked_hotels": 0,
-      "seconds": 0.184,
+      "seconds": 0.182,
       "errors": {},
       "warnings": {
         "external_geometry_subjects_not_resolved": 1
@@ -293,7 +293,7 @@
         "not_specified": 50
       },
       "building_linked_hotels": 0,
-      "seconds": 0.173,
+      "seconds": 0.165,
       "errors": {},
       "warnings": {
         "external_geometry_subjects_not_resolved": 1
@@ -391,7 +391,7 @@
         "not_specified": 50
       },
       "building_linked_hotels": 0,
-      "seconds": 0.157,
+      "seconds": 0.148,
       "errors": {},
       "warnings": {
         "external_geometry_subjects_not_resolved": 1
@@ -481,7 +481,7 @@
         "not_specified": 50
       },
       "building_linked_hotels": 0,
-      "seconds": 0.154,
+      "seconds": 0.148,
       "errors": {},
       "warnings": {
         "external_geometry_subjects_not_resolved": 1
@@ -509,7 +509,7 @@
         "hotel_stations": 50532,
         "transit_times": 0,
         "curation_items": 2634,
-        "facts": 213541,
+        "facts": 219601,
         "questions": 108470,
         "coverage": 54,
         "ota_comparisons": 5
@@ -571,6 +571,11 @@
           "kind": "facts"
         },
         {
+          "path": "data/hotel_amenities.jsonl.gz",
+          "rows": 6060,
+          "kind": "facts"
+        },
+        {
           "path": "data/questions.jsonl.gz",
           "rows": 108470,
           "kind": "questions"
@@ -587,15 +592,15 @@
         }
       ],
       "city_id": "moscow",
-      "pack_version": "seva-full.3-d0015521442f",
-      "manifest_sha256": "df77c8d4ba0776b9bf8e247ce216cebf2d3741d8eb61d77fa89b2ec0fcfa311b",
+      "pack_version": "seva-full.3-d0015521442f+0245e842",
+      "manifest_sha256": "529ce6a67247707a97bdf6d341183e5f192bbb92cba8787c83a7e085f6b2f3f0",
       "snapshot": {
         "status": "not_checked",
         "reason": "snapshot_not_supplied"
       },
       "fact_statuses": {
         "unknown": 96722,
-        "ostrovok_content": 18156,
+        "ostrovok_content": 24216,
         "computed": 32368,
         "estimate": 57612,
         "not_applicable": 8667,
@@ -635,14 +640,14 @@
         "room_type": 76434,
         "external_geometry_subject_not_resolved": 32960,
         "building": 3186,
-        "hotel": 100961
+        "hotel": 107021
       },
       "ostrovok_import_passports": 80648,
       "subzones": {
         "not_specified": 4211
       },
       "building_linked_hotels": 1585,
-      "seconds": 7.319,
+      "seconds": 6.681,
       "errors": {},
       "warnings": {
         "snapshot_not_checked": 1,
@@ -684,7 +689,7 @@
         "hotel_stations": 15806,
         "transit_times": 0,
         "curation_items": 2034,
-        "facts": 376712,
+        "facts": 382281,
         "questions": 69144,
         "coverage": 54,
         "ota_comparisons": 16
@@ -761,6 +766,11 @@
           "kind": "facts"
         },
         {
+          "path": "data/hotel_amenities.jsonl.gz",
+          "rows": 5569,
+          "kind": "facts"
+        },
+        {
           "path": "data/questions.jsonl.gz",
           "rows": 69144,
           "kind": "questions"
@@ -777,8 +787,8 @@
         }
       ],
       "city_id": "sochi",
-      "pack_version": "category-supplement.2-36311c2fd6d9+e2448a2e",
-      "manifest_sha256": "aa6411b47f6d93cd73f7cd46045b25a20710d0b2262e70cb2dfa697eb76a41d6",
+      "pack_version": "category-supplement.2-36311c2fd6d9+f389570b",
+      "manifest_sha256": "ef2c98c6fadd0d76b090f8c09a8fdfd2123e918bd58d55d91cb487ed4ba3f95e",
       "snapshot": {
         "status": "not_checked",
         "reason": "snapshot_not_supplied"
@@ -787,7 +797,7 @@
         "computed": 85026,
         "unknown": 185847,
         "estimate": 87550,
-        "ostrovok_content": 18231,
+        "ostrovok_content": 23800,
         "observed": 58
       },
       "unknown_reasons": {
@@ -840,7 +850,7 @@
       },
       "fact_subject_checks": {
         "external_geometry_subject_not_resolved": 20624,
-        "hotel": 68584,
+        "hotel": 74153,
         "room_type": 55632,
         "building": 1404,
         "facade_physical_floor": 187168,
@@ -859,7 +869,7 @@
         "khosta": 41
       },
       "building_linked_hotels": 665,
-      "seconds": 13.112,
+      "seconds": 10.889,
       "errors": {},
       "warnings": {
         "snapshot_not_checked": 1,
@@ -975,7 +985,7 @@
         "not_specified": 50
       },
       "building_linked_hotels": 0,
-      "seconds": 0.178,
+      "seconds": 0.159,
       "errors": {},
       "warnings": {
         "external_geometry_subjects_not_resolved": 1
@@ -992,10 +1002,10 @@
   ],
   "duplicate_hotels_between_cities": [],
   "status": "passed",
-  "seconds": 21.468,
+  "seconds": 18.544,
   "code_sha256": {
     "audit_packs.py": "afcc57c1b4cf7b78859b2400425688185176ff00f0e7067a9fc383098cb645fb",
     "audit_ostrovok.py": "3f783f3eb5e57ad5e264433b54b7119cbca47ab8180841b04f237f3839583618"
   },
-  "peak_rss_mib": 62.16
+  "peak_rss_mib": 82.03
 }

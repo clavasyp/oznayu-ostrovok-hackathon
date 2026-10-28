@@ -21,6 +21,7 @@ from sqlalchemy import (
     Integer,
     Text,
     func,
+    text,
 )
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
@@ -262,6 +263,9 @@ class FactRow(Base):
     __table_args__ = (
         Index("ix_fact_hotel_feature", "hotel_id", "feature_id"),
         Index("ix_fact_city_feature_status", "city_id", "feature_id", "status"),
+        # Факты по датам (закат — тысячи на отель): поиск берёт одну дату или «весь год» по
+        # индексу, а не перебирает все даты каждого отеля (core/store_db.py `facts_for`).
+        Index("ix_fact_feature_hotel_date", "feature_id", "hotel_id", text("(params ->> 'date')")),
     )
 
 

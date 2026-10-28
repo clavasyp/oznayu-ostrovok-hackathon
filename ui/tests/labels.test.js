@@ -72,3 +72,12 @@ test('places and trips are checked by the map, the rest of out-of-catalog is not
   assert.equal(outOfCatalogCheck({ text_span: 'чистота' }).checked, false)
   assert.equal(itemSubtitle({ text_span: 'рядом с парком', nearby: { category: 'park' }, verdict: 'yes' }, {}), 'по местам на карте')
 })
+
+test('an amenity in the hotel is checked on the hotel page, not on the map', () => {
+  const pool = { text_span: 'с бассейном', place: { label: 'бассейн', on_site: true } }
+  assert.equal(outOfCatalogCheck(pool).checked, true)
+  assert.match(outOfCatalogCheck(pool).note, /по странице отеля · бассейн в отеле/)
+  const found = { text_span: 'с бассейном', nearby: { category: 'pool' }, on_site: ['Открытый бассейн'], verdict: 'yes' }
+  assert.equal(itemSubtitle(found, {}), 'по странице отеля на Островке')
+  assert.equal(itemSubtitle({ text_span: 'с бассейном', nearby: { category: 'pool' }, reason_code: 'place_on_site' }, {}), 'в самом отеле')
+})

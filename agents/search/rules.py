@@ -173,6 +173,13 @@ def sea_view(ctx: Ctx) -> Iterator[Hit]:
         r"(?:\s+(?:прямо\s+)?(?:из|с)\s+(?:окна|окон|номера|кровати|постели))?"
         r"|(?:красив\w+\s+)?мор\w*\s+(?:прямо\s+)?(?:из|с)\s+(?:окна|окон|номера|балкона|кровати|постели)"
     )
+    view = re.search(r"(?:видеть|вид\w*|смотреть)\s+(?:\w+\s+){0,3}?из\s+(?:окна|окон|номера)",
+                     ctx.norm)  # fmt: skip
+    if view:
+        # «Хочу видеть закат из номера; море и балкон тоже хотелось бы» — море здесь вид.
+        for m in re.finditer(r"(?<![\w-])море(?=\s+и\s|\s*,|\s+тоже)", ctx.norm[view.end() :]):
+            at = view.end() + m.start()
+            yield Hit(at, at + len(m.group()), [Atom("V01", value="true")], "desired")
     for m in finditer(pattern, ctx):
         # Вид с кровати строже вида из точки окна (v1 №28) — соответствие частичное.
         mapping = "partial" if re.search(r"кроват|постел", m.group()) else "exact"
@@ -452,6 +459,10 @@ def landmark_distance(ctx: Ctx) -> Iterator[Hit]:
         yield Hit(
             m.start(), m.end(), [Atom("W03", "distance_m", "lte", meters, "m", params)], "desired"
         )
+    for m in finditer(r"\bв\s+(?:самом\s+)?центре(?:\s+города)?", ctx):
+        params = {"target_kind": "center"}
+        atom = Atom("W03", "distance_m", "lte", str(NEAR_CENTER_M), "m", params)
+        yield Hit(m.start(), m.end(), [atom], "desired")
     # С числом: «не дальше 1 км от центра», «до набережной не больше 10 минут».
     for m, op in measured(ctx, r"(?P<t>набережн\w*|центр\w*)"):
         center = m.group("t").startswith("центр")
@@ -613,6 +624,8 @@ _PLACE_AFTER = re.compile(
     rf"{_BE}\s+(?:(?P<near>{_NEAR_WORD}(?:\s+(?:с|со|от|к)\s+отел\w*|(?!\s+(?:с|со|от|к|до)\b)))"
     rf"|{_DIST}(?:\s+от\s+отел\w*|(?!\s+(?:от|до)\b))|(?P<site>{_SITE}))"
 )
+# Без «рядом» и «в отеле» эти места почти всегда про сам отель: «обязательно бассейн», «спа».
+ONSITE_BARE = frozenset({"pool", "spa", "gym"})
 # Перечисление мест: «рядом с парками и хорошими ресторанами», «рядом кафе, пекарня» — второе
 # место берёт «рядом» (или расстояние) первого; между ними только «и» / запятая и прилагательные.
 _PLACE_LIST = re.compile(rf"\s*(?:,\s*(?:и\s+)?|\s+и\s+)(?P<adj>(?:{_ADJ}\s+){{0,2}})")
@@ -644,9 +657,10 @@ def nearby_place(ctx: Ctx) -> Iterator[Hit]:
         listed = None
         if not mods and listed_from:
             listed = _PLACE_LIST.fullmatch(ctx.norm, listed_from[0], start)
-        if category.needs_near and not mods and not listed:
+        bare = category.needs_near and not mods and not listed
+        if bare and category.id not in ONSITE_BARE:
             listed_from = None
-            continue  # «бассейн», «ресторан» без «рядом» — скорее про сам отель; решит модель
+            continue  # «ресторан», «банк» без «рядом» — то ли в отеле, то ли рядом; решит модель
         if re.search(r"ветеринар|ветклиник", ctx.norm[max(0, start - 30) : end]):
             listed_from = None
             continue  # «ветеринарная клиника» — ветклиника P04 каталога, а не больница для людей
@@ -661,6 +675,8 @@ def nearby_place(ctx: Ctx) -> Iterator[Hit]:
                 params |= {"distance": number(m.group("n")), "distance_unit": m.group("u")}
             if m.group("site") or (m.groupdict().get("with") and not near_after):
                 params["on_site"] = "true"
+        if bare:
+            params["on_site"] = "true"
         if listed and listed_from:
             params |= listed_from[1]
         own = {k: v for k, v in params.items() if k != "quality"}
@@ -687,6 +703,52 @@ def runtime_features(ctx: Ctx) -> Iterator[Hit]:
                 yield Hit(m.start(), m.end(), [atom], "desired")
 
 
+# Цель с названием рядом с отелем — «доехать до X» (D34): расстояние до места или станции города.
+_NEAR_TARGET = re.compile(
+    r"(?:рядом\s+со?|недалеко\s+от|неподалеку\s+от|возле|около|близко\s+к|у|"
+    r"в\s+(?:шаговой|пешей)\s+доступности\s+от"
+    r"|(?:в\s+[\d–-]+\s*(?:минут\w*|мин)\s+)?(?:откуда\s+)?пешком\s+(?:до|от))\s+"
+)
+# Слово перед названием («парком Горького», «станцией Курская») и цели без заглавной буквы.
+_TARGET_NOUN = (
+    r"(?:парк\w*|сад\w*|площад\w*|улиц\w*|станци\w*|музе\w*|театр\w*|собор\w*|стадион\w*"
+    r"|набережн\w*|бульвар\w*|проспект\w*|галере\w*|храм\w*|рынк\w*|рынок)"
+)
+_LANDMARK = r"(?:аэропорт\w*|вокзал\w*|кремл\w*|экспоцентр\w*|арбат\w*)"
+
+
+def _target_end(raw: str, start: int) -> int | None:
+    """Конец названия цели в исходном тексте: слово-тип, 1–3 слова с заглавной буквы и слово-тип
+    после них («парком Горького», «Красной площади», «Большого театра», «Москва-Сити») или
+    известная цель без заглавной («аэропорта», «вокзала»)."""
+    m = re.match(
+        rf"(?:{_TARGET_NOUN}\s+)?(?:[А-ЯЁA-Z][\w-]*(?:\s+|$)){{1,3}}(?:{_TARGET_NOUN}\b)?",
+        raw[start:],
+    )
+    if m:
+        return start + len(m.group(0).rstrip())
+    m = re.match(rf"(?:\w+\s+)?{_LANDMARK}", raw[start:].lower())
+    return start + m.end() if m else None
+
+
+@rule
+def near_named_target(ctx: Ctx) -> Iterator[Hit]:
+    """«Рядом с парком Горького», «недалеко от Экспоцентра», «пешком до Кремля», «у аэропорта» —
+    расстояние до названной цели по своим данным, как «доехать до X»; «… и Большого театра» —
+    вторая цель того же перечисления."""
+    for m in _NEAR_TARGET.finditer(ctx.norm):
+        start = m.end()
+        while (end := _target_end(ctx.raw, start)) is not None:
+            target = ctx.raw[start:end].strip(" ,.")
+            atom = Atom("", value=target, params={"nearest_contract": "trip_to_target"},
+                        mapping="unmatched")  # fmt: skip
+            yield Hit(m.start() if start == m.end() else start, end, [atom], "desired")
+            more = re.match(r"\s*(?:,|и)\s+", ctx.raw[end:])
+            if not more:
+                break
+            start = end + more.end()
+
+
 @rule
 def trip_to_target(ctx: Ctx) -> Iterator[Hit]:
     for m in finditer(r"(?:доехать|добраться|дойти)\s+до\s+(?P<t>[\w-]+(?:\s+[\w-]+)?)", ctx):
@@ -706,13 +768,31 @@ def trip_to_target(ctx: Ctx) -> Iterator[Hit]:
 @rule
 def subjective(ctx: Ctx) -> Iterator[Hit]:
     for m in finditer(
-        r"\b(?:уютн\w*|атмосферн\w*|романтичн\w*|стильн\w*|вкусн\w+(?:\s+\w+)?\s+ед\w*)", ctx
+        r"\b(?:уютн\w*|атмосферн\w*|романтичн\w*|стильн\w*|вкусн\w+(?:\s+\w+)?\s+ед\w*"
+        r"|чист(?:ый|ая|ое|ые|ого|ом|ым|ую|оту|ота)\b)",
+        ctx,
     ):
         atom = Atom("subjective", value=ctx.raw[m.start() : m.end()], mapping="unmatched")
         yield Hit(m.start(), m.end(), [atom], "desired")
 
 
 # --- Номер и отель: только отельер или размещение ---
+
+
+@rule
+def beds(ctx: Ctx) -> Iterator[Hit]:
+    """«Двуспальная кровать», «две отдельные кровати», «твин» — конфигурация кроватей (M01):
+    «двуспальная или раздельные» тоже подходит гостю, которому нужна одна из них."""
+    for m in finditer(r"(?:(?:больш|широк)\w+\s+)?двуспальн\w+(?:\s+кроват\w*)?", ctx):
+        atom = Atom("M01", "bed_configuration", "in", "double,double_or_twin")
+        yield Hit(m.start(), m.end(), [atom], "required")
+    pattern = (
+        r"(?:две|2)\s+(?:отдельн|раздельн|односпальн)\w+\s+кроват\w*|раздельн\w+\s+кроват\w*"
+        r"|\bтвин\b"
+    )
+    for m in finditer(pattern, ctx):
+        atom = Atom("M01", "bed_configuration", "in", "twin,double_or_twin")
+        yield Hit(m.start(), m.end(), [atom], "required")
 
 
 @rule
@@ -809,6 +889,23 @@ def lift(ctx: Ctx) -> Iterator[Hit]:
 
 
 @rule
+def wheelchair(ctx: Ctx) -> Iterator[Hit]:
+    """«Я на инвалидной коляске», «колясочник» — вход без ступеней и доступный маршрут; смысл
+    гостя шире двух характеристик: соответствие частичное."""
+    # Гость сам назвал условия доступности — коляска лишь объясняет их, лишнего не добавляем.
+    if re.search(
+        r"без\s+(?:ступен|лестниц|порог)|пандус|лифт|душ\w*\s+без|двер|вход\w*\s+без", ctx.norm
+    ):
+        return
+    for m in finditer(r"(?:на\s+)?(?:инвалидн\w+\s+)?коляск[еиу]\b|колясочник\w*", ctx):
+        if re.search(r"детск\w*\s*$", ctx.norm[max(0, m.start() - 12) : m.start()]):
+            continue  # «детская коляска» — не доступность
+        atoms = [Atom("A02", "threshold_mm", "lte", str(STEP_FREE_MM), "mm", mapping="partial"),
+                 Atom("A01", "accessible", "eq", "true", mapping="partial")]  # fmt: skip
+        yield Hit(m.start(), m.end(), atoms, "required")
+
+
+@rule
 def step_free(ctx: Ctx) -> Iterator[Hit]:
     pattern = (
         r"(?:вход\w*\s+(?:с\s+улицы\s+)?|от\s+улицы\s+до\s+номера\s+(?:\w+\s+)?)?"
@@ -869,6 +966,9 @@ def checkin(ctx: Ctx) -> Iterator[Hit]:
         r"(?:заселени\w*|заселиться|заезд\w*|приняли|принимали|заселят)\s+(?:\w+\s+){0,2}?"
         r"(?:ночью|после\s+полуночи|поздно|поздним\s+вечером)|ночн\w+\s+заселени\w*|поздн\w+\s+заезд\w*"
     )
+    desk = r"круглосуточн\w+\s+(?:стойк\w+(?:\s+регистрации)?|ресепшн\w*|ресепшен\w*|регистраци\w*)"
+    for m in finditer(desk, ctx):
+        yield Hit(m.start(), m.end(), [Atom("L04", "front_desk_hours", "eq", "24/7")], "required")
     for m in finditer(pattern, ctx):
         # Заселиться ночью можно при круглосуточной стойке ИЛИ при самозаселении.
         atoms = [
@@ -946,6 +1046,13 @@ def _context(ctx: Ctx) -> tuple[str, int]:
     for m in finditer(rf"\bв\s+{MONTH_RE}", ctx):
         ctx.month = ctx.month or _month(m.group("m"))
         ctx.context.append((m.start(), m.end()))
+    # Длина поездки — для оформления, не условие поиска: «на две ночи», «на неделю».
+    stay = (
+        r"\bна\s+(?:\d+|одну|одни|две|три|четыре|пять|несколько)\s+(?:ноч\w*|сут\w*|дн\w*)"
+        r"|\bна\s+неделю\b"
+    )
+    for m in finditer(stay, ctx):
+        ctx.context.append((m.start(), m.end()))
     for m in finditer(r"\b(?:в\s+)?(?P<h>[01]?\d|2[0-3])[:.](?P<mi>[0-5]\d)\b", ctx):
         ctx.time_local = ctx.time_local or f"{int(m.group('h')):02d}:{m.group('mi')}"
         ctx.context.append((m.start(), m.end()))
@@ -1006,6 +1113,11 @@ DISMISSED_BEFORE = re.compile(
     r"(?:^|[^\w-])(?P<w>(?:можно\s+(?:и\s+|даже\s+)?|обойд\w+\s+)без)\s+$"
 )
 WITHOUT_IS_FINE = re.compile(r"^\s+(?:тоже\s+|и\s+)?(?:можно|обойд\w+)\b")
+# «Без лифта не рассматриваю», «без парковки никак» — двойное отрицание: условие нужно.
+WITHOUT_IS_NO_GO = re.compile(
+    r"^\s+(?:(?:нам|мне|вообще)\s+)?(?:не\s+(?:рассматрива|подход|вариант|поед|еду|сможе|обойд)\w*"
+    r"|никак\w*|нельзя)"
+)
 # «Или» между совпадениями: «балкон или терраса», «с собакой или с кошкой», «кухня или хотя бы
 # чайник». Перед совпадением допускаем ещё пару слов: «балкон или большая терраса».
 _OR = r"(?<![\w-])или\s+(?:хотя\s+бы\s+|же\s+)?(?:(?:с|со|на|в|во)\s+)?"
@@ -1093,6 +1205,8 @@ def _apply_negation(ctx: Ctx, h: Hit, catalog: Catalog) -> Hit | None:
     m = NEGATION_BEFORE.search(ctx.norm[: h.start])
     if not m:
         return h
+    if m.group("w") == "без" and WITHOUT_IS_NO_GO.match(ctx.norm[h.end :]):
+        return replace(h, start=m.start("w"))  # «без лифта не рассматриваю» — лифт нужен
     if len(h.atoms) != 1 or h.any_of:
         return None  # отрицание сложной фразы правилами не выразить — оставляем непонятым
     atom = _negate(h.atoms[0], catalog)

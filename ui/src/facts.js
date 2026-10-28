@@ -79,6 +79,7 @@ export function formatFactValue(fact, fieldLabels = {}) {
   if (Number.isFinite(value.count)) summary.push(`${value.count} ${value.count === 1 ? 'объект' : 'объектов'}`)
   if (Array.isArray(value.objects) && value.objects.length) summary.push(value.objects.slice(0, 2).map((item) => item.name || item.type).filter(Boolean).join(', '))
   if (value.target_name) summary.push(String(value.target_name))
+  if (Array.isArray(value.names) && value.names.length) summary.push(value.names.join(', ') + (value.seasonal ? ' (сезонный)' : ''))
   if (summary.length) return summary.filter(Boolean).join(' · ')
   // Ответ отеля: поля вопроса — подписи из анкеты (если есть), значения словами.
   const fields = Object.entries(value).filter(([, item]) => item != null && typeof item !== 'object')

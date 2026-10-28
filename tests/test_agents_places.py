@@ -115,9 +115,14 @@ def test_place_words_do_not_steal_from_sea_and_catalog():
     assert places_of(parse("смотровая площадка рядом"))[0].category == "viewpoint"
 
 
-def test_hotel_amenity_word_without_near_is_left_to_model():
-    """«Бассейн» без «рядом» и без «с» — может быть и про сам отель: правило не угадывает."""
-    assert places_of(parse("бассейн")) == []
+def test_hotel_amenity_word_without_near_is_the_hotel_itself():
+    """«Бассейн», «спа», «фитнес» без «рядом» — удобство самого отеля: его проверяют по странице
+    отеля (слой `hotel_amenities`). «Ресторан» без «рядом» — то ли в отеле, то ли рядом: модели."""
+    (pool,) = places_of(parse("обязательно бассейн"))
+    assert pool.category == "pool" and pool.on_site and pool.radius_m is None
+    assert places_of(parse("ресторан")) == []
+    (near,) = places_of(parse("бассейн рядом"))
+    assert not near.on_site and near.radius_m == 800
 
 
 def _compact(value, params, text):

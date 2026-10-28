@@ -516,10 +516,10 @@ def test_auto_required_leftover_does_not_depend_on_model(reply):
     assert part.requiredness == "required"
     # Точное условие модели на таком куске — обязательное, как сказал гость.
     reply = compact(
-        atom("a1", "две отдельные кровати", "M01", field="bed_configuration", value="twin",
+        atom("a1", "спать раздельно", "M01", field="bed_configuration", value="twin",
              requiredness="desired"),
     )  # fmt: skip
-    ast = auto("Обязательно две отдельные кровати.", reply)
+    ast = auto("Обязательно спать раздельно.", reply)  # правила этого не знают — зовут модель
     assert [(c.feature_id, c.value) for c in ast.hard] == [("M01", "twin")] and not ast.soft
 
 

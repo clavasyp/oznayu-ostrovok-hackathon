@@ -159,6 +159,13 @@
 - `core.packs.add_layer` добавляет файл в `manifest.json`, его источники помечает полем `layer` (путь файла), к `pack_version` добавляет хеш слоёв: `<версия сборки>+<хеш слоёв>` (`v9-…+xxxxxxxx`, `category-supplement.2-…+xxxxxxxx`), покрытие (`coverage`) пересчитывает по всем фактам вместе со слоем (`refresh_coverage`);
 - пересборка слои сохраняет (`keep_layers`; публикация `publish_packs` — тоже, с пересчётом покрытия), а в общий `facts` их не вливает (`pack_parts`).
 
+**Удобства отеля** — слой `hotel_amenities` Москвы и Сочи (`python -m pipeline.build_hotel_amenities --snapshot <снимок 24.10>`). Строки групп удобств страницы Островка — заявление отеля о себе (D26, `status = ostrovok_content`, годится для обязательного условия); паспорт — JSON pointer строки. Явное «нет» — только явная строка («Отсутствие лифтов», «Парковка отсутствует»); строки нет — факта нет.
+- A03 `lift_id`: `present` / `none`.
+- T04 `parking_owner`: `own` («Парковка», «Бесплатная парковка», «по запросу»), `third_party` («рядом с отелем»), `street` («общественная поблизости»), `none`; плюс `charging_basis = free`, `reservation`.
+- L04 `front_desk_hours = 24/7`.
+- T05 `connector = present`.
+- `onsite` — вне каталога: «в отеле есть X», `params.category` — id словаря мест (`pool`, `spa`, `gym`, `restaurant`, `coffee`, `laundry`, `bike_rental`, `car_rental`), `value = {"present": true, "names": [...], "seasonal"?: true}`. Поиск сверяет с ним часть запроса `nearby_place` с `on_site` («отель с бассейном», «обязательно спа»): строка — «да», только сезонное — «уточним», нет строки — «спросим отель».
+
 **Этажность, проверенная командой** (D33) — `data/curated/<город>_building_heights.csv`: `building_id`, `levels` или `height_m`, `source`, `source_url`, `checked_by`, `checked_at`, `note`. Строка без этажности — очередь «проверить по картам», её пишет сборка слоя (колонки `now_known`, `cells`, `hotels` и ссылки на OSM, Яндекс, 2ГИС). Заполненная строка без проверяющего, даты или ссылки — ошибка сборки.
 
 **Что лежит в `packs/` сейчас** — 8 городов из расчётов v9 (`python -m pipeline.build_v9_packs`): отели когорты, факты, вопросы с предзаполнением, покрытие (`coverage`), сверка с Островком (`ota_comparisons`). Сборка детерминированная. Каталог Островка и данные карт добавляются в тот же пакет города своими файлами.

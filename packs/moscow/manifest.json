@@ -4,7 +4,7 @@
   "city_name": "Москва",
   "timezone": "Europe/Moscow",
   "depth": "full",
-  "pack_version": "seva-full.3-d0015521442f",
+  "pack_version": "seva-full.3-d0015521442f+0245e842",
   "built_at": "2026-10-28T03:00:00Z",
   "code_version": "seva-full.3",
   "catalog_version": "ostrovok-2026-10-24+v9",
@@ -90,6 +90,14 @@
       "commercial_ok": true,
       "extract": "osm-places.1",
       "method": "nearby-tables.3; places-refresh.1"
+    },
+    {
+      "id": "hotel_amenities:ostrovok_site",
+      "provider": "ostrovok.ru",
+      "release": "snapshot_2026-10-24",
+      "sha256": "b119459f669384ab6a8abf66e1e1b95af7c3063e082a1a91d6c962272ec4554f",
+      "license": "Страницы Островка; сбор разрешён организаторами (D24)",
+      "layer": "data/hotel_amenities.jsonl.gz"
     }
   ],
   "files": [
@@ -190,6 +198,14 @@
       "rows": 0,
       "bytes": 20,
       "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "path": "data/hotel_amenities.jsonl.gz",
+      "kind": "facts",
+      "rows": 6060,
+      "bytes": 655054,
+      "sha256": "5791db1eead4d0bae85528a57a38b7547adc3f65cc3888e7e39dba7913203592",
+      "layer": true
     }
   ],
   "notes": "Полный каталог, георасчёты, корпуса/геометрические фасады и OSM D34. Расстояния до мест и станций — по прямой, доступ не подтверждён. Места рядом считает запрос PostGIS; в пакете только места с категорией словаря мест или характеристики каталога. 2ГИС bundle не передан. Пустая transit_times не означает отсутствие транспорта; вне датированных ответов время неизвестно. Места и станции — places-refresh.1: парки с точками края через 150 м, подъёмники и аттракционы; места и станции за границей РФ не берутся."

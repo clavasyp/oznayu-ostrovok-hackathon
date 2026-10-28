@@ -94,7 +94,9 @@ def labels() -> dict[str, Any]:
         "booking_imitation_note": BOOKING_IMITATION_NOTE,
         "out_of_catalog": "Такое мы пока не знаем",
         # Названия характеристик (каталог агентов): интерфейсу не нужен свой словарь.
-        "features": {f.id: f.short for f in load_catalog().features.values()},
+        # «В отеле есть X» — удобства со страницы Островка, вне каталога (слой hotel_amenities).
+        "features": {f.id: f.short for f in load_catalog().features.values()}
+        | {engine.ONSITE: "в отеле есть"},
     }
 
 
