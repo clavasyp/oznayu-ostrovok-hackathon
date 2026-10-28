@@ -48,7 +48,7 @@ from core.freshness import is_stale
 from core.live import LIVE, live_facts
 from core.reasons import reason_text
 from core.store import Store
-from core.transit import TRANSIT, transit_facts
+from core.transit import TRANSIT, transit_facts, trip_routes
 from core.transit import enabled as transit_enabled
 from core.verdict import GUEST_LABELS, GuestStatus, Verdict, and3, guest_status, not3, or3
 
@@ -400,7 +400,12 @@ WALK_M_PER_MIN = 80  # как в каталоге: «10 минут пешком�
 TRIP_NEAR_M, TRIP_FAR_M = 2000, 8000  # по прямой: ближе — склоняется к «да», дальше — к «нет»
 
 
-def trip_item(o: OutOfCatalog, target: dict[str, Any] | None, distance: int | None) -> dict:
+def trip_item(
+    o: OutOfCatalog,
+    target: dict[str, Any] | None,
+    distance: int | None,
+    route: dict[str, Any] | None = None,
+) -> dict:
     """«Доехать до X» по своим данным (D34): цель — место города по названию, расстояние по
     прямой и время пешком с запасом на обход. Это оценка (D18): время на транспорте мы пока не
     считаем, поэтому «неизвестно», а ближе к цели — выше в выдаче."""
@@ -418,6 +423,19 @@ def trip_item(o: OutOfCatalog, target: dict[str, Any] | None, distance: int | No
         return out | {"reason_code": "trip_distance_unknown", "leaning": Verdict.no,
                       "reason": reason_text("trip_distance_unknown")}  # fmt: skip
     walk = round(distance * DETOUR / WALK_M_PER_MIN)
+    if route:  # маршрут 2ГИС на запросе (D37): это ответ, а не оценка по прямой
+        return out | {
+            "verdict": Verdict.yes,
+            "reason_code": "trip_2gis",
+            "reason": reason_text("trip_2gis"),
+            "trip": {
+                "place_id": target["place_id"],
+                "name": target["name"],
+                "distance_m": distance,
+                "walk_min": walk,
+                "route": route,
+            },  # fmt: skip
+        }
     leaning = (
         Verdict.yes if distance <= TRIP_NEAR_M else Verdict.no if distance > TRIP_FAR_M else None
     )
@@ -1001,7 +1019,9 @@ def search(
         if "trip_to_target" in o.nearest_contracts and ast.city_id:
             target = store.find_target(ast.city_id, o.normalized or o.text_span)
             dist = store.distances(ids, target) if target else {}
-            trips[id(o)] = (target, dist)
+            # Второй проход для первой страницы: время в пути по 2ГИС (core/transit.py).
+            routes = trip_routes(target, hotels) if target and transit and transit_enabled() else {}
+            trips[id(o)] = (target, dist, routes)
     # «Рядом место типа X» — один запрос к местам на часть запроса, а не на отель.
     places = {
         id(o): store.nearest_places(ids, o.place.category, o.place.radius_m)
@@ -1066,8 +1086,8 @@ def search(
                 else:
                     soft.append(item | {"weight": PLACE_WEIGHT})
             elif id(o) in trips:
-                target, dist = trips[id(o)]
-                item = trip_item(o, target, dist.get(hid))
+                target, dist, routes = trips[id(o)]
+                item = trip_item(o, target, dist.get(hid), routes.get(hid))
                 if required:
                     hard.append(item)
                 else:

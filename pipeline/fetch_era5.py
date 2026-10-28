@@ -6,6 +6,10 @@ python -m pipeline.fetch_era5 --city sochi --cache "<кеш v9>" --out <новы
 `--cache`, недостающие докачиваются в `--out` тем же форматом, что в расчётах v9: запрос на
 месяц года, рядом `*.meta.json` с адресом, временем, статусом и sha256 ответа (D22: бесплатный
 API — только для разовой сборки пакетов на хакатоне).
+
+С `--points` — точки у отелей с шагом 0,05° (`climate_point`): ячейку ERA5 выбирает Open-Meteo
+по рельефу, температура — с поправкой на высоту точки (у побережья Сочи центр ячейки 0,25° —
+в горах). Кеш точек — отдельная папка: в нём ключ — запрошенная точка, а не центр ячейки.
 """
 
 from __future__ import annotations
@@ -20,7 +24,14 @@ from pathlib import Path
 
 import httpx
 
-from calculators.env_climate import MONTHS, UTC_OFFSET, YEARS, _month_length, climate_cell
+from calculators.env_climate import (
+    MONTHS,
+    UTC_OFFSET,
+    YEARS,
+    _month_length,
+    climate_cell,
+    climate_point,
+)
 from core.packs import iter_jsonl
 from pipeline.build_v9_packs import PACKS
 
@@ -29,7 +40,8 @@ DAILY = "temperature_2m_mean,temperature_2m_max,precipitation_sum"
 LICENSE = (
     "CC BY 4.0 data; free API non-commercial hackathon D22 only; production Professional/self-host"
 )
-PAUSE_S = 0.5  # вежливо: ~2 запроса в секунду
+PAUSE_S = 6.0  # вежливо: каждая точка — вызов API, лимит бесплатного доступа — 600 в минуту
+BATCH = 100  # точек в одном запросе: длина адреса
 
 
 def cached_cells(cache: Path, city: str) -> dict[tuple[int, int], set[tuple[float, float]]]:
@@ -43,15 +55,29 @@ def cached_cells(cache: Path, city: str) -> dict[tuple[int, int], set[tuple[floa
             continue
         start = json.loads(meta.read_text("utf-8"))["params"]["start_date"]
         key = (int(start[:4]), int(start[5:7]))
+        params = json.loads(meta.read_text("utf-8"))["params"]
+        if params.get("cell_selection") == "land":  # запрос по точкам: ключ — запрошенная точка
+            lats, lons = str(params["latitude"]).split(","), str(params["longitude"]).split(",")
+            out.setdefault(key, set()).update(
+                (float(a), float(b)) for a, b in zip(lats, lons, strict=True)
+            )
+            continue
         payload = json.loads(path.read_text("utf-8"))
         for cell in payload if isinstance(payload, list) else [payload]:
             out.setdefault(key, set()).add((float(cell["latitude"]), float(cell["longitude"])))
     return out
 
 
-def fetch(city: str, cells: list[tuple[float, float]], year: int, month: int, out: Path) -> int:
+def fetch(
+    city: str,
+    cells: list[tuple[float, float]],
+    year: int,
+    month: int,
+    out: Path,
+    points: bool = False,
+) -> int:
     """Один запрос на месяц года для всех недостающих ячеек; ответ и паспорт — рядом."""
-    params = {
+    params: dict[str, str] = {
         "latitude": ",".join(str(c[0]) for c in cells),
         "longitude": ",".join(str(c[1]) for c in cells),
         "start_date": f"{year}-{month:02}-01",
@@ -62,6 +88,9 @@ def fetch(city: str, cells: list[tuple[float, float]], year: int, month: int, ou
         "cell_selection": "nearest",
         "elevation": ",".join("nan" for _ in cells),
     }
+    if points:  # ячейку выбирает Open-Meteo по рельефу, температура — на высоту точки
+        params["cell_selection"] = "land"
+        del params["elevation"]
     url = f"{API}?{urllib.parse.urlencode(params)}"
     requested = datetime.now(UTC)
     for attempt in range(4):
@@ -70,10 +99,12 @@ def fetch(city: str, cells: list[tuple[float, float]], year: int, month: int, ou
             response.raise_for_status()
             status, body = response.status_code, response.content
             break
-        except httpx.HTTPError:
+        except httpx.HTTPError as exc:
             if attempt == 3:
                 raise
-            time.sleep(5 * (attempt + 1))
+            # 429 — лимит бесплатного API: каждая точка запроса — отдельный вызов, ждём минуту.
+            limited = isinstance(exc, httpx.HTTPStatusError) and exc.response.status_code == 429
+            time.sleep(65 if limited else 5 * (attempt + 1))
     digest = hashlib.sha256(body).hexdigest()
     path = out / f"era5_{city}_{year}{month:02}_{digest[:18]}.json"
     path.write_bytes(body)
@@ -98,10 +129,12 @@ def main() -> None:
     ap.add_argument("--city", required=True, choices=sorted(UTC_OFFSET))
     ap.add_argument("--cache", type=Path, required=True, help="уже скачанный кеш (v9)")
     ap.add_argument("--out", type=Path, required=True, help="куда класть недостающее")
+    ap.add_argument("--points", action="store_true", help="точки 0,05° у отелей вместо ячеек")
     args = ap.parse_args()
     args.out.mkdir(parents=True, exist_ok=True)
     hotels = iter_jsonl(PACKS / args.city / "data/hotels.jsonl.gz")
-    needed = sorted({climate_cell(h["latitude"], h["longitude"]) for h in hotels})
+    key = climate_point if args.points else climate_cell
+    needed = sorted({key(h["latitude"], h["longitude"]) for h in hotels})
     have = cached_cells(args.cache, args.city)
     for key, cells in cached_cells(args.out, args.city).items():
         have.setdefault(key, set()).update(cells)
@@ -109,8 +142,8 @@ def main() -> None:
     for year in YEARS:
         for month in MONTHS:
             missing = [c for c in needed if c not in have.get((year, month), set())]
-            if missing:
-                fetch(args.city, missing, year, month, args.out)
+            for i in range(0, len(missing), BATCH):
+                fetch(args.city, missing[i : i + BATCH], year, month, args.out, args.points)
                 done += 1
                 time.sleep(PAUSE_S)
     print(f"{args.city}: ячеек {len(needed)}, запросов {done} → {args.out}")

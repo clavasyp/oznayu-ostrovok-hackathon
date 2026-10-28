@@ -55,13 +55,20 @@ class SPAStaticFiles(StaticFiles):
 
     async def get_response(self, path: str, scope: Scope) -> Response:
         try:
-            return await super().get_response(path, scope)
+            response = await super().get_response(path, scope)
         except HTTPException as exc:
             # Под Windows путь приходит с «\»: api\no-such-route — это тоже /api.
             api = path.replace("\\", "/")
             if exc.status_code != 404 or api == "api" or api.startswith("api/"):
                 raise
-            return await super().get_response("index.html", scope)
+            response = await super().get_response("index.html", scope)
+        # Файлы сборки с хешем в имени не меняются — кешируем надолго; страницу — каждый раз
+        # сверяем с сервером (etag), иначе после обновления браузер покажет старый интерфейс.
+        immutable = path.replace("\\", "/").startswith("assets/")
+        response.headers["Cache-Control"] = (
+            "public, max-age=31536000, immutable" if immutable else "no-cache"
+        )
+        return response
 
 
 # Запросы показа из README: прогреваем кеш базы в фоне, чтобы первый поиск не ждал диска (база

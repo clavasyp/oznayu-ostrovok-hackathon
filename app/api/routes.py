@@ -8,7 +8,7 @@ import logging
 import re
 from collections import Counter
 from datetime import UTC, datetime, timedelta
-from typing import Any
+from typing import Any, Literal
 
 from fastapi import APIRouter, HTTPException, Request
 from pydantic import BaseModel, Field, ValidationError
@@ -252,10 +252,18 @@ def search(body: SearchRequest, request: Request) -> dict[str, Any]:
     results = engine.search(s, ast)
     counts = Counter(str(r["status"]) for r in results)
     page = results[body.offset : body.offset + body.limit]  # полный каталог — тысячи отелей
-    if transit.enabled() and any(c.feature_id in transit.TRANSIT for c in [*ast.hard, *ast.soft]):
+    trips = any("trip_to_target" in o.nearest_contracts for o in ast.out_of_catalog)
+    if transit.enabled() and (
+        trips or any(c.feature_id in transit.TRANSIT for c in [*ast.hard, *ast.soft])
+    ):
         # Время на транспорте — 2ГИС на запросе, только для первых отелей страницы (квота).
         ids = [r["hotel"]["hotel_id"] for r in page[: transit.PAGE_MAX]]
         redo = {r["hotel"]["hotel_id"]: r for r in engine.search(s, ast, only=ids, transit=True)}
+        for r in page:  # счётчики — по новым ответам: «Подходят» не расходится со списком
+            new = redo.get(r["hotel"]["hotel_id"])
+            if new is not None and str(new["status"]) != str(r["status"]):
+                counts[str(r["status"])] -= 1
+                counts[str(new["status"])] += 1
         page = [redo.get(r["hotel"]["hotel_id"], r) for r in page]
         notes.append("Время на транспорте посчитано по 2ГИС для первых отелей страницы.")
     # Объяснение по шаблону (без модели, мгновенно) — у первых результатов страницы.
@@ -418,15 +426,63 @@ def hotelier_answer(hotel_id: str, body: AnswerIn, request: Request) -> dict[str
     }
 
 
+# Пояснения сверки из расчёта v9 — по-английски; команде показываем по-русски (тот же смысл).
+RESOLUTION_RU = {
+    "Opening, existence, reconstruction and completion are separate events; request building "
+    "document.": "Открытие отеля, реконструкция и ввод здания — разные события: нужен документ "
+    "о здании.",
+    "Do not declare either source wrong without per-corpus scope/counting convention.": "Не "
+    "считать ни один источник ошибочным, пока не ясно, какие корпуса и как считались этажи.",
+    "Source sea-view category claim does not map to specific facade/window/height or guaranteed "
+    "allocation.": "«Вид на море» у категории на Островке не привязан к фасаду, этажу и не "
+    "гарантирует номер с таким окном.",
+}
+
+
 @router.get("/conflicts")
 def conflicts(request: Request, city_id: str | None = None) -> dict[str, Any]:
     """Сверка с карточкой Островка (`conflicts`) и противоречия между фактами (`fact_conflicts`)."""
     s = store(request)
-    return {
-        "stub": s.stub,
-        "conflicts": s.conflicts(city_id),
-        "fact_conflicts": s.fact_conflicts(city_id),
-    }
+    rows = [
+        r | {"resolution": RESOLUTION_RU.get(r.get("resolution") or "", r.get("resolution"))}
+        for r in s.conflicts(city_id)
+    ]
+    return {"stub": s.stub, "conflicts": rows, "fact_conflicts": s.fact_conflicts(city_id)}
+
+
+class CurationReview(BaseModel):
+    state: Literal["accepted", "rejected", "unsure"]
+    reviewer: str = Field(min_length=1, max_length=80)
+    note: str | None = Field(default=None, max_length=500)
+    building_id: str | None = None
+
+
+@router.get("/curation")
+def curation(
+    request: Request,
+    city_id: str | None = None,
+    state: str = "proposed",
+    limit: int = 10,
+    offset: int = 0,
+) -> dict[str, Any]:
+    """Очередь ручной проверки командой (D33): кандидаты, которые машина не решила сама."""
+    s = store(request)
+    limit = max(1, min(limit, 50))
+    return {"stub": s.stub} | s.curation_queue(city_id, state, limit, max(0, offset))
+
+
+@router.post("/curation/{item_id}/review")
+def review_curation(item_id: int, body: CurationReview, request: Request) -> dict[str, Any]:
+    """Решение человека: «это здание» (с выбранным кандидатом) или «это один объект» (дубль
+    объявления), «ни одно / разные объекты», «не уверен»."""
+    s = store(request)
+    try:
+        item = s.review_curation(item_id, body.state, body.reviewer, body.note, body.building_id)
+    except ValueError as exc:
+        raise HTTPException(422, str(exc)) from exc
+    if item is None:
+        raise HTTPException(404, "нет такого элемента очереди")
+    return {"item": item}
 
 
 @router.get("/out-of-catalog")

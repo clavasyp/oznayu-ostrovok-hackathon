@@ -1,6 +1,6 @@
 {
   "version": "pack-audit.3",
-  "built_at": "2026-10-28T14:41:43.674836+00:00",
+  "built_at": "2026-10-28T18:07:02.290652+00:00",
   "cities": [
     {
       "pack": "dubai",
@@ -91,7 +91,7 @@
         "not_specified": 50
       },
       "building_linked_hotels": 0,
-      "seconds": 0.159,
+      "seconds": 0.288,
       "errors": {},
       "warnings": {
         "external_geometry_subjects_not_resolved": 1
@@ -189,7 +189,7 @@
         "not_specified": 50
       },
       "building_linked_hotels": 0,
-      "seconds": 0.175,
+      "seconds": 0.321,
       "errors": {},
       "warnings": {
         "external_geometry_subjects_not_resolved": 1
@@ -293,7 +293,7 @@
         "not_specified": 50
       },
       "building_linked_hotels": 0,
-      "seconds": 0.163,
+      "seconds": 0.293,
       "errors": {},
       "warnings": {
         "external_geometry_subjects_not_resolved": 1
@@ -391,7 +391,7 @@
         "not_specified": 50
       },
       "building_linked_hotels": 0,
-      "seconds": 0.146,
+      "seconds": 0.264,
       "errors": {},
       "warnings": {
         "external_geometry_subjects_not_resolved": 1
@@ -481,7 +481,7 @@
         "not_specified": 50
       },
       "building_linked_hotels": 0,
-      "seconds": 0.147,
+      "seconds": 0.278,
       "errors": {},
       "warnings": {
         "external_geometry_subjects_not_resolved": 1
@@ -810,7 +810,7 @@
         "biryulevo_vostochnoe": 2
       },
       "building_linked_hotels": 2753,
-      "seconds": 8.476,
+      "seconds": 15.824,
       "errors": {},
       "warnings": {
         "snapshot_not_checked": 1,
@@ -944,11 +944,6 @@
           "kind": "facts"
         },
         {
-          "path": "data/environment.jsonl.gz",
-          "rows": 18242,
-          "kind": "facts"
-        },
-        {
           "path": "data/building_facts.jsonl.gz",
           "rows": 5147,
           "kind": "facts"
@@ -989,6 +984,11 @@
           "kind": "facts"
         },
         {
+          "path": "data/environment.jsonl.gz",
+          "rows": 18242,
+          "kind": "facts"
+        },
+        {
           "path": "data/questions.jsonl.gz",
           "rows": 69144,
           "kind": "questions"
@@ -1005,8 +1005,8 @@
         }
       ],
       "city_id": "sochi",
-      "pack_version": "category-supplement.2-36311c2fd6d9+b195a35c",
-      "manifest_sha256": "8630fd8b3842647a5031b62e5b8256fb25299e2c4b0f6fbae2b2f2e9aa2076e0",
+      "pack_version": "category-supplement.2-36311c2fd6d9+de42e136",
+      "manifest_sha256": "496423534196819684bde86ee87e447a88e9db97ed6b7dfecea21fa0e6fc7cd2",
       "snapshot": {
         "status": "not_checked",
         "reason": "snapshot_not_supplied"
@@ -1088,7 +1088,7 @@
         "khosta": 41
       },
       "building_linked_hotels": 1137,
-      "seconds": 22.088,
+      "seconds": 40.836,
       "errors": {},
       "warnings": {
         "snapshot_not_checked": 1,
@@ -1204,7 +1204,7 @@
         "not_specified": 50
       },
       "building_linked_hotels": 0,
-      "seconds": 0.156,
+      "seconds": 0.321,
       "errors": {},
       "warnings": {
         "external_geometry_subjects_not_resolved": 1
@@ -1221,10 +1221,10 @@
   ],
   "duplicate_hotels_between_cities": [],
   "status": "passed",
-  "seconds": 31.526,
+  "seconds": 58.462,
   "code_sha256": {
     "audit_packs.py": "afcc57c1b4cf7b78859b2400425688185176ff00f0e7067a9fc383098cb645fb",
     "audit_ostrovok.py": "3f783f3eb5e57ad5e264433b54b7119cbca47ab8180841b04f237f3839583618"
   },
-  "peak_rss_mib": 93.22
+  "peak_rss_mib": 85.61
 }

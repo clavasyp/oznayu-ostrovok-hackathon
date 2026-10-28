@@ -331,6 +331,16 @@ class StubStore:
     def conflicts(self, city_id: str | None = None) -> list[dict[str, Any]]:
         return [c for c in self.ota_comparisons if not city_id or c["city_id"] == city_id]
 
+    def curation_queue(
+        self, city_id: str | None, state: str, limit: int, offset: int
+    ) -> dict[str, Any]:
+        return {"total": 0, "counts": {}, "items": []}  # очередь D33 — только в базе
+
+    def review_curation(
+        self, item_id: int, state: str, reviewer: str, note: str | None, building_id: str | None
+    ) -> dict[str, Any] | None:
+        return None
+
     def record_unmatched(self, events: list[dict[str, Any]]) -> None:
         known = {e["event_id"] for e in self.unmatched}
         self.unmatched += [e for e in events if e["event_id"] not in known]

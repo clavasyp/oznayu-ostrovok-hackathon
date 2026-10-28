@@ -111,3 +111,9 @@ test('a catalog place feature shows the found place, distance and hours at the g
   assert.equal(itemSubtitle(closed, labels), 'по местам на карте · место без названия, 240 м по прямой · часы: Mo-Su 09:00-22:00')
   assert.equal(placeNote({ label: 'ресторан', radius_m: 800 }), '')  // часть запроса из AST — не найденное место
 })
+
+test('trip with a 2GIS route says time, not a straight-line estimate', () => {
+  assert.equal(itemSubtitle({ trip: { name: 'Большой театр', route: { duration_min: 14, transfers: 0, walk_only: false } } }, { features: {} }), 'маршрут 2ГИС · 14 мин на транспорте, без пересадок')
+  assert.equal(itemSubtitle({ trip: { name: 'Большой театр', route: { duration_min: 3, walk_only: true } } }, { features: {} }), 'маршрут 2ГИС · пешком 3 мин')
+  assert.equal(itemSubtitle({ trip: { name: 'X', distance_m: 900 } }, { features: {} }), 'оценка по прямой')
+})

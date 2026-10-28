@@ -88,6 +88,31 @@ def climate_cell(latitude: float, longitude: float) -> tuple[float, float]:
     return round(latitude * 4) / 4, round(longitude * 4) / 4
 
 
+POINT_DEG = 0.05
+
+
+def climate_point(latitude: float, longitude: float) -> tuple[float, float]:
+    """Точка запроса у отеля (шаг 0,05° ≈ 5 км): Open-Meteo сам выбирает ячейку ERA5 по рельефу
+    (`cell_selection=land`) и поправляет температуру на высоту точки. Так у побережья Сочи
+    климат не берётся из горной ячейки, как у ближайшего центра сетки 0,25°."""
+    return round(round(latitude / POINT_DEG) * POINT_DEG, 2), round(
+        round(longitude / POINT_DEG) * POINT_DEG, 2
+    )
+
+
+POINT_VERSION = "C01C02C03-era5-openmeteo-1991-2020-point@2"
+POINT_SCOPE_NOTE = (
+    "Историческое распределение месяца по реанализу за 30 полных лет; не прогноз на 2026/2027; "
+    "точка 0,05° у отеля: ячейка ERA5 по рельефу, температура с поправкой на высоту точки "
+    "(Open-Meteo)."
+)
+POINT_CONFIDENCE = {
+    "level": "medium",
+    "reason": "30/30 полных месяцев; ERA5 через Open-Meteo с поправкой температуры на высоту "
+    "точки у отеля; осадки — ячейки ~25 км, у моря и гор остаются грубыми.",
+}
+
+
 def _finite(value: Any) -> bool:
     try:
         return value is not None and math.isfinite(float(value))
@@ -173,9 +198,24 @@ def load_cache(
             continue
         payload = json.loads(path.read_text("utf-8"))
         cells = payload if isinstance(payload, list) else [payload]
+        asked = meta.get("params", {})
+        # Запрос по точкам у отелей (`cell_selection=land`): ключ — запрошенная точка, а
+        # ячейку ERA5 выбирает Open-Meteo; в v9 ключ — центр ячейки из ответа.
+        points = (
+            list(
+                zip(
+                    str(asked["latitude"]).split(","),
+                    str(asked["longitude"]).split(","),
+                    strict=True,
+                )
+            )
+            if asked.get("cell_selection") == "land"
+            else None
+        )
         for index, cell_data in enumerate(cells):
             daily = cell_data["daily"]
-            key = (float(cell_data["latitude"]), float(cell_data["longitude"]))
+            grid = (float(cell_data["latitude"]), float(cell_data["longitude"]))
+            key = (float(points[index][0]), float(points[index][1])) if points else grid
             for i, date in enumerate(daily["time"]):
                 records[key].append(
                     ClimateDay(
@@ -194,8 +234,8 @@ def load_cache(
                     "dataset_version": "ERA5 via Open-Meteo API; upstream release ID not exposed",
                     "license": "CC BY 4.0",
                     "grid_elevation_m": cell_data.get("elevation"),
-                    "grid_latitude": key[0],
-                    "grid_longitude": key[1],
+                    "grid_latitude": grid[0],
+                    "grid_longitude": grid[1],
                     "start_date": params.get("start_date"),
                     "fetched_at": meta.get("requested_at"),
                     "snapshot_file": path.name,
@@ -345,6 +385,7 @@ class ClimateMonthly:
     feature_ids = ("C01", "C02", "C03")
 
     def run(self, subjects: Sequence[Subject], ctx: CityContext) -> list[Fact]:
+        self._points = bool(ctx.params.get("climate_points"))
         era5_dir = cache_directory(ctx)
         records, provenance = load_cache(era5_dir, ctx.city_id)
         offset = ctx.params.get("utc_offset_hours", UTC_OFFSET.get(ctx.city_id))
@@ -372,6 +413,9 @@ class ClimateMonthly:
                         )
                     )
         return facts
+
+    def _version(self) -> str:
+        return POINT_VERSION if getattr(self, "_points", False) else self.version
 
     def _fact(
         self,
@@ -402,8 +446,27 @@ class ClimateMonthly:
             cell = None
             params: dict[str, Any] = {"month": month, **PERIOD, "model": "ERA5"}
         else:
-            cell = climate_cell(subject.latitude, subject.longitude)
+            points = getattr(self, "_points", False)
+            cell = (climate_point if points else climate_cell)(subject.latitude, subject.longitude)
             params = _params(feature_id, month, cell, subject, timezone or "unknown", None)
+            if points:  # ячейка ERA5 — та, что выбрал Open-Meteo для точки
+                grid = (provenance.get(cell) or [{}])[0]
+                glat, glon = grid.get("grid_latitude"), grid.get("grid_longitude")
+                params |= {
+                    "point_latitude": cell[0],
+                    "point_longitude": cell[1],
+                    "point_resolution_deg": POINT_DEG,
+                    "cell_selection": "land",
+                    "temperature_downscaling": True,
+                }
+                if glat is not None and glon is not None:
+                    params |= {
+                        "grid_latitude": glat,
+                        "grid_longitude": glon,
+                        "hotel_to_grid_m": wgs84_distance_m(
+                            subject.latitude, subject.longitude, glat, glon
+                        ),
+                    }
             reason = None
         if cell is None:
             pass
@@ -431,7 +494,7 @@ class ClimateMonthly:
             )
             return Fact(
                 fact_id=make_fact_id(
-                    subject.hotel_id, subject.subject_id, feature_id, params, self.version
+                    subject.hotel_id, subject.subject_id, feature_id, params, self._version()
                 ),
                 hotel_id=subject.hotel_id,
                 city_id=ctx.city_id,
@@ -444,11 +507,13 @@ class ClimateMonthly:
                 status=Status.computed,
                 sources=_sources(provenance.get(cell, []), month) if cell else [],
                 recipe_id=f"{feature_id}-R2",
-                algorithm_version=self.version,
-                confidence=Confidence(**CONFIDENCE),
+                algorithm_version=self._version(),
+                confidence=Confidence(
+                    **(POINT_CONFIDENCE if getattr(self, "_points", False) else CONFIDENCE)
+                ),
                 calculated_at=datetime.now(UTC),
                 refresh_after=REFRESH_AFTER,
-                scope_note=SCOPE_NOTE,
+                scope_note=POINT_SCOPE_NOTE if getattr(self, "_points", False) else SCOPE_NOTE,
                 recipe_attempts=attempts,
             )
         attempts.append(
@@ -461,7 +526,7 @@ class ClimateMonthly:
         )
         return Fact(
             fact_id=make_fact_id(
-                subject.hotel_id, subject.subject_id, feature_id, params, self.version
+                subject.hotel_id, subject.subject_id, feature_id, params, self._version()
             ),
             hotel_id=subject.hotel_id,
             city_id=ctx.city_id,
@@ -474,7 +539,7 @@ class ClimateMonthly:
             status=Status.unknown,
             unknown_reason=reason,
             sources=_sources(provenance.get(cell, []), month) if cell else [],
-            algorithm_version=self.version,
+            algorithm_version=self._version(),
             calculated_at=datetime.now(UTC),
             recipe_attempts=attempts,
             components=error,

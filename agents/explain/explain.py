@@ -185,7 +185,14 @@ def _evidence(item: dict[str, Any], catalog: Catalog, fact: Callable[[str], Fact
             else next((v[k] for k in DEFAULT_FIELDS if k in v), None)
         )
     spec = feature.field_spec(field_name) if feature else None
-    shown = value_words(field_name, v) or _fmt_value(v, spec.unit if spec else None)
+    if field_name == "count" and isinstance(v, int) and not isinstance(v, bool):
+        # Места с карты (бары N04): «ни одного на карте», «2 на карте», а не голое «(0)».
+        shown = "ни одного на карте" if v == 0 else f"{v} на карте"
+    elif field_name == "known_step_sections" and isinstance(v, int) and not isinstance(v, bool):
+        # Лестницы по пути (W05): участки со ступенями, отмеченные на карте.
+        shown = "лестниц на карте нет" if v == 0 else f"участков с лестницами на карте: {v}"
+    else:
+        shown = value_words(field_name, v) or _fmt_value(v, spec.unit if spec else None)
     # «есть только оценка» скажет причина — второй раз «оценка» не нужна.
     note = None if item.get("reason_code") == "estimate_only" else STATUS_NOTE.get(f.status)
     return ", ".join(x for x in (shown, note) if x)
@@ -286,7 +293,17 @@ def _condition_claim(
     if item.get("reason_code") == "out_of_catalog":
         text = f"«{item.get('text_span') or label}»: такого мы пока не знаем"
         return Claim(claim_id, "out_of_catalog", text)
-    if trip := item.get("trip"):
+    if (trip := item.get("trip")) and (route := trip.get("route")):
+        # «Доехать до X» с маршрутом 2ГИС на запросе (D37): время в пути, а не оценка по прямой.
+        n = route.get("transfers") or 0
+        how = (
+            f"пешком {route['duration_min']} мин"
+            if route.get("walk_only")
+            else f"{route['duration_min']} мин на транспорте, "
+            + ("без пересадок" if n == 0 else f"пересадок: {n}")
+        )
+        evidence = f"«{trip['name']}» — {how}, 2ГИС"
+    elif trip := item.get("trip"):
         # «Доехать до X»: цель из мест города, расстояние по прямой и пешком с запасом (оценка).
         km = f"{trip['distance_m'] / 1000:.1f}".replace(".", ",")
         evidence = f"«{trip['name']}» — {km} км по прямой, пешком около {trip['walk_min']} мин"

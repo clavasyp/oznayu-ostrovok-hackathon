@@ -148,6 +148,15 @@ export function conditionPeriod(params) {
   return month ? MONTHS_NOM[month - 1] : ''
 }
 
+// Период факта в паспорте: дата или месяц условия, а у маршрутов на даты поездки (W01 —
+// сезонный доступ к пляжу) — месяц начала поездки: «пешком до пляжа · ноябрь».
+export function factPeriod(params) {
+  const own = conditionPeriod(params)
+  if (own) return own
+  const start = parseDate(params?.trip_start)
+  return start ? MONTHS_NOM[start.getUTCMonth()] : ''
+}
+
 function stayMonths(stay) {
   const months = new Set()
   const nights = nightCount(stay.checkIn, stay.checkOut)

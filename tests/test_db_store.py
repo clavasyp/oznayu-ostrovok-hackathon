@@ -502,3 +502,62 @@ def test_freshness_by_feature_and_recipe(stores):
     assert kinds <= {"pack_built_at", None} and all(
         f.calculated_at or f.observed_at for f in undated
     )
+
+
+def test_curation_queue_and_review(engine, stores):
+    """Очередь D33: элемент с кандидатами-зданиями виден с доказательствами; «это здание» —
+    только из кандидатов; решение пишется с проверяющим и временем и уходит из очереди."""
+    from sqlalchemy.orm import Session
+
+    from core.db import CurationItem
+
+    db, _ = stores
+    hotel_id = db.hotels("sochi")[0]["hotel_id"]
+    evidence = [
+        {"kind": "hotel_address", "value": "улица Ленина, 5"},
+        {"kind": "osm_candidate_addresses", "values": [{"evidence": {
+            "way/1": {"normalized_osm": "улица ленина, 5", "comparison": {"house": "exact"},
+                      "point_covered_by_building": True, "source_url": "https://osm.org/way/1"},
+        }}]},
+    ]  # fmt: skip
+    with Session(engine) as s, s.begin():
+        item = CurationItem(city_id="sochi", kind="match_hotel_building", subject_level="hotel",
+                            subject_id=hotel_id, proposed_by="script:test", evidence=evidence,
+                            proposal={"candidate_building_ids": ["way/1", "way/2"],
+                                      "reason": "address_or_geometry_requires_human_review"},
+                            estimated_review_minutes=1.0)  # fmt: skip
+        s.add(item)
+        s.flush()
+        item_id = item.id
+    queue = db.curation_queue("sochi", "proposed", 50, 0)
+    row = next(r for r in queue["items"] if r["id"] == str(item_id))
+    assert row["hotel_name"] and row["hotel_address"]
+    assert [c["building_id"] for c in row["candidates"]] == ["way/1", "way/2"]
+    assert row["candidates"][0]["osm_address"] == "улица ленина, 5"
+    assert row["candidates"][0]["point_in_building"] is True
+    with pytest.raises(ValueError):
+        db.review_curation(item_id, "accepted", "Лера", None, "way/999")
+    done = db.review_curation(item_id, "accepted", "Лера", "по фото фасада", "way/1")
+    assert done["state"] == "accepted" and done["reviewer"] == "Лера" and done["reviewed_at"]
+    assert done["chosen_building_id"] == "way/1"
+    assert all(
+        r["id"] != str(item_id) for r in db.curation_queue("sochi", "proposed", 50, 0)["items"]
+    )
+    assert db.curation_queue("sochi", "accepted", 50, 0)["counts"]["accepted"] >= 1
+    assert db.review_curation(10**15, "rejected", "Лера", None, None) is None
+    with Session(engine) as s, s.begin():
+        listing = {"kind": "ostrovok_listing", "hotel_id": hotel_id, "name": "А",
+                   "address": "Б", "url": "u", "room_types": 2}  # fmt: skip
+        dup = CurationItem(city_id="sochi", kind="duplicate_listing", subject_level="hotel",
+                           subject_id=hotel_id, proposed_by="script:test",
+                           proposal={"hotel_ids": [hotel_id, "x"]}, evidence=[listing])  # fmt: skip
+        s.add(dup)
+        s.flush()
+        dup_id = dup.id
+    row = next(
+        r for r in db.curation_queue("sochi", "proposed", 50, 0)["items"] if r["id"] == str(dup_id)
+    )
+    assert row["listings"][0]["name"] == "А"
+    assert db.review_curation(dup_id, "accepted", "Лера", None, None)["state"] == "accepted"
+    with pytest.raises(ValueError):  # здание — только с выбранным кандидатом
+        db.review_curation(item_id, "accepted", "Лера", None, None)

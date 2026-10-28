@@ -81,7 +81,9 @@ def pack_rows(pack: Path, kind: str) -> Iterator[dict]:
             yield from iter_jsonl(pack / f.path)
 
 
-def build(city: str, era5: list[Path], worldcover: Path, packs: Path = PACKS) -> list[dict]:
+def build(
+    city: str, era5: list[Path], worldcover: Path, packs: Path = PACKS, points: bool = False
+) -> list[dict]:
     pack = packs / city
     done: dict[str, set[str]] = {}  # характеристика → отели, у которых она уже есть
     existing = set()
@@ -96,7 +98,11 @@ def build(city: str, era5: list[Path], worldcover: Path, packs: Path = PACKS) ->
             city_id=city,
             timezone="Europe/Moscow",
             data_dir=Path(tmp),
-            params={"era5_dir": merged_cache(era5, Path(tmp)), "worldcover_dir": worldcover},
+            params={
+                "era5_dir": merged_cache(era5, Path(tmp)),
+                "worldcover_dir": worldcover,
+                "climate_points": points,
+            },  # fmt: skip
         )
         for family, features in FAMILIES.items():
             skip = set.intersection(*(done.get(f, set()) for f in features))
@@ -133,9 +139,11 @@ def main() -> None:
     ap.add_argument("--city", choices=("moscow", "sochi"), nargs="+", default=["moscow", "sochi"])
     ap.add_argument("--era5", type=Path, nargs="+", required=True, help="папки кеша ERA5")
     ap.add_argument("--worldcover-dir", type=Path, required=True, help="тайлы WorldCover 3°×3°")
+    ap.add_argument("--points", action="store_true", help="климат по точкам у отелей "
+                    "(кеш `fetch_era5 --points`)")  # fmt: skip
     args = ap.parse_args()
     for city in args.city:
-        build(city, args.era5, args.worldcover_dir)
+        build(city, args.era5, args.worldcover_dir, points=args.points)
 
 
 if __name__ == "__main__":

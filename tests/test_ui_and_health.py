@@ -25,6 +25,10 @@ def test_ui_build_served_with_browser_routes(tmp_path):
         assert c.get("/assets/app.js").text == "console.log(1)"
         # Маршрут на стороне браузера при обновлении страницы — тот же index.html.
         assert "id=root" in c.get("/hotel/13736470").text
+        # После обновления стенда браузер не держит старую страницу; файлы сборки — с хешем.
+        assert c.get("/").headers["cache-control"] == "no-cache"
+        assert c.get("/hotel/1").headers["cache-control"] == "no-cache"
+        assert "immutable" in c.get("/assets/app.js").headers["cache-control"]
         # API и /health совпадают раньше интерфейса; неизвестный /api — честный 404 в JSON.
         assert c.get("/health").json() == {"status": "ok"}
         assert c.get("/api/cities").status_code == 200

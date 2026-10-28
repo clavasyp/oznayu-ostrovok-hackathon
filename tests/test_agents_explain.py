@@ -226,10 +226,11 @@ def test_label_follows_condition_direction():
             found = next(r for r in body["results"] if r["hotel"]["hotel_id"] == hotel_id)
             return found["explanation"]["text"]
 
-        assert text("обязательно 2 бара рядом").startswith("Бары и клубы рядом: нет (1)")
-        assert text("мало баров рядом").startswith("Мало баров и клубов рядом: да (1)")
+        assert text("обязательно 2 бара рядом").startswith("Бары и клубы рядом: нет (1 на карте)")
+        assert text("мало баров рядом").startswith("Мало баров и клубов рядом: да (1 на карте)")
         stairs = text("до пляжа без лестниц")
-        assert "без лестниц по пути: да (0)" in stairs and "лестницы по пути: да" not in stairs
+        assert "без лестниц по пути: да (лестниц на карте нет" in stairs
+        assert "лестницы по пути: да" not in stairs
 
 
 def test_floors_claim_counts_floor_only_when_all_walls_agree():
@@ -326,6 +327,10 @@ def test_evidence_words_for_lower_bound_and_beach_surface():
     said = {k: _evidence({"feature_id": f.feature_id, "fact_ids": [k]}, catalog, facts.get)
             for k, f in facts.items()}  # fmt: skip
     assert said == {"x": "ближе 1 км на карте нет, оценка", "b": "галька, оценка"}
+    bars = fact("n", "N04", {"count": 0})
+    assert _evidence({"feature_id": "N04", "fact_ids": ["n"]}, catalog, {"n": bars}.get) == (
+        "ни одного на карте, оценка"
+    )
 
 
 def test_soft_with_data_but_no_yes_is_explained_not_called_missing():

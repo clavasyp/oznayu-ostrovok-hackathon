@@ -196,3 +196,26 @@ def test_construction_distance_is_an_estimate_with_a_lower_bound():
         "far": ("yes", ["estimate"]),
         "near": ("no", ["estimate"]),
     }
+
+
+def test_climate_by_points_keys_by_requested_point(tmp_path):
+    """Кеш по точкам у отелей (`cell_selection=land`): ключ — запрошенная точка, ячейку ERA5
+    выбрал Open-Meteo; две точки в одной ячейке не смешиваются (у каждой своя высота)."""
+    from calculators.env_climate import climate_point, load_cache
+
+    assert climate_point(43.4321, 39.9187) == (43.45, 39.9)
+    day = {"time": ["2020-07-01"], "temperature_2m_mean": [24.0],
+           "temperature_2m_max": [28.0], "precipitation_sum": [0.0]}  # fmt: skip
+    payload = [
+        {"latitude": 43.5, "longitude": 39.75, "elevation": 9.0, "daily": day},
+        {"latitude": 43.5, "longitude": 39.75, "elevation": 300.0,
+         "daily": day | {"temperature_2m_mean": [21.0]}},
+    ]  # fmt: skip
+    (tmp_path / "era5_sochi_202007_x.json").write_text(json.dumps(payload))
+    meta = {"http_status": 200, "params": {"latitude": "43.55,43.6", "longitude": "39.7,39.75",
+            "cell_selection": "land", "start_date": "2020-07-01"}}  # fmt: skip
+    (tmp_path / "era5_sochi_202007_x.meta.json").write_text(json.dumps(meta))
+    records, provenance = load_cache(tmp_path, "sochi")
+    assert set(records) == {(43.55, 39.7), (43.6, 39.75)}
+    assert records[(43.6, 39.75)][0].mean == 21.0
+    assert provenance[(43.55, 39.7)][0]["grid_latitude"] == 43.5

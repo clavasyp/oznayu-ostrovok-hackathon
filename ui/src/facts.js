@@ -1,6 +1,6 @@
 // «Откуда знаем»: факты с паспортом словами, без JSON. Факты окон (их тысячи у отеля) —
 // одной строкой на характеристику, подробности — в объяснении.
-import { MONTHS_NOM, formatDay } from './trip.js'
+import { MONTHS_NOM, formatDay, plural } from './trip.js'
 
 export const WINDOW_LEVELS = new Set(['facade_physical_floor', 'facade', 'physical_floor', 'placement'])
 
@@ -89,7 +89,7 @@ export function formatFactValue(fact, fieldLabels = {}) {
   if (Number.isFinite(value.known_step_sections)) summary.push(`лестниц: ${value.known_step_sections}${Number.isFinite(value.mapped_steps_length_m) && value.mapped_steps_length_m > 0 ? ` (${formatNumber(value.mapped_steps_length_m)} м)` : ''}`)
   if (Number.isFinite(value.known_crossings)) summary.push(`переходов: ${value.known_crossings}`)
   if (Number.isFinite(value.known_lit_percent)) summary.push(`освещено ${formatNumber(value.known_lit_percent)} %${Number.isFinite(value.unknown_percent) ? `, неизвестно ${formatNumber(value.unknown_percent)} %` : ''}`)
-  if (Number.isFinite(value.count)) summary.push(`${value.count} ${value.count === 1 ? 'объект' : 'объектов'}`)
+  if (Number.isFinite(value.count)) summary.push(`${value.count} ${plural(value.count, 'объект', 'объекта', 'объектов')}`)
   if (Array.isArray(value.objects) && value.objects.length) summary.push(value.objects.slice(0, 2).map((item) => item.name || item.type).filter(Boolean).join(', '))
   if (value.target_name) summary.push(String(value.target_name))
   if (Array.isArray(value.names) && value.names.length) summary.push(value.names.join(', ') + (value.seasonal ? ' (сезонный)' : ''))

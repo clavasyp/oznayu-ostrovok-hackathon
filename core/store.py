@@ -149,6 +149,18 @@ class Store(Protocol):
         """Сверка с карточкой Островка: совпало, расходится, сравнить нечем."""
         ...
 
+    def curation_queue(
+        self, city_id: str | None, state: str, limit: int, offset: int
+    ) -> dict[str, Any]:
+        """Очередь ручной проверки (D33): элементы в состоянии `state` и счёт по состояниям."""
+        ...
+
+    def review_curation(
+        self, item_id: int, state: str, reviewer: str, note: str | None, building_id: str | None
+    ) -> dict[str, Any] | None:
+        """Решение человека по элементу очереди: состояние, кто и когда проверил, заметка."""
+        ...
+
     def record_unmatched(self, events: list[dict[str, Any]]) -> None:
         """Журнал «вне каталога» (D34): события `unmatched_atom` из разбора запроса."""
         ...

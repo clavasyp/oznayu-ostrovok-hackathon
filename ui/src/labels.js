@@ -51,6 +51,11 @@ export function itemSubtitle(item, labels) {
   if (item.on_site?.length || item.reason_code === 'place_on_site_seasonal') return 'по странице отеля на Островке'
   if (item.reason_code === 'place_on_site') return 'в самом отеле'
   if (item.nearby || item.place) return ['по местам на карте', placeNote(item.place)].filter(Boolean).join(' · ')
+  if (item.trip?.route) {
+    const r = item.trip.route
+    const how = r.walk_only ? `пешком ${r.duration_min} мин` : `${r.duration_min} мин на транспорте${r.transfers ? `, пересадок: ${r.transfers}` : ', без пересадок'}`
+    return `маршрут 2ГИС · ${how}`
+  }
   if (item.trip || String(item.reason_code || '').startsWith('trip_')) return 'оценка по прямой'
   if (item.reason_code === 'partial_match') return 'проверяем частично'
   if (item.reason_code === 'out_of_catalog' || (!item.feature_id && !item.items?.length && !item.op)) return 'не проверяем — такого пока нет в каталоге'

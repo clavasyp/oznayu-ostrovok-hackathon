@@ -29,7 +29,7 @@ test('trip summary identifies both years and uses correct Russian plurals', () =
   assert.equal(formatNights(21), '21 ночь')
 })
 
-import { conditionPeriod, hasTripDates, periodMismatch, stayFromAst, todayIso, tripDatesText, withTripDates } from '../src/trip.js'
+import { conditionPeriod, factPeriod, hasTripDates, periodMismatch, stayFromAst, todayIso, tripDatesText, withTripDates } from '../src/trip.js'
 
 test('chosen dates reach the search through the query text the parser understands', () => {
   const stay = { checkIn: '2026-11-10', checkOut: '2026-11-13', adults: 2, children: 0 }
@@ -76,4 +76,10 @@ test('today is taken in the city time zone and cross-year ranges keep both years
   assert.equal(todayIso(instant, 'Europe/Kaliningrad'), '2026-12-31')
   assert.equal(formatDateRange('2026-12-30', '2027-01-03'), '30 дек 2026 — 3 янв 2027')
   assert.equal(formatDateRange('2026-11-28', '2026-12-02', true), '28 ноября — 2 декабря 2026')
+})
+
+test('fact period: own date or month, trip start for seasonal routes', () => {
+  assert.equal(factPeriod({ month: 7 }), 'июль')
+  assert.equal(factPeriod({ trip_start: '2026-11-14', trip_end: '2026-11-17' }), 'ноябрь')
+  assert.equal(factPeriod({}), '')
 })

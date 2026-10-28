@@ -4,7 +4,7 @@
   "city_name": "Большой Сочи",
   "timezone": "Europe/Moscow",
   "depth": "full",
-  "pack_version": "category-supplement.2-36311c2fd6d9+b195a35c",
+  "pack_version": "category-supplement.2-36311c2fd6d9+de42e136",
   "built_at": "2026-10-28T03:00:00Z",
   "code_version": "category-supplement.2",
   "catalog_version": "ostrovok-2026-10-24+v9",
@@ -105,23 +105,6 @@
       "sha256": "b119459f669384ab6a8abf66e1e1b95af7c3063e082a1a91d6c962272ec4554f",
       "license": "Страницы Островка; сбор разрешён организаторами (D24)",
       "layer": "data/hotel_amenities.jsonl.gz"
-    },
-    {
-      "id": "environment:open-meteo-era5",
-      "provider": "Open-Meteo Historical Weather API (ERA5)",
-      "url": "https://open-meteo.com/en/docs/historical-weather-api",
-      "license": "CC BY 4.0; бесплатный API — только разовая сборка на хакатоне (D22)",
-      "commercial_ok": false,
-      "layer": "data/environment.jsonl.gz"
-    },
-    {
-      "id": "environment:esa-worldcover-2021",
-      "provider": "ESA WorldCover",
-      "url": "https://esa-worldcover.org/",
-      "release": "v200 2021",
-      "license": "CC BY 4.0",
-      "commercial_ok": true,
-      "layer": "data/environment.jsonl.gz"
     },
     {
       "id": "building_links_buildings:osm",
@@ -269,6 +252,23 @@
       "license": "Copernicus DEM licence (free, attribution)",
       "commercial_ok": true,
       "layer": "data/mountains.jsonl.gz"
+    },
+    {
+      "id": "environment:open-meteo-era5",
+      "provider": "Open-Meteo Historical Weather API (ERA5)",
+      "url": "https://open-meteo.com/en/docs/historical-weather-api",
+      "license": "CC BY 4.0; бесплатный API — только разовая сборка на хакатоне (D22)",
+      "commercial_ok": false,
+      "layer": "data/environment.jsonl.gz"
+    },
+    {
+      "id": "environment:esa-worldcover-2021",
+      "provider": "ESA WorldCover",
+      "url": "https://esa-worldcover.org/",
+      "release": "v200 2021",
+      "license": "CC BY 4.0",
+      "commercial_ok": true,
+      "layer": "data/environment.jsonl.gz"
     }
   ],
   "files": [
@@ -393,14 +393,6 @@
       "layer": true
     },
     {
-      "path": "data/environment.jsonl.gz",
-      "kind": "facts",
-      "rows": 18242,
-      "bytes": 6033257,
-      "sha256": "475683c1896bf2dabafd732d436f538609af168f14d5b82f6a58679833788370",
-      "layer": true
-    },
-    {
       "path": "data/buildings_auto_point.jsonl.gz",
       "kind": "buildings",
       "rows": 425,
@@ -486,6 +478,14 @@
       "rows": 7462,
       "bytes": 385871,
       "sha256": "00ee13210ebb291234e3333a1a37fb88ae871dbaf35dd7bdb1bdb1e1c5e51de4",
+      "layer": true
+    },
+    {
+      "path": "data/environment.jsonl.gz",
+      "kind": "facts",
+      "rows": 18242,
+      "bytes": 5271707,
+      "sha256": "85485ac15796ecdada04f01338737b68df3cb2e1663f4c9d1da2a7d2f2a19599",
       "layer": true
     }
   ],

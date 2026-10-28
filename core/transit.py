@@ -167,3 +167,46 @@ def _fact(
         refresh_after=(when + timedelta(hours=6)).isoformat(),
         scope_note=f"От «{value['origin']}» до отеля на общественном транспорте, лучший маршрут.",
     )
+
+
+def trip_routes(
+    target: dict[str, Any], hotels: list[dict[str, Any]], *, client: Any = None
+) -> dict[str, dict[str, Any]]:
+    """«Доехать до X» (D37): лучший маршрут 2ГИС от отеля до цели — общественный транспорт или
+    пешком, если так быстрее. Только для первой страницы (`PAGE_MAX`) и только с ключом; нет
+    маршрута, ключа или сети — отеля нет в ответе, пункт остаётся оценкой по прямой."""
+    from connectors.twogis import TwoGISClient, TwoGISError
+
+    hotels = [h for h in hotels if h.get("latitude") is not None][:PAGE_MAX]
+    if not hotels or target.get("latitude") is None:
+        return {}
+    client = client or TwoGISClient(CACHE, limit=MONTHLY_UNITS)
+    start = departure(hotels[0].get("city_id") or "", {})
+    out: dict[str, dict[str, Any]] = {}
+    for h in hotels:
+        body = {
+            "source": {"point": {"lat": h["latitude"], "lon": h["longitude"]}},
+            "target": {"point": {"lat": target["latitude"], "lon": target["longitude"]}},
+            "transport": ["bus", "trolleybus", "tram", "shuttle_bus", "metro", "suburban_train"],
+            "start_time": int(start.timestamp()),
+            "enable_schedule": True,
+            "locale": "ru",
+        }
+        try:
+            record = client.request("transit", body)
+        except (TwoGISError, OSError, ValueError):
+            continue
+        response = record["response"] if isinstance(record["response"], list) else []
+        routes = [r for r in response if r.get("total_duration")]
+        best = min(routes, key=lambda r: r["total_duration"], default=None)
+        if best is None:
+            continue
+        out[h["hotel_id"]] = {
+            "duration_min": round(best["total_duration"] / 60),
+            "transfers": int(best.get("transfer_count") or 0),
+            "walk_only": bool(best.get("pedestrian")) or not best.get("transport"),
+            "departure_at": start.isoformat(),
+            "provider": "2ГИС, на запросе",
+            "url": (record.get("source") or {}).get("url"),
+        }
+    return out

@@ -7,7 +7,7 @@ from __future__ import annotations
 import time
 from collections import defaultdict
 from collections.abc import Callable, Collection
-from datetime import datetime
+from datetime import UTC, datetime
 from typing import Any
 
 from sqlalchemy import Engine, delete, func, select, text, update
@@ -20,6 +20,7 @@ from core.db import (
     City,
     CityCoverage,
     Conflict,
+    CurationItem,
     FactRow,
     FeatureSpecRow,
     Hotel,
@@ -624,6 +625,63 @@ class DbStore:
                 for c, name in s.execute(q)
             ]
 
+    def curation_queue(
+        self, city_id: str | None, state: str, limit: int, offset: int
+    ) -> dict[str, Any]:
+        """Очередь D33: сначала кандидаты, которые быстрее проверить; у отеля — название, адрес и
+        точка, у кандидата — здание, адрес по карте и совпадение с адресом отеля."""
+        where = [CurationItem.city_id == city_id] if city_id else []
+        with self._session() as s:
+            counts = dict(
+                s.execute(
+                    select(CurationItem.state, func.count())
+                    .where(*where)
+                    .group_by(CurationItem.state)
+                ).all()
+            )
+            q = (
+                select(CurationItem, Hotel.name, Hotel.address, Hotel.latitude, Hotel.longitude)
+                .join(Hotel, Hotel.id == CurationItem.subject_id, isouter=True)
+                .where(*where, CurationItem.state == state)
+                .order_by(
+                    # Сначала те, где есть из чего выбрать: кандидаты-здания с доказательствами.
+                    func.coalesce(
+                        func.jsonb_array_length(CurationItem.proposal["candidate_building_ids"]), 0
+                    )
+                    == 0,
+                    CurationItem.estimated_review_minutes,
+                    CurationItem.id,
+                )
+                .limit(limit)
+                .offset(offset)
+            )
+            items = [
+                _curation_row(c, name, address, lat, lon)
+                for c, name, address, lat, lon in s.execute(q)
+            ]
+        return {"total": counts.get(state, 0), "counts": counts, "items": items}
+
+    def review_curation(
+        self, item_id: int, state: str, reviewer: str, note: str | None, building_id: str | None
+    ) -> dict[str, Any] | None:
+        with self._session() as s, s.begin():
+            item = s.get(CurationItem, item_id)
+            if item is None:
+                return None
+            candidates = (item.proposal or {}).get("candidate_building_ids") or []
+            if building_id and building_id not in candidates:
+                raise ValueError("здание не из списка кандидатов")
+            if state == "accepted" and item.kind == "match_hotel_building" and not building_id:
+                raise ValueError("для «это здание» нужен building_id кандидата")
+            item.state = state
+            item.reviewer = reviewer
+            item.reviewed_at = datetime.now(UTC)
+            item.note = note or item.note
+            if building_id:
+                item.proposal = {**(item.proposal or {}), "building_id": building_id}
+            s.flush()
+            return _curation_row(item, None, None, None, None)
+
     def record_unmatched(self, events: list[dict[str, Any]]) -> None:
         if not events:
             return
@@ -647,3 +705,55 @@ class DbStore:
         columns = [c.name for c in UnmatchedAtom.__table__.columns if c.name != "id"]
         with self._session() as s:
             return [{c: getattr(row, c) for c in columns} for row in s.scalars(q)]
+
+
+def _curation_row(
+    c: CurationItem, name: str | None, address: str | None, lat: float | None, lon: float | None
+) -> dict[str, Any]:
+    """Элемент очереди D33 для экрана: кандидаты-здания с доказательствами одним списком."""
+    proposal = c.proposal or {}
+    found: dict[str, Any] = {}
+    for e in c.evidence or []:
+        for value in e.get("values") or []:
+            found.update(value.get("evidence") or {})
+    candidates = [
+        {
+            "building_id": bid,
+            "osm_address": (found.get(bid) or {}).get("normalized_osm"),
+            "house": ((found.get(bid) or {}).get("comparison") or {}).get("house"),
+            "street": ((found.get(bid) or {}).get("comparison") or {}).get("street"),
+            "point_in_building": (found.get(bid) or {}).get("point_covered_by_building"),
+            "url": (found.get(bid) or {}).get("source_url")
+            or f"https://www.openstreetmap.org/{bid}",
+        }
+        for bid in proposal.get("candidate_building_ids") or []
+    ]
+    hotel_address = next(
+        (e.get("value") for e in c.evidence or [] if e.get("kind") == "hotel_address"), None
+    )
+    # Возможный дубль объявления: две карточки Островка в одной точке с тем же названием.
+    listings = [
+        {k: e.get(k) for k in ("hotel_id", "name", "address", "url", "room_types")}
+        for e in c.evidence or []
+        if e.get("kind") == "ostrovok_listing"
+    ]
+    return {
+        "id": str(c.id),  # большие id — строкой: в JS число теряет точность
+        "city_id": c.city_id,
+        "kind": c.kind,
+        "subject_id": c.subject_id,
+        "hotel_name": name,
+        "hotel_address": address or hotel_address,
+        "latitude": lat,
+        "longitude": lon,
+        "reason": proposal.get("reason"),
+        "candidates": candidates,
+        "listings": listings,
+        "chosen_building_id": proposal.get("building_id"),
+        "state": c.state,
+        "reviewer": c.reviewer,
+        "reviewed_at": c.reviewed_at.isoformat() if c.reviewed_at else None,
+        "note": c.note,
+        "estimated_review_minutes": c.estimated_review_minutes,
+        "proposed_by": c.proposed_by,
+    }

@@ -612,3 +612,13 @@ input:focus-visible{outline:3px solid rgba(42,119,92,.27);outline-offset:2px}
 .fresh-hint{color:#647168;font-size:11px;line-height:1.4}
 .fresh-row.stale .fresh-dates b{color:#b0563f}
 @media (max-width:640px){.fresh-row{grid-template-columns:1fr;gap:4px}}
+
+/* Очередь ручной проверки (D33) */
+.panel-note { color: var(--muted, #6b7280); font-size: 13px; margin: 4px 0 10px; }
+.reviewer-field { display: flex; gap: 8px; align-items: center; font-size: 13px; margin-bottom: 10px; }
+.reviewer-field input { border: 1px solid var(--line, #e5e7eb); border-radius: 8px; padding: 6px 8px; font: inherit; }
+.curation-item { border-top: 1px solid var(--line, #e5e7eb); padding: 10px 0; display: grid; gap: 6px; }
+.curation-item small { color: var(--muted, #6b7280); }
+.curation-candidates { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.curation-candidates li { display: flex; justify-content: space-between; gap: 10px; align-items: center; font-size: 13px; }
+.curation-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }

@@ -9,7 +9,7 @@ import {
 } from 'lucide-react'
 import 'leaflet/dist/leaflet.css'
 import './styles.css'
-import { addIsoDays, cityToday, conditionPeriod, defaultStay, formatDateRange, formatDay, formatGuests, formatNights, nightCount, periodMismatch, stayError, stayFromAst, withTripDates } from './trip.js'
+import { addIsoDays, cityToday, conditionPeriod, defaultStay, formatDateRange, formatDay, factPeriod, formatGuests, formatNights, hasTripDates, nightCount, periodMismatch, plural, stayError, stayFromAst, withTripDates } from './trip.js'
 import { useDialog } from './useDialog.js'
 import { groupMapPoints } from './mapClusters.js'
 import { applyEdits, conditionChips, editOf, moveCondition, recordEdit } from './astEdit.js'
@@ -155,11 +155,24 @@ function App() {
     setQuery(text)
     try {
       const post = (body) => api('/search', { method: 'POST', body: JSON.stringify(body), signal: controller.signal })
+      let searched = trimmed
       let data = await post(searchBody(trimmed, cityId, ast))
+      // Даты поездки из шапки: разбор спрашивает «на какие даты», а в тексте своих дат нет — ищем
+      // с выбранными датами, как после «Применить даты» (закат и погода считаются на них).
+      const needsDates = (data?.ast?.clarify || []).some((item) => clarifyKind(item) === 'dates')
+      if (!ast && needsDates && !hasTripDates(trimmed)) {
+        const dated = withTripDates(trimmed, stay)
+        if (dated && dated !== trimmed) {
+          searched = dated
+          data = await post(searchBody(dated, cityId, null))
+          if (seq !== searchSeq.current) return
+          setQuery(dated)
+        }
+      }
       // Правки гостя переживают новый разбор: те же условия переносим снова и ищем по AST.
       if (!ast && editsRef.current.length && data?.ast) {
         const edited = applyEdits(data.ast, editsRef.current)
-        if (edited.applied.length) data = await post(searchBody(trimmed, cityId, edited.ast))
+        if (edited.applied.length) data = await post(searchBody(searched, cityId, edited.ast))
       }
       if (seq !== searchSeq.current) return
       setSearchData(data)
@@ -341,7 +354,7 @@ function App() {
           </main>
         </div>
 
-        {selected && !booking && <HotelDialog result={selected} ast={selectedAst} data={hotelData} loading={hotelLoading} explanation={explanations[explanationKey]} onClose={() => setSelected(null)} onBook={() => setBooking(true)} onSave={() => toggleSave(selected)} isSaved={savedIds.has(selected.hotel.hotel_id)} />}
+        {selected && !booking && <HotelDialog result={selected} ast={selectedAst} data={hotelData} loading={hotelLoading} explanation={explanations[explanationKey]} onClose={() => setSelected(null)} onBook={() => setBooking(true)} onSave={() => toggleSave(selected)} isSaved={savedIds.has(selected.hotel.hotel_id)} onOpenHotelier={(hotelId, tab) => { setActiveHotel(hotelId); setHotelierTab(tab); setSection('hotelier'); setSelected(null) }} />}
         {booking && selected && <BookingDialog result={selected} ast={selectedAst} timeZone={zoneOf(selected.hotel.city_id)} stay={stay} applyStay={applyStay} booked={booked} labels={labels} onClose={() => { setBooking(false); setBooked(false); if (booked) setSelected(null) }} onConfirm={() => setBooked(true)} />}
         <div className="toast-region" role="status" aria-live="polite">{toast && <div className="toast"><CheckCircle2 size={17} aria-hidden="true" />{toast}</div>}</div>
         <footer className="footer"><span>о!знаю</span><span>Факты с источниками. Неизвестное — это неизвестное.</span><a href="https://ostrovok.tech/hackathon/" target="_blank" rel="noreferrer">О! Хакатон 2026 <ExternalLink size={12} /></a></footer>
@@ -676,10 +689,10 @@ function HotelMap({ results, city, onSelect }) {
     }
     return () => { map.off('zoomend', drawMarkers); map.removeLayer(markers) }
   }, [results, city, showHotels])
-  return <aside className="map-panel"><div className="map-head"><div><span className="section-kicker">НА КАРТЕ</span><h3>{cityNames[city] || 'Город'}</h3></div><div className="map-layer-wrap"><button className={`map-layer-button ${layersOpen ? 'active' : ''}`} aria-label="Слои карты" aria-expanded={layersOpen} aria-haspopup="menu" onClick={() => setLayersOpen((open) => !open)}><SlidersHorizontal size={16} /></button>{layersOpen && <div className="map-layer-menu" role="menu" aria-label="Слои карты"><span className="layer-menu-title">Слои карты</span><button className={`layer-option ${showHotels ? 'enabled' : ''}`} role="menuitemcheckbox" aria-checked={showHotels} onClick={() => setShowHotels((enabled) => !enabled)}><i className="legend-hotel" /><span><strong>Отели из подборки</strong><small>{showHotels ? 'Маркеры показаны' : 'Маркеры скрыты'}</small></span><span className={`layer-switch ${showHotels ? 'on' : ''}`} /></button><div className="layer-option unavailable" aria-disabled="true"><i className="legend-route" /><span><strong>Маршруты</strong><small>Нет геометрии в API</small></span><span className="layer-lock">Скоро</span></div><div className="layer-option unavailable" aria-disabled="true"><MapPin size={15} /><span><strong>Места рядом</strong><small>Нет координат в API</small></span><span className="layer-lock">Скоро</span></div></div>}</div></div><div className="map-container" ref={mapRef}><div className="map-legend">{showHotels ? <span><i className="legend-hotel" />Отели на этой странице подборки</span> : <span className="legend-hidden">Маркеры отелей скрыты</span>}<span><i className="legend-route" />Маршруты появятся с данными API</span></div></div><div className="map-foot"><MapPin size={15} /><span>Маркеры — координаты отелей из каталога. Маршруты и места рядом появятся, когда API начнёт их отдавать. Карта © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">участники OpenStreetMap</a>.</span></div></aside>
+  return <aside className="map-panel"><div className="map-head"><div><span className="section-kicker">НА КАРТЕ</span><h3>{cityNames[city] || 'Город'}</h3></div><div className="map-layer-wrap"><button className={`map-layer-button ${layersOpen ? 'active' : ''}`} aria-label="Слои карты" aria-expanded={layersOpen} aria-haspopup="menu" onClick={() => setLayersOpen((open) => !open)}><SlidersHorizontal size={16} /></button>{layersOpen && <div className="map-layer-menu" role="menu" aria-label="Слои карты"><span className="layer-menu-title">Слои карты</span><button className={`layer-option ${showHotels ? 'enabled' : ''}`} role="menuitemcheckbox" aria-checked={showHotels} onClick={() => setShowHotels((enabled) => !enabled)}><i className="legend-hotel" /><span><strong>Отели из подборки</strong><small>{showHotels ? 'Маркеры показаны' : 'Маркеры скрыты'}</small></span><span className={`layer-switch ${showHotels ? 'on' : ''}`} /></button></div>}</div></div><div className="map-container" ref={mapRef}><div className="map-legend">{showHotels ? <span><i className="legend-hotel" />Отели на этой странице подборки</span> : <span className="legend-hidden">Маркеры отелей скрыты</span>}</div></div><div className="map-foot"><MapPin size={15} /><span>Маркеры — отели этой страницы подборки по координатам из каталога; расстояния до мест и маршруты — в карточке отеля. Карта © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">участники OpenStreetMap</a>.</span></div></aside>
 }
 
-function ConditionRow({ item, required, ast }) {
+function ConditionRow({ item, required, ast, ask }) {
   const labels = useLabels()
   const kind = verdictKind(item.verdict)
   const period = conditionPeriod(conditionParams(ast, item.atom_id))
@@ -693,12 +706,23 @@ function ConditionRow({ item, required, ast }) {
       {item.items?.length > 0 && <ul className="variant-list">{item.items.map((child, index) => <li key={`${child.atom_id || child.feature_id}-${index}`} className={verdictKind(child.verdict)}><VerdictIcon value={child.verdict} size={11} />{child.feature_name || itemTitle(child, labels)} — {shortVerdict(child)}</li>)}</ul>}
       {item.windows?.count > 0 && <small className="item-subtitle">Окон в расчёте: {item.windows.count}</small>}
       <Marks item={item} />
+      {kind === 'unknown' && ask && <AskHotel item={item} ask={ask} />}
     </div>
     <span className={`mini-status ${kind}`}>{kind === 'yes' ? 'Да' : kind === 'no' ? 'Нет' : 'Уточнить'}</span>
   </div>
 }
 
-function HotelDialog({ result, ast, data, loading, explanation, onClose, onBook, onSave, isSaved }) {
+// «Нужно уточнить» → вопрос отелю одной кнопкой (D5): по характеристике отеля — готовый вопрос с
+// предзаполнением; где окна номеров (вид, закат, солнце) — вкладка «Где окна номеров» кабинета.
+function AskHotel({ item, ask }) {
+  const question = ask.questions.get(item.feature_id)
+  if (item.windows) return <button className="inline-action ask-hotel" onClick={() => ask.open('placement')}>Спросить отель, где окна номеров <ArrowRight size={13} /></button>
+  if (!question || question.answer_status === 'answered') return null
+  if (question.answer_status === 'asked') return <span className="asked-note"><Check size={13} /> Вопрос отправлен отелю — ответ придёт в кабинет отельера <button className="inline-action" onClick={() => ask.open('questions')}>Открыть кабинет</button></span>
+  return <button className="inline-action ask-hotel" disabled={ask.busy === question.question_id} onClick={() => ask.send(question)}>{ask.busy === question.question_id ? 'Отправляем…' : 'Спросить отель'} <ArrowRight size={13} /></button>
+}
+
+function HotelDialog({ result, ast, data, loading, explanation, onClose, onBook, onSave, isSaved, onOpenHotelier }) {
   const dialogRef = useRef(null)
   useDialog(dialogRef, true, onClose)
   const [allFacts, setAllFacts] = useState(false)
@@ -709,6 +733,25 @@ function HotelDialog({ result, ast, data, loading, explanation, onClose, onBook,
   const rows = useMemo(() => factRows(data?.facts, relevantIds), [data, relevantIds])
   const statusClass = { yes: 'fits', no: 'not-fit', unknown: 'needs-check' }[verdictKind(result.status)]
   const text = result.explanation?.text || explanation?.text
+  const [questions, setQuestions] = useState(new Map())
+  const [busy, setBusy] = useState(null)
+  useEffect(() => {
+    let cancelled = false
+    api(`/hotelier/${hotel.hotel_id}/questions`).then((d) => { if (!cancelled) setQuestions(new Map((d.questions || []).map((q) => [q.feature_id, q]))) }).catch(() => {})
+    return () => { cancelled = true }
+  }, [hotel.hotel_id])
+  const ask = {
+    questions,
+    busy,
+    open: (tab) => onOpenHotelier?.(hotel.hotel_id, tab),
+    send: async (question) => {
+      setBusy(question.question_id)
+      try {
+        const sent = await api(`/hotelier/${question.hotel_id}/questions/${question.question_id}/ask`, { method: 'POST' })
+        setQuestions((current) => new Map(current).set(question.feature_id, { ...question, ...(sent?.question || {}), answer_status: 'asked' }))
+      } catch { /* сеть — кнопка останется, можно повторить */ } finally { setBusy(null) }
+    },
+  }
   return <div className="modal-backdrop" role="presentation" onMouseDown={(e) => { if (e.target === e.currentTarget) onClose() }}><section ref={dialogRef} tabIndex={-1} className="hotel-dialog" role="dialog" aria-modal="true" aria-label={`Карточка ${hotel.name}`}>
     <div className="dialog-top"><div><span className="section-kicker">{hotelKind(hotel.hotel_kind).toUpperCase()} · {cityNames[hotel.city_id]}</span><button className="close-button" onClick={onClose} aria-label="Закрыть"><X size={19} /></button></div></div>
     <div className="dialog-art art-0"><div className="art-sun" /><div className="art-water" /><span className="art-label">{cityNames[hotel.city_id]}</span></div>
@@ -716,11 +759,11 @@ function HotelDialog({ result, ast, data, loading, explanation, onClose, onBook,
     <div className={`fit-status ${statusClass}`}><span className="status-icon"><VerdictIcon value={result.status} /></span>{result.status_label || STATUS_LABELS[result.status]}</div>
     {(text || explanation?.state === 'loading') && <p className="dialog-explanation">{text || 'Готовим объяснение…'}</p>}
     {result.stale && <p className="stale-note">Подборка обновилась, а этого отеля нет на загруженной странице: условия ниже — по прежнему запросу.</p>}
-    <div className="dialog-section"><div className="dialog-section-heading"><div><span className="section-kicker">ПРОВЕРКА УСЛОВИЙ</span><h3>Что мы знаем</h3></div><span className="fact-count">{hard.length + soft.length} пунктов</span></div>
+    <div className="dialog-section"><div className="dialog-section-heading"><div><span className="section-kicker">ПРОВЕРКА УСЛОВИЙ</span><h3>Что мы знаем</h3></div><span className="fact-count">{hard.length + soft.length} {plural(hard.length + soft.length, 'пункт', 'пункта', 'пунктов')}</span></div>
       {hard.length > 0 && <h4 className="condition-group-title"><span className="condition-dot required" />Обязательные условия</h4>}
-      {hard.map((item, index) => <ConditionRow key={`h-${item.atom_id || item.feature_id}-${index}`} item={item} required ast={ast} />)}
+      {hard.map((item, index) => <ConditionRow key={`h-${item.atom_id || item.feature_id}-${index}`} item={item} required ast={ast} ask={ask} />)}
       {soft.length > 0 && <h4 className="condition-group-title"><span className="condition-dot preferred" />Желательные — влияют только на порядок</h4>}
-      {soft.map((item, index) => <ConditionRow key={`s-${item.atom_id || item.feature_id}-${index}`} item={item} required={false} ast={ast} />)}
+      {soft.map((item, index) => <ConditionRow key={`s-${item.atom_id || item.feature_id}-${index}`} item={item} required={false} ast={ast} ask={ask} />)}
       {!hard.length && !soft.length && <div className="empty-facts">В запросе нет условий, которые мы умеем проверять.</div>}
     </div>
     <CategorySection roomTypes={data?.room_types || []} categories={result.categories || []} bestCategory={result.best_category} loading={loading} />
@@ -728,7 +771,7 @@ function HotelDialog({ result, ast, data, loading, explanation, onClose, onBook,
       {loading && <div className="loading-inline">Загружаем факты и источники…</div>}
       {!loading && (allFacts ? rows : rows.slice(0, 14)).map((row) => row.kind === 'windows' ? <WindowsRow key={row.key} row={row} /> : <FactRow key={row.key} fact={row.fact} hotelId={hotel.hotel_id} />)}
       {!loading && rows.length > 14 && <button className="inline-action" onClick={() => setAllFacts(!allFacts)}>{allFacts ? 'Свернуть' : `Показать все (${rows.length})`}</button>}
-      {!loading && !rows.length && <div className="empty-facts">Паспорта фактов пока недоступны. Попробуйте обновить карточку, когда API будет запущен.</div>}
+      {!loading && !rows.length && <div className="empty-facts">Фактов об этом отеле у нас пока нет.</div>}
     </div>
     <div className="dialog-actions"><a className="source-link" href={hotel.hotel_url} target="_blank" rel="noreferrer">Страница Островка <ExternalLink size={14} /></a><button className="primary-button" onClick={onBook}>К оформлению <ArrowRight size={16} /></button></div>
   </section></div>
@@ -739,7 +782,7 @@ function CategorySection({ roomTypes, categories, bestCategory, loading }) {
   const evaluated = new Map(categories.map((item) => [item.room_type_id, item]))
   const items = roomTypes.length ? roomTypes : categories
   return <div className="dialog-section category-section"><div className="dialog-section-heading"><div><span className="section-kicker">КАТЕГОРИИ НОМЕРОВ</span><h3>Какой номер подходит</h3></div><BedDouble size={19} className="muted-icon" /></div>
-    {!items.length && <div className="empty-facts">Для этого отеля API пока не вернул категории номеров.</div>}
+    {!items.length && <div className="empty-facts">На странице отеля в Островке категорий номеров нет — условия проверены по отелю и корпусам.</div>}
     {items.map((room) => {
       const category = evaluated.get(room.room_type_id) || room
       const placements = category.placements?.length ? category.placements : room.placements || []
@@ -781,7 +824,7 @@ function FactRow({ fact, hotelId }) {
   const fieldLabels = Object.fromEntries((question?.fields || []).map((field) => [field.name, field.label]))
   const src = fact.sources?.[0]
   const params = paramWords(fact.params)
-  const period = conditionPeriod(fact.params)
+  const period = factPeriod(fact.params)
   const badge = [PROVENANCE[fact.status] || fact.status, fact.subject_level && fact.subject_level !== 'hotel' ? subjectLevelText(fact.subject_level) : ''].filter(Boolean).join(' · ')
   const date = formatDateTime(fact.calculated_at || fact.observed_at || src?.observed_at)
   return <div className="fact-row"><button className="fact-row-top" aria-expanded={expanded} onClick={() => setExpanded(!expanded)}><span className={`provenance-dot ${fact.status}`} /><span className="fact-label">{featureName(fact.feature_id, labels)}{period ? ` · ${period}` : ''}<small>{badge}</small></span><strong>{formatFactValue(fact, fieldLabels)}</strong><ChevronDown size={14} className={expanded ? 'rotated' : ''} /></button>{expanded && <div className="fact-source-detail">
@@ -1134,6 +1177,58 @@ function AnswerOutcome({ outcome, question }) {
   </div>
 }
 
+// Очередь ручной проверки (D33): что машина не решила сама — к какому зданию относится отель.
+// Человек выбирает здание по доказательствам (адрес на карте, точка отеля в контуре) или говорит
+// «ни одно» / «не уверен»; решение записывается с именем и временем.
+const CURATION_STATES = { proposed: 'ждут проверки', accepted: 'приняты', rejected: 'ни одно здание', unsure: 'не уверены' }
+const MATCH_WORDS = { exact: 'совпадает', similar: 'похож', partial: 'частично', different: 'не совпадает' }
+
+function CurationQueue({ city, notify }) {
+  const [data, setData] = useState({ state: 'loading', items: [], counts: {}, total: 0 })
+  const [reviewer, setReviewer] = useState(() => { try { return localStorage.getItem('curation-reviewer') || '' } catch { return '' } })
+  const [busy, setBusy] = useState('')
+  const load = useCallback(() => {
+    setData((current) => ({ ...current, state: 'loading' }))
+    api(`/curation?city_id=${encodeURIComponent(city)}&state=proposed&limit=5`)
+      .then((d) => setData({ state: 'ready', items: d.items || [], counts: d.counts || {}, total: d.total || 0 }))
+      .catch(() => setData({ state: 'error', items: [], counts: {}, total: 0 }))
+  }, [city])
+  useEffect(() => { load() }, [load])
+  async function review(item, state, buildingId = null) {
+    const name = reviewer.trim()
+    if (!name) { notify('Укажите, кто проверяет — решение записывается с именем'); return }
+    try { localStorage.setItem('curation-reviewer', name) } catch { /* без памяти браузера — не страшно */ }
+    setBusy(item.id)
+    try {
+      await api(`/curation/${item.id}/review`, { method: 'POST', body: JSON.stringify({ state, reviewer: name, building_id: buildingId }) })
+      const dup = item.kind === 'duplicate_listing'
+      notify(state === 'accepted' ? (dup ? 'Записали: это один объект' : 'Записали: здание отеля подтверждено') : state === 'rejected' ? (dup ? 'Записали: разные объекты' : 'Записали: ни одно здание не подходит') : 'Записали: не уверены — вернётся позже')
+      load()
+    } catch { notify('Не получилось записать решение — попробуйте ещё раз') } finally { setBusy('') }
+  }
+  const counts = Object.entries(CURATION_STATES).filter(([key]) => data.counts[key]).map(([key, label]) => `${label}: ${data.counts[key]}`).join(' · ')
+  return <section className="admin-panel"><div className="workspace-section-head"><div><span className="section-kicker">D33 · РУЧНАЯ ПРОВЕРКА</span><h2>На проверку <span className="count-bubble">{data.total}</span></h2></div><button className="inline-action" onClick={load}>Обновить</button></div>
+    <p className="panel-note">Машина не уверена, к какому зданию относится отель, или видит одну карточку дважды. Решите по доказательствам — от здания зависят этажность, вид и закат из окон. {counts}</p>
+    <label className="reviewer-field">Кто проверяет <input value={reviewer} onChange={(e) => setReviewer(e.target.value)} placeholder="Имя" maxLength={80} /></label>
+    {data.state === 'loading' && <div className="loading-inline">Загружаем очередь…</div>}
+    {data.state === 'error' && <div className="empty-facts">Очередь сейчас недоступна.</div>}
+    {data.state === 'ready' && !data.items.length && <div className="empty-facts">Очередь пуста — всё проверено.</div>}
+    {data.items.map((item) => item.kind === 'duplicate_listing' ? <div key={item.id} className="curation-item">
+      <strong>Похоже на дубль объявления: {item.listings[0]?.name || item.hotel_name}</strong>
+      <ul className="curation-candidates">{item.listings.map((l) => <li key={l.hotel_id}><span><a href={l.url} target="_blank" rel="noreferrer">{l.hotel_id}</a> — {l.address}{l.room_types != null && ` · категорий: ${l.room_types}`}</span></li>)}</ul>
+      <div className="curation-actions"><button className="quiet-button" disabled={busy === item.id} onClick={() => review(item, 'accepted')}>Это один объект</button><button className="quiet-button" disabled={busy === item.id} onClick={() => review(item, 'rejected')}>Разные объекты</button><button className="quiet-button" disabled={busy === item.id} onClick={() => review(item, 'unsure')}>Не уверен</button><small>≈ {item.estimated_review_minutes || 2} мин · предложил {item.proposed_by}</small></div>
+    </div> : <div key={item.id} className="curation-item">
+      <strong>{item.hotel_name || `Отель ${item.subject_id}`}</strong>
+      <small>Адрес отеля: {item.hotel_address || '—'}{item.latitude != null && <> · <a href={`https://www.openstreetmap.org/?mlat=${item.latitude}&mlon=${item.longitude}#map=19/${item.latitude}/${item.longitude}`} target="_blank" rel="noreferrer">точка на карте <ExternalLink size={12} /></a></>}</small>
+      {item.candidates.length ? <ul className="curation-candidates">{item.candidates.map((c) => <li key={c.building_id}>
+        <span><a href={c.url} target="_blank" rel="noreferrer">{c.building_id}</a> — {c.osm_address || 'адреса на карте нет'}{c.house && ` · дом ${MATCH_WORDS[c.house] || c.house}`}{c.street && `, улица ${MATCH_WORDS[c.street] || c.street}`}{c.point_in_building != null && ` · точка отеля ${c.point_in_building ? 'в контуре' : 'вне контура'}`}</span>
+        <button className="quiet-button" disabled={busy === item.id} onClick={() => review(item, 'accepted', c.building_id)}>Это здание</button>
+      </li>)}</ul> : <p className="condition-reason">Кандидатов с полным адресом нет — проверьте точку на карте.</p>}
+      <div className="curation-actions"><button className="quiet-button" disabled={busy === item.id} onClick={() => review(item, 'rejected')}>Ни одно не подходит</button><button className="quiet-button" disabled={busy === item.id} onClick={() => review(item, 'unsure')}>Не уверен</button><small>≈ {item.estimated_review_minutes || 3} мин · предложил {item.proposed_by}</small></div>
+    </div>)}
+  </section>
+}
+
 function AdminView({ guestCity, cities, notify }) {
   const labels = useLabels()
   const [panelCity, setPanelCity] = useState(guestCity)
@@ -1229,7 +1324,7 @@ function AdminView({ guestCity, cities, notify }) {
     </section>
     <section className="admin-panel"><div className="workspace-section-head"><div><span className="section-kicker">РАЗНОГЛАСИЯ ИСТОЧНИКОВ</span><h2>Нужно разобраться <span className="count-bubble">{conflicts.length}</span></h2></div>{conflicts.length > 4 && <button className="inline-action" onClick={() => setShowAllConflicts(!showAllConflicts)}>{showAllConflicts ? 'Свернуть' : 'Все разногласия'}</button>}</div>{conflictRows.map((item, i) => <ConflictRow key={item.hotel_id + item.feature_id + i} item={item} />)}{!conflicts.length && <div className="empty-facts">В выбранном городе разногласий пока нет или API ещё не загрузил их.</div>}</section>
     <section className="admin-panel"><div className="workspace-section-head"><div><span className="section-kicker">ОТВЕТЫ ОТЕЛЯ ПРОТИВ РАСЧЁТОВ</span><h2>Противоречия фактов <span className="count-bubble">{factConflicts.length}</span></h2></div>{factConflicts.length > 4 && <button className="inline-action" onClick={() => setShowAllFactConflicts(!showAllFactConflicts)}>{showAllFactConflicts ? 'Свернуть' : 'Все противоречия'}</button>}</div>{factConflictRows.map((item) => <FactConflictRow key={item.conflict_id || `${item.hotel_id}-${item.fact_a}-${item.fact_b}`} item={item} />)}{!factConflicts.length && <div className="empty-facts">Противоречия появятся, если ответ отеля расходится с расчётным фактом.</div>}</section>
-    <section className="admin-panel"><div className="workspace-section-head"><div><span className="section-kicker">D33 · РУЧНАЯ ПРОВЕРКА</span><h2>На проверку</h2></div><span className="sim-tag">СКОРО В API</span></div><div className="review-placeholder"><div className="review-icon"><ShieldCheck size={20} /></div><div><strong>Пока нет подключения очереди проверки</strong><p>Когда сервер добавит endpoint для curated-фактов, здесь появятся кандидат, доказательство и действия проверки.</p></div></div></section>
+    <CurationQueue city={panelCity} notify={notify} />
     <section className="admin-panel"><div className="workspace-section-head"><div><span className="section-kicker">D34 · ПРОБЕЛЫ КАТАЛОГА</span><h2>Что спрашивают, а мы не знаем <span className="count-bubble">{journal.items.length}</span></h2></div><span className="sim-tag">ЖУРНАЛ ПОИСКА · {journal.days} ДН.</span></div>
       {journal.state === 'loading' && <div className="loading-inline">Загружаем журнал…</div>}
       {journal.state === 'error' && <div className="empty-facts">Журнал не загрузился: проверьте соединение с API.</div>}
