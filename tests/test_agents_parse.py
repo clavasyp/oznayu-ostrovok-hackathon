@@ -985,3 +985,37 @@ def test_bars_rule_does_not_invert_required():
     # «Тихо» — свои N02 и N04 ≤ 2, без мягкого N04 ≥ 3 от «нравятся».
     conds, _ = parsed("Бары рядом нам не слишком нравятся, обязательно тихо")
     assert conds == [("N02", "gte", 200), ("N04", "lte", 2)]
+
+
+# Примеры запросов на главной (ui/src/main.jsx, EXAMPLES): жюри нажимает их первыми, а ключа
+# модели может не быть — правила должны понять каждый целиком.
+UI_EXAMPLES = [
+    ("тихий номер с видом на закат недалеко от моря", "sochi", {"V05", "N02", "N04", "W01"}),
+    ("доехать до Большого театра и рядом итальянский ресторан", "moscow", set()),
+    ("едем с ребёнком, нужна детская площадка поблизости и кроватка в номере", "moscow",
+     {"F01", "F03"}),
+    ("можно с собакой и рядом ветеринарная клиника", "sochi", {"P01", "P04"}),
+    ("приеду в 02:00, нужен поздний заезд и открытая аптека рядом", "sochi", {"L04", "L01"}),
+    ("тихий номер с быстрым Wi-Fi и удобным столом", "moscow", {"N02", "N04", "R01", "R03"}),
+    ("маршрут до пляжа без ступеней, лифт и доступный вход", "sochi", {"W05", "A02", "A03"}),
+    ("хочу поехать в июле, какая температура моря и пляж рядом", "sochi", {"B02", "W01"}),
+]  # fmt: skip
+
+
+@pytest.mark.parametrize(("text", "city", "features"), UI_EXAMPLES)
+def test_ui_examples_are_fully_understood_by_rules(text, city, features):
+    ast = parse_query(text, city, mode="rules").ast
+    assert not ast.unparsed_spans, [u.text for u in ast.unparsed_spans]
+    got = {c.feature_id for c in [*ast.hard, *ast.soft]}
+    assert features <= got, got
+    # «Ветеринарная клиника» — ветклиника P04, а не больница для людей из словаря мест.
+    assert not any(o.normalized == "nearby_place:hospital" for o in ast.out_of_catalog)
+
+
+@pytest.mark.parametrize(
+    "text", ["тихий отель рядом с метро", "у метро", "рядом со станцией метро"]
+)
+def test_near_metro_is_walk_to_station(text):
+    ast = parse_query(text, "moscow", mode="rules").ast
+    assert "W02" in {c.feature_id for c in [*ast.hard, *ast.soft]}
+    assert not ast.unparsed_spans

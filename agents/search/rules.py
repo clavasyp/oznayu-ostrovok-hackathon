@@ -39,6 +39,7 @@ NEAR_PLAYGROUND_M = 500
 NEAR_PHARMACY_M = 1000
 NEAR_VET_M = 3000
 STEP_FREE_MM = 20  # «без ступеней», «душ без бортика»: порог не выше 2 см
+FAST_WIFI_MBPS = 25  # «быстрый Wi-Fi» без числа: хватает для видеозвонков в HD
 DESK_MIN_MM = 600  # «нормальный рабочий стол»: ширина не меньше 60 см
 QUIET_ROAD_M = 200  # «тихий» снаружи: до оживлённой дороги не ближе 200 м
 QUIET_BARS_MAX = 2  # и не больше двух баров в 300 м
@@ -431,7 +432,7 @@ def beach_distance(ctx: Ctx) -> Iterator[Hit]:
     vague = (
         r"(?:недалеко|близко|рядом|поближе|ближе|недолго\s+идти|близк\w+)\s+(?:от|к|до)?\s*"
         r"(?:мор\w*|пляж\w*)|\bу\s+моря|близк\w+\s+пляж\w*|(?:меньше|короче)\s+(?:пути|идти)\s+"
-        r"до\s+(?:мор\w*|пляж\w*)"
+        r"до\s+(?:мор\w*|пляж\w*)|(?:пляж\w*|мор\w*)\s+(?:рядом|недалеко|поблизости|близко)\b"
     )
     for m in finditer(vague, ctx):
         atom = Atom("W01", "distance_m", "lte", str(NEAR_BEACH_M), "m", importance="high")
@@ -462,8 +463,10 @@ def landmark_distance(ctx: Ctx) -> Iterator[Hit]:
 @rule
 def stairs(ctx: Ctx) -> Iterator[Hit]:
     pattern = (
-        r"(?:до\s+(?P<to>пляж\w*|мор\w*|набережн\w*|остановк\w*)\s+(?:\w+\s+)?без\s+лестниц\w*"
-        r"|без\s+лестниц\w*\s+до\s+(?P<to2>пляж\w*|мор\w*|набережн\w*|остановк\w*))"
+        r"(?:(?:(?:маршрут\w*|путь|пути|дорог[аиуе])\s+)?"
+        r"до\s+(?P<to>пляж\w*|мор\w*|набережн\w*|остановк\w*)\s+(?:\w+\s+)?без\s+"
+        r"(?:лестниц\w*|ступен\w*)"
+        r"|без\s+(?:лестниц\w*|ступен\w*)\s+до\s+(?P<to2>пляж\w*|мор\w*|набережн\w*|остановк\w*))"
     )
     for m in finditer(pattern, ctx):
         to = m.group("to") or m.group("to2")
@@ -481,7 +484,8 @@ def stairs(ctx: Ctx) -> Iterator[Hit]:
 def stop_distance(ctx: Ctx) -> Iterator[Hit]:
     pattern = (
         r"(?:недалеко|близко|рядом|поближе|меньше\s+(?:пешего\s+)?(?:времени|идти))\s+"
-        r"(?:до|от|к)\s+(?:ближайшей\s+)?(?:остановк\w*|метро|станци\w*)"
+        r"(?:до|от|к|с|со)\s+(?:ближайшей\s+)?(?:остановк\w*|метро|станци\w*(?:\s+метро)?)"
+        r"|\bу\s+(?:самого\s+)?(?:метро|станци\w*\s+метро)"
         r"|(?:до|от)\s+(?:ближайшей\s+)?остановк\w*\s+(?:\w+\s+){0,3}?(?:недалеко|поменьше|близко)"
         r"|(?:остановк\w*|метро|станци\w*)\s+(?:\w+\s+)?(?:недалеко|рядом|поблизости)"
     )
@@ -554,7 +558,11 @@ def pharmacy(ctx: Ctx) -> Iterator[Hit]:
 
 @rule
 def vet(ctx: Ctx) -> Iterator[Hit]:
-    for m in finditer(r"ветклиник\w*(?:\s+(?:недалеко|рядом|поблизости))?|ветеринар\w*", ctx):
+    pattern = (
+        r"ветклиник\w*(?:\s+(?:недалеко|рядом|поблизости))?"
+        r"|ветеринарн\w*\s+(?:клиник\w*|лечебниц\w*|врач\w*|помощ\w*)|ветеринар\w*"
+    )
+    for m in finditer(pattern, ctx):
         atom = Atom("P04", "distance_m", "lte", str(NEAR_VET_M), "m")
         yield Hit(m.start(), m.end(), [atom], "desired")
 
@@ -639,6 +647,9 @@ def nearby_place(ctx: Ctx) -> Iterator[Hit]:
         if category.needs_near and not mods and not listed:
             listed_from = None
             continue  # «бассейн», «ресторан» без «рядом» — скорее про сам отель; решит модель
+        if re.search(r"ветеринар|ветклиник", ctx.norm[max(0, start - 30) : end]):
+            listed_from = None
+            continue  # «ветеринарная клиника» — ветклиника P04 каталога, а не больница для людей
         params = {"nearest_contract": "nearby_place"}
         adj = (before.group("adj") if before else listed.group("adj") if listed else "") or ""
         if quality := _QUALITY.search(adj):
@@ -801,11 +812,15 @@ def lift(ctx: Ctx) -> Iterator[Hit]:
 def step_free(ctx: Ctx) -> Iterator[Hit]:
     pattern = (
         r"(?:вход\w*\s+(?:с\s+улицы\s+)?|от\s+улицы\s+до\s+номера\s+(?:\w+\s+)?)?"
-        r"без\s+ступен\w*|пандус\w*"
+        r"без\s+ступен\w*|пандус\w*|доступн\w+\s+вход\w*|вход\w*\s+для\s+колясок"
     )
     for m in finditer(pattern, ctx):
-        # Путь до номера целиком строже, чем вход в вестибюль (A02): соответствие частичное.
-        mapping = "partial" if "до номера" in m.group() else "exact"
+        # Путь до номера целиком строже, чем вход в вестибюль (A02); «доступный вход» шире
+        # порога: соответствие частичное.
+        broad = (
+            "до номера" in m.group() or m.group().startswith("доступн") or "колясок" in m.group()
+        )
+        mapping = "partial" if broad else "exact"
         atom = Atom("A02", "threshold_mm", "lte", str(STEP_FREE_MM), "mm", mapping=mapping)
         yield Hit(m.start(), m.end(), [atom], "required")
 
@@ -874,6 +889,11 @@ def wifi(ctx: Ctx) -> Iterator[Hit]:
         field_ = "upload_Mbps" if upload else "download_Mbps"
         atom = Atom("R01", field_, "gte", number(m.group("n")), "Mbit/s")
         yield Hit(m.start(), m.end(), [atom], "required")
+    for m in finditer(r"быстр\w+\s+(?:wi-?fi|вай-?фай|интернет\w*)(?!\s+[\w-]+\s+\d)", ctx):
+        # Без числа «быстрый» — не меньше FAST_WIFI_MBPS: смысл гостя шире порога.
+        atom = Atom("R01", "download_Mbps", "gte", str(FAST_WIFI_MBPS), "Mbit/s",
+                    mapping="partial")  # fmt: skip
+        yield Hit(m.start(), m.end(), [atom], "desired")
     for m in finditer(r"стабильн\w+\s+(?:wi-?fi|вай-?фай|интернет\w*)", ctx):
         atom = Atom("R02", "latency_ms", "lte", "100", "ms", mapping="partial")
         yield Hit(m.start(), m.end(), [atom], "desired")

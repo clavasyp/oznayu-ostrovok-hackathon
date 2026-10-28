@@ -230,7 +230,8 @@ def evaluate(facts: list[Fact], c: Condition, hard: bool) -> dict[str, Any]:
     if Verdict.yes in verdicts and Verdict.no in verdicts:
         return _result(c, Verdict.unknown, "depends_on_building", **extra)
     if unspecified:
-        return _result(c, Verdict.unknown, "value_unspecified", **extra)
+        # «Есть, тип не назван» против конкретного типа — скорее «да», чем «нет данных».
+        return _result(c, Verdict.unknown, "value_unspecified", leaning=Verdict.yes, **extra)
     if bound:
         return _result(c, Verdict.unknown, "count_lower_bound", leaning=Verdict.no, **extra)
     return _result(c, Verdict.unknown, "not_comparable", **extra)
@@ -836,13 +837,15 @@ def search(
                 else:
                     soft.append(item | {"weight": PLACE_WEIGHT})
             elif required:
+                # Понято частично (рядом стоит смежная характеристика) — не «не знаем», а «мало».
+                code = "partial_match" if o.mapping_status == "partial" else "out_of_catalog"
                 hard.append(
                     {
                         "atom_id": o.atom_id,
                         "text_span": o.text_span,
                         "verdict": Verdict.unknown,
-                        "reason_code": "out_of_catalog",
-                        "reason": reason_text("out_of_catalog"),
+                        "reason_code": code,
+                        "reason": reason_text(code),
                         "fact_ids": [],
                     }
                 )

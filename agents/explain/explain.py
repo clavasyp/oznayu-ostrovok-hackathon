@@ -491,6 +491,12 @@ def explain(
     """Объяснение одного результата поиска. `use_llm` — порядок и связки от модели."""
     claims = build_claims(result, fact, ast=ast)
     if not claims:
+        if result.get("hard") or result.get("soft"):
+            # Условия есть, но данных по ним об этом отеле нет (город автоматического слоя).
+            text = (
+                "По условиям запроса об этом отеле у нас пока нет данных — показываем без оценки."
+            )
+            return Explanation(text, [], "template")
         return Explanation("Условий в запросе нет — показываем отель без оценки.", [], "template")
     if not use_llm:
         return template(claims)

@@ -49,6 +49,7 @@ export function itemSubtitle(item, labels) {
   // «Рядом место типа X» и «доехать до X» — без характеристики каталога, но проверены по картам.
   if (item.nearby || item.place) return 'по местам на карте'
   if (item.trip || String(item.reason_code || '').startsWith('trip_')) return 'оценка по прямой'
+  if (item.reason_code === 'partial_match') return 'проверяем частично'
   if (item.reason_code === 'out_of_catalog' || (!item.feature_id && !item.items?.length && !item.op)) return 'не проверяем — такого пока нет в каталоге'
   const name = item.feature_name || featureName(item.feature_id, labels)
   const title = itemTitle(item, labels)
@@ -139,5 +140,6 @@ export function outOfCatalogCheck(item) {
   }
   if ((item?.nearest_contracts || []).includes('trip_to_target')) return { checked: true, note: 'оценка по прямой · время на транспорте не считаем' }
   const where = place ? place.label + (place.on_site ? ' в отеле' : '') : ''
-  return { checked: false, note: (item?.mapping_status === 'partial' ? 'понято частично · не проверяем' : 'не проверяем') + (where ? ' · ' + where : '') }
+  if (item?.mapping_status === 'partial') return { checked: true, note: 'понято частично · для обязательного этого мало' }
+  return { checked: false, note: 'не проверяем' + (where ? ' · ' + where : '') }
 }
