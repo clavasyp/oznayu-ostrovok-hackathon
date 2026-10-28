@@ -144,6 +144,18 @@ class QueryAST(BaseModel):
 
     raw_text: str
     city_id: str | None = None
+    areas: list[str] = Field(
+        default_factory=list, description="Только отели этих районов города (`subzone_id`)"
+    )
+    exclude_areas: list[str] = Field(
+        default_factory=list, description="Без отелей этих районов: «не в Адлере»"
+    )
+    kinds: list[str] = Field(
+        default_factory=list, description="Только этот тип жилья (`kind` Островка): «хостел»"
+    )
+    stars_min: int | None = Field(
+        default=None, description="Звёзд на Островке не меньше: «пятизвёздочный», «4 звезды»"
+    )
     dates: Dates | None = None
     guests: Guests | None = None
     hard: list[Condition] = Field(default_factory=list)

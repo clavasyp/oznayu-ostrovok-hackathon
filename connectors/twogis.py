@@ -30,6 +30,7 @@ from core.packs import sha256_file
 from core.plugins import CityContext, DatasetRef, register_connector
 
 VERSION = "twogis.3"
+DEMO_MONTHLY_UNITS = 1000  # демо-ключ 2ГИС: 1 000 единиц на сервис в месяц, один раз (D37)
 # Постоянный каталог кеша и журнала расхода: общий для проверки и сборщика, вне git и образа.
 DEFAULT_CACHE = Path(__file__).resolve().parents[1] / "data" / "twogis_cache"
 ENDPOINTS = {
@@ -179,8 +180,10 @@ class TwoGISClient:
     ):
         self.key = key if key is not None else os.environ.get("TWOGIS_API_KEY", "")
         self.cache, self.subscription, self.limit = Path(cache), subscription, limit
-        if limit < 1 or (not subscription and limit > 20):
-            raise ValueError("Demo connector checks are limited to 20 units per service/month")
+        if limit < 1 or (not subscription and limit > DEMO_MONTHLY_UNITS):
+            raise ValueError(
+                f"Demo key: at most {DEMO_MONTHLY_UNITS} units per service/month (checks use 20)"
+            )
         self.transport = transport or self._http
 
     def _http(self, method, endpoint, query, body):

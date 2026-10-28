@@ -397,3 +397,27 @@ def test_window_summary_when_categories_have_no_placements():
     r = run(facts, [rt])
     item = r["hard"][0]
     assert item["reason_code"] == "window_some" and item["windows"]["yes"] == {"ЮЗ": [7]}
+
+
+def test_sun_hours_upper_bound_decides_only_one_side():
+    """Часы солнца по фасаду — верхняя граница (соседей не считаем): «не больше часа» при
+    границе 0,5 ч — «да», при 3 ч — «неизвестно», скорее «нет»; «не меньше часа» — наоборот."""
+    from agents.query_ast import Condition
+    from core.search import evaluate
+
+    def hours(h):
+        return Fact(fact_id=f"s{h}", hotel_id="1", city_id="sochi", subject_level="facade",
+                    subject_id="way/1:seg-1", feature_id="S02",
+                    value={"hours": h, "bound": "upper"},
+                    status="computed", algorithm_version="sun-hours-upper@1",
+                    params={"month": 7, "time_from": "07:00", "time_to": "11:00"})  # fmt: skip
+
+    params = {"month": 7, "time_from": "07:00", "time_to": "11:00"}
+    few = Condition(feature_id="S02", field="hours", op="lte", value=1, params=params)
+    some = Condition(feature_id="S02", field="hours", op="gte", value=1, params=params)
+    assert evaluate([hours(0.5)], few, hard=True)["verdict"] == "yes"
+    open_few = evaluate([hours(3.0)], few, hard=True)
+    assert open_few["verdict"] == "unknown" and open_few["leaning"] == "no"
+    assert open_few["reason_code"] == "sun_hours_upper_bound"
+    assert evaluate([hours(0.5)], some, hard=True)["verdict"] == "no"
+    assert evaluate([hours(3.0)], some, hard=True)["leaning"] == "yes"

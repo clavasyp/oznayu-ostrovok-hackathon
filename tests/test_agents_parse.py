@@ -1,7 +1,7 @@
 import gzip
 import json
 from collections import defaultdict
-from datetime import date
+from datetime import date, timedelta
 from pathlib import Path
 
 import pytest
@@ -256,11 +256,11 @@ def or_groups(ast):
 @pytest.mark.parametrize(
     ("text", "reply", "variants"),
     [
-        (  # вариант правил + вариант модели
-            "Аптека или супермаркет рядом обязательно.",
+        (  # вариант правил + вариант модели («магазин» без «продуктов» правила не берут)
+            "Аптека или магазин рядом обязательно.",
             compact(
                 atom("a1", "Аптека", "L01", field="distance_m", op="lte", value="1000", unit="м"),
-                atom("a2", "супермаркет рядом", "L03", field="distance_m", op="lte",
+                atom("a2", "магазин рядом", "L03", field="distance_m", op="lte",
                      value="1000", unit="м"),
                 or_groups=[{"group_id": "g1", "atom_ids": ["a1", "a2"]}],
             ),
@@ -309,6 +309,7 @@ def test_rules_or_between_matches():
         ("Лифт или пандус обязательно.", {"A03", "A02"}),
         # Два значения одной характеристики: отель, куда пускают только кошек, — не «Не подходит».
         ("С собакой или с кошкой.", {"P01"}),
+        ("Аптека или супермаркет рядом обязательно.", {"L01", "L03"}),
     ):
         ast = parsed(text)
         assert or_groups(ast) == [variants] and len(ast.hard) == 2, text
@@ -318,7 +319,7 @@ def test_rules_or_between_matches():
     # Второй вариант правила не поняли или условие составное — не «И» из половины: вся часть
     # непонятая, у «обязательно» — обязательная вне каталога (D38).
     for text, rest in (
-        ("Аптека или супермаркет рядом обязательно.", "Аптека или супермаркет рядом"),
+        ("Аптека или магазин рядом обязательно.", "Аптека или магазин рядом"),
         ("Нужна кухня или хотя бы чайник в номере.", "кухня или хотя бы чайник"),
         ("Обязательно балкон или большая терраса.", "балкон или большая терраса"),
         ("Обязательно с собакой 10 кг или с кошкой.", "с собакой 10 кг или с кошкой"),
@@ -864,7 +865,7 @@ def test_comparatives_are_part_of_condition_not_softeners():
     assert split("обязательно поближе к морю") == (["W01"], [])
     assert split("хотелось бы подальше от шоссе") == ([], ["N02"])
     assert split("не у трассы") == ([], ["N02"])
-    assert split("подальше от железной дороги") == ([], [])  # ж/д — N03, не дорога
+    assert split("подальше от железной дороги") == ([], ["N03"])  # ж/д — N03, не дорога
 
 
 def test_far_from_road_changes_statuses():
@@ -1019,3 +1020,91 @@ def test_near_metro_is_walk_to_station(text):
     ast = parse_query(text, "moscow", mode="rules").ast
     assert "W02" in {c.feature_id for c in [*ast.hard, *ast.soft]}
     assert not ast.unparsed_spans
+
+
+def test_weather_is_climate_far_ahead_and_forecast_near():
+    """«Тепло», «без дождей» — климат месяца (C01–C03); на ближайшие даты «без дождя» — прогноз
+    осадков (C04); «чистый воздух» и «спокойное море» — прогноз на день заезда (E01, B03)."""
+
+    def conds(text):
+        ast = parse_query(text, "sochi", today=TODAY, mode="rules").ast
+        assert not ast.unparsed_spans, text
+        return {c.feature_id: (c.op, c.value, c.params) for c in [*ast.hard, *ast.soft]}
+
+    far = conds("В июле хочу, чтобы было тепло и без дождей, но не жарко.")
+    assert far == {"C01": ("gte", 18, {"month": 7}), "C02": ("lte", 8, {"month": 7}),
+                   "C03": ("lte", 3, {"month": 7})}  # fmt: skip
+    near_day = (TODAY + timedelta(days=5)).strftime("%-d")
+    month = ("января февраля марта апреля мая июня июля августа сентября октября ноября "
+             "декабря").split()[(TODAY + timedelta(days=5)).month - 1]  # fmt: skip
+    near = conds(f"Приеду {near_day} {month}: чтобы не было дождя, чистый воздух и спокойное море.")
+    date = (TODAY + timedelta(days=5)).isoformat()
+    assert near == {"C04": ("lte", 30, {"date": date}), "E01": ("lte", 15, {"date": date}),
+                    "B03": ("lte", 0.5, {"date": date})}  # fmt: skip
+    # «Чистый» номер — по-прежнему честное «не проверяем», а «чистый воздух» — прогноз воздуха.
+    ast = parse_query("чистый номер и чистый воздух", "sochi", today=TODAY, mode="rules").ast
+    assert [c.feature_id for c in ast.soft] == ["E01"] and ast.out_of_catalog
+
+
+def test_sochi_areas_are_a_filter_from_guest_words():
+    """«В Адлере», «в горах», «не в Адлере» — районы Сочи (`subzone_id`), фильтр поиска, а не
+    условие; «хостел» — не Хоста, и город по нему не меняется."""
+
+    def parsed(text, city="sochi"):
+        ast = parse_query(text, city, today=TODAY, mode="rules").ast
+        return ast.areas, ast.exclude_areas, [u.text for u in ast.unparsed_spans]
+
+    assert parsed("отель в Адлере у моря") == (["adler"], [], [])
+    assert parsed("отель только для взрослых, не в Адлере")[:2] == ([], ["adler"])
+    assert parsed("горнолыжный курорт") == (["krasnaya_polyana"], [], [])
+    assert parsed("тихое место в горах")[0] == ["krasnaya_polyana"]
+    assert parsed("в Хосте или Лоо")[0] == ["loo", "khosta"]
+    ast = parse_query("хостел для удалённой работы", "moscow", today=TODAY, mode="rules").ast
+    assert ast.city_id == "moscow" and ast.areas == []
+
+
+def test_far_from_railway_is_n03_not_road():
+    """«Далеко от железной дороги», «не у ж/д», «без поездов» — N03, а не дорога N02."""
+    for text in ("обязательно далеко от железной дороги", "не у ж/д", "без поездов под окном"):
+        ast = parse_query(text, "moscow", today=TODAY, mode="rules").ast
+        assert [(c.feature_id, c.op, c.value) for c in [*ast.hard, *ast.soft]] == [
+            ("N03", "gte", 300)
+        ], text
+
+
+def test_old_building_is_build_year_before_1917():
+    """«Старинное / историческое здание» — год постройки корпуса H01 не позже 1917."""
+    for text in ("хочу пожить в старинном здании", "историческое здание в центре"):
+        ast = parse_query(text, "moscow", today=TODAY, mode="rules").ast
+        assert ("H01", "lte", 1917) in [(c.feature_id, c.op, c.value) for c in ast.soft], text
+
+
+def test_property_type_and_stars_are_filters():
+    """«Хостел», «апартаменты», «гостевой дом», «пятизвёздочный», «4*» — фильтр по данным страницы
+    Островка (`kind`, звёзды), как район; «отель» — общее слово, не тип."""
+
+    def parsed(text, city="moscow"):
+        ast = parse_query(text, city, today=TODAY, mode="rules").ast
+        return ast.kinds, ast.stars_min, [u.text for u in ast.unparsed_spans]
+
+    assert parsed("хостел в центре") == (["HOSTEL"], None, [])
+    assert parsed("пятизвёздочный отель") == ([], 5, [])
+    assert parsed("гостевой дом, 3 звезды", "sochi")[:2] == (["GUESTHOUSE", "LODGING_HOUSES"], 3)
+    assert parsed("вилла на 8 человек", "sochi") == (["VILLA_AND_BUNGALOWS", "COTTAGE"], None, [])
+    assert parsed("отель у метро")[:2] == ([], None)
+
+
+def test_heritage_building_is_h02():
+    """«Памятник архитектуры», «объект наследия» — охранный статус H02, а не год постройки."""
+    for text in ("отель в памятнике архитектуры", "жить в объекте культурного наследия"):
+        ast = parse_query(text, "moscow", today=TODAY, mode="rules").ast
+        assert [(c.feature_id, c.op, c.value) for c in ast.soft] == [("H02", "eq", True)], text
+
+
+def test_not_noisy_is_quiet():
+    """«Чтобы не было шумно ночью», «не шумный район» — как «тихий»; просто «шумно» — нет."""
+    night = parse_query("чтобы не было шумно ночью", "sochi", today=TODAY, mode="rules").ast
+    assert [c.feature_id for c in night.soft] == ["N05"]
+    area = parse_query("не шумный район", "sochi", today=TODAY, mode="rules").ast
+    assert [c.feature_id for c in area.soft] == ["N02", "N04"]
+    assert not parse_query("шумно не страшно", "sochi", today=TODAY, mode="rules").ast.soft

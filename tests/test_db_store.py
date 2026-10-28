@@ -483,3 +483,22 @@ def test_hotelier_loop_on_db(engine):
         (5, ["north", "west"]),
         (6, ["west"]),
     ]
+
+
+def test_freshness_by_feature_and_recipe(stores):
+    """Актуализация: у каждого значения есть дата (без своей — дата сборки пакета, с пометкой),
+    срок обновления и чем обновить; «на дату» через два года устарело всё, кроме климата."""
+    from datetime import UTC, datetime
+
+    db, _ = stores
+    now = db.freshness("sochi", datetime(2026, 10, 28, tzinfo=UTC))
+    assert now and all(r["n"] > 0 and r["oldest"] and r["next_due"] for r in now)
+    # Сразу «пора обновить» — только оценки «открыто в момент приезда»: v9 дал им сутки.
+    assert {r["feature_id"] for r in now if r["stale"]} <= {"L01", "L03", "P04"}
+    later = db.freshness("sochi", datetime(2028, 11, 1, tzinfo=UTC))
+    assert sum(r["stale"] for r in later) == sum(r["n"] for r in later)
+    undated = [f for fs in db.hotel_facts("13736470").values() for f in fs if f.status != "unknown"]
+    kinds = {getattr(f, "date_kind", None) for f in undated if not f.observed_at}
+    assert kinds <= {"pack_built_at", None} and all(
+        f.calculated_at or f.observed_at for f in undated
+    )

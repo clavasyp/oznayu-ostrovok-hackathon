@@ -46,3 +46,14 @@ test('a hotel answer shows its quote, question and time', () => {
   assert.match(source.answeredAt, /27 октября 2026/)
   assert.equal(hotelierSource({ status: 'computed', sources: [{ provider: 'OpenStreetMap' }] }), null)
 })
+
+test('new layers read as words: heritage, build year, transit, sun hours', () => {
+  const f = (value) => formatFactValue({ status: 'observed', value })
+  assert.equal(f({ heritage: true, category: 'федерального значения', registry_id: '771', name: 'Дом' }), 'объект наследия · федерального значения · «Дом» · реестр № 771')
+  assert.equal(f({ year: 1912 }), '1912 г.')
+  assert.equal(f({ route_exists: true, duration_min: 56, transfers: 0, origin: 'аэропорт Сочи' }), '56 мин · без пересадок · от «аэропорт Сочи»')
+  assert.equal(f({ hours: 2.5, bound: 'upper' }), 'до 2,5 ч прямого солнца')
+  assert.equal(f({ surface: 'pebble', beach_id: 'way/1', beach_name: 'Ставрополье' }), 'галька · пляж «Ставрополье»')
+  assert.equal(f({ distance_m: 1000, bound: 'lower' }), 'ближе 1 км на карте нет')
+  assert.equal(f({ distance_m: 120, site_id: 'way/2', site_name: null }), '120 м')
+})

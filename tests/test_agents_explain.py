@@ -303,3 +303,61 @@ def test_floors_claim_uses_item_label():
     texts = [c.text for c in build_claims(result, FACTS.get, ast=ast)]
     assert "без вида на море: только до 2-го этажа в категории «Стандарт»" in texts
     assert not any(t.startswith("вид на море из окна") for t in texts)
+
+
+def test_evidence_words_for_lower_bound_and_beach_surface():
+    """Стройки X03: «не ближе 1 км» — «ближе 1 км на карте нет», а не «1 км»; покрытие пляжа
+    B01 — словами («галька»)."""
+    from agents.catalog import load_catalog
+    from agents.explain.explain import _evidence
+
+    def fact(fid, feature, value):
+        return Fact(fact_id=fid, hotel_id="h", city_id="sochi", subject_level="hotel",
+                    subject_id="hotel:h", feature_id=feature, status="estimate",
+                    value=value)  # fmt: skip
+
+    facts = {
+        "x": fact("x", "X03", {"distance_m": 1000, "bound": "lower"}),
+        "b": fact(
+            "b", "B01", {"surface": "pebble", "beach_id": "way/1", "beach_name": "Ставрополье"}
+        ),
+    }
+    catalog = load_catalog()
+    said = {k: _evidence({"feature_id": f.feature_id, "fact_ids": [k]}, catalog, facts.get)
+            for k, f in facts.items()}  # fmt: skip
+    assert said == {"x": "ближе 1 км на карте нет, оценка", "b": "галька, оценка"}
+
+
+def test_soft_with_data_but_no_yes_is_explained_not_called_missing():
+    """Желательное «нужно уточнить», но данные есть (часть окон подходит) — объяснение говорит
+    об окнах, а не «данных нет»; «без стройки» — «нет стройки рядом» с расстоянием."""
+    from agents.catalog import load_catalog
+    from agents.explain.explain import _evidence
+
+    result = {
+        "status": "fits",
+        "hard": [],
+        "soft": [
+            {"feature_id": "S02", "atom_id": "a1", "verdict": "unknown", "weight": 0.5,
+             "reason_code": "window_some",
+             "reason": "Подходят не все окна — уточним у отеля, где будет номер",
+             "windows": {"yes": {"СЗ": [0]}, "no": {}, "estimate": {}, "count": 6, "want": 1}},
+            {"feature_id": "V02", "atom_id": "a2", "verdict": "unknown", "weight": 0.5,
+             "reason_code": "no_fact", "reason": "Нет данных"},
+        ],
+    }  # fmt: skip
+    text = explain(result, lambda _: None).text
+    assert "окна на северо-запад" in text and "нет данных" not in text.lower()
+    near = Fact(fact_id="n", hotel_id="h", city_id="moscow", subject_level="hotel",
+                subject_id="hotel:h", feature_id="X03", status="estimate",
+                value={"distance_m": 328, "site_id": "way/1"})  # fmt: skip
+    item = {"feature_id": "X03", "fact_ids": ["n"]}
+    assert _evidence(item, load_catalog(), {"n": near}.get) == (
+        "ближайшая стройка на карте — 328 м, оценка"
+    )
+    assert load_catalog().get("X03").short_for("gte", 300) == "нет стройки рядом"
+    heritage = Fact(fact_id="h", hotel_id="h", city_id="moscow", subject_level="building",
+                    subject_id="way/1", feature_id="H02", status="observed",
+                    value={"heritage": True, "category": "регионального значения"})  # fmt: skip
+    item = {"feature_id": "H02", "fact_ids": ["h"]}
+    assert _evidence(item, load_catalog(), {"h": heritage}.get) == "регионального значения"

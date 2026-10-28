@@ -8,7 +8,7 @@
 
 from __future__ import annotations
 
-from collections.abc import Collection
+from collections.abc import Callable, Collection
 from datetime import datetime
 from typing import TYPE_CHECKING, Any, Protocol
 
@@ -25,6 +25,11 @@ class Store(Protocol):
 
     def coverage(self, city_id: str) -> list[dict[str, Any]] | None:
         """None — такого города нет."""
+        ...
+
+    def freshness(self, city_id: str, as_of: datetime) -> list[dict[str, Any]]:
+        """Свежесть по характеристике и рецепту: сколько значений, старейшее, ближайший срок
+        обновления, сколько устарело к `as_of` и чем обновить (core/freshness.py)."""
         ...
 
     def hotels(self, city_id: str | None = None) -> list[dict[str, Any]]: ...
@@ -62,11 +67,19 @@ class Store(Protocol):
         ...
 
     def nearest_places(
-        self, hotel_ids: Collection[str], category: str, radius_m: float
+        self,
+        hotel_ids: Collection[str],
+        category: str,
+        radius_m: float,
+        rank: Callable[[dict[str, Any]], int | None] | None = None,
     ) -> tuple[dict[str, dict[str, Any]], int]:
         """«Рядом место типа X» (D34): ближайшее место категории в радиусе (по прямой) от каждого
         отеля — `{place_id, name, distance_m, source, …}`; второе значение — сколько мест этой
-        категории в городах отелей (0 — данных о таких местах нет, а не «рядом нет»)."""
+        категории в городах отелей (0 — данных о таких местах нет, а не «рядом нет»).
+
+        `rank` — ранг места по `{place_id, city_id, name, tags}` (меньше — лучше, None — место
+        не подходит; `core.place_features`): тогда в ответе лучшее по рангу, среди равных —
+        ближайшее, с `rank` и `tags`; второе значение — сколько мест с рангом."""
         ...
 
     def place_counts(

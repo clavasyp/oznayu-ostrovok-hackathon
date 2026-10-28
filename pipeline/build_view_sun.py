@@ -66,6 +66,8 @@ CITIES = {
 }
 
 LAYER = "data/view_sun.jsonl.gz"
+SUN_LAYER = "data/sun_hours.jsonl.gz"  # часы солнца S01 / S02: верхняя граница по фасаду
+MOUNTAIN_LAYER = "data/mountains.jsonl.gz"  # вид на горы V02: «нет» расчётом, «да» оценкой
 CURATED = ROOT / "data" / "curated"  # этажность, проверенная командой по картам (D33)
 QUEUE_FIELDS = ["building_id", "levels", "height_m", "source", "source_url", "checked_by",
                 "checked_at", "note", "now_known", "cells", "hotels", "osm_url", "yandex_url",
@@ -101,6 +103,16 @@ SOURCES = [  # id с префиксом слоя: у разных слоёв и�
         commercial_ok=None,  # права на исходные контуры не выяснены (v4d)
     ),
 ]
+# У слоя часов солнца источники свои (id с префиксом слоя): тот же рельеф и контуры OSM.
+SUN_SOURCES = [
+    PackSource.model_validate(s.model_dump() | {"id": s.id.replace("view_sun:", "sun_hours:")})
+    for s in SOURCES
+    if not s.id.endswith(("worldcover-2021", "3d-globfp-v2"))
+]
+MOUNTAIN_SOURCES = [
+    PackSource.model_validate(s.model_dump() | {"id": s.id.replace("sun_hours:", "mountains:")})
+    for s in SUN_SOURCES
+]
 
 
 def worldcover_bbox(geoms: list) -> tuple[float, float, float, float]:
@@ -130,12 +142,15 @@ def inputs_time(cfg: dict, pack: Path) -> datetime:
 
 
 def pack_inputs(pack: Path) -> tuple[list[dict], list[dict], list[dict], list[Path]]:
-    """Корпуса, фасады и связи «отель → корпус» из пакета города (каталог №26, D41)."""
-    from core.packs import iter_jsonl
+    """Корпуса, фасады и связи «отель → корпус» из пакета города (каталог №26, D41) — все файлы
+    вида по манифесту: и сборки каталога, и слои (связи по точке, D42-1)."""
+    from core.packs import iter_jsonl, read_manifest
 
-    paths = [pack / "data" / f"{k}.jsonl.gz" for k in ("buildings", "facades", "hotel_buildings")]
-    buildings, facades, links = (list(iter_jsonl(p)) for p in paths)
-    return buildings, facades, links, paths
+    files = read_manifest(pack).files
+    kinds = ("buildings", "facades", "hotel_buildings")
+    paths = {k: [pack / f.path for f in files if f.kind == k] for k in kinds}
+    buildings, facades, links = ([r for p in paths[k] for r in iter_jsonl(p)] for k in kinds)
+    return buildings, facades, links, [p for k in kinds for p in paths[k]]
 
 
 def main() -> None:
@@ -146,6 +161,10 @@ def main() -> None:
     ap.add_argument("--jobs", type=int, default=os.cpu_count() or 1, help="процессов")
     ap.add_argument("--pack", type=Path, help="пакет города с корпусами и фасадами (по умолчанию "
                     "packs/<город>)")  # fmt: skip
+    ap.add_argument("--sun-hours", action="store_true", help="только часы солнца S01 / S02 — "
+                    f"отдельный слой {SUN_LAYER}")  # fmt: skip
+    ap.add_argument("--mountains", action="store_true", help="только вид на горы V02 — "
+                    f"отдельный слой {MOUNTAIN_LAYER}")  # fmt: skip
     args = ap.parse_args()
     if args.hotels and args.out is None:
         ap.error("--hotels без --out заменил бы слой пакета и очередь проверки частью отелей")
@@ -184,18 +203,19 @@ def main() -> None:
         by_building[w.building_id].append(w)
     chunks = sorted(by_building.values(), key=len, reverse=True)
     _STATE["args"] = (scene, dates, season, cfg["timezone"], args.city, calculated_at)
+    work = _sun_work if args.sun_hours else _mountain_work if args.mountains else _work
     facts = []
     if args.jobs > 1:
         ctx = multiprocessing.get_context("fork")  # сцена в памяти — общая, не копируется
         with ProcessPoolExecutor(args.jobs, mp_context=ctx) as pool:
-            for k, part in enumerate(pool.map(_work, chunks), 1):
+            for k, part in enumerate(pool.map(work, chunks), 1):
                 facts += part
                 if k % 10 == 0:
                     print(f"  корпусов {k}/{len(chunks)}, фактов {len(facts)}, "
                           f"{time.time() - t0:.0f} с")  # fmt: skip
     else:
         for chunk in chunks:
-            facts += _work(chunk)
+            facts += work(chunk)
     rows = sorted(
         facts,
         key=lambda r: (r["hotel_id"], r["feature_id"], r["subject_id"], json.dumps(r["params"]),
@@ -207,16 +227,33 @@ def main() -> None:
     )
     for key, n in sorted(stats.items(), key=lambda kv: (kv[0][0], kv[0][1], -kv[1])):
         print(f"  {key}: {n}")
-    out = args.out or PACKS / args.city / LAYER
+    layer = SUN_LAYER if args.sun_hours else MOUNTAIN_LAYER if args.mountains else LAYER
+    out = args.out or PACKS / args.city / layer
     out.parent.mkdir(parents=True, exist_ok=True)
     write_jsonl_gz(out, rows)
     print(f"{out}: {len(rows)} фактов, {out.stat().st_size / 1e6:.2f} МБ, {time.time() - t0:.0f} с")
-    if args.out is None:
+    if args.out is None and args.sun_hours:
+        add_layer(pack, SUN_LAYER, "facts", len(rows), SUN_SOURCES)
+    elif args.out is None and args.mountains:
+        add_layer(pack, MOUNTAIN_LAYER, "facts", len(rows), MOUNTAIN_SOURCES)
+    elif args.out is None:
         add_layer(pack, LAYER, "facts", len(rows), SOURCES)  # и покрытие V01 / V05 по всем фактам
         write_queue(scene, rows, curated)
 
 
 _STATE: dict = {}
+
+
+def _mountain_work(chunk: list) -> list[dict]:
+    """Вид на горы V02 фасадов одного корпуса (в отдельном процессе)."""
+    scene, _, _, _, city, calculated_at = _STATE["args"]
+    return [fact_row(f) for f in view_sun.mountain_facts(scene, chunk, city, calculated_at)]
+
+
+def _sun_work(chunk: list) -> list[dict]:
+    """Часы солнца S01 / S02 фасадов одного корпуса (в отдельном процессе)."""
+    scene, _, _, tz, city, calculated_at = _STATE["args"]
+    return [fact_row(f) for f in view_sun.sun_hours_facts(scene, chunk, tz, city, calculated_at)]
 
 
 def _work(chunk: list) -> list[dict]:

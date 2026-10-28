@@ -11,11 +11,13 @@
 
 from __future__ import annotations
 
+import json
 import re
 from collections.abc import Callable, Iterator
 from dataclasses import dataclass, replace
 from dataclasses import field as dfield
 from datetime import date
+from pathlib import Path
 
 from agents.catalog import Catalog, load_catalog, load_places
 from agents.search.compact import (
@@ -38,10 +40,17 @@ NEAR_FOOD_M = 500
 NEAR_PLAYGROUND_M = 500
 NEAR_PHARMACY_M = 1000
 NEAR_VET_M = 3000
+NEAR_SUPERMARKET_M = 800  # «рядом», как у мест словаря: около 10 минут пешком
+NEAR_DOG_AREA_M = 1000
+NEAR_COWORKING_M = 1000
+NEAR_CHILD_ER_M = 3000  # детская неотложка — не «за углом», как и ветклиника
+NIGHT_LOCAL = "02:00"  # «ночью», «ночная», «круглосуточная» без часа: открыто в 2 часа ночи
+LATE_LOCAL = "23:00"  # «позднее кафе», «допоздна»
 STEP_FREE_MM = 20  # «без ступеней», «душ без бортика»: порог не выше 2 см
 FAST_WIFI_MBPS = 25  # «быстрый Wi-Fi» без числа: хватает для видеозвонков в HD
 DESK_MIN_MM = 600  # «нормальный рабочий стол»: ширина не меньше 60 см
 QUIET_ROAD_M = 200  # «тихий» снаружи: до оживлённой дороги не ближе 200 м
+QUIET_RAIL_M = 300  # «далеко от железной дороги»: до действующих путей не ближе 300 м
 QUIET_BARS_MAX = 2  # и не больше двух баров в 300 м
 BARS_LIKED_MIN = 3
 QUIET_INDOOR_DBA = 30  # тишина в спальне ночью — ориентир ВОЗ, LAeq ≤ 30 дБ(A)
@@ -51,6 +60,15 @@ GREEN_SHARE_MIN = 30
 CONSTRUCTION_M = 300
 WARM_SEA_C = 22
 MAX_ASCENT_M = 10
+# Погода: до горизонта прогноза — прогноз на день заезда (C04, E01, B03 считаются на запросе),
+# дальше — климат месяца за 30 лет (C01–C03, ERA5).
+FORECAST_DAYS = 16
+WARM_C = 18  # «тепло»: средняя температура месяца не ниже, °C
+RAINY_DAYS_MAX = 8  # «без дождей»: дней с осадками ≥ 1 мм в месяце не больше
+HOT_DAYS_MAX = 3  # «не жарко»: дней с Tmax > 30 °C в месяце не больше
+RAIN_PROBABILITY_MAX = 30  # «без дождя» по прогнозу: вероятность осадков не выше, %
+PM25_MAX = 15  # «чистый воздух»: PM2.5 за сутки не выше, мкг/м³ (ориентир ВОЗ 2021)
+CALM_SEA_HS_M = 0.5  # «спокойное море»: высота волн не выше, м
 
 
 WORD_NUMBERS = {
@@ -76,8 +94,8 @@ MONTHS = {
 }  # fmt: skip
 MONTH_RE = r"(?P<m>январ|феврал|март|апрел|ма[йея]|июн|июл|август|сентябр|октябр|ноябр|декабр)\w*"
 CITIES = [
-    (r"\b(?:сочи|адлер\w*|сириус\w*|красн\w+ полян\w*|лазаревск\w*|хост\w*|дагомыс\w*|лоо)\b",
-     "sochi"),
+    (r"\b(?:сочи|адлер\w*|сириус\w*|красн\w+ полян\w*|лазаревск\w*|хост(?:а|е|у|ой)|дагомыс\w*"
+     r"|лоо)\b", "sochi"),
     (r"\bмоскв\w*\b", "moscow"),
     (r"\b(?:петербург\w*|питер\w*|спб)\b", "spb"),
     (r"\bказан\w*\b", "kazan"),
@@ -86,6 +104,188 @@ CITIES = [
     (r"\bстамбул\w*\b", "istanbul"),
     (r"\bдуба[йея]\w*\b", "dubai"),
 ]  # fmt: skip
+
+
+# Районы Большого Сочи словами гостя → `subzone_id` отелей. «В горах», «горнолыжный курорт»,
+# «Роза Хутор» — Красная Поляна; «Имеретинка», «Олимпийский парк» — Сириус. «Хоста» — не «хостел».
+AREAS = [
+    (r"адлер\w*", "adler"),
+    (r"сириус\w*|имеретинк\w*|олимпийск\w+\s+парк\w*", "sirius"),
+    (r"красн\w+\s+полян\w*|роз\w+\s+хутор\w*|эсто-?садк\w*|горки[-\s]город\w*|в\s+горах"
+     r"|горнолыжн\w+\s+курорт\w*", "krasnaya_polyana"),
+    (r"лазаревск\w*", "lazarevskoe"),
+    (r"\bлоо\b", "loo"),
+    (r"дагомыс\w*", "dagomys"),
+    (r"\bхост(?:а|е|у|ой)\b", "khosta"),
+    (r"центр\w*\s+сочи|в\s+центре\s+сочи", "center"),
+]  # fmt: skip
+_NOT_AREA = re.compile(r"(?:\bне|\bкроме)\s+(?:в|на|во)?\s*$")
+SOCHI_AREAS = frozenset(a for _, a in AREAS)
+
+
+# Районы Москвы — из `moscow_areas.json` (`pipeline.build_districts`, границы OSM). Название —
+# только после «в / на / во» («в Хамовниках», «на Арбате») или со словом «район»: «рядом с
+# Арбатом» — расстояние, а не район. Прилагательные («Басманный», «Тверской») и названия,
+# совпадающие с аэропортом, вокзалом или шоссе, — только со словом «район». Округ («в ЦАО»,
+# «в Новой Москве», «в Зеленограде») — все его районы.
+def _moscow_areas() -> list[dict]:
+    path = Path(__file__).with_name("moscow_areas.json")
+    return json.loads(path.read_text("utf-8")) if path.exists() else []
+
+
+MOSCOW_AREA_LIST = _moscow_areas()
+MOSCOW_AREAS = frozenset(a["id"] for a in MOSCOW_AREA_LIST)
+AREA_NAMES = {a["id"]: a["name"] for a in MOSCOW_AREA_LIST}
+# Совпадают с аэропортом или станцией метро: только «район Сокол», «Аэропорт район», без падежа
+# («в районе аэропорта» — про аэропорт, а не про район).
+_DISTRICT_ONLY = {"аэропорт", "внуково", "сокол", "проспект вернадского"}
+_OKRUG_WORDS = {
+    "ЦАО": r"цао|центральн\w*\s+(?:административн\w*\s+)?округ\w*",
+    "САО": r"сао", "СВАО": r"свао", "ВАО": r"вао", "ЮВАО": r"ювао", "ЮАО": r"юао",
+    "ЮЗАО": r"юзао", "ЗАО": r"зао", "СЗАО": r"сзао", "ЗелАО": r"зелао|зеленоград\w*",
+    "НАО": r"нао|нов\w+\s+москв\w*", "ТАО": r"тао|нов\w+\s+москв\w*",
+}  # fmt: skip
+_SIDES = ("северн", "южн", "восточн", "западн", "центральн")
+# Как говорят о районе в городе, а не по названию в реестре.
+_MOSCOW_ALIASES = [
+    (r"\bна\s+таганк\w{0,2}\b", "taganskiy"),
+    (r"\bна\s+пресн\w{0,2}\b", "presnenskiy"),
+    (r"\bна\s+патриарш\w*", "presnenskiy"),
+]
+
+
+def _stem(word: str) -> str:
+    """Основа слова названия: окончание падежа — до трёх букв после неё (`\\w{0,3}`)."""
+    if re.search(r"(?:ый|ий|ой|ое|ая)$", word):
+        return word[:-2]
+    return word[:-1] if word[-1] in "аеиоуыяюь" and len(word) > 3 else word
+
+
+def _district_patterns() -> list[tuple[str, tuple[str, ...]]]:
+    out: list[tuple[str, tuple[str, ...]]] = []
+    named = [(a, [_stem(w) for w in normalize(a["name"]).replace("-", " ").split()])
+             for a in MOSCOW_AREA_LIST]  # fmt: skip
+    single = {stems[0] for _, stems in named if len(stems) == 1}
+    district = r"район\w*"
+    for a, words in named:
+        stems = [rf"{re.escape(w)}\w{{0,3}}" for w in words]
+        name = r"[\s-]+".join(stems)
+        if len(stems) == 2:  # «Чертаново Северное» — и «в Северном Чертанове»
+            name = rf"(?:{name}|{stems[1]}\s+{stems[0]})"
+        else:  # «в Марьино», но не «в Марьиной Роще»
+            longer = [w[1] for _, w in named if len(w) > 1 and w[0] == words[0]]
+            name += "".join(rf"(?!\s+{re.escape(w)})" for w in longer)
+        adjective = len(words) == 1 and re.search(r"(?:ый|ий|ой)$", normalize(a["name"]))
+        if normalize(a["name"]) in _DISTRICT_ONLY:
+            exact = re.escape(normalize(a["name"]))
+            pattern = rf"\b{exact}\s+{district}|\b{district}\s+{exact}"
+        elif adjective:
+            pattern = rf"\b{name}\s+{district}|\b{district}\s+{name}"
+        else:
+            pattern = rf"\b(?:в|во|на)\s+(?:{district}\s+)?{name}|\b{name}\s+{district}"
+        out.append((rf"(?:{pattern})\b(?!\s+област)", (a["id"],)))
+    # Общее слово нескольких районов: «в Бутово» — Северное и Южное, «в Чертаново» — все три.
+    family: dict[str, list[str]] = {}
+    for a, words in named:
+        core = [w for w in words if not w.startswith(_SIDES)]
+        if len(words) > 1 and core and core[0] not in single:
+            family.setdefault(core[0], []).append(a["id"])
+    for word, ids in family.items():
+        if len(ids) > 1:
+            out.append((rf"\b(?:в|во|на)\s+{re.escape(word)}\w{{0,3}}\b", tuple(ids)))
+    # Первое слово двойного названия: «в Тропарёво», «в Выхино», «в Филях»; «Ново-» — приставка
+    # («на Новом Арбате» — не Ново-Переделкино).
+    for a, words in named:
+        first = words[0]
+        if (
+            "-" in a["name"]
+            and len(words) == 2
+            and first not in single
+            and first != "нов"
+            and len(family.get(first, [])) < 2
+        ):
+            out.append((rf"\b(?:в|во|на)\s+{re.escape(first)}\w{{0,3}}\b", (a["id"],)))
+    for pattern, area_id in _MOSCOW_ALIASES:
+        if area_id in MOSCOW_AREAS:
+            out.append((pattern, (area_id,)))
+    for okrug, words in _OKRUG_WORDS.items():
+        ids = tuple(a["id"] for a in MOSCOW_AREA_LIST if a["okrug"] == okrug)
+        if ids:
+            out.append((rf"\b(?:в|во|на)\s+(?:{words})\b", ids))
+    return out
+
+
+MOSCOW_AREA_PATTERNS = _district_patterns()
+
+
+def area_city(ids: list[str]) -> str | None:
+    """Город по районам из запроса: районы Сочи и Москвы не пересекаются."""
+    if any(a in MOSCOW_AREAS for a in ids):
+        return "moscow"
+    return "sochi" if any(a in SOCHI_AREAS for a in ids) else None
+
+
+def areas(text: str, city: str | None = None) -> tuple[list[str], list[str], list[tuple[int, int]]]:
+    """Районы города в запросе: (нужны, исключены, куски текста). «Не в Адлере» — исключение.
+    Город не назван — ищем районы Сочи и Москвы."""
+    norm = normalize(text)
+    want: list[str] = []
+    skip: list[str] = []
+    spans: list[tuple[int, int]] = []
+    patterns = [(p, (a,)) for p, a in AREAS] if city in (None, "sochi") else []
+    if city in (None, "moscow"):
+        patterns += MOSCOW_AREA_PATTERNS
+    for pattern, ids in patterns:
+        for m in re.finditer(pattern, norm):
+            before = _NOT_AREA.search(norm, max(0, m.start() - 12), m.start())
+            target = skip if before else want
+            target.extend(a for a in ids if a not in target)
+            spans.append((before.start() if before else m.start(), m.end()))
+    return [a for a in want if a not in skip], skip, spans
+
+
+# Тип жилья словами гостя → `kind` отеля со страницы Островка. «Отель», «гостиница» — общее
+# слово, не тип: фильтра нет. «Горнолыжный курорт» — район (AREAS), не тип «курорт».
+KINDS = [
+    (r"\bхостел\w*", ("HOSTEL",)),
+    (r"\bапартамент\w*|\bквартир\w*|апарт-?отел\w*", ("APARTMENT", "APART_HOTEL")),
+    (r"гостев\w+\s+дом\w*|гестхаус\w*", ("GUESTHOUSE", "LODGING_HOUSES")),
+    (r"мини-?(?:отел|гостиниц)\w*", ("MINI_HOTEL",)),
+    (r"бутик-?(?:отел|гостиниц)\w*", ("BOUTIQUE",)),
+    (r"\bвилл\w*|\bкоттедж\w*|\bбунгало\b|\bдомик\w*|дом\s+целиком",
+     ("VILLA_AND_BUNGALOWS", "COTTAGE")),
+    (r"\bсанатори\w*", ("SANATORIUM",)),
+    (r"\bкемпинг\w*|\bглэмпинг\w*", ("CAMPING",)),
+]  # fmt: skip
+_STARS = re.compile(
+    r"(?P<n>[1-5]|одн\w+|дв\w+|тр[её]х|четыр[её]х|пят\w+)\s*(?:-?\s*)?(?:звезд\w*|\*|★)"
+    r"|(?P<w>одно|двух|тр[её]х|четыр[её]х|пяти)звездочн\w*"
+)
+_STAR_WORDS = {"одн": 1, "дв": 2, "тр": 3, "чет": 4, "пят": 5}
+
+
+def kinds_and_stars(text: str) -> tuple[list[str], int | None, list[tuple[int, int]]]:
+    """Тип жилья и звёзды в запросе: (типы `kind`, звёзд не меньше, куски текста). Фильтр выдачи
+    по данным страницы Островка, как город и район, а не условие."""
+    norm = normalize(text)
+    kinds: list[str] = []
+    spans: list[tuple[int, int]] = []
+    for pattern, ks in KINDS:
+        for m in re.finditer(pattern, norm):
+            kinds += [k for k in ks if k not in kinds]
+            spans.append((m.start(), m.end()))
+    stars = None
+    for m in _STARS.finditer(norm):
+        word = (m.group("n") or m.group("w") or "").replace("ё", "е")
+        n = (
+            int(word)
+            if word.isdigit()
+            else next((v for k, v in _STAR_WORDS.items() if word.startswith(k)), None)
+        )
+        if n:
+            stars = max(stars or 0, n)
+            spans.append((m.start(), m.end()))
+    return kinds, stars, spans
 
 
 @dataclass
@@ -262,7 +462,12 @@ OUTDOOR = re.compile(r"снаружи|на улице|уличн\w*|дорог\w
 
 @rule
 def quiet(ctx: Ctx) -> Iterator[Hit]:
-    for m in finditer(r"\b(?:тих\w*|тишин\w*|потише)\b", ctx):
+    # «Чтобы не было шумно ночью», «без шума», «не шумный район» — то же, что «тихий».
+    pattern = (
+        r"\b(?:тих\w*|тишин\w*|потише|без\s+шума"
+        r"|не\s+(?:было\s+|будет\s+|слишком\s+|очень\s+|так\s+)?шумн\w*)\b"
+    )
+    for m in finditer(pattern, ctx):
         sent = ctx.sentence(m.start())
         if OUTDOOR.search(sent):
             context = ctx.matches_in_sentence(OUTDOOR, m.start())
@@ -396,6 +601,21 @@ def far_from_road(ctx: Ctx) -> Iterator[Hit]:
     far = r"подальше|далеко|далек\w*|вдали|в\s+стороне|не\s+(?:у|возле|около|рядом\s+с|близко\s+к)"
     for m in finditer(rf"\b(?:{far})\s+(?:от\s+)?{road}", ctx):
         atom = Atom("N02", "distance_m", "gte", str(QUIET_ROAD_M), "m", importance="medium")
+        yield Hit(m.start(), m.end(), [atom], "desired")
+
+
+@rule
+def far_from_rail(ctx: Ctx) -> Iterator[Hit]:
+    """«Далеко от железной дороги», «не у ж/д», «без поездов под окном» → N03 не ближе
+    `QUIET_RAIL_M` (поезда слышно дальше, чем машины)."""
+    rail = (
+        r"(?:железн\w+\s+дорог\w*|ж/?д\b|железнодорожн\w+\s+(?:пут\w*|полотн\w*|линии\w*)"
+        r"|рельс\w*|электричк\w*)"
+    )
+    far = r"подальше|далеко|далек\w*|вдали|не\s+(?:у|возле|около|рядом\s+с|близко\s+к)"
+    pattern = rf"\b(?:{far})\s+(?:от\s+)?{rail}|без\s+поездов(?:\s+под\s+окн\w+)?"
+    for m in finditer(pattern, ctx):
+        atom = Atom("N03", "distance_m", "gte", str(QUIET_RAIL_M), "m", importance="medium")
         yield Hit(m.start(), m.end(), [atom], "desired")
 
 
@@ -540,6 +760,30 @@ def public_transport(ctx: Ctx) -> Iterator[Hit]:
 
 # --- Места рядом ---
 
+# Часы места в словах гостя: «круглосуточная аптека», «аптека, открытая ночью».
+_OPEN_BEFORE = r"(?:(?:круглосуточн|ночн|дежурн|открыт|работающ)\w*\s+)?"
+_OPEN_AFTER = (
+    r"(?:,?\s+(?:открыт\w*|работающ\w*)(?:\s+(?:ночью|круглосуточно|допоздна|поздно))?"
+    r"|\s+(?:ночью|круглосуточно|допоздна))?"
+)
+_NEAR_AFTER = r"(?:\s+(?:рядом|поблизости|недалеко|неподалеку))?"
+
+
+def open_moment(ctx: Ctx, words: str, arrival: bool = True) -> dict[str, str]:
+    """Когда место должно работать (`core/place_features.py` проверит часы OSM): дата и час
+    поездки (`arrival_local`) или только час (`time_local`, любой день недели); без них —
+    «ночью» / «поздно» в словах самого места. Ветклиника, коворкинг и детская неотложка нужны
+    не в момент приезда (`arrival=False`): для них — только слова самого места."""
+    if arrival and ctx.arrival_local:
+        return {"arrival_local": ctx.arrival_local}
+    if arrival and ctx.time_local:
+        return {"time_local": ctx.time_local}
+    if re.search(r"ноч|круглосуточн|полуноч|дежурн", words):
+        return {"time_local": NIGHT_LOCAL}
+    if re.search(r"поздн|поздно|допоздна", words):
+        return {"time_local": LATE_LOCAL}
+    return {}
+
 
 @rule
 def food_open(ctx: Ctx) -> Iterator[Hit]:
@@ -550,31 +794,95 @@ def food_open(ctx: Ctx) -> Iterator[Hit]:
         r"(?:\s+в\s+пешей\s+доступности)?"
     )
     for m in finditer(pattern, ctx):
-        params = {"arrival_local": ctx.arrival_local} if ctx.arrival_local else {}
+        params = open_moment(ctx, m.group())
         atom = Atom("L02", "distance_m", "lte", str(NEAR_FOOD_M), "m", params)
         yield Hit(m.start(), m.end(), [atom], "desired")
 
 
 @rule
 def pharmacy(ctx: Ctx) -> Iterator[Hit]:
+    for m in finditer(rf"{_OPEN_BEFORE}аптек\w*{_OPEN_AFTER}{_NEAR_AFTER}", ctx):
+        params = open_moment(ctx, m.group())
+        atom = Atom("L01", "distance_m", "lte", str(NEAR_PHARMACY_M), "m", params)
+        yield Hit(m.start(), m.end(), [atom], "desired")
+
+
+@rule
+def supermarket(ctx: Ctx) -> Iterator[Hit]:
+    """Супермаркет L03: «открытый супермаркет рядом», «круглосуточный магазин», «продуктовый»."""
+    shop = (
+        r"(?:супермаркет\w*|гипермаркет\w*|продуктов\w+(?:\s+магазин\w*)?"
+        r"|магазин\w*\s+(?:с\s+)?продукт\w*|магазин\w*\s+у\s+дома)"
+    )
     pattern = (
-        r"(?:круглосуточн\w+\s+|ночн\w+\s+|открыт\w+\s+)?аптек\w*(?:,?\s+открыт\w+)?"
-        r"(?:\s+(?:рядом|поблизости|недалеко))?"
+        rf"{_OPEN_BEFORE}{shop}{_OPEN_AFTER}{_NEAR_AFTER}"
+        rf"|круглосуточн\w+\s+магазин\w*{_NEAR_AFTER}"
     )
     for m in finditer(pattern, ctx):
-        params = {"arrival_local": ctx.arrival_local} if ctx.arrival_local else {}
-        atom = Atom("L01", "distance_m", "lte", str(NEAR_PHARMACY_M), "m", params)
+        params = open_moment(ctx, m.group())
+        atom = Atom("L03", "distance_m", "lte", str(NEAR_SUPERMARKET_M), "m", params)
         yield Hit(m.start(), m.end(), [atom], "desired")
 
 
 @rule
 def vet(ctx: Ctx) -> Iterator[Hit]:
     pattern = (
-        r"ветклиник\w*(?:\s+(?:недалеко|рядом|поблизости))?"
-        r"|ветеринарн\w*\s+(?:клиник\w*|лечебниц\w*|врач\w*|помощ\w*)|ветеринар\w*"
+        rf"{_OPEN_BEFORE}(?:ветклиник\w*|ветеринарн\w*\s+(?:клиник\w*|лечебниц\w*|врач\w*"
+        rf"|помощ\w*)|ветеринар\w*){_OPEN_AFTER}{_NEAR_AFTER}"
     )
     for m in finditer(pattern, ctx):
-        atom = Atom("P04", "distance_m", "lte", str(NEAR_VET_M), "m")
+        params = open_moment(ctx, m.group(), arrival=False)
+        atom = Atom("P04", "distance_m", "lte", str(NEAR_VET_M), "m", params)
+        yield Hit(m.start(), m.end(), [atom], "desired")
+
+
+@rule
+def dog_walk(ctx: Ctx) -> Iterator[Hit]:
+    """Место, где официально можно выгуливать собаку, P03 (`leisure=dog_park`): «площадка для
+    выгула собак», «собачья площадка», «где гулять с собакой». Длиннее «площадки» (F01) и «с
+    собакой» (P01) — пересечение решается в их пользу этого правила."""
+    pattern = (
+        r"(?:площадк\w*|мест\w*|зон\w*|парк\w*)\s+для\s+(?:выгула|прогулок|собак\w*)"
+        r"(?:\s+(?:с\s+)?(?:собак\w*|пс\w*|питомц\w*))?"
+        r"|собачь\w+\s+(?:площадк\w*|парк\w*)|дог-?\s?парк\w*"
+        r"|где\s+(?:можно\s+)?(?:гулять|погулять|выгуливать)\s+(?:с\s+)?(?:собак\w*|пс\w*|питомц\w*)"
+        r"|выгул\w*\s+(?:собак\w*|пс\w*|питомц\w*)"
+    )
+    for m in finditer(rf"(?:{pattern}){_NEAR_AFTER}", ctx):
+        if "прогулок" in m.group() and not re.search(r"собак|пс|питомц", m.group()):
+            continue  # «площадка для прогулок» без собаки — не про выгул
+        atom = Atom("P03", "distance_m", "lte", str(NEAR_DOG_AREA_M), "m", {"animal": "dog"})
+        yield Hit(m.start(), m.end(), [atom], "desired")
+
+
+@rule
+def coworking(ctx: Ctx) -> Iterator[Hit]:
+    """Коворкинг, куда пускают с улицы, R04 (`amenity=coworking_space`, `office=coworking`)."""
+    for m in finditer(rf"{_OPEN_BEFORE}коворкинг\w*{_OPEN_AFTER}{_NEAR_AFTER}", ctx):
+        params = open_moment(ctx, m.group(), arrival=False)
+        atom = Atom("R04", "distance_m", "lte", str(NEAR_COWORKING_M), "m", params)
+        yield Hit(m.start(), m.end(), [atom], "desired")
+
+
+@rule
+def child_emergency(ctx: Ctx) -> Iterator[Hit]:
+    """Детская неотложная помощь F02: «детская больница с неотложкой», «детский травмпункт».
+    Раньше правила мест словаря: при равной длине «рядом детская больница» — это F02, а не
+    «больница рядом». «Детская поликлиника» — не неотложка: её берёт словарь мест."""
+    child = (
+        r"детск\w+\s+(?:больниц\w*|неотложк\w*|неотложн\w+\s+помощ\w*|травмпункт\w*"
+        r"|скор\w+\s+помощ\w*|приемн\w+\s+(?:поко\w*|отделени\w*)|стационар\w*|врач\w*)"
+        r"|неотложн\w+\s+(?:помощ\w*\s+)?(?:для\s+)?(?:детей|ребенк\w*|малыш\w*)"
+        r"|педиатр\w*\s+неотложк\w*"
+    )
+    service = (
+        r"(?:\s+(?:с|со)\s+(?:круглосуточн\w+\s+)?(?:неотложк\w*|неотложн\w+\s+помощ\w*"
+        r"|приемн\w+\s+(?:поко\w*|отделени\w*)|травмпункт\w*))?"
+    )
+    near = r"(?:(?:рядом|недалеко|поблизости|неподалеку|возле|около)\s+(?:(?:с|со|от)\s+)?)?"
+    for m in finditer(rf"{near}(?:{child}){service}{_NEAR_AFTER}", ctx):
+        params = open_moment(ctx, m.group(), arrival=False)
+        atom = Atom("F02", "distance_m", "lte", str(NEAR_CHILD_ER_M), "m", params)
         yield Hit(m.start(), m.end(), [atom], "desired")
 
 
@@ -999,10 +1307,78 @@ def wifi(ctx: Ctx) -> Iterator[Hit]:
         yield Hit(m.start(), m.end(), [atom], "desired")
 
 
+# «Старинное / историческое / дореволюционное здание» — год постройки корпуса до 1917.
+OLD_BUILDING_YEAR = 1917
+
+
+@rule
+def old_building(ctx: Ctx) -> Iterator[Hit]:
+    pattern = (
+        r"(?:старинн|историческ|дореволюционн|стар)\w+\s+(?:здани|дом|особняк|усадьб)\w*"
+        r"|(?:здани|дом|особняк)\w*\s+(?:XIX|19)\s+век\w*"
+    )
+    for m in finditer(pattern, ctx):
+        atom = Atom("H01", "year", "lte", str(OLD_BUILDING_YEAR))
+        yield Hit(m.start(), m.end(), [atom], "desired")
+
+
+@rule
+def heritage(ctx: Ctx) -> Iterator[Hit]:
+    """«Памятник архитектуры», «объект (культурного) наследия», «охраняемое здание» — H02."""
+    pattern = (
+        r"памятник\w*\s+архитектур\w*|объект\w*\s+(?:культурного\s+)?наследи\w*"
+        r"|охраняем\w+\s+(?:государством\s+)?здани\w*"
+    )
+    for m in finditer(pattern, ctx):
+        yield Hit(m.start(), m.end(), [Atom("H02", "heritage", "eq", "true")], "desired")
+
+
 @rule
 def built_before(ctx: Ctx) -> Iterator[Hit]:
     for m in finditer(r"(?:построен\w*|постройки)\s+до\s+(?P<y>\d{4})(?:\s+года)?", ctx):
         yield Hit(m.start(), m.end(), [Atom("H01", "year", "lt", m.group("y"))], "required")
+
+
+def _forecast(ctx: Ctx) -> bool:
+    """Даты поездки в горизонте прогноза: «без дождя» — прогноз на день заезда, а не климат."""
+    return bool(ctx.date_from) and 0 <= (ctx.date_from - ctx.today).days <= FORECAST_DAYS
+
+
+@rule
+def weather(ctx: Ctx) -> Iterator[Hit]:
+    """«Тепло», «не жарко», «без дождей» — климат месяца (C01–C03); на ближайшие даты «без
+    дождя» — прогноз осадков (C04). «Чистый воздух» и «спокойное море» — только прогноз (E01,
+    B03): на дальние даты его ещё нет, и ответ честно «неизвестно». Без месяца — уточняем даты."""
+    month = ctx.month or (ctx.date_from.month if ctx.date_from else None)
+    by_month = {"month": str(month)} if month else {}
+    by_date = {"date": ctx.date_from.isoformat()} if ctx.date_from else {}
+    clarify = [] if month else [_need_dates()]
+    rules = [
+        (r"(?<![\w-])(?:тепл(?:о|ая\s+погод\w*|ой\s+погод\w*|ую\s+погод\w*)|теплее)(?![\w-])",
+         Atom("C01", "mean", "gte", str(WARM_C), "°C", by_month)),
+        (r"не\s+(?:слишком\s+|очень\s+|так\s+)?жарк\w*|без\s+(?:сильной\s+)?жары",
+         Atom("C03", "mean", "lte", str(HOT_DAYS_MAX), "days/month", by_month)),
+        (r"чист\w+\s+воздух\w*|свеж\w+\s+воздух\w*|без\s+смога",
+         Atom("E01", "pm25", "lte", str(PM25_MAX), "µg/m3", by_date)),
+        (r"спокойн\w+\s+мор\w*|без\s+(?:больших\s+)?волн\w*|без\s+шторм\w*",
+         Atom("B03", "hs_m", "lte", str(CALM_SEA_HS_M), "m", by_date)),
+    ]  # fmt: skip
+    rain = (
+        r"без\s+дожд\w*|мало\s+дожд\w*|(?:чтобы\s+)?не\s+было\s+дожд\w*|не\s+дождлив\w*"
+        r"|без\s+осадков|сух\w+\s+погод\w*"
+    )
+    if _forecast(ctx):
+        rules.append((rain, Atom("C04", "probability_percent", "lte", str(RAIN_PROBABILITY_MAX),
+                                 "%", by_date)))  # fmt: skip
+    else:
+        rules.append((rain, Atom("C02", "mean", "lte", str(RAINY_DAYS_MAX), "days/month",
+                                 by_month)))  # fmt: skip
+    for pattern, atom in rules:
+        need = clarify if atom.feature_id in ("C01", "C02", "C03") else []
+        if atom.feature_id in ("C04", "E01", "B03") and not ctx.date_from:
+            need = [_need_dates()]
+        for m in finditer(pattern, ctx):
+            yield Hit(m.start(), m.end(), [atom], "desired", need)
 
 
 @rule
@@ -1033,6 +1409,11 @@ def _context(ctx: Ctx) -> tuple[str, int]:
         for m in finditer(pattern, ctx):
             city = city or city_id
             ctx.context.append((m.start(), m.end()))
+    # Район Сочи или Москвы — фильтр поиска (`QueryAST.areas`), а не условие: кусок понят.
+    want, skip, spans = areas(ctx.raw, city or None)
+    city = city or area_city(want + skip) or ""
+    ctx.context.extend(spans)
+    ctx.context.extend(kinds_and_stars(ctx.raw)[2])  # тип жилья и звёзды — тоже фильтр
     year_re = r"(?:\s+(?P<y>\d{4})(?:\s*(?:года|г\.?|-го))?)?"
     dates = rf"(?P<d1>\d{{1,2}})(?:\s*[–-]\s*(?P<d2>\d{{1,2}}))?\s+{MONTH_RE}{year_re}"
     for m in finditer(dates, ctx):
@@ -1049,7 +1430,7 @@ def _context(ctx: Ctx) -> tuple[str, int]:
     # Длина поездки — для оформления, не условие поиска: «на две ночи», «на неделю».
     stay = (
         r"\bна\s+(?:\d+|одну|одни|две|три|четыре|пять|несколько)\s+(?:ноч\w*|сут\w*|дн\w*)"
-        r"|\bна\s+неделю\b"
+        r"|\bна\s+неделю\b|\b(?:на|для)\s+\d+\s+(?:человек\w*|гост\w*|взросл\w*)"
     )
     for m in finditer(stay, ctx):
         ctx.context.append((m.start(), m.end()))

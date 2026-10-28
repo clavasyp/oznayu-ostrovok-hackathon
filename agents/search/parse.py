@@ -30,7 +30,7 @@ from agents.search.compact import (
 )
 from agents.search.negation import negate
 from agents.search.prompt import system_prompt, user_prompt
-from agents.search.rules import parse_rules
+from agents.search.rules import areas, kinds_and_stars, parse_rules
 from agents.search.text import find_span, normalize
 from agents.search.validate import problems
 
@@ -70,7 +70,9 @@ def parse_query(
     catalog = load_catalog()
     today = today or date.today()
     compact, spans = parse_rules(text, catalog, today)
-    rules_ast = to_full_ast(compact, text, catalog, parsed_by="rules", city_id=city_id, spans=spans)
+    rules_ast = with_areas(
+        to_full_ast(compact, text, catalog, parsed_by="rules", city_id=city_id, spans=spans), text
+    )
     rules_problems = problems(rules_ast, catalog)
     if rules_problems:  # ошибка в правилах — это баг, но запрос всё равно обслуживаем
         log.error("rules ast problems: %s", rules_problems)
@@ -119,6 +121,7 @@ def parse_query(
     else:
         # Режим llm — или ошибка в разборе правил: тогда объединять не с чем, модель целиком.
         ast = to_full_ast(done.value, text, catalog, parsed_by="llm", city_id=city_id)
+    ast = with_areas(ast, text)
     errs = problems(ast, catalog)
     if errs:
         log.warning("llm ast problems: %s", errs)
@@ -129,6 +132,19 @@ def parse_query(
     if len(_cache) > CACHE_SIZE:
         _cache.popitem(last=False)
     return ParseOutcome(ast, notes, llm=done.result)
+
+
+def with_areas(ast: QueryAST, text: str) -> QueryAST:
+    """Районы Сочи и Москвы («в Адлере», «в горах», «в Хамовниках», «не в ЦАО») — по словам
+    гостя правилами, при любом разборе: модели их не перепоручаем, фильтр по `subzone_id` отелей
+    простой и проверяемый."""
+    kinds, stars, _ = kinds_and_stars(text)
+    if kinds or stars:
+        ast = ast.model_copy(update={"kinds": kinds, "stars_min": stars})
+    if ast.city_id not in (None, "sochi", "moscow"):
+        return ast
+    want, skip, _ = areas(text, ast.city_id)
+    return ast.model_copy(update={"areas": want, "exclude_areas": skip}) if want or skip else ast
 
 
 def merge_rest(

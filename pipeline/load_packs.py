@@ -403,9 +403,15 @@ def restore_placements(conn: Connection, kept: list[dict[str, Any]]) -> tuple[in
     return restored, dropped
 
 
-def _mark(kind: str, row: dict[str, Any], pack_version: str) -> dict[str, Any]:
+def _mark(
+    kind: str, row: dict[str, Any], pack_version: str, built_at: datetime | None = None
+) -> dict[str, Any]:
     if kind == "facts":
         row["extra"] = row.get("extra", {}) | {"pack": pack_version}
+        if built_at and not row.get("calculated_at") and not row.get("observed_at"):
+            # У значения нет своей даты (маршруты v9 и Севы): дата — сборка пакета, с пометкой.
+            row["calculated_at"] = built_at
+            row["extra"]["date_kind"] = "pack_built_at"
     elif kind == "placement_sets":  # набор из пакета: новая версия пакета его заменяет
         row["source"] = (row.get("source") or {}) | {"pack": pack_version}
     elif kind == "ota_comparisons":
@@ -474,7 +480,7 @@ def load_pack(
         with bulk_relationships(conn, model, bulk and not upsert.get(kind)):
             for f in files:
                 rows = (
-                    _mark(kind, build(r), manifest.pack_version)
+                    _mark(kind, build(r), manifest.pack_version, manifest.built_at)
                     for r in iter_jsonl(pack_dir / f.path)
                 )
                 if upsert.get(kind):

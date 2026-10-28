@@ -4,15 +4,17 @@
 
 from __future__ import annotations
 
+import time
 from collections import defaultdict
-from collections.abc import Collection
+from collections.abc import Callable, Collection
 from datetime import datetime
 from typing import Any
 
-from sqlalchemy import Engine, delete, func, select, update
+from sqlalchemy import Engine, delete, func, select, text, update
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.orm import Session
 
+from core import freshness, live
 from core.db import (
     Building,
     City,
@@ -120,6 +122,9 @@ def hotel_dict(h: Hotel) -> dict[str, Any]:
     }
 
 
+FRESHNESS_TTL_S = 600
+
+
 class DbStore:
     stub = False
 
@@ -146,6 +151,41 @@ class DbStore:
                 # Полная глубина (Сочи, Москва) — первыми, дальше по названию (D36).
                 for c in s.scalars(select(City).order_by(City.depth.desc(), City.name))
             ]
+
+    def freshness(self, city_id: str, as_of: datetime) -> list[dict[str, Any]]:
+        """Свежесть одним запросом: срок — свой `refresh_after` (дата строкой в JSONB) или дата
+        значения + срок по виду данных (`core.freshness.MAX_AGE_DAYS`). Запрос идёт по всем
+        фактам города (в Сочи — 630 тыс.), поэтому ответ на дату кешируется на 10 минут."""
+        cache = self.__dict__.setdefault("_freshness", {})
+        key = (city_id, as_of.date().isoformat())
+        hit = cache.get(key)
+        if hit and time.monotonic() - hit[0] < FRESHNESS_TTL_S:
+            return hit[1]
+        days = " ".join(f"WHEN '{k}' THEN {v}" for k, v in freshness.MAX_AGE_DAYS.items())
+        sql = text(f"""
+            WITH f AS (
+              SELECT feature_id, status, coalesce(algorithm_version, recipe_id, '') AS recipe,
+                     coalesce(calculated_at, observed_at) AS dated,
+                     coalesce(
+                       CASE WHEN refresh_after #>> '{{}}' ~ '^\\d{{4}}-\\d{{2}}-\\d{{2}}'
+                            THEN (refresh_after #>> '{{}}')::timestamptz END,
+                       valid_to,
+                       coalesce(calculated_at, observed_at)
+                         + make_interval(days => CASE status {days} END)
+                     ) AS due
+              FROM fact
+              WHERE city_id = :city AND is_current AND status <> 'unknown'
+            )
+            SELECT feature_id, status, recipe, count(*) AS n, min(dated) AS oldest,
+                   min(due) AS next_due, count(*) FILTER (WHERE due <= :as_of) AS stale
+            FROM f GROUP BY 1, 2, 3
+            ORDER BY stale DESC, next_due NULLS LAST, feature_id
+        """)  # noqa: S608 — подставляются только константы MAX_AGE_DAYS
+        with self._session() as s:
+            rows = s.execute(sql, {"city": city_id, "as_of": as_of}).all()
+        out = [freshness.row(*r) for r in rows]
+        cache[key] = (time.monotonic(), out)
+        return out
 
     def coverage(self, city_id: str) -> list[dict[str, Any]] | None:
         with self._session() as s:
@@ -196,7 +236,7 @@ class DbStore:
     def fact(self, fact_id: str) -> Fact | None:
         with self._session() as s:
             row = s.get(FactRow, fact_id)
-            return fact_from_row(row) if row else None
+            return fact_from_row(row) if row else live.recent(fact_id)
 
     def facts_for(
         self,
@@ -328,9 +368,13 @@ class DbStore:
         return GeoStore(self.engine).geometry(hotel_id)
 
     def nearest_places(
-        self, hotel_ids: Collection[str], category: str, radius_m: float
+        self,
+        hotel_ids: Collection[str],
+        category: str,
+        radius_m: float,
+        rank: Callable[[dict[str, Any]], int | None] | None = None,
     ) -> tuple[dict[str, dict[str, Any]], int]:
-        return GeoStore(self.engine).nearest(list(hotel_ids), category, radius_m)
+        return GeoStore(self.engine).nearest(list(hotel_ids), category, radius_m, rank)
 
     def place_counts(
         self, hotel_ids: Collection[str], category: str, radius_m: float

@@ -12,10 +12,10 @@ x-app: &app
   environment:
     DATA_MODE: ${DATA_MODE:-db}
     DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-oznayu}:${POSTGRES_PASSWORD:-oznayu}@db:5432/${POSTGRES_DB:-oznayu}
-    LLM_PROVIDER: ${LLM_PROVIDER:-anthropic}
+    LLM_PROVIDER: ${LLM_PROVIDER:-openai_compat}
     LLM_MODEL: ${LLM_MODEL:-claude-opus-5-5}
     LLM_API_KEY: ${LLM_API_KEY:-}
-    LLM_BASE_URL: ${LLM_BASE_URL:-}
+    LLM_BASE_URL: ${LLM_BASE_URL:-https://api.anthropic.com/v1/}
     LLM_EFFORT: ${LLM_EFFORT:-low}
     LLM_TIMEOUT_S: ${LLM_TIMEOUT_S:-20}
     LLM_MAX_RETRIES: ${LLM_MAX_RETRIES:-1}
@@ -26,6 +26,8 @@ x-app: &app
     LLM_FALLBACK_BASE_URL: ${LLM_FALLBACK_BASE_URL:-}
     # Прогрев кеша базы запросами показа в фоне после загрузки пакетов (первый поиск не ждёт диска).
     WARMUP: ${WARMUP:-1}
+    # Необязательно: время на общественном транспорте по 2ГИС на запросе (core/transit.py).
+    TWOGIS_API_KEY: ${TWOGIS_API_KEY:-}
 
 services:
   db:

@@ -4,7 +4,7 @@
   "city_name": "Большой Сочи",
   "timezone": "Europe/Moscow",
   "depth": "full",
-  "pack_version": "category-supplement.2-36311c2fd6d9+f389570b",
+  "pack_version": "category-supplement.2-36311c2fd6d9+b195a35c",
   "built_at": "2026-10-28T03:00:00Z",
   "code_version": "category-supplement.2",
   "catalog_version": "ostrovok-2026-10-24+v9",
@@ -99,6 +99,131 @@
       ]
     },
     {
+      "id": "hotel_amenities:ostrovok_site",
+      "provider": "ostrovok.ru",
+      "release": "snapshot_2026-10-24",
+      "sha256": "b119459f669384ab6a8abf66e1e1b95af7c3063e082a1a91d6c962272ec4554f",
+      "license": "Страницы Островка; сбор разрешён организаторами (D24)",
+      "layer": "data/hotel_amenities.jsonl.gz"
+    },
+    {
+      "id": "environment:open-meteo-era5",
+      "provider": "Open-Meteo Historical Weather API (ERA5)",
+      "url": "https://open-meteo.com/en/docs/historical-weather-api",
+      "license": "CC BY 4.0; бесплатный API — только разовая сборка на хакатоне (D22)",
+      "commercial_ok": false,
+      "layer": "data/environment.jsonl.gz"
+    },
+    {
+      "id": "environment:esa-worldcover-2021",
+      "provider": "ESA WorldCover",
+      "url": "https://esa-worldcover.org/",
+      "release": "v200 2021",
+      "license": "CC BY 4.0",
+      "commercial_ok": true,
+      "layer": "data/environment.jsonl.gz"
+    },
+    {
+      "id": "building_links_buildings:osm",
+      "provider": "OpenStreetMap/Geofabrik",
+      "url": "https://download.geofabrik.de/russia/south-fed-district-latest.osm.pbf",
+      "release": "2026-10-22T20:21:33Z",
+      "sha256": "242254bbd0c250e4fab8c1b70e77d6ff6ccfa6dde9498134e0019698cf6f2ee6",
+      "license": "ODbL-1.0",
+      "commercial_ok": true,
+      "fetched_at": "2026-10-23T16:42:36.604455Z",
+      "method": "building-links.1",
+      "raw_manifest_sha256": "09b0c0baeb36dd129faa5d9aee65f279472c390e57db01cf729686339b8d2a86",
+      "layer": "data/buildings_auto_point.jsonl.gz"
+    },
+    {
+      "id": "building_links_facades:osm",
+      "provider": "OpenStreetMap/Geofabrik",
+      "url": "https://download.geofabrik.de/russia/south-fed-district-latest.osm.pbf",
+      "release": "2026-10-22T20:21:33Z",
+      "sha256": "242254bbd0c250e4fab8c1b70e77d6ff6ccfa6dde9498134e0019698cf6f2ee6",
+      "license": "ODbL-1.0",
+      "commercial_ok": true,
+      "fetched_at": "2026-10-23T16:42:36.604455Z",
+      "method": "building-links.1",
+      "raw_manifest_sha256": "09b0c0baeb36dd129faa5d9aee65f279472c390e57db01cf729686339b8d2a86",
+      "layer": "data/facades_auto_point.jsonl.gz"
+    },
+    {
+      "id": "building_links_links:osm",
+      "provider": "OpenStreetMap/Geofabrik",
+      "url": "https://download.geofabrik.de/russia/south-fed-district-latest.osm.pbf",
+      "release": "2026-10-22T20:21:33Z",
+      "sha256": "242254bbd0c250e4fab8c1b70e77d6ff6ccfa6dde9498134e0019698cf6f2ee6",
+      "license": "ODbL-1.0",
+      "commercial_ok": true,
+      "fetched_at": "2026-10-23T16:42:36.604455Z",
+      "method": "building-links.1",
+      "raw_manifest_sha256": "09b0c0baeb36dd129faa5d9aee65f279472c390e57db01cf729686339b8d2a86",
+      "layer": "data/hotel_buildings_auto_point.jsonl.gz"
+    },
+    {
+      "id": "building_links_facts:osm",
+      "provider": "OpenStreetMap/Geofabrik",
+      "url": "https://download.geofabrik.de/russia/south-fed-district-latest.osm.pbf",
+      "release": "2026-10-22T20:21:33Z",
+      "sha256": "242254bbd0c250e4fab8c1b70e77d6ff6ccfa6dde9498134e0019698cf6f2ee6",
+      "license": "ODbL-1.0",
+      "commercial_ok": true,
+      "fetched_at": "2026-10-23T16:42:36.604455Z",
+      "method": "building-links.1",
+      "raw_manifest_sha256": "09b0c0baeb36dd129faa5d9aee65f279472c390e57db01cf729686339b8d2a86",
+      "layer": "data/building_facts.jsonl.gz"
+    },
+    {
+      "id": "sun_hours:osm-buildings",
+      "provider": "OpenStreetMap (сцена v9)",
+      "license": "ODbL-1.0",
+      "commercial_ok": true,
+      "layer": "data/sun_hours.jsonl.gz"
+    },
+    {
+      "id": "sun_hours:copdem-glo30",
+      "provider": "Copernicus DEM GLO-30",
+      "url": "https://copernicus-dem-30m.s3.amazonaws.com/",
+      "license": "Copernicus DEM licence (free, attribution)",
+      "commercial_ok": true,
+      "layer": "data/sun_hours.jsonl.gz"
+    },
+    {
+      "id": "building_years:osm",
+      "provider": "OpenStreetMap (теги корпусов пакета)",
+      "license": "ODbL-1.0",
+      "commercial_ok": true,
+      "layer": "data/building_years.jsonl.gz"
+    },
+    {
+      "id": "heritage:wikidata",
+      "provider": "Wikidata",
+      "sha256": "562a9ce72ec23a2c244adb35205bbd3ac432523a4f909d2c4f247c854f6c742c",
+      "license": "CC0 1.0",
+      "commercial_ok": true,
+      "layer": "data/heritage.jsonl.gz"
+    },
+    {
+      "id": "beach_surface:osm",
+      "provider": "OpenStreetMap/Geofabrik (теги пляжей)",
+      "release": "2026-10-22T20:21:33Z",
+      "sha256": "242254bbd0c250e4fab8c1b70e77d6ff6ccfa6dde9498134e0019698cf6f2ee6",
+      "license": "ODbL-1.0",
+      "commercial_ok": true,
+      "layer": "data/beach_surface.jsonl.gz"
+    },
+    {
+      "id": "construction:osm",
+      "provider": "OpenStreetMap/Geofabrik (стройки)",
+      "release": "2026-10-22T20:21:33Z",
+      "sha256": "242254bbd0c250e4fab8c1b70e77d6ff6ccfa6dde9498134e0019698cf6f2ee6",
+      "license": "ODbL-1.0",
+      "commercial_ok": true,
+      "layer": "data/construction.jsonl.gz"
+    },
+    {
       "id": "view_sun:osm-buildings",
       "provider": "OpenStreetMap (сцена v9)",
       "license": "ODbL-1.0",
@@ -131,12 +256,19 @@
       "layer": "data/view_sun.jsonl.gz"
     },
     {
-      "id": "hotel_amenities:ostrovok_site",
-      "provider": "ostrovok.ru",
-      "release": "snapshot_2026-10-24",
-      "sha256": "b119459f669384ab6a8abf66e1e1b95af7c3063e082a1a91d6c962272ec4554f",
-      "license": "Страницы Островка; сбор разрешён организаторами (D24)",
-      "layer": "data/hotel_amenities.jsonl.gz"
+      "id": "mountains:osm-buildings",
+      "provider": "OpenStreetMap (сцена v9)",
+      "license": "ODbL-1.0",
+      "commercial_ok": true,
+      "layer": "data/mountains.jsonl.gz"
+    },
+    {
+      "id": "mountains:copdem-glo30",
+      "provider": "Copernicus DEM GLO-30",
+      "url": "https://copernicus-dem-30m.s3.amazonaws.com/",
+      "license": "Copernicus DEM licence (free, attribution)",
+      "commercial_ok": true,
+      "layer": "data/mountains.jsonl.gz"
     }
   ],
   "files": [
@@ -151,8 +283,8 @@
       "path": "data/coverage.jsonl.gz",
       "kind": "coverage",
       "rows": 54,
-      "bytes": 2904,
-      "sha256": "be21d71bb0a849a8b7fd4ab8a832e3c2feaa0b940911367d1b49ccd620cdf7fe"
+      "bytes": 2958,
+      "sha256": "705ccac86ec2d90df1f67120850a55f58948933ecd835981abd16f30dbe14e16"
     },
     {
       "path": "data/curation_items.jsonl.gz",
@@ -253,19 +385,107 @@
       "sha256": "98522f9b7b02412be39b9246bb7c5a55034f36e2ee33d72da8f78713850d6f0d"
     },
     {
-      "path": "data/view_sun.jsonl.gz",
-      "kind": "facts",
-      "rows": 230468,
-      "bytes": 10620040,
-      "sha256": "1d40655f3071b86aa201055148932c5aa1ad0893a42e20816d3d04c4af516767",
-      "layer": true
-    },
-    {
       "path": "data/hotel_amenities.jsonl.gz",
       "kind": "facts",
       "rows": 5569,
       "bytes": 603895,
       "sha256": "2a68aa96236845b36823f2e397c83d1772100f6271c68ec0e8510f913a885790",
+      "layer": true
+    },
+    {
+      "path": "data/environment.jsonl.gz",
+      "kind": "facts",
+      "rows": 18242,
+      "bytes": 6033257,
+      "sha256": "475683c1896bf2dabafd732d436f538609af168f14d5b82f6a58679833788370",
+      "layer": true
+    },
+    {
+      "path": "data/buildings_auto_point.jsonl.gz",
+      "kind": "buildings",
+      "rows": 425,
+      "bytes": 37950,
+      "sha256": "d15e8c49e8015e98c2d20f174225c569c7cd525b41d3424105f4aca57a523c4d",
+      "layer": true
+    },
+    {
+      "path": "data/facades_auto_point.jsonl.gz",
+      "kind": "facades",
+      "rows": 3213,
+      "bytes": 186219,
+      "sha256": "989224bf049c8f6b0c6662bf4452c211e7cf7eb2be4ccc91b52968ab2683623a",
+      "layer": true
+    },
+    {
+      "path": "data/hotel_buildings_auto_point.jsonl.gz",
+      "kind": "hotel_buildings",
+      "rows": 472,
+      "bytes": 27428,
+      "sha256": "6d8596d12a7bf47a990afe0be33bc012549ea9553f50139d805ec614a3ae6e94",
+      "layer": true
+    },
+    {
+      "path": "data/building_facts.jsonl.gz",
+      "kind": "facts",
+      "rows": 5147,
+      "bytes": 507137,
+      "sha256": "f614131a35f1c9756b0b4454a2a1bec68cd6c68e206f306afe0801cf3d599052",
+      "layer": true
+    },
+    {
+      "path": "data/sun_hours.jsonl.gz",
+      "kind": "facts",
+      "rows": 223860,
+      "bytes": 6831591,
+      "sha256": "457c7e9fb5b595630c2300faee0d7e75d7745491f5cdbe3a8114e406e8203dbd",
+      "layer": true
+    },
+    {
+      "path": "data/building_years.jsonl.gz",
+      "kind": "facts",
+      "rows": 104,
+      "bytes": 4862,
+      "sha256": "a8c300d2520981976f4c9166bb1d931f3d211f1015a36f18ab60e440543720b8",
+      "layer": true
+    },
+    {
+      "path": "data/heritage.jsonl.gz",
+      "kind": "facts",
+      "rows": 3,
+      "bytes": 948,
+      "sha256": "f4d059d82ff765e6369c0023197257fcc9af013db38f4e49392bda9f3d7c4594",
+      "layer": true
+    },
+    {
+      "path": "data/beach_surface.jsonl.gz",
+      "kind": "facts",
+      "rows": 1556,
+      "bytes": 63083,
+      "sha256": "d73ef19a65cddb011a82684ac731d294f3b677e70a772858c24003c86c6869dd",
+      "layer": true
+    },
+    {
+      "path": "data/construction.jsonl.gz",
+      "kind": "facts",
+      "rows": 2695,
+      "bytes": 150130,
+      "sha256": "5c6ffa2633dd5ddcd0a840739d356ea0da8f33e494eab7778030f277e5924747",
+      "layer": true
+    },
+    {
+      "path": "data/view_sun.jsonl.gz",
+      "kind": "facts",
+      "rows": 354612,
+      "bytes": 16326125,
+      "sha256": "371a068f13721a91c959a96e899e27dbd47f349b439b9d71052cacd4f905dcb9",
+      "layer": true
+    },
+    {
+      "path": "data/mountains.jsonl.gz",
+      "kind": "facts",
+      "rows": 7462,
+      "bytes": 385871,
+      "sha256": "00ee13210ebb291234e3333a1a37fb88ae871dbaf35dd7bdb1bdb1e1c5e51de4",
       "layer": true
     }
   ],

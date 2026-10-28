@@ -14,7 +14,9 @@ from alembic import command
 from alembic.config import Config
 from sqlalchemy import Engine, create_engine, text
 from sqlalchemy.exc import OperationalError
+from sqlalchemy.schema import DropIndex
 
+from core.db import FactRow
 from core.packs import discover
 from pipeline.load_packs import load_pack
 
@@ -36,6 +38,31 @@ def wait_for_db(engine: Engine, timeout_s: float = 120) -> None:
             time.sleep(2)
 
 
+def drop_fact_indexes(engine: Engine) -> bool:
+    """Первая загрузка (фактов нет): вторичные индексы фактов снимаем и строим один раз в
+    конце — COPY с пятью индексами в базе под эмуляцией amd64 в разы медленнее. Индексы — по
+    модели (`FactRow`), их же создают миграции."""
+    with engine.begin() as conn:
+        if conn.scalar(text("SELECT EXISTS (SELECT 1 FROM fact)")):
+            return False
+        for index in FactRow.__table__.indexes:
+            conn.execute(DropIndex(index, if_exists=True))
+    print("init: первая загрузка — индексы фактов построим после данных", flush=True)
+    return True
+
+
+def ensure_fact_indexes(engine: Engine, built: bool) -> None:
+    """Каждый запуск: недостающие индексы фактов создаются (и после прерванной загрузки)."""
+    started = time.monotonic()
+    with engine.begin() as conn:
+        for index in FactRow.__table__.indexes:
+            index.create(conn, checkfirst=True)
+        if built:
+            conn.exec_driver_sql("ANALYZE fact")
+    if built:
+        print(f"init: индексы фактов — {time.monotonic() - started:.1f} с", flush=True)
+
+
 def main() -> int:
     url = os.environ.get("DATABASE_URL")
     if not url:
@@ -55,6 +82,7 @@ def main() -> int:
     print(f"init: пакетов найдено {len(packs)} в {packs_dir}", flush=True)
     if not packs:
         print("init: пакетов пока нет: fixtures — заглушки v9, db — ждёт пакеты", flush=True)
+    fresh = bool(packs) and drop_fact_indexes(engine)
     for pack_dir in packs:
         city_started = time.monotonic()
         with engine.begin() as conn:
@@ -63,6 +91,7 @@ def main() -> int:
                 conn, pack_dir, progress=lambda line: print("init:", line, flush=True)
             )
         print(f"init: {result} — {time.monotonic() - city_started:.1f} с", flush=True)
+    ensure_fact_indexes(engine, built=fresh)
     print(f"init: готово за {time.monotonic() - started:.1f} с", flush=True)
     return 0
 

@@ -11,6 +11,7 @@ from __future__ import annotations
 import gzip
 import json
 import math
+import re
 from collections import defaultdict
 from collections.abc import Iterable
 from dataclasses import dataclass
@@ -18,7 +19,13 @@ from difflib import SequenceMatcher
 from pathlib import Path
 from typing import Any
 
-from agents.address.normalize import Address, osm_addresses, parse_address
+from agents.address.normalize import (
+    STREET_TYPES,
+    Address,
+    osm_addresses,
+    parse_address,
+    skeleton,
+)
 
 NEAR_M = 300  # совпал адрес и здание рядом с точкой Островка — уверенный кандидат
 FAR_M = 1500  # дальше — адрес совпал, но точка отеля, похоже, не там: проверить вручную
@@ -115,6 +122,58 @@ def compare(hotel: Address, building: Address) -> dict[str, str] | None:
     else:
         return None
     return {"street": street, "house": house}
+
+
+# Номер дома: «20», «20/1», «21-23», «119а» — число, дробь, диапазон, литера.
+_HOUSE_PARTS = re.compile(r"(?P<num>\d+)(?:/(?P<frac>\d+))?(?:-(?P<to>\d+))?(?P<let>[а-яa-z]?)")
+
+
+def _house_conflict(a: Address, b: Address) -> bool:
+    """Дома расходятся: номер (диапазоны не пересекаются), дробь, литера, корпус или строение
+    названы у обоих и разные. Чего нет у одного — не расхождение («5» и «5 к2»)."""
+    ma, mb = _HOUSE_PARTS.fullmatch(a.house or ""), _HOUSE_PARTS.fullmatch(b.house or "")
+    if not (ma and mb):
+        return a.house != b.house  # необычная запись — только точное совпадение
+    lo_a, lo_b = int(ma["num"]), int(mb["num"])
+    hi_a, hi_b = int(ma["to"] or lo_a), int(mb["to"] or lo_b)
+    if hi_a < lo_b or hi_b < lo_a:
+        return True
+    pairs = [(ma["frac"], mb["frac"]), (ma["let"], mb["let"]), (a.corpus, b.corpus),
+             (a.structure, b.structure)]  # fmt: skip
+    return any(x and y and x != y for x, y in pairs)
+
+
+def street_known(a: Address) -> bool:
+    """Улица разобрана надёжно: есть дом после неё или тип («улица», «проспект»). Без того и
+    другого `parse_address` кладёт в улицу первую часть адреса — это может быть город («Сочи»)."""
+    return bool(a.street_key and (a.house or a.street_type))
+
+
+# Слова типа улицы внутри названия («ул. Демократическая улица») — не часть имени.
+_TYPE_WORDS = frozenset(skeleton(w) for w in STREET_TYPES)
+
+
+def _name_key(a: Address) -> str:
+    return " ".join(w for w in (a.street_key or "").split() if w not in _TYPE_WORDS)
+
+
+def contradiction(hotel: Address, building: Address) -> str | None:
+    """Противоречат ли адрес отеля и адрес здания (D42-1): `street` или `house` — то, что названо
+    у обоих и расходится; None — не противоречат (совпадают или одному не хватает части).
+
+    Улица сравнивается, только если у обоих адресов распознан её тип: иначе в «улицу» попадает
+    что угодно («Sochi, 6 Yeniseyskaya Street» → «sochi», «bul'var Nadezhd» без типа) — тогда
+    решает дом. Расхождение улицы — разный тип («улица» и «площадь») или непохожее название, как
+    в `compare`. Дом — `_house_conflict`."""
+    if hotel.street_type and building.street_type and hotel.street_key and building.street_key:
+        if hotel.street_type != building.street_type:
+            return "street"
+        a, b = _name_key(hotel), _name_key(building)
+        if a != b and SequenceMatcher(None, a, b).ratio() < SIMILAR_STREET:
+            return "street"
+    if hotel.house and building.house and _house_conflict(hotel, building):
+        return "house"
+    return None
 
 
 class BuildingIndex:

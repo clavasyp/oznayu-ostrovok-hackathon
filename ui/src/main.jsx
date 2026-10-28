@@ -3,17 +3,17 @@ import { createRoot } from 'react-dom/client'
 import L from 'leaflet'
 import {
   ArrowDownUp, ArrowRight, BedDouble, CalendarDays, Check,
-  CheckCircle2, ChevronDown, CircleHelp, Compass, ExternalLink,
+  CheckCircle2, ChevronDown, CircleHelp, Columns3, Compass, ExternalLink,
   Heart, Lock, MapPin, MessageCircle, Minus, Plus, RotateCcw,
   Search, ShieldCheck, SlidersHorizontal, Sparkles, Users, X,
 } from 'lucide-react'
 import 'leaflet/dist/leaflet.css'
 import './styles.css'
-import { addIsoDays, cityToday, conditionPeriod, defaultStay, formatDateRange, formatGuests, formatNights, nightCount, periodMismatch, stayError, stayFromAst, withTripDates } from './trip.js'
+import { addIsoDays, cityToday, conditionPeriod, defaultStay, formatDateRange, formatDay, formatGuests, formatNights, nightCount, periodMismatch, stayError, stayFromAst, withTripDates } from './trip.js'
 import { useDialog } from './useDialog.js'
 import { groupMapPoints } from './mapClusters.js'
 import { applyEdits, conditionChips, editOf, moveCondition, recordEdit } from './astEdit.js'
-import { PROVENANCE, STATUS_LABELS, distinctTitles, featureName, guestNotes, hasEstimate, hotelKind, itemMarks, itemSubtitle, itemTitle, orderedItems, outOfCatalogCheck, placementFloors, shortVerdict, verdictKind, verdictText } from './labels.js'
+import { PROVENANCE, STATUS_LABELS, areaText, compareRows, distinctTitles, featureName, guestNotes, hasEstimate, hotelKind, itemMarks, itemSubtitle, itemTitle, orderedItems, outOfCatalogCheck, placementFloors, shortVerdict, verdictKind, verdictText } from './labels.js'
 import { PAGE_SIZE, clarifyKey, clarifyKind, filterTotal, pageWindow, refineQuery, searchCounts, serverPaged } from './query.js'
 import { attemptStateText, confidenceText, factRows, formatDateTime, formatFactValue, formatNumber, hotelierSource, paramWords, providerText, subjectLevelText, windowsText } from './facts.js'
 import { ANSWER_STATES, agentFields, buildingLabel, confirmText, marksFromAliases, osmUrl, placementBody, placementOutcome, placementQuestionText, placementState, questionAfter, searchCheck, wallSides } from './hotelier.js'
@@ -358,6 +358,18 @@ function GuestView({ city, changeCity, cities, selectedCity, query, setQuery, ru
   useDialog(stayRef, stayOpen, () => setStayOpen(false))
   const [examplesOpen, setExamplesOpen] = useState(false)
   const today = cityToday(city, selectedCity.timezone)
+  // Сравнение 2–3 отелей бок о бок по условиям запроса; новый поиск — новое сравнение.
+  const [compare, setCompare] = useState([])
+  const [compareOpen, setCompareOpen] = useState(false)
+  useEffect(() => { setCompare([]); setCompareOpen(false) }, [searchData])
+  const comparedIds = useMemo(() => new Set(compare.map((r) => r.hotel.hotel_id)), [compare])
+  const toggleCompare = useCallback((result) => {
+    setCompare((current) => {
+      if (current.some((r) => r.hotel.hotel_id === result.hotel.hotel_id)) return current.filter((r) => r.hotel.hotel_id !== result.hotel.hotel_id)
+      if (current.length >= 3) { notify('Сравнить можно до трёх отелей'); return current }
+      return [...current, result]
+    })
+  }, [notify])
   const counts = searchCounts(searchData)
   const notes = guestNotes(searchData?.notes)
   function openStayPicker() {
@@ -403,7 +415,7 @@ function GuestView({ city, changeCity, cities, selectedCity, query, setQuery, ru
           {searchState === 'loading' && <div className="loading-block" aria-label="Ищем"><div className="skeleton-line" /><div className="skeleton-line short" /><div className="skeleton-card" /></div>}
           {searchState === 'offline' && <div className="empty-state offline-results"><div className="offline-illustration"><Compass size={25} /><span /></div><span className="section-kicker">ПОДБОРКА ПОЯВИТСЯ ЗДЕСЬ</span><h3>Отели ждут подключения API</h3><p>Карта показывает город. Чтобы сравнить отели по вашим условиям, запустите сервер поиска.</p><div className="offline-steps"><span><i>1</i> Запустите API на порту 8080</span><span><i>2</i> Нажмите «Найти отель»</span></div></div>}
           {searchState === 'ready' && !visibleResults.length && !list.loading && <div className="empty-state"><Compass size={30} /><h3>{filterTotal('all', searchData) ? 'Нет вариантов с таким статусом' : 'В этом городе пока нет отелей в выборке'}</h3><p>{filterTotal('all', searchData) ? 'Выберите другой фильтр или посмотрите все варианты.' : 'Попробуйте другой город или измените запрос.'}</p></div>}
-          {visibleResults.map((result, index) => <HotelCard key={result.hotel.hotel_id} result={result} index={index} onOpen={openHotel} isSaved={savedIds.has(result.hotel.hotel_id)} onToggleSave={toggleSave} />)}
+          {visibleResults.map((result, index) => <HotelCard key={result.hotel.hotel_id} result={result} index={index} onOpen={openHotel} isSaved={savedIds.has(result.hotel.hotel_id)} onToggleSave={toggleSave} isCompared={comparedIds.has(result.hotel.hotel_id)} onToggleCompare={toggleCompare} />)}
           {list.loading && <div className="loading-inline">Загружаем варианты…</div>}
           {searchState === 'ready' && remaining > 0 && <button className="load-more" disabled={list.loading} onClick={loadMore}>Показать ещё <span>осталось {remaining}</span></button>}
           {searchState === 'idle' && <div className="empty-state"><Search size={28} /><h3>Опишите свою поездку</h3><p>Найдём варианты и объясним каждый ответ.</p></div>}
@@ -411,8 +423,25 @@ function GuestView({ city, changeCity, cities, selectedCity, query, setQuery, ru
         </div>
         {showMap && <HotelMap results={visibleResults} city={city} onSelect={openHotel} />}
       </div>
+      {compare.length > 0 && <div className="compare-bar" role="region" aria-label="Сравнение отелей"><Columns3 size={16} /><span>Сравнение: {compare.map((r) => r.hotel.name).join(' · ')}</span><button className="primary-button" disabled={compare.length < 2} onClick={() => setCompareOpen(true)}>{compare.length < 2 ? 'Отметьте ещё отель' : 'Сравнить'}</button><button className="text-button" onClick={() => setCompare([])}>Очистить</button></div>}
+      {compareOpen && compare.length > 1 && <CompareDialog results={compare} onClose={() => setCompareOpen(false)} onOpen={(r) => { setCompareOpen(false); openHotel(r) }} />}
     </>
   )
+}
+
+function CompareDialog({ results, onClose, onOpen }) {
+  const dialogRef = useRef(null)
+  useDialog(dialogRef, true, onClose)
+  const labels = useLabels()
+  const rows = compareRows(results, labels)
+  const yes = results.map((_, column) => rows.filter((row) => row.cells[column]?.kind === 'yes').length)
+  return <div className="modal-backdrop" role="presentation" onMouseDown={(e) => { if (e.target === e.currentTarget) onClose() }}><section ref={dialogRef} tabIndex={-1} className="hotel-dialog compare-dialog" role="dialog" aria-modal="true" aria-label="Сравнение отелей">
+    <div className="dialog-top"><div><span className="section-kicker">СРАВНЕНИЕ ПО ВАШЕМУ ЗАПРОСУ</span><button className="close-button" onClick={onClose} aria-label="Закрыть"><X size={19} /></button></div></div>
+    <div className="compare-scroll"><table className="compare-table">
+      <thead><tr><th scope="col">Условие</th>{results.map((r, i) => <th scope="col" key={r.hotel.hotel_id}><button className="text-button" onClick={() => onOpen(r)}>{r.hotel.name}</button><span className={`mini-status ${verdictKind(r.status)}`}>{r.status_label || STATUS_LABELS[r.status]}</span><small>да — {yes[i]} из {rows.length}</small></th>)}</tr></thead>
+      <tbody>{rows.map((row) => <tr key={row.key}><th scope="row"><span className={`condition-dot ${row.required ? 'required' : ''}`} />{row.title}</th>{row.cells.map((cell, i) => <td key={i} className={cell ? `cell-${cell.kind}` : 'cell-none'}>{cell ? <><VerdictIcon value={cell.kind} /> <span>{cell.text}</span></> : '—'}</td>)}</tr>)}</tbody>
+    </table></div>
+  </section></div>
 }
 
 function UnderstoodCard({ ast, query, city, runSearch, edits, setEdits, notify, openStayPicker, searching }) {
@@ -442,6 +471,7 @@ function UnderstoodCard({ ast, query, city, runSearch, edits, setEdits, notify, 
   const editsHere = edits.some((edit) => (ast[edit.to] || []).some((item) => item.feature_id === edit.feature_id && (item.text_span || '') === edit.text_span))
   const tripDates = ast.dates?.from ? formatDateRange(ast.dates.from, ast.dates.to || addIsoDays(ast.dates.from, 1), true) : ''
   const tripGuests = ast.guests?.adults ? formatGuests(ast.guests.adults, ast.guests.children_ages?.length || 0) : ''
+  const tripArea = areaText(ast, labels)
 
   function startEditing() {
     setDraft(ast)
@@ -480,7 +510,7 @@ function UnderstoodCard({ ast, query, city, runSearch, edits, setEdits, notify, 
     </div>
     {editing && <p className="edit-hint">Нажмите на условие, чтобы перенести его между «обязательно» и «желательно». Подборка пересчитается по «Готово».</p>}
     {!editing && editsHere && <p className="edit-hint">Ваши правки разбора сохраняются для следующих поисков. <button className="small-link" onClick={resetEdits}><RotateCcw size={12} /> Сбросить правки</button></p>}
-    {(tripDates || tripGuests) && <div className="trip-line"><CalendarDays size={14} /><span>Из запроса: {[tripDates, tripGuests].filter(Boolean).join(' · ')}</span></div>}
+    {(tripDates || tripGuests || tripArea) && <div className="trip-line"><CalendarDays size={14} /><span>Из запроса: {[tripArea, tripDates, tripGuests].filter(Boolean).join(' · ')}</span></div>}
     <div className="condition-groups">
       <div className="condition-group"><div className="group-label"><span className="condition-dot required" />ОБЯЗАТЕЛЬНО</div>{required.map((chip) => <ConditionChip key={chip.key} chip={chip} editing={editing} onMove={move} />)}{oocRequired.map((item, index) => <OutOfCatalogChip key={`r${item.atom_id || index}`} item={item} />)}{!required.length && !oocRequired.length && <span className="muted-small">Пока не указано</span>}</div>
       <div className="condition-group"><div className="group-label"><span className="condition-dot preferred" />ЖЕЛАТЕЛЬНО</div>{preferred.map((chip) => <ConditionChip key={chip.key} chip={chip} editing={editing} onMove={move} />)}{oocDesired.map((item, index) => <OutOfCatalogChip key={`d${item.atom_id || index}`} item={item} />)}{!preferred.length && !oocDesired.length && <span className="muted-small">Пока не указано</span>}</div>
@@ -555,7 +585,7 @@ function ReasonRow({ item, title }) {
   return <div className={`reason-row ${item.required ? 'required' : 'preferred'}`}><span className={`reason-marker ${kind} ${item.required ? '' : 'soft'}`} /><span className="reason-title">{title}<em className="req-tag">{item.required ? 'обязательно' : 'желательно'}</em></span><b>{verdictText(item)}<Marks item={item} /></b></div>
 }
 
-const HotelCard = memo(function HotelCard({ result, index, onOpen, isSaved, onToggleSave }) {
+const HotelCard = memo(function HotelCard({ result, index, onOpen, isSaved, onToggleSave, isCompared, onToggleCompare }) {
   const labels = useLabels()
   const hotel = result.hotel
   const items = orderedItems(result)
@@ -566,6 +596,7 @@ const HotelCard = memo(function HotelCard({ result, index, onOpen, isSaved, onTo
   const statusClass = { yes: 'fits', no: 'not-fit', unknown: 'needs-check' }[verdictKind(result.status)]
   return <article className="hotel-card">
     <button className={`save-button ${isSaved ? 'saved' : ''}`} onClick={(e) => { e.stopPropagation(); onToggleSave(result) }} aria-label={isSaved ? 'Убрать из закладок' : 'Сохранить в закладки'} aria-pressed={isSaved}><Heart size={17} fill={isSaved ? 'currentColor' : 'none'} /></button>
+    {onToggleCompare && <button className={`compare-toggle ${isCompared ? 'on' : ''}`} onClick={(e) => { e.stopPropagation(); onToggleCompare(result) }} aria-pressed={isCompared} aria-label={isCompared ? 'Убрать из сравнения' : 'Добавить к сравнению'}><Columns3 size={14} />{isCompared ? 'В сравнении' : 'Сравнить'}</button>}
     <button className="hotel-card-main" onClick={() => onOpen(result)}>
       <div className={`hotel-art art-${index % 4}`}><div className="art-sun" /><div className="art-water" /><div className="art-palm">✳</div><span className="art-label">{cityNames[hotel.city_id] || 'ОТЕЛЬ'}</span></div>
       <div className="hotel-details"><div className="hotel-meta"><span>{hotelKind(hotel.hotel_kind).toUpperCase()}</span>{hotel.stars > 0 && <><span className="meta-dot" /><span>{hotel.stars}★</span></>}<span className="meta-dot" /><span>{hotel.subzone || hotel.address?.split(',').slice(-1)[0]?.trim() || cityNames[hotel.city_id]}</span></div><h3>{hotel.name}</h3><div className={`fit-status ${statusClass}`}><span className="status-icon"><VerdictIcon value={result.status} /></span>{result.status_label || STATUS_LABELS[result.status] || 'Нужно уточнить'}{result.status === 'needs_check' && unknownCount > 0 && <span className="status-extra">· {unknownCount} неизвестно</span>}</div>
@@ -763,7 +794,8 @@ function FactRow({ fact, hotelId }) {
     {!hotelier && <div><b>Источник</b><span>{src?.provider ? providerText(src.provider) : fact.status === 'unknown' ? 'Источник не найден' : 'Указан в паспорте'}{src?.license ? ` · ${src.license}` : ''}</span></div>}
     {fact.recipe_id && <div><b>Рецепт</b><span>{fact.recipe_id}</span></div>}
     <div><b>Область</b><span>{fact.scope_note || subjectLevelText(fact.subject_level)}</span></div>
-    {!hotelier && <div><b>Дата</b><span>{date || 'Не указана'}</span></div>}
+    {!hotelier && <div><b>Дата</b><span>{date || 'Не указана'}{fact.freshness?.date_kind === 'pack_built_at' ? ' · дата сборки пакета' : ''}</span></div>}
+    {fact.freshness?.refresh_due && <div><b>Обновить</b><span>{fact.freshness.stale ? 'пора обновить' : `до ${formatDay(fact.freshness.refresh_due.slice(0, 10))}`} · {fact.freshness.refresh_hint}</span></div>}
     {fact.confidence?.level && <div><b>Уверенность</b><span>{confidenceText(fact.confidence.level)}{fact.confidence.reason ? ` · ${fact.confidence.reason}` : ''}</span></div>}
     {(fact.unknown_reason_text || fact.unknown_reason) && <div><b>Почему неизвестно</b><span>{fact.unknown_reason_text || fact.unknown_reason}</span></div>}
     {fact.recipe_attempts?.length > 0 && <div><b>Попытки</b><span>{fact.recipe_attempts.slice(0, 3).map((attempt) => `${attempt.recipe_id}: ${attemptStateText(attempt.state)}${attempt.reason ? ` — ${attempt.reason}` : ''}`).join(' · ')}</span></div>}
@@ -1120,6 +1152,16 @@ function AdminView({ guestCity, cities, notify }) {
   const [activeFeatures, setActiveFeatures] = useState([])
   const [activation, setActivation] = useState(null)
   const [refreshVersion, setRefreshVersion] = useState(0)
+  // Актуализация: что и когда пора обновить — на сегодня или на выбранную дату.
+  const [asOf, setAsOf] = useState(() => new Date().toISOString().slice(0, 10))
+  const [fresh, setFresh] = useState({ state: 'loading', rows: [] })
+  const [showAllFresh, setShowAllFresh] = useState(false)
+  useEffect(() => {
+    let cancelled = false
+    setFresh((current) => ({ ...current, state: 'loading' }))
+    api(`/cities/${panelCity}/freshness?as_of=${asOf}T00:00:00Z`).then((d) => { if (!cancelled) setFresh({ state: 'ready', rows: d.rows || [] }) }).catch(() => { if (!cancelled) setFresh({ state: 'error', rows: [] }) })
+    return () => { cancelled = true }
+  }, [panelCity, asOf, refreshVersion])
   const cityOptions = cities.length ? cities : Object.entries(cityNames).map(([city_id, name]) => ({ city_id, name }))
   useEffect(() => {
     let cancelled = false
@@ -1180,6 +1222,11 @@ function AdminView({ guestCity, cities, notify }) {
       const estimate = Number(row.estimate || 0)
       return <div className="coverage-row" key={row.feature_id || i}><span className="coverage-name"><b>{row.feature_id}</b><span>{labels.features?.[row.feature_id] || row.feature_name || 'Характеристика'}{notApplicable > 0 && <small>неприменимо у {notApplicable}</small>}</span></span><div className="coverage-bar" title={`${computed} посчитано, ${estimate} оценок, ${row.unknown || 0} неизвестно${notApplicable ? `, ${notApplicable} неприменимо` : ''}`}><span className="coverage-computed" style={{ width: `${base ? computed / base * 100 : 0}%` }} /><span className="coverage-estimate" style={{ width: `${base ? estimate / base * 100 : 0}%` }} /></div><span className="coverage-value">{computed + estimate}/{base || '—'}</span></div>
     })}</div> : <div className="empty-facts">Сводка покрытия появится, когда API вернёт заполненные показатели.</div>}</section>
+    <section className="admin-panel"><div className="workspace-section-head"><div><span className="section-kicker">АКТУАЛИЗАЦИЯ</span><h2>Свежесть данных {fresh.rows.some((r) => r.stale) && <span className="count-bubble">{fresh.rows.reduce((n, r) => n + Number(r.stale || 0), 0)}</span>}</h2></div><div className="panel-actions"><label className="as-of">на дату <input type="date" value={asOf} onChange={(e) => e.target.value && setAsOf(e.target.value)} /></label>{fresh.rows.length > 8 && <button className="inline-action" onClick={() => setShowAllFresh(!showAllFresh)}>{showAllFresh ? 'Свернуть' : `Все ${fresh.rows.length}`}</button>}</div></div>
+      <p className="panel-note">У каждого значения — дата и срок обновления: свой у факта (климат — через год) или по виду данных (страница Островка — 30 дней, расчёт по картам — 180). Устаревшее не выбрасывается: ответ по нему помечается «пора обновить».</p>
+      {fresh.state === 'error' && <div className="empty-facts">Не удалось загрузить сводку свежести.</div>}
+      {fresh.rows.length > 0 && <div className="fresh-table">{(showAllFresh ? fresh.rows : fresh.rows.slice(0, 8)).map((r, i) => <div className={`fresh-row ${r.stale ? 'stale' : ''}`} key={`${r.feature_id}-${r.status}-${r.recipe}-${i}`}><span className="coverage-name"><b>{r.feature_id}</b><span>{labels.features?.[r.feature_id] || r.feature_id}<small>{PROVENANCE[r.status] || r.status} · {r.recipe || 'рецепт не указан'}</small></span></span><span className="fresh-dates"><small>значений {formatNumber(r.n)} · с {r.oldest ? formatDay(r.oldest.slice(0, 10)) : '—'}</small><b>{r.stale ? `устарело: ${formatNumber(r.stale)}` : `обновить до ${r.next_due ? formatDay(r.next_due.slice(0, 10)) : '—'}`}</b></span><span className="fresh-hint">{r.refresh_hint}</span></div>)}</div>}
+    </section>
     <section className="admin-panel"><div className="workspace-section-head"><div><span className="section-kicker">РАЗНОГЛАСИЯ ИСТОЧНИКОВ</span><h2>Нужно разобраться <span className="count-bubble">{conflicts.length}</span></h2></div>{conflicts.length > 4 && <button className="inline-action" onClick={() => setShowAllConflicts(!showAllConflicts)}>{showAllConflicts ? 'Свернуть' : 'Все разногласия'}</button>}</div>{conflictRows.map((item, i) => <ConflictRow key={item.hotel_id + item.feature_id + i} item={item} />)}{!conflicts.length && <div className="empty-facts">В выбранном городе разногласий пока нет или API ещё не загрузил их.</div>}</section>
     <section className="admin-panel"><div className="workspace-section-head"><div><span className="section-kicker">ОТВЕТЫ ОТЕЛЯ ПРОТИВ РАСЧЁТОВ</span><h2>Противоречия фактов <span className="count-bubble">{factConflicts.length}</span></h2></div>{factConflicts.length > 4 && <button className="inline-action" onClick={() => setShowAllFactConflicts(!showAllFactConflicts)}>{showAllFactConflicts ? 'Свернуть' : 'Все противоречия'}</button>}</div>{factConflictRows.map((item) => <FactConflictRow key={item.conflict_id || `${item.hotel_id}-${item.fact_a}-${item.fact_b}`} item={item} />)}{!factConflicts.length && <div className="empty-facts">Противоречия появятся, если ответ отеля расходится с расчётным фактом.</div>}</section>
     <section className="admin-panel"><div className="workspace-section-head"><div><span className="section-kicker">D33 · РУЧНАЯ ПРОВЕРКА</span><h2>На проверку</h2></div><span className="sim-tag">СКОРО В API</span></div><div className="review-placeholder"><div className="review-icon"><ShieldCheck size={20} /></div><div><strong>Пока нет подключения очереди проверки</strong><p>Когда сервер добавит endpoint для curated-фактов, здесь появятся кандидат, доказательство и действия проверки.</p></div></div></section>

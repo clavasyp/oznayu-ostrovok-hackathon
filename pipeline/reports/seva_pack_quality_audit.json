@@ -1,6 +1,6 @@
 {
   "version": "pack-audit.3",
-  "built_at": "2026-10-28T07:56:03.839407+00:00",
+  "built_at": "2026-10-28T14:41:43.674836+00:00",
   "cities": [
     {
       "pack": "dubai",
@@ -91,7 +91,7 @@
         "not_specified": 50
       },
       "building_linked_hotels": 0,
-      "seconds": 0.158,
+      "seconds": 0.159,
       "errors": {},
       "warnings": {
         "external_geometry_subjects_not_resolved": 1
@@ -189,7 +189,7 @@
         "not_specified": 50
       },
       "building_linked_hotels": 0,
-      "seconds": 0.182,
+      "seconds": 0.175,
       "errors": {},
       "warnings": {
         "external_geometry_subjects_not_resolved": 1
@@ -293,7 +293,7 @@
         "not_specified": 50
       },
       "building_linked_hotels": 0,
-      "seconds": 0.165,
+      "seconds": 0.163,
       "errors": {},
       "warnings": {
         "external_geometry_subjects_not_resolved": 1
@@ -391,7 +391,7 @@
         "not_specified": 50
       },
       "building_linked_hotels": 0,
-      "seconds": 0.148,
+      "seconds": 0.146,
       "errors": {},
       "warnings": {
         "external_geometry_subjects_not_resolved": 1
@@ -481,7 +481,7 @@
         "not_specified": 50
       },
       "building_linked_hotels": 0,
-      "seconds": 0.148,
+      "seconds": 0.147,
       "errors": {},
       "warnings": {
         "external_geometry_subjects_not_resolved": 1
@@ -501,15 +501,15 @@
       "rows": {
         "hotels": 4211,
         "room_types": 12739,
-        "buildings": 1295,
-        "hotel_buildings": 1585,
-        "facades": 22404,
+        "buildings": 2168,
+        "hotel_buildings": 2753,
+        "facades": 34809,
         "places": 68094,
         "transit_stations": 1701,
         "hotel_stations": 50532,
         "transit_times": 0,
         "curation_items": 2634,
-        "facts": 219601,
+        "facts": 262535,
         "questions": 108470,
         "coverage": 54,
         "ota_comparisons": 5
@@ -531,13 +531,28 @@
           "kind": "buildings"
         },
         {
+          "path": "data/buildings_auto_point.jsonl.gz",
+          "rows": 873,
+          "kind": "buildings"
+        },
+        {
           "path": "data/hotel_buildings.jsonl.gz",
           "rows": 1585,
           "kind": "hotel_buildings"
         },
         {
+          "path": "data/hotel_buildings_auto_point.jsonl.gz",
+          "rows": 1168,
+          "kind": "hotel_buildings"
+        },
+        {
           "path": "data/facades.jsonl.gz",
           "rows": 22404,
+          "kind": "facades"
+        },
+        {
+          "path": "data/facades_auto_point.jsonl.gz",
+          "rows": 12405,
           "kind": "facades"
         },
         {
@@ -576,6 +591,31 @@
           "kind": "facts"
         },
         {
+          "path": "data/environment.jsonl.gz",
+          "rows": 29134,
+          "kind": "facts"
+        },
+        {
+          "path": "data/building_facts.jsonl.gz",
+          "rows": 7989,
+          "kind": "facts"
+        },
+        {
+          "path": "data/building_years.jsonl.gz",
+          "rows": 1367,
+          "kind": "facts"
+        },
+        {
+          "path": "data/heritage.jsonl.gz",
+          "rows": 233,
+          "kind": "facts"
+        },
+        {
+          "path": "data/construction.jsonl.gz",
+          "rows": 4211,
+          "kind": "facts"
+        },
+        {
           "path": "data/questions.jsonl.gz",
           "rows": 108470,
           "kind": "questions"
@@ -592,19 +632,19 @@
         }
       ],
       "city_id": "moscow",
-      "pack_version": "seva-full.3-d0015521442f+0245e842",
-      "manifest_sha256": "529ce6a67247707a97bdf6d341183e5f192bbb92cba8787c83a7e085f6b2f3f0",
+      "pack_version": "seva-full.3-f048d478de69+9f86be8e",
+      "manifest_sha256": "0167e64ade9d633ba0c874ce64689ef822744958b04aa3728c44f190f9b7860d",
       "snapshot": {
         "status": "not_checked",
         "reason": "snapshot_not_supplied"
       },
       "fact_statuses": {
-        "unknown": 96722,
+        "unknown": 96888,
         "ostrovok_content": 24216,
-        "computed": 32368,
-        "estimate": 57612,
+        "computed": 63838,
+        "estimate": 66106,
         "not_applicable": 8667,
-        "observed": 16
+        "observed": 2820
       },
       "unknown_reasons": {
         "ostrovok_field_unknown_or_missing": 62492,
@@ -634,20 +674,143 @@
         "no_verified_construction_completion_event": 18,
         "No licensed georeferenced accepted facade-height Lnight layer, complete emissions model, or independent acoustic validation in cached inputs; road distance is not dB.": 49,
         "No matched police-category numerator, resident population denominator, reporting period and statistical-boundary version.": 49,
-        "missing_aboveground_levels": 2
+        "missing_aboveground_levels": 168
       },
       "fact_subject_checks": {
         "room_type": 76434,
         "external_geometry_subject_not_resolved": 32960,
-        "building": 3186,
-        "hotel": 107021
+        "building": 9859,
+        "hotel": 143282
       },
       "ostrovok_import_passports": 80648,
       "subzones": {
-        "not_specified": 4211
+        "tverskoy": 411,
+        "arbat": 209,
+        "lyublino": 51,
+        "presnenskiy": 346,
+        "dorogomilovo": 119,
+        "basmannyy": 281,
+        "voykovskiy": 28,
+        "perovo": 17,
+        "zamoskvoreche": 167,
+        "taganskiy": 148,
+        "yakimanka": 59,
+        "krasnoselskiy": 117,
+        "kuzminki": 34,
+        "ramenki": 10,
+        "troparevo_nikulino": 40,
+        "yaroslavskiy": 11,
+        "kotlovka": 21,
+        "khamovniki": 141,
+        "khoroshevskiy": 38,
+        "vykhino_zhulebino": 22,
+        "marino": 48,
+        "alekseevskiy": 58,
+        "nagatino_sadovniki": 22,
+        "butyrskiy": 21,
+        "mitino": 35,
+        "tsaritsyno": 20,
+        "begovoy": 106,
+        "zyuzino": 26,
+        "savelki": 4,
+        "krylatskoe": 14,
+        "yuzhnoe_tushino": 18,
+        "strogino": 26,
+        "gagarinskiy": 32,
+        "danilovskiy": 102,
+        "donskoy": 28,
+        "meshchanskiy": 99,
+        "akademicheskiy": 30,
+        "kuntsevo": 78,
+        "beskudnikovskiy": 7,
+        "kommunarka": 13,
+        "nagatinskiy_zaton": 13,
+        "golovinskiy": 14,
+        "zyablikovo": 9,
+        "khoroshevo_mnevniki": 17,
+        "ostankinskiy": 24,
+        "izmaylovo": 33,
+        "preobrazhenskoe": 22,
+        "rostokino": 17,
+        "marina_roshcha": 23,
+        "vostochnoe_izmaylovo": 5,
+        "yuzhnoe_butovo": 22,
+        "sviblovo": 11,
+        "severnoe_medvedkovo": 11,
+        "vnukovo": 21,
+        "babushkinskiy": 15,
+        "mozhayskiy": 9,
+        "lianozovo": 8,
+        "lefortovo": 32,
+        "shcherbinka": 3,
+        "cheremushki": 39,
+        "kryukovo": 4,
+        "ryazanskiy": 22,
+        "dmitrovskiy": 5,
+        "fili_davydkovo": 29,
+        "savelovskiy": 28,
+        "tekstilshchiki": 15,
+        "yuzhnoportovyy": 41,
+        "moskvoreche_saburovo": 9,
+        "sokolinaya_gora": 28,
+        "pokrovskoe_streshnevo": 17,
+        "pechatniki": 10,
+        "chertanovo_yuzhnoe": 20,
+        "lomonosovskiy": 18,
+        "novogireevo": 16,
+        "bibirevo": 9,
+        "filevskiy_park": 22,
+        "nizhegorodskiy": 10,
+        "veshnyaki": 7,
+        "konkovo": 44,
+        "chertanovo_tsentralnoe": 17,
+        "teplyy_stan": 22,
+        "nagornyy": 7,
+        "levoberezhnyy": 8,
+        "kurkino": 3,
+        "ochakovo_matveevskoe": 8,
+        "yasenevo": 13,
+        "sokol": 21,
+        "aeroport": 38,
+        "losinoostrovskiy": 8,
+        "brateevo": 10,
+        "golyanovo": 21,
+        "chertanovo_severnoe": 10,
+        "severnoe_izmaylovo": 11,
+        "severnoe_butovo": 5,
+        "novokosino": 3,
+        "timiryazevskiy": 16,
+        "sokolniki": 31,
+        "molzhaninovskiy": 6,
+        "orekhovo_borisovo_severnoe": 12,
+        "orekhovo_borisovo_yuzhnoe": 13,
+        "severnyy": 3,
+        "prospekt_vernadskogo": 14,
+        "obruchevskiy": 22,
+        "severnoe_tushino": 18,
+        "shchukino": 15,
+        "filimonkovskiy": 7,
+        "vostochnoe_degunino": 2,
+        "koptevo": 6,
+        "zapadnoe_degunino": 4,
+        "otradnoe": 16,
+        "marfino": 14,
+        "solntsevo": 6,
+        "kapotnya": 3,
+        "novo_peredelkino": 9,
+        "troitsk": 1,
+        "kosino_ukhtomskiy": 7,
+        "bogorodskoe": 3,
+        "altufevskiy": 2,
+        "staroe_kryukovo": 1,
+        "khovrino": 5,
+        "yuzhnoe_medvedkovo": 3,
+        "nekrasovka": 4,
+        "ivanovskoe": 2,
+        "biryulevo_vostochnoe": 2
       },
-      "building_linked_hotels": 1585,
-      "seconds": 6.681,
+      "building_linked_hotels": 2753,
+      "seconds": 8.476,
       "errors": {},
       "warnings": {
         "snapshot_not_checked": 1,
@@ -681,15 +844,15 @@
       "rows": {
         "hotels": 2695,
         "room_types": 9272,
-        "buildings": 635,
-        "hotel_buildings": 673,
-        "facades": 6127,
+        "buildings": 1060,
+        "hotel_buildings": 1145,
+        "facades": 9340,
         "places": 7754,
         "transit_stations": 172,
         "hotel_stations": 15806,
         "transit_times": 0,
         "curation_items": 2034,
-        "facts": 382281,
+        "facts": 765494,
         "questions": 69144,
         "coverage": 54,
         "ota_comparisons": 16
@@ -716,13 +879,28 @@
           "kind": "buildings"
         },
         {
+          "path": "data/buildings_auto_point.jsonl.gz",
+          "rows": 425,
+          "kind": "buildings"
+        },
+        {
           "path": "data/hotel_buildings.jsonl.gz",
           "rows": 673,
           "kind": "hotel_buildings"
         },
         {
+          "path": "data/hotel_buildings_auto_point.jsonl.gz",
+          "rows": 472,
+          "kind": "hotel_buildings"
+        },
+        {
           "path": "data/facades.jsonl.gz",
           "rows": 6127,
+          "kind": "facades"
+        },
+        {
+          "path": "data/facades_auto_point.jsonl.gz",
+          "rows": 3213,
           "kind": "facades"
         },
         {
@@ -761,13 +939,53 @@
           "kind": "facts"
         },
         {
-          "path": "data/view_sun.jsonl.gz",
-          "rows": 230468,
+          "path": "data/hotel_amenities.jsonl.gz",
+          "rows": 5569,
           "kind": "facts"
         },
         {
-          "path": "data/hotel_amenities.jsonl.gz",
-          "rows": 5569,
+          "path": "data/environment.jsonl.gz",
+          "rows": 18242,
+          "kind": "facts"
+        },
+        {
+          "path": "data/building_facts.jsonl.gz",
+          "rows": 5147,
+          "kind": "facts"
+        },
+        {
+          "path": "data/sun_hours.jsonl.gz",
+          "rows": 223860,
+          "kind": "facts"
+        },
+        {
+          "path": "data/building_years.jsonl.gz",
+          "rows": 104,
+          "kind": "facts"
+        },
+        {
+          "path": "data/heritage.jsonl.gz",
+          "rows": 3,
+          "kind": "facts"
+        },
+        {
+          "path": "data/beach_surface.jsonl.gz",
+          "rows": 1556,
+          "kind": "facts"
+        },
+        {
+          "path": "data/construction.jsonl.gz",
+          "rows": 2695,
+          "kind": "facts"
+        },
+        {
+          "path": "data/view_sun.jsonl.gz",
+          "rows": 354612,
+          "kind": "facts"
+        },
+        {
+          "path": "data/mountains.jsonl.gz",
+          "rows": 7462,
           "kind": "facts"
         },
         {
@@ -787,18 +1005,18 @@
         }
       ],
       "city_id": "sochi",
-      "pack_version": "category-supplement.2-36311c2fd6d9+f389570b",
-      "manifest_sha256": "ef2c98c6fadd0d76b090f8c09a8fdfd2123e918bd58d55d91cb487ed4ba3f95e",
+      "pack_version": "category-supplement.2-36311c2fd6d9+b195a35c",
+      "manifest_sha256": "8630fd8b3842647a5031b62e5b8256fb25299e2c4b0f6fbae2b2f2e9aa2076e0",
       "snapshot": {
         "status": "not_checked",
         "reason": "snapshot_not_supplied"
       },
       "fact_statuses": {
-        "computed": 85026,
-        "unknown": 185847,
-        "estimate": 87550,
+        "computed": 362926,
+        "unknown": 251385,
+        "estimate": 126713,
         "ostrovok_content": 23800,
-        "observed": 58
+        "observed": 670
       },
       "unknown_reasons": {
         "No OSM/hotelier-confirmed target entrance and public-admission/animal/leash/season policy for mapped candidate; OSM dog_park alone is insufficient.": 5390,
@@ -831,30 +1049,31 @@
         "No licensed fresh OpenCellID export with operator/radio/last_seen and observed cell coordinates. OSM mast location or phone bars is another meaning.": 89,
         "no_current_official_heritage_registry_match": 58,
         "Ground DTM/survey absent; DSM estimate unavailable": 92,
-        "missing_aboveground_levels": 8,
+        "missing_aboveground_levels": 486,
         "hotel_or_target_snap_over_100m": 12,
         "multiple_buildings_or_counting_scope_conflict": 4,
-        "view_sea_blocked": 3721,
-        "view_obstacle_height": 31576,
-        "view_trees": 21939,
-        "view_need_dates": 3295,
-        "view_terrain_beyond": 3537,
-        "view_obstacle_unmeasured": 22042,
-        "view_obstacle_satellite": 13329,
-        "view_terrain": 2311,
-        "view_low_floor": 966,
-        "view_sun_oblique": 3824,
-        "floor_count_unknown": 9179,
-        "view_obstacle_height_tag": 339,
-        "view_sun_partial": 436
+        "view_sea_blocked": 5763,
+        "view_obstacle_height": 45876,
+        "view_trees": 36266,
+        "view_need_dates": 5183,
+        "view_terrain_beyond": 4972,
+        "view_obstacle_unmeasured": 37201,
+        "floor_count_unknown": 16965,
+        "view_obstacle_satellite": 19002,
+        "view_obstacle_height_tag": 517,
+        "view_sun_partial": 796,
+        "view_terrain": 2998,
+        "view_low_floor": 1172,
+        "view_sun_oblique": 4774,
+        "view_window_position": 69
       },
       "fact_subject_checks": {
         "external_geometry_subject_not_resolved": 20624,
-        "hotel": 74153,
+        "hotel": 99762,
         "room_type": 55632,
-        "building": 1404,
-        "facade_physical_floor": 187168,
-        "facade": 43300
+        "building": 3542,
+        "facade": 302059,
+        "facade_physical_floor": 283875
       },
       "ostrovok_import_passports": 58310,
       "subzones": {
@@ -868,8 +1087,8 @@
         "dagomys": 50,
         "khosta": 41
       },
-      "building_linked_hotels": 665,
-      "seconds": 10.889,
+      "building_linked_hotels": 1137,
+      "seconds": 22.088,
       "errors": {},
       "warnings": {
         "snapshot_not_checked": 1,
@@ -985,7 +1204,7 @@
         "not_specified": 50
       },
       "building_linked_hotels": 0,
-      "seconds": 0.159,
+      "seconds": 0.156,
       "errors": {},
       "warnings": {
         "external_geometry_subjects_not_resolved": 1
@@ -1002,10 +1221,10 @@
   ],
   "duplicate_hotels_between_cities": [],
   "status": "passed",
-  "seconds": 18.544,
+  "seconds": 31.526,
   "code_sha256": {
     "audit_packs.py": "afcc57c1b4cf7b78859b2400425688185176ff00f0e7067a9fc383098cb645fb",
     "audit_ostrovok.py": "3f783f3eb5e57ad5e264433b54b7119cbca47ab8180841b04f237f3839583618"
   },
-  "peak_rss_mib": 82.03
+  "peak_rss_mib": 93.22
 }

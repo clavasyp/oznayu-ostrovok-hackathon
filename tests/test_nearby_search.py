@@ -128,3 +128,52 @@ def test_amenity_in_the_hotel_is_checked_on_the_hotel_page():
     assert results["far"]["hard"][0]["reason_code"] == "place_on_site_seasonal"
     assert results["none"]["hard"][0]["reason_code"] == "place_on_site"
     assert [h for h in results] == ["near", "far", "none"]
+
+
+def test_area_words_filter_hotels_by_subzone():
+    """«В Адлере» — только отели района Адлер; «не в Адлере» — все, кроме них."""
+    hotels = {
+        h: {"hotel_id": h, "city_id": "sochi", "name": h, "subzone_id": area}
+        for h, area in (("a", "adler"), ("c", "center"), ("k", "krasnaya_polyana"))
+    }
+    s = StubStore(hotel_by_id=hotels)
+    only = parse_query("отель в Адлере", "sochi", mode="rules").ast
+    assert [r["hotel"]["hotel_id"] for r in search(s, only)] == ["a"]
+    not_adler = parse_query("не в Адлере", "sochi", mode="rules").ast
+    assert sorted(r["hotel"]["hotel_id"] for r in search(s, not_adler)) == ["c", "k"]
+
+
+def test_floor_without_placements_leans_by_building_levels():
+    """Этаж без размещений — по этажности корпусов (H03): «неизвестно», но с наклоном и
+    объяснением: в двухэтажном доме «не выше второго» — скорее да, «высокий этаж» — скорее нет."""
+    from core.facts import Fact
+
+    def levels(hid, n):
+        return Fact(fact_id=f"h{hid}", hotel_id=hid, city_id="sochi", subject_level="building",
+                    subject_id=f"way/{hid}", feature_id="H03", status="observed",
+                    value={"aboveground_levels": n})  # fmt: skip
+
+    hotels = {h: {"hotel_id": h, "city_id": "sochi", "name": h} for h in ("low", "tall", "none")}
+    s = StubStore(hotel_by_id=hotels, by_hotel={"low": {"H03": [levels("low", 2)]},
+                                                "tall": {"H03": [levels("tall", 9)]}})  # fmt: skip
+    results, _ = run("обязательно не выше второго этажа", s)
+    low, tall = results["low"]["hard"][0], results["tall"]["hard"][0]
+    assert low["verdict"] == "unknown" and low["leaning"] == "yes" and low["levels"] == [2]
+    assert "подходит любой номер" in low["reason"]
+    assert tall["leaning"] is None and results["none"]["hard"][0]["reason_code"] == "no_placements"
+    assert [h for h in results] == ["low", "tall", "none"]
+
+
+def test_kind_and_stars_filter_hotels():
+    """Тип жилья и звёзды — со страницы Островка; без звёзд — неклассифицированное жильё:
+    «пятизвёздочный» его не берёт."""
+    rows = (("hostel", "HOSTEL", None), ("five", "HOTEL", 5), ("flat", "APARTMENT", None))
+    hotels = {
+        h: {"hotel_id": h, "city_id": "moscow", "name": h, "hotel_kind": kind, "stars": stars}
+        for h, kind, stars in rows
+    }
+    s = StubStore(hotel_by_id=hotels)
+    hostel = parse_query("хостел", "moscow", mode="rules").ast
+    assert [r["hotel"]["hotel_id"] for r in search(s, hostel)] == ["hostel"]
+    five = parse_query("пятизвёздочный отель", "moscow", mode="rules").ast
+    assert [r["hotel"]["hotel_id"] for r in search(s, five)] == ["five"]

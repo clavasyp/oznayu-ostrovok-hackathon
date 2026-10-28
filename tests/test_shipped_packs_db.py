@@ -141,6 +141,17 @@ def test_sochi_subzones_are_names_with_codes(client):
     assert hotels and all(h["subzone"] == SUBZONE_NAMES[h["subzone_id"]] for h in hotels)
 
 
+def test_moscow_district_filter_from_guest_words(client):
+    """У отелей Москвы — район OSM; «в Хамовниках» оставляет только отели этого района."""
+    from agents.search.rules import AREA_NAMES
+
+    hotels = client.get("/api/hotels", params={"city_id": "moscow"}).json()["hotels"]
+    assert hotels and all(AREA_NAMES[h["subzone_id"]] == h["subzone"] for h in hotels)
+    body = client.post("/api/search", json={"text": "отель в Хамовниках", "city_id": "moscow"})
+    results = body.json()["results"]
+    assert results and {r["hotel"]["subzone_id"] for r in results} == {"khamovniki"}
+
+
 def test_showcase_hotels_card_questions_geometry_and_places(client):
     radisson = client.get(f"/api/hotels/{RADISSON}").json()
     assert "Radisson" in radisson["hotel"]["name"] and radisson["facts"]
@@ -160,3 +171,14 @@ def test_showcase_hotels_card_questions_geometry_and_places(client):
     for hotel_id in MOSCOW:
         card = client.get(f"/api/hotels/{hotel_id}").json()
         assert card["hotel"]["city_id"] == "moscow" and card["facts"]
+
+
+def test_first_load_rebuilds_every_fact_index(engine):
+    """Первая загрузка снимает индексы фактов и строит их после данных: в итоге все на месте."""
+    from sqlalchemy import text
+
+    from core.db import FactRow
+
+    with engine.connect() as conn:
+        have = set(conn.scalars(text("SELECT indexname FROM pg_indexes WHERE tablename='fact'")))
+    assert {ix.name for ix in FactRow.__table__.indexes} <= have

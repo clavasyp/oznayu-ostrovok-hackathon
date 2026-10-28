@@ -12,7 +12,7 @@ packs/<city_id>/
     placements.jsonl.gz         размещение: id ("<room_type_id>|<здание>|<этаж>[|<вариант>]"), room_type_id, building_id, floor, floor_label
     placement_windows.jsonl.gz  окна размещения: placement_id, facade_id, azimuth_deg
     buildings.jsonl.gz          корпуса: id ("way/…"), city_id, geometry (GeoJSON), tags
-    hotel_buildings.jsonl.gz    связи: hotel_id, building_id, method (auto | curated), evidence
+    hotel_buildings.jsonl.gz    связи: hotel_id, building_id, method (auto | auto_point | curated), evidence
     facades.jsonl.gz            building_id, facade_id, azimuth_deg, side, is_courtyard, geometry, length_m, source
     places.jsonl.gz             id (osm:<type>/<id> или 2gis:<id>), city_id, name, latitude, longitude, categories, tags, source
     transit_stations.jsonl.gz   id, city_id, name, latitude, longitude, mode, source
@@ -25,6 +25,19 @@ packs/<city_id>/
     ota_comparisons.jsonl.gz    сверка с карточкой Островка: hotel_id, feature_id, ota_value, classification, source
     view_sun.jsonl.gz           слой «вид и солнце» (Сочи): факты V05 и V01 по окнам — kind "facts" (D40)
     hotel_amenities.jsonl.gz    слой «удобства отеля» (Москва, Сочи): A03, T04, L04, T05 и `onsite` — kind "facts" (D26)
+    environment.jsonl.gz        слой «среда» (Москва, Сочи): климат C01–C03 и зелень E03 на все отели — kind "facts"
+    sun_hours.jsonl.gz          слой «часы солнца» (Сочи): S01, S02 — верхняя граница по фасадам — kind "facts"
+    mountains.jsonl.gz          слой «вид на горы» (Сочи): V02 по фасадам — kind "facts"
+    building_years.jsonl.gz     слой «год постройки по OSM» (Москва, Сочи): H01 оценкой — kind "facts"
+    heritage.jsonl.gz           слой «охранный статус» (Москва, Сочи): H02 — объект наследия в контуре корпуса — kind "facts"
+    beach_surface.jsonl.gz      слой «покрытие пляжа» (Сочи): B01 оценкой — тег `surface` ближайшего пляжа W01 — kind "facts"
+    construction.jsonl.gz       слой «стройка рядом» (Москва, Сочи): X03 оценкой — до края стройки OSM, «не ближе 1 км» — kind "facts"
+    building_facts.jsonl.gz, buildings_auto_point.jsonl.gz, facades_auto_point.jsonl.gz,
+    hotel_buildings_auto_point.jsonl.gz — связи отеля со зданием по точке (D42-1), H03, N02, N03
+    buildings_auto_point.jsonl.gz        слой связи по точке (D42-1): новые корпуса — kind "buildings"
+    facades_auto_point.jsonl.gz          их фасады `seg-…` — kind "facades"
+    hotel_buildings_auto_point.jsonl.gz  связи `auto_point` — kind "hotel_buildings"
+    building_facts.jsonl.gz              H03, N02, N03 корпусов и оценки N02 / N03 от точки — kind "facts"
 ```
 
 **Правила:**
@@ -46,7 +59,11 @@ packs/<city_id>/
 
 - **Подзона Сочи:** `subzone` — название для гостя («Адлер», «Красная Поляна», «Сочи (центр)»;
   вне именованных подзон — «Большой Сочи»), `subzone_id` — код (`adler`, `krasnaya_polyana`,
-  `center`, `other_greater_sochi`) для фильтров. У остальных городов оба поля пустые.
+  `center`, `other_greater_sochi`) для фильтров.
+- **Район Москвы:** `subzone` — район или поселение по границе OSM (admin_level 8; «Хамовники»,
+  «Басманный», «Сосенское»), `subzone_id` — код латиницей (`khamovniki`); в `source.district` —
+  отношение OSM и округ (`ЦАО`). Вне Москвы (у аэропортов в области) оба поля пустые. Пишет
+  `pipeline/build_districts.py` на месте, как `refresh_places`. У остальных городов поля пустые.
 
 - `facade_id = seg-<хеш концов сегмента и типа кольца>`, локальный в здании. Перенумерация
   обхода кольца ID не меняет; изменение самой геометрии может изменить ID. Субъект факта
@@ -97,6 +114,13 @@ packs/<city_id>/
   расстояние по прямой (у точки края парка — `geodesic_to_edge_point`, см. выше).
   `walking_distance_m=null` — маршрут/входы не проверены. Паспорт пары
   ссылается на `place.source` через `passport_ref`.
+- **Характеристики каталога «место рядом»** (выгул P03, коворкинг R04, детская неотложка F02,
+  аптека L01, еда L02, супермаркет L03, ветклиника P04) поиск тоже считает на запросе
+  (`core/place_features.py`, `GeoStore.nearest` с рангом места): метки места (`tags`) читаются
+  как есть — `opening_hours` (у еды — `opening_hours:kitchen`), `access`, `emergency`,
+  `healthcare:speciality`, название. F02 ищется среди больниц словаря (`hospital`): неотложка
+  подтверждена `emergency=yes` и педиатрией или названием; детская больница без отметки —
+  «уточнить». Пересборка пакета для этого не нужна: метки в `places` хранятся целиком.
 - Станции — ближайшие три объекта каждого нанесённого вида транспорта в 30 км по прямой;
   группировка объектов в пересадочный узел не выдумывается. Ранг относится к своему виду.
 - `transit_times` хранит конкретное отправление **с часовым поясом** и профиль. Пара на
@@ -129,8 +153,21 @@ packs/<city_id>/
 
 `depth`: `full` — Москва и Большой Сочи; `automatic` — 6 городов автоматическим слоем (D36).
 
-**Слои калькуляторов.** Файл, который собирает не сборка v9, а отдельный калькулятор (сейчас — `python -m pipeline.build_view_sun` и `python -m pipeline.build_hotel_amenities --snapshot <снимок Островка>`), добавляется в манифест через `core.packs.add_layer`:
+**Слои калькуляторов.** Файл, который собирает не сборка v9, а отдельный калькулятор (сейчас — `python -m pipeline.build_view_sun`, `python -m pipeline.build_hotel_amenities --snapshot <снимок Островка>` и `python -m pipeline.build_building_links build --raw <сырьё OSM>`), добавляется в манифест через `core.packs.add_layer`:
 - у файла в `files` — `"layer": true`; файлов одного `kind` может быть несколько (`facts.jsonl.gz` и `view_sun.jsonl.gz`), загрузка берёт все;
 - у его источников — `"layer": "<путь файла>"`, id с префиксом слоя (`view_sun:copdem-glo30`);
 - `pack_version` — версия сборки плюс хеш слоёв: `<версия сборки>+<хеш слоёв>` (например, `category-supplement.1-d55b41f99505+xxxxxxxx`);
 - пересборка v9 слои сохраняет (`keep_layers`); слой без файла выпадает вместе с источниками.
+
+**Связь по точке (D42-1, `pipeline/build_building_links.py`).** Отель без связи, чья точка внутри
+ровно одного контура здания OSM, а адрес страницы не противоречит адресу здания (улица или дом
+названы у обоих и расходятся — противоречие; не названо у одного — нет), получает связь
+`method = "auto_point"` с доказательством в `evidence` (`rule`, `address_check`, версия объекта
+OSM). Точка в нескольких контурах или ни в одном — связи нет. Прежние связи не меняются. Новые
+корпуса и их фасады — в своих файлах-слоях, загрузчик берёт все файлы вида. Факты слоя
+(`building-links.1`): H03 из `building:levels` (как v9, `observed`; тега нет — «неизвестно»
+`missing_aboveground_levels`) для каждой связи, где его нет; N02 / N03 от контура (`N02-R2`,
+`N03-R2`, параметры как у `route-poi.1`) для связей без них; отелю без корпуса — **оценка** N02 /
+N03 от точки (`N02-R2-point`, `hard_condition_eligible: false`, D18). Сырьё — ответы Overpass вне
+репозитория (`fetch --raw <папка>`: у каждого файла url, запрос, время, `timestamp_osm_base`,
+sha256); `build` без сети проверяет sha256 и без папки сырья не запускается.

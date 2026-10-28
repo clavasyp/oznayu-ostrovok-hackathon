@@ -575,3 +575,40 @@ input:focus-visible{outline:3px solid rgba(42,119,92,.27);outline-offset:2px}
 .building-choice label small,.building-single small{display:block;margin-top:2px;font-size:11px;color:#8a968d}
 .ooc-chip.checked{background:#f5f8f1;border:1px solid #e5eee1;color:#4b7153}
 .ooc-chip.checked small{color:#799072}
+
+/* Сравнение отелей: переключатель на карточке, панель внизу и таблица бок о бок. */
+.compare-toggle{position:absolute;z-index:3;left:12px;top:12px;border:1px solid rgba(39,57,46,.12);background:#fff;border-radius:30px;padding:4px 9px;display:flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:#5c6b62}
+.compare-toggle.on{background:#245d4b;border-color:#245d4b;color:#fff}
+.compare-bar{position:sticky;bottom:14px;z-index:600;margin:14px auto 0;max-width:760px;display:flex;align-items:center;gap:12px;padding:10px 14px;border:1px solid #dfe5dc;border-radius:10px;background:#fff;box-shadow:0 10px 30px rgba(19,36,29,.14);font-size:13px;color:#35463d}
+.compare-bar>span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.compare-bar .primary-button{padding:9px 12px}
+.compare-bar .primary-button:disabled{background:#b9c7bf;cursor:default}
+.compare-bar .text-button{margin-left:0}
+.hotel-dialog.compare-dialog{width:min(980px,100vw)}
+.compare-scroll{overflow-x:auto;margin-top:14px}
+.compare-table{width:100%;border-collapse:collapse;font-size:13px;color:#33433a}
+.compare-table th,.compare-table td{border-bottom:1px solid #e8ebe5;padding:9px 10px;text-align:left;vertical-align:top}
+.compare-table thead th{position:sticky;top:0;background:#fafaf7;font-weight:700}
+.compare-table thead th .text-button{margin:0 0 4px;padding:0;font-size:13px;font-weight:700;color:#245d4b;text-align:left}
+.compare-table thead th small{display:block;margin-top:4px;color:#87918a;font-weight:500}
+.compare-table tbody th{font-weight:600;min-width:150px}
+.compare-table tbody th .condition-dot{display:inline-block;margin-right:7px;background:#c9d2cc;vertical-align:middle}
+.compare-table tbody th .condition-dot.required{background:#76a878}
+.compare-table td{min-width:160px}
+.compare-table td svg{vertical-align:-2px}
+.compare-table td.cell-yes{background:#f4f9f1}
+.compare-table td.cell-no{background:#fbf2ef}
+.compare-table td.cell-none{color:#a3ada6}
+@media (max-width:640px){.compare-bar{margin:12px 12px 0}.compare-table{font-size:12px}.compare-table td{min-width:130px}}
+
+/* Актуализация в кабинете команды: дата, срок обновления и чем обновить. */
+.panel-note{margin:4px 0 10px;font-size:12px;line-height:1.5;color:#6c7a72}
+.as-of{display:flex;align-items:center;gap:6px;font-size:12px;color:#647168}
+.as-of input{border:1px solid #dfe4dc;border-radius:6px;padding:4px 6px;font:inherit;font-size:12px;background:#fff}
+.fresh-row{display:grid;grid-template-columns:minmax(150px,1.2fr) minmax(120px,.9fr) minmax(140px,1.3fr);gap:10px;align-items:center;padding:8px 0;border-top:1px solid #f1f2ee;font-size:12px}
+.fresh-row .coverage-name small{display:block;color:#98a29b}
+.fresh-dates{display:flex;flex-direction:column;gap:2px;color:#4e5d55}
+.fresh-dates small{color:#98a29b}
+.fresh-hint{color:#647168;font-size:11px;line-height:1.4}
+.fresh-row.stale .fresh-dates b{color:#b0563f}
+@media (max-width:640px){.fresh-row{grid-template-columns:1fr;gap:4px}}

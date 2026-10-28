@@ -1310,3 +1310,236 @@ def facts_for_window(
                     )
                 )
     return out
+
+
+# --- Часы прямого солнца на окне (S01 за день, S02 в местном интервале): верхняя граница ---
+# Солнце перед плоскостью фасада и выше рельефа по GLO-30 (нижняя граница высот поверхности) при
+# глазе на самом верху корпуса. Соседние дома и деревья ближе NEAR_M не учтены: они только
+# убавляют солнце. Поэтому «не больше N часов» по такой границе — точное «да», «не меньше N» при
+# границе меньше N — точное «нет»; остальное — «неизвестно» с наклоном (core/search.py).
+SUN_HOURS_VERSION = "sun-hours-upper@1"
+SUN_MONTHS = (5, 6, 7, 8, 9, 11)  # тёплый сезон и даты проверки трека (ноябрь)
+# Интервалы — ровно те, что ставит разбор (agents/search/rules.py, правило sun_hours).
+SUN_INTERVALS = (("07:00", "10:00"), ("07:00", "11:00"), ("11:00", "16:00"), ("13:00", "18:00"))
+SUN_STEP_MIN = 10
+SUN_AZ_BIN_DEG = 2.0
+SUN_HORIZON_M = 60_000.0  # горы дальше 60 км закрывают Солнце только у самого горизонта
+
+
+def sun_samples(lat: float, lon: float, day: date, tz: str) -> list[tuple[str, float, float]]:
+    """(местное «ЧЧ:ММ», азимут, видимая высота центра диска) с шагом SUN_STEP_MIN, днём."""
+    import pandas as pd
+    import pvlib
+
+    times = pd.date_range(f"{day} 00:00", f"{day} 23:59", freq=f"{SUN_STEP_MIN}min", tz=tz)
+    pos = pvlib.solarposition.get_solarposition(times, lat, lon, method="nrel_numpy")
+    return [
+        (t.strftime("%H:%M"), float(az), float(alt))
+        for t, az, alt in zip(times, pos["azimuth"], pos["apparent_elevation"], strict=True)
+        if alt > 0
+    ]
+
+
+def sun_possible(scene: Scene, bid: str, samples, eye_top: float) -> list[bool]:
+    """Может ли Солнце в этот момент быть над рельефом для глаза на верху корпуса."""
+    import numpy as np
+
+    out = []
+    for _, az, alt in samples:
+        az_bin = round(az / SUN_AZ_BIN_DEG) * SUN_AZ_BIN_DEG
+        d, lo, _, _, _ = far_profile(scene, bid, az_bin, SUN_HORIZON_M)
+        rise = _rise(np.maximum(d, 0.0), alt)
+        block = float(np.max(lo - rise)) if len(d) else -math.inf
+        out.append(eye_top > block)
+    return out
+
+
+def sun_hours_facts(
+    scene: Scene,
+    windows: list[Window],
+    tz: str,
+    city_id: str,
+    calculated_at: datetime,
+    year: int = 2027,
+) -> list[Fact]:
+    """S01 (часы за день месяца) и S02 (часы в интервалах разбора) по фасадам одного корпуса."""
+    if not windows:
+        return []
+    bid = windows[0].building_id
+    b = scene.osm[bid]
+    ensure_ground(scene, [b["index"]])
+    g_hi = float(scene.ground_hi[b["index"]])
+    if not math.isfinite(g_hi):
+        return []
+    floors = windows[0].floors
+    eye_top = g_hi + (eye_interval(floors)[1] if floors else UNKNOWN_TOP_M[1])
+    c = b["geom"].centroid
+    lon, lat = scene.inverse.transform(c.x, c.y)
+    by_month = {}
+    for month in SUN_MONTHS:
+        samples = sun_samples(lat, lon, date(year, month, 15), tz)
+        by_month[month] = (samples, sun_possible(scene, bid, samples, eye_top))
+    out = []
+    step_h = SUN_STEP_MIN / 60
+    for w in windows:
+        normal = w.facade["azimuth"]
+        for month, (samples, possible) in by_month.items():
+            lit = [
+                t
+                for (t, az, _), ok in zip(samples, possible, strict=True)
+                if ok and _front(az, normal) < FRONT_NO_DEG
+            ]
+            jobs = [("S01", {"month": month}, len(lit))]
+            for start, end in SUN_INTERVALS:
+                n = sum(start <= t < end for t in lit)
+                jobs.append(("S02", {"month": month, "time_from": start, "time_to": end}, n))
+            for fid, params, n in jobs:
+                out.append(_sun_fact(scene, w, fid, params, round(n * step_h, 2), city_id,
+                                     calculated_at, floors))  # fmt: skip
+    return out
+
+
+def _sun_fact(
+    scene: Scene,
+    w: Window,
+    fid: str,
+    params: dict[str, Any],
+    hours: float,
+    city_id: str,
+    calculated_at: datetime,
+    floors: int | None,
+) -> Fact:
+    subject = f"{w.building_id}:{w.facade['facade_id']}"
+    return Fact(
+        fact_id=make_fact_id(w.hotel_id, subject, fid, params, SUN_HOURS_VERSION),
+        hotel_id=w.hotel_id,
+        city_id=city_id,
+        subject_level="facade",
+        subject_id=subject,
+        feature_id=fid,
+        params=params,
+        value={"hours": hours, "bound": "upper"},
+        unit="h",
+        status=Status.computed,
+        sources=_sources(scene, w.building_id, Cell(None)),
+        recipe_id=f"{fid}-R1",
+        algorithm_version=SUN_HOURS_VERSION,
+        confidence=Confidence(
+            level="medium",
+            reason=(
+                "Верхняя граница: Солнце перед фасадом и над рельефом GLO-30 для глаза на верху "
+                "корпуса, середина месяца, шаг 10 минут. Соседние дома и деревья только убавят."
+            ),
+        ),
+        calculated_at=calculated_at,
+        scope_note="Любое окно этого фасада; номер категории — по ответу отеля (D17).",
+        recipe_attempts=[RecipeAttempt(recipe_id=f"{fid}-R1", data_kind="Б", state="accepted")],
+        depends_on=[{"facade_azimuth_deg": round(w.facade["azimuth"], 1), "floors": floors}],
+        hard_condition_eligible=True,
+    )
+
+
+# --- Вид на горы (V02): «нет» — точно, «скорее да» — оценка ---
+# В секторе окна ±45° ищем склон выше MOUNTAIN_MIN_M, который для глаза на верху корпуса
+# поднимается над рельефом между ними (рельеф-заслон — нижняя граница высот GLO-30, склон —
+# верхняя). Не нашли ни в одном направлении — гор из окна не видно ни при каких соседях: «нет»,
+# расчёт. Нашли — горы могут быть видны, но соседние дома и деревья мы тут не считаем: оценка
+# «да» (D18) — ранжирует и объясняет, обязательное условие не закрывает.
+MOUNTAIN_VERSION = "view-mountains@1"
+MOUNTAIN_MIN_M = 500.0
+MOUNTAIN_MAX_M = 60_000.0
+MOUNTAIN_STEP_DEG = 3.0
+
+
+def mountain_seen(scene: Scene, bid: str, az: float, eye_top: float) -> float | None:
+    """Высота самого видного склона выше MOUNTAIN_MIN_M в направлении az (или None)."""
+    import numpy as np
+
+    d, lo, hi, _, beyond = far_profile(scene, bid, az, MOUNTAIN_MAX_M)
+    if not len(d):
+        return None
+    curv = d * d * (1 - REFRACTION_K) / (2 * EARTH_R)
+    block = np.maximum.accumulate((lo - curv - eye_top) / np.maximum(d, 1.0))  # тангенс заслона
+    # За краем листов GLO-30 высота — заглушка REGION_MAX_M, а не склон: горой её не считаем.
+    seen = (hi > MOUNTAIN_MIN_M) & ~beyond & ((hi - curv - eye_top) / np.maximum(d, 1.0) >= block)
+    return float(np.max(hi[seen])) if seen.any() else None
+
+
+def mountain_facts(
+    scene: Scene, windows: list[Window], city_id: str, calculated_at: datetime
+) -> list[Fact]:
+    """V02 по фасадам одного корпуса: «нет» расчётом или «да» оценкой."""
+    if not windows:
+        return []
+    bid = windows[0].building_id
+    b = scene.osm[bid]
+    ensure_ground(scene, [b["index"]])
+    g_hi = float(scene.ground_hi[b["index"]])
+    if not math.isfinite(g_hi):
+        return []
+    floors = windows[0].floors
+    eye_top = g_hi + (eye_interval(floors)[1] if floors else UNKNOWN_TOP_M[1])
+    cache: dict[float, float | None] = {}
+    out = []
+    for w in windows:
+        normal = w.facade["azimuth"]
+        steps = int(SECTOR_DEG // MOUNTAIN_STEP_DEG)
+        peaks = []
+        for k in range(-steps, steps + 1):
+            az = (
+                round(((normal + k * MOUNTAIN_STEP_DEG) % 360) / MOUNTAIN_STEP_DEG)
+                * MOUNTAIN_STEP_DEG
+            )
+            if az not in cache:
+                cache[az] = mountain_seen(scene, bid, az, eye_top)
+            if cache[az] is not None:
+                peaks.append(cache[az])
+        out.append(_mountain_fact(scene, w, peaks, city_id, calculated_at, floors))
+    return out
+
+
+def _mountain_fact(
+    scene: Scene,
+    w: Window,
+    peaks: list[float],
+    city_id: str,
+    calculated_at: datetime,
+    floors: int | None,
+) -> Fact:
+    subject = f"{w.building_id}:{w.facade['facade_id']}"
+    seen = bool(peaks)
+    status = Status.estimate if seen else Status.computed
+    value: dict[str, Any] = {
+        "visible": seen,
+        "why": "mountains_in_sector" if seen else "no_mountains",
+    }
+    if seen:
+        value["highest_m"] = round(max(peaks))
+    version = MOUNTAIN_VERSION + ("/estimate" if seen else "")
+    reason = (
+        "Оценка: склон выше 500 м поднимается над рельефом в секторе окна ±45°, но соседние дома "
+        "и деревья не учтены (D18)."
+        if seen
+        else "Расчёт: в секторе окна ±45° ни один склон выше 500 м не поднимается над рельефом "
+        "даже для глаза на верху корпуса и без соседних домов."
+    )
+    return Fact(
+        fact_id=make_fact_id(w.hotel_id, subject, "V02", {}, version),
+        hotel_id=w.hotel_id,
+        city_id=city_id,
+        subject_level="facade",
+        subject_id=subject,
+        feature_id="V02",
+        params={},
+        value=value,
+        status=status,
+        sources=_sources(scene, w.building_id, Cell(None)),
+        recipe_id="V02-R1",
+        algorithm_version=version,
+        confidence=Confidence(level="low" if seen else "medium", reason=reason),
+        calculated_at=calculated_at,
+        scope_note="Любое окно этого фасада; номер категории — по ответу отеля (D17).",
+        recipe_attempts=[RecipeAttempt(recipe_id="V02-R1", data_kind="Б", state="accepted")],
+        depends_on=[{"facade_azimuth_deg": round(w.facade["azimuth"], 1), "floors": floors}],
+        hard_condition_eligible=not seen,
+    )

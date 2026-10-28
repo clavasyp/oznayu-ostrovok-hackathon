@@ -615,6 +615,43 @@
       "default": null,
       "title": "City Id"
     },
+    "areas": {
+      "description": "Только отели этих районов города (`subzone_id`)",
+      "items": {
+        "type": "string"
+      },
+      "title": "Areas",
+      "type": "array"
+    },
+    "exclude_areas": {
+      "description": "Без отелей этих районов: «не в Адлере»",
+      "items": {
+        "type": "string"
+      },
+      "title": "Exclude Areas",
+      "type": "array"
+    },
+    "kinds": {
+      "description": "Только этот тип жилья (`kind` Островка): «хостел»",
+      "items": {
+        "type": "string"
+      },
+      "title": "Kinds",
+      "type": "array"
+    },
+    "stars_min": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Звёзд на Островке не меньше: «пятизвёздочный», «4 звезды»",
+      "title": "Stars Min"
+    },
     "dates": {
       "anyOf": [
         {

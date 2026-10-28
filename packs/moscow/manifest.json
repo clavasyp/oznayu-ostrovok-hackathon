@@ -4,7 +4,7 @@
   "city_name": "Москва",
   "timezone": "Europe/Moscow",
   "depth": "full",
-  "pack_version": "seva-full.3-d0015521442f+0245e842",
+  "pack_version": "seva-full.3-f048d478de69+9f86be8e",
   "built_at": "2026-10-28T03:00:00Z",
   "code_version": "seva-full.3",
   "catalog_version": "ostrovok-2026-10-24+v9",
@@ -98,6 +98,108 @@
       "sha256": "b119459f669384ab6a8abf66e1e1b95af7c3063e082a1a91d6c962272ec4554f",
       "license": "Страницы Островка; сбор разрешён организаторами (D24)",
       "layer": "data/hotel_amenities.jsonl.gz"
+    },
+    {
+      "id": "environment:open-meteo-era5",
+      "provider": "Open-Meteo Historical Weather API (ERA5)",
+      "url": "https://open-meteo.com/en/docs/historical-weather-api",
+      "license": "CC BY 4.0; бесплатный API — только разовая сборка на хакатоне (D22)",
+      "commercial_ok": false,
+      "layer": "data/environment.jsonl.gz"
+    },
+    {
+      "id": "environment:esa-worldcover-2021",
+      "provider": "ESA WorldCover",
+      "url": "https://esa-worldcover.org/",
+      "release": "v200 2021",
+      "license": "CC BY 4.0",
+      "commercial_ok": true,
+      "layer": "data/environment.jsonl.gz"
+    },
+    {
+      "id": "building_links_buildings:osm",
+      "provider": "OpenStreetMap/Geofabrik",
+      "url": "https://download.geofabrik.de/russia/central-fed-district-latest.osm.pbf",
+      "release": "2026-10-22T20:21:33Z",
+      "sha256": "0067f5ee4128c29eb013ddc9da5ae5b235938249553435227a4161b585a87bc7",
+      "license": "ODbL-1.0",
+      "commercial_ok": true,
+      "fetched_at": "2026-10-23T16:42:08.802052Z",
+      "method": "building-links.1",
+      "raw_manifest_sha256": "a321853f616c1288b0792e28f02f9901af86175be850976ff2239eb2729bd477",
+      "layer": "data/buildings_auto_point.jsonl.gz"
+    },
+    {
+      "id": "building_links_facades:osm",
+      "provider": "OpenStreetMap/Geofabrik",
+      "url": "https://download.geofabrik.de/russia/central-fed-district-latest.osm.pbf",
+      "release": "2026-10-22T20:21:33Z",
+      "sha256": "0067f5ee4128c29eb013ddc9da5ae5b235938249553435227a4161b585a87bc7",
+      "license": "ODbL-1.0",
+      "commercial_ok": true,
+      "fetched_at": "2026-10-23T16:42:08.802052Z",
+      "method": "building-links.1",
+      "raw_manifest_sha256": "a321853f616c1288b0792e28f02f9901af86175be850976ff2239eb2729bd477",
+      "layer": "data/facades_auto_point.jsonl.gz"
+    },
+    {
+      "id": "building_links_links:osm",
+      "provider": "OpenStreetMap/Geofabrik",
+      "url": "https://download.geofabrik.de/russia/central-fed-district-latest.osm.pbf",
+      "release": "2026-10-22T20:21:33Z",
+      "sha256": "0067f5ee4128c29eb013ddc9da5ae5b235938249553435227a4161b585a87bc7",
+      "license": "ODbL-1.0",
+      "commercial_ok": true,
+      "fetched_at": "2026-10-23T16:42:08.802052Z",
+      "method": "building-links.1",
+      "raw_manifest_sha256": "a321853f616c1288b0792e28f02f9901af86175be850976ff2239eb2729bd477",
+      "layer": "data/hotel_buildings_auto_point.jsonl.gz"
+    },
+    {
+      "id": "building_links_facts:osm",
+      "provider": "OpenStreetMap/Geofabrik",
+      "url": "https://download.geofabrik.de/russia/central-fed-district-latest.osm.pbf",
+      "release": "2026-10-22T20:21:33Z",
+      "sha256": "0067f5ee4128c29eb013ddc9da5ae5b235938249553435227a4161b585a87bc7",
+      "license": "ODbL-1.0",
+      "commercial_ok": true,
+      "fetched_at": "2026-10-23T16:42:08.802052Z",
+      "method": "building-links.1",
+      "raw_manifest_sha256": "a321853f616c1288b0792e28f02f9901af86175be850976ff2239eb2729bd477",
+      "layer": "data/building_facts.jsonl.gz"
+    },
+    {
+      "id": "building_years:osm",
+      "provider": "OpenStreetMap (теги корпусов пакета)",
+      "license": "ODbL-1.0",
+      "commercial_ok": true,
+      "layer": "data/building_years.jsonl.gz"
+    },
+    {
+      "id": "heritage:wikidata",
+      "provider": "Wikidata",
+      "sha256": "dfd6a436eb74246f118825c578ae216eee7d5037a2cc6cb3e5ba57f4ace2f727",
+      "license": "CC0 1.0",
+      "commercial_ok": true,
+      "layer": "data/heritage.jsonl.gz"
+    },
+    {
+      "id": "districts_osm",
+      "provider": "OpenStreetMap/Geofabrik (границы районов Москвы)",
+      "release": "2026-10-22T20:21:33Z",
+      "sha256": "0067f5ee4128c29eb013ddc9da5ae5b235938249553435227a4161b585a87bc7",
+      "license": "ODbL-1.0",
+      "commercial_ok": true,
+      "method": "districts-osm.1; districts.geojson sha256 b4811845e698"
+    },
+    {
+      "id": "construction:osm",
+      "provider": "OpenStreetMap/Geofabrik (стройки)",
+      "release": "2026-10-22T20:21:33Z",
+      "sha256": "0067f5ee4128c29eb013ddc9da5ae5b235938249553435227a4161b585a87bc7",
+      "license": "ODbL-1.0",
+      "commercial_ok": true,
+      "layer": "data/construction.jsonl.gz"
     }
   ],
   "files": [
@@ -112,8 +214,8 @@
       "path": "data/coverage.jsonl.gz",
       "kind": "coverage",
       "rows": 54,
-      "bytes": 2864,
-      "sha256": "5cc696d750980171bac1185526daa70ea06ba0077f128c4ef91c386c0868e04d"
+      "bytes": 2893,
+      "sha256": "89d1aa8b1e952b2f9a4991b21282dfb673a19276de11677249aeb6080574edf4"
     },
     {
       "path": "data/curation_items.jsonl.gz",
@@ -154,8 +256,8 @@
       "path": "data/hotels.jsonl.gz",
       "kind": "hotels",
       "rows": 4211,
-      "bytes": 825642,
-      "sha256": "581fab657e7529199b1d20b1b17c99f87fd9e8c29442ee718ab9faf46adfc41f"
+      "bytes": 899237,
+      "sha256": "11e40a604c5d6749a9e51dbe63f08a374561097b7d7958aedfe77141376ca4e4"
     },
     {
       "path": "data/ota_comparisons.jsonl.gz",
@@ -206,7 +308,71 @@
       "bytes": 655054,
       "sha256": "5791db1eead4d0bae85528a57a38b7547adc3f65cc3888e7e39dba7913203592",
       "layer": true
+    },
+    {
+      "path": "data/environment.jsonl.gz",
+      "kind": "facts",
+      "rows": 29134,
+      "bytes": 8303112,
+      "sha256": "707419a27adc244ece96e8622536ea153f5c8b9b11d7c996e050c1b96af2801f",
+      "layer": true
+    },
+    {
+      "path": "data/buildings_auto_point.jsonl.gz",
+      "kind": "buildings",
+      "rows": 873,
+      "bytes": 143528,
+      "sha256": "5780d213b25476d6347f296372270cb7c43daf75444e6d85fd4425c771a7d66c",
+      "layer": true
+    },
+    {
+      "path": "data/facades_auto_point.jsonl.gz",
+      "kind": "facades",
+      "rows": 12405,
+      "bytes": 675456,
+      "sha256": "b2a87738f8db803f6f1998ad2c2e74ae3a7f27d6c85949347cc8207fa28fc6b8",
+      "layer": true
+    },
+    {
+      "path": "data/hotel_buildings_auto_point.jsonl.gz",
+      "kind": "hotel_buildings",
+      "rows": 1168,
+      "bytes": 76753,
+      "sha256": "3af3cecde62fb8c3244cd0cf58603e77dba8703a919d37e1969a88e06f9d5bd4",
+      "layer": true
+    },
+    {
+      "path": "data/building_facts.jsonl.gz",
+      "kind": "facts",
+      "rows": 7989,
+      "bytes": 719249,
+      "sha256": "a40489b7b23cf9ece805acdf9cb37d4b2a3f8621ec50a5478c6e0fe2809c8dbc",
+      "layer": true
+    },
+    {
+      "path": "data/building_years.jsonl.gz",
+      "kind": "facts",
+      "rows": 1367,
+      "bytes": 54666,
+      "sha256": "558774750a05f9592964691f924ba1427d605bec865298770eaa79b1ab319c54",
+      "layer": true
+    },
+    {
+      "path": "data/heritage.jsonl.gz",
+      "kind": "facts",
+      "rows": 233,
+      "bytes": 18259,
+      "sha256": "0bc25385c0cdbf2dcdd759a997a5a682ab0bc9a0c073bc5939ac8d6b273f349c",
+      "layer": true
+    },
+    {
+      "path": "data/construction.jsonl.gz",
+      "kind": "facts",
+      "rows": 4211,
+      "bytes": 284542,
+      "sha256": "bfa039a59a149d74718196a1fed52be4b788735a67cef201bf4dfa5ed6da3748",
+      "layer": true
     }
   ],
-  "notes": "Полный каталог, георасчёты, корпуса/геометрические фасады и OSM D34. Расстояния до мест и станций — по прямой, доступ не подтверждён. Места рядом считает запрос PostGIS; в пакете только места с категорией словаря мест или характеристики каталога. 2ГИС bundle не передан. Пустая transit_times не означает отсутствие транспорта; вне датированных ответов время неизвестно. Места и станции — places-refresh.1: парки с точками края через 150 м, подъёмники и аттракционы; места и станции за границей РФ не берутся."
+  "notes": "Полный каталог, георасчёты, корпуса/геометрические фасады и OSM D34. Расстояния до мест и станций — по прямой, доступ не подтверждён. Места рядом считает запрос PostGIS; в пакете только места с категорией словаря мест или характеристики каталога. 2ГИС bundle не передан. Пустая transit_times не означает отсутствие транспорта; вне датированных ответов время неизвестно. Места и станции — places-refresh.1: парки с точками края через 150 м, подъёмники и аттракционы; места и станции за границей РФ не берутся. Районы Москвы — districts-osm.1: границы районов и поселений OSM (admin_level 8)."
 }

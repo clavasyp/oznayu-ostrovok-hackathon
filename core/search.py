@@ -24,6 +24,11 @@
 разных источников расходятся, это противоречие (core §6): «нужно уточнить», ID фактов в ответе.
 «Есть, тип не назван» (`present`) против конкретного типа — тоже «нужно уточнить» (D39).
 Причины — кодом (`reason_code`) и текстом для экрана (`reason`, `core/reasons.py`).
+
+Характеристики каталога «место рядом» (выгул P03, коворкинг R04, детская неотложка F02, аптека
+L01, еда L02, супермаркет L03, ветклиника P04) — не по фактам, а по местам пакета на запросе, с
+часами OSM в момент гостя (`place_feature_item`, `core/place_features.py`, D41). Мест такого
+типа в городе нет — по фактам расчёта v9, если они есть.
 """
 
 from __future__ import annotations
@@ -32,13 +37,19 @@ import json
 import re
 from collections import Counter, defaultdict
 from collections.abc import Callable, Collection, Iterable
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
 from agents.query_ast import Condition, LogicNode, OutOfCatalog, QueryAST
+from core import place_features as pf
 from core.facts import Fact, Status, SubjectLevel
+from core.freshness import is_stale
+from core.live import LIVE, live_facts
 from core.reasons import reason_text
 from core.store import Store
+from core.transit import TRANSIT, transit_facts
+from core.transit import enabled as transit_enabled
 from core.verdict import GUEST_LABELS, GuestStatus, Verdict, and3, guest_status, not3, or3
 
 EXAMPLE_AST = (
@@ -132,6 +143,22 @@ def _below_bound(f: Fact, op: str, ok: bool | None) -> bool:
     )
 
 
+# Значение — верхняя граница (часы солнца на окне без соседних домов): «не больше N» по ней —
+# точное «да», «не меньше N» при границе меньше N — точное «нет»; обратное не доказано.
+UPPER_BOUND = ("sun-hours-upper@",)
+
+
+def _upper_bound_open(f: Fact, op: str, ok: bool | None) -> Verdict | None:
+    """Куда склоняется сравнение, которое верхняя граница не решает; None — решает."""
+    if not (f.algorithm_version or "").startswith(UPPER_BOUND) or ok is None:
+        return None
+    if op in ("lte", "lt") and ok is False:
+        return Verdict.no  # граница выше нужного: соседи могут убавить солнце, но обычно нет
+    if op in ("gte", "gt") and ok is True:
+        return Verdict.yes
+    return None
+
+
 def _unspecified(op: str, left: Any, right: Any) -> bool:
     """«Есть, тип не назван» против конкретного типа: не «нет», а «неизвестно» (D39)."""
     if left != PRESENT or op not in ("eq", "ne", "in"):
@@ -188,6 +215,8 @@ def evaluate(facts: list[Fact], c: Condition, hard: bool) -> dict[str, Any]:
         "fact_ids": [f.fact_id for f in usable],
         "statuses": sorted({f.status for f in usable}),
     }
+    if any(is_stale(f) for f in usable):  # актуализация: ответ остаётся, но «пора обновить»
+        extra["stale"] = True
     places: dict[tuple[str, str], list[Fact]] = defaultdict(list)
     for f in usable:
         places[_place(f)].append(f)
@@ -195,6 +224,7 @@ def evaluate(facts: list[Fact], c: Condition, hard: bool) -> dict[str, Any]:
     conflict_ids: list[str] = []
     unspecified = False
     bound = False  # по картам меньше нужного, но число «не меньше»
+    upper: Verdict | None = None  # верхняя граница не решает сравнение — куда склоняется
     for fs in places.values():
         results: set[bool | None] = set()
         vague = False  # «есть, тип не назван» (D39) — не спорит с конкретным фактом того же места
@@ -204,6 +234,9 @@ def evaluate(facts: list[Fact], c: Condition, hard: bool) -> dict[str, Any]:
                 vague = True
             elif _below_bound(f, c.op, ok := _compare(c.op, left, c.value)):
                 bound = True
+                results.add(None)
+            elif lean := _upper_bound_open(f, c.op, ok):
+                upper = upper or lean
                 results.add(None)
             else:
                 results.add(ok)
@@ -234,6 +267,8 @@ def evaluate(facts: list[Fact], c: Condition, hard: bool) -> dict[str, Any]:
         return _result(c, Verdict.unknown, "value_unspecified", leaning=Verdict.yes, **extra)
     if bound:
         return _result(c, Verdict.unknown, "count_lower_bound", leaning=Verdict.no, **extra)
+    if upper:
+        return _result(c, Verdict.unknown, "sun_hours_upper_bound", leaning=upper, **extra)
     return _result(c, Verdict.unknown, "not_comparable", **extra)
 
 
@@ -294,6 +329,71 @@ def place_item(
         # Место есть, а «хорошее» ли — оценок у нас нет (v11: рейтинг не факт без снимка).
         return out | why("place_quality_unknown") | {"leaning": Verdict.yes}
     return out | {"verdict": Verdict.yes}
+
+
+def place_spec(c: Condition) -> pf.PlaceFeature | None:
+    """Характеристика каталога «место рядом» с условием «не дальше N м» — считается по местам
+    пакета на запросе (`core.place_features`); другие условия («дальше N м») — по фактам."""
+    spec = pf.FEATURES.get(c.feature_id)
+    numeric = isinstance(c.value, (int, float)) and not isinstance(c.value, bool)
+    ok = c.field in (None, "distance_m") and c.op in ("lte", "lt") and numeric and c.value > 0
+    return spec if ok else None
+
+
+def place_feature_item(
+    c: Condition,
+    spec: pf.PlaceFeature,
+    found: dict[str, Any] | None,
+    known: int,
+    moment: dict[str, str] | None,
+    timezones: dict[str, str],
+    city_id: str | None = None,
+) -> dict[str, Any]:
+    """Условие «место рядом» каталога (P03, R04, F02, L01–L03, P04) по местам пакета (D41).
+
+    Ответ — как у «рядом место типа X» (`place_item`): «да» — место подтверждённого типа, а если
+    гость назвал момент — открытое по часам OSM, в радиусе условия с запасом на обход (по прямой
+    × `DETOUR`). Это расчёт по открытым данным с паспортом (место OSM, расстояние, часы и момент):
+    статус `computed`, он закрывает и обязательное условие. «Нет» не говорим (карты — не перепись,
+    v11): часы не указаны или тип не подтверждён — «неизвестно», склоняется к «да»; рядом всё
+    закрыто или не нашли — склоняется к «нет»; таких мест в городе нет — «нет данных»."""
+    radius = float(c.value)  # type: ignore[arg-type]  # проверено в place_spec
+    nearby = {"category": spec.category, "radius_m": round(radius)}
+    if not known:
+        return _result(c, Verdict.unknown, "place_no_data", nearby=nearby)
+    if found is None:
+        return _result(c, Verdict.unknown, "place_not_found", nearby=nearby, leaning=Verdict.no)
+    place = {k: v for k, v in found.items() if k not in ("rank", "tags")}
+    # Часы и тип — для паспорта; ранг — как его посчитало хранилище при выборе места.
+    graded = pf.classify(spec, {"city_id": city_id} | found, moment, timezones)
+    rank, hours = graded if graded else (pf.UNCONFIRMED, None)
+    rank = found.get("rank", rank)
+    if hours:
+        place["hours"] = hours
+    extra = {"nearby": nearby, "place": place}
+    if rank == pf.CLOSED:
+        return _result(c, Verdict.unknown, pf.reason_of(rank, hours), leaning=Verdict.no, **extra)
+    if rank != pf.YES:
+        return _result(c, Verdict.unknown, pf.reason_of(rank, hours), leaning=Verdict.yes, **extra)
+    if found["distance_m"] * DETOUR > radius:
+        return _result(c, Verdict.unknown, "place_far_on_foot", leaning=Verdict.yes, **extra)
+    return _result(c, Verdict.yes, statuses=[Status.computed], **extra)
+
+
+@dataclass(frozen=True)
+class NearFeature:
+    """Ответ хранилища на условие «место рядом»: лучшее место у каждого отеля и сколько мест
+    с рангом в городах отелей (0 — таких мест в данных нет)."""
+
+    spec: pf.PlaceFeature
+    found: dict[str, dict[str, Any]]
+    known: int
+    moment: dict[str, str] | None
+
+
+def city_timezones(store: Store) -> dict[str, str]:
+    """Часовой пояс города — для часов работы мест в момент гостя."""
+    return {c["city_id"]: c["timezone"] for c in store.cities() if c.get("timezone")}
 
 
 WALK_M_PER_MIN = 80  # как в каталоге: «10 минут пешком» ≈ 800 м
@@ -455,6 +555,10 @@ def hotel_windows(c: Condition, facts: list[Fact], hard: bool) -> dict[str, Any]
                 kind = "estimate" if guess["verdict"] == Verdict.yes else None
                 estimate_no += guess["verdict"] == Verdict.no
                 r = guess
+            elif r.get("reason_code") == "sun_hours_upper_bound":
+                # Часы солнца — верхняя граница: «скорее да» — как оценка, «скорее нет» — тоже.
+                kind = "estimate" if r.get("leaning") == Verdict.yes else None
+                estimate_no += r.get("leaning") == Verdict.no
         if kind is not None:
             counts[kind] += 1
             found[kind][_side(fs[0])].add(_window_floor(subject))
@@ -479,6 +583,44 @@ def hotel_windows(c: Condition, facts: list[Fact], hard: bool) -> dict[str, Any]
         top = reasons.most_common(1)
         code, shown = (top[0][0] if top else None) or "unknown", []
     return _result(c, Verdict.unknown, code, fact_ids=shown[:WINDOW_IDS_MAX], windows=summary)
+
+
+def floor_by_levels(c: Condition, levels: list[Fact]) -> dict[str, Any]:
+    """Этаж без размещений — по этажности корпусов отеля (H03, OSM `building:levels`): в доме
+    в N надземных этажей номер на 1…N этаже. Ответ — «неизвестно», как у окон (D41): корпуса
+    отеля и место номера знает только отель, мансарду и цоколь OSM отмечает не всегда. Но
+    наклон честный: подходят все этажи — «скорее да», ни один — «скорее нет»."""
+    floors = sorted(
+        {
+            n
+            for f in levels
+            if f.status != Status.unknown and isinstance(f.value, dict)
+            for n in [f.value.get("aboveground_levels")]
+            if isinstance(n, int) and n > 0
+        }
+    )
+    if not floors:
+        return _result(c, Verdict.unknown, "no_placements")
+    oks = {_compare(c.op, k, c.value) for k in range(1, max(floors) + 1)}
+    leaning = Verdict.yes if oks == {True} else Verdict.no if oks == {False} else None
+    shown = "–".join(map(str, sorted({floors[0], floors[-1]})))
+    tail = {Verdict.yes: "подходит любой номер", Verdict.no: "таких этажей там нет"}.get(
+        leaning, "подходят не все этажи"
+    )
+    out = _result(c, Verdict.unknown, "floor_by_building_levels", leaning=leaning)
+    n = floors[-1] % 100
+    word = (
+        "этаж"
+        if n % 10 == 1 and n != 11
+        else "этажа"
+        if 2 <= n % 10 <= 4 and not 12 <= n <= 14
+        else "этажей"
+    )
+    where = "в корпусах" if len(floors) > 1 else "в корпусе"
+    out["reason"] = f"{where} {shown} {word} (по карте) — {tail}; уточним у отеля, где номер"
+    out["fact_ids"] = [f.fact_id for f in levels if f.status != Status.unknown][:5]
+    out["levels"] = floors
+    return out
 
 
 # Внутри одного статуса — сначала отели, где условие окна по расчёту выполняется хотя бы
@@ -793,27 +935,63 @@ def _score(soft: list[dict[str, Any]]) -> dict[str, float]:
 
 
 def search(
-    store: Store, ast: QueryAST, only: Collection[str] | None = None
+    store: Store, ast: QueryAST, only: Collection[str] | None = None, transit: bool = False
 ) -> list[dict[str, Any]]:
     hotels = store.hotels(ast.city_id or None)
     if only is not None:
         hotels = [h for h in hotels if h["hotel_id"] in only]
+    # Район города словами гостя («в Адлере», «не в Адлере») — фильтр, как город.
+    if ast.areas:
+        hotels = [h for h in hotels if h.get("subzone_id") in ast.areas]
+    if ast.exclude_areas:
+        hotels = [h for h in hotels if h.get("subzone_id") not in ast.exclude_areas]
+    # Тип жилья и звёзды — со страницы Островка (у большинства звёзд нет: это не «нет»,
+    # а неклассифицированное жильё — апартаменты, гостевые дома; звёзды просили — их не берём).
+    if ast.kinds:
+        hotels = [h for h in hotels if h.get("hotel_kind") in ast.kinds]
+    if ast.stars_min:
+        hotels = [h for h in hotels if (h.get("stars") or 0) >= ast.stars_min]
     ids = [h["hotel_id"] for h in hotels]
+    conds = [*ast.hard, *ast.soft]
+    # Характеристики каталога «место рядом» (P03, R04, F02, L01–L03, P04) — лучшее место по
+    # рангу (тип, часы в момент гостя) одним запросом на условие, а не на отель (D41).
+    specs = {id(c): s for c in conds if (s := place_spec(c))}
+    timezones = city_timezones(store) if specs else {}
+    near: dict[int, NearFeature] = {}
+    asked: dict[tuple[str, str, float], NearFeature] = {}
+    for c in conds:
+        if (spec := specs.get(id(c))) is None:
+            continue
+        radius = float(c.value)  # type: ignore[arg-type]  # число — проверено в place_spec
+        key = (c.feature_id, json.dumps(c.params, sort_keys=True, default=str), radius)
+        if key not in asked:
+            moment = pf.moment_of(c.params)
+            rank = pf.ranker(spec, moment, timezones)
+            found, known = store.nearest_places(ids, spec.category, radius, rank=rank)
+            asked[key] = NearFeature(spec, found, known, moment)
+        near[id(c)] = asked[key]
     # Один запрос к хранилищу на характеристику, а не на отель.
-    features = {c.feature_id for c in [*ast.hard, *ast.soft]}
+    features = {c.feature_id for c in conds}
     wanted: dict[str, list[dict[str, Any]]] = defaultdict(list)
-    for c in [*ast.hard, *ast.soft]:
+    for c in conds:
         if c.params not in wanted[c.feature_id]:
             wanted[c.feature_id].append(c.params)
     # Параметры одни на все условия характеристики — хранилище отберёт факты по ним (даты).
+    # Прогноз на день заезда (C04, E01, B03) — не из пакета, а на запросе (core/live.py).
     facts = {
-        fid: store.facts_for(
+        fid: live_facts(fid, hotels, wanted[fid][0])
+        if fid in LIVE
+        else transit_facts(fid, hotels, wanted[fid][0], ast.raw_text)
+        if fid in TRANSIT and transit and transit_enabled()
+        else store.facts_for(
             fid,
             ids,
             params=wanted[fid][0] if len(wanted[fid]) == 1 else None,
             key_params=KEY_PARAMS.get(fid, ()),
         )
         for fid in features
+        # «Место рядом» по местам пакета — факты v9 не нужны, если места такого типа есть.
+        if any(c.feature_id == fid and not (id(c) in near and near[id(c)].known) for c in conds)
     }
     room_types = store.room_types(ids) if features else {}
     logic = Logic.of(ast)
@@ -830,16 +1008,33 @@ def search(
         for o in ast.out_of_catalog
         if o.place and not o.place.on_site and o.place.radius_m
     }
+    # Этаж без размещений — по этажности корпусов (H03), один запрос на все отели.
+    storeys = (
+        store.facts_for("H03", ids)
+        if any(c.feature_id in PLACEMENT_FIELDS for c in [*ast.hard, *ast.soft])
+        else {}
+    )
     onsite = (
         store.facts_for(ONSITE, ids)
         if any(o.place and o.place.on_site for o in ast.out_of_catalog)
         else {}
     )
 
+    def check(c: Condition, hotel: dict[str, Any], facts: list[Fact], hard: bool) -> dict:
+        """Условие уровня отеля: «место рядом» — по местам пакета; мест такого типа в городе
+        нет, а факты есть (расчёт v9) — по фактам; остальное — по фактам."""
+        n = near.get(id(c))
+        if n is None or (not n.known and facts):
+            return evaluate(facts, c, hard)
+        found = n.found.get(hotel["hotel_id"])
+        return place_feature_item(
+            c, n.spec, found, n.known, n.moment, timezones, hotel.get("city_id")
+        )
+
     results = []
     for hotel in hotels:
         hid = hotel["hotel_id"]
-        own = {fid: facts[fid].get(hid, []) for fid in features}
+        own = {fid: facts[fid].get(hid, []) if fid in facts else [] for fid in features}
         levels = {
             fid: "window" if fid in PLACEMENT_FIELDS else _level(fs) for fid, fs in own.items()
         }
@@ -852,9 +1047,10 @@ def search(
 
         hard_hotel, hard_cat, hard_win = split(list(ast.hard))
         soft_hotel, soft_cat, soft_win = split(list(ast.soft))
-        hard = [evaluate(own[c.feature_id], c, hard=True) for c in hard_hotel]
+        hard = [check(c, hotel, own[c.feature_id], hard=True) for c in hard_hotel]
         soft = [
-            evaluate(own[c.feature_id], c, hard=False) | {"weight": c.weight} for c in soft_hotel
+            check(c, hotel, own[c.feature_id], hard=False) | {"weight": c.weight}
+            for c in soft_hotel
         ]
         # Часть запроса вне каталога (D34): «рядом место типа X» считается по местам пакета;
         # остальное в обязательной части не засчитывается — «неизвестно» на своём месте в графе.
@@ -898,11 +1094,17 @@ def search(
             if (hard_win or soft_win) and not any(_placed(rt) for rt in rts):
                 # Ни одна категория не привязана к корпусам и этажам — условия окна по всем окнам
                 # корпусов отеля (D17, D40): сводка, где «да» и где «нет».
-                hard += [hotel_windows(c, own[c.feature_id], hard=True) for c in hard_win]
-                soft += [
-                    hotel_windows(c, own[c.feature_id], hard=False) | {"weight": c.weight}
-                    for c in soft_win
-                ]
+                mine = storeys.get(hid, [])
+
+                def window(
+                    c: Condition, hard: bool, *, own: dict = own, mine: list = mine
+                ) -> dict[str, Any]:
+                    if c.feature_id in PLACEMENT_FIELDS:  # этаж — по этажности корпусов
+                        return floor_by_levels(c, mine)
+                    return hotel_windows(c, own[c.feature_id], hard=hard)
+
+                hard += [window(c, True) for c in hard_win]
+                soft += [window(c, False) | {"weight": c.weight} for c in soft_win]
                 hard_win, soft_win = [], []
             if not rts:
                 hard += [_result(c, Verdict.unknown, "no_room_types") for c in hard_cat]
@@ -949,6 +1151,11 @@ def search(
             else:
                 status = best["status"]
             hard = logic.items(nodes, hard) + [h for h in hard if not logic.covers(h)]
+        for item in [*hard, *soft]:
+            if item.get("feature_id") in TRANSIT and item.get("reason_code") == "no_fact":
+                # Время на транспорте — 2ГИС на запросе, для первой страницы (core/transit.py).
+                code = "transit_on_request" if transit_enabled() else "transit_no_key"
+                item |= {"reason_code": code, "reason": reason_text(code)}
         results.append(
             {
                 "hotel": hotel,

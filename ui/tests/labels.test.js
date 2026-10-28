@@ -1,6 +1,6 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { distinctTitles, guestNotes, hotelKind, itemMarks, itemSubtitle, itemTitle, orderedItems, outOfCatalogCheck, placementFloors, shortVerdict, verdictKind, verdictText } from '../src/labels.js'
+import { areaText, compareRows, distinctTitles, guestNotes, hotelKind, itemMarks, itemSubtitle, itemTitle, orderedItems, outOfCatalogCheck, placeNote, placementFloors, shortVerdict, verdictKind, verdictText } from '../src/labels.js'
 
 const labels = { features: { P01: 'можно с животным', L04: 'заселение в нужное время', L01: 'аптека, открытая в момент приезда', N02: 'далеко от оживлённых дорог', N04: 'мало баров и клубов рядом', B02: 'температура моря за месяц' } }
 
@@ -80,4 +80,34 @@ test('an amenity in the hotel is checked on the hotel page, not on the map', () 
   const found = { text_span: 'с бассейном', nearby: { category: 'pool' }, on_site: ['Открытый бассейн'], verdict: 'yes' }
   assert.equal(itemSubtitle(found, {}), 'по странице отеля на Островке')
   assert.equal(itemSubtitle({ text_span: 'с бассейном', nearby: { category: 'pool' }, reason_code: 'place_on_site' }, {}), 'в самом отеле')
+})
+
+test('the Sochi area filter is shown in guest words', () => {
+  assert.equal(areaText({ areas: ['adler'] }), 'только Адлер')
+  assert.equal(areaText({ exclude_areas: ['adler', 'sirius'] }), 'кроме: Адлер, Сириус')
+  assert.equal(areaText({}), '')
+  assert.equal(areaText({ areas: ['khamovniki'] }, { areas: { khamovniki: 'Хамовники' } }), 'только Хамовники')
+  assert.equal(areaText({ areas: ['adler'], kinds: ['HOSTEL'], stars_min: 4 }), 'только Адлер; хостелы; от 4★ на Островке')
+})
+
+test('comparison puts the same condition of each hotel in one row, required first', () => {
+  const a = { hard: [{ atom_id: 'a1', label: 'лифт', verdict: 'yes' }], soft: [{ atom_id: 'a2', label: 'у моря', verdict: 'unknown', reason: 'есть только оценка' }] }
+  const b = { hard: [{ atom_id: 'a1', label: 'лифт', verdict: 'no', reason: 'Островок: «Отсутствие лифтов»' }], soft: [{ atom_id: 'a2', label: 'у моря', verdict: 'yes' }] }
+  const rows = compareRows([a, b], {})
+  assert.deepEqual(rows.map((r) => [r.title, r.required]), [['лифт', true], ['у моря', false]])
+  assert.deepEqual(rows[0].cells.map((c) => c.kind), ['yes', 'no'])
+  assert.equal(rows[0].cells[1].text, 'Островок: «Отсутствие лифтов»')
+  assert.equal(rows[1].cells[0].text, 'есть только оценка')
+  // С объяснением — его текст по условию, со значением, без названия условия.
+  const said = { ...a, explanation: { claims: [{ atom_id: 'a2', text: 'У моря: нужно уточнить — 576 м, есть только оценка' }] } }
+  assert.equal(compareRows([said, b], {})[1].cells[0].text, '576 м, есть только оценка')
+})
+
+test('a catalog place feature shows the found place, distance and hours at the guest moment', () => {
+  const hours = { state: 'open', opening_hours: '24/7', moment: { arrival_local: '2027-05-14T01:00:00' } }
+  const food = { feature_id: 'L02', text_span: 'открыта еда', nearby: { category: 'L02', radius_m: 500 }, verdict: 'yes', place: { place_id: 'osm:node/1', name: 'Шаурма у вокзала', distance_m: 240, hours } }
+  assert.equal(itemSubtitle(food, labels), 'по местам на карте · «Шаурма у вокзала», 240 м по прямой · открыто: 24/7')
+  const closed = { ...food, verdict: 'unknown', place: { ...food.place, name: null, hours: { ...hours, state: 'closed', opening_hours: 'Mo-Su 09:00-22:00' } } }
+  assert.equal(itemSubtitle(closed, labels), 'по местам на карте · место без названия, 240 м по прямой · часы: Mo-Su 09:00-22:00')
+  assert.equal(placeNote({ label: 'ресторан', radius_m: 800 }), '')  // часть запроса из AST — не найденное место
 })

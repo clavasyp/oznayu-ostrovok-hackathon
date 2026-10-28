@@ -1,0 +1,794 @@
+[
+ {
+  "id": "bogorodskoe",
+  "name": "Богородское",
+  "okrug": "ВАО",
+  "osm_relation": 1319060
+ },
+ {
+  "id": "veshnyaki",
+  "name": "Вешняки",
+  "okrug": "ВАО",
+  "osm_relation": 574667
+ },
+ {
+  "id": "vostochnoe_izmaylovo",
+  "name": "Восточное Измайлово",
+  "okrug": "ВАО",
+  "osm_relation": 1255704
+ },
+ {
+  "id": "vostochnyy",
+  "name": "Восточный",
+  "okrug": "ВАО",
+  "osm_relation": 1255775
+ },
+ {
+  "id": "golyanovo",
+  "name": "Гольяново",
+  "okrug": "ВАО",
+  "osm_relation": 1319142
+ },
+ {
+  "id": "ivanovskoe",
+  "name": "Ивановское",
+  "okrug": "ВАО",
+  "osm_relation": 1319263
+ },
+ {
+  "id": "izmaylovo",
+  "name": "Измайлово",
+  "okrug": "ВАО",
+  "osm_relation": 1319245
+ },
+ {
+  "id": "kosino_ukhtomskiy",
+  "name": "Косино-Ухтомский",
+  "okrug": "ВАО",
+  "osm_relation": 1255576
+ },
+ {
+  "id": "metrogorodok",
+  "name": "Метрогородок",
+  "okrug": "ВАО",
+  "osm_relation": 1319078
+ },
+ {
+  "id": "novogireevo",
+  "name": "Новогиреево",
+  "okrug": "ВАО",
+  "osm_relation": 1298976
+ },
+ {
+  "id": "novokosino",
+  "name": "Новокосино",
+  "okrug": "ВАО",
+  "osm_relation": 1255602
+ },
+ {
+  "id": "perovo",
+  "name": "Перово",
+  "okrug": "ВАО",
+  "osm_relation": 1299013
+ },
+ {
+  "id": "preobrazhenskoe",
+  "name": "Преображенское",
+  "okrug": "ВАО",
+  "osm_relation": 1299106
+ },
+ {
+  "id": "severnoe_izmaylovo",
+  "name": "Северное Измайлово",
+  "okrug": "ВАО",
+  "osm_relation": 1255680
+ },
+ {
+  "id": "sokolinaya_gora",
+  "name": "Соколиная Гора",
+  "okrug": "ВАО",
+  "osm_relation": 1299031
+ },
+ {
+  "id": "sokolniki",
+  "name": "Сокольники",
+  "okrug": "ВАО",
+  "osm_relation": 364551
+ },
+ {
+  "id": "dorogomilovo",
+  "name": "Дорогомилово",
+  "okrug": "ЗАО",
+  "osm_relation": 446114
+ },
+ {
+  "id": "krylatskoe",
+  "name": "Крылатское",
+  "okrug": "ЗАО",
+  "osm_relation": 240229
+ },
+ {
+  "id": "kuntsevo",
+  "name": "Кунцево",
+  "okrug": "ЗАО",
+  "osm_relation": 226927
+ },
+ {
+  "id": "mozhayskiy",
+  "name": "Можайский",
+  "okrug": "ЗАО",
+  "osm_relation": 1257472
+ },
+ {
+  "id": "novo_peredelkino",
+  "name": "Ново-Переделкино",
+  "okrug": "ЗАО",
+  "osm_relation": 446117
+ },
+ {
+  "id": "ochakovo_matveevskoe",
+  "name": "Очаково-Матвеевское",
+  "okrug": "ЗАО",
+  "osm_relation": 1292749
+ },
+ {
+  "id": "prospekt_vernadskogo",
+  "name": "Проспект Вернадского",
+  "okrug": "ЗАО",
+  "osm_relation": 1292679
+ },
+ {
+  "id": "ramenki",
+  "name": "Раменки",
+  "okrug": "ЗАО",
+  "osm_relation": 446115
+ },
+ {
+  "id": "solntsevo",
+  "name": "Солнцево",
+  "okrug": "ЗАО",
+  "osm_relation": 446116
+ },
+ {
+  "id": "troparevo_nikulino",
+  "name": "Тропарёво-Никулино",
+  "okrug": "ЗАО",
+  "osm_relation": 1292731
+ },
+ {
+  "id": "fili_davydkovo",
+  "name": "Фили-Давыдково",
+  "okrug": "ЗАО",
+  "osm_relation": 446111
+ },
+ {
+  "id": "filevskiy_park",
+  "name": "Филёвский Парк",
+  "okrug": "ЗАО",
+  "osm_relation": 446112
+ },
+ {
+  "id": "kryukovo",
+  "name": "Крюково",
+  "okrug": "ЗелАО",
+  "osm_relation": 1320371
+ },
+ {
+  "id": "matushkino",
+  "name": "Матушкино",
+  "okrug": "ЗелАО",
+  "osm_relation": 1320566
+ },
+ {
+  "id": "savelki",
+  "name": "Савёлки",
+  "okrug": "ЗелАО",
+  "osm_relation": 1320570
+ },
+ {
+  "id": "silino",
+  "name": "Силино",
+  "okrug": "ЗелАО",
+  "osm_relation": 1320510
+ },
+ {
+  "id": "staroe_kryukovo",
+  "name": "Старое Крюково",
+  "okrug": "ЗелАО",
+  "osm_relation": 1320424
+ },
+ {
+  "id": "vnukovo",
+  "name": "Внуково",
+  "okrug": "НАО",
+  "osm_relation": 380708
+ },
+ {
+  "id": "kommunarka",
+  "name": "Коммунарка",
+  "okrug": "НАО",
+  "osm_relation": 380704
+ },
+ {
+  "id": "filimonkovskiy",
+  "name": "Филимонковский",
+  "okrug": "НАО",
+  "osm_relation": 380705
+ },
+ {
+  "id": "shcherbinka",
+  "name": "Щербинка",
+  "okrug": "НАО",
+  "osm_relation": 1703095
+ },
+ {
+  "id": "aeroport",
+  "name": "Аэропорт",
+  "okrug": "САО",
+  "osm_relation": 446079
+ },
+ {
+  "id": "begovoy",
+  "name": "Беговой",
+  "okrug": "САО",
+  "osm_relation": 445298
+ },
+ {
+  "id": "beskudnikovskiy",
+  "name": "Бескудниковский",
+  "okrug": "САО",
+  "osm_relation": 446082
+ },
+ {
+  "id": "voykovskiy",
+  "name": "Войковский",
+  "okrug": "САО",
+  "osm_relation": 446078
+ },
+ {
+  "id": "vostochnoe_degunino",
+  "name": "Восточное Дегунино",
+  "okrug": "САО",
+  "osm_relation": 445285
+ },
+ {
+  "id": "golovinskiy",
+  "name": "Головинский",
+  "okrug": "САО",
+  "osm_relation": 445297
+ },
+ {
+  "id": "dmitrovskiy",
+  "name": "Дмитровский",
+  "okrug": "САО",
+  "osm_relation": 445278
+ },
+ {
+  "id": "zapadnoe_degunino",
+  "name": "Западное Дегунино",
+  "okrug": "САО",
+  "osm_relation": 445275
+ },
+ {
+  "id": "koptevo",
+  "name": "Коптево",
+  "okrug": "САО",
+  "osm_relation": 445277
+ },
+ {
+  "id": "levoberezhnyy",
+  "name": "Левобережный",
+  "okrug": "САО",
+  "osm_relation": 445273
+ },
+ {
+  "id": "molzhaninovskiy",
+  "name": "Молжаниновский",
+  "okrug": "САО",
+  "osm_relation": 445283
+ },
+ {
+  "id": "savelovskiy",
+  "name": "Савёловский",
+  "okrug": "САО",
+  "osm_relation": 445281
+ },
+ {
+  "id": "sokol",
+  "name": "Сокол",
+  "okrug": "САО",
+  "osm_relation": 445280
+ },
+ {
+  "id": "timiryazevskiy",
+  "name": "Тимирязевский",
+  "okrug": "САО",
+  "osm_relation": 445276
+ },
+ {
+  "id": "khovrino",
+  "name": "Ховрино",
+  "okrug": "САО",
+  "osm_relation": 445274
+ },
+ {
+  "id": "khoroshevskiy",
+  "name": "Хорошёвский",
+  "okrug": "САО",
+  "osm_relation": 445299
+ },
+ {
+  "id": "alekseevskiy",
+  "name": "Алексеевский",
+  "okrug": "СВАО",
+  "osm_relation": 1250526
+ },
+ {
+  "id": "altufevskiy",
+  "name": "Алтуфьевский",
+  "okrug": "СВАО",
+  "osm_relation": 446083
+ },
+ {
+  "id": "babushkinskiy",
+  "name": "Бабушкинский",
+  "okrug": "СВАО",
+  "osm_relation": 1252465
+ },
+ {
+  "id": "bibirevo",
+  "name": "Бибирево",
+  "okrug": "СВАО",
+  "osm_relation": 446085
+ },
+ {
+  "id": "butyrskiy",
+  "name": "Бутырский",
+  "okrug": "СВАО",
+  "osm_relation": 1252424
+ },
+ {
+  "id": "lianozovo",
+  "name": "Лианозово",
+  "okrug": "СВАО",
+  "osm_relation": 446084
+ },
+ {
+  "id": "losinoostrovskiy",
+  "name": "Лосиноостровский",
+  "okrug": "СВАО",
+  "osm_relation": 1252448
+ },
+ {
+  "id": "marfino",
+  "name": "Марфино",
+  "okrug": "СВАО",
+  "osm_relation": 1250724
+ },
+ {
+  "id": "marina_roshcha",
+  "name": "Марьина Роща",
+  "okrug": "СВАО",
+  "osm_relation": 1252407
+ },
+ {
+  "id": "ostankinskiy",
+  "name": "Останкинский",
+  "okrug": "СВАО",
+  "osm_relation": 1250619
+ },
+ {
+  "id": "otradnoe",
+  "name": "Отрадное",
+  "okrug": "СВАО",
+  "osm_relation": 445282
+ },
+ {
+  "id": "rostokino",
+  "name": "Ростокино",
+  "okrug": "СВАО",
+  "osm_relation": 446272
+ },
+ {
+  "id": "sviblovo",
+  "name": "Свиблово",
+  "okrug": "СВАО",
+  "osm_relation": 1250618
+ },
+ {
+  "id": "severnoe_medvedkovo",
+  "name": "Северное Медведково",
+  "okrug": "СВАО",
+  "osm_relation": 446086
+ },
+ {
+  "id": "severnyy",
+  "name": "Северный",
+  "okrug": "СВАО",
+  "osm_relation": 445284
+ },
+ {
+  "id": "yuzhnoe_medvedkovo",
+  "name": "Южное Медведково",
+  "okrug": "СВАО",
+  "osm_relation": 446087
+ },
+ {
+  "id": "yaroslavskiy",
+  "name": "Ярославский",
+  "okrug": "СВАО",
+  "osm_relation": 446271
+ },
+ {
+  "id": "kurkino",
+  "name": "Куркино",
+  "okrug": "СЗАО",
+  "osm_relation": 442741
+ },
+ {
+  "id": "mitino",
+  "name": "Митино",
+  "okrug": "СЗАО",
+  "osm_relation": 442733
+ },
+ {
+  "id": "pokrovskoe_streshnevo",
+  "name": "Покровское-Стрешнево",
+  "okrug": "СЗАО",
+  "osm_relation": 446081
+ },
+ {
+  "id": "severnoe_tushino",
+  "name": "Северное Тушино",
+  "okrug": "СЗАО",
+  "osm_relation": 445279
+ },
+ {
+  "id": "strogino",
+  "name": "Строгино",
+  "okrug": "СЗАО",
+  "osm_relation": 434560
+ },
+ {
+  "id": "khoroshevo_mnevniki",
+  "name": "Хорошёво-Мнёвники",
+  "okrug": "СЗАО",
+  "osm_relation": 428431
+ },
+ {
+  "id": "shchukino",
+  "name": "Щукино",
+  "okrug": "СЗАО",
+  "osm_relation": 431464
+ },
+ {
+  "id": "yuzhnoe_tushino",
+  "name": "Южное Тушино",
+  "okrug": "СЗАО",
+  "osm_relation": 446080
+ },
+ {
+  "id": "bekasovo",
+  "name": "Бекасово",
+  "okrug": "ТАО",
+  "osm_relation": 1693596
+ },
+ {
+  "id": "voronovo",
+  "name": "Вороново",
+  "okrug": "ТАО",
+  "osm_relation": 2092922
+ },
+ {
+  "id": "krasnopakhorskiy",
+  "name": "Краснопахорский",
+  "okrug": "ТАО",
+  "osm_relation": 2092925
+ },
+ {
+  "id": "troitsk",
+  "name": "Троицк",
+  "okrug": "ТАО",
+  "osm_relation": 1703093
+ },
+ {
+  "id": "arbat",
+  "name": "Арбат",
+  "okrug": "ЦАО",
+  "osm_relation": 1257484
+ },
+ {
+  "id": "basmannyy",
+  "name": "Басманный",
+  "okrug": "ЦАО",
+  "osm_relation": 2162195
+ },
+ {
+  "id": "zamoskvoreche",
+  "name": "Замоскворечье",
+  "okrug": "ЦАО",
+  "osm_relation": 1255942
+ },
+ {
+  "id": "krasnoselskiy",
+  "name": "Красносельский",
+  "okrug": "ЦАО",
+  "osm_relation": 1257218
+ },
+ {
+  "id": "meshchanskiy",
+  "name": "Мещанский",
+  "okrug": "ЦАО",
+  "osm_relation": 364001
+ },
+ {
+  "id": "presnenskiy",
+  "name": "Пресненский",
+  "okrug": "ЦАО",
+  "osm_relation": 1275551
+ },
+ {
+  "id": "taganskiy",
+  "name": "Таганский",
+  "okrug": "ЦАО",
+  "osm_relation": 1275608
+ },
+ {
+  "id": "tverskoy",
+  "name": "Тверской",
+  "okrug": "ЦАО",
+  "osm_relation": 1257786
+ },
+ {
+  "id": "khamovniki",
+  "name": "Хамовники",
+  "okrug": "ЦАО",
+  "osm_relation": 1255987
+ },
+ {
+  "id": "yakimanka",
+  "name": "Якиманка",
+  "okrug": "ЦАО",
+  "osm_relation": 1275627
+ },
+ {
+  "id": "biryulevo_vostochnoe",
+  "name": "Бирюлёво Восточное",
+  "okrug": "ЮАО",
+  "osm_relation": 950639
+ },
+ {
+  "id": "biryulevo_zapadnoe",
+  "name": "Бирюлёво Западное",
+  "okrug": "ЮАО",
+  "osm_relation": 950658
+ },
+ {
+  "id": "brateevo",
+  "name": "Братеево",
+  "okrug": "ЮАО",
+  "osm_relation": 531287
+ },
+ {
+  "id": "danilovskiy",
+  "name": "Даниловский",
+  "okrug": "ЮАО",
+  "osm_relation": 1281209
+ },
+ {
+  "id": "donskoy",
+  "name": "Донской",
+  "okrug": "ЮАО",
+  "osm_relation": 444908
+ },
+ {
+  "id": "zyablikovo",
+  "name": "Зябликово",
+  "okrug": "ЮАО",
+  "osm_relation": 531264
+ },
+ {
+  "id": "moskvoreche_saburovo",
+  "name": "Москворечье-Сабурово",
+  "okrug": "ЮАО",
+  "osm_relation": 455528
+ },
+ {
+  "id": "nagatino_sadovniki",
+  "name": "Нагатино-Садовники",
+  "okrug": "ЮАО",
+  "osm_relation": 535655
+ },
+ {
+  "id": "nagatinskiy_zaton",
+  "name": "Нагатинский Затон",
+  "okrug": "ЮАО",
+  "osm_relation": 455460
+ },
+ {
+  "id": "nagornyy",
+  "name": "Нагорный",
+  "okrug": "ЮАО",
+  "osm_relation": 535662
+ },
+ {
+  "id": "orekhovo_borisovo_severnoe",
+  "name": "Орехово-Борисово Северное",
+  "okrug": "ЮАО",
+  "osm_relation": 455539
+ },
+ {
+  "id": "orekhovo_borisovo_yuzhnoe",
+  "name": "Орехово-Борисово Южное",
+  "okrug": "ЮАО",
+  "osm_relation": 456807
+ },
+ {
+  "id": "tsaritsyno",
+  "name": "Царицыно",
+  "okrug": "ЮАО",
+  "osm_relation": 950641
+ },
+ {
+  "id": "chertanovo_severnoe",
+  "name": "Чертаново Северное",
+  "okrug": "ЮАО",
+  "osm_relation": 535680
+ },
+ {
+  "id": "chertanovo_tsentralnoe",
+  "name": "Чертаново Центральное",
+  "okrug": "ЮАО",
+  "osm_relation": 951305
+ },
+ {
+  "id": "chertanovo_yuzhnoe",
+  "name": "Чертаново Южное",
+  "okrug": "ЮАО",
+  "osm_relation": 950664
+ },
+ {
+  "id": "vykhino_zhulebino",
+  "name": "Выхино-Жулебино",
+  "okrug": "ЮВАО",
+  "osm_relation": 548619
+ },
+ {
+  "id": "kapotnya",
+  "name": "Капотня",
+  "okrug": "ЮВАО",
+  "osm_relation": 455208
+ },
+ {
+  "id": "kuzminki",
+  "name": "Кузьминки",
+  "okrug": "ЮВАО",
+  "osm_relation": 444812
+ },
+ {
+  "id": "lefortovo",
+  "name": "Лефортово",
+  "okrug": "ЮВАО",
+  "osm_relation": 1278064
+ },
+ {
+  "id": "lyublino",
+  "name": "Люблино",
+  "okrug": "ЮВАО",
+  "osm_relation": 455203
+ },
+ {
+  "id": "marino",
+  "name": "Марьино",
+  "okrug": "ЮВАО",
+  "osm_relation": 455222
+ },
+ {
+  "id": "nekrasovka",
+  "name": "Некрасовка",
+  "okrug": "ЮВАО",
+  "osm_relation": 1255577
+ },
+ {
+  "id": "nizhegorodskiy",
+  "name": "Нижегородский",
+  "okrug": "ЮВАО",
+  "osm_relation": 1278046
+ },
+ {
+  "id": "pechatniki",
+  "name": "Печатники",
+  "okrug": "ЮВАО",
+  "osm_relation": 455451
+ },
+ {
+  "id": "ryazanskiy",
+  "name": "Рязанский",
+  "okrug": "ЮВАО",
+  "osm_relation": 1255563
+ },
+ {
+  "id": "tekstilshchiki",
+  "name": "Текстильщики",
+  "okrug": "ЮВАО",
+  "osm_relation": 455184
+ },
+ {
+  "id": "yuzhnoportovyy",
+  "name": "Южнопортовый",
+  "okrug": "ЮВАО",
+  "osm_relation": 1278096
+ },
+ {
+  "id": "akademicheskiy",
+  "name": "Академический",
+  "okrug": "ЮЗАО",
+  "osm_relation": 1281220
+ },
+ {
+  "id": "gagarinskiy",
+  "name": "Гагаринский",
+  "okrug": "ЮЗАО",
+  "osm_relation": 1281648
+ },
+ {
+  "id": "zyuzino",
+  "name": "Зюзино",
+  "okrug": "ЮЗАО",
+  "osm_relation": 1292286
+ },
+ {
+  "id": "konkovo",
+  "name": "Коньково",
+  "okrug": "ЮЗАО",
+  "osm_relation": 952191
+ },
+ {
+  "id": "kotlovka",
+  "name": "Котловка",
+  "okrug": "ЮЗАО",
+  "osm_relation": 1292211
+ },
+ {
+  "id": "lomonosovskiy",
+  "name": "Ломоносовский",
+  "okrug": "ЮЗАО",
+  "osm_relation": 1281702
+ },
+ {
+  "id": "obruchevskiy",
+  "name": "Обручевский",
+  "okrug": "ЮЗАО",
+  "osm_relation": 1292499
+ },
+ {
+  "id": "severnoe_butovo",
+  "name": "Северное Бутово",
+  "okrug": "ЮЗАО",
+  "osm_relation": 1257455
+ },
+ {
+  "id": "teplyy_stan",
+  "name": "Тёплый Стан",
+  "okrug": "ЮЗАО",
+  "osm_relation": 951336
+ },
+ {
+  "id": "cheremushki",
+  "name": "Черёмушки",
+  "okrug": "ЮЗАО",
+  "osm_relation": 1281263
+ },
+ {
+  "id": "yuzhnoe_butovo",
+  "name": "Южное Бутово",
+  "okrug": "ЮЗАО",
+  "osm_relation": 1257403
+ },
+ {
+  "id": "yasenevo",
+  "name": "Ясенево",
+  "okrug": "ЮЗАО",
+  "osm_relation": 951334
+ }
+]

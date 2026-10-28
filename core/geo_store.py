@@ -2,10 +2,11 @@
 
 import json
 import re
+from collections.abc import Callable
 from datetime import datetime
 
-from geoalchemy2 import Geography
-from sqlalchemy import cast, func, literal, select, true
+from geoalchemy2 import Geography, Geometry
+from sqlalchemy import ARRAY, Integer, Text, cast, func, literal, select, text, true
 from sqlalchemy.orm import Session
 
 from agents.catalog.places import PlaceCategory, load_places, matches
@@ -23,6 +24,8 @@ from core.placement_catalog import placement_choices, placement_maps
 
 NEARBY_METHOD = "nearby-postgis.1"  # пары «отель → место» считает запрос, в пакете их нет (D41)
 NEARBY_RADIUS_M = 1500
+DEGREE_M = 110_000  # метров в градусе — с запасом вниз: рамка в градусах шире круга в метрах
+FEW_HOTELS = 200  # столько отелей и меньше — фильтр списком (карточка отеля), больше — по городу
 PLACE_COLUMNS = [c for c in Place.__table__.columns if c.name != "geog"]
 # Парк в пакете — строка объекта и точки его края (`source.geometry`, pipeline/nearby_tables.py):
 # ближайшая из них — расстояние до края парка по прямой; в списке мест парк — одной строкой.
@@ -33,6 +36,21 @@ def distance_kind(source: dict | None) -> str:
     """Точка края протяжённого места (парк) — до края; иначе — до точки объекта."""
     role = ((source or {}).get("geometry") or {}).get("role")
     return "geodesic_to_edge_point" if role == "edge" else "geodesic_to_representative_point"
+
+
+def _found(row) -> dict:
+    """Место у отеля для поиска: паспорт места и расстояние по прямой (D34, D37)."""
+    source = {"method": NEARBY_METHOD, "passport_ref": "place.source"}
+    if (row.source or {}).get("provider") == "2gis":
+        source |= {"provider": "2gis", "commercial_ok": False}  # D37
+    return {
+        "place_id": row.id,
+        "name": row.name,
+        "distance_m": round(float(row.distance_m)),
+        "distance_kind": distance_kind(row.source),
+        "place_source": row.source,
+        "source": source,
+    }
 
 
 def _catalog(cid: str, label: str, *osm: dict[str, tuple[str, ...]]) -> PlaceCategory:
@@ -240,15 +258,26 @@ class GeoStore:
         return {hid: round(float(d)) for hid, d in rows if d is not None}
 
     def nearest(
-        self, hotel_ids: list[str], category: str, radius_m: float
+        self,
+        hotel_ids: list[str],
+        category: str,
+        radius_m: float,
+        rank: Callable[[dict], int | None] | None = None,
     ) -> tuple[dict[str, dict], int]:
         """Ближайшее место категории в радиусе от каждого отеля — один запрос на весь набор
         (поиск «рядом место типа X», D34). Расстояние — по прямой, по сфероиду WGS84, как в
         `nearby`; у парка — до ближайшей точки края. Свои корпуса отеля не в счёт. Второе
         значение — сколько строк мест этой категории в городах отелей: 0 — данных о таких
-        местах нет вовсе, а не «рядом нет»."""
+        местах нет вовсе, а не «рядом нет».
+
+        С `rank` (характеристики каталога «место рядом», `core.place_features`): ранг каждого
+        места категории в городах отелей считает код по меткам, в ответе — лучшее по рангу,
+        среди равных — ближайшее, с `rank` и `tags`; места без ранга не в счёт."""
         if not hotel_ids:
             return {}, 0
+        cities = select(Hotel.city_id).where(Hotel.id.in_(hotel_ids)).distinct()
+        if rank is not None:
+            return self._nearest_ranked(hotel_ids, cities, category, radius_m, rank)
         hotel = (
             select(Hotel.id.label("hid"), cast(Hotel.geom, Geography).label("pt"))
             .where(Hotel.id.in_(hotel_ids))
@@ -269,7 +298,6 @@ class GeoStore:
             .limit(1)
             .lateral()
         )
-        cities = select(Hotel.city_id).where(Hotel.id.in_(hotel_ids)).distinct()
         with Session(self.engine) as session:
             rows = session.execute(
                 select(hotel.c.hid, near).select_from(hotel.join(near, true()))
@@ -279,20 +307,106 @@ class GeoStore:
                 .select_from(Place)
                 .where(Place.city_id.in_(cities), Place.categories.contains([category]))
             )
+        return {row.hid: _found(row) for row in rows}, int(known or 0)
+
+    def _nearest_ranked(
+        self, hotel_ids: list[str], cities, category: str, radius_m: float, rank
+    ) -> tuple[dict[str, dict], int]:
+        """Лучшее по рангу место у каждого отеля. Мест с рангом немного (аптеки, больницы, а не
+        все места города), поэтому запрос идёт от мест к отелям по индексу `hotel.geom`: рамка
+        в градусах с запасом (долгота сжимается к полюсу), затем радиус и порядок — по сфере
+        (на 500 м разница со сфероидом — метры), а расстояние в ответе — по сфероиду WGS84, как
+        в `nearby`. Пары — узкие строки, подробности места — только у победителей. Обратный
+        путь — от каждого отеля по всем местам в радиусе — в Москве на 3 км шёл секунды."""
+        ranks = self._ranks(cities, category, rank)
+        if not ranks:
+            return {}, 0
+        ranked = select(
+            func.unnest(cast(list(ranks), ARRAY(Text))).label("id"),
+            func.unnest(cast(list(ranks.values()), ARRAY(Integer))).label("rank"),
+        ).subquery()
+        wanted = set(hotel_ids)
+        # Отели — списком только для карточки и малых наборов. Весь город — по городу, лишние
+        # отсеет код: планировщик не знает, сколько будет пар, и сверял бы каждую со списком.
+        hotels = Hotel.id.in_(hotel_ids) if len(wanted) <= FEW_HOTELS else Hotel.city_id.in_(cities)
+        pt = cast(Hotel.geom, Geography)
+        sphere = func.ST_Distance(Place.geog, pt, False)
+        cos = func.cos(func.radians(func.least(func.abs(Place.latitude) + 1, 89)))
+        frame = func.ST_Expand(
+            cast(Place.geog, Geometry), radius_m / (DEGREE_M * cos), radius_m / DEGREE_M
+        )
+        where = [hotels, func.ST_DWithin(Place.geog, pt, radius_m, False)]
+        with Session(self.engine) as session:
+            # Свои корпуса отеля не в счёт. Пары «отель — его корпус среди мест» — заранее (их
+            # единицы): проверка на каждой паре «отель — место» шла сотни миллисекунд.
+            own = [
+                (hid, pid)
+                for hid, pid in session.execute(
+                    select(
+                        HotelBuilding.hotel_id, literal("osm:") + HotelBuilding.building_id
+                    ).where(HotelBuilding.hotel_id.in_(hotel_ids))
+                ).all()
+                if pid in ranks
+            ]
+            if own:
+                mine = select(
+                    func.unnest(cast([h for h, _ in own], ARRAY(Text))).label("hid"),
+                    func.unnest(cast([p for _, p in own], ARRAY(Text))).label("pid"),
+                ).subquery()
+                same = select(mine.c.hid).where(mine.c.hid == Hotel.id, mine.c.pid == Place.id)
+                where.append(~same.exists())
+            # Сортировка по байтам (`C`): сравнение строк по правилам языка здесь втрое дольше.
+            hid, pid = Hotel.id.collate("C"), Place.id.collate("C")
+            best = (
+                select(hid.label("hid"), Place.id.label("pid"), ranked.c.rank)
+                .select_from(ranked)
+                .join(Place, Place.id == ranked.c.id)
+                .join(Hotel, Hotel.geom.op("&&")(frame))
+                .where(*where)
+                .order_by(hid, ranked.c.rank, sphere, pid)
+                .distinct(hid)
+                .subquery()
+            )
+            query = (
+                select(
+                    best.c.hid,
+                    best.c.rank,
+                    func.ST_Distance(Place.geog, pt).label("distance_m"),
+                    Place.id,
+                    Place.name,
+                    Place.source,
+                    Place.tags,
+                )
+                .join(Place, Place.id == best.c.pid)
+                .join(Hotel, Hotel.id == best.c.hid)
+            )
+            # Компиляция JIT на этом запросе дольше самого запроса; пары (в Москве — сотни тысяч
+            # узких строк) сортируются в памяти, а не на диске.
+            session.execute(text("SET LOCAL jit = off"))
+            session.execute(text("SET LOCAL work_mem = '64MB'"))
+            rows = session.execute(query).all()
+        out = {
+            row.hid: _found(row) | {"rank": row.rank, "tags": row.tags or {}}
+            for row in rows
+            if row.hid in wanted
+        }
+        return out, len(ranks)
+
+    def _ranks(self, cities, category: str, rank: Callable[[dict], int | None]) -> dict[str, int]:
+        """Ранги мест категории в городах отелей: метки читаем один раз на запрос."""
+        with Session(self.engine) as session:
+            rows = session.execute(
+                select(Place.id, Place.city_id, Place.name, Place.tags).where(
+                    Place.city_id.in_(cities), Place.categories.contains([category])
+                )
+            ).all()
         out = {}
         for row in rows:
-            source = {"method": NEARBY_METHOD, "passport_ref": "place.source"}
-            if (row.source or {}).get("provider") == "2gis":
-                source |= {"provider": "2gis", "commercial_ok": False}  # D37
-            out[row.hid] = {
-                "place_id": row.id,
-                "name": row.name,
-                "distance_m": round(float(row.distance_m)),
-                "distance_kind": distance_kind(row.source),
-                "place_source": row.source,
-                "source": source,
-            }
-        return out, int(known or 0)
+            place = {"place_id": row.id, "city_id": row.city_id, "name": row.name}
+            r = rank(place | {"tags": row.tags or {}})
+            if r is not None:
+                out[row.id] = r
+        return out
 
     def place_counts(
         self, hotel_ids: list[str], category: str, radius_m: float

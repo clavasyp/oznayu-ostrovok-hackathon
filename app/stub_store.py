@@ -11,18 +11,25 @@ from __future__ import annotations
 import gzip
 import json
 from collections import defaultdict
-from collections.abc import Collection
+from collections.abc import Callable, Collection
 from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
 from typing import Any
 
+from core import freshness, live
 from core.facts import Fact
 from core.hotelier import AnswerError, AnswerResult, placement_id, replaces_placements
 from core.packs import stable_id
 from core.placement_catalog import placement_choices, placement_maps, with_alias
 
 FIXTURES = Path(__file__).parent / "fixtures"
+
+
+def _listed(value: dict[str, Any] | list[dict[str, Any]] | None) -> list[dict[str, Any]]:
+    """Места отеля в заглушке: одно место или список, ближайшие — первыми."""
+    places = value if isinstance(value, list) else [value] if value else []
+    return sorted(places, key=lambda p: p["distance_m"])
 
 
 @dataclass
@@ -41,7 +48,8 @@ class StubStore:
     hotel_buildings: list[dict[str, Any]] = field(default_factory=list)
     buildings: list[dict[str, Any]] = field(default_factory=list)
     facades: list[dict[str, Any]] = field(default_factory=list)
-    # Места рядом (D34): категория → отель → ближайшее место; в заглушках мест нет — из тестов.
+    # Места рядом (D34): категория → отель → ближайшее место (или список мест с метками `tags`
+    # для характеристик каталога «место рядом»); в заглушках мест нет — из тестов.
     places_near: dict[str, dict[str, dict[str, Any]]] = field(default_factory=dict)
     # Цели «доехать до X»: город → [{place_id, name, …, distances: {hotel_id: м}}] — из тестов.
     targets: dict[str, list[dict[str, Any]]] = field(default_factory=dict)
@@ -82,6 +90,9 @@ class StubStore:
     def coverage(self, city_id: str) -> list[dict[str, Any]] | None:
         return self.coverage_by_city.get(city_id)
 
+    def freshness(self, city_id: str, as_of: datetime) -> list[dict[str, Any]]:
+        return freshness.summary([f for f in self.facts.values() if f.city_id == city_id], as_of)
+
     def hotels(self, city_id: str | None = None) -> list[dict[str, Any]]:
         return [h for h in self.hotel_by_id.values() if not city_id or h["city_id"] == city_id]
 
@@ -92,7 +103,7 @@ class StubStore:
         return dict(sorted(self.by_hotel.get(hotel_id, {}).items()))
 
     def fact(self, fact_id: str) -> Fact | None:
-        return self.facts.get(fact_id)
+        return self.facts.get(fact_id) or live.recent(fact_id)  # прогноз на запросе — в памяти
 
     def facts_for(
         self,
@@ -111,11 +122,37 @@ class StubStore:
         return {h: self.room_types_by_hotel[h] for h in hotel_ids if h in self.room_types_by_hotel}
 
     def nearest_places(
-        self, hotel_ids: Collection[str], category: str, radius_m: float
+        self,
+        hotel_ids: Collection[str],
+        category: str,
+        radius_m: float,
+        rank: Callable[[dict[str, Any]], int | None] | None = None,
     ) -> tuple[dict[str, dict[str, Any]], int]:
         known = self.places_near.get(category, {})
-        near = {h: p for h, p in known.items() if h in hotel_ids and p["distance_m"] <= radius_m}
-        return near, len(known)
+        if rank is None:
+            near = {
+                h: ps[0]
+                for h in hotel_ids
+                if (ps := [p for p in _listed(known.get(h)) if p["distance_m"] <= radius_m])
+            }
+            return near, len(known)
+        # Как в базе: ранг места по меткам, лучшее по рангу, среди равных — ближайшее.
+        ranked: dict[str, int] = {}
+        near = {}
+        for h, value in known.items():
+            for p in _listed(value):
+                r = rank({"city_id": self.hotel_by_id.get(h, {}).get("city_id")} | p)
+                if r is None:
+                    continue
+                ranked[p["place_id"]] = r
+                best = near.get(h)
+                if (
+                    h in hotel_ids
+                    and p["distance_m"] <= radius_m
+                    and (best is None or (r, p["distance_m"]) < (best["rank"], best["distance_m"]))
+                ):
+                    near[h] = p | {"rank": r, "tags": p.get("tags") or {}}
+        return near, len(ranked)
 
     def place_counts(
         self, hotel_ids: Collection[str], category: str, radius_m: float

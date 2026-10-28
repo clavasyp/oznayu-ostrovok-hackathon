@@ -33,6 +33,7 @@ export const confidenceText = (level) => CONFIDENCE[level] || level || ''
 export const attemptStateText = (state) => ATTEMPT_STATES[state] || state
 export const providerText = (provider) => PROVIDERS[provider] || (provider || '').replaceAll('_', ' ')
 
+const SURFACE = { sand: 'песок', pebble: 'галька', rock: 'скалы', mixed: 'смешанное' }
 export const valueWord = (value) => typeof value === 'boolean' ? (value ? 'да' : 'нет') : typeof value === 'number' ? formatNumber(value) : WORDS[value] || String(value)
 const word = valueWord
 
@@ -67,6 +68,18 @@ export function formatFactValue(fact, fieldLabels = {}) {
   if (typeof value !== 'object') return typeof value === 'boolean' ? (value ? 'Да' : 'Нет') : `${typeof value === 'number' ? formatNumber(value) : WORDS[value] || value}${typeof value === 'number' ? unit : ''}`
   if (Array.isArray(value)) return value.length ? value.slice(0, 3).map((item) => typeof item === 'object' ? item?.name || item?.type || '' : word(item)).filter(Boolean).join(', ') || 'подробности в паспорте' : 'нет'
   const summary = []
+  // Новые слои: охранный статус, год постройки, транспорт 2ГИС, часы солнца, горы.
+  if (value.heritage === true) return ['объект наследия', value.category, value.name ? `«${value.name}»` : '', value.registry_id ? `реестр № ${value.registry_id}` : ''].filter(Boolean).join(' · ')
+  if (Number.isInteger(value.year)) return `${value.year} г.`
+  if (value.origin && 'route_exists' in value) {
+    if (!value.route_exists) return `маршрута от «${value.origin}» нет`
+    const n = value.transfers || 0
+    return `${value.duration_min} мин · ${n ? `пересадок: ${n}` : 'без пересадок'} · от «${value.origin}»`
+  }
+  if (value.bound === 'upper' && Number.isFinite(value.hours)) return `до ${formatNumber(value.hours)} ч прямого солнца`
+  if (value.bound === 'lower' && Number.isFinite(value.distance_m)) return `ближе ${value.distance_m >= 1000 ? `${formatNumber(value.distance_m / 1000)} км` : `${formatNumber(value.distance_m)} м`} на карте нет`
+  if (value.surface && 'beach_id' in value) return [SURFACE[value.surface] || value.surface, value.beach_name ? `пляж «${value.beach_name}»` : 'ближайший пляж'].join(' · ')
+  if (Number.isFinite(value.highest_m)) summary.push(`горы до ${formatNumber(value.highest_m)} м`)
   if (typeof value.visible === 'boolean') summary.push(value.visible ? 'видно' : `не видно${WHY[value.why] ? ` — ${WHY[value.why]}` : ''}`)
   if (Number.isFinite(value.aboveground_levels)) summary.push(`${value.aboveground_levels} этажей`)
   if (Number.isFinite(value.distance_m)) summary.push(`${Math.round(value.distance_m)} м`)

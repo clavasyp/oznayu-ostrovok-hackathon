@@ -20,8 +20,11 @@ from agents.hotelier.schemas import label as field_label
 from agents.query_ast import QueryAST
 from agents.search import parse_query
 from agents.search.journal import summarize, unmatched_events
+from agents.search.rules import AREA_NAMES
 from core import search as engine
+from core import transit
 from core.facts import Fact, Status
+from core.freshness import freshness
 from core.hotelier import AnswerError, AnswerIn, build_answer
 from core.reasons import reason_text
 from core.store import Store
@@ -43,6 +46,7 @@ def fact_json(f: Fact) -> dict[str, Any]:
     out = f.model_dump(mode="json")
     if f.unknown_reason:
         out["unknown_reason_text"] = reason_text(f.unknown_reason)
+    out["freshness"] = freshness(f)  # дата значения, срок обновления и чем обновить
     return str_question_ids(out)  # паспорт ответа отеля: id вопроса — строкой
 
 
@@ -97,6 +101,8 @@ def labels() -> dict[str, Any]:
         # «В отеле есть X» — удобства со страницы Островка, вне каталога (слой hotel_amenities).
         "features": {f.id: f.short for f in load_catalog().features.values()}
         | {engine.ONSITE: "в отеле есть"},
+        # Районы Москвы для фильтра «только …» (коды `subzone_id`); районы Сочи — в интерфейсе.
+        "areas": AREA_NAMES,
     }
 
 
@@ -148,6 +154,17 @@ def coverage(city_id: str, request: Request) -> dict[str, Any]:
     if rows is None:
         raise HTTPException(404, f"нет города {city_id}")
     return {"stub": s.stub, "city_id": city_id, "features": rows}
+
+
+@router.get("/cities/{city_id}/freshness")
+def city_freshness(city_id: str, request: Request, as_of: datetime | None = None) -> dict[str, Any]:
+    """Актуализация: что и когда пора обновить в городе — на сегодня или на дату `as_of`."""
+    s = store(request)
+    if s.coverage(city_id) is None:
+        raise HTTPException(404, f"нет города {city_id}")
+    when = as_of or datetime.now(UTC)
+    when = when if when.tzinfo else when.replace(tzinfo=UTC)
+    return {"city_id": city_id, "as_of": when.isoformat(), "rows": s.freshness(city_id, when)}
 
 
 @router.get("/hotels")
@@ -235,6 +252,12 @@ def search(body: SearchRequest, request: Request) -> dict[str, Any]:
     results = engine.search(s, ast)
     counts = Counter(str(r["status"]) for r in results)
     page = results[body.offset : body.offset + body.limit]  # полный каталог — тысячи отелей
+    if transit.enabled() and any(c.feature_id in transit.TRANSIT for c in [*ast.hard, *ast.soft]):
+        # Время на транспорте — 2ГИС на запросе, только для первых отелей страницы (квота).
+        ids = [r["hotel"]["hotel_id"] for r in page[: transit.PAGE_MAX]]
+        redo = {r["hotel"]["hotel_id"]: r for r in engine.search(s, ast, only=ids, transit=True)}
+        page = [redo.get(r["hotel"]["hotel_id"], r) for r in page]
+        notes.append("Время на транспорте посчитано по 2ГИС для первых отелей страницы.")
     # Объяснение по шаблону (без модели, мгновенно) — у первых результатов страницы.
     for r in page[:EXPLAIN_TOP]:
         r["explanation"] = explain(r, s.fact, ast=ast).as_dict()

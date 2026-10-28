@@ -53,6 +53,7 @@ class Claim:
     kind: Kind
     text: str
     fact_ids: list[str] = field(default_factory=list)
+    atom_id: str | None = None  # условие запроса, о котором утверждение (сравнение отелей)
 
     @property
     def numbers(self) -> list[str]:
@@ -73,6 +74,7 @@ class Explanation:
             "notes": self.notes,
             "claims": [
                 {"claim_id": c.claim_id, "kind": c.kind, "text": c.text, "fact_ids": c.fact_ids}
+                | ({"atom_id": c.atom_id} if c.atom_id else {})
                 for c in self.claims
             ],
         }
@@ -92,12 +94,12 @@ def _fmt_value(value: Any, unit: str | None) -> str | None:
         return None
     if isinstance(value, (int, float)):
         if unit == "m":
-            return (
-                f"{_fmt_number(round(value / 100) / 10)} км"
-                if value >= 1000
-                else f"{round(value)} м"
-            )
-        unit_ru = {"°C": " °C", "%": "%", "min": " мин", "h": " ч", "kg": " кг", "mm": " мм"}
+            if value >= 1000:
+                return f"{_fmt_number(round(value / 100) / 10)} км"
+            # Высота волн, подъём — десятые доли метра важны: 0,7 м, а не «1 м».
+            return f"{_fmt_number(round(value, 1))} м" if value < 10 else f"{round(value)} м"
+        unit_ru = {"°C": " °C", "%": "%", "min": " мин", "h": " ч", "kg": " кг", "mm": " мм",
+                   "µg/m3": " мкг/м³", "days/month": " дн. в месяц"}  # fmt: skip
         return _fmt_number(round(value, 1)) + unit_ru.get(unit or "", "")
     if isinstance(value, str) and len(value) <= 40:
         return value
@@ -148,11 +150,31 @@ def _indirect(item: dict[str, Any]) -> bool:
     )
 
 
+def _transit_words(v: dict[str, Any]) -> str:
+    """Маршрут 2ГИС словами: «101 мин без пересадок от «аэропорт Сочи»»."""
+    if not v.get("route_exists"):
+        return f"маршрута от «{v.get('origin')}» в это время нет"
+    n = v.get("transfers") or 0
+    changes = (
+        "без пересадок" if n == 0 else f"{n} пересадк{'а' if n == 1 else 'и' if n < 5 else 'ок'}"
+    )
+    return f"{v.get('duration_min')} мин, {changes} от «{v.get('origin')}», 2ГИС"
+
+
 def _evidence(item: dict[str, Any], catalog: Catalog, fact: Callable[[str], Fact | None]) -> str:
     """Значение из первого факта условия и его происхождение: «810 м, оценка»."""
     f = next((x for fid in item.get("fact_ids", []) if (x := fact(fid))), None)
     if f is None:
         return ""
+    if f.feature_id in ("T01", "T02", "T03") and isinstance(f.value, dict) and "origin" in f.value:
+        return _transit_words(f.value)  # время на транспорте — 2ГИС на запросе (core/transit.py)
+    if isinstance(f.value, dict) and f.value.get("bound") == "lower" and "distance_m" in f.value:
+        # «Не ближе 1 км» — ничего не нашли в радиусе поиска (стройки X03), а не «1 км».
+        return f"ближе {_fmt_value(f.value['distance_m'], 'm')} на карте нет, оценка"
+    if f.feature_id == "H02" and isinstance(f.value, dict) and f.value.get("heritage"):
+        return f.value.get("category") or "в реестре объектов наследия"  # Wikidata, ЕГРОКН
+    if f.feature_id == "X03" and isinstance(f.value, dict) and "distance_m" in f.value:
+        return f"ближайшая стройка на карте — {_fmt_value(f.value['distance_m'], 'm')}, оценка"
     feature = catalog.get(item.get("feature_id", ""))
     field_name = item.get("field") or (feature.default_field if feature else None)
     v = f.value
@@ -272,6 +294,11 @@ def _condition_claim(
         # «Рядом место типа X» (D34): место из данных карт пакета, расстояние — по прямой.
         name = f"«{place['name']}»" if place.get("name") else "есть на карте"
         evidence = f"{name}, {place['distance_m']} м по прямой"
+        # Часы OSM в момент гостя (core/place_features.py): «открыто: 24/7» или сами часы.
+        hours = place.get("hours") or {}
+        if hours.get("opening_hours"):
+            word = "открыто" if hours.get("state") == "open" else "часы"
+            evidence += f", {word}: {hours['opening_hours']}"
     elif names := item.get("on_site"):
         # «В отеле есть X»: строки удобств со страницы отеля на Островке (D26).
         evidence = "Островок: " + ", ".join(f"«{n}»" for n in names)
@@ -290,8 +317,10 @@ def _condition_claim(
         text = f"{label}: {VERDICT_WORD.get(verdict, verdict)}" + (
             f" ({evidence})" if evidence else ""
         )
+    if item.get("stale"):
+        text += " — данные пора обновить"
     kind: Kind = "soft" if soft else {"yes": "fits", "no": "fails"}.get(verdict, "unknown")  # type: ignore[assignment]
-    return Claim(claim_id, kind, text, list(item.get("fact_ids", [])))
+    return Claim(claim_id, kind, text, list(item.get("fact_ids", [])), item.get("atom_id"))
 
 
 def _floor_ranges(floors: list[int]) -> str:
@@ -408,9 +437,24 @@ def build_claims(
     if best and (floors := _floors_claim(next_id(), best, catalog, window_label)):
         add(floors)
     soft = sorted(result.get("soft", []), key=lambda s: -float(s.get("weight", 0)))
-    for item in [s for s in soft if str(s.get("verdict")) == "yes"][:max_soft]:
+    said = [s for s in soft if str(s.get("verdict")) == "yes"][:max_soft]
+    # Нет «да» — скажем желательное, по которому данные есть, но ответ «нужно уточнить»: часть
+    # окон подходит, только оценка, наклон. Иначе объяснение было бы «данных нет» — неправда.
+    if not said:
+        said = [s for s in soft if str(s.get("verdict")) == "unknown" and _has_evidence(s)]
+        said = said[:max_soft]
+    for item in said:
         add(_condition_claim(next_id(), with_field(item), catalog, fact, soft=True))
     return claims
+
+
+def _has_evidence(item: dict[str, Any]) -> bool:
+    """У «нужно уточнить» есть что сказать: окна, оценка или наклон, а не «нет данных»."""
+    windows = item.get("windows") or {}
+    return bool(
+        windows.get("yes") or windows.get("estimate") or item.get("leaning")
+        or item.get("reason_code") in ("estimate_only", "window_some")
+    )  # fmt: skip
 
 
 # --- Сборка текста: модель (порядок и связки) или шаблон ---

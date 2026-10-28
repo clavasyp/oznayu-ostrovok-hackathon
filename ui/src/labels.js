@@ -50,13 +50,24 @@ export function itemSubtitle(item, labels) {
   // «В отеле есть X» — по удобствам со страницы отеля на Островке, а не по картам.
   if (item.on_site?.length || item.reason_code === 'place_on_site_seasonal') return 'по странице отеля на Островке'
   if (item.reason_code === 'place_on_site') return 'в самом отеле'
-  if (item.nearby || item.place) return 'по местам на карте'
+  if (item.nearby || item.place) return ['по местам на карте', placeNote(item.place)].filter(Boolean).join(' · ')
   if (item.trip || String(item.reason_code || '').startsWith('trip_')) return 'оценка по прямой'
   if (item.reason_code === 'partial_match') return 'проверяем частично'
   if (item.reason_code === 'out_of_catalog' || (!item.feature_id && !item.items?.length && !item.op)) return 'не проверяем — такого пока нет в каталоге'
   const name = item.feature_name || featureName(item.feature_id, labels)
   const title = itemTitle(item, labels)
   return name && name.toLowerCase() !== title.toLowerCase() ? name : ''
+}
+
+// Найденное место (паспорт пункта): название, расстояние по прямой и часы OSM в момент гостя —
+// «открыто: 24/7», если в нужный момент открыто, иначе сами часы (core/place_features.py).
+export function placeNote(place) {
+  if (!place?.place_id) return ''
+  const name = place.name ? `«${place.name}»` : 'место без названия'
+  const parts = [Number.isFinite(place.distance_m) ? `${name}, ${place.distance_m} м по прямой` : name]
+  const hours = place.hours
+  if (hours?.opening_hours) parts.push(`${hours.state === 'open' ? 'открыто' : 'часы'}: ${hours.opening_hours}`)
+  return parts.join(' · ')
 }
 
 export function verdictKind(value) {
@@ -147,3 +158,42 @@ export function outOfCatalogCheck(item) {
   if (item?.mapping_status === 'partial') return { checked: true, note: 'понято частично · для обязательного этого мало' }
   return { checked: false, note: 'не проверяем' + (where ? ' · ' + where : '') }
 }
+
+// Район Сочи из слов гостя (`ast.areas`, `exclude_areas`) — фильтр выдачи, его видно в разборе.
+const AREA_NAMES = { adler: 'Адлер', sirius: 'Сириус', center: 'центр Сочи', krasnaya_polyana: 'Красная Поляна', lazarevskoe: 'Лазаревское', loo: 'Лоо', dagomys: 'Дагомыс', khosta: 'Хоста' }
+// Тип жилья (`kind` Островка) и звёзды — тоже фильтр выдачи из слов гостя.
+const KIND_NAMES = { HOSTEL: 'хостелы', APARTMENT: 'апартаменты', GUESTHOUSE: 'гостевые дома', MINI_HOTEL: 'мини-отели', BOUTIQUE: 'бутик-отели', VILLA_AND_BUNGALOWS: 'виллы и коттеджи', SANATORIUM: 'санатории', CAMPING: 'кемпинги' }
+// Районы Москвы — из API (`/meta/labels`, `areas`): их больше сотни, свой словарь не держим.
+export function areaText(ast, labels) {
+  const name = (id) => AREA_NAMES[id] || labels?.areas?.[id] || id
+  const only = (ast?.areas || []).map(name)
+  const not = (ast?.exclude_areas || []).map(name)
+  const kinds = [...new Set((ast?.kinds || []).map((k) => KIND_NAMES[k]).filter(Boolean))]
+  return [
+    only.length ? `только ${only.join(', ')}` : '',
+    not.length ? `кроме: ${not.join(', ')}` : '',
+    kinds.length ? kinds.join(', ') : '',
+    ast?.stars_min ? `от ${ast.stars_min}★ на Островке` : '',
+  ].filter(Boolean).join('; ')
+}
+
+// Сравнение 2–3 отелей бок о бок: строка — условие запроса (обязательные сверху), в ячейке —
+// вердикт и причина у этого отеля. Условие одно и то же у всех отелей запроса (`atom_id`).
+export function compareRows(results, labels) {
+  const rows = new Map()
+  results.forEach((result, column) => {
+    const items = orderedItems(result)
+    const titles = distinctTitles(items, labels)
+    // Текст объяснения по условию — со значением («576 м, оценка»), без названия условия.
+    const said = new Map((result.explanation?.claims || []).filter((c) => c.atom_id).map((c) => [c.atom_id, c.text]))
+    items.forEach((item, i) => {
+      const key = item.atom_id || `${item.feature_id}|${item.text_span || ''}`
+      if (!rows.has(key)) rows.set(key, { key, title: titles[i], required: item.required, cells: results.map(() => null) })
+      const claim = said.get(item.atom_id)
+      const text = claim ? claim.slice(claim.indexOf(':') + 1).replace(/^\s*(нужно уточнить\s*—\s*)?/, '').trim() : ''
+      rows.get(key).cells[column] = { kind: verdictKind(item.verdict), text: text || verdictText(item) }
+    })
+  })
+  return [...rows.values()].sort((a, b) => Number(b.required) - Number(a.required))
+}
+
