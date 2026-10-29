@@ -4,7 +4,7 @@
   "city_name": "Москва",
   "timezone": "Europe/Moscow",
   "depth": "full",
-  "pack_version": "seva-full.3-f048d478de69+9f86be8e",
+  "pack_version": "seva-full.3-f048d478de69+7f6ecc31",
   "built_at": "2026-10-28T03:00:00Z",
   "code_version": "seva-full.3",
   "catalog_version": "ostrovok-2026-10-24+v9",
@@ -200,6 +200,57 @@
       "license": "ODbL-1.0",
       "commercial_ok": true,
       "layer": "data/construction.jsonl.gz"
+    },
+    {
+      "id": "view_sun:osm-buildings",
+      "provider": "OpenStreetMap/Geofabrik (здания и деревья вокруг корпусов)",
+      "release": "2026-10-22T20:21:33Z",
+      "sha256": "0067f5ee4128c29eb013ddc9da5ae5b235938249553435227a4161b585a87bc7",
+      "license": "ODbL-1.0",
+      "commercial_ok": true,
+      "layer": "data/view_sun.jsonl.gz"
+    },
+    {
+      "id": "view_sun:copdem-glo30",
+      "provider": "Copernicus DEM GLO-30",
+      "url": "https://copernicus-dem-30m.s3.amazonaws.com/",
+      "license": "Copernicus DEM licence (free, attribution)",
+      "commercial_ok": true,
+      "layer": "data/view_sun.jsonl.gz"
+    },
+    {
+      "id": "view_sun:worldcover-2021",
+      "provider": "ESA WorldCover",
+      "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/",
+      "release": "v200 2021",
+      "license": "CC BY 4.0",
+      "commercial_ok": true,
+      "layer": "data/view_sun.jsonl.gz"
+    },
+    {
+      "id": "view_sun:3d-globfp-v2",
+      "provider": "3D-GloBFP",
+      "url": "https://doi.org/10.5281/zenodo.15487037",
+      "release": "v2 (2025-05-22)",
+      "license": "CC BY 4.0",
+      "layer": "data/view_sun.jsonl.gz"
+    },
+    {
+      "id": "sun_hours:osm-buildings",
+      "provider": "OpenStreetMap/Geofabrik (здания и деревья вокруг корпусов)",
+      "release": "2026-10-22T20:21:33Z",
+      "sha256": "0067f5ee4128c29eb013ddc9da5ae5b235938249553435227a4161b585a87bc7",
+      "license": "ODbL-1.0",
+      "commercial_ok": true,
+      "layer": "data/sun_hours.jsonl.gz"
+    },
+    {
+      "id": "sun_hours:copdem-glo30",
+      "provider": "Copernicus DEM GLO-30",
+      "url": "https://copernicus-dem-30m.s3.amazonaws.com/",
+      "license": "Copernicus DEM licence (free, attribution)",
+      "commercial_ok": true,
+      "layer": "data/sun_hours.jsonl.gz"
     }
   ],
   "files": [
@@ -214,8 +265,8 @@
       "path": "data/coverage.jsonl.gz",
       "kind": "coverage",
       "rows": 54,
-      "bytes": 2893,
-      "sha256": "89d1aa8b1e952b2f9a4991b21282dfb673a19276de11677249aeb6080574edf4"
+      "bytes": 2908,
+      "sha256": "ef6e3065e3fa8dd35ba6c0821a7fec4aa8444e4fcbd40f0d7bfe6921dc063f22"
     },
     {
       "path": "data/curation_items.jsonl.gz",
@@ -371,6 +422,22 @@
       "rows": 4211,
       "bytes": 284542,
       "sha256": "bfa039a59a149d74718196a1fed52be4b788735a67cef201bf4dfa5ed6da3748",
+      "layer": true
+    },
+    {
+      "path": "data/view_sun.jsonl.gz",
+      "kind": "facts",
+      "rows": 1428911,
+      "bytes": 58027694,
+      "sha256": "c26c2586ca165f2cd02f40446cdff2291985c42433decf2f1e7e8da93a633ca7",
+      "layer": true
+    },
+    {
+      "path": "data/sun_hours.jsonl.gz",
+      "kind": "facts",
+      "rows": 1124880,
+      "bytes": 33888828,
+      "sha256": "e3825ddddc85b863055a0d527b4744a3ef50d0e92db539c09d7ff7f29b1592a4",
       "layer": true
     }
   ],

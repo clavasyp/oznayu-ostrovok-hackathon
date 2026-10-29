@@ -60,6 +60,7 @@ TREE_MID_M = 12.0
 
 NEAR_M = 300.0  # ближняя зона: деревья и земля — от точки окна
 BUILDINGS_M = 4000.0  # контуры зданий: GLO-30 высокие дома занижает, дальше — только поверхность
+QUERY_SEGMENT_M = 100.0  # поиск контуров вдоль луча — отрезками (скорость, не точность)
 FAR_MAX_M = 250_000.0  # дальняя зона: поверхность GLO-30 — от корпуса
 FAR_LATERAL_M = 60.0  # дальняя зона: параллельные лучи через корпус не реже (плюс 3×3 пикселя)
 REGION_MAX_M = 5642.0  # Эльбрус: выше рельефа в регионе нет
@@ -319,17 +320,22 @@ class Scene:
     ground_hi: Any = None
     cap: Any = None  # потолок верха по GLO-30 для небольших зданий без данных (абсолютный)
     far_cache: dict[tuple, Any] = field(default_factory=dict)
+    # Выше рельефа в регионе нет — за краем листов GLO-30 (Сочи — Эльбрус, Москва — 350 м).
+    region_max_m: float = REGION_MAX_M
+    sea: bool = True  # V01 — только у моря: в Москве лучи к морю не считаем
 
 
 def load_scene(
     scene_path: Path,
-    globfp_path: Path,
+    globfp_path: Path | None,
     dsm_paths: list[Path],
     worldcover_path: Path,
     tile_list: Path,
     center: tuple[float, float],
     bbox: tuple[float, float, float, float],
     curated_path: Path | None = None,
+    region_max_m: float = REGION_MAX_M,
+    sea: bool = True,
 ) -> Scene:
     import numpy as np
     import shapely
@@ -371,11 +377,12 @@ def load_scene(
                 trees.append((sid, gm if area else gm.buffer(4.0)))
 
     gb_geoms, gb_h = [], []
-    with globfp_path.open(encoding="utf-8") as f:
-        for line in f:
-            r = json.loads(line)
-            gb_geoms.append(metric(shapely.from_wkb(bytes.fromhex(r["geometry_wkb"]))))
-            gb_h.append(float(r["attrs"]["Height"]))
+    # Высоты GloBFP есть не для всех городов: без них — этажность и высота из тегов OSM.
+    for line in globfp_path.open(encoding="utf-8") if globfp_path else []:
+        r = json.loads(line)
+        g = metric(shapely.from_wkb(bytes.fromhex(r["geometry_wkb"])))
+        gb_geoms.append(g if g.is_valid else g.buffer(0))  # как контуры OSM: самопересечения
+        gb_h.append(float(r["attrs"]["Height"]))
     gb_arr = np.array(gb_geoms, dtype=object)
     ids = list(osm)
     om = np.array([osm[i]["geom"] for i in ids], dtype=object)
@@ -390,7 +397,8 @@ def load_scene(
         a, j = best.get(i, (0.0, -1))
         ok = j >= 0 and (a >= 0.5 * om[i].area or a >= 0.5 * gb_geoms[j].area)
         osm[sid]["globfp"] = gb_h[j] if ok else None
-        used[j] |= ok
+        if ok:
+            used[j] = True
 
     land = set()
     for name in tile_list.read_text("utf-8").split():
@@ -451,6 +459,8 @@ def load_scene(
         ground_mid=np.full(n, np.nan),
         ground_hi=np.full(n, np.nan),
         cap=np.full(n, np.nan),
+        region_max_m=region_max_m,
+        sea=sea,
     )
 
 
@@ -532,7 +542,14 @@ def near_obstacles(
     ux, uy = _unit(az)
     p = shapely.Point(x, y)
     line = shapely.LineString([(x, y), (x + ux * reach, y + uy * reach)])
-    idx = scene.tree.query(line, predicate="intersects")
+    # Поиск по отрезкам луча: рамка всего луча в 4 км по диагонали в плотном городе — десятки
+    # тысяч кандидатов (Москва), рамки отрезков — единицы. Набор контуров тот же.
+    n = max(1, math.ceil(reach / QUERY_SEGMENT_M))
+    k = np.arange(n + 1) * (reach / n)
+    xs, ys = x + ux * k, y + uy * k
+    segs = shapely.linestrings(np.stack([np.column_stack([xs[:-1], ys[:-1]]),
+                                         np.column_stack([xs[1:], ys[1:]])], axis=1))  # fmt: skip
+    idx = np.unique(scene.tree.query(segs, predicate="intersects")[1])
     ensure_ground(scene, idx)
     dist = shapely.distance(p, shapely.intersection(line, scene.polys[idx]))
     g_lo, g_mid, g_hi = scene.ground_lo[idx], scene.ground_mid[idx], scene.ground_hi[idx]
@@ -580,7 +597,7 @@ def far_profile(scene: Scene, bid: str, az: float, max_d: float):
 
     Окно может быть в любом месте корпуса: верх — максимум 3×3 по всем лучам, низ — минимум.
     Вне листов GLO-30: клетка 1° с сушей (по списку листов Copernicus DEM) — рельеф неизвестен,
-    верх до REGION_MAX_M (`beyond`); клетка без суши — море, уровень 0."""
+    верх до `scene.region_max_m` (`beyond`); клетка без суши — море, уровень 0."""
     import numpy as np
 
     key = (bid, round(az * 4) / 4, max_d)
@@ -607,7 +624,7 @@ def far_profile(scene: Scene, bid: str, az: float, max_d: float):
         unknown = ~ok & np.isin(cell, land)  # суша без данных о рельефе
         beyond |= unknown
         lo = np.fmin(lo, np.where(ok, mn - DSM_SIGMA_M, np.where(unknown, -np.inf, 0.0)))
-        hi = np.fmax(hi, np.where(ok, mx + DSM_SIGMA_M, np.where(unknown, REGION_MAX_M, 0.0)))
+        hi = np.fmax(hi, np.where(ok, mx + DSM_SIGMA_M, np.where(unknown, scene.region_max_m, 0.0)))
         if k == len(offsets) // 2:
             mid = np.where(ok, raw, np.where(unknown, np.nan, 0.0))
     prof = (d, lo, hi, mid, beyond)
@@ -1278,7 +1295,8 @@ def facts_for_window(
         jobs.append(("V05", V05_PARAMS | {"date": d.isoformat()}, cells, sunset))
     year = v05_all_year(track(season[0])[0], track(season[1])[0], w.facade["azimuth"])
     jobs.append(("V05", dict(V05_PARAMS), {None: (year, None)}, None))
-    jobs.append(("V01", V01_PARAMS, v01_cells(scene, w, g_w), None))
+    if scene.sea:
+        jobs.append(("V01", V01_PARAMS, v01_cells(scene, w, g_w), None))
     out = []
     for fid, params, cells, sunset in jobs:
         keyed = {}

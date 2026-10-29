@@ -29,3 +29,4 @@ data/twogis_cache/
 .DS_Store
 .idea/
 .vscode/
+.checkpoints/

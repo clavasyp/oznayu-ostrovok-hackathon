@@ -11,13 +11,15 @@
 from __future__ import annotations
 
 import argparse
+import gzip
+import hashlib
 import json
 import math
 import multiprocessing
 import os
 import time
 from collections import Counter, defaultdict
-from concurrent.futures import ProcessPoolExecutor
+from concurrent.futures import ProcessPoolExecutor, as_completed
 from datetime import UTC, date, datetime
 from pathlib import Path
 
@@ -62,7 +64,38 @@ CITIES = {
             "2027-07-17",
             "2027-07-18",
         ],  # fmt: skip
-    }
+    },
+    # Москва: сцена — здания и деревья из среза Geofabrik ЦФО (`pipeline.build_scene_osm`), высоты
+    # без тегов OSM — 3D-GloBFP (`pipeline.extract_globfp`, два тайла figshare). Моря нет: V01 не
+    # считаем. За краем листов GLO-30 рельеф не выше 350 м (Смоленско-Московская возвышенность).
+    "moscow": {
+        "timezone": "Europe/Moscow",
+        "center": (37.6176, 55.7558),
+        "scene": V9 / "cohort" / "osm_moscow_scene.jsonl",
+        "globfp": AUDIT / "globfp_moscow.jsonl",
+        "worldcover": AUDIT / "raster_tiles" / "ESA_WorldCover_10m_2021_v200_N54E036_Map.tif",
+        "dsm": [
+            AUDIT / "raster_tiles" / "Copernicus_DSM_COG_10_N55_00_E036_00_DEM.tif",
+            AUDIT / "raster_tiles" / "Copernicus_DSM_COG_10_N55_00_E037_00_DEM.tif",
+            AUDIT / "raster_tiles" / "Copernicus_DSM_COG_10_N56_00_E036_00_DEM.tif",
+            AUDIT / "raster_tiles" / "Copernicus_DSM_COG_10_N56_00_E037_00_DEM.tif",
+        ],
+        "tile_list": AUDIT / "copdem_tileList.txt",
+        "region_max_m": 350.0,
+        "sea": False,
+        # Даты заезда по умолчанию в интерфейсе — через две недели от дней показа жюри (29.10–4.11);
+        # июль не считаем: у 2 168 корпусов Москвы каждая дата — около 100 тыс. фактов.
+        "season": ["2026-12-21", "2027-06-21"],
+        "dates": [
+            "2026-11-12",
+            "2026-11-13",
+            "2026-11-14",
+            "2026-11-15",
+            "2026-11-16",
+            "2026-11-17",
+            "2026-11-18",
+        ],  # fmt: skip
+    },
 }
 
 LAYER = "data/view_sun.jsonl.gz"
@@ -115,6 +148,35 @@ MOUNTAIN_SOURCES = [
 ]
 
 
+def sources_for(cfg: dict) -> list[PackSource]:
+    """Источники слоя вида: у Сочи — сцена v9; у Москвы — сцена из среза OSM
+    (`pipeline.build_scene_osm`, sha256 и дата среза — в её meta.json). GloBFP — если есть."""
+    meta_path = Path(cfg["scene"]).with_suffix(".meta.json")
+    if not meta_path.exists():
+        return SOURCES
+    meta = json.loads(meta_path.read_text("utf-8"))
+    scene = PackSource(
+        id="view_sun:osm-buildings",
+        provider="OpenStreetMap/Geofabrik (здания и деревья вокруг корпусов)",
+        release=meta["source_date"],
+        sha256=meta["pbf_sha256"],
+        license="ODbL-1.0",
+        commercial_ok=True,
+    )
+    rest = [s for s in SOURCES[1:] if cfg.get("globfp") or not s.id.endswith("3d-globfp-v2")]
+    return [scene, *rest]
+
+
+def _renamed(sources: list[PackSource], prefix: str) -> list[PackSource]:
+    """Те же источники для слоёв часов солнца и гор: id с префиксом слоя, без WorldCover и
+    GloBFP (их эти слои не читают)."""
+    return [
+        PackSource.model_validate(s.model_dump() | {"id": prefix + s.id.split(":", 1)[1]})
+        for s in sources
+        if not s.id.endswith(("worldcover-2021", "3d-globfp-v2"))
+    ]
+
+
 def worldcover_bbox(geoms: list) -> tuple[float, float, float, float]:
     """Окно WorldCover: все корпуса отелей и вокруг них — на дальность моря и ближней зоны."""
     xs, ys = [], []
@@ -135,7 +197,7 @@ def inputs_time(cfg: dict, pack: Path) -> datetime:
     и перезапись других файлов пакета меняют его, не меняя самих входов."""
     from core.packs import read_manifest
 
-    paths = [cfg["scene"], cfg["globfp"], cfg["worldcover"], *cfg["dsm"]]
+    paths = [p for p in (cfg["scene"], cfg["globfp"], cfg["worldcover"], *cfg["dsm"]) if p]
     files = datetime.fromtimestamp(max(p.stat().st_mtime for p in paths), UTC)
     built = read_manifest(pack).built_at
     return max(files, built).replace(microsecond=0)
@@ -183,7 +245,8 @@ def main() -> None:
     curated = CURATED / f"{args.city}_building_heights.csv"
     scene = view_sun.load_scene(
         cfg["scene"], cfg["globfp"], cfg["dsm"], cfg["worldcover"], cfg["tile_list"],
-        cfg["center"], bbox, curated,
+        cfg["center"], bbox, curated, cfg.get("region_max_m", view_sun.REGION_MAX_M),
+        cfg.get("sea", True),
     )  # fmt: skip
     west, south, east, north = scene.worldcover.bounds[0]
     tol = 1e-3  # градуса: округление окна до пикселей
@@ -204,18 +267,35 @@ def main() -> None:
     chunks = sorted(by_building.values(), key=len, reverse=True)
     _STATE["args"] = (scene, dates, season, cfg["timezone"], args.city, calculated_at)
     work = _sun_work if args.sun_hours else _mountain_work if args.mountains else _work
-    facts = []
+    mode = "sun" if args.sun_hours else "mountains" if args.mountains else "view"
+    # Сохранение по ходу: готовый корпус сразу дописывается на диск; после обрыва (перезагрузка)
+    # повторный запуск с теми же входами пропускает посчитанные корпуса.
+    checkpoint = Checkpoint(args.city, mode, {
+        "dates": cfg["dates"], "season": cfg["season"], "hotels": sorted(args.hotels or []),
+        "versions": [view_sun.VERSION, view_sun.SUN_HOURS_VERSION, view_sun.MOUNTAIN_VERSION],
+        "calculated_at": calculated_at.isoformat(), "out": str(args.out or ""),
+    })  # fmt: skip
+    facts, done = checkpoint.load()
+    total = len(chunks)
+    chunks = [c for c in chunks if c[0].building_id not in done]
+    if done:
+        print(f"  продолжаем: готово корпусов {len(done)}, фактов {len(facts)} ({checkpoint.path})")
     if args.jobs > 1:
         ctx = multiprocessing.get_context("fork")  # сцена в памяти — общая, не копируется
         with ProcessPoolExecutor(args.jobs, mp_context=ctx) as pool:
-            for k, part in enumerate(pool.map(work, chunks), 1):
+            jobs = {pool.submit(work, chunk): chunk[0].building_id for chunk in chunks}
+            for k, job in enumerate(as_completed(jobs), len(done) + 1):
+                part = job.result()
+                checkpoint.add(jobs[job], part)
                 facts += part
                 if k % 10 == 0:
-                    print(f"  корпусов {k}/{len(chunks)}, фактов {len(facts)}, "
+                    print(f"  корпусов {k}/{total}, фактов {len(facts)}, "
                           f"{time.time() - t0:.0f} с")  # fmt: skip
     else:
         for chunk in chunks:
-            facts += work(chunk)
+            part = work(chunk)
+            checkpoint.add(chunk[0].building_id, part)
+            facts += part
     rows = sorted(
         facts,
         key=lambda r: (r["hotel_id"], r["feature_id"], r["subject_id"], json.dumps(r["params"]),
@@ -231,14 +311,58 @@ def main() -> None:
     out = args.out or PACKS / args.city / layer
     out.parent.mkdir(parents=True, exist_ok=True)
     write_jsonl_gz(out, rows)
+    checkpoint.done()
     print(f"{out}: {len(rows)} фактов, {out.stat().st_size / 1e6:.2f} МБ, {time.time() - t0:.0f} с")
+    own = sources_for(cfg)
     if args.out is None and args.sun_hours:
-        add_layer(pack, SUN_LAYER, "facts", len(rows), SUN_SOURCES)
+        add_layer(pack, SUN_LAYER, "facts", len(rows), _renamed(own, "sun_hours:"))
     elif args.out is None and args.mountains:
-        add_layer(pack, MOUNTAIN_LAYER, "facts", len(rows), MOUNTAIN_SOURCES)
+        add_layer(pack, MOUNTAIN_LAYER, "facts", len(rows), _renamed(own, "mountains:"))
     elif args.out is None:
-        add_layer(pack, LAYER, "facts", len(rows), SOURCES)  # и покрытие V01 / V05 по всем фактам
+        add_layer(pack, LAYER, "facts", len(rows), own)  # и покрытие V01 / V05 по всем фактам
         write_queue(scene, rows, curated)
+
+
+CHECKPOINTS = ROOT / ".checkpoints"  # вне пакетов и git: сохранение расчёта по ходу
+
+
+class Checkpoint:
+    """Готовые корпуса расчёта на диске: строка на корпус (`building_id`, факты). Файл — gzip из
+    многих частей: каждая дописывается целиком, оборванная последняя часть при чтении
+    отбрасывается. Ключ — город, вид расчёта и входы: другие даты или версия — другой файл."""
+
+    def __init__(self, city: str, mode: str, inputs: dict) -> None:
+        key = hashlib.sha256(json.dumps(inputs, sort_keys=True).encode()).hexdigest()[:16]
+        self.path = CHECKPOINTS / f"{city}_{mode}_{key}.jsonl.gz"
+
+    def load(self) -> tuple[list[dict], set[str]]:
+        facts: list[dict] = []
+        done: set[str] = set()
+        if not self.path.exists():
+            return facts, done
+        good: list[str] = []
+        try:
+            with gzip.open(self.path, "rt", encoding="utf-8") as f:
+                for line in f:
+                    item = json.loads(line)
+                    good.append(line)
+                    done.add(item["building_id"])
+                    facts += item["rows"]
+        except (EOFError, OSError, json.JSONDecodeError):
+            # Обрыв посреди записи: оставляем только целые корпуса, иначе дописанное после
+            # битого хвоста не прочитается; оборванный корпус посчитаем заново.
+            with gzip.open(self.path, "wt", encoding="utf-8") as f:
+                f.writelines(good)
+        return facts, done
+
+    def add(self, building_id: str, rows: list[dict]) -> None:
+        self.path.parent.mkdir(parents=True, exist_ok=True)
+        line = json.dumps({"building_id": building_id, "rows": rows}, ensure_ascii=False)
+        with gzip.open(self.path, "at", encoding="utf-8") as f:
+            f.write(line + "\n")
+
+    def done(self) -> None:
+        self.path.unlink(missing_ok=True)
 
 
 _STATE: dict = {}

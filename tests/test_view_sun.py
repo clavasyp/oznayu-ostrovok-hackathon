@@ -421,3 +421,51 @@ def test_sun_hours_upper_bound_decides_only_one_side():
     assert open_few["reason_code"] == "sun_hours_upper_bound"
     assert evaluate([hours(0.5)], some, hard=True)["verdict"] == "no"
     assert evaluate([hours(3.0)], some, hard=True)["leaning"] == "yes"
+
+
+def test_city_without_globfp_gets_scene_sources_and_same_layer_ids(tmp_path):
+    """Москва: сцена из среза OSM (sha256 среза — в источнике), GloBFP — если есть; у Сочи
+    источники слоёв часов солнца и гор — те же id, что раньше."""
+    import json
+
+    from pipeline import build_view_sun as bvs
+
+    assert [s.id for s in bvs._renamed(bvs.SOURCES, "sun_hours:")] == [
+        s.id for s in bvs.SUN_SOURCES
+    ]
+    assert [s.id for s in bvs._renamed(bvs.SOURCES, "mountains:")] == [
+        s.id for s in bvs.MOUNTAIN_SOURCES
+    ]
+    scene = tmp_path / "osm_moscow_scene.jsonl"
+    scene.write_text("")
+    meta = {"source_date": "2026-10-22T20:21:33Z", "pbf_sha256": "a" * 64}
+    scene.with_suffix(".meta.json").write_text(json.dumps(meta))
+    own = bvs.sources_for(bvs.CITIES["moscow"] | {"scene": scene, "globfp": None})
+    assert [s.id for s in own] == [
+        "view_sun:osm-buildings", "view_sun:copdem-glo30", "view_sun:worldcover-2021",
+    ]  # fmt: skip
+    with_heights = bvs.sources_for(bvs.CITIES["moscow"] | {"scene": scene})
+    assert [s.id for s in with_heights][-1] == "view_sun:3d-globfp-v2"
+    assert own[0].sha256 == "a" * 64 and bvs.sources_for(bvs.CITIES["sochi"]) == bvs.SOURCES
+    assert bvs.CITIES["moscow"]["sea"] is False and bvs.CITIES["moscow"]["region_max_m"] < 500
+
+
+def test_checkpoint_resumes_and_survives_a_torn_write(tmp_path, monkeypatch):
+    """Расчёт по ходу на диске: готовые корпуса читаются после обрыва, оборванная запись
+    отбрасывается, дописанное после неё — читается; другие входы — другой файл."""
+    from pipeline import build_view_sun as bvs
+
+    monkeypatch.setattr(bvs, "CHECKPOINTS", tmp_path)
+    cp = bvs.Checkpoint("moscow", "view", {"dates": ["2026-11-12"]})
+    cp.add("way/1", [{"fact_id": "a"}])
+    cp.add("way/2", [{"fact_id": "b"}, {"fact_id": "c"}])
+    with cp.path.open("ab") as f:  # выключение посреди записи третьего корпуса
+        f.write(b"\x1f\x8b\x08\x00garbage")
+    facts, done = bvs.Checkpoint("moscow", "view", {"dates": ["2026-11-12"]}).load()
+    assert done == {"way/1", "way/2"} and [r["fact_id"] for r in facts] == ["a", "b", "c"]
+    cp.add("way/3", [{"fact_id": "d"}])
+    assert cp.load()[1] == {"way/1", "way/2", "way/3"}
+    other = bvs.Checkpoint("moscow", "view", {"dates": ["2026-11-13"]})
+    assert other.path != cp.path and other.load() == ([], set())
+    cp.done()
+    assert not cp.path.exists()
