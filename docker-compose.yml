@@ -9,13 +9,20 @@ name: oznayu
 x-app: &app
   image: oznayu-app:local
   platform: linux/amd64
+  # Конфигурация — из .env (cp .env.example .env); без него — значения по умолчанию ниже.
+  env_file:
+    - path: .env
+      required: false
   environment:
     DATA_MODE: ${DATA_MODE:-db}
     DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-oznayu}:${POSTGRES_PASSWORD:-oznayu}@db:5432/${POSTGRES_DB:-oznayu}
-    LLM_PROVIDER: ${LLM_PROVIDER:-openai_compat}
-    LLM_MODEL: ${LLM_MODEL:-claude-opus-5-5}
+    # Пакеты — в образе; путь из .env (для запуска вне Docker) сюда не попадает.
+    PACKS_DIR: /app/packs
+    LLM_PROVIDER: ${LLM_PROVIDER:-gigachat}
+    LLM_MODEL: ${LLM_MODEL:-GigaChat-3-Ultra}
     LLM_API_KEY: ${LLM_API_KEY:-}
-    LLM_BASE_URL: ${LLM_BASE_URL:-https://api.anthropic.com/v1/}
+    LLM_BASE_URL: ${LLM_BASE_URL:-https://api.giga.chat/v1}
+    GIGACHAT_SCOPE: ${GIGACHAT_SCOPE:-GIGACHAT_API_PERS}
     LLM_EFFORT: ${LLM_EFFORT:-low}
     LLM_TIMEOUT_S: ${LLM_TIMEOUT_S:-20}
     LLM_MAX_RETRIES: ${LLM_MAX_RETRIES:-1}

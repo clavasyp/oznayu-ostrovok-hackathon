@@ -1,0 +1,25 @@
+{
+  "requested_at": "2026-10-24T13:18:08.764027+00:00",
+  "finished_at": "2026-10-24T13:18:08.903443+00:00",
+  "url": "https://archive-api.open-meteo.com/v1/archive?latitude=54.75%2C54.75&longitude=20.25%2C20.5&start_date=1993-07-01&end_date=1993-07-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Etc%2FGMT-2&cell_selection=nearest&elevation=nan%2Cnan",
+  "http_status": 200,
+  "bytes": 2507,
+  "sha256": "8bf3c2e8855d930446fc52371b55c0f6b362b3cdb5b03a4da47edb0fceabe5de",
+  "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/environment/raw/era5_kaliningrad_199307_7735a8eb4bf9754d08.json",
+  "params": {
+    "latitude": "54.75,54.75",
+    "longitude": "20.25,20.5",
+    "start_date": "1993-07-01",
+    "end_date": "1993-07-31",
+    "daily": "temperature_2m_mean,temperature_2m_max,precipitation_sum",
+    "models": "era5",
+    "timezone": "Etc/GMT-2",
+    "cell_selection": "nearest",
+    "elevation": "nan,nan"
+  },
+  "n_locations": 2,
+  "conservative_weight_estimate": 4.428571428571429,
+  "published_weight_estimate": 1.3285714285714285,
+  "license": "CC BY 4.0 data; free API non-commercial hackathon D22 only; production Professional/self-host",
+  "elapsed_s": 0.13964687500265427
+}

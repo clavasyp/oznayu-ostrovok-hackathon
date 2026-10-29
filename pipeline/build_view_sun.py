@@ -101,6 +101,7 @@ CITIES = {
 LAYER = "data/view_sun.jsonl.gz"
 SUN_LAYER = "data/sun_hours.jsonl.gz"  # часы солнца S01 / S02: верхняя граница по фасаду
 MOUNTAIN_LAYER = "data/mountains.jsonl.gz"  # вид на горы V02: «нет» расчётом, «да» оценкой
+LANDMARK_LAYER = "data/view_landmarks.jsonl.gz"  # вид на заметный объект V03 (Москва-Сити)
 CURATED = ROOT / "data" / "curated"  # этажность, проверенная командой по картам (D33)
 QUEUE_FIELDS = ["building_id", "levels", "height_m", "source", "source_url", "checked_by",
                 "checked_at", "note", "now_known", "cells", "hotels", "osm_url", "yandex_url",
@@ -227,6 +228,8 @@ def main() -> None:
                     f"отдельный слой {SUN_LAYER}")  # fmt: skip
     ap.add_argument("--mountains", action="store_true", help="только вид на горы V02 — "
                     f"отдельный слой {MOUNTAIN_LAYER}")  # fmt: skip
+    ap.add_argument("--landmarks", action="store_true", help="только вид на объекты V03 "
+                    f"(view_sun.LANDMARKS) — отдельный слой {LANDMARK_LAYER}")  # fmt: skip
     args = ap.parse_args()
     if args.hotels and args.out is None:
         ap.error("--hotels без --out заменил бы слой пакета и очередь проверки частью отелей")
@@ -266,13 +269,18 @@ def main() -> None:
         by_building[w.building_id].append(w)
     chunks = sorted(by_building.values(), key=len, reverse=True)
     _STATE["args"] = (scene, dates, season, cfg["timezone"], args.city, calculated_at)
-    work = _sun_work if args.sun_hours else _mountain_work if args.mountains else _work
-    mode = "sun" if args.sun_hours else "mountains" if args.mountains else "view"
+    work, mode, layer = (
+        (_sun_work, "sun", SUN_LAYER) if args.sun_hours
+        else (_mountain_work, "mountains", MOUNTAIN_LAYER) if args.mountains
+        else (_landmark_work, "landmarks", LANDMARK_LAYER) if args.landmarks
+        else (_work, "view", LAYER)
+    )  # fmt: skip
     # Сохранение по ходу: готовый корпус сразу дописывается на диск; после обрыва (перезагрузка)
     # повторный запуск с теми же входами пропускает посчитанные корпуса.
     checkpoint = Checkpoint(args.city, mode, {
         "dates": cfg["dates"], "season": cfg["season"], "hotels": sorted(args.hotels or []),
-        "versions": [view_sun.VERSION, view_sun.SUN_HOURS_VERSION, view_sun.MOUNTAIN_VERSION],
+        "versions": [view_sun.VERSION, view_sun.SUN_HOURS_VERSION, view_sun.MOUNTAIN_VERSION]
+        + ([view_sun.LANDMARK_VERSION, view_sun.LANDMARKS] if args.landmarks else []),
         "calculated_at": calculated_at.isoformat(), "out": str(args.out or ""),
     })  # fmt: skip
     facts, done = checkpoint.load()
@@ -307,8 +315,7 @@ def main() -> None:
     )
     for key, n in sorted(stats.items(), key=lambda kv: (kv[0][0], kv[0][1], -kv[1])):
         print(f"  {key}: {n}")
-    layer = SUN_LAYER if args.sun_hours else MOUNTAIN_LAYER if args.mountains else LAYER
-    out = args.out or PACKS / args.city / layer
+    out = args.out or pack / layer  # пакет `--pack`, а не всегда packs/<город>
     out.parent.mkdir(parents=True, exist_ok=True)
     write_jsonl_gz(out, rows)
     checkpoint.done()
@@ -318,6 +325,12 @@ def main() -> None:
         add_layer(pack, SUN_LAYER, "facts", len(rows), _renamed(own, "sun_hours:"))
     elif args.out is None and args.mountains:
         add_layer(pack, MOUNTAIN_LAYER, "facts", len(rows), _renamed(own, "mountains:"))
+    elif args.out is None and args.landmarks:
+        landmarks = [  # V03 читает и WorldCover, и GloBFP — источники все
+            PackSource.model_validate(s.model_dump() | {"id": "landmarks:" + s.id.split(":", 1)[1]})
+            for s in own
+        ]
+        add_layer(pack, LANDMARK_LAYER, "facts", len(rows), landmarks)
     elif args.out is None:
         add_layer(pack, LAYER, "facts", len(rows), own)  # и покрытие V01 / V05 по всем фактам
         write_queue(scene, rows, curated)
@@ -366,6 +379,12 @@ class Checkpoint:
 
 
 _STATE: dict = {}
+
+
+def _landmark_work(chunk: list) -> list[dict]:
+    """Вид на объекты V03 фасадов одного корпуса (в отдельном процессе)."""
+    scene, _, _, _, city, calculated_at = _STATE["args"]
+    return [fact_row(f) for f in view_sun.landmark_facts(scene, chunk, city, calculated_at)]
 
 
 def _mountain_work(chunk: list) -> list[dict]:

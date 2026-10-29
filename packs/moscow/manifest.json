@@ -4,7 +4,7 @@
   "city_name": "Москва",
   "timezone": "Europe/Moscow",
   "depth": "full",
-  "pack_version": "seva-full.3-f048d478de69+7f6ecc31",
+  "pack_version": "seva-full.3-f048d478de69+0b06f290",
   "built_at": "2026-10-28T03:00:00Z",
   "code_version": "seva-full.3",
   "catalog_version": "ostrovok-2026-10-24+v9",
@@ -251,6 +251,267 @@
       "license": "Copernicus DEM licence (free, attribution)",
       "commercial_ok": true,
       "layer": "data/sun_hours.jsonl.gz"
+    },
+    {
+      "id": "added_13287330_hotels.jsonl:ostrovok_site",
+      "provider": "ostrovok.ru",
+      "release": "snapshot_2026-10-29_pages",
+      "sha256": "b36e6d71cf81f292247dcf63c6ce3f59c03c48a40f6985579c0d047d97dc57b2",
+      "layer": "data/added_13287330_hotels.jsonl.gz"
+    },
+    {
+      "id": "added_13287330_hotels.jsonl:districts_osm",
+      "provider": "OpenStreetMap/Geofabrik (границы районов Москвы)",
+      "release": "2026-10-22T20:21:33Z",
+      "sha256": "0067f5ee4128c29eb013ddc9da5ae5b235938249553435227a4161b585a87bc7",
+      "license": "ODbL-1.0",
+      "commercial_ok": true,
+      "method": "districts-osm.1; districts.geojson sha256 b4811845e698",
+      "layer": "data/added_13287330_hotels.jsonl.gz"
+    },
+    {
+      "id": "added_13287330_facts.jsonl:ostrovok_site",
+      "provider": "ostrovok.ru",
+      "release": "snapshot_2026-10-29_pages",
+      "sha256": "b36e6d71cf81f292247dcf63c6ce3f59c03c48a40f6985579c0d047d97dc57b2",
+      "layer": "data/added_13287330_facts.jsonl.gz"
+    },
+    {
+      "id": "added_13287330_facts.jsonl:districts_osm",
+      "provider": "OpenStreetMap/Geofabrik (границы районов Москвы)",
+      "release": "2026-10-22T20:21:33Z",
+      "sha256": "0067f5ee4128c29eb013ddc9da5ae5b235938249553435227a4161b585a87bc7",
+      "license": "ODbL-1.0",
+      "commercial_ok": true,
+      "method": "districts-osm.1; districts.geojson sha256 b4811845e698",
+      "layer": "data/added_13287330_facts.jsonl.gz"
+    },
+    {
+      "id": "added_13287330_questions.jsonl:ostrovok_site",
+      "provider": "ostrovok.ru",
+      "release": "snapshot_2026-10-29_pages",
+      "sha256": "b36e6d71cf81f292247dcf63c6ce3f59c03c48a40f6985579c0d047d97dc57b2",
+      "layer": "data/added_13287330_questions.jsonl.gz"
+    },
+    {
+      "id": "added_13287330_questions.jsonl:districts_osm",
+      "provider": "OpenStreetMap/Geofabrik (границы районов Москвы)",
+      "release": "2026-10-22T20:21:33Z",
+      "sha256": "0067f5ee4128c29eb013ddc9da5ae5b235938249553435227a4161b585a87bc7",
+      "license": "ODbL-1.0",
+      "commercial_ok": true,
+      "method": "districts-osm.1; districts.geojson sha256 b4811845e698",
+      "layer": "data/added_13287330_questions.jsonl.gz"
+    },
+    {
+      "id": "added_13287330_room_types.jsonl:ostrovok_site",
+      "provider": "ostrovok.ru",
+      "release": "snapshot_2026-10-29_pages",
+      "sha256": "b36e6d71cf81f292247dcf63c6ce3f59c03c48a40f6985579c0d047d97dc57b2",
+      "layer": "data/added_13287330_room_types.jsonl.gz"
+    },
+    {
+      "id": "added_13287330_room_types.jsonl:districts_osm",
+      "provider": "OpenStreetMap/Geofabrik (границы районов Москвы)",
+      "release": "2026-10-22T20:21:33Z",
+      "sha256": "0067f5ee4128c29eb013ddc9da5ae5b235938249553435227a4161b585a87bc7",
+      "license": "ODbL-1.0",
+      "commercial_ok": true,
+      "method": "districts-osm.1; districts.geojson sha256 b4811845e698",
+      "layer": "data/added_13287330_room_types.jsonl.gz"
+    },
+    {
+      "id": "added_13287330_buildings_auto_point.jsonl:building_links_buildings:osm",
+      "provider": "OpenStreetMap/Geofabrik",
+      "url": "https://download.geofabrik.de/russia/central-fed-district-latest.osm.pbf",
+      "release": "2026-10-22T20:21:33Z",
+      "sha256": "0067f5ee4128c29eb013ddc9da5ae5b235938249553435227a4161b585a87bc7",
+      "license": "ODbL-1.0",
+      "commercial_ok": true,
+      "fetched_at": "2026-10-23T16:42:08.802052Z",
+      "method": "building-links.1",
+      "raw_manifest_sha256": "93ba295552c1e3d8785a8778d247369f4b77d1680cc6e239e0810d00a25c0930",
+      "layer": "data/added_13287330_buildings_auto_point.jsonl.gz"
+    },
+    {
+      "id": "added_13287330_facades_auto_point.jsonl:building_links_facades:osm",
+      "provider": "OpenStreetMap/Geofabrik",
+      "url": "https://download.geofabrik.de/russia/central-fed-district-latest.osm.pbf",
+      "release": "2026-10-22T20:21:33Z",
+      "sha256": "0067f5ee4128c29eb013ddc9da5ae5b235938249553435227a4161b585a87bc7",
+      "license": "ODbL-1.0",
+      "commercial_ok": true,
+      "fetched_at": "2026-10-23T16:42:08.802052Z",
+      "method": "building-links.1",
+      "raw_manifest_sha256": "93ba295552c1e3d8785a8778d247369f4b77d1680cc6e239e0810d00a25c0930",
+      "layer": "data/added_13287330_facades_auto_point.jsonl.gz"
+    },
+    {
+      "id": "added_13287330_hotel_buildings_auto_point.jsonl:building_links_links:osm",
+      "provider": "OpenStreetMap/Geofabrik",
+      "url": "https://download.geofabrik.de/russia/central-fed-district-latest.osm.pbf",
+      "release": "2026-10-22T20:21:33Z",
+      "sha256": "0067f5ee4128c29eb013ddc9da5ae5b235938249553435227a4161b585a87bc7",
+      "license": "ODbL-1.0",
+      "commercial_ok": true,
+      "fetched_at": "2026-10-23T16:42:08.802052Z",
+      "method": "building-links.1",
+      "raw_manifest_sha256": "93ba295552c1e3d8785a8778d247369f4b77d1680cc6e239e0810d00a25c0930",
+      "layer": "data/added_13287330_hotel_buildings_auto_point.jsonl.gz"
+    },
+    {
+      "id": "added_13287330_building_facts.jsonl:building_links_facts:osm",
+      "provider": "OpenStreetMap/Geofabrik",
+      "url": "https://download.geofabrik.de/russia/central-fed-district-latest.osm.pbf",
+      "release": "2026-10-22T20:21:33Z",
+      "sha256": "0067f5ee4128c29eb013ddc9da5ae5b235938249553435227a4161b585a87bc7",
+      "license": "ODbL-1.0",
+      "commercial_ok": true,
+      "fetched_at": "2026-10-23T16:42:08.802052Z",
+      "method": "building-links.1",
+      "raw_manifest_sha256": "93ba295552c1e3d8785a8778d247369f4b77d1680cc6e239e0810d00a25c0930",
+      "layer": "data/added_13287330_building_facts.jsonl.gz"
+    },
+    {
+      "id": "added_13287330_building_years.jsonl:building_years:osm",
+      "provider": "OpenStreetMap (теги корпусов пакета)",
+      "license": "ODbL-1.0",
+      "commercial_ok": true,
+      "layer": "data/added_13287330_building_years.jsonl.gz"
+    },
+    {
+      "id": "added_13287330_heritage.jsonl:heritage:wikidata",
+      "provider": "Wikidata",
+      "sha256": "dfd6a436eb74246f118825c578ae216eee7d5037a2cc6cb3e5ba57f4ace2f727",
+      "license": "CC0 1.0",
+      "commercial_ok": true,
+      "layer": "data/added_13287330_heritage.jsonl.gz"
+    },
+    {
+      "id": "added_13287330_construction.jsonl:construction:osm",
+      "provider": "OpenStreetMap/Geofabrik (стройки)",
+      "release": "2026-10-22T20:21:33Z",
+      "sha256": "0067f5ee4128c29eb013ddc9da5ae5b235938249553435227a4161b585a87bc7",
+      "license": "ODbL-1.0",
+      "commercial_ok": true,
+      "layer": "data/added_13287330_construction.jsonl.gz"
+    },
+    {
+      "id": "added_13287330_environment.jsonl:environment:open-meteo-era5",
+      "provider": "Open-Meteo Historical Weather API (ERA5)",
+      "url": "https://open-meteo.com/en/docs/historical-weather-api",
+      "license": "CC BY 4.0; бесплатный API — только разовая сборка на хакатоне (D22)",
+      "commercial_ok": false,
+      "layer": "data/added_13287330_environment.jsonl.gz"
+    },
+    {
+      "id": "added_13287330_environment.jsonl:environment:esa-worldcover-2021",
+      "provider": "ESA WorldCover",
+      "url": "https://esa-worldcover.org/",
+      "release": "v200 2021",
+      "license": "CC BY 4.0",
+      "commercial_ok": true,
+      "layer": "data/added_13287330_environment.jsonl.gz"
+    },
+    {
+      "id": "added_13287330_hotel_amenities.jsonl:hotel_amenities:ostrovok_site",
+      "provider": "ostrovok.ru",
+      "release": "snapshot_2026-10-29_pages",
+      "sha256": "b36e6d71cf81f292247dcf63c6ce3f59c03c48a40f6985579c0d047d97dc57b2",
+      "license": "Страницы Островка; сбор разрешён организаторами (D24)",
+      "layer": "data/added_13287330_hotel_amenities.jsonl.gz"
+    },
+    {
+      "id": "added_13287330_view_sun.jsonl:view_sun:osm-buildings",
+      "provider": "OpenStreetMap/Geofabrik (здания и деревья вокруг корпусов)",
+      "release": "2026-10-22T20:21:33Z",
+      "sha256": "0067f5ee4128c29eb013ddc9da5ae5b235938249553435227a4161b585a87bc7",
+      "license": "ODbL-1.0",
+      "commercial_ok": true,
+      "layer": "data/added_13287330_view_sun.jsonl.gz"
+    },
+    {
+      "id": "added_13287330_view_sun.jsonl:view_sun:copdem-glo30",
+      "provider": "Copernicus DEM GLO-30",
+      "url": "https://copernicus-dem-30m.s3.amazonaws.com/",
+      "license": "Copernicus DEM licence (free, attribution)",
+      "commercial_ok": true,
+      "layer": "data/added_13287330_view_sun.jsonl.gz"
+    },
+    {
+      "id": "added_13287330_view_sun.jsonl:view_sun:worldcover-2021",
+      "provider": "ESA WorldCover",
+      "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/",
+      "release": "v200 2021",
+      "license": "CC BY 4.0",
+      "commercial_ok": true,
+      "layer": "data/added_13287330_view_sun.jsonl.gz"
+    },
+    {
+      "id": "added_13287330_view_sun.jsonl:view_sun:3d-globfp-v2",
+      "provider": "3D-GloBFP",
+      "url": "https://doi.org/10.5281/zenodo.15487037",
+      "release": "v2 (2025-05-22)",
+      "license": "CC BY 4.0",
+      "layer": "data/added_13287330_view_sun.jsonl.gz"
+    },
+    {
+      "id": "added_13287330_sun_hours.jsonl:sun_hours:osm-buildings",
+      "provider": "OpenStreetMap/Geofabrik (здания и деревья вокруг корпусов)",
+      "release": "2026-10-22T20:21:33Z",
+      "sha256": "0067f5ee4128c29eb013ddc9da5ae5b235938249553435227a4161b585a87bc7",
+      "license": "ODbL-1.0",
+      "commercial_ok": true,
+      "layer": "data/added_13287330_sun_hours.jsonl.gz"
+    },
+    {
+      "id": "added_13287330_sun_hours.jsonl:sun_hours:copdem-glo30",
+      "provider": "Copernicus DEM GLO-30",
+      "url": "https://copernicus-dem-30m.s3.amazonaws.com/",
+      "license": "Copernicus DEM licence (free, attribution)",
+      "commercial_ok": true,
+      "layer": "data/added_13287330_sun_hours.jsonl.gz"
+    },
+    {
+      "id": "added_13287330_view_landmarks.jsonl:landmarks:osm-buildings",
+      "provider": "OpenStreetMap/Geofabrik (здания и деревья вокруг корпусов)",
+      "release": "2026-10-22T20:21:33Z",
+      "sha256": "0067f5ee4128c29eb013ddc9da5ae5b235938249553435227a4161b585a87bc7",
+      "license": "ODbL-1.0",
+      "commercial_ok": true,
+      "layer": "data/added_13287330_view_landmarks.jsonl.gz"
+    },
+    {
+      "id": "added_13287330_view_landmarks.jsonl:landmarks:copdem-glo30",
+      "provider": "Copernicus DEM GLO-30",
+      "url": "https://copernicus-dem-30m.s3.amazonaws.com/",
+      "license": "Copernicus DEM licence (free, attribution)",
+      "commercial_ok": true,
+      "layer": "data/added_13287330_view_landmarks.jsonl.gz"
+    },
+    {
+      "id": "added_13287330_view_landmarks.jsonl:landmarks:worldcover-2021",
+      "provider": "ESA WorldCover",
+      "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/",
+      "release": "v200 2021",
+      "license": "CC BY 4.0",
+      "commercial_ok": true,
+      "layer": "data/added_13287330_view_landmarks.jsonl.gz"
+    },
+    {
+      "id": "added_13287330_view_landmarks.jsonl:landmarks:3d-globfp-v2",
+      "provider": "3D-GloBFP",
+      "url": "https://doi.org/10.5281/zenodo.15487037",
+      "release": "v2 (2025-05-22)",
+      "license": "CC BY 4.0",
+      "layer": "data/added_13287330_view_landmarks.jsonl.gz"
+    },
+    {
+      "id": "added_13287330_hotel_stations:osm",
+      "provider": "OpenStreetMap",
+      "license": "ODbL-1.0",
+      "method": "nearby-tables.3 (станции пакета города)",
+      "layer": "data/added_13287330_hotel_stations.jsonl.gz"
     }
   ],
   "files": [
@@ -265,8 +526,8 @@
       "path": "data/coverage.jsonl.gz",
       "kind": "coverage",
       "rows": 54,
-      "bytes": 2908,
-      "sha256": "ef6e3065e3fa8dd35ba6c0821a7fec4aa8444e4fcbd40f0d7bfe6921dc063f22"
+      "bytes": 2922,
+      "sha256": "78ffc7c43f13769ad0359f1ec36473357c13e0faa9b42d2e553fca48c6f12f0b"
     },
     {
       "path": "data/curation_items.jsonl.gz",
@@ -438,6 +699,142 @@
       "rows": 1124880,
       "bytes": 33888828,
       "sha256": "e3825ddddc85b863055a0d527b4744a3ef50d0e92db539c09d7ff7f29b1592a4",
+      "layer": true
+    },
+    {
+      "path": "data/added_13287330_hotels.jsonl.gz",
+      "kind": "hotels",
+      "rows": 1,
+      "bytes": 764,
+      "sha256": "5dd71b6b4e7346c17f7f687eebfa6dd8f6c70259666aba0eb0ebb0c580d4fd68",
+      "layer": true
+    },
+    {
+      "path": "data/added_13287330_facts.jsonl.gz",
+      "kind": "facts",
+      "rows": 91,
+      "bytes": 5255,
+      "sha256": "512a420f3fb5b5ba48fac5ef56369df2a73347d72a37f6bb01bd0afb56a94e52",
+      "layer": true
+    },
+    {
+      "path": "data/added_13287330_questions.jsonl.gz",
+      "kind": "questions",
+      "rows": 26,
+      "bytes": 4945,
+      "sha256": "9fda5f1fa65a82798fca07801b82aeeed69f6bff988aa5b6c2335301f19bdada",
+      "layer": true
+    },
+    {
+      "path": "data/added_13287330_room_types.jsonl.gz",
+      "kind": "room_types",
+      "rows": 15,
+      "bytes": 1157,
+      "sha256": "4d7623b5d443937fd9cfff145222595eeaff50dad0b562726a906a9bdab76d61",
+      "layer": true
+    },
+    {
+      "path": "data/added_13287330_buildings_auto_point.jsonl.gz",
+      "kind": "buildings",
+      "rows": 1,
+      "bytes": 457,
+      "sha256": "6aee03723bfcc4ef76523099433eb341e4a6b0fdac0d5f642e7005b96b46313c",
+      "layer": true
+    },
+    {
+      "path": "data/added_13287330_facades_auto_point.jsonl.gz",
+      "kind": "facades",
+      "rows": 8,
+      "bytes": 933,
+      "sha256": "f830f9533596696cc44eaca46464a628583c2dd148c9273b1bf9537903061308",
+      "layer": true
+    },
+    {
+      "path": "data/added_13287330_hotel_buildings_auto_point.jsonl.gz",
+      "kind": "hotel_buildings",
+      "rows": 1,
+      "bytes": 366,
+      "sha256": "7cfe86e262c5ce1a5ab09071f6266a116fab7527f8c67909d78875b5e64c4b88",
+      "layer": true
+    },
+    {
+      "path": "data/added_13287330_building_facts.jsonl.gz",
+      "kind": "facts",
+      "rows": 3,
+      "bytes": 1790,
+      "sha256": "4106a73ae3d916b512b500fa8e0cc7a9d42699063d891944574d83cac8a95b98",
+      "layer": true
+    },
+    {
+      "path": "data/added_13287330_building_years.jsonl.gz",
+      "kind": "facts",
+      "rows": 0,
+      "bytes": 20,
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "layer": true
+    },
+    {
+      "path": "data/added_13287330_heritage.jsonl.gz",
+      "kind": "facts",
+      "rows": 0,
+      "bytes": 20,
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "layer": true
+    },
+    {
+      "path": "data/added_13287330_construction.jsonl.gz",
+      "kind": "facts",
+      "rows": 1,
+      "bytes": 747,
+      "sha256": "e808caf39fb8ff9691ec3bcbee48d60c2831ff69f517c21b55bcefced1f43c88",
+      "layer": true
+    },
+    {
+      "path": "data/added_13287330_environment.jsonl.gz",
+      "kind": "facts",
+      "rows": 7,
+      "bytes": 6959,
+      "sha256": "30877befac9642b10b16b4c75732edc4481fc48e2bfaf44858313b665044cf70",
+      "layer": true
+    },
+    {
+      "path": "data/added_13287330_hotel_amenities.jsonl.gz",
+      "kind": "facts",
+      "rows": 9,
+      "bytes": 1865,
+      "sha256": "4758c35af738348df11738ac106992e65cd609190450a7caee5e9f5b69a690cf",
+      "layer": true
+    },
+    {
+      "path": "data/added_13287330_view_sun.jsonl.gz",
+      "kind": "facts",
+      "rows": 834,
+      "bytes": 29908,
+      "sha256": "ecafc526c915d68b6ebc08b32e3d6025a007bc4f45822274db349cab09b2a134",
+      "layer": true
+    },
+    {
+      "path": "data/added_13287330_sun_hours.jsonl.gz",
+      "kind": "facts",
+      "rows": 240,
+      "bytes": 8498,
+      "sha256": "f8bf6ee31e2eac6a58b85af88a2d536e1fe508e35b39be4920a810a7b9377ce4",
+      "layer": true
+    },
+    {
+      "path": "data/added_13287330_view_landmarks.jsonl.gz",
+      "kind": "facts",
+      "rows": 201,
+      "bytes": 11799,
+      "sha256": "5e51a804ebe938b960613b379296fe3c4df11bb20496ee6e4f33b42a4f0341e6",
+      "layer": true
+    },
+    {
+      "path": "data/added_13287330_hotel_stations.jsonl.gz",
+      "kind": "hotel_stations",
+      "rows": 12,
+      "bytes": 556,
+      "sha256": "f5962cadf02dd729ac5aea59d74d4bcfc250ae8078f0ac7797ffa562d7e532ea",
       "layer": true
     }
   ],

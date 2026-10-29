@@ -114,7 +114,9 @@ BUILDING_KINDS = frozenset(
     {"osm_levels", "osm_height", "curated", "construction", "globfp", "dsm_cap", "unmeasured"}
 )
 # Ответ не зависит от этажа — один факт на весь фасад (D39); иначе — по этажам, которые есть.
-FLOOR_FREE = frozenset({"sun_behind_facade", "sun_behind_facade_all_year", "no_sea"})
+FLOOR_FREE = frozenset(
+    {"sun_behind_facade", "sun_behind_facade_all_year", "no_sea", "target_behind_facade"}
+)
 
 
 # --- Данные ---
@@ -762,6 +764,8 @@ class Cell:
     why: str | None = None  # для «да» / «нет»: clear, sun_behind_facade, blocked, no_sea…
     blocker: str | None = None  # кто закрывает («нет») или от чьей высоты зависит («неизвестно»)
     blocker_kind: str | None = None
+    seen: str | None = None  # V03: какое здание цели видно (OSM)
+    amount: float | None = None  # V03: сколько метров здания цели видно сверху
 
 
 def _combine(points: list[Cell]) -> Cell:
@@ -1156,6 +1160,10 @@ def make_fact(
         value = {"visible": cell.visible, "why": cell.why}
         if cell.blocker:
             value["blocker"] = cell.blocker
+        if cell.seen:
+            value["seen"] = cell.seen
+        if cell.amount is not None:
+            value["visible_m"] = round(cell.amount)
     detail: dict[str, Any] = {
         "facade_azimuth_deg": round(w.facade["azimuth"], 1),
         "facade_length_m": round(w.facade["length"], 1),
@@ -1273,13 +1281,10 @@ def facts_for_window(
     неизвестен; иначе по этажам 1…N: этаж выше посчитанных не получает чужого «нет».
     Где расчёт дал «неизвестно», рядом — оценка (D18): объясняет и ранжирует, но
     обязательное условие не закрывает."""
-    b = scene.osm[w.building_id]
-    i = b["index"]
-    ensure_ground(scene, [i])
-    g_w = (float(scene.ground_lo[i]), float(scene.ground_mid[i]), float(scene.ground_hi[i]))
-    if not math.isfinite(g_w[0]):
+    g_w = window_ground(scene, w)
+    if g_w is None:
         return []
-    c = b["geom"].centroid
+    c = scene.osm[w.building_id]["geom"].centroid
     lon, lat = scene.inverse.transform(c.x, c.y)
     suns = {} if suns is None else suns
 
@@ -1297,6 +1302,21 @@ def facts_for_window(
     jobs.append(("V05", dict(V05_PARAMS), {None: (year, None)}, None))
     if scene.sea:
         jobs.append(("V01", V01_PARAMS, v01_cells(scene, w, g_w), None))
+    return emit_facts(scene, w, jobs, city_id, g_w, calculated_at)
+
+
+def window_ground(scene: Scene, w: Window) -> tuple[float, float, float] | None:
+    """Земля под корпусом окна (интервал по GLO-30) или None, если рельефа нет."""
+    i = scene.osm[w.building_id]["index"]
+    ensure_ground(scene, [i])
+    g_w = (float(scene.ground_lo[i]), float(scene.ground_mid[i]), float(scene.ground_hi[i]))
+    return g_w if math.isfinite(g_w[0]) else None
+
+
+def emit_facts(
+    scene: Scene, w: Window, jobs: list[tuple], city_id: str, g_w: tuple, calculated_at: datetime
+) -> list[Fact]:
+    """Факты фасада по этажам: (характеристика, параметры, {этаж: (расчёт, оценка)}, закат)."""
     out = []
     for fid, params, cells, sunset in jobs:
         keyed = {}
@@ -1560,4 +1580,253 @@ def _mountain_fact(
         recipe_attempts=[RecipeAttempt(recipe_id="V02-R1", data_kind="Б", state="accepted")],
         depends_on=[{"facade_azimuth_deg": round(w.facade["azimuth"], 1), "floors": floors}],
         hard_condition_eligible=not seen,
+    )
+
+
+# --- Вид на заметный объект (V03): башни, купола — цель с высотой ---
+# Цель — здания сцены, выбранные правилом цели (`LANDMARKS`): центр, радиус и нижний предел
+# высоты; контур и высота — из OSM, как у препятствий. Лучи те же, что у заката, только идут не к
+# Солнцу, а к точкам на здании цели: от верха вниз через LANDMARK_STEP_M. Видимая часть — сколько
+# метров здания сверху открыто до первой закрытой точки. «Видно» — заметно, не шпиль: не меньше
+# LANDMARK_VISIBLE_M хотя бы одного здания цели.
+# - «да» — при худшем случае: глаз внизу интервала этажа, верх здания — низ интервала, земля под
+#   ним — верх, все препятствия на луче — верх интервала; видно не меньше LANDMARK_VISIBLE_M;
+# - «нет» — даже при лучшем (глаз вверху, здание — верх интервала, препятствия — низ) у каждого
+#   здания цели видно меньше LANDMARK_VISIBLE_M, или все здания за плоскостью фасада;
+# - иначе «неизвестно» с препятствием, которое решает исход, и оценка по центральным значениям.
+# Контуры зданий есть только до BUILDINGS_M от окна (дальше — поверхность GLO-30, она высокие дома
+# занижает), поэтому корпуса дальше BUILDINGS_M от цели не считаются: фактов нет — «неизвестно».
+LANDMARK_VERSION = "view-landmark@1"
+LANDMARK_VISIBLE_M = 50.0  # ~12 этажей башни: видно «нормально», а не только верхушку
+LANDMARK_STEP_M = 5.0
+LANDMARK_DSM_GAP_M = 90.0  # поверхность GLO-30 у самой цели — это она сама (окно 3×3 пикселя)
+LANDMARKS = {
+    "moscow_city": {
+        "name": "Москва-Сити",
+        "city": "moscow",
+        "center": (37.5375, 55.7495),  # центр квартала ММДЦ: правило выбора зданий, не факт
+        "radius_m": 500.0,
+        "min_height_m": 150.0,
+    },
+}
+_TOWERS: dict[tuple[int, str], list[dict[str, Any]]] = {}
+
+
+def landmark_towers(scene: Scene, target: str) -> list[dict[str, Any]]:
+    """Здания цели в сцене: центральная высота не ниже `min_height_m`, центр — в радиусе.
+
+    `top` — абсолютная высота верха (низ, центр, верх интервала), `base` — земли под зданием."""
+    import numpy as np
+
+    key = (id(scene), target)
+    if key in _TOWERS:
+        return _TOWERS[key]
+    spec = LANDMARKS[target]
+    cx, cy = scene.project.transform(*spec["center"])
+    towers = []
+    for bid, b in scene.osm.items():
+        mid = scene.top_mid[b["index"]]
+        if not np.isfinite(mid) or mid < spec["min_height_m"]:
+            continue
+        c = b["geom"].centroid
+        if math.hypot(c.x - cx, c.y - cy) <= spec["radius_m"]:
+            towers.append({"id": bid, "index": b["index"], "geom": b["geom"],
+                           "name": (b["tags"] or {}).get("name")})  # fmt: skip
+    ensure_ground(scene, [t["index"] for t in towers])
+    for t in towers:
+        i = t["index"]
+        cap = scene.cap[i]
+        top_hi = scene.ground_hi[i] + scene.top_hi[i]
+        t["top"] = (
+            float(scene.ground_lo[i] + scene.top_lo[i]),
+            float(scene.ground_mid[i] + scene.top_mid[i]),
+            float(top_hi if math.isnan(cap) else min(top_hi, cap)),
+        )
+        t["base"] = tuple(float(g) for g in (scene.ground_lo[i], scene.ground_mid[i],
+                                               scene.ground_hi[i]))  # fmt: skip
+    towers = [t for t in sorted(towers, key=lambda t: t["id"]) if math.isfinite(t["top"][0])]
+    _TOWERS[key] = towers
+    return towers
+
+
+def _landmark_rays(scene: Scene, w: Window, towers, x: float, y: float, g_w) -> list[tuple]:
+    """Лучи из точки окна к каждому зданию цели: (состояние, здание, препятствия, расстояние)."""
+    import numpy as np
+    import shapely
+
+    p = shapely.Point(x, y)
+    out = []
+    for t in towers:
+        c = t["geom"].centroid
+        az = math.degrees(math.atan2(c.x - x, c.y - y)) % 360
+        front = _front(az, w.facade["azimuth"])
+        if front >= FRONT_NO_DEG:
+            out.append(("behind", t, None, None))
+            continue
+        dist = float(shapely.distance(p, t["geom"]))
+        if dist > BUILDINGS_M:
+            out.append(("far", t, None, None))
+            continue
+        obs = ray(scene, w.building_id, x, y, az, g_w, max_d=BUILDINGS_M)
+        own = [k for k, i in enumerate(obs.ids) if i == t["id"]]
+        to = float(min(obs.d[own])) if own else dist  # до стены цели вдоль луча
+        gap = np.where(np.isin(obs.kind, ["terrain", "beyond"]), LANDMARK_DSM_GAP_M, 0.5)
+        keep = obs.d < to - gap
+        sub = Obstacles(obs.d[keep], obs.lo[keep], obs.hi[keep], obs.mid[keep],
+                        [k for k, m in zip(obs.kind, keep, strict=True) if m],
+                        [k for k, m in zip(obs.ids, keep, strict=True) if m])  # fmt: skip
+        out.append(("oblique" if front > FRONT_YES_DEG else "front", t, sub, to))
+    return out
+
+
+def visible_part(obs: Obstacles, heights, eye: float, top: float, base: float, dist: float):
+    """Сколько метров здания цели видно сверху и кто закрывает следующую точку ниже.
+
+    Лучи от глаза к точкам здания от `top` вниз через LANDMARK_STEP_M до земли `base`; видимая
+    часть — до первой закрытой точки (препятствия `heights` выше луча). → (метры, индекс)."""
+    import numpy as np
+
+    zs = np.arange(top, base, -LANDMARK_STEP_M)
+    if not len(zs):
+        return 0.0, -1
+    if not len(obs.d):
+        return top - base, -1
+    d = np.maximum(obs.d, 0.0)
+    line = eye + (zs[:, None] - _drop(dist) - eye) * d[None, :] / dist + _drop(d)[None, :]
+    over = heights[None, :] - line
+    blocked = (over >= 0).any(axis=1)
+    if not blocked.any():
+        return top - base, -1
+    k = int(np.argmax(blocked))  # первая закрытая точка сверху
+    shown = 0.0 if k == 0 else float(top - zs[k - 1])
+    return shown, int(np.argmax(over[k]))
+
+
+def _landmark_point(rays, floor: int | None, g_w: tuple) -> Cell:
+    """Расчёт по одной точке окна на этаже: «да» / «нет» — только при любых значениях интервалов."""
+    looking = [r for r in rays if r[0] != "behind"]
+    if not looking:
+        return Cell(False, why="target_behind_facade")
+    if floor is None:
+        return Cell(None, "floor_count_unknown")
+    e_lo, e_hi = eye_interval(floor)
+    eye_lo, eye_hi = g_w[0] + e_lo, g_w[2] + e_hi
+    hidden, best, blocker, undecided = 0, 0.0, None, None
+    for state, t, obs, dist in looking:
+        if state == "far":
+            undecided = undecided or Cell(None, "view_obstacle_height")
+            continue
+        worst, i = visible_part(obs, obs.hi, eye_lo, t["top"][0], t["base"][2], dist)
+        if state == "front" and e_lo >= LOW_EYE_M and worst >= LANDMARK_VISIBLE_M:
+            return Cell(True, why="clear", seen=t["id"], amount=worst)
+        most, j = visible_part(obs, obs.lo, eye_hi, t["top"][2], t["base"][0], dist)
+        if most < LANDMARK_VISIBLE_M:
+            hidden += 1
+            best = max(best, most)
+            if blocker is None and j >= 0:
+                blocker = (obs.ids[j], obs.kind[j])
+            continue
+        if undecided is None:
+            if i >= 0:
+                undecided = _decider(obs, i)
+            elif state == "oblique":
+                undecided = Cell(None, "view_sun_oblique")
+            else:
+                undecided = Cell(None, "view_low_floor")
+    if hidden == len(looking):
+        return Cell(False, why="blocked", blocker=blocker and blocker[0],
+                    blocker_kind=blocker and blocker[1], amount=best)  # fmt: skip
+    return undecided or Cell(None, "view_obstacle_height")
+
+
+def _landmark_estimate(rays, floor: int | None, g_w: tuple) -> Cell | None:
+    """Оценка (D18): этаж 3,3 м, соседи и верх цели — середина интервала, земля — по GLO-30."""
+    import numpy as np
+
+    looking = [r for r in rays if r[0] != "behind"]
+    if not looking:
+        return Cell(False, why="target_behind_facade")
+    if floor is None or any(r[0] == "far" for r in looking):
+        return None
+    eye = g_w[1] + eye_central(floor)
+    best, blocker = 0.0, None
+    for _, t, obs, dist in looking:
+        if "beyond" in obs.kind or (len(obs.d) and np.isnan(obs.mid).any()):
+            return None
+        shown, k = visible_part(obs, obs.mid, eye, t["top"][1], t["base"][1], dist)
+        if shown >= LANDMARK_VISIBLE_M:
+            return Cell(True, why="clear", seen=t["id"], amount=shown)
+        best = max(best, shown)
+        if blocker is None and k >= 0:
+            blocker = (obs.ids[k], obs.kind[k])
+    return Cell(False, why="blocked", blocker=blocker and blocker[0],
+                blocker_kind=blocker and blocker[1], amount=best)  # fmt: skip
+
+
+def v03_cells(scene: Scene, w: Window, towers, g_w) -> dict[int | None, tuple]:
+    """Вид на цель по этажам фасада. По этажу — (расчёт, оценка); оценка — None, если её нет."""
+    per_floor: dict[int | None, list[tuple]] = {f: [] for f in _floors(w)}
+    for x, y in _points(w):
+        rays = _landmark_rays(scene, w, towers, x, y, g_w)
+        for f in per_floor:
+            per_floor[f].append((_landmark_point(rays, f, g_w), _landmark_estimate(rays, f, g_w)))
+    return {f: _pair(cs) for f, cs in per_floor.items()}
+
+
+def landmark_facts(
+    scene: Scene, windows: list[Window], city_id: str, calculated_at: datetime
+) -> list[Fact]:
+    """V03 по фасадам одного корпуса для каждой цели города (`LANDMARKS`)."""
+    if not windows:
+        return []
+    g_w = window_ground(scene, windows[0])
+    if g_w is None:
+        return []
+    c = scene.osm[windows[0].building_id]["geom"].centroid
+    out: list[Fact] = []
+    for target, spec in LANDMARKS.items():
+        if spec["city"] != city_id:
+            continue
+        towers = landmark_towers(scene, target)
+        if not towers or min(t["geom"].distance(c) for t in towers) > BUILDINGS_M:
+            continue
+        params = {"target": target}
+        for w in windows:
+            jobs = [("V03", params, v03_cells(scene, w, towers, g_w), None)]
+            for f in emit_facts(scene, w, jobs, city_id, g_w, calculated_at):
+                out.append(_landmark_passport(scene, f, spec, towers))
+    return out
+
+
+def _landmark_passport(scene: Scene, f: Fact, spec: dict, towers: list[dict]) -> Fact:
+    """Версия V03, цель в условиях расчёта и источник — здание цели, которое видно."""
+    version = f.algorithm_version.replace(VERSION, LANDMARK_VERSION)
+    detail = dict(f.depends_on[0]) | {
+        "target": spec["name"],
+        "target_rule": {k: spec[k] for k in ("center", "radius_m", "min_height_m")},
+        "target_buildings": len(towers),
+        "visible_min_m": LANDMARK_VISIBLE_M,
+        "step_m": LANDMARK_STEP_M,
+    }
+    sources = list(f.sources)
+    seen = (f.value or {}).get("seen")
+    if seen:
+        b = scene.osm[seen]
+        tags = b["tags"] or {}
+        sources.append(
+            Source(
+                provider="OpenStreetMap",
+                url=URLS["osm"] + seen,
+                license="ODbL-1.0",
+                dataset_version=f"v{b['version']} {b['edited_at']}",
+            )
+        )
+        f.value["seen_name"] = tags.get("name")
+    return f.model_copy(
+        update={
+            "algorithm_version": version,
+            "fact_id": make_fact_id(f.hotel_id, f.subject_id, "V03", f.params, version),
+            "depends_on": [detail],
+            "sources": sources,
+        }
     )

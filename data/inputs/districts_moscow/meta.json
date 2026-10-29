@@ -1,0 +1,9 @@
+{
+  "source": "https://download.geofabrik.de/russia/central-fed-district-latest.osm.pbf",
+  "pbf_sha256": "0067f5ee4128c29eb013ddc9da5ae5b235938249553435227a4161b585a87bc7",
+  "source_date": "2026-10-22T20:21:33Z",
+  "districts_sha256": "b4811845e6985d44e40aa9097e0e6158e86b6dbd7bfcd0d55de11f3f589debb7",
+  "okrugs": 12,
+  "districts": 132,
+  "extracted_at": "2026-10-28T13:07:30+00:00"
+}

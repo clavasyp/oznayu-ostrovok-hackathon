@@ -1,0 +1,25 @@
+{
+  "requested_at": "2026-10-24T13:20:04.701062+00:00",
+  "finished_at": "2026-10-24T13:20:04.831776+00:00",
+  "url": "https://archive-api.open-meteo.com/v1/archive?latitude=53.75%2C53.75%2C54.0%2C54.0&longitude=27.5%2C27.75%2C27.5%2C27.75&start_date=2014-07-01&end_date=2014-07-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Etc%2FGMT-3&cell_selection=nearest&elevation=nan%2Cnan%2Cnan%2Cnan",
+  "http_status": 200,
+  "bytes": 5033,
+  "sha256": "8c5d17ed06b332e31652ff05290bedbd0889cd90500e76ff9202ef9c1732aeaa",
+  "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/environment/raw/era5_minsk_201407_0760484c4964c11b9a.json",
+  "params": {
+    "latitude": "53.75,53.75,54.0,54.0",
+    "longitude": "27.5,27.75,27.5,27.75",
+    "start_date": "2014-07-01",
+    "end_date": "2014-07-31",
+    "daily": "temperature_2m_mean,temperature_2m_max,precipitation_sum",
+    "models": "era5",
+    "timezone": "Etc/GMT-3",
+    "cell_selection": "nearest",
+    "elevation": "nan,nan,nan,nan"
+  },
+  "n_locations": 4,
+  "conservative_weight_estimate": 8.857142857142858,
+  "published_weight_estimate": 2.657142857142857,
+  "license": "CC BY 4.0 data; free API non-commercial hackathon D22 only; production Professional/self-host",
+  "elapsed_s": 0.1308212919975631
+}

@@ -1,0 +1,25 @@
+{
+  "requested_at": "2026-10-24T13:13:35.406578+00:00",
+  "finished_at": "2026-10-24T13:13:35.597407+00:00",
+  "url": "https://archive-api.open-meteo.com/v1/archive?latitude=55.5%2C55.5%2C55.5%2C55.75%2C55.75%2C55.75%2C56.0%2C56.0%2C56.0&longitude=37.25%2C37.5%2C37.75%2C37.25%2C37.5%2C37.75%2C37.25%2C37.5%2C37.75&start_date=1995-11-01&end_date=1995-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Etc%2FGMT-3&cell_selection=nearest&elevation=nan%2Cnan%2Cnan%2Cnan%2Cnan%2Cnan%2Cnan%2Cnan%2Cnan",
+  "http_status": 200,
+  "bytes": 10938,
+  "sha256": "15a6cfbf4b6bde32b749c4049312a0f78238192a99a5407e4acde2bedf278ee1",
+  "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/environment/raw/era5_moscow_199511_3fa81530aca3c8de60.json",
+  "params": {
+    "latitude": "55.5,55.5,55.5,55.75,55.75,55.75,56.0,56.0,56.0",
+    "longitude": "37.25,37.5,37.75,37.25,37.5,37.75,37.25,37.5,37.75",
+    "start_date": "1995-11-01",
+    "end_date": "1995-11-30",
+    "daily": "temperature_2m_mean,temperature_2m_max,precipitation_sum",
+    "models": "era5",
+    "timezone": "Etc/GMT-3",
+    "cell_selection": "nearest",
+    "elevation": "nan,nan,nan,nan,nan,nan,nan,nan,nan"
+  },
+  "n_locations": 9,
+  "conservative_weight_estimate": 19.285714285714285,
+  "published_weight_estimate": 5.785714285714286,
+  "license": "CC BY 4.0 data; free API non-commercial hackathon D22 only; production Professional/self-host",
+  "elapsed_s": 0.1923482920101378
+}

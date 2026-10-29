@@ -57,3 +57,9 @@ test('new layers read as words: heritage, build year, transit, sun hours', () =>
   assert.equal(f({ distance_m: 1000, bound: 'lower' }), 'ближе 1 км на карте нет')
   assert.equal(f({ distance_m: 120, site_id: 'way/2', site_name: null }), '120 м')
 })
+
+test('вид на объект: сколько метров башни видно сверху', () => {
+  assert.equal(formatFactValue({ value: { visible: true, why: 'clear', visible_m: 120, seen_name: 'Башня «Восток»' } }), 'видно ≈ 120 м сверху · «Башня «Восток»»')
+  assert.equal(formatFactValue({ value: { visible: false, why: 'blocked', visible_m: 20 } }), 'не видно — открыто не больше 20 м сверху')
+  assert.equal(formatFactValue({ value: { visible: false, why: 'target_behind_facade' } }), 'не видно — объект за фасадом')
+})

@@ -23,6 +23,10 @@ TRANSIT = frozenset({"T01", "T02", "T03"})
 VERSION = "transit-2gis.1"
 PAGE_MAX = 10
 MONTHLY_UNITS = 300  # своя граница внутри демо-квоты 2ГИС: остальное — на проверки и показ
+# Сколько вариантов маршрута просить: лучший по версии 2ГИС. Больше — длиннее ответ, а с
+# иностранного адреса 2ГИС обрывает ответы больше ~20 КБ (проверено 29.10); в России — без
+# ограничения, можно поднять `TWOGIS_MAX_ROUTES`.
+MAX_ROUTES = int(os.environ.get("TWOGIS_MAX_ROUTES") or 1)
 CACHE = Path(os.environ.get("TWOGIS_CACHE", "/tmp/twogis_cache"))
 TZ = {"sochi": "Europe/Moscow", "moscow": "Europe/Moscow"}
 # Откуда ехать: аэропорт или вокзал, названный в запросе, иначе главный в городе.
@@ -111,6 +115,7 @@ def transit_facts(
             "start_time": int(start.timestamp()),
             "enable_schedule": True,
             "locale": "ru",
+            "max_result_count": MAX_ROUTES,
         }
         try:
             record = client.request("transit", body)
@@ -191,6 +196,7 @@ def trip_routes(
             "start_time": int(start.timestamp()),
             "enable_schedule": True,
             "locale": "ru",
+            "max_result_count": MAX_ROUTES,
         }
         try:
             record = client.request("transit", body)

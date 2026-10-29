@@ -11,12 +11,12 @@ from collections.abc import Mapping
 from dataclasses import dataclass
 from typing import Literal
 
-Provider = Literal["anthropic", "openai_compat", "off"]
+Provider = Literal["anthropic", "openai_compat", "gigachat", "off"]
 Effort = Literal["low", "medium", "high", "xhigh", "max"]
 
-PROVIDERS: tuple[str, ...] = ("anthropic", "openai_compat", "off")
+PROVIDERS: tuple[str, ...] = ("anthropic", "openai_compat", "gigachat", "off")
 EFFORTS: tuple[str, ...] = ("low", "medium", "high", "xhigh", "max")
-DEFAULT_MODELS = {"anthropic": "claude-opus-5-5"}
+DEFAULT_MODELS = {"anthropic": "claude-opus-5-5", "gigachat": "GigaChat-3-Ultra"}
 
 
 @dataclass(frozen=True)

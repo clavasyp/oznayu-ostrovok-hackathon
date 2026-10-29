@@ -1,0 +1,25 @@
+{
+  "requested_at": "2026-10-24T13:16:27.234188+00:00",
+  "finished_at": "2026-10-24T13:16:27.698210+00:00",
+  "url": "https://archive-api.open-meteo.com/v1/archive?latitude=59.75%2C60.0%2C60.0&longitude=30.25%2C30.25%2C30.5&start_date=2005-07-01&end_date=2005-07-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Etc%2FGMT-3&cell_selection=nearest&elevation=nan%2Cnan%2Cnan",
+  "http_status": 200,
+  "bytes": 3772,
+  "sha256": "d540983382a6737c9bdf7c225160843d1fc2cfddcf6ffc25da85febbbc84a4ec",
+  "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/environment/raw/era5_spb_200507_5eb133979e48567e7c.json",
+  "params": {
+    "latitude": "59.75,60.0,60.0",
+    "longitude": "30.25,30.25,30.5",
+    "start_date": "2005-07-01",
+    "end_date": "2005-07-31",
+    "daily": "temperature_2m_mean,temperature_2m_max,precipitation_sum",
+    "models": "era5",
+    "timezone": "Etc/GMT-3",
+    "cell_selection": "nearest",
+    "elevation": "nan,nan,nan"
+  },
+  "n_locations": 3,
+  "conservative_weight_estimate": 6.642857142857143,
+  "published_weight_estimate": 1.9928571428571429,
+  "license": "CC BY 4.0 data; free API non-commercial hackathon D22 only; production Professional/self-host",
+  "elapsed_s": 0.4645029160019476
+}

@@ -1,0 +1,25 @@
+{
+  "requested_at": "2026-10-24T02:12:35.674199+00:00",
+  "finished_at": "2026-10-24T02:12:35.759311+00:00",
+  "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.5%2C43.5%2C43.75%2C43.75%2C44.0&longitude=39.75%2C40.0%2C39.5%2C40.25%2C39.25&start_date=2000-11-01&end_date=2000-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Etc%2FGMT-3&cell_selection=nearest&elevation=nan%2Cnan%2Cnan%2Cnan%2Cnan",
+  "http_status": 200,
+  "bytes": 6075,
+  "sha256": "5568bdcf9da4a296d36af97bdacf730ea5e1c7875c432ec791286d7605d16f63",
+  "path": "/Users/turgov/Хакатон/research_notes/Расчёт характеристик/environment/raw/era5_sochi_200011_a7c7dd06ef70e35869.json",
+  "params": {
+    "latitude": "43.5,43.5,43.75,43.75,44.0",
+    "longitude": "39.75,40.0,39.5,40.25,39.25",
+    "start_date": "2000-11-01",
+    "end_date": "2000-11-30",
+    "daily": "temperature_2m_mean,temperature_2m_max,precipitation_sum",
+    "models": "era5",
+    "timezone": "Etc/GMT-3",
+    "cell_selection": "nearest",
+    "elevation": "nan,nan,nan,nan,nan"
+  },
+  "n_locations": 5,
+  "conservative_weight_estimate": 10.714285714285714,
+  "published_weight_estimate": 3.214285714285714,
+  "license": "CC BY 4.0 data; free API non-commercial hackathon D22 only; production Professional/self-host",
+  "elapsed_s": 0.08527870899706613
+}

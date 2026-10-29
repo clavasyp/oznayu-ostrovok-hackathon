@@ -469,3 +469,79 @@ def test_checkpoint_resumes_and_survives_a_torn_write(tmp_path, monkeypatch):
     assert other.path != cp.path and other.load() == ([], set())
     cp.done()
     assert not cp.path.exists()
+
+
+# --- Вид на заметный объект V03 (Москва-Сити): видимая часть здания цели ---
+
+
+def wall(d, lo, hi, mid=None):
+    import numpy as np
+
+    top = hi if mid is None else mid
+    return vs.Obstacles(np.array([d]), np.array([lo]), np.array([hi]), np.array([top]),
+                        ["osm_height"], ["way/9"])  # fmt: skip
+
+
+def tower(lo, hi, mid=None):
+    return {"id": "relation/1", "top": (lo, mid or (lo + hi) / 2, hi), "base": (0.0, 0.0, 0.0)}
+
+
+def test_landmark_visible_part_counts_meters_from_the_top():
+    # Дом 100 м в 1 км, глаз на 30 м, башня 300 м в 3 км: луч к точкам башни ниже ~240 м
+    # упирается в дом — сверху видно 55 м (шаг 5 м).
+    shown, k = vs.visible_part(wall(1000.0, 100.0, 100.0), wall(1000.0, 100.0, 100.0).hi,
+                               30.0, 300.0, 0.0, 3000.0)  # fmt: skip
+    assert shown == pytest.approx(55.0) and k == 0
+    empty = vs.Obstacles(*(__import__("numpy").array([]) for _ in range(4)), [], [])
+    assert vs.visible_part(empty, empty.hi, 30.0, 300.0, 0.0, 3000.0) == (300.0, -1)
+
+
+def test_landmark_yes_needs_a_noticeable_part_in_the_worst_case():
+    # 10-й этаж: глаз 27,3–37,8 м над землёй; с землёй −1…3 м — 26,3–40,8 м.
+    far = ("front", tower(300.0, 310.0), wall(1000.0, 20.0, 30.0), 3000.0)
+    yes = vs._landmark_point([far], 10, GROUND)
+    assert yes.visible is True and yes.seen == "relation/1" and yes.amount >= 50
+    # Дом заслоняет всё, кроме верхушки, даже в лучшем случае — «нет» и сколько видно.
+    roof = ("front", tower(300.0, 310.0), wall(1000.0, 115.0, 120.0), 3000.0)
+    no = vs._landmark_point([roof], 10, GROUND)
+    assert no.visible is False and no.blocker == "way/9" and no.amount < 50
+    # Высота дома решает исход: в худшем случае мало, в лучшем — достаточно.
+    unsure = vs._landmark_point([("front", tower(300.0, 310.0), wall(1000.0, 60.0, 110.0), 3000.0)],
+                                10, GROUND)  # fmt: skip
+    assert unsure.visible is None and unsure.blocker == "way/9"
+    # Хотя бы одна башня видна — «да»; все за стеной — «нет» на весь фасад.
+    assert vs._landmark_point([roof, far], 10, GROUND).visible is True
+    behind = vs._landmark_point([("behind", tower(300.0, 310.0), None, None)], None, GROUND)
+    assert behind.visible is False and behind.why == "target_behind_facade"
+    assert vs._landmark_point([far], None, GROUND).reason == "floor_count_unknown"
+    # Косой взгляд и нижние этажи (деревья у дороги не на картах) — без «да».
+    assert vs._landmark_point([("oblique", *far[1:])], 10, GROUND).visible is None
+    assert vs._landmark_point([far], 1, GROUND).visible is None
+
+
+def test_landmark_estimate_uses_central_values():
+    mid = ("front", tower(300.0, 310.0), wall(1000.0, 60.0, 110.0, mid=80.0), 3000.0)
+    est = vs._landmark_estimate([mid], 10, GROUND)
+    assert est.visible is True and est.amount >= 50
+    assert vs._landmark_estimate([mid], None, GROUND) is None
+
+
+def test_moscow_city_view_is_parsed_with_its_target():
+    from agents.search import parse_query
+
+    for text in ("отель с видом на Москва-Сити", "чтобы из окна было видно башни Сити",
+                 "Москва-Сити из окна, 14 ноября"):  # fmt: skip
+        ast = parse_query(text, "moscow", mode="rules").ast
+        assert [(c.feature_id, c.params) for c in ast.hard] == [
+            ("V03", {"target": "moscow_city"})
+        ], text
+    near = parse_query("отель рядом с Москва-Сити", "moscow", mode="rules").ast
+    assert not [c for c in near.hard if c.feature_id == "V03"]
+
+
+def test_moscow_city_condition_is_named_by_its_target():
+    from agents.catalog import load_catalog
+
+    v03 = load_catalog().get("V03")
+    assert v03.short_for("eq", True, {"target": "moscow_city"}) == "вид на Москва-Сити"
+    assert v03.short_for("eq", True) == v03.short

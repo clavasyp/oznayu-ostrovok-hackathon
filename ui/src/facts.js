@@ -17,7 +17,7 @@ const TARGETS = {
 }
 const PROVIDERS = { hotelier: 'Ответ отеля', hotelier_simulator: 'Имитатор отельера', ostrovok: 'Страница Островка' }
 const WORDS = { present: 'есть', none: 'нет', unknown: 'неизвестно', split: 'сплит-система', central: 'центральный', dog: 'собаки', cat: 'кошки', dog_cat: 'собаки и кошки', any: 'любые животные', own: 'своя', third_party: 'сторонняя', full: 'полностью', partial: 'частично', double: 'двуспальная кровать', twin: 'две кровати', type2: 'Type 2', '24/7': 'круглосуточно' }
-const WHY = { clear: 'ничто не закрывает', blocked: 'закрыто зданием', terrain: 'закрыто рельефом', trees: 'закрыто деревьями', behind_facade: 'солнце за фасадом', no_sea: 'моря нет в секторе' }
+const WHY = { clear: 'ничто не закрывает', blocked: 'закрыто зданием', terrain: 'закрыто рельефом', trees: 'закрыто деревьями', behind_facade: 'солнце за фасадом', no_sea: 'моря нет в секторе', target_behind_facade: 'объект за фасадом' }
 
 export const formatNumber = (value) => new Intl.NumberFormat('ru-RU', { maximumFractionDigits: 1 }).format(value)
 
@@ -80,6 +80,11 @@ export function formatFactValue(fact, fieldLabels = {}) {
   if (value.bound === 'lower' && Number.isFinite(value.distance_m)) return `ближе ${value.distance_m >= 1000 ? `${formatNumber(value.distance_m / 1000)} км` : `${formatNumber(value.distance_m)} м`} на карте нет`
   if (value.surface && 'beach_id' in value) return [SURFACE[value.surface] || value.surface, value.beach_name ? `пляж «${value.beach_name}»` : 'ближайший пляж'].join(' · ')
   if (Number.isFinite(value.highest_m)) summary.push(`горы до ${formatNumber(value.highest_m)} м`)
+  // Вид на объект (V03): сколько метров здания цели видно сверху.
+  if (Number.isFinite(value.visible_m) && typeof value.visible === 'boolean') {
+    if (value.visible) return `видно ≈ ${formatNumber(value.visible_m)} м сверху${value.seen_name ? ` · «${value.seen_name}»` : ''}`
+    return value.visible_m >= 5 ? `не видно — открыто не больше ${formatNumber(value.visible_m)} м сверху` : `не видно${WHY[value.why] ? ` — ${WHY[value.why]}` : ''}`
+  }
   if (typeof value.visible === 'boolean') summary.push(value.visible ? 'видно' : `не видно${WHY[value.why] ? ` — ${WHY[value.why]}` : ''}`)
   if (Number.isFinite(value.aboveground_levels)) summary.push(`${value.aboveground_levels} этажей`)
   if (Number.isFinite(value.distance_m)) summary.push(`${Math.round(value.distance_m)} м`)

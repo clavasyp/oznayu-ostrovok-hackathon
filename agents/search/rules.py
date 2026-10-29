@@ -392,6 +392,24 @@ def mountain_view(ctx: Ctx) -> Iterator[Hit]:
         yield Hit(m.start(), m.end(), [Atom("V02", value="true")], "required")
 
 
+# Цели вида V03, которые считает калькулятор окон (`calculators/view_sun.LANDMARKS`): слова
+# гостя → код цели. Факты V03 — с параметром `target`, без него запрос их не берёт (D15).
+LANDMARK_WORDS = ((r"(?:башн\w*\s+|небоскреб\w*\s+)?(?:москв\w*[\s-]*)?сити|ммдц", "moscow_city"),)
+
+
+@rule
+def known_landmark_view(ctx: Ctx) -> Iterator[Hit]:
+    for words, target in LANDMARK_WORDS:
+        pattern = (
+            rf"(?:(?:с\s+)?вид\w*\s+(?:из\s+окна\s+|из\s+номера\s+)?на|видн\w*|видеть|"
+            rf"окна\s+на|смотр\w+\s+на)\s+(?:{words})(?![\w-])"
+            rf"|(?:{words})\s+(?:из\s+окна|из\s+номера)"
+        )
+        for m in finditer(pattern, ctx):
+            atom = Atom("V03", value="true", params={"target": target})
+            yield Hit(m.start(), m.end(), [atom], "required")
+
+
 @rule
 def landmark_view(ctx: Ctx) -> Iterator[Hit]:
     pattern = (

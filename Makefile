@@ -3,7 +3,7 @@ COMPOSE ?= docker compose
 DEV = $(COMPOSE) -f docker-compose.yml -f docker-compose.dev.yml
 URL ?= http://localhost:8080
 
-.PHONY: up down seed logs ps dev db test test-db test-packs audit lint fmt lock clean
+.PHONY: up down seed logs ps dev db test test-db test-packs audit lint fmt lock clean secrets
 
 # Свой .env из примера — только если его ещё нет.
 .env:
@@ -65,3 +65,11 @@ lock: ## обновить uv.lock после правки pyproject.toml
 
 clean: ## остановить и удалить базу (данные init загрузит заново)
 	$(COMPOSE) down -v
+
+# Публичный ключ организаторов (docs.ostrovok.tech, «Шифрование секретов (ключей)»).
+AGE_RECIPIENT = age1932fu7f70rwyfhaxflyfszz4gf6avxwc95wc0yjwm6zns9tspycqpgdnc0
+
+# Шифруем не свой .env, а .env.jury — только ключи для жюри (отдельные, не основные ключи команды).
+secrets: ## зашифровать .env.jury для жюри → secrets.env.age (нужен age)
+	age -r $(AGE_RECIPIENT) -o secrets.env.age .env.jury
+	@git ls-files --error-unmatch .env.jury >/dev/null 2>&1 && echo "ОШИБКА: .env.jury в git" || echo "secrets.env.age готов; .env.jury не в git"

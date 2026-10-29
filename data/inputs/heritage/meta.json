@@ -1,0 +1,28 @@
+{
+ "moscow": {
+  "file": "wikidata_moscow.json",
+  "sha256": "dfd6a436eb74246f118825c578ae216eee7d5037a2cc6cb3e5ba57f4ace2f727",
+  "fetched_at": "2026-10-28T12:40:00+00:00",
+  "endpoint": "https://query.wikidata.org/sparql",
+  "properties": [
+   "P1483 kulturnoe-nasledie.ru ID",
+   "P5381 EGROKN ID",
+   "P625",
+   "P1435"
+  ],
+  "license": "CC0 1.0"
+ },
+ "sochi": {
+  "file": "wikidata_sochi.json",
+  "sha256": "562a9ce72ec23a2c244adb35205bbd3ac432523a4f909d2c4f247c854f6c742c",
+  "fetched_at": "2026-10-28T12:40:00+00:00",
+  "endpoint": "https://query.wikidata.org/sparql",
+  "properties": [
+   "P1483 kulturnoe-nasledie.ru ID",
+   "P5381 EGROKN ID",
+   "P625",
+   "P1435"
+  ],
+  "license": "CC0 1.0"
+ }
+}

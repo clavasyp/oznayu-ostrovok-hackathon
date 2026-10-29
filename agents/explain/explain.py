@@ -258,7 +258,11 @@ def _merge_heads(a: str, b: str) -> str:
 def _label(item: dict[str, Any], catalog: Catalog) -> str:
     feature = catalog.get(item.get("feature_id") or "")
     # По направлению условия: «бары и клубы рядом» тому, кто просил от двух баров (ревью №21).
-    short = feature.short_for(item.get("cond_op"), item.get("cond_value")) if feature else None
+    short = (
+        feature.short_for(item.get("cond_op"), item.get("cond_value"), item.get("cond_params"))
+        if feature
+        else None
+    )
     label = short or item.get("text_span") or "условие"
     field_name = item.get("field")
     if (
@@ -409,7 +413,7 @@ def build_claims(
         c = conds.get(item.get("atom_id") or "")
         if c is None:
             return item
-        extra = {"cond_op": c.op, "cond_value": c.value}
+        extra = {"cond_op": c.op, "cond_value": c.value, "cond_params": c.params}
         if c.field and not item.get("field"):
             extra["field"] = c.field
         return item | extra

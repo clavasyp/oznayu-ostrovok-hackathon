@@ -119,7 +119,9 @@ def _label_items(items: list[dict[str, Any]], conds: dict[str, Any]) -> None:
         cond = conds.get(item.get("atom_id") or "")
         # Название — под направление условия: «бары и клубы рядом» у «≥ 2», «мало баров…» у «≤ 2».
         name = (
-            (feature.short_for(cond.op, cond.value) if cond else feature.short) if feature else None
+            (feature.short_for(cond.op, cond.value, cond.params) if cond else feature.short)
+            if feature
+            else None
         )
         field = cond.field if cond else None
         if feature and field and field != feature.default_field:

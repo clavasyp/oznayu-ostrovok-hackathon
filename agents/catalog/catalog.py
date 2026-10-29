@@ -18,6 +18,8 @@ from pathlib import Path
 from typing import Any
 
 CATALOG_PATH = Path(__file__).parent / "features.json"
+# Цели вида V03, которые считает калькулятор окон (`calculators/view_sun.LANDMARKS`).
+LANDMARK_NAMES = {"moscow_city": "Москва-Сити"}
 ROOM_LEVELS = frozenset({"room_type", "facade", "placement"})
 
 
@@ -53,8 +55,12 @@ class Feature:
     def room_level(self) -> bool:
         return self.level in ROOM_LEVELS
 
-    def short_for(self, op: str | None, value: Any = None) -> str:
-        """Название под условие гостя: «бары и клубы рядом» при ≥, «мало баров…» при ≤ и = 0."""
+    def short_for(self, op: str | None, value: Any = None, params: dict | None = None) -> str:
+        """Название под условие гостя: «бары и клубы рядом» при ≥, «мало баров…» при ≤ и = 0;
+        у вида на объект — с названием цели («вид на Москва-Сити»)."""
+        target = (params or {}).get("target")
+        if self.id == "V03" and target in LANDMARK_NAMES:
+            return f"вид на {LANDMARK_NAMES[target]}"
         if op in ("gte", "gt") and self.short_more:
             return self.short_more
         zero = op == "eq" and not isinstance(value, bool) and value == 0

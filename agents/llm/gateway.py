@@ -138,6 +138,10 @@ def build_client(p: ProviderSettings, s: LLMSettings) -> LLMClient:
         from agents.llm.openai_compat import OpenAICompatClient
 
         return OpenAICompatClient(p, timeout_s=s.timeout_s, max_retries=s.max_retries)
+    if p.provider == "gigachat":
+        from agents.llm.gigachat import GigaChatClient
+
+        return GigaChatClient(p, timeout_s=s.timeout_s, max_retries=s.max_retries)
     raise ValueError(f"провайдер {p.provider} не строит клиента")
 
 
