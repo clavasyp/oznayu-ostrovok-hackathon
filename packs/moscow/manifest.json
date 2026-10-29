@@ -4,7 +4,7 @@
   "city_name": "Москва",
   "timezone": "Europe/Moscow",
   "depth": "full",
-  "pack_version": "seva-full.3-f048d478de69+0b06f290",
+  "pack_version": "seva-full.3-f048d478de69+b81d8a24",
   "built_at": "2026-10-28T03:00:00Z",
   "code_version": "seva-full.3",
   "catalog_version": "ostrovok-2026-10-24+v9",
@@ -512,6 +512,40 @@
       "license": "ODbL-1.0",
       "method": "nearby-tables.3 (станции пакета города)",
       "layer": "data/added_13287330_hotel_stations.jsonl.gz"
+    },
+    {
+      "id": "landmarks:osm-buildings",
+      "provider": "OpenStreetMap/Geofabrik (здания и деревья вокруг корпусов)",
+      "release": "2026-10-22T20:21:33Z",
+      "sha256": "0067f5ee4128c29eb013ddc9da5ae5b235938249553435227a4161b585a87bc7",
+      "license": "ODbL-1.0",
+      "commercial_ok": true,
+      "layer": "data/view_landmarks.jsonl.gz"
+    },
+    {
+      "id": "landmarks:copdem-glo30",
+      "provider": "Copernicus DEM GLO-30",
+      "url": "https://copernicus-dem-30m.s3.amazonaws.com/",
+      "license": "Copernicus DEM licence (free, attribution)",
+      "commercial_ok": true,
+      "layer": "data/view_landmarks.jsonl.gz"
+    },
+    {
+      "id": "landmarks:worldcover-2021",
+      "provider": "ESA WorldCover",
+      "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/",
+      "release": "v200 2021",
+      "license": "CC BY 4.0",
+      "commercial_ok": true,
+      "layer": "data/view_landmarks.jsonl.gz"
+    },
+    {
+      "id": "landmarks:3d-globfp-v2",
+      "provider": "3D-GloBFP",
+      "url": "https://doi.org/10.5281/zenodo.15487037",
+      "release": "v2 (2025-05-22)",
+      "license": "CC BY 4.0",
+      "layer": "data/view_landmarks.jsonl.gz"
     }
   ],
   "files": [
@@ -526,8 +560,8 @@
       "path": "data/coverage.jsonl.gz",
       "kind": "coverage",
       "rows": 54,
-      "bytes": 2922,
-      "sha256": "78ffc7c43f13769ad0359f1ec36473357c13e0faa9b42d2e553fca48c6f12f0b"
+      "bytes": 2924,
+      "sha256": "85efe1856d21c37946507de32005d81e03114fd88a7c430eed71431a34ac36d1"
     },
     {
       "path": "data/curation_items.jsonl.gz",
@@ -835,6 +869,14 @@
       "rows": 12,
       "bytes": 556,
       "sha256": "f5962cadf02dd729ac5aea59d74d4bcfc250ae8078f0ac7797ffa562d7e532ea",
+      "layer": true
+    },
+    {
+      "path": "data/view_landmarks.jsonl.gz",
+      "kind": "facts",
+      "rows": 77011,
+      "bytes": 4192918,
+      "sha256": "e032de47c6125b196e9d880d721b555cc69e855d7be9448779e4e3f10d6b79aa",
       "layer": true
     }
   ],
