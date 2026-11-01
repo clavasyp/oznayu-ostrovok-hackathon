@@ -38,7 +38,7 @@
 
 ## Снимок 24.10.2026 — итог
 
-Сбор завершён 25.10 в 01:50 МСК: `manifests/DONE.json`, пройдены все 10 323 адреса. Архивы — в релизе [`data-ostrovok-2026-10-24`](https://github.com/ostrovok-hackathon-2026/vaibovovka/releases/tag/data-ostrovok-2026-10-24).
+Сбор завершён 25.10 в 01:50 МСК: `manifests/DONE.json`, пройдены все 10 323 адреса. Архивы — в релизе [`data-ostrovok-2026-10-24`](https://github.com/clavasyp/vaibovovka/releases/tag/data-ostrovok-2026-10-24).
 
 | | Москва | Большой Сочи | Всего |
 |---|---|---|---|

@@ -16,7 +16,7 @@
 | `copdem_tileList.txt` | список листов GLO-30 (где суша без рельефа) | `pipeline.build_view_sun` | Copernicus DEM |
 | `ostrovok_pages_2026-10-29/` | страница Palmira Art (её нет в снимке 24.10) в формате снимка | `pipeline.add_hotel stage` | ostrovok.ru, сбор разрешён организаторами |
 
-## В релизе [`data-raw-2026-10-29`](https://github.com/ostrovok-hackathon-2026/vaibovovka/releases/tag/data-raw-2026-10-29)
+## В релизе [`data-raw-2026-10-29`](https://github.com/clavasyp/vaibovovka/releases/tag/data-raw-2026-10-29)
 
 Файлы больше 100 МБ git не принимает, поэтому большие входы — релизом:
 - срезы OSM ЦФО и ЮФО (`*.osm.pbf`);
@@ -27,7 +27,7 @@
 Загрузка и сверка:
 
 ```bash
-gh release download data-raw-2026-10-29 -R ostrovok-hackathon-2026/vaibovovka -D data/raw
+gh release download data-raw-2026-10-29 -R clavasyp/vaibovovka -D data/raw
 cd data/raw && shasum -a 256 -c SHA256SUMS.txt
 ```
 
