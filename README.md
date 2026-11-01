@@ -228,3 +228,7 @@ make test-db                                             # + тесты на н�
 - проверка `/` и `/api/cities`, повторный запуск `init`.
 
 Контракты (факт, плагин, запрос, API, пакет города) — `docs/design/contracts.md`.
+
+## Лицензия
+
+Код — [MIT](LICENSE). На данные в `packs/`, `data/` и релизах она не распространяется: у них лицензии источников (OpenStreetMap — ODbL, остальные — в [docs/data_and_methods.md](docs/data_and_methods.md)).
