@@ -78,8 +78,8 @@ Ostrovok Hackathon 2026, команда vaibovovka.
 ## Быстрый старт
 
 ```bash
-git clone https://github.com/clavasyp/vaibovovka.git
-cd vaibovovka
+git clone https://github.com/clavasyp/oznayu-ostrovok-hackathon.git
+cd oznayu-ostrovok-hackathon
 cp .env.example .env
 docker compose up --build
 ```
