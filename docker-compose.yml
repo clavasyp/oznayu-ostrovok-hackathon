@@ -1,4 +1,4 @@
-# Запуск у жюри: cp .env.example .env && docker compose up --build → http://localhost:8080
+# Запуск: cp .env.example .env && docker compose up --build → http://localhost:8080
 # Порядок: db (PostGIS) → init (миграции + пакеты городов, завершается) → app (API + интерфейс, /health).
 # Значения берутся из .env, а без него — значения по умолчанию ниже, поэтому запуск работает и без .env.
 # Новую переменную приложения добавить в x-app.environment.

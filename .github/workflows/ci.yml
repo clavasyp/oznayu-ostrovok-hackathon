@@ -1,4 +1,4 @@
-# Проверки на каждый PR и на main: стиль, тесты и запуск ровно как у жюри.
+# Проверки на каждый PR и на main: стиль, тесты и запуск ровно.
 name: CI
 
 on:
@@ -40,7 +40,7 @@ jobs:
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v7
-      - name: Запуск как у жюри
+      - name: Холодный запуск
         run: |
           cp .env.example .env
           start=$(date +%s)

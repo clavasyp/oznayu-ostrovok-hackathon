@@ -3,7 +3,7 @@ COMPOSE ?= docker compose
 DEV = $(COMPOSE) -f docker-compose.yml -f docker-compose.dev.yml
 URL ?= http://localhost:8080
 
-.PHONY: up down seed logs ps dev db test test-db test-packs audit lint fmt lock clean secrets
+.PHONY: up down seed logs ps dev db test test-db test-packs audit lint fmt lock clean
 
 # Свой .env из примера — только если его ещё нет.
 .env:
@@ -43,7 +43,7 @@ test-db: .env ## все тесты, включая тесты на настоя�
 	$(DEV) exec -T db sh -c 'psql -U "$$POSTGRES_USER" -d postgres -tc "SELECT 1 FROM pg_database WHERE datname = '"'"'oznayu_test'"'"'" | grep -q 1 || createdb -U "$$POSTGRES_USER" oznayu_test'
 	TEST_DATABASE_URL=$(TEST_DB) uv run pytest -q
 
-test-packs: .env ## поставляемые пакеты packs/ в PostGIS, как init у жюри (несколько минут)
+test-packs: .env ## поставляемые пакеты packs/ в PostGIS, как при обычном запуске (несколько минут)
 	$(DEV) up -d --wait db
 	$(DEV) exec -T db sh -c 'psql -U "$$POSTGRES_USER" -d postgres -tc "SELECT 1 FROM pg_database WHERE datname = '"'"'oznayu_test'"'"'" | grep -q 1 || createdb -U "$$POSTGRES_USER" oznayu_test'
 	TEST_DATABASE_URL=$(TEST_DB) SHIPPED_PACKS=1 uv run pytest -q -s tests/test_shipped_packs_db.py
@@ -67,9 +67,3 @@ clean: ## остановить и удалить базу (данные init з�
 	$(COMPOSE) down -v
 
 # Публичный ключ организаторов (docs.ostrovok.tech, «Шифрование секретов (ключей)»).
-AGE_RECIPIENT = age1932fu7f70rwyfhaxflyfszz4gf6avxwc95wc0yjwm6zns9tspycqpgdnc0
-
-# Шифруем не свой .env, а .env.jury — только ключи для жюри (отдельные, не основные ключи команды).
-secrets: ## зашифровать .env.jury для жюри → secrets.env.age (нужен age)
-	age -r $(AGE_RECIPIENT) -o secrets.env.age .env.jury
-	@git ls-files --error-unmatch .env.jury >/dev/null 2>&1 && echo "ОШИБКА: .env.jury в git" || echo "secrets.env.age готов; .env.jury не в git"
